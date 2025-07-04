@@ -99,10 +99,8 @@
                 {%- assign article = block.settings.article -%}
                 {%- if article.image != blank -%}
                   <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--{{ section.settings.image_width }}-width{% if section.settings.image_width != 'full' %} multicolumn-card-spacing{% endif %}">
-                    <div class="media media--transparent media--{{ section.settings.image_ratio }}">
-                      <a href="{{ article.url }}">
-                        {{ article.image | image_url: width: 800 | image_tag: class: 'multicolumn-card__image', loading: 'lazy' }}
-                      </a>
+                    <div class="multicolumn-image-grid multicolumn-image-grid--1" style="--grid-gap: {{ block.settings.image_gap | default: 16 }}px; --grid-margin: {{ block.settings.image_margin | default: 0 }}px; --grid-padding: {{ block.settings.image_padding | default: 0 }}px;">
+                        {{ article.image | image_url: width: 800 | image_tag: class: 'multicolumn-grid__image', loading: 'lazy' }}
                     </div>
                   </div>
                 {%- endif -%}
