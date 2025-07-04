@@ -1,0 +1,835 @@
+{% doc %}
+  @prompt
+    Create a magazine-style header section with a custom background image that covers the full header area. Include options for overlay effects, typography that stands out against the background, and responsive design that maintains the magazine cover aesthetic across all devices., viculalo a un blog post
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .magazine-header-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    height: {{ block.settings.header_height }}px;
+    overflow: hidden;
+    display: flex;
+    align-items: {{ block.settings.vertical_alignment }};
+    justify-content: {{ block.settings.horizontal_alignment }};
+  }
+
+  .magazine-header-bg-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .magazine-header-bg-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: {{ block.settings.image_position }};
+  }
+
+  .magazine-header-bg-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: {{ block.settings.background_color }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .magazine-header-bg-placeholder-{{ ai_gen_id }} svg {
+    width: 50%;
+    height: 50%;
+    opacity: 0.2;
+  }
+
+  .magazine-header-overlay-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: {{ block.settings.overlay_color }};
+    opacity: {{ block.settings.overlay_opacity | divided_by: 100.0 }};
+    z-index: 2;
+  }
+
+  .magazine-header-content-{{ ai_gen_id }} {
+    position: relative;
+    z-index: 3;
+    padding: 40px;
+    width: 100%;
+    max-width: {{ block.settings.content_width }}px;
+    text-align: {{ block.settings.text_alignment }};
+  }
+
+  .magazine-header-tagline-{{ ai_gen_id }} {
+    display: inline-block;
+    font-family: {{ block.settings.font }}.family;
+    font-weight: {{ block.settings.font }}.weight;
+    font-style: {{ block.settings.font }}.style;
+    font-size: {{ block.settings.tagline_size }}px;
+    line-height: 1.2;
+    color: {{ block.settings.tagline_color }};
+    margin-bottom: 10px;
+    {% if block.settings.tagline_style == 'boxed' %}
+      background-color: {{ block.settings.tagline_background }};
+      padding: 5px 15px;
+    {% endif %}
+    {% if block.settings.tagline_style == 'underlined' %}
+      border-bottom: 3px solid {{ block.settings.tagline_color }};
+      padding-bottom: 5px;
+    {% endif %}
+    text-transform: {{ block.settings.tagline_transform }};
+    letter-spacing: {{ block.settings.tagline_spacing }}px;
+  }
+
+  .magazine-header-title-{{ ai_gen_id }} {
+    font-family: {{ block.settings.font }}.family;
+    font-weight: {{ block.settings.font }}.weight;
+    font-style: {{ block.settings.font }}.style;
+    font-size: {{ block.settings.title_size }}px;
+    line-height: 1;
+    color: {{ block.settings.title_color }};
+    margin-bottom: 20px;
+    text-transform: {{ block.settings.title_transform }};
+    letter-spacing: {{ block.settings.title_spacing }}px;
+    {% if block.settings.title_shadow %}
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    {% endif %}
+  }
+
+  .magazine-header-subtitle-{{ ai_gen_id }} {
+    font-family: {{ block.settings.font }}.family;
+    font-weight: {{ block.settings.font }}.weight;
+    font-style: {{ block.settings.font }}.style;
+    font-size: {{ block.settings.subtitle_size }}px;
+    line-height: 1.4;
+    color: {{ block.settings.subtitle_color }};
+    margin-bottom: 30px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .magazine-header-meta-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    justify-content: {{ block.settings.text_alignment }};
+    margin-bottom: 20px;
+    font-family: {{ block.settings.font }}.family;
+    color: {{ block.settings.meta_color }};
+    font-size: {{ block.settings.meta_size }}px;
+  }
+
+  .magazine-header-author-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+  }
+
+  .magazine-header-author-image-{{ ai_gen_id }} {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    overflow: hidden;
+  }
+
+  .magazine-header-author-image-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .magazine-header-date-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+  }
+
+  .magazine-header-button-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: {{ block.settings.button_background }};
+    color: {{ block.settings.button_color }};
+    text-decoration: none;
+    font-family: {{ block.settings.font }}.family;
+    font-weight: {{ block.settings.font }}.weight;
+    font-size: {{ block.settings.button_size }}px;
+    border-radius: {{ block.settings.button_radius }}px;
+    transition: all 0.3s ease;
+  }
+
+  .magazine-header-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_background }};
+    color: {{ block.settings.button_hover_color }};
+  }
+
+  @media screen and (max-width: 989px) {
+    .magazine-header-{{ ai_gen_id }} {
+      height: {{ block.settings.header_height_tablet }}px;
+    }
+    
+    .magazine-header-content-{{ ai_gen_id }} {
+      padding: 30px;
+    }
+    
+    .magazine-header-tagline-{{ ai_gen_id }} {
+      font-size: {{ block.settings.tagline_size | times: 0.8 }}px;
+    }
+    
+    .magazine-header-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_size | times: 0.8 }}px;
+    }
+    
+    .magazine-header-subtitle-{{ ai_gen_id }} {
+      font-size: {{ block.settings.subtitle_size | times: 0.8 }}px;
+    }
+    
+    .magazine-header-meta-{{ ai_gen_id }} {
+      font-size: {{ block.settings.meta_size | times: 0.9 }}px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .magazine-header-{{ ai_gen_id }} {
+      height: {{ block.settings.header_height_mobile }}px;
+    }
+    
+    .magazine-header-content-{{ ai_gen_id }} {
+      padding: 20px;
+    }
+    
+    .magazine-header-tagline-{{ ai_gen_id }} {
+      font-size: {{ block.settings.tagline_size | times: 0.6 }}px;
+    }
+    
+    .magazine-header-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_size | times: 0.6 }}px;
+      margin-bottom: 15px;
+    }
+    
+    .magazine-header-subtitle-{{ ai_gen_id }} {
+      font-size: {{ block.settings.subtitle_size | times: 0.7 }}px;
+      margin-bottom: 20px;
+    }
+    
+    .magazine-header-meta-{{ ai_gen_id }} {
+      flex-direction: column;
+      align-items: {{ block.settings.text_alignment }};
+      font-size: {{ block.settings.meta_size | times: 0.8 }}px;
+    }
+    
+    .magazine-header-author-{{ ai_gen_id }} {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+    
+    .magazine-header-button-{{ ai_gen_id }} {
+      padding: 10px 20px;
+      font-size: {{ block.settings.button_size | times: 0.9 }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="magazine-header-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="magazine-header-bg-{{ ai_gen_id }}">
+    {% if block.settings.use_article_image and block.settings.article.image %}
+      <img 
+        src="{{ block.settings.article.image | image_url: width: 2000 }}" 
+        alt="{{ block.settings.article.image.alt | escape }}"
+        loading="lazy"
+        width="{{ block.settings.article.image.width }}"
+        height="{{ block.settings.article.image.height }}"
+      >
+    {% elsif block.settings.background_image %}
+      <img 
+        src="{{ block.settings.background_image | image_url: width: 2000 }}" 
+        alt="{{ block.settings.background_image.alt | escape }}"
+        loading="lazy"
+        width="{{ block.settings.background_image.width }}"
+        height="{{ block.settings.background_image.height }}"
+      >
+    {% else %}
+      <div class="magazine-header-bg-placeholder-{{ ai_gen_id }}">
+        {{ 'image' | placeholder_svg_tag }}
+      </div>
+    {% endif %}
+  </div>
+  
+  {% if block.settings.show_overlay %}
+    <div class="magazine-header-overlay-{{ ai_gen_id }}"></div>
+  {% endif %}
+
+  <div class="magazine-header-content-{{ ai_gen_id }}">
+    {% if block.settings.show_blog_name and block.settings.article.blog.title != blank %}
+      <div class="magazine-header-tagline-{{ ai_gen_id }}">{{ block.settings.article.blog.title }}</div>
+    {% elsif block.settings.tagline != blank %}
+      <div class="magazine-header-tagline-{{ ai_gen_id }}">{{ block.settings.tagline }}</div>
+    {% endif %}
+    
+    {% if block.settings.use_article_title and block.settings.article.title != blank %}
+      <h2 class="magazine-header-title-{{ ai_gen_id }}">{{ block.settings.article.title }}</h2>
+    {% elsif block.settings.title != blank %}
+      <h2 class="magazine-header-title-{{ ai_gen_id }}">{{ block.settings.title }}</h2>
+    {% endif %}
+    
+    {% if block.settings.show_meta and block.settings.article != blank %}
+      <div class="magazine-header-meta-{{ ai_gen_id }}">
+        {% if block.settings.show_author %}
+          <div class="magazine-header-author-{{ ai_gen_id }}">
+            {% if block.settings.show_author_image and block.settings.author_image %}
+              <div class="magazine-header-author-image-{{ ai_gen_id }}">
+                <img 
+                  src="{{ block.settings.author_image | image_url: width: 80 }}" 
+                  alt="{{ block.settings.article.author }}"
+                  loading="lazy"
+                  width="40"
+                  height="40"
+                >
+              </div>
+            {% endif %}
+            <span>{{ block.settings.article.author }}</span>
+          </div>
+        {% endif %}
+        
+        {% if block.settings.show_date %}
+          <div class="magazine-header-date-{{ ai_gen_id }}">
+            <span>{{ block.settings.article.published_at | date: block.settings.date_format }}</span>
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+    
+    {% if block.settings.use_article_excerpt and block.settings.article.excerpt != blank %}
+      <div class="magazine-header-subtitle-{{ ai_gen_id }}">{{ block.settings.article.excerpt }}</div>
+    {% elsif block.settings.subtitle != blank %}
+      <div class="magazine-header-subtitle-{{ ai_gen_id }}">{{ block.settings.subtitle }}</div>
+    {% endif %}
+    
+    {% if block.settings.show_read_more and block.settings.article.url != blank %}
+      <a href="{{ block.settings.article.url }}" class="magazine-header-button-{{ ai_gen_id }}">
+        {{ block.settings.read_more_text }}
+      </a>
+    {% elsif block.settings.button_text != blank and block.settings.button_link != blank %}
+      <a href="{{ block.settings.button_link }}" class="magazine-header-button-{{ ai_gen_id }}">
+        {{ block.settings.button_text }}
+      </a>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Blog Magazine Header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Blog Article"
+    },
+    {
+      "type": "article",
+      "id": "article",
+      "label": "Select article"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_article_image",
+      "label": "Use article featured image",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "use_article_title",
+      "label": "Use article title",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "use_article_excerpt",
+      "label": "Use article excerpt",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_blog_name",
+      "label": "Show blog name as tagline",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Article Meta"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_meta",
+      "label": "Show article meta information",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "label": "Show author",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author_image",
+      "label": "Show author image",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "author_image",
+      "label": "Author image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "label": "Show date",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "date_format",
+      "label": "Date format",
+      "default": "%B %d, %Y",
+      "info": "Example: January 1, 2023. See more format options: https://shopify.dev/docs/api/liquid/filters/date"
+    },
+    {
+      "type": "range",
+      "id": "meta_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Meta text size",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "meta_color",
+      "label": "Meta text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_read_more",
+      "label": "Show read more button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "read_more_text",
+      "label": "Read more text",
+      "default": "Read Article"
+    },
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Fallback background image"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#f4f4f4"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "options": [
+        {
+          "value": "center center",
+          "label": "Center"
+        },
+        {
+          "value": "center top",
+          "label": "Top"
+        },
+        {
+          "value": "center bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "left center",
+          "label": "Left"
+        },
+        {
+          "value": "right center",
+          "label": "Right"
+        }
+      ],
+      "default": "center center"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_overlay",
+      "label": "Show overlay",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Overlay opacity",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "header_height",
+      "min": 300,
+      "max": 800,
+      "step": 50,
+      "unit": "px",
+      "label": "Header height (desktop)",
+      "default": 600
+    },
+    {
+      "type": "range",
+      "id": "header_height_tablet",
+      "min": 250,
+      "max": 600,
+      "step": 50,
+      "unit": "px",
+      "label": "Header height (tablet)",
+      "default": 500
+    },
+    {
+      "type": "range",
+      "id": "header_height_mobile",
+      "min": 200,
+      "max": 500,
+      "step": 50,
+      "unit": "px",
+      "label": "Header height (mobile)",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "min": 500,
+      "max": 1200,
+      "step": 50,
+      "unit": "px",
+      "label": "Content width",
+      "default": 800
+    },
+    {
+      "type": "select",
+      "id": "horizontal_alignment",
+      "label": "Horizontal alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "vertical_alignment",
+      "label": "Vertical alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Top"
+        },
+        {
+          "value": "center",
+          "label": "Middle"
+        },
+        {
+          "value": "flex-end",
+          "label": "Bottom"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "font_picker",
+      "id": "font",
+      "label": "Font",
+      "default": "helvetica_n4"
+    },
+    {
+      "type": "header",
+      "content": "Custom Content (Fallbacks)"
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline (if not using blog name)",
+      "default": "FEATURED STORY"
+    },
+    {
+      "type": "range",
+      "id": "tagline_size",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Tagline size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "tagline_color",
+      "label": "Tagline color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "tagline_style",
+      "label": "Tagline style",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "boxed",
+          "label": "Boxed"
+        },
+        {
+          "value": "underlined",
+          "label": "Underlined"
+        }
+      ],
+      "default": "boxed"
+    },
+    {
+      "type": "color",
+      "id": "tagline_background",
+      "label": "Tagline background (for boxed style)",
+      "default": "#ff0000"
+    },
+    {
+      "type": "select",
+      "id": "tagline_transform",
+      "label": "Text transform",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "range",
+      "id": "tagline_spacing",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Letter spacing",
+      "default": 2
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title (if not using article title)",
+      "default": "The Ultimate Magazine Style Header"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 24,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Title size",
+      "default": 72
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "title_shadow",
+      "label": "Add text shadow",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "title_transform",
+      "label": "Text transform",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "range",
+      "id": "title_spacing",
+      "min": -2,
+      "max": 10,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Letter spacing",
+      "default": -1
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle (if not using article excerpt)",
+      "default": "Captivate your audience with this bold, magazine-inspired header that makes a statement on any page."
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "min": 14,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Subtitle size",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text (if not using read more)",
+      "default": "Read More"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link (if not using article URL)"
+    },
+    {
+      "type": "range",
+      "id": "button_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Button text size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background",
+      "default": "#ff0000"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Button hover background",
+      "default": "#cc0000"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Button hover text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Button corner radius",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blog Magazine Header"
+    }
+  ],
+  "tag": null
+}
+{% endschema %}
