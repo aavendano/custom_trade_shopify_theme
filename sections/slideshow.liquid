@@ -148,8 +148,34 @@
         aria-label="{{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
         tabindex="-1"
       >
-        <div class="slideshow__media banner__media media{% if block.settings.image == blank %} placeholder{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}">
-          {%- if block.settings.image -%}
+        <div class="slideshow__media banner__media media{% if block.settings.image == blank and block.settings.cloudinary_public_id == blank %} placeholder{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}">
+          {%- if block.settings.cloudinary_public_id != blank -%}
+            {%- liquid
+              if section.settings.image_behavior == 'ambient'
+                assign sizes_mobile = '120vw'
+                assign sizes_tablet = '120vw'
+                assign sizes_desktop = '120vw'
+              else
+                assign sizes_mobile = '100vw'
+                assign sizes_tablet = '100vw'
+                assign sizes_desktop = '100vw'
+              endif
+              if forloop.first
+                assign loading_priority = 'eager'
+              else
+                assign loading_priority = 'lazy'
+              endif
+            -%}
+            {% render 'aa-cloudinary-image',
+              public_id: block.settings.cloudinary_public_id,
+              alt: block.settings.cloudinary_alt,
+              loading: loading_priority,
+              sizes_mobile: sizes_mobile,
+              sizes_tablet: sizes_tablet,
+              sizes_desktop: sizes_desktop,
+              aspect_ratio: '16/9'
+            %}
+          {%- elsif block.settings.image -%}
             {%- liquid
               assign height = block.settings.image.width | divided_by: block.settings.image.aspect_ratio | round
               if section.settings.image_behavior == 'ambient'
@@ -446,6 +472,21 @@
           "type": "image_picker",
           "id": "image",
           "label": "t:sections.slideshow.blocks.slide.settings.image.label"
+        },
+        {
+          "type": "header",
+          "content": "Cloudinary Image (Alternative)"
+        },
+        {
+          "type": "text",
+          "id": "cloudinary_public_id",
+          "label": "Cloudinary Public ID",
+          "info": "Use this instead of Shopify image for Cloudinary optimization"
+        },
+        {
+          "type": "text",
+          "id": "cloudinary_alt",
+          "label": "Cloudinary Image Alt Text"
         },
         {
           "type": "range",
