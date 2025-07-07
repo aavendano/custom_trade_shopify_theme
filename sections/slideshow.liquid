@@ -115,6 +115,22 @@
         #Slide-{{ section.id }}-{{ forloop.index }} .banner__media::after {
           opacity: {{ block.settings.image_overlay_opacity | divided_by: 100.0 }};
         }
+        {%- if block.settings.gradient_overlay_enabled -%}
+        #Slide-{{ section.id }}-{{ forloop.index }} .banner__media::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(
+            {%- if block.settings.gradient_direction == 'top_to_bottom' -%}to bottom{%- else -%}to top{%- endif -%},
+            transparent {{ block.settings.gradient_start_distance }}%,
+            {{ block.settings.gradient_color }}
+          );
+          z-index: 1;
+        }
+        {%- endif -%}
       </style>
       <div
         class="slideshow__slide grid__item grid--1-col slider__slide"
@@ -418,6 +434,48 @@
           "unit": "%",
           "label": "t:sections.slideshow.blocks.slide.settings.image_overlay_opacity.label",
           "default": 0
+        },
+        {
+          "type": "header",
+          "content": "Gradient Overlay"
+        },
+        {
+          "type": "checkbox",
+          "id": "gradient_overlay_enabled",
+          "label": "Enable gradient overlay",
+          "default": false
+        },
+        {
+          "type": "color",
+          "id": "gradient_color",
+          "label": "Gradient color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "gradient_start_distance",
+          "min": 0,
+          "max": 80,
+          "step": 5,
+          "unit": "%",
+          "label": "Distance to start gradient",
+          "default": 50
+        },
+        {
+          "type": "select",
+          "id": "gradient_direction",
+          "options": [
+            {
+              "value": "bottom_to_top",
+              "label": "Bottom to top"
+            },
+            {
+              "value": "top_to_bottom",
+              "label": "Top to bottom"
+            }
+          ],
+          "default": "bottom_to_top",
+          "label": "Gradient direction"
         },
         {
           "type": "header",
