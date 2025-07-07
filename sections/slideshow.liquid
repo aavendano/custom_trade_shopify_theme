@@ -25,7 +25,14 @@
   {%- endstyle -%}
 {%- endif -%}
 
+{%- style -%}
+  #slideshow-{{ section.id }} {
+    margin-bottom: {{ section.settings.bottom_margin }}px;
+  }
+{%- endstyle -%}
+
 <slideshow-component
+  id="slideshow-{{ section.id }}"
   class="slider-mobile-gutter{% if section.settings.layout == 'grid' %} page-width{% endif %}{% if section.settings.show_text_below %} mobile-text-below{% endif %}"
   role="region"
   aria-roledescription="{{ 'sections.slideshow.carousel' | t }}"
@@ -412,6 +419,21 @@
       "label": "t:sections.slideshow.settings.accessibility.label",
       "info": "t:sections.slideshow.settings.accessibility.info",
       "default": "t:sections.slideshow.settings.accessibility.default"
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "bottom_margin",
+      "min": -200,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Bottom margin",
+      "info": "Use negative values to allow sections underneath to overlay",
+      "default": 0
     }
   ],
   "blocks": [
