@@ -15,7 +15,10 @@
         "slide_Wdgy3g": {
           "type": "slide",
           "settings": {
+            "cloudinary_id": "",
             "image": "shopify://shop_images/Main.jpg",
+            "cloudinary_public_id": "",
+            "cloudinary_alt": "",
             "image_overlay_opacity": 0,
             "gradient_overlay_enabled": true,
             "gradient_color": "#f4f4f4",
@@ -37,7 +40,10 @@
         "slide_g63pLW": {
           "type": "slide",
           "settings": {
+            "cloudinary_id": "",
             "image": "shopify://shop_images/couple_disconnect.jpg",
+            "cloudinary_public_id": "",
+            "cloudinary_alt": "",
             "image_overlay_opacity": 0,
             "gradient_overlay_enabled": true,
             "gradient_color": "#f4f4f4",
@@ -82,6 +88,10 @@
           "type": "column",
           "settings": {
             "article": "",
+            "cloudinary_id": "",
+            "cloudinary_id_2": "",
+            "cloudinary_id_3": "",
+            "cloudinary_id_4": "",
             "image": "shopify://shop_images/Main_b13ad453-477c-4ed1-9b43-81f3345adfd6.jpg",
             "image_2": "shopify://shop_images/Main_9129b69a-0c7b-4f66-b6cf-c4222f18028a.jpg",
             "image_3": "shopify://shop_images/Main_b9e0da7f-db89-4d41-83f0-7f417b02831d.jpg",
@@ -90,7 +100,7 @@
             "image_margin": 0,
             "image_padding": 12,
             "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "text": "",
             "link_label": "",
             "link": ""
           }
@@ -99,11 +109,16 @@
           "type": "column",
           "settings": {
             "article": "",
+            "cloudinary_id": "",
+            "cloudinary_id_2": "",
+            "cloudinary_id_3": "",
+            "cloudinary_id_4": "",
+            "image": "shopify://shop_images/Main_5127218a-8f6c-498f-b489-09242c0fab0a.jpg",
             "image_gap": 16,
             "image_margin": 0,
-            "image_padding": 0,
+            "image_padding": 12,
             "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "text": "",
             "link_label": "",
             "link": ""
           }
@@ -112,6 +127,48 @@
           "type": "column",
           "settings": {
             "article": "",
+            "cloudinary_id": "",
+            "cloudinary_id_2": "",
+            "cloudinary_id_3": "",
+            "cloudinary_id_4": "",
+            "image": "shopify://shop_images/Main_b9e0da7f-db89-4d41-83f0-7f417b02831d.jpg",
+            "image_2": "shopify://shop_images/Main_9129b69a-0c7b-4f66-b6cf-c4222f18028a.jpg",
+            "image_3": "shopify://shop_images/Main_52f8e304-92d9-4a36-82af-50df8fe31c69.jpg",
+            "image_4": "shopify://shop_images/Main_c8ff0b5d-c712-429a-be00-b29bd55cbc9d.jpg",
+            "image_gap": 16,
+            "image_margin": 0,
+            "image_padding": 12,
+            "title": "Column",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_P8WrLm": {
+          "type": "column",
+          "settings": {
+            "article": "news/lorem-ipsum-dolor-sit-amet",
+            "cloudinary_id": "",
+            "cloudinary_id_2": "",
+            "cloudinary_id_3": "",
+            "cloudinary_id_4": "",
+            "image_gap": 16,
+            "image_margin": 0,
+            "image_padding": 0,
+            "title": "Column5",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_EtdywM": {
+          "type": "column",
+          "settings": {
+            "article": "",
+            "cloudinary_id": "",
+            "cloudinary_id_2": "",
+            "cloudinary_id_3": "",
+            "cloudinary_id_4": "",
             "image_gap": 16,
             "image_margin": 0,
             "image_padding": 0,
@@ -121,10 +178,48 @@
             "link": ""
           }
         },
-        "column_P8WrLm": {
+        "column_Pi4fGb": {
           "type": "column",
           "settings": {
             "article": "",
+            "cloudinary_id": "",
+            "cloudinary_id_2": "",
+            "cloudinary_id_3": "",
+            "cloudinary_id_4": "",
+            "image_gap": 16,
+            "image_margin": 0,
+            "image_padding": 0,
+            "title": "Column",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_xQLHTc": {
+          "type": "column",
+          "settings": {
+            "article": "",
+            "cloudinary_id": "",
+            "cloudinary_id_2": "",
+            "cloudinary_id_3": "",
+            "cloudinary_id_4": "",
+            "image_gap": 16,
+            "image_margin": 0,
+            "image_padding": 0,
+            "title": "Column",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_rWQc7Q": {
+          "type": "column",
+          "settings": {
+            "article": "",
+            "cloudinary_id": "",
+            "cloudinary_id_2": "",
+            "cloudinary_id_3": "",
+            "cloudinary_id_4": "",
             "image_gap": 16,
             "image_margin": 0,
             "image_padding": 0,
@@ -139,7 +234,11 @@
         "column_HdJyF6",
         "column_Ni4CNE",
         "column_YWGbkU",
-        "column_P8WrLm"
+        "column_P8WrLm",
+        "column_EtdywM",
+        "column_Pi4fGb",
+        "column_xQLHTc",
+        "column_rWQc7Q"
       ],
       "name": "Multicolumn-2x2",
       "settings": {
