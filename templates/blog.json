@@ -12,7 +12,7 @@
     "main": {
       "type": "main-blog",
       "settings": {
-        "layout": "grid",
+        "layout": "collage",
         "show_image": true,
         "image_height": "small",
         "show_date": false,
@@ -20,9 +20,57 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "multicolumn_articles_XjKfGG": {
+      "type": "multicolumn-articles",
+      "blocks": {
+        "column_4MNPJB": {
+          "type": "column",
+          "settings": {
+            "article": "news/litora-platea-rutrum-cubilia",
+            "column_width": "double"
+          }
+        },
+        "column_T7bhEm": {
+          "type": "column",
+          "settings": {
+            "article": "news/natoque-vel-ultrices-semper-habitant",
+            "column_width": "single"
+          }
+        },
+        "column_HBQT3m": {
+          "type": "column",
+          "settings": {
+            "article": "news/lorem-ipsum-dolor-sit-amet",
+            "column_width": "single"
+          }
+        }
+      },
+      "block_order": [
+        "column_4MNPJB",
+        "column_T7bhEm",
+        "column_HBQT3m"
+      ],
+      "name": "multi-article",
+      "settings": {
+        "title": "Multicolumn",
+        "heading_size": "h1",
+        "image_width": "full",
+        "button_label": "Button label",
+        "button_link": "",
+        "columns_desktop": 4,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "multicolumn_articles_XjKfGG"
   ]
 }
