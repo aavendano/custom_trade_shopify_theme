@@ -25,7 +25,14 @@
   {%- endstyle -%}
 {%- endif -%}
 
+{%- style -%}
+  #slideshow-{{ section.id }} {
+    margin-bottom: {{ section.settings.bottom_margin }}px;
+  }
+{%- endstyle -%}
+
 <slideshow-component
+  id="slideshow-{{ section.id }}"
   class="slider-mobile-gutter{% if section.settings.layout == 'grid' %} page-width{% endif %}{% if section.settings.show_text_below %} mobile-text-below{% endif %}"
   role="region"
   aria-roledescription="{{ 'sections.slideshow.carousel' | t }}"
@@ -115,6 +122,22 @@
         #Slide-{{ section.id }}-{{ forloop.index }} .banner__media::after {
           opacity: {{ block.settings.image_overlay_opacity | divided_by: 100.0 }};
         }
+        {%- if block.settings.gradient_overlay_enabled -%}
+        #Slide-{{ section.id }}-{{ forloop.index }} .banner__media::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(
+            {%- if block.settings.gradient_direction == 'top_to_bottom' -%}to bottom{%- else -%}to top{%- endif -%},
+            transparent {{ block.settings.gradient_start_distance }}%,
+            {{ block.settings.gradient_color }}
+          );
+          z-index: 1;
+        }
+        {%- endif -%}
       </style>
       <div
         class="slideshow__slide grid__item grid--1-col slider__slide"
@@ -142,15 +165,16 @@
                 assign loading_attr = 'eager'
               endif
             -%}
-            {% render 'aa-cloudinary-image', 
-              public_id: block.settings.cloudinary_id, 
+            {% render 'aa-cloudinary-image',
+              public_id: block.settings.cloudinary_id,
               loading: loading_attr,
               sizes_mobile: sizes_mobile,
               sizes_tablet: sizes_tablet,
               sizes_desktop: sizes_desktop,
               width_desktop: 3840,
               height_desktop: 2160,
-              aspect_ratio: '16/9' %}
+              aspect_ratio: '16/9'
+            %}
           {%- elsif block.settings.image -%}
             {%- liquid
               assign height = block.settings.image.width | divided_by: block.settings.image.aspect_ratio | round
@@ -421,6 +445,21 @@
       "label": "t:sections.slideshow.settings.accessibility.label",
       "info": "t:sections.slideshow.settings.accessibility.info",
       "default": "t:sections.slideshow.settings.accessibility.default"
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "bottom_margin",
+      "min": -200,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Bottom margin",
+      "info": "Use negative values to allow sections underneath to overlay",
+      "default": 0
     }
   ],
   "blocks": [
@@ -441,6 +480,21 @@
           "label": "t:sections.slideshow.blocks.slide.settings.image.label"
         },
         {
+          "type": "header",
+          "content": "Cloudinary Image (Alternative)"
+        },
+        {
+          "type": "text",
+          "id": "cloudinary_public_id",
+          "label": "Cloudinary Public ID",
+          "info": "Use this instead of Shopify image for Cloudinary optimization"
+        },
+        {
+          "type": "text",
+          "id": "cloudinary_alt",
+          "label": "Cloudinary Image Alt Text"
+        },
+        {
           "type": "range",
           "id": "image_overlay_opacity",
           "min": 0,
@@ -449,6 +503,48 @@
           "unit": "%",
           "label": "t:sections.slideshow.blocks.slide.settings.image_overlay_opacity.label",
           "default": 0
+        },
+        {
+          "type": "header",
+          "content": "Gradient Overlay"
+        },
+        {
+          "type": "checkbox",
+          "id": "gradient_overlay_enabled",
+          "label": "Enable gradient overlay",
+          "default": false
+        },
+        {
+          "type": "color",
+          "id": "gradient_color",
+          "label": "Gradient color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "gradient_start_distance",
+          "min": 0,
+          "max": 80,
+          "step": 5,
+          "unit": "%",
+          "label": "Distance to start gradient",
+          "default": 50
+        },
+        {
+          "type": "select",
+          "id": "gradient_direction",
+          "options": [
+            {
+              "value": "bottom_to_top",
+              "label": "Bottom to top"
+            },
+            {
+              "value": "top_to_bottom",
+              "label": "Top to bottom"
+            }
+          ],
+          "default": "bottom_to_top",
+          "label": "Gradient direction"
         },
         {
           "type": "header",
