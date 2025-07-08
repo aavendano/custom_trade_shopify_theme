@@ -125,8 +125,33 @@
         aria-label="{{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
         tabindex="-1"
       >
-        <div class="slideshow__media banner__media media{% if block.settings.image == blank %} placeholder{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}">
-          {%- if block.settings.image -%}
+        <div class="slideshow__media banner__media media{% if block.settings.cloudinary_id == blank and block.settings.image == blank %} placeholder{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}">
+          {%- if block.settings.cloudinary_id != blank -%}
+            {%- liquid
+              if section.settings.image_behavior == 'ambient'
+                assign sizes_mobile = 'calc(120vw - 40px)'
+                assign sizes_tablet = 'calc(120vw - 30px)'
+                assign sizes_desktop = '120vw'
+              else
+                assign sizes_mobile = 'calc(100vw - 40px)'
+                assign sizes_tablet = 'calc(100vw - 30px)'
+                assign sizes_desktop = '100vw'
+              endif
+              assign loading_attr = 'lazy'
+              if forloop.first
+                assign loading_attr = 'eager'
+              endif
+            -%}
+            {% render 'aa-cloudinary-image', 
+              public_id: block.settings.cloudinary_id, 
+              loading: loading_attr,
+              sizes_mobile: sizes_mobile,
+              sizes_tablet: sizes_tablet,
+              sizes_desktop: sizes_desktop,
+              width_desktop: 3840,
+              height_desktop: 2160,
+              aspect_ratio: '16/9' %}
+          {%- elsif block.settings.image -%}
             {%- liquid
               assign height = block.settings.image.width | divided_by: block.settings.image.aspect_ratio | round
               if section.settings.image_behavior == 'ambient'
@@ -404,6 +429,12 @@
       "name": "t:sections.slideshow.blocks.slide.name",
       "limit": 5,
       "settings": [
+        {
+          "type": "text",
+          "id": "cloudinary_id",
+          "label": "Cloudinary Image ID",
+          "info": "Enter the public ID of your Cloudinary image (e.g., 'sample.jpg'). Takes priority over Shopify image."
+        },
         {
           "type": "image_picker",
           "id": "image",

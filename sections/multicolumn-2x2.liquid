@@ -106,6 +106,7 @@
                 {%- endif -%}
               {%- else -%}
                 {%- assign has_images = false -%}
+                {%- assign has_cloudinary = false -%}
                 {%- if block.settings.image != blank or block.settings.image_2 != blank or block.settings.image_3 != blank or block.settings.image_4 != blank -%}
                   {%- assign has_images = true -%}
                   {%- assign image_count = 0 -%}
@@ -114,8 +115,36 @@
                   {%- if block.settings.image_3 != blank -%}{%- assign image_count = image_count | plus: 1 -%}{%- endif -%}
                   {%- if block.settings.image_4 != blank -%}{%- assign image_count = image_count | plus: 1 -%}{%- endif -%}
                 {%- endif -%}
+                {%- if block.settings.cloudinary_id != blank or block.settings.cloudinary_id_2 != blank or block.settings.cloudinary_id_3 != blank or block.settings.cloudinary_id_4 != blank -%}
+                  {%- assign has_cloudinary = true -%}
+                  {%- assign cloudinary_count = 0 -%}
+                  {%- if block.settings.cloudinary_id != blank -%}{%- assign cloudinary_count = cloudinary_count | plus: 1 -%}{%- endif -%}
+                  {%- if block.settings.cloudinary_id_2 != blank -%}{%- assign cloudinary_count = cloudinary_count | plus: 1 -%}{%- endif -%}
+                  {%- if block.settings.cloudinary_id_3 != blank -%}{%- assign cloudinary_count = cloudinary_count | plus: 1 -%}{%- endif -%}
+                  {%- if block.settings.cloudinary_id_4 != blank -%}{%- assign cloudinary_count = cloudinary_count | plus: 1 -%}{%- endif -%}
+                {%- endif -%}
                 
-                {%- if has_images -%}
+                {%- if has_cloudinary -%}
+                  <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--{{ section.settings.image_width }}-width{% if section.settings.image_width != 'full' %} multicolumn-card-spacing{% endif %}">
+                    <div 
+                      class="multicolumn-image-grid multicolumn-image-grid--{{ cloudinary_count }}"
+                      style="--grid-gap: {{ block.settings.image_gap | default: 16 }}px; --grid-margin: {{ block.settings.image_margin | default: 0 }}px; --grid-padding: {{ block.settings.image_padding | default: 0 }}px;"
+                    >
+                      {%- if block.settings.cloudinary_id != blank -%}
+                        {% render 'aa-cloudinary-image', public_id: block.settings.cloudinary_id, class: 'multicolumn-grid__image', loading: 'lazy' %}
+                      {%- endif -%}
+                      {%- if block.settings.cloudinary_id_2 != blank -%}
+                        {% render 'aa-cloudinary-image', public_id: block.settings.cloudinary_id_2, class: 'multicolumn-grid__image', loading: 'lazy' %}
+                      {%- endif -%}
+                      {%- if block.settings.cloudinary_id_3 != blank -%}
+                        {% render 'aa-cloudinary-image', public_id: block.settings.cloudinary_id_3, class: 'multicolumn-grid__image', loading: 'lazy' %}
+                      {%- endif -%}
+                      {%- if block.settings.cloudinary_id_4 != blank -%}
+                        {% render 'aa-cloudinary-image', public_id: block.settings.cloudinary_id_4, class: 'multicolumn-grid__image', loading: 'lazy' %}
+                      {%- endif -%}
+                    </div>
+                  </div>
+                {%- elsif has_images -%}
                   <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--{{ section.settings.image_width }}-width{% if section.settings.image_width != 'full' %} multicolumn-card-spacing{% endif %}">
                     <div 
                       class="multicolumn-image-grid multicolumn-image-grid--{{ image_count }}"
@@ -443,7 +472,32 @@
         },
         {
           "type": "header",
-          "content": "Image Grid"
+          "content": "Cloudinary Images"
+        },
+        {
+          "type": "text",
+          "id": "cloudinary_id",
+          "label": "Cloudinary Image ID 1",
+          "info": "Enter the public ID of your Cloudinary image (e.g., 'sample.jpg')"
+        },
+        {
+          "type": "text",
+          "id": "cloudinary_id_2",
+          "label": "Cloudinary Image ID 2"
+        },
+        {
+          "type": "text",
+          "id": "cloudinary_id_3",
+          "label": "Cloudinary Image ID 3"
+        },
+        {
+          "type": "text",
+          "id": "cloudinary_id_4",
+          "label": "Cloudinary Image ID 4"
+        },
+        {
+          "type": "header",
+          "content": "Image Grid (Shopify)"
         },
         {
           "type": "image_picker",
