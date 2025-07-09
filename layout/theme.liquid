@@ -296,6 +296,14 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
+{% comment %} 
+    This is a custom CSS file that can be used to override the default styles of the theme.
+    It is recommended to use this file for custom styles instead of editing the theme's core CSS files.
+    You can add your custom styles here or in a separate file and include it in the theme.liquid file.
+{% endcomment %}
+{{ 'custom-style.css' | asset_url | stylesheet_tag }}
+
+
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
