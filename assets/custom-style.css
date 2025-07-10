@@ -1,17 +1,39 @@
 
 
 .badge {
-    border-radius: 3px !important;
+    border-radius: 2px !important;
     font-weight: bold;
     padding: .25rem 1rem .28rem;
  }
 
- .price {
+ .price-item {
     font-weight: 500;
+    font-size: 1.2rem;
 }
 
 .custom-price-text-was {
-  font-size: 1.1rem;
-  font-weight: 400;
+  font-size: 1rem;
+  font-weight: 300;
   white-space: nowrap;
 }
+
+@media screen and (max-width: 750px){
+   .price-item {
+    font-weight: 500 !important; 
+    font-size: 1.1rem !important;
+    }
+  .custom-price-text-was {
+    font-size: 1.0rem !important;
+    font-weight: 300 !important;
+    white-space: nowrap;
+    }
+  button {
+    font-size: 1.2rem !important;
+  }
+  .badge {
+    font-size: 1rem !important;
+    padding: .15rem .5rem .15rem !important;
+  }
+}
+
+
