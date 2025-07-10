@@ -1,22 +1,3 @@
-{%- comment -%}
-  Shopify Image Snippet for optimized and responsive images with Cloudinary.
-
-  Usage:
-  {% render 'image-loader',
-    public_id: 'your-cloudinary-image-id.jpg',
-    alt: 'Description of the image',
-    class: 'my-custom-image-class',
-    loading: 'lazy',                 // 'lazy' or 'eager' (default)
-    sizes_mobile: 'calc(100vw - 40px)', // e.g., for padding
-    sizes_tablet: 'calc(50vw - 30px)',  // e.g., for two columns
-    sizes_desktop: '600px',             // e.g., fixed width on desktop
-    width_desktop: 600,                 // Recommended for aspect ratio
-    height_desktop: 400,                // Recommended for aspect ratio
-    aspect_ratio: '3/2',                // Fallback aspect ratio (e.g., '16/9', '4/3', '1/1')
-    placeholder: true                   // Set to true to enable blur-up placeholder
-  %}
-{%- endcomment -%}
-
 {%- assign loading_attr = loading | default: 'eager' -%}
 {%- assign image_public_id = public_id | default: 'sample.jpg' -%}
 {%- if alt and alt != '' -%}
@@ -24,192 +5,31 @@
 {%- else -%}
   {%- assign alt_text = 'PlayLoveToys - ' | append: image_public_id -%}
 {%- endif -%}
+{%- assign sizes_mobile = sizes_mobile | default: '100vw' -%}
+{%- assign sizes_tablet = sizes_tablet | default: '100vw' -%}
+{%- assign sizes_desktop = sizes_desktop | default: '1400px' -%}
 
-{%- assign cloudinary_base_url = 'https://res.cloudinary.com/dv0xafomh/image/upload/' -%}
-
-{# Determine intrinsic width and height if provided for aspect ratio #}
-{%- assign intrinsic_width = width_desktop | default: 0 -%}
-{%- assign intrinsic_height = height_desktop | default: 0 -%}
-
-{# Calculate aspect ratio if not explicitly provided #}
-{%- if aspect_ratio == blank and intrinsic_width > 0 and intrinsic_height > 0 -%}
-  {%- assign aspect_ratio_decimal = intrinsic_width | divided_by: intrinsic_height | round: 2 -%}
-  {# Convert decimal to fraction for common ratios (e.g., 1.78 -> 16/9, 1.33 -> 4/3) #}
-  {%- case aspect_ratio_decimal -%}
-    {%- when 1.78 -%}
-      {%- assign aspect_ratio_css = '16/9' -%}
-    {%- when 1.33 -%}
-      {%- assign aspect_ratio_css = '4/3' -%}
-    {%- when 1.5 -%}
-      {%- assign aspect_ratio_css = '3/2' -%}
-    {%- when 1.0 -%}
-      {%- assign aspect_ratio_css = '1/1' -%}
-    {%- else -%}
-      {%- assign aspect_ratio_css = aspect_ratio_decimal | append: '/1' -%}
-  {%- endcase -%}
-{%- elsif aspect_ratio != blank -%}
-  {%- assign aspect_ratio_css = aspect_ratio -%}
-{%- else -%}
-  {%- assign aspect_ratio_css = '4/3' -%}
-  {# Fallback aspect ratio #}
-{%- endif -%}
-
-{# Define common widths for srcset to reduce repetition #}
-{%- assign image_widths = '100,200,300,400,600,800,1000,1200,1600,2000,2400' | split: ',' -%}
-
-{# Generate srcset entries for AVIF #}
-{%- assign srcset_avif = '' -%}
-{%- for width in image_widths -%}
-  {%- assign srcset_avif = srcset_avif
-    | append: cloudinary_base_url
-    | append: 'f_avif,q_auto,w_'
-    | append: width
-    | append: '/'
-    | append: image_public_id
-    | append: ' '
-    | append: width
-    | append: 'w'
-  -%}
-  {%- unless forloop.last -%}{%- assign srcset_avif = srcset_avif | append: ', ' -%}{%- endunless -%}
-{%- endfor -%}
-
-{# Generate srcset entries for WebP #}
-{%- assign srcset_webp = '' -%}
-{%- for width in image_widths -%}
-  {%- assign srcset_webp = srcset_webp
-    | append: cloudinary_base_url
-    | append: 'f_webp,q_auto,w_'
-    | append: width
-    | append: '/'
-    | append: image_public_id
-    | append: ' '
-    | append: width
-    | append: 'w'
-  -%}
-  {%- unless forloop.last -%}{%- assign srcset_webp = srcset_webp | append: ', ' -%}{%- endunless -%}
-{%- endfor -%}
-
-{# Generate srcset entries for original (f_auto will typically resolve to jpg/png if avif/webp not supported) #}
-{%- assign srcset_default = '' -%}
-{%- for width in image_widths -%}
-  {%- assign srcset_default = srcset_default
-    | append: cloudinary_base_url
-    | append: 'f_auto,q_auto,w_'
-    | append: width
-    | append: '/'
-    | append: image_public_id
-    | append: ' '
-    | append: width
-    | append: 'w'
-  -%}
-  {%- unless forloop.last -%}{%- assign srcset_default = srcset_default | append: ', ' -%}{%- endunless -%}
-{%- endfor -%}
-
-{# Determine actual src URL for non-picture element support / initial load #}
-{%- assign main_src_width = width_desktop | default: 800 -%}
-{# Use a reasonable default width for initial src #}
-{%- assign main_src = cloudinary_base_url
-  | append: 'f_auto,q_auto,w_'
-  | append: main_src_width
-  | append: '/'
-  | append: image_public_id
--%}
-
-{# Set sizes for different breakpoints #}
-{%- assign sizes_mobile_css = sizes_mobile | default: '100vw' -%}
-{%- assign sizes_tablet_css = sizes_tablet | default: '100vw' -%}
-{%- assign sizes_desktop_css = sizes_desktop | default: '1400px' -%}
-{# Original default #}
-
-<style>
-  {% comment %}
-    Helper CSS to maintain aspect ratio and prevent layout shift.
-    Adjust .image-container to fit your specific CSS needs or remove if not desired.
-  {% endcomment %}
-  .image-container-{{ image_public_id | handle | split: '.' | first }} {
-    width: 100%;
-    position: relative;
-    padding-bottom: calc(100% / ({{ aspect_ratio_css | replace: '/', '*' }} )); /* Calculate padding-bottom from aspect ratio */
-    overflow: hidden; /* Hide overflow for placeholder */
-  }
-
-  .image-container-{{ image_public_id | handle | split: '.' | first }} img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensures image covers the container without distortion */
-  }
-
-  {%- if placeholder -%}
-  .image-placeholder-{{ image_public_id | handle | split: '.' | first }} {
-    filter: blur(10px); /* Adjust blur strength as needed */
-    opacity: 1;
-    transition: opacity 0.3s ease-in-out;
-  }
-  .image-placeholder-{{ image_public_id | handle | split: '.' | first }}.loaded {
-    opacity: 0;
-  }
-  {%- endif -%}
-</style>
-
-<div class="image-container-{{ image_public_id | handle | split: '.' | first }} {% if class and class != "" %} {{ class | escape }}{% endif %}">
-  {%- if placeholder -%}
-    {# Small, highly compressed base64 placeholder or tiny image #}
-    {%- assign placeholder_src = cloudinary_base_url
-      | append: 'f_webp,q_1,w_50/e_blur:1000/'
-      | append: image_public_id
-    -%}
-    <img
-      class="image-placeholder-{{ image_public_id | handle | split: '.' | first }}"
-      src="{{ placeholder_src }}"
-      alt="{{ alt_text | escape }}"
-      aria-hidden="true"
-      loading="eager"
-      {#
-      Placeholder
-      should
-      load
-      immediately
-      #}
-      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
-    >
-  {%- endif -%}
-
-  <picture>
-    {# AVIF source #}
-    <source
-      type="image/avif"
-      srcset="{{ srcset_avif }}"
-      sizes="(max-width: 768px) {{ sizes_mobile_css }}, (max-width: 1024px) {{ sizes_tablet_css }}, {{ sizes_desktop_css }}"
-    >
-    {# WebP source #}
-    <source
-      type="image/webp"
-      srcset="{{ srcset_webp }}"
-      sizes="(max-width: 768px) {{ sizes_mobile_css }}, (max-width: 1024px) {{ sizes_tablet_css }}, {{ sizes_desktop_css }}"
-    >
-    {# Fallback img tag (f_auto will deliver JPG/PNG) #}
-    <img
-      decoding="async"
-      loading="{{ loading_attr }}"
-      {% if loading_attr == 'eager' %}
-        fetchpriority="high"
-      {% endif %}
-      src="{{ main_src }}"
-      srcset="{{ srcset_default }}"
-      sizes="(max-width: 768px) {{ sizes_mobile_css }}, (max-width: 1024px) {{ sizes_tablet_css }}, {{ sizes_desktop_css }}"
-      alt="{{ alt_text | escape }}"
-      {% if intrinsic_width > 0 %}
-        width="{{ intrinsic_width }}"
-      {% endif %}
-      {% if intrinsic_height > 0 %}
-        height="{{ intrinsic_height }}"
-      {% endif %}
-      {% if placeholder %}
-        onload="this.previousElementSibling.classList.add('loaded');"
-      {% endif %}
-    >
-  </picture>
-</div>
+<img
+  {% if class and class != '' %}
+    class="{{ class | escape }}"
+  {% endif %}
+  decoding="async"
+  loading="{{ loading_attr }}"
+  {% if loading_attr == 'eager' %}
+    fetchpriority="high"
+  {% endif %}
+  src=""
+  srcset="
+    https://res.cloudinary.com/dv0xafomh/image/upload/f_auto,q_auto,w_100/{{ image_public_id }}   100w,
+    https://res.cloudinary.com/dv0xafomh/image/upload/f_auto,q_auto,w_200/{{ image_public_id }}   200w,
+    https://res.cloudinary.com/dv0xafomh/image/upload/f_auto,q_auto,w_300/{{ image_public_id }}   300w,
+    https://res.cloudinary.com/dv0xafomh/image/upload/f_auto,q_auto,w_400/{{ image_public_id }}   400w,
+    https://res.cloudinary.com/dv0xafomh/image/upload/f_auto,q_auto,w_600/{{ image_public_id }}   600w,
+    https://res.cloudinary.com/dv0xafomh/image/upload/f_auto,q_auto,w_800/{{ image_public_id }}   800w,
+    https://res.cloudinary.com/dv0xafomh/image/upload/f_auto,q_auto,w_1000/{{ image_public_id }}   1000w,
+    https://res.cloudinary.com/dv0xafomh/image/upload/f_auto,q_auto,w_1200/{{ image_public_id }} 1200w,
+    https://res.cloudinary.com/dv0xafomh/image/upload/f_auto,q_auto,w_1600/{{ image_public_id }} 1600w
+  "
+  sizes="(max-width: 768px) {{ sizes_mobile }}, (max-width: 1024px) {{ sizes_tablet }}, {{ sizes_desktop }}"
+  alt="{{ alt_text | escape }}"
+>

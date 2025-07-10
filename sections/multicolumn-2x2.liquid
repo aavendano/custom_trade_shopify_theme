@@ -17,6 +17,14 @@
   height: auto;
   object-fit: cover;
 }
+.multicolumn-card__link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+.multicolumn-card__link:hover {
+  text-decoration: none;
+}
 </style>
 
 {%- style -%}
@@ -94,7 +102,16 @@
               style="--animation-order: {{ forloop.index }};"
             {% endif %}
           >
+            {%- liquid
+              assign card_link = ''
+              if block.settings.article != blank
+                assign card_link = block.settings.article.url
+              elsif block.settings.link != blank
+                assign card_link = block.settings.link
+              endif
+            -%}
             <div class="multicolumn-card content-container">
+              {%- if card_link != blank -%}<a href="{{ card_link }}" class="multicolumn-card__link">{%- endif -%}
               {%- if block.settings.article != blank -%}
                 {%- assign article = block.settings.article -%}
                 {%- if article.image != blank -%}
@@ -202,6 +219,7 @@
                   {%- endif -%}
                 {%- endif -%}
               </div>
+              {%- if card_link != blank -%}</a>{%- endif -%}
             </div>
           </li>
         {%- endfor -%}

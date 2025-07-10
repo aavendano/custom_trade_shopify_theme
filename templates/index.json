@@ -12,11 +12,10 @@
     "slideshow_4nGYLi": {
       "type": "slideshow",
       "blocks": {
-        "slide_Wdgy3g": {
+        "slide_q86cHE": {
           "type": "slide",
           "settings": {
-            "cloudinary_id": "",
-            "image": "shopify://shop_images/Main.jpg",
+            "cloudinary_id": "playlovetoys-hero-image-home",
             "cloudinary_public_id": "",
             "cloudinary_alt": "",
             "image_overlay_opacity": 0,
@@ -24,11 +23,35 @@
             "gradient_color": "#f4f4f4",
             "gradient_start_distance": 75,
             "gradient_direction": "top_to_bottom",
-            "heading": "Image slide",
-            "heading_size": "hxxl",
-            "subheading": "<strong>Tell your brand's story through images</strong>",
-            "button_label": "Button label",
-            "link": "",
+            "heading": "Welcome to PlayLoveToys!",
+            "heading_size": "h0",
+            "subheading": "Embrace Your Sexual Wellness",
+            "button_label": "Explore Our Collections",
+            "link": "shopify://collections",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-left",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-ad2f8c43-2813-482e-bb3a-201fafbcf40d"
+          }
+        },
+        "slide_Wdgy3g": {
+          "type": "slide",
+          "settings": {
+            "cloudinary_id": "brian-lawson-9hObYo6Zul8-unsplash_cibqoc",
+            "cloudinary_public_id": "",
+            "cloudinary_alt": "",
+            "image_overlay_opacity": 0,
+            "gradient_overlay_enabled": true,
+            "gradient_color": "#f4f4f4",
+            "gradient_start_distance": 75,
+            "gradient_direction": "top_to_bottom",
+            "heading": "Unleash Your Desires",
+            "heading_size": "h0",
+            "subheading": "<strong>Discover a world of pleasure designed just for you</strong>",
+            "button_label": "Explore Women Pleasure Collection",
+            "link": "shopify://collections/sex-toys-for-women",
             "button_style_secondary": true,
             "show_text_box": false,
             "box_align": "top-left",
@@ -40,8 +63,55 @@
         "slide_g63pLW": {
           "type": "slide",
           "settings": {
-            "cloudinary_id": "",
-            "image": "shopify://shop_images/couple_disconnect.jpg",
+            "cloudinary_id": "womanizer-toys-IAdsz1pcR74-unsplash_ilm58c",
+            "cloudinary_public_id": "",
+            "cloudinary_alt": "",
+            "image_overlay_opacity": 0,
+            "gradient_overlay_enabled": true,
+            "gradient_color": "#f4f4f4",
+            "gradient_start_distance": 75,
+            "gradient_direction": "top_to_bottom",
+            "heading": "Spice Things Up",
+            "heading_size": "h0",
+            "subheading": "<strong>Dive into our curated collection of adult toys </strong>",
+            "button_label": "Check Couples Fun!",
+            "link": "shopify://collections/best-sex-toys",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "top-left",
+            "text_alignment": "left",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-95e7720f-18c1-4aad-ba85-bed2b4548b6f"
+          }
+        },
+        "slide_cgPayf": {
+          "type": "slide",
+          "settings": {
+            "cloudinary_id": "kurt-francois-GJNLYb3U1-k-unsplash_zkbkev",
+            "cloudinary_public_id": "",
+            "cloudinary_alt": "",
+            "image_overlay_opacity": 0,
+            "gradient_overlay_enabled": true,
+            "gradient_color": "#f4f4f4",
+            "gradient_start_distance": 75,
+            "gradient_direction": "top_to_bottom",
+            "heading": "Image slide",
+            "heading_size": "hxxl",
+            "subheading": "Tell your brand's story through images",
+            "button_label": "Button label",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "top-left",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-4"
+          }
+        },
+        "slide_AWNGgf": {
+          "type": "slide",
+          "settings": {
+            "cloudinary_id": "ar_16:9,c_crop,g_face/ahtziri-lagarde-ZW7ISsL8TwE-unsplash_1_atatyg",
             "cloudinary_public_id": "",
             "cloudinary_alt": "",
             "image_overlay_opacity": 0,
@@ -57,15 +127,18 @@
             "button_style_secondary": false,
             "show_text_box": false,
             "box_align": "top-right",
-            "text_alignment": "center",
+            "text_alignment": "right",
             "text_alignment_mobile": "center",
-            "color_scheme": ""
+            "color_scheme": "scheme-95e7720f-18c1-4aad-ba85-bed2b4548b6f"
           }
         }
       },
       "block_order": [
+        "slide_q86cHE",
         "slide_Wdgy3g",
-        "slide_g63pLW"
+        "slide_g63pLW",
+        "slide_cgPayf",
+        "slide_AWNGgf"
       ],
       "name": "t:sections.slideshow.presets.name",
       "settings": {
@@ -74,11 +147,11 @@
         "slider_visual": "dots",
         "auto_rotate": true,
         "hide_controls": true,
-        "change_slides_speed": 5,
+        "change_slides_speed": 3,
         "image_behavior": "none",
         "show_text_below": false,
         "accessibility_info": "Slideshow about our brand",
-        "bottom_margin": -200
+        "bottom_margin": -100
       }
     },
     "multicolumn_2x2_rMUj4F": {
@@ -86,41 +159,42 @@
       "blocks": {
         "column_HdJyF6": {
           "type": "column",
+          "name": "Col Sex Toys for men",
           "settings": {
             "article": "",
-            "cloudinary_id": "",
-            "cloudinary_id_2": "",
-            "cloudinary_id_3": "",
-            "cloudinary_id_4": "",
-            "image": "shopify://shop_images/Main_b13ad453-477c-4ed1-9b43-81f3345adfd6.jpg",
-            "image_2": "shopify://shop_images/Main_9129b69a-0c7b-4f66-b6cf-c4222f18028a.jpg",
-            "image_3": "shopify://shop_images/Main_b9e0da7f-db89-4d41-83f0-7f417b02831d.jpg",
-            "image_4": "shopify://shop_images/Main_f44a9605-cd62-464d-b095-d45cdaa0d0d7.jpg",
+            "cloudinary_id": "THF02_1_jenfop",
+            "cloudinary_id_2": "6072509-11_web_xejdoe_b_rgb_FFFFFF_c_pad_ar_1_1_bcxqzr",
+            "cloudinary_id_3": "51Fh1JhcFnL._AC_SL1376__iwsl6t_c_pad_ar_1_1_vscn5i",
+            "cloudinary_id_4": "kiiroo-feel-britney-stroker-keon-combo-set-playlovetoys-596758_1_jsnfku",
             "image_gap": 12,
             "image_margin": 0,
             "image_padding": 12,
-            "title": "Column",
+            "title": "<strong>Sex Toys For Men</strong>",
             "text": "",
             "link_label": "",
-            "link": ""
+            "link": "shopify://collections/sex-toys-for-men"
           }
         },
         "column_Ni4CNE": {
           "type": "column",
+          "name": "Col Sex Toys For Women",
           "settings": {
             "article": "",
             "cloudinary_id": "",
             "cloudinary_id_2": "",
             "cloudinary_id_3": "",
             "cloudinary_id_4": "",
-            "image": "shopify://shop_images/Main_5127218a-8f6c-498f-b489-09242c0fab0a.jpg",
+            "image": "shopify://shop_images/lelo_lily3_polargreen_a_f3565b4d-e21c-497c-8bd5-21e031988698.jpg",
+            "image_2": "shopify://shop_images/lelo_lily3_calmlavender_a_6e697d01-c9b3-4e73-8341-2bc714bb7d60.jpg",
+            "image_3": "shopify://shop_images/lelo_lily3_polargreen_c_04b1da28-cc77-4f2a-9625-5d7a2b234bf1.png",
+            "image_4": "shopify://shop_images/lelo_sona2travel_productshot_pink_front_2000_7189c52b-b0ad-401e-98e0-8c74c551c666.jpg",
             "image_gap": 16,
             "image_margin": 0,
             "image_padding": 12,
-            "title": "Column",
+            "title": "",
             "text": "",
-            "link_label": "",
-            "link": ""
+            "link_label": "Sex Toys for Women",
+            "link": "shopify://collections/sex-toys-for-women"
           }
         },
         "column_YWGbkU": {
@@ -131,10 +205,6 @@
             "cloudinary_id_2": "",
             "cloudinary_id_3": "",
             "cloudinary_id_4": "",
-            "image": "shopify://shop_images/Main_b9e0da7f-db89-4d41-83f0-7f417b02831d.jpg",
-            "image_2": "shopify://shop_images/Main_9129b69a-0c7b-4f66-b6cf-c4222f18028a.jpg",
-            "image_3": "shopify://shop_images/Main_52f8e304-92d9-4a36-82af-50df8fe31c69.jpg",
-            "image_4": "shopify://shop_images/Main_c8ff0b5d-c712-429a-be00-b29bd55cbc9d.jpg",
             "image_gap": 16,
             "image_margin": 0,
             "image_padding": 12,
@@ -147,15 +217,15 @@
         "column_P8WrLm": {
           "type": "column",
           "settings": {
-            "article": "news/lorem-ipsum-dolor-sit-amet",
+            "article": "pleasure-lab/beginner-guide-adult-toys",
             "cloudinary_id": "",
             "cloudinary_id_2": "",
             "cloudinary_id_3": "",
             "cloudinary_id_4": "",
-            "image_gap": 16,
+            "image_gap": 12,
             "image_margin": 0,
-            "image_padding": 0,
-            "title": "Column5",
+            "image_padding": 12,
+            "title": "",
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "link_label": "",
             "link": ""
@@ -215,7 +285,7 @@
         "column_rWQc7Q": {
           "type": "column",
           "settings": {
-            "article": "",
+            "article": "sex-toys-artisans/behind-the-scenes-how-we-choose-the-products-that-ignite-your-pleasure-at-playlovetoys",
             "cloudinary_id": "",
             "cloudinary_id_2": "",
             "cloudinary_id_3": "",
@@ -245,7 +315,7 @@
         "title": "",
         "heading_size": "h1",
         "image_width": "full",
-        "image_ratio": "adapt",
+        "image_ratio": "square",
         "button_label": "Button label",
         "button_link": "",
         "columns_desktop": 4,
@@ -366,7 +436,7 @@
     "featured_collection1": {
       "type": "featured-collection",
       "settings": {
-        "collection": "adult-toys-for-men",
+        "collection": "best-adult-toys",
         "products_to_show": 10,
         "title": "{{ section.settings.collection.title }}",
         "heading_size": "h1",
@@ -374,7 +444,7 @@
         "show_description": false,
         "description_style": "body",
         "columns_desktop": 5,
-        "enable_desktop_slider": false,
+        "enable_desktop_slider": true,
         "full_width": false,
         "show_view_all": true,
         "view_all_style": "solid",
@@ -385,7 +455,7 @@
         "show_vendor": true,
         "show_rating": false,
         "quick_add": "standard",
-        "columns_mobile": "1",
+        "columns_mobile": "2",
         "swipe_on_mobile": false,
         "padding_top": 36,
         "padding_bottom": 52

@@ -25,22 +25,6 @@
 {%- endif -%}
 
 {%- style -%}
-{% comment %}
-Custom styles for the featured collection section
-{% endcomment %}
-
-.badge {
-    border-radius: 3px !important;
-    font-weight: bold;
-    padding: .25rem 1rem .28rem;
- }
-
-
-{% comment %}
-END Custom styles for the featured collection section
-{% endcomment %}
-
-
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
