@@ -147,7 +147,14 @@
 }
 
 .multicolumn-card__info {
-  padding: 2.5rem;
+  padding-left: 2.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.multicolumn-card__info h3 {
+  font-size: 2rem !important;
+  font-weight: 600;
 }
 
 .background-none .multicolumn-card__info {
@@ -186,6 +193,7 @@
     margin-bottom: 0rem;
   }
 }
+
 
 @media screen and (min-width: 750px) {
   .background-none .multicolumn-card__image-wrapper {

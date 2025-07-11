@@ -17,6 +17,13 @@
   white-space: nowrap;
 }
 
+.multicolumn-card__info .inline-richtext h3 {
+    font-size: 2.15rem;
+    font-weight: 600;
+}
+
+
+
 @media screen and (max-width: 750px){
    .price-item {
     font-weight: 500 !important; 
