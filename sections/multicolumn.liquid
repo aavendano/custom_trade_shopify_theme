@@ -77,6 +77,9 @@
           >
             <div class="multicolumn-card content-container">
               {%- if block.settings.image != blank -%}
+                {%- if block.settings.link != blank -%}
+                  <a href="{{ block.settings.link }}">
+                {%- endif -%}
                 {% if section.settings.image_ratio == 'adapt' or section.settings.image_ratio == 'circle' %}
                   {% assign spaced_image = true %}
                 {% endif %}
@@ -117,6 +120,9 @@
                     }}
                   </div>
                 </div>
+                {%- if block.settings.link != blank -%}
+                  </a>
+                {%- endif -%}
               {%- endif -%}
               <div class="multicolumn-card__info">
                 {%- if block.settings.title != blank -%}
