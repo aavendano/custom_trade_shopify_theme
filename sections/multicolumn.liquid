@@ -59,6 +59,7 @@
         {%- for block in section.blocks -%}
           {%- assign empty_column = '' -%}
           {%- if block.settings.image == blank
+            and block.settings.cloudinary_src == blank
             and block.settings.title == blank
             and block.settings.text == blank
             and block.settings.link_label == blank
@@ -76,7 +77,7 @@
             {% endif %}
           >
             <div class="multicolumn-card content-container">
-              {%- if block.settings.image != blank -%}
+              {%- if block.settings.image != blank or block.settings.cloudinary_src != blank -%}
                 {%- if block.settings.link != blank -%}
                   <a href="{{ block.settings.link }}">
                 {%- endif -%}
@@ -90,34 +91,38 @@
                       style="padding-bottom: {{ 1 | divided_by: highest_ratio | times: 100 }}%;"
                     {% endif %}
                   >
-                    {%- liquid
-                      assign number_of_columns = section.settings.columns_desktop
-                      assign number_of_columns_mobile = section.settings.columns_mobile
-                      assign grid_space_desktop = number_of_columns | minus: 1 | times: settings.spacing_grid_horizontal | plus: 100 | append: 'px'
-                      assign grid_space_tablet = number_of_columns_mobile | minus: 1 | times: settings.spacing_grid_horizontal | plus: 100 | append: 'px'
-                      assign grid_space_mobile = number_of_columns_mobile | minus: 1 | times: settings.spacing_grid_horizontal | divided_by: 2 | plus: 30 | append: 'px'
-                      if section.settings.image_width == 'half'
-                        assign image_width = 0.5
-                      elsif section.settings.image_width == 'third'
-                        assign image_width = 0.33
-                      else
-                        assign image_width = 1
-                      endif
-                    -%}
-                    {% capture sizes %}
-                      (min-width: {{ settings.page_width }}px) calc(({{ settings.page_width }}px - {{ grid_space_desktop }}) * {{ image_width }} /  {{ number_of_columns }}),
-                      (min-width: 990px) calc((100vw - {{ grid_space_desktop }}) * {{ image_width }} / {{ number_of_columns }}),
-                      (min-width: 750px) calc((100vw - {{ grid_space_tablet }}) * {{ image_width }} / {{ number_of_columns_mobile }}),
-                      calc((100vw - {{ grid_space_mobile }}) * {{ image_width }} / {{ number_of_columns_mobile }})
-                    {% endcapture %}
-                    {{
-                      block.settings.image
-                      | image_url: width: 3200
-                      | image_tag:
-                        widths: '50, 75, 100, 150, 200, 300, 400, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000, 3200',
-                        sizes: sizes,
-                        class: 'multicolumn-card__image'
-                    }}
+                    {%- if block.settings.image_source == 'cloudinary' -%}
+                      {%- render 'aa-cloudinary-image', public_id: block.settings.cloudinary_src -%}
+                    {%- else -%}
+                      {%- liquid
+                        assign number_of_columns = section.settings.columns_desktop
+                        assign number_of_columns_mobile = section.settings.columns_mobile
+                        assign grid_space_desktop = number_of_columns | minus: 1 | times: settings.spacing_grid_horizontal | plus: 100 | append: 'px'
+                        assign grid_space_tablet = number_of_columns_mobile | minus: 1 | times: settings.spacing_grid_horizontal | plus: 100 | append: 'px'
+                        assign grid_space_mobile = number_of_columns_mobile | minus: 1 | times: settings.spacing_grid_horizontal | divided_by: 2 | plus: 30 | append: 'px'
+                        if section.settings.image_width == 'half'
+                          assign image_width = 0.5
+                        elsif section.settings.image_width == 'third'
+                          assign image_width = 0.33
+                        else
+                          assign image_width = 1
+                        endif
+                      -%}
+                      {% capture sizes %}
+                        (min-width: {{ settings.page_width }}px) calc(({{ settings.page_width }}px - {{ grid_space_desktop }}) * {{ image_width }} /  {{ number_of_columns }}),
+                        (min-width: 990px) calc((100vw - {{ grid_space_desktop }}) * {{ image_width }} / {{ number_of_columns }}),
+                        (min-width: 750px) calc((100vw - {{ grid_space_tablet }}) * {{ image_width }} / {{ number_of_columns_mobile }}),
+                        calc((100vw - {{ grid_space_mobile }}) * {{ image_width }} / {{ number_of_columns_mobile }})
+                      {% endcapture %}
+                      {{
+                        block.settings.image
+                        | image_url: width: 3200
+                        | image_tag:
+                          widths: '50, 75, 100, 150, 200, 300, 400, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000, 3200',
+                          sizes: sizes,
+                          class: 'multicolumn-card__image'
+                      }}
+                    {%- endif -%}
                   </div>
                 </div>
                 {%- if block.settings.link != blank -%}
@@ -242,7 +247,7 @@
     {
       "type": "header",
       "content": "t:sections.multicolumn.settings.header_image.content"
-    },    
+    },
     {
       "type": "select",
       "id": "image_width",
@@ -290,23 +295,23 @@
     {
       "type": "header",
       "content": "t:sections.multicolumn.settings.header_button.content"
-    },    
+    },
     {
       "type": "text",
       "id": "button_label",
       "default": "t:sections.multicolumn.settings.button_label.default",
-      "label": "t:sections.multicolumn.settings.button_label.label", 
+      "label": "t:sections.multicolumn.settings.button_label.label",
       "info": "t:sections.multicolumn.settings.button_label.info"
     },
     {
       "type": "url",
       "id": "button_link",
       "label": "t:sections.multicolumn.settings.button_link.label"
-    },    
+    },
     {
       "type": "header",
       "content": "t:sections.multicolumn.settings.header_layout.content"
-    },     
+    },
     {
       "type": "range",
       "id": "columns_desktop",
@@ -353,7 +358,7 @@
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
-    },    
+    },
     {
       "type": "header",
       "content": "t:sections.multicolumn.settings.header_mobile.content"
@@ -411,9 +416,30 @@
       "name": "t:sections.multicolumn.blocks.column.name",
       "settings": [
         {
+          "type": "select",
+          "id": "image_source",
+          "label": "Image Source",
+          "options": [
+            {
+              "value": "shopify",
+              "label": "Shopify"
+            },
+            {
+              "value": "cloudinary",
+              "label": "Cloudinary"
+            }
+          ],
+          "default": "shopify"
+        },
+        {
           "type": "image_picker",
           "id": "image",
           "label": "t:sections.multicolumn.blocks.column.settings.image.label"
+        },
+        {
+          "type": "text",
+          "id": "cloudinary_src",
+          "label": "Cloudinary Src"
         },
         {
           "type": "inline_richtext",

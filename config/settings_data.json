@@ -16,7 +16,7 @@
     "heading_scale": 105,
     "type_body_font": "inter_n4",
     "body_scale": 120,
-    "page_width": 1600,
+    "page_width": 1200,
     "spacing_sections": 20,
     "spacing_grid_horizontal": 12,
     "spacing_grid_vertical": 12,
@@ -46,7 +46,7 @@
     "card_style": "card",
     "card_image_padding": 12,
     "card_text_alignment": "left",
-    "card_color_scheme": "scheme-2",
+    "card_color_scheme": "scheme-3",
     "card_border_thickness": 0,
     "card_border_opacity": 10,
     "card_corner_radius": 8,
@@ -57,7 +57,7 @@
     "collection_card_style": "card",
     "collection_card_image_padding": 0,
     "collection_card_text_alignment": "left",
-    "collection_card_color_scheme": "scheme-2",
+    "collection_card_color_scheme": "scheme-3",
     "collection_card_border_thickness": 0,
     "collection_card_border_opacity": 10,
     "collection_card_corner_radius": 8,
@@ -76,7 +76,7 @@
     "blog_card_shadow_horizontal_offset": 0,
     "blog_card_shadow_vertical_offset": 4,
     "blog_card_shadow_blur": 5,
-    "text_boxes_border_thickness": 1,
+    "text_boxes_border_thickness": 0,
     "text_boxes_border_opacity": 10,
     "text_boxes_radius": 8,
     "text_boxes_shadow_opacity": 0,
@@ -103,7 +103,7 @@
     "drawer_shadow_horizontal_offset": 0,
     "drawer_shadow_vertical_offset": 4,
     "drawer_shadow_blur": 5,
-    "badge_position": "bottom left",
+    "badge_position": "top left",
     "badge_corner_radius": 40,
     "sale_badge_color_scheme": "scheme-ad2f8c43-2813-482e-bb3a-201fafbcf40d",
     "sold_out_badge_color_scheme": "scheme-95e7720f-18c1-4aad-ba85-bed2b4548b6f",
@@ -219,6 +219,17 @@
           "button_label": "#ffffff",
           "secondary_button_label": "#f4436c",
           "shadow": "#0c7489"
+        }
+      },
+      "scheme-017ef066-9f36-43bb-9764-26433e015017": {
+        "settings": {
+          "background": "#f4f4f4",
+          "background_gradient": "linear-gradient(45deg, rgba(84, 92, 82, 1), rgba(35, 31, 32, 1) 63.909%, rgba(35, 31, 32, 1) 64%, rgba(127, 72, 176, 1) 96%)",
+          "text": "#ffffff",
+          "button": "#f4436c",
+          "button_label": "#ffffff",
+          "secondary_button_label": "#f4436c",
+          "shadow": "#545c52"
         }
       }
     }
