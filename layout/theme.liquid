@@ -315,8 +315,8 @@
       <script type="application/ld+json">
         {{ collection.metafields.custom.faqs }}
       </script>
-      {{ 'my-custom-faq.aio.min.css' | asset_url | stylesheet_tag }}
-      <script src="{{ 'my-custom-faq.js' | asset_url }}" defer></script>
+      {{ 'faq.css' | asset_url | stylesheet_tag }}
+      <script src="{{ 'faq.js' | asset_url }}" defer></script>
     {% endif %}
   </head>
 
