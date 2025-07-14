@@ -110,6 +110,7 @@
         },
         "slide_AWNGgf": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "cloudinary_id": "ar_16:9,c_crop,g_face/ahtziri-lagarde-ZW7ISsL8TwE-unsplash_1_atatyg",
             "cloudinary_public_id": "",
@@ -213,7 +214,7 @@
         "column_P8WrLm": {
           "type": "column",
           "settings": {
-            "article": "pleasure-lab/beginner-guide-adult-toys",
+            "article": "pleasure-lab/intimate-toys-and-sex-toys",
             "cloudinary_id": "",
             "cloudinary_id_2": "",
             "cloudinary_id_3": "",
@@ -312,6 +313,7 @@
       "custom_css": [
         ".aa-custom-background-image {background-color: hsla(268, 41%, 33%, 1); background-image: radial-gradient( at 87% 33%, hsla(268, 41%, 33%, 1) 0px, transparent 50% ), radial-gradient(at 100% 94%, hsla(108, 5%, 34%, 1) 0px, transparent 50%), radial-gradient(at 5% 77%, hsla(190, 83%, 29%, 1) 0px, transparent 50%), radial-gradient(at 56% 26%, hsla(346, 88%, 60%, 1) 0px, transparent 50%);}"
       ],
+      "name": "Top Categories",
       "settings": {
         "title": "Shop our top categories",
         "heading_size": "h1",
@@ -323,6 +325,58 @@
         "swipe_on_mobile": false,
         "padding_top": 48,
         "padding_bottom": 60
+      }
+    },
+    "rich_text": {
+      "type": "rich-text",
+      "blocks": {
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p><em>Our motto, </em><em><strong>\"Embrace Your Sexual Wellness,\"</strong></em><em> is promoting a philosophy centred around encouraging the public to prioritize their overall sexual health and happiness. Our commitment is to create a safe, inclusive, and empowering environment for everyone. </em></p>"
+          }
+        }
+      },
+      "block_order": [
+        "text"
+      ],
+      "name": "Motto",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-3",
+        "full_width": true,
+        "padding_top": 4,
+        "padding_bottom": 4
+      }
+    },
+    "featured_collection1": {
+      "type": "featured-collection",
+      "name": "Best Adult Toys",
+      "settings": {
+        "collection": "best-adult-toys",
+        "products_to_show": 10,
+        "title": "<strong>{{ section.settings.collection.title }}</strong>",
+        "heading_size": "h1",
+        "description": "{{ section.settings.collection.description }}",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 5,
+        "enable_desktop_slider": true,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-3",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": true,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 52
       }
     },
     "multicolumn": {
@@ -508,81 +562,89 @@
         "padding_bottom": 24
       }
     },
-    "multicolumn_iKKrHW": {
+    "multicolumn2": {
       "type": "multicolumn",
       "blocks": {
-        "column_GeRdQU": {
+        "column_Rhy9JY": {
           "type": "column",
           "settings": {
             "image_source": "shopify",
+            "image": "shopify://shop_images/editor_choice_50dp_533278_FILL0_wght400_GRAD0_opsz48.svg",
             "cloudinary_src": "",
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "title": "<strong>Quality and Safe Products</strong>",
+            "text": "<p>We carefully select products that are safe, high-quality, and ethically sourced.</p>",
             "link_label": "",
             "link": ""
           }
         },
-        "column_7UMeWH": {
+        "column_EicGVg": {
           "type": "column",
           "settings": {
             "image_source": "shopify",
+            "image": "shopify://shop_images/diversity_1_50dp_533278_FILL0_wght400_GRAD0_opsz48_1.svg",
             "cloudinary_src": "",
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "title": "<strong>Inclusivity & Respect</strong>",
+            "text": "<p>We believe in pleasure for all, regardless of gender, orientation, or relationship status.</p>",
             "link_label": "",
             "link": ""
           }
         },
-        "column_4PyWi6": {
+        "column_mfb8rc": {
           "type": "column",
           "settings": {
             "image_source": "shopify",
+            "image": "shopify://shop_images/verified_user_50dp_533278_FILL0_wght400_GRAD0_opsz48.svg",
             "cloudinary_src": "",
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_YJGhcQ": {
-          "type": "column",
-          "settings": {
-            "image_source": "shopify",
-            "cloudinary_src": "",
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "title": "Privacy & Discretion",
+            "text": "<p>Your privacy is our priority. We ensure discreet packaging and secure transactions.</p>",
             "link_label": "",
             "link": ""
           }
         }
       },
       "block_order": [
-        "column_GeRdQU",
-        "column_7UMeWH",
-        "column_4PyWi6",
-        "column_YJGhcQ"
+        "column_Rhy9JY",
+        "column_EicGVg",
+        "column_mfb8rc"
       ],
-      "name": "t:sections.multicolumn.presets.name",
+      "name": "Our Values",
       "settings": {
-        "title": "Multicolumn",
+        "title": "<strong>Our Values</strong>",
         "heading_size": "h1",
-        "image_width": "full",
+        "image_width": "third",
         "image_ratio": "adapt",
         "button_label": "",
         "button_link": "",
-        "columns_desktop": 4,
-        "column_alignment": "left",
+        "columns_desktop": 3,
+        "column_alignment": "center",
         "background_style": "primary",
         "color_scheme": "scheme-3",
         "columns_mobile": "1",
-        "swipe_on_mobile": true,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "swipe_on_mobile": false,
+        "padding_top": 44,
+        "padding_bottom": 48
       }
     },
     "multicolumn_2x2_QnEPzH": {
       "type": "multicolumn-2x2",
       "blocks": {
+        "column_NMnBUc": {
+          "type": "column",
+          "settings": {
+            "article": "pleasure-lab/beginner-guide-adult-toys",
+            "cloudinary_id": "",
+            "cloudinary_id_2": "",
+            "cloudinary_id_3": "",
+            "cloudinary_id_4": "",
+            "image_gap": 16,
+            "image_margin": 0,
+            "image_padding": 0,
+            "title": "Column",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
         "column_w3iQGy": {
           "type": "column",
           "settings": {
@@ -633,34 +695,17 @@
             "link_label": "",
             "link": ""
           }
-        },
-        "column_NMnBUc": {
-          "type": "column",
-          "settings": {
-            "article": "sex-toys-artisans/behind-the-scenes-how-we-choose-the-products-that-ignite-your-pleasure-at-playlovetoys",
-            "cloudinary_id": "",
-            "cloudinary_id_2": "",
-            "cloudinary_id_3": "",
-            "cloudinary_id_4": "",
-            "image_gap": 16,
-            "image_margin": 0,
-            "image_padding": 0,
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_label": "",
-            "link": ""
-          }
         }
       },
       "block_order": [
+        "column_NMnBUc",
         "column_w3iQGy",
         "column_fpqVPT",
-        "column_gQ3aca",
-        "column_NMnBUc"
+        "column_gQ3aca"
       ],
-      "name": "Multicolumn-2x2",
+      "name": "Blog Articles",
       "settings": {
-        "title": "",
+        "title": "<strong>Sex-Ed</strong>",
         "heading_size": "h1",
         "image_width": "full",
         "image_ratio": "square",
@@ -676,34 +721,13 @@
         "padding_bottom": 36
       }
     },
-    "rich_text": {
-      "type": "rich-text",
-      "blocks": {
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Outstanding service | Exclusive pricing | Industry expertise</p>"
-          }
-        }
-      },
-      "block_order": [
-        "text"
-      ],
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "full_width": true,
-        "padding_top": 4,
-        "padding_bottom": 4
-      }
-    },
-    "featured_collection1": {
+    "featured_collection2": {
       "type": "featured-collection",
+      "name": "New Arrivals",
       "settings": {
-        "collection": "best-adult-toys",
-        "products_to_show": 10,
-        "title": "{{ section.settings.collection.title }}",
+        "collection": "sex-toys-new-arrival",
+        "products_to_show": 6,
+        "title": "<strong>New arrivals</strong>",
         "heading_size": "h1",
         "description": "{{ section.settings.collection.description }}",
         "show_description": false,
@@ -713,183 +737,25 @@
         "full_width": false,
         "show_view_all": true,
         "view_all_style": "solid",
-        "color_scheme": "scheme-3",
-        "image_ratio": "square",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": true,
-        "show_rating": false,
-        "quick_add": "standard",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 52
-      }
-    },
-    "multicolumn1": {
-      "type": "multicolumn",
-      "blocks": {
-        "column7": {
-          "type": "column",
-          "settings": {
-            "image_source": "shopify",
-            "cloudinary_src": "",
-            "title": "Add a customer testimonial",
-            "text": "",
-            "link_label": "Shop now",
-            "link": ""
-          }
-        },
-        "column8": {
-          "type": "column",
-          "settings": {
-            "image_source": "shopify",
-            "cloudinary_src": "",
-            "title": "Add a customer testimonial",
-            "text": "",
-            "link_label": "Shop now",
-            "link": ""
-          }
-        },
-        "column9": {
-          "type": "column",
-          "settings": {
-            "image_source": "shopify",
-            "cloudinary_src": "",
-            "title": "Add a customer testimonial",
-            "text": "",
-            "link_label": "Shop now",
-            "link": ""
-          }
-        },
-        "column10": {
-          "type": "column",
-          "settings": {
-            "image_source": "shopify",
-            "cloudinary_src": "",
-            "title": "Add a customer testimonial",
-            "text": "",
-            "link_label": "Shop now",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "column7",
-        "column8",
-        "column9",
-        "column10"
-      ],
-      "settings": {
-        "title": "",
-        "heading_size": "h1",
-        "image_width": "full",
-        "image_ratio": "adapt",
-        "button_label": "",
-        "button_link": "",
-        "columns_desktop": 4,
-        "column_alignment": "center",
-        "background_style": "none",
-        "color_scheme": "scheme-2",
-        "columns_mobile": "1",
-        "swipe_on_mobile": true,
-        "padding_top": 68,
-        "padding_bottom": 68
-      }
-    },
-    "featured_collection2": {
-      "type": "featured-collection",
-      "settings": {
-        "collection": "best-adult-toys",
-        "products_to_show": 6,
-        "title": "New arrivals",
-        "heading_size": "h1",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "columns_desktop": 5,
-        "enable_desktop_slider": true,
-        "full_width": true,
-        "show_view_all": true,
-        "view_all_style": "solid",
         "color_scheme": "",
         "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": true,
         "show_rating": false,
-        "quick_add": "standard",
+        "quick_add": "none",
         "columns_mobile": "2",
-        "swipe_on_mobile": false,
+        "swipe_on_mobile": true,
         "padding_top": 36,
         "padding_bottom": 52
-      }
-    },
-    "multicolumn2": {
-      "type": "multicolumn",
-      "blocks": {
-        "column_Rhy9JY": {
-          "type": "column",
-          "settings": {
-            "image_source": "shopify",
-            "cloudinary_src": "",
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_EicGVg": {
-          "type": "column",
-          "settings": {
-            "image_source": "shopify",
-            "cloudinary_src": "",
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_mfb8rc": {
-          "type": "column",
-          "settings": {
-            "image_source": "shopify",
-            "cloudinary_src": "",
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "column_Rhy9JY",
-        "column_EicGVg",
-        "column_mfb8rc"
-      ],
-      "settings": {
-        "title": "You're set up for success",
-        "heading_size": "h1",
-        "image_width": "full",
-        "image_ratio": "square",
-        "button_label": "",
-        "button_link": "",
-        "columns_desktop": 3,
-        "column_alignment": "center",
-        "background_style": "primary",
-        "color_scheme": "scheme-3",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 44,
-        "padding_bottom": 48
       }
     },
     "custom_section_WKTegY": {
       "type": "custom_section",
       "blocks": {
-        "blog_post_display_7fyHDk": {
+        "blog_post_display_jfQpeB": {
           "type": "blog_post_display",
-          "name": "Blog Post Display",
+          "name": "Editorial Blog Post",
           "settings": {
             "article": "sex-toys-artisans/behind-the-scenes-how-we-choose-the-products-that-ignite-your-pleasure-at-playlovetoys",
             "article_handle": "",
@@ -901,18 +767,19 @@
             "show_button": false,
             "button_text": "Read more",
             "date_format": "%B %d, %Y",
-            "padding": 24,
+            "width": 85,
+            "padding": 12,
             "spacing": 20,
             "border_radius": 8,
             "image_aspect_ratio": "16/9",
             "image_border_radius": 8,
             "background_color": "#ffffff",
-            "title_color": "#000000",
+            "title_color": "#333333",
             "title_hover_color": "#555555",
             "meta_color": "#777777",
-            "content_color": "#333333",
-            "button_color": "#000000",
-            "button_hover_color": "#555555",
+            "content_color": "#444444",
+            "button_color": "#0066cc",
+            "button_hover_color": "#004499",
             "title_font_size": 28,
             "title_font_weight": 700,
             "meta_font_size": 14,
@@ -923,7 +790,7 @@
         }
       },
       "block_order": [
-        "blog_post_display_7fyHDk"
+        "blog_post_display_jfQpeB"
       ],
       "name": "custom section",
       "settings": {
@@ -932,7 +799,7 @@
         "horizontal_alignment": "flex-start",
         "vertical_alignment": "center",
         "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
+        "horizontal_alignment_flex_direction_column": "center",
         "vertical_alignment_flex_direction_column": "center",
         "gap": 12,
         "section_width": "page-width",
@@ -950,8 +817,10 @@
         "overlay_color": "#00000026",
         "overlay_style": "solid",
         "gradient_direction": "to top",
-        "padding-block-start": 0,
-        "padding-block-end": 0
+        "content_padding_top": 0,
+        "content_padding_bottom": 0,
+        "content_padding_left": 0,
+        "content_padding_right": 0
       }
     }
   },
@@ -959,14 +828,12 @@
     "slideshow_4nGYLi",
     "multicolumn_2x2_rMUj4F",
     "collection_list",
-    "multicolumn",
-    "multicolumn_iKKrHW",
-    "multicolumn_2x2_QnEPzH",
     "rich_text",
     "featured_collection1",
-    "multicolumn1",
-    "featured_collection2",
+    "multicolumn",
     "multicolumn2",
+    "multicolumn_2x2_QnEPzH",
+    "featured_collection2",
     "custom_section_WKTegY"
   ]
 }

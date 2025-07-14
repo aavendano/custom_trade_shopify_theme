@@ -4,6 +4,7 @@
   .ai-blog-post-{{ ai_gen_id }} {
     display: block;
     margin: 0 auto;
+    width: {{ block.settings.width }}%;
     max-width: 100%;
   }
 
@@ -275,6 +276,16 @@
     {
       "type": "header",
       "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "width",
+      "min": 20,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "width",
+      "default": 100
     },
     {
       "type": "range",

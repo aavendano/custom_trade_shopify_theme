@@ -15,6 +15,25 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
+  .footer.section-{{ section.id }}-padding {
+    background: linear-gradient(135deg, {{ section.settings.gradient_start }}, {{ section.settings.gradient_end }});
+  }
+
+  {%- if section.settings.background_image -%}
+    .footer.section-{{ section.id }}-padding {
+      background: linear-gradient(135deg, {{ section.settings.gradient_start }}, {{ section.settings.gradient_end }}), url('{{ section.settings.background_image | image_url: width: 1920 }}');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    @media screen and (min-width: 750px) {
+      .footer.section-{{ section.id }}-padding {
+        background: linear-gradient(135deg, {{ section.settings.gradient_start }}, {{ section.settings.gradient_end }}), url('{{ section.settings.background_image | image_url: width: 2560 }}');
+      }
+    }
+  {%- endif -%}
+
   @media screen and (min-width: 750px) {
     .footer {
       margin-top: {{ section.settings.margin_top }}px;
@@ -27,7 +46,7 @@
   }
 {%- endstyle -%}
 
-<footer class="footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+<footer class="footer plt-gradient-background color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding{% if section.settings.background_image %} footer--has-bg{% endif %}">
   {%- liquid
     assign has_social_icons = true
     if settings.social_facebook_link == blank and settings.social_instagram_link == blank and settings.social_youtube_link == blank and settings.social_tiktok_link == blank and settings.social_twitter_link == blank and settings.social_pinterest_link == blank and settings.social_snapchat_link == blank and settings.social_tumblr_link == blank and settings.social_vimeo_link == blank
@@ -76,7 +95,9 @@
                 {% endif %}
               >
                 {%- if block.settings.heading != blank -%}
-                  <h2 class="footer-block__heading inline-richtext">{{- block.settings.heading -}}</h2>
+                  <h2 class="footer-block__heading inline-richtext{% if block.type == 'link_list' %} footer-block__heading--collapsible{% endif %}">
+                    {{- block.settings.heading -}}
+                  </h2>
                 {%- endif -%}
 
                 {%- case block.type -%}
@@ -88,7 +109,17 @@
                     </div>
                   {%- when 'link_list' -%}
                     {%- if block.settings.menu != blank -%}
-                      <ul class="footer-block__details-content list-unstyled">
+                      <button
+                        class="footer-block__toggle"
+                        aria-expanded="false"
+                        aria-controls="footer-menu-{{ block.id }}"
+                      >
+                        <span class="footer-block__toggle-icon">+</span>
+                      </button>
+                      <ul
+                        class="footer-block__details-content list-unstyled footer-block__menu"
+                        id="footer-menu-{{ block.id }}"
+                      >
                         {%- for link in block.settings.menu.links -%}
                           <li>
                             <a
@@ -321,6 +352,22 @@
   </div>
 </footer>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const toggleButtons = document.querySelectorAll('.footer-block__toggle');
+
+    toggleButtons.forEach((button) => {
+      button.addEventListener('click', function () {
+        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+        const menu = document.getElementById(this.getAttribute('aria-controls'));
+
+        this.setAttribute('aria-expanded', !isExpanded);
+        menu.classList.toggle('expanded', !isExpanded);
+      });
+    });
+  });
+</script>
+
 {% schema %}
 {
   "name": "t:sections.footer.name",
@@ -429,6 +476,23 @@
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "color",
+      "id": "gradient_start",
+      "label": "Gradient start color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "gradient_end",
+      "label": "Gradient end color",
+      "default": "#333333"
     },
     {
       "type": "header",

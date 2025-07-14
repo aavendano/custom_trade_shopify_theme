@@ -488,6 +488,61 @@
   }
 }
 
+/* Mobile collapsible footer menus */
+@media screen and (max-width: 749px) {
+  .footer-block--menu .footer-block__heading--collapsible {
+    position: relative;
+    cursor: pointer;
+    padding-right: 3rem;
+  }
+
+  .footer-block__toggle {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: rgb(var(--color-foreground));
+    padding: 0;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer-block__toggle-icon {
+    transition: transform 0.3s ease;
+  }
+
+  .footer-block__toggle[aria-expanded="true"] .footer-block__toggle-icon {
+    transform: rotate(45deg);
+  }
+
+  .footer-block__menu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .footer-block__menu.expanded {
+    max-height: 50rem;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .footer-block__toggle {
+    display: none;
+  }
+
+  .footer-block__menu {
+    max-height: none !important;
+  }
+}
+
 /* check for flexbox gap in older Safari versions */
 @supports not (inset: 10px) {
   @media screen and (max-width: 749px) {

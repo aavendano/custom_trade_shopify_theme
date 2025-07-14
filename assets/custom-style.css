@@ -8,11 +8,11 @@
 
  .price-item {
     font-weight: 500;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 
 .custom-price-text-was {
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 300;
   white-space: nowrap;
 }
@@ -22,14 +22,41 @@
     font-weight: 600;
 }
 
+.price__badgets__container {
+  display: block;
+}
+
+.plt-gradient-background {
+  background: linear-gradient(
+    to right,
+    #231f20 0%,
+    #251f21 9.09%,
+    #332129 18.18%,
+    #4e264b 27.27%,
+    #542e6e 36.36%,
+    #533278 45.45%,
+    #543278 54.54%,
+    #61337c 63.64%,
+    #953385 72.73%,
+    #db3779 81.82%,
+    #f1416e 90.91%,
+    #f4436c 100%
+  ) !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  height: 100%;
+  width: 100%;
+  /* You can set a height and width for the element you apply this to, for example: */
+}
 
 @media screen and (max-width: 750px){
    .price-item {
     font-weight: 500 !important; 
-    font-size: 1.1rem !important;
+    font-size: 1.5rem !important;
     }
   .custom-price-text-was {
-    font-size: 1.0rem !important;
+    font-size: 1.2rem !important;
     font-weight: 300 !important;
     white-space: nowrap;
     }

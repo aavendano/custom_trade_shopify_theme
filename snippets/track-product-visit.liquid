@@ -1,0 +1,18 @@
+{% if template contains 'product' and product.handle %}
+<script>
+  (function() {
+    const handle = '{{ product.handle }}';
+    const storageKey = 't4s-recently-viewed';
+    
+    try {
+      let handles = JSON.parse(localStorage.getItem(storageKey) || '[]');
+      handles = handles.filter(h => h !== handle);
+      handles.unshift(handle);
+      handles = handles.slice(0, 10);
+      localStorage.setItem(storageKey, JSON.stringify(handles));
+    } catch (e) {
+      console.error('Error tracking product visit:', e);
+    }
+  })();
+</script>
+{% endif %}

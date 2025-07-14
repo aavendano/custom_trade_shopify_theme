@@ -91,6 +91,20 @@
       </span>
       {{ 'blogs.article.back_to_blog' | t: title: blog.title | escape }}
     </a>
+    <br>
+    <div
+      class="blog-post-disclaimer"
+      style="font-size: 0.9em; color: #666; margin-top: 2em; padding-top: 1em; border-top: 1px solid #eee;"
+    >
+      <div class="page-width page-width--narrow">
+        <p>
+          <strong>Disclaimer:</strong> This article is for informational purposes only and does not constitute medical
+          or psychological advice. Always consult with a qualified professional for personal health concerns. Learn more
+          by reading our full
+          <a href="/pages/website-disclaimer" target="_blank" rel="noopener noreferrer">Website Disclaimer</a>.
+        </p>
+      </div>
+    </div>
   </div>
   {%- if blog.comments_enabled? -%}
     <div class="article-template__comment-wrapper background-secondary">

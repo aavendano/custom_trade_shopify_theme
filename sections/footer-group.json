@@ -14,16 +14,34 @@
     "footer": {
       "type": "footer",
       "blocks": {
+        "link_list_nypeRK": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Collections",
+            "menu": "footer-collections"
+          }
+        },
         "link_list": {
           "type": "link_list",
           "settings": {
             "heading": "Quick links",
             "menu": "footer"
           }
+        },
+        "brand_information_BAnPQg": {
+          "type": "brand_information",
+          "settings": {
+            "show_social": true
+          }
         }
       },
       "block_order": [
-        "link_list"
+        "link_list_nypeRK",
+        "link_list",
+        "brand_information_BAnPQg"
+      ],
+      "custom_css": [
+        ".footer {}"
       ],
       "settings": {
         "color_scheme": "scheme-4",
