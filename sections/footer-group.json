@@ -45,6 +45,8 @@
       ],
       "settings": {
         "color_scheme": "scheme-4",
+        "gradient_start": "#000000",
+        "gradient_end": "#333333",
         "newsletter_enable": false,
         "newsletter_heading": "Subscribe to our emails",
         "enable_follow_on_shop": true,

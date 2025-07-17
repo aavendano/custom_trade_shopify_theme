@@ -227,13 +227,89 @@
             "link_label": "",
             "link": ""
           }
+        },
+        "column_bzV96B": {
+          "type": "column",
+          "settings": {
+            "article": "",
+            "cloudinary_id": "",
+            "cloudinary_id_2": "",
+            "cloudinary_id_3": "",
+            "cloudinary_id_4": "",
+            "image": "shopify://shop_images/Deals_Under_20-Photoroom.webp",
+            "image_gap": 16,
+            "image_margin": 0,
+            "image_padding": 0,
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": "shopify://collections/under-20"
+          }
+        },
+        "column_mNXnEh": {
+          "type": "column",
+          "settings": {
+            "article": "",
+            "cloudinary_id": "",
+            "cloudinary_id_2": "",
+            "cloudinary_id_3": "",
+            "cloudinary_id_4": "",
+            "image": "shopify://shop_images/deals_under_30-Photoroom.webp",
+            "image_gap": 16,
+            "image_margin": 0,
+            "image_padding": 0,
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": "shopify://collections/under-30"
+          }
+        },
+        "column_TV4X3H": {
+          "type": "column",
+          "settings": {
+            "article": "",
+            "cloudinary_id": "",
+            "cloudinary_id_2": "",
+            "cloudinary_id_3": "",
+            "cloudinary_id_4": "",
+            "image": "shopify://shop_images/deals_under_50-Photoroom.webp",
+            "image_gap": 16,
+            "image_margin": 0,
+            "image_padding": 0,
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": "shopify://collections/under-50"
+          }
+        },
+        "column_C3GbVX": {
+          "type": "column",
+          "settings": {
+            "article": "",
+            "cloudinary_id": "",
+            "cloudinary_id_2": "",
+            "cloudinary_id_3": "",
+            "cloudinary_id_4": "",
+            "image": "shopify://shop_images/deals_under_100-Photoroom.webp",
+            "image_gap": 16,
+            "image_margin": 0,
+            "image_padding": 0,
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": "shopify://collections/under-100"
+          }
         }
       },
       "block_order": [
         "column_Ni4CNE",
         "column_YWGbkU",
         "column_HdJyF6",
-        "column_P8WrLm"
+        "column_P8WrLm",
+        "column_bzV96B",
+        "column_mNXnEh",
+        "column_TV4X3H",
+        "column_C3GbVX"
       ],
       "custom_css": [],
       "name": "Multicolumn-2x2",
@@ -315,7 +391,7 @@
       ],
       "name": "Top Categories",
       "settings": {
-        "title": "Shop our top categories",
+        "title": "{{ metaobject.province.value }} Sex Toys Categories",
         "heading_size": "h1",
         "image_ratio": "portrait",
         "columns_desktop": 6,
@@ -356,9 +432,9 @@
       "settings": {
         "collection": "best-adult-toys",
         "products_to_show": 10,
-        "title": "<strong>{{ section.settings.collection.title }}</strong>",
+        "title": "<strong>{{ metaobject.province.value }}</strong><strong> </strong><strong>{{ section.settings.collection.title }}</strong>",
         "heading_size": "h1",
-        "description": "{{ section.settings.collection.description }}",
+        "description": "",
         "show_description": false,
         "description_style": "body",
         "columns_desktop": 5,
@@ -391,7 +467,7 @@
             "title": "",
             "text": "",
             "link_label": "",
-            "link": "shopify://collections/kiiroo"
+            "link": "shopify://collections/kiiroo-sex-toys-for-men-strokers"
           }
         },
         "column2": {
@@ -572,19 +648,7 @@
             "image": "shopify://shop_images/editor_choice_50dp_533278_FILL0_wght400_GRAD0_opsz48.svg",
             "cloudinary_src": "",
             "title": "<strong>Quality and Safe Products</strong>",
-            "text": "<p>We carefully select products that are safe, high-quality, and ethically sourced.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_EicGVg": {
-          "type": "column",
-          "settings": {
-            "image_source": "shopify",
-            "image": "shopify://shop_images/diversity_1_50dp_533278_FILL0_wght400_GRAD0_opsz48_1.svg",
-            "cloudinary_src": "",
-            "title": "<strong>Inclusivity & Respect</strong>",
-            "text": "<p>We believe in pleasure for all, regardless of gender, orientation, or relationship status.</p>",
+            "text": "<p>At <em>PlayLoveToys</em>, we're passionate about enhancing connection and pleasure for everyone in <em>{{ closest.metaobject.region.province.value }}</em>. We meticulously curate a premium selection of high-quality <em>adult toys</em> and wellness products for <em>{{ closest.metaobject.region.province.value }}</em> residents, designed to elevate your intimate experiences and support your journey towards greater sexual well-being and joy</p>",
             "link_label": "",
             "link": ""
           }
@@ -596,7 +660,19 @@
             "image": "shopify://shop_images/verified_user_50dp_533278_FILL0_wght400_GRAD0_opsz48.svg",
             "cloudinary_src": "",
             "title": "Privacy & Discretion",
-            "text": "<p>Your privacy is our priority. We ensure discreet packaging and secure transactions.</p>",
+            "text": "<p>Your privacy is paramount at <em>PlayLoveToys</em>. All orders shipped to <em>{{ closest.metaobject.region.province.value }}</em> and throughout the rest of Canada arrive in plain, unmarked packaging. We are committed to ensuring your purchases are delivered discreetly and securely right to your doorstep in <em>{{ closest.metaobject.region.province.value }}</em>, safeguarding your personal choices.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_EicGVg": {
+          "type": "column",
+          "settings": {
+            "image_source": "shopify",
+            "image": "shopify://shop_images/diversity_1_50dp_533278_FILL0_wght400_GRAD0_opsz48_1.svg",
+            "cloudinary_src": "",
+            "title": "<strong>Inclusivity & Respect</strong>",
+            "text": "<p>We believe in pleasure for all, regardless of gender, orientation, or relationship status. We strive to create a welcoming and inclusive environment for all customers to explore and enjoy our products.</p>",
             "link_label": "",
             "link": ""
           }
@@ -604,8 +680,8 @@
       },
       "block_order": [
         "column_Rhy9JY",
-        "column_EicGVg",
-        "column_mfb8rc"
+        "column_mfb8rc",
+        "column_EicGVg"
       ],
       "name": "Our Values",
       "settings": {
@@ -727,7 +803,7 @@
       "settings": {
         "collection": "sex-toys-new-arrival",
         "products_to_show": 6,
-        "title": "<strong>New arrivals</strong>",
+        "title": "Adult Toys {{ metaobject.province.value }} Collection",
         "heading_size": "h1",
         "description": "{{ section.settings.collection.description }}",
         "show_description": false,
@@ -750,47 +826,119 @@
         "padding_bottom": 52
       }
     },
-    "custom_section_WKTegY": {
+    "custom_section_KmFRFa": {
       "type": "custom_section",
       "blocks": {
-        "blog_post_display_jfQpeB": {
-          "type": "blog_post_display",
-          "name": "Editorial Blog Post",
+        "flexible_content_makHyi": {
+          "type": "flexible-content",
+          "name": "Contenido Flexible",
           "settings": {
-            "article": "sex-toys-artisans/behind-the-scenes-how-we-choose-the-products-that-ignite-your-pleasure-at-playlovetoys",
-            "article_handle": "",
-            "show_image": true,
-            "show_meta": true,
-            "show_date": true,
-            "show_author": true,
-            "show_content": true,
-            "show_button": false,
-            "button_text": "Read more",
-            "date_format": "%B %d, %Y",
-            "width": 85,
-            "padding": 12,
-            "spacing": 20,
-            "border_radius": 8,
-            "image_aspect_ratio": "16/9",
+            "title": "{{ closest.metaobject.region.province.value }} Sex Toys & Adult Store",
+            "title_tag": "h1",
+            "subtitle": "Your Premier Online Sex Shop in Canada",
+            "subtitle_tag": "h3",
+            "description": "<p>{{ closest.metaobject.region.greeting | metafield_tag }}</p>",
+            "image_position": "right",
+            "primary_button_text": "Comprar ahora",
+            "primary_button_link": "",
+            "secondary_button_text": "Más información",
+            "secondary_button_link": "",
+            "layout_direction": "row",
+            "vertical_alignment": "center",
+            "spacing": 30,
+            "layout_direction_mobile": "column",
+            "spacing_mobile": 20,
+            "title_size": 36,
+            "title_weight": 700,
+            "title_spacing": 15,
+            "subtitle_size": 24,
+            "subtitle_weight": 600,
+            "subtitle_spacing": 15,
+            "text_size": 16,
+            "text_spacing": 20,
+            "title_size_mobile": 28,
+            "title_spacing_mobile": 10,
+            "subtitle_size_mobile": 20,
+            "subtitle_spacing_mobile": 10,
+            "text_size_mobile": 14,
+            "text_spacing_mobile": 15,
+            "button_text_size": 16,
+            "button_border_radius": 4,
+            "button_text_size_mobile": 14,
+            "image_max_width": 600,
             "image_border_radius": 8,
             "background_color": "#ffffff",
-            "title_color": "#333333",
-            "title_hover_color": "#555555",
-            "meta_color": "#777777",
-            "content_color": "#444444",
-            "button_color": "#0066cc",
-            "button_hover_color": "#004499",
-            "title_font_size": 28,
-            "title_font_weight": 700,
-            "meta_font_size": 14,
-            "content_font_size": 16,
-            "button_font_size": 16
+            "title_color": "#533278",
+            "subtitle_color": "#555555",
+            "text_color": "#1c2228",
+            "primary_button_color": "#000000",
+            "primary_button_text_color": "#ffffff",
+            "primary_button_hover_color": "#333333",
+            "secondary_button_color": "#ffffff",
+            "secondary_button_text_color": "#000000",
+            "secondary_button_hover_color": "#f5f5f5",
+            "padding_top": 60,
+            "padding_right": 60,
+            "padding_bottom": 60,
+            "padding_left": 60,
+            "padding_top_mobile": 30,
+            "padding_right_mobile": 20,
+            "padding_bottom_mobile": 30,
+            "padding_left_mobile": 20,
+            "border_radius": 0
+          },
+          "blocks": {}
+        },
+        "location_map_VyEDUx": {
+          "type": "location_map",
+          "name": "Location Map",
+          "settings": {
+            "content_direction": "row",
+            "mobile_content_direction": "column",
+            "content_width": 50,
+            "map_container_width": 30,
+            "content_gap": 32,
+            "padding": 24,
+            "background_color": "#FFFFFF",
+            "border_radius": 12,
+            "map_width": "800",
+            "map_height": "450",
+            "City": "",
+            "Province": "{{ closest.metaobject.region.province.value }}",
+            "Country": "Canada",
+            "GoogleMapsAPIKey": "{{ metaobjects.api_tokens[\"google-static-map-api\"].token.value }}",
+            "map_zoom": "5",
+            "show_map": true,
+            "schema_area_served": true,
+            "map_border_radius": 12,
+            "map_border_width": 1,
+            "map_border_color": "#b4b4b4",
+            "map_shadow_h_offset": 0,
+            "map_shadow_v_offset": 4,
+            "map_shadow_blur": 10,
+            "map_shadow_spread": 0,
+            "map_shadow_color": "#b4b4b4",
+            "title": "Adult Store {{ closest.metaobject.region.province.value }} Online Service",
+            "title_font": "inter_n4",
+            "title_size": 32,
+            "title_color": "#533278",
+            "text": "<p><strong>PlayLoveToys</strong> ships discreetly to the entire <em>{{ metaobject.province.value }}</em> area shown on this map. Explore our high-quality <strong>adult toys</strong> and intimacy products online, with private delivery to your city home.</p>",
+            "text_size": 18,
+            "text_color": "#333333",
+            "button_text": "Shop Now!",
+            "button_link": "shopify://collections/all",
+            "button_alignment": "center",
+            "button_color": "#f4436c",
+            "button_hover_color": "#0c7489",
+            "button_text_color": "#FFFFFF",
+            "button_border_radius": 20
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "blog_post_display_jfQpeB"
+        "flexible_content_makHyi",
+        "location_map_VyEDUx"
       ],
       "name": "custom section",
       "settings": {
@@ -805,7 +953,7 @@
         "section_width": "page-width",
         "section_height": "",
         "section_height_custom": 50,
-        "color_scheme": "",
+        "color_scheme": "scheme-1",
         "background_media": "none",
         "video_position": "cover",
         "background_image_position": "cover",
@@ -814,7 +962,7 @@
         "border_opacity": 100,
         "border_radius": 0,
         "toggle_overlay": false,
-        "overlay_color": "#00000026",
+        "overlay_color": "#533278",
         "overlay_style": "solid",
         "gradient_direction": "to top",
         "content_padding_top": 0,
@@ -834,6 +982,6 @@
     "multicolumn2",
     "multicolumn_2x2_QnEPzH",
     "featured_collection2",
-    "custom_section_WKTegY"
+    "custom_section_KmFRFa"
   ]
 }
