@@ -309,6 +309,12 @@
     {% endcomment %}
 
     {{ 'custom-style.css' | asset_url | stylesheet_tag }}
+    {% comment %}
+      This is a custom JavaScript file that can be used to add custom functionality to the theme.
+      It is recommended to use this file for custom scripts instead of editing the theme's core JavaScript files.
+      You can add your custom scripts here or in a separate file and include it in the theme.liquid file.
+    {% endcomment %}
+    {{ 'custom-shortcodes.js' | asset_url | script_tag }}
 
     <!-- FAQ METADATA COLLECTIONS -->
     {% if collection.metafields.custom.faqs %}
