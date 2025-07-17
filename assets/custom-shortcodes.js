@@ -9,14 +9,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const articleContent = document.querySelector('article');
 
   if (articleContent && window.allProducts) {
-    // --- CAMBIO 1: Regex más flexible ---
-    // Ahora captura CUALQUIER carácter (.+?) hasta el próximo ']'
-    const shortcodeRegex = /\[product:(.+?)\]/g;
+    // Regex to capture content between double brackets, e.g., [[some-product-handle]]
+    const shortcodeRegex = /\[\[(.+?)\]\]/g;
 
     articleContent.innerHTML = articleContent.innerHTML.replace(shortcodeRegex, (match, capturedContent) => {
       
-      // --- CAMBIO 2: Limpiar el handle de cualquier etiqueta HTML ---
-      const handle = capturedContent.replace(/<[^>]+>/g, '');
+      // --- CAMBIO 2: Limpiar el handle de cualquier etiqueta HTML y espacios en blanco ---
+      const handle = capturedContent.replace(/<[^>]+>|\s/g, '');
       
       const productData = window.allProducts[handle];
 
@@ -37,6 +36,10 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
           </div>
         `;
+
+
+
+
         return productCardHTML;
       }
       
