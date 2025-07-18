@@ -53,51 +53,38 @@ document.addEventListener('DOMContentLoaded', function () {
     // Shortcode for single products
     content = content.replace(/@product\("([^"]+)"\)/g, (match, handle) => {
       return `
-<div class="featured-product product product--medium grid grid--1-col grid--2-col-tablet">
-  <shopify-context type="product" handle="${handle}">
-    <template>
-      <div class="grid__item product__media-wrapper">
-        <shopify-media query="product.featuredImage" class="product-media-container global-media-settings gradient"></shopify-media>
-      </div>
-      <div class="product__info-wrapper grid__item">
-        <div id="ProductInfo-${handle}" class="product__info-container">
-          <h2 class="product__title h3">
-            <shopify-data query="product.vendor"></shopify-data>
-          </h2>
-          <h2 class="product__title h2">
-            <shopify-data query="product.title"></shopify-data>
-          </h2>
-          <div class="price price--large">
-            <div class="price__container">
-              <div class="price-item price-item--regular">
-                <shopify-money query="product.priceRange.minVariantPrice"></shopify-money>
-              </div>
+<div class="in-article-product-layout">
+  <div class="in-article-product-card">
+    <!-- Set product you want to display -->
+    <shopify-context type="product" handle="${handle}">
+      <template>
+        <div class="in-article-product-card__container">
+          <div class="in-article-product-card__media">
+            <div class="in-article-product-card__main-image">
+              <shopify-media width="250" height="250" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
             </div>
           </div>
-          
-          <shopify-product-form>
-            <form action="/cart/add" method="post" enctype="multipart/form-data">
-              <shopify-variant-selector hidden="product.variants.length === 1"></shopify-variant-selector>
-              
-              <!-- Input oculto para el ID de la variante -->
-              <input type="hidden" name="id" query="product.selectedOrFirstAvailableVariant.id">
-              
-              <br>
-              <div class="product-form__buttons">
-                <button type="submit" 
-                        name="add" 
-                        class="product-form__submit button button--full-width button--secondary"
-                        disabled="product.selectedOrFirstAvailableVariant.available === false">
-                  <span query="product.selectedOrFirstAvailableVariant.available ? 'Add to Cart' : 'Sold Out'"></span>
-                </button>
-                <shopify-buy-buttons></shopify-buy-buttons>
+          <div class="in-article-product-card__details">
+            <div class="in-article-product-card__info">
+              <h2 class="in-article-product-card__vendor">
+                <shopify-data query="product.vendor"></shopify-data>
+              </h2>
+              <h2 class="in-article-product-card__title">
+                <shopify-data query="product.title"></shopify-data>
+              </h2>
+              <div class="in-article-product-card__price">
+                <shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money>
               </div>
-            </form>
-          </shopify-product-form>
+            </div>
+            <!-- Add View to Product Button -->
+            <a shopify-attr--href="product.onlineStoreUrl" class="in-article-product__link" target="_blank">
+              <div class="in-article-product-card__product-link">View product</div>
+            </a>
+          </div>
         </div>
-      </div>
-    </template>
-  </shopify-context>
+      </template>
+    </shopify-context>
+  </div>
 </div>
 
       `;
