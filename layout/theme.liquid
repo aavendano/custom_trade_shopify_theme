@@ -39,6 +39,7 @@
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
+    <script type="module" src="https://cdn.shopify.com/storefront/web-components.js"></script>
     {{ content_for_header }}
 
     {%- liquid
@@ -309,6 +310,7 @@
     {% endcomment %}
 
     {{ 'custom-style.css' | asset_url | stylesheet_tag }}
+    {{ 'custom-shortcodes.css' | asset_url | stylesheet_tag }}
     {% comment %}
       This is a custom JavaScript file that can be used to add custom functionality to the theme.
       It is recommended to use this file for custom scripts instead of editing the theme's core JavaScript files.
@@ -325,6 +327,8 @@
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
+    <shopify-store store-domain="https://{{ shop.permanent_domain }}" country="{{ request.locale.country }}" language="{{ request.locale.language }}"></shopify-store>
+    <shopify-cart id="cart"></shopify-cart>
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>

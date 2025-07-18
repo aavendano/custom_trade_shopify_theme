@@ -302,21 +302,6 @@
   {%- endif -%}
 </article>
 
-<script>
-  window.allProducts = {
-    {%- for product in collections.all.products -%}
-      "{{ product.handle }}": {
-        "id": "{{ product.id }}",
-        "title": "{{ product.title | escape }}",
-        "url": "{{ product.url }}",
-        "image": "{{ product.featured_image | image_url: width: 400 }}",
-        "price": "{{ product.price | money }}",
-        "available": {{ product.available }}
-      }{% unless forloop.last %},{% endunless %}
-    {%- endfor -%}
-  };
-</script>
-
 <script type="application/ld+json">
   {{ article | structured_data }}
 </script>
