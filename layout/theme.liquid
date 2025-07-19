@@ -318,6 +318,10 @@
     {% endcomment %}
     {{ 'custom-shortcodes.js' | asset_url | script_tag }}
 
+    <!-- ADDING keen-slider -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/keen-slider@latest/keen-slider.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/keen-slider@latest/keen-slider.js"></script>
+
     <!-- FAQ METADATA COLLECTIONS -->
     {% if collection.metafields.custom.faqs %}
       <script type="application/ld+json">
@@ -327,7 +331,11 @@
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
-    <shopify-store store-domain="https://{{ shop.permanent_domain }}" country="{{ request.locale.country }}" language="{{ request.locale.language }}"></shopify-store>
+    <shopify-store
+      store-domain="https://{{ shop.permanent_domain }}"
+      country="{{ request.locale.country }}"
+      language="{{ request.locale.language }}"
+    ></shopify-store>
     <shopify-cart id="cart"></shopify-cart>
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
