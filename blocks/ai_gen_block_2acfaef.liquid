@@ -1,7 +1,6 @@
 {% doc %}
   @prompt
     Create a magazine-style header section with a custom background image that covers the full header area. Include options for overlay effects, typography that stands out against the background, and responsive design that maintains the magazine cover aesthetic across all devices., viculalo a un blog post
-
 {% enddoc %}
 {% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
 
@@ -173,23 +172,23 @@
     .magazine-header-{{ ai_gen_id }} {
       height: {{ block.settings.header_height_tablet }}px;
     }
-    
+
     .magazine-header-content-{{ ai_gen_id }} {
       padding: 30px;
     }
-    
+
     .magazine-header-tagline-{{ ai_gen_id }} {
       font-size: {{ block.settings.tagline_size | times: 0.8 }}px;
     }
-    
+
     .magazine-header-title-{{ ai_gen_id }} {
       font-size: {{ block.settings.title_size | times: 0.8 }}px;
     }
-    
+
     .magazine-header-subtitle-{{ ai_gen_id }} {
       font-size: {{ block.settings.subtitle_size | times: 0.8 }}px;
     }
-    
+
     .magazine-header-meta-{{ ai_gen_id }} {
       font-size: {{ block.settings.meta_size | times: 0.9 }}px;
     }
@@ -199,36 +198,36 @@
     .magazine-header-{{ ai_gen_id }} {
       height: {{ block.settings.header_height_mobile }}px;
     }
-    
+
     .magazine-header-content-{{ ai_gen_id }} {
       padding: 20px;
     }
-    
+
     .magazine-header-tagline-{{ ai_gen_id }} {
       font-size: {{ block.settings.tagline_size | times: 0.6 }}px;
     }
-    
+
     .magazine-header-title-{{ ai_gen_id }} {
       font-size: {{ block.settings.title_size | times: 0.6 }}px;
       margin-bottom: 15px;
     }
-    
+
     .magazine-header-subtitle-{{ ai_gen_id }} {
       font-size: {{ block.settings.subtitle_size | times: 0.7 }}px;
       margin-bottom: 20px;
     }
-    
+
     .magazine-header-meta-{{ ai_gen_id }} {
       flex-direction: column;
       align-items: {{ block.settings.text_alignment }};
       font-size: {{ block.settings.meta_size | times: 0.8 }}px;
     }
-    
+
     .magazine-header-author-{{ ai_gen_id }} {
       margin-right: 0;
       margin-bottom: 10px;
     }
-    
+
     .magazine-header-button-{{ ai_gen_id }} {
       padding: 10px 20px;
       font-size: {{ block.settings.button_size | times: 0.9 }}px;
@@ -239,16 +238,16 @@
 <div class="magazine-header-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
   <div class="magazine-header-bg-{{ ai_gen_id }}">
     {% if block.settings.use_article_image and block.settings.article.image %}
-      <img 
-        src="{{ block.settings.article.image | image_url: width: 2000 }}" 
+      <img
+        src="{{ block.settings.article.image | image_url: width: 2000 }}"
         alt="{{ block.settings.article.image.alt | escape }}"
         loading="lazy"
         width="{{ block.settings.article.image.width }}"
         height="{{ block.settings.article.image.height }}"
       >
     {% elsif block.settings.background_image %}
-      <img 
-        src="{{ block.settings.background_image | image_url: width: 2000 }}" 
+      <img
+        src="{{ block.settings.background_image | image_url: width: 2000 }}"
         alt="{{ block.settings.background_image.alt | escape }}"
         loading="lazy"
         width="{{ block.settings.background_image.width }}"
@@ -260,7 +259,7 @@
       </div>
     {% endif %}
   </div>
-  
+
   {% if block.settings.show_overlay %}
     <div class="magazine-header-overlay-{{ ai_gen_id }}"></div>
   {% endif %}
@@ -271,21 +270,21 @@
     {% elsif block.settings.tagline != blank %}
       <div class="magazine-header-tagline-{{ ai_gen_id }}">{{ block.settings.tagline }}</div>
     {% endif %}
-    
+
     {% if block.settings.use_article_title and block.settings.article.title != blank %}
       <h2 class="magazine-header-title-{{ ai_gen_id }}">{{ block.settings.article.title }}</h2>
     {% elsif block.settings.title != blank %}
       <h2 class="magazine-header-title-{{ ai_gen_id }}">{{ block.settings.title }}</h2>
     {% endif %}
-    
+
     {% if block.settings.show_meta and block.settings.article != blank %}
       <div class="magazine-header-meta-{{ ai_gen_id }}">
         {% if block.settings.show_author %}
           <div class="magazine-header-author-{{ ai_gen_id }}">
             {% if block.settings.show_author_image and block.settings.author_image %}
               <div class="magazine-header-author-image-{{ ai_gen_id }}">
-                <img 
-                  src="{{ block.settings.author_image | image_url: width: 80 }}" 
+                <img
+                  src="{{ block.settings.author_image | image_url: width: 80 }}"
                   alt="{{ block.settings.article.author }}"
                   loading="lazy"
                   width="40"
@@ -296,7 +295,7 @@
             <span>{{ block.settings.article.author }}</span>
           </div>
         {% endif %}
-        
+
         {% if block.settings.show_date %}
           <div class="magazine-header-date-{{ ai_gen_id }}">
             <span>{{ block.settings.article.published_at | date: block.settings.date_format }}</span>
@@ -304,13 +303,13 @@
         {% endif %}
       </div>
     {% endif %}
-    
+
     {% if block.settings.use_article_excerpt and block.settings.article.excerpt != blank %}
       <div class="magazine-header-subtitle-{{ ai_gen_id }}">{{ block.settings.article.excerpt }}</div>
     {% elsif block.settings.subtitle != blank %}
       <div class="magazine-header-subtitle-{{ ai_gen_id }}">{{ block.settings.subtitle }}</div>
     {% endif %}
-    
+
     {% if block.settings.show_read_more and block.settings.article.url != blank %}
       <a href="{{ block.settings.article.url }}" class="magazine-header-button-{{ ai_gen_id }}">
         {{ block.settings.read_more_text }}
@@ -414,7 +413,7 @@
       "type": "color",
       "id": "meta_color",
       "label": "Meta text color",
-      "default": "#ffffff"
+      "default": "#fbfbfb"
     },
     {
       "type": "checkbox",
@@ -441,7 +440,7 @@
       "type": "color",
       "id": "background_color",
       "label": "Background color",
-      "default": "#f4f4f4"
+      "default": "#fbfbfb"
     },
     {
       "type": "select",
@@ -631,7 +630,7 @@
       "type": "color",
       "id": "tagline_color",
       "label": "Tagline color",
-      "default": "#ffffff"
+      "default": "#fbfbfb"
     },
     {
       "type": "select",
@@ -709,7 +708,7 @@
       "type": "color",
       "id": "title_color",
       "label": "Title color",
-      "default": "#ffffff"
+      "default": "#fbfbfb"
     },
     {
       "type": "checkbox",
@@ -767,7 +766,7 @@
       "type": "color",
       "id": "subtitle_color",
       "label": "Subtitle color",
-      "default": "#ffffff"
+      "default": "#fbfbfb"
     },
     {
       "type": "text",
@@ -800,7 +799,7 @@
       "type": "color",
       "id": "button_color",
       "label": "Button text color",
-      "default": "#ffffff"
+      "default": "#fbfbfb"
     },
     {
       "type": "color",
@@ -812,7 +811,7 @@
       "type": "color",
       "id": "button_hover_color",
       "label": "Button hover text color",
-      "default": "#ffffff"
+      "default": "#fbfbfb"
     },
     {
       "type": "range",

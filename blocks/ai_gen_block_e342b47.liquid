@@ -1,7 +1,6 @@
 {% doc %}
   @prompt
     Create an impactful hero section for a blog homepage with a large high-quality background image, prominent headline, subtitle, call-to-action button, and optional carousel slider for featured articles. The section should be visually dominant and capture attention immediately when visitors enter the blog.
-
 {% enddoc %}
 {% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
 
@@ -304,7 +303,8 @@
                     {% endif %}
                   </div>
                   <div class="ai-hero-article-content-{{ ai_gen_id }}">
-                    <h3 class="ai-hero-article-title-{{ ai_gen_id }}"><a href="{{ article.url }}">{{ article.title }}</a>
+                    <h3 class="ai-hero-article-title-{{ ai_gen_id }}">
+                      <a href="{{ article.url }}">{{ article.title }}</a>
                     </h3>
                     {% if article.excerpt != blank %}
                       <p class="ai-hero-article-excerpt-{{ ai_gen_id }}">
@@ -335,7 +335,8 @@
       </div>
     {% endif %}
   </div>
-</blog-hero-{{ ai_gen_id }}><script>
+</blog-hero-{{ ai_gen_id }}>
+<script>
   (function() {
     class BlogHero{{ ai_gen_id }} extends HTMLElement {
       constructor() {
@@ -511,7 +512,7 @@
       "type": "color",
       "id": "text_color",
       "label": "Text color",
-      "default": "#ffffff"
+      "default": "#fbfbfb"
     },
     {
       "type": "header",
@@ -568,7 +569,7 @@
       "type": "color",
       "id": "button_text_color",
       "label": "Button text color",
-      "default": "#ffffff"
+      "default": "#fbfbfb"
     },
     {
       "type": "range",

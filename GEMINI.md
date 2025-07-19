@@ -190,7 +190,7 @@ Display full images on product cards; avoid cropping images to fit.
   }
   .product-card {
     max-width: 80rem;
-    background-color: #ffffff;
+    background-color: #fbfbfb;
     display: flex;
     flex-direction: column;
     gap: 1em;
@@ -236,7 +236,7 @@ Display full images on product cards; avoid cropping images to fit.
   }
   .product-card__view-button {
     background-color: #000000;
-    color: #ffffff;
+    color: #fbfbfb;
     border-radius: 0.75rem;
     padding: 1rem;
     font-size: 0.875rem;
@@ -247,7 +247,7 @@ Display full images on product cards; avoid cropping images to fit.
     cursor: pointer;
   }
   .product-card__view-button:hover {
-    background: #ffffff;
+    background: #fbfbfb;
     color: #000000;
     border: 2px solid black;
   }
@@ -282,7 +282,7 @@ Display full images on product cards; avoid cropping images to fit.
   }
   .product-modal__content {
     width: 100%;
-    background-color: #ffffff;
+    background-color: #fbfbfb;
     border-radius: 0.75rem;
     max-width: 54rem;
     min-width: 320px;
@@ -355,7 +355,7 @@ Display full images on product cards; avoid cropping images to fit.
   }
   .product-modal__add-button {
     background-color: #000000;
-    color: #ffffff;
+    color: #fbfbfb;
     border-radius: 0.75rem;
     padding: 1rem;
     font-size: 18px;
@@ -363,7 +363,7 @@ Display full images on product cards; avoid cropping images to fit.
     width: 100%;
   }
   .product-modal__add-button:hover {
-    background: #ffffff;
+    background: #fbfbfb;
     color: #000000;
     border: 2px solid black;
   }
@@ -371,7 +371,7 @@ Display full images on product cards; avoid cropping images to fit.
     opacity: 0.3;
   }
   .product-modal__buy-button {
-    background-color: #ffffff;
+    background-color: #fbfbfb;
     color: #000000;
     border-radius: 0.75rem;
     padding: 1rem;
@@ -686,12 +686,12 @@ Slots allow you to override the default content of the cart component.
     background-color: #627059;
     border: 0;
     border-radius: 0;
-    color: #ffffff;
+    color: #fbfbfb;
     font-size: 0.875rem;
     font-weight: 500;
   }
   shopify-cart::part(secondary-button) {
-    background-color: #ffffff;
+    background-color: #fbfbfb;
     color: #000;
     fill: #000;
     border: 2px solid #000;

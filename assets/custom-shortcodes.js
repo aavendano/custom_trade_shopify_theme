@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     content = content.replace(/@collection\("([^"]+)"\)/g, (match, handle) => {
       return `
         <div class="collection-carousel-container page-width">
-          <shopify-list-context type="collection" handle="${handle}">
+          <shopify-list-context type="collection" handle="${handle}" first="10" query="collection.products">
             <template>
               <h2 class="collection__title title-wrapper-with-link title--primary">
                 <shopify-data query="collection.title"></shopify-data>

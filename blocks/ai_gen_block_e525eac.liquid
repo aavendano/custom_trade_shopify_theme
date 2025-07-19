@@ -1,7 +1,6 @@
 {% doc %}
   @prompt
     Create a featured articles section for a blog that highlights the most important or popular posts. Design it as a visually distinct area with larger cards, special styling, and curated content selection. Include options for weekly/monthly highlights with unique background styling and prominent display that stands out from regular article grids.
-
 {% enddoc %}
 {% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
 
@@ -92,7 +91,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f4f4f4;
+    background-color: #fbfbfb;
   }
 
   .featured-article-image-placeholder-{{ ai_gen_id }} svg {
@@ -171,11 +170,11 @@
     .featured-articles-grid-{{ ai_gen_id }} {
       grid-template-columns: repeat({{ block.settings.columns_mobile }}, 1fr);
     }
-    
+
     .featured-articles-title-{{ ai_gen_id }} {
       font-size: {{ block.settings.heading_size | times: 0.8 }}px;
     }
-    
+
     .featured-article-title-{{ ai_gen_id }} {
       font-size: {{ block.settings.article_title_size | times: 0.9 }}px;
     }
@@ -187,25 +186,26 @@
     {% if block.settings.heading != blank %}
       <h2 class="featured-articles-title-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
     {% endif %}
-    
+
     {% if block.settings.show_badge and block.settings.badge_text != blank %}
       <span class="featured-articles-badge-{{ ai_gen_id }}">{{ block.settings.badge_text }}</span>
     {% endif %}
   </div>
-  
+
   {% if block.settings.subtitle != blank %}
     <div class="featured-articles-subtitle-{{ ai_gen_id }}">{{ block.settings.subtitle }}</div>
-  {% endif %}<div class="featured-articles-grid-{{ ai_gen_id }}">
+  {% endif %}
+  <div class="featured-articles-grid-{{ ai_gen_id }}">
     {% if block.settings.article_selection == 'manual' %}
       {% for i in (1..6) %}
         {% assign article_setting = 'article_' | append: i %}
         {% assign article = block.settings[article_setting] %}
-        
+
         {% if article != blank %}
           <div class="featured-article-card-{{ ai_gen_id }}">
             <div class="featured-article-image-wrapper-{{ ai_gen_id }}">
               {% if article.image %}
-                <img 
+                <img
                   src="{{ article.image | image_url: width: 800 }}"
                   alt="{{ article.image.alt | escape }}"
                   loading="lazy"
@@ -218,19 +218,22 @@
                   {{ 'image' | placeholder_svg_tag }}
                 </div>
               {% endif %}
-            </div><div class="featured-article-content-{{ ai_gen_id }}">
+            </div>
+            <div class="featured-article-content-{{ ai_gen_id }}">
               <div class="featured-article-meta-{{ ai_gen_id }}">
                 {% if block.settings.show_date %}
-                  <span class="featured-article-date-{{ ai_gen_id }}">{{ article.published_at | date: block.settings.date_format }}</span>
+                  <span class="featured-article-date-{{ ai_gen_id }}">
+                    {{- article.published_at | date: block.settings.date_format -}}
+                  </span>
                 {% endif %}
-                
+
                 {% if block.settings.show_author %}
                   <span class="featured-article-author-{{ ai_gen_id }}">{{ article.author }}</span>
                 {% endif %}
               </div>
-              
+
               <h3 class="featured-article-title-{{ ai_gen_id }}">{{ article.title }}</h3>
-              
+
               {% if block.settings.show_excerpt %}
                 <div class="featured-article-excerpt-{{ ai_gen_id }}">
                   {% if article.excerpt != blank %}
@@ -240,10 +243,15 @@
                   {% endif %}
                 </div>
               {% endif %}
-              
+
               <a href="{{ article.url }}" class="featured-article-link-{{ ai_gen_id }}">
                 {{ block.settings.read_more_text }}
-                <svg class="featured-article-link-icon-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg
+                  class="featured-article-link-icon-{{ ai_gen_id }}"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
                   <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </a>
@@ -253,16 +261,16 @@
       {% endfor %}
     {% else %}
       {% assign blog = block.settings.blog %}
-      
+
       {% if blog != blank %}
         {% assign articles_to_show = block.settings.article_limit %}
         {% assign articles_shown = 0 %}
-        
+
         {% for article in blog.articles limit: articles_to_show %}
           <div class="featured-article-card-{{ ai_gen_id }}">
             <div class="featured-article-image-wrapper-{{ ai_gen_id }}">
               {% if article.image %}
-                <img 
+                <img
                   src="{{ article.image | image_url: width: 800 }}"
                   alt="{{ article.image.alt | escape }}"
                   loading="lazy"
@@ -276,20 +284,22 @@
                 </div>
               {% endif %}
             </div>
-            
+
             <div class="featured-article-content-{{ ai_gen_id }}">
               <div class="featured-article-meta-{{ ai_gen_id }}">
                 {% if block.settings.show_date %}
-                  <span class="featured-article-date-{{ ai_gen_id }}">{{ article.published_at | date: block.settings.date_format }}</span>
+                  <span class="featured-article-date-{{ ai_gen_id }}">
+                    {{- article.published_at | date: block.settings.date_format -}}
+                  </span>
                 {% endif %}
-                
+
                 {% if block.settings.show_author %}
                   <span class="featured-article-author-{{ ai_gen_id }}">{{ article.author }}</span>
                 {% endif %}
               </div>
-              
+
               <h3 class="featured-article-title-{{ ai_gen_id }}">{{ article.title }}</h3>
-              
+
               {% if block.settings.show_excerpt %}
                 <div class="featured-article-excerpt-{{ ai_gen_id }}">
                   {% if article.excerpt != blank %}
@@ -299,22 +309,27 @@
                   {% endif %}
                 </div>
               {% endif %}
-              
+
               <a href="{{ article.url }}" class="featured-article-link-{{ ai_gen_id }}">
                 {{ block.settings.read_more_text }}
-                <svg class="featured-article-link-icon-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg
+                  class="featured-article-link-icon-{{ ai_gen_id }}"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
                   <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </a>
             </div>
           </div>
-          
+
           {% assign articles_shown = articles_shown | plus: 1 %}
         {% endfor %}
       {% endif %}
     {% endif %}
   </div>
-  
+
   {% if block.settings.show_view_all and block.settings.blog != blank %}
     <div style="text-align: center;">
       <a href="{{ block.settings.blog.url }}" class="featured-articles-view-all-{{ ai_gen_id }}">
@@ -608,13 +623,13 @@
       "type": "color",
       "id": "badge_text_color",
       "label": "Badge text color",
-      "default": "#ffffff"
+      "default": "#fbfbfb"
     },
     {
       "type": "color",
       "id": "card_background_color",
       "label": "Card background color",
-      "default": "#ffffff"
+      "default": "#fbfbfb"
     },
     {
       "type": "color",
@@ -644,7 +659,7 @@
       "type": "color",
       "id": "button_text_color",
       "label": "Button text color",
-      "default": "#ffffff"
+      "default": "#fbfbfb"
     },
     {
       "type": "header",
