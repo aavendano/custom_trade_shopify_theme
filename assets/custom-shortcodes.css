@@ -46,6 +46,7 @@
     font-weight: 500;
     margin: 0;
     text-transform: uppercase;
+    text-align: left;
   }
 
   .shortcode-product-card__title {
@@ -60,6 +61,15 @@
     font-weight: 500;
         margin-top: 1.25rem;
   }
+
+  .shortcode.product-card__link {
+    color: #000000 !important;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
   .shortcode-product__link {
     color: #fff !important;
     text-decoration: none;
@@ -140,9 +150,9 @@
   }
   .shortcode-product-grid {
     margin: 0 auto;
-    display: grid;
-    gap: 0.5rem;
+    display: grid !important;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 0.5rem;
     justify-items: center;
     align-items: center;
   }
@@ -209,14 +219,8 @@
     flex-direction: column;
     gap: 4px;
   }
-  .product-card__title {
-    font-size: 0.875rem;
-    font-weight: 700;
-    color: #000000;
-    text-align: left;
-    margin: 14px 0 0 0;
-  }
-  .product-card__title:hover {
+
+  .shortcode-product-card__title:hover {
     text-decoration: underline;
   }
   .product-card__category {
@@ -225,158 +229,3 @@
     color: #6b7280;
     text-align: left;
   }
-  .product-card__price {
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: #111827;
-    margin: 0;
-    text-align: left;
-  }
-  /** Modal styles **/
-  .product-modal {
-    padding: 0;
-    border-radius: 0.75rem;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-    border: 0;
-  }
-  .product-modal::backdrop {
-    background-color: rgba(156, 163, 175, 0.5);
-  }
-  .product-modal__container {
-    position: relative;
-    overflow-x: hidden;
-    padding: 2rem;
-  }
-  .product-modal__close-container {
-    display: grid;
-    justify-items: end;
-    justify-content: end;
-    margin-left: 2rem;
-    padding-bottom: 1rem;
-  }
-  .product-modal__close {
-    border-radius: 12px;
-    width: 32px;
-    height: 32px;
-    border: 0;
-    cursor: pointer;
-  }
-  .product-modal__content {
-    width: 100%;
-    background-color: #ffffff;
-    border-radius: 0.75rem;
-    max-width: 54rem;
-    min-width: 320px;
-  }
-  .product-modal__layout {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-  @media (min-width: 768px) {
-    .product-modal__layout {
-      flex-direction: row;
-    }
-  }
-  .product-modal__media {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-  }
-  .product-modal__media img {
-    border-radius: 0.25rem;
-    width: 100%;
-  }
-  .product-modal__details {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    width: 100%;
-  }
-  .product-modal__header {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-  .product-modal__vendor {
-    opacity: 0.5;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    font-size: 0.75rem;
-  }
-  .product-modal__title {
-    font-size: 2.25rem;
-    font-weight: 700;
-    margin: 0;
-  }
-  .product-modal__price-container {
-    display: flex;
-    gap: 0.5rem;
-    font-weight: 500;
-    font-size: 1.25rem;
-  }
-  .product-modal__compare-price {
-    text-decoration: line-through;
-    opacity: 0.5;
-  }
-  .product-modal__buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  .product-modal__buttons button {
-    font-size: 0.875rem;
-    font-weight: 800;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    cursor: pointer;
-    border: 2px solid black;
-    text-transform: uppercase;
-  }
-  .product-modal__add-button {
-    background-color: #000000;
-    color: #ffffff;
-    border-radius: 0.75rem;
-    padding: 1rem;
-    font-size: 18px;
-    font-weight: 500;
-    width: 100%;
-  }
-  .product-modal__add-button:hover {
-    background: #ffffff;
-    color: #000000;
-    border: 2px solid black;
-  }
-  .product-modal__add-button:disabled {
-    opacity: 0.3;
-  }
-  .product-modal__buy-button {
-    background-color: #ffffff;
-    color: #000000;
-    border-radius: 0.75rem;
-    padding: 1rem;
-    font-size: 18px;
-    font-weight: 500;
-    width: 100%;
-  }
-  .product-modal__buy-button:disabled {
-    opacity: 0.3;
-  }
-  .product-modal__buy-button:hover {
-    opacity: 0.3;
-  }
-  .product-modal__description-text {
-    font-weight: 400;
-    color: #717171;
-    letter-spacing: 0.05em;
-    font-size: 0.875rem;
-  }
-  .product-modal__description-text p {
-    margin: 0;
-  }
-
-
-
-
-

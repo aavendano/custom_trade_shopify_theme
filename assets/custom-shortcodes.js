@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <div class="shortcode-collection">
                             <div class="shortcode-product-grid keen-slider" id="my-keen-slider">
                                 <!-- Define a new context for the products within the collection -->
-                                <shopify-list-context type="product" query="collection.products" first="12">
+                                <shopify-list-context type="product" query="collection.products" first="3">
                                     <!-- This template is repeated for each product in the collection -->
                                     <template>
                                         <button shopify-attr--disabled="!product.availableForSale" class="product-card"
@@ -28,20 +28,20 @@ document.addEventListener('DOMContentLoaded', function () {
                                             </div>
                                             <div class="product-card__details">
                                                 <div class="product-card__info">
-                                                    <h3 class="product-card__title">
+                                                <h2 class="shortcode-product-card__vendor">
+                                                    <shopify-data
+                                                        query="product.selectedOrFirstAvailableVariant.product.vendor"></shopify-data>
+                                                </h2>
+                                                    <h3 class="shortcode-product-card__title">
                                                         <span>
                                                             <!-- This span makes the entire card clickable -->
                                                             <span aria-hidden="true" class="product-card__link"></span>
                                                             <shopify-data query="product.title"></shopify-data>
                                                         </span>
                                                     </h3>
-                                                    <p class="product-card__price">
+                                                    <p class="shortcode-product-card__price">
                                                         <shopify-money
                                                             query="product.selectedOrFirstAvailableVariant.price"></shopify-money>
-                                                    </p>
-                                                    <p class="product-card__category">
-                                                        <shopify-data
-                                                            query="product.selectedOrFirstAvailableVariant.product.category.name"></shopify-data>
                                                     </p>
                                                 </div>
                                             </div>
@@ -76,15 +76,15 @@ document.addEventListener('DOMContentLoaded', function () {
           </div>
           <div class="shortcode-product-card__details">
             <div class="shortcode-product-card__info">
-              <h2 class="shortcode-product-card__vendor">
-                <shopify-data query="product.vendor"></shopify-data>
-              </h2>
-              <h2 class="shortcode-product-card__title">
-                <shopify-data query="product.title"></shopify-data>
-              </h2>
-              <div class="shortcode-product-card__price">
-                <shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money>
-              </div>
+            <h2 class="shortcode-product-card__vendor">
+              <shopify-data query="product.vendor"></shopify-data>
+            </h2>
+            <h2 class="shortcode-product-card__title">
+            <shopify-data query="product.title"></shopify-data>
+            </h2>
+            <div class="shortcode-product-card__price">
+            <shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money>
+            </div>
             </div>
             <!-- Add View to Product Button -->
             <a shopify-attr--href="product.onlineStoreUrl" class="shortcode-product__link" target="_blank">
@@ -103,3 +103,25 @@ document.addEventListener('DOMContentLoaded', function () {
     article.innerHTML = content;
   });
 });
+
+function getCollectionProducts(collectionHandle) {
+  return fetch(`/collections/${collectionHandle}/products.json?limit=12`)
+    .then(response => response.json())
+    .then(data => {
+      return data.products;
+    })
+    .catch(error => {
+      console.error('Error fetching collection products:', error);
+      return [];
+    });
+}
+
+document.addEventListener('alpine:init', () => {
+        Alpine.data('carrusel', () => ({
+            open: false,
+ 
+            toggle() {
+                this.open = ! this.open
+            }
+        }))
+    })
