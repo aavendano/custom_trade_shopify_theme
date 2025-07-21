@@ -70,7 +70,7 @@
             "border_radius": 8,
             "image_aspect_ratio": "16/9",
             "image_border_radius": 0,
-            "background_color": "#fbfbfb",
+            "background_color": "#ffffff",
             "title_color": "#533278",
             "title_hover_color": "#555555",
             "meta_color": "#777777",

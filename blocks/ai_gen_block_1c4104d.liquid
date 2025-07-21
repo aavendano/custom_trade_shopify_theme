@@ -1,6 +1,7 @@
 {% doc %}
   @prompt
     Create an editorial section for in-depth storytelling and personal narratives. Design it with wider text layouts, minimal visual distractions, supporting images that complement rather than dominate the text, and typography optimized for long-form reading. Focus on creating an immersive reading experience for reflective content, life stories, and editorial pieces., viculalo a un articulo
+
 {% enddoc %}
 {% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
 
@@ -78,7 +79,7 @@
     max-width: 800px;
     height: auto;
     margin: 0 auto;
-    background-color: #fbfbfb;
+    background-color: #f4f4f4;
     border-radius: {{ block.settings.image_radius }}px;
     display: flex;
     align-items: center;
@@ -124,15 +125,13 @@
         {% if block.settings.show_author and block.settings.linked_article.author %}
           <span class="editorial-author-{{ ai_gen_id }}">{{ block.settings.linked_article.author }}</span>
         {% endif %}
-
+        
         {% if block.settings.show_author and block.settings.linked_article.author and block.settings.show_date %}
           <span class="editorial-separator-{{ ai_gen_id }}"> • </span>
         {% endif %}
-
+        
         {% if block.settings.show_date %}
-          <span class="editorial-date-{{ ai_gen_id }}">
-            {{- block.settings.linked_article.published_at | date: '%B %d, %Y' -}}
-          </span>
+          <span class="editorial-date-{{ ai_gen_id }}">{{ block.settings.linked_article.published_at | date: "%B %d, %Y" }}</span>
         {% endif %}
       </div>
     {% else %}
@@ -145,11 +144,11 @@
           {% if block.settings.author != blank %}
             <span class="editorial-author-{{ ai_gen_id }}">{{ block.settings.author }}</span>
           {% endif %}
-
+          
           {% if block.settings.author != blank and block.settings.date != blank %}
             <span class="editorial-separator-{{ ai_gen_id }}"> • </span>
           {% endif %}
-
+          
           {% if block.settings.date != blank %}
             <span class="editorial-date-{{ ai_gen_id }}">{{ block.settings.date }}</span>
           {% endif %}
@@ -160,7 +159,7 @@
 
   {% if block.settings.linked_article and block.settings.linked_article.image %}
     <div class="editorial-image-wrapper-{{ ai_gen_id }}">
-      <img
+      <img 
         src="{{ block.settings.linked_article.image | image_url: width: 1200 }}"
         alt="{{ block.settings.linked_article.image.alt | escape }}"
         loading="lazy"
@@ -174,7 +173,7 @@
     </div>
   {% elsif block.settings.image %}
     <div class="editorial-image-wrapper-{{ ai_gen_id }}">
-      <img
+      <img 
         src="{{ block.settings.image | image_url: width: 1200 }}"
         alt="{{ block.settings.image.alt | escape }}"
         loading="lazy"
@@ -203,7 +202,7 @@
     {% else %}
       {{ block.settings.content }}
     {% endif %}
-
+    
     {% if block.settings.quote != blank %}
       <blockquote class="editorial-quote-{{ ai_gen_id }}">
         {{ block.settings.quote }}

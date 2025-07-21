@@ -1,6 +1,7 @@
 {% doc %}
   @prompt
     Create a promotional banner section that highlights best-selling products with eye-catching design elements. Include product images, sales badges, compelling headlines, pricing displays, and strong call-to-action buttons. The banner should be visually striking with promotional elements like "Best Sellers", "Top Rated", or "Customer Favorites" to boost conversion rates., has un carrusel vinculado a una lista de productos, las imagenes no se estan mostrando
+
 {% enddoc %}
 {% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
 
@@ -93,7 +94,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #fbfbfb;
+    background-color: #f4f4f4;
   }
 
   .product-carousel-image-placeholder-{{ ai_gen_id }} svg {
@@ -225,11 +226,11 @@
     .product-carousel-item-{{ ai_gen_id }} {
       flex: 0 0 calc({{ 100 | divided_by: block.settings.products_per_row_mobile }}% - {{ block.settings.gap | times: 0.9 }}px);
     }
-
+    
     .product-carousel-title-{{ ai_gen_id }} {
       font-size: {{ block.settings.heading_size | minus: 4 }}px;
     }
-
+    
     .product-carousel-nav-{{ ai_gen_id }} {
       width: 36px;
       height: 36px;
@@ -266,23 +267,21 @@
                 {{ 'product-apparel-1' | placeholder_svg_tag }}
               </div>
             {% endif %}
-
+            
             {% if block.settings.show_sale_badge and product.compare_at_price > product.price %}
               <div class="product-carousel-badge-{{ ai_gen_id }}">{{ block.settings.sale_badge_text }}</div>
             {% endif %}
           </a>
-
+          
           <div class="product-carousel-content-{{ ai_gen_id }}">
             <h3 class="product-carousel-product-title-{{ ai_gen_id }}">{{ product.title }}</h3>
             <div class="product-carousel-product-price-{{ ai_gen_id }}">
               <span class="product-carousel-current-price-{{ ai_gen_id }}">{{ product.price | money }}</span>
               {% if product.compare_at_price > product.price %}
-                <span class="product-carousel-compare-price-{{ ai_gen_id }}">
-                  {{- product.compare_at_price | money -}}
-                </span>
+                <span class="product-carousel-compare-price-{{ ai_gen_id }}">{{ product.compare_at_price | money }}</span>
               {% endif %}
             </div>
-
+            
             <a href="{{ product.url }}" class="product-carousel-button-{{ ai_gen_id }}">
               {{ block.settings.button_text }}
             </a>
@@ -312,18 +311,12 @@
   </div>
 
   {% if block.settings.show_navigation %}
-    <button
-      class="product-carousel-nav-{{ ai_gen_id }} product-carousel-prev-{{ ai_gen_id }}"
-      aria-label="Previous products"
-    >
+    <button class="product-carousel-nav-{{ ai_gen_id }} product-carousel-prev-{{ ai_gen_id }}" aria-label="Previous products">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </button>
-    <button
-      class="product-carousel-nav-{{ ai_gen_id }} product-carousel-next-{{ ai_gen_id }}"
-      aria-label="Next products"
-    >
+    <button class="product-carousel-nav-{{ ai_gen_id }} product-carousel-next-{{ ai_gen_id }}" aria-label="Next products">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
@@ -352,7 +345,7 @@
 
       connectedCallback() {
         if (this.items.length === 0) return;
-
+        
         if (this.prevButton && this.nextButton) {
           this.prevButton.addEventListener('click', () => this.scroll(-1));
           this.nextButton.addEventListener('click', () => this.scroll(1));
@@ -373,7 +366,7 @@
       scroll(direction) {
         const scrollLeft = this.container.scrollLeft;
         const targetScroll = scrollLeft + (direction * this.scrollAmount);
-
+        
         this.container.scrollTo({
           left: targetScroll,
           behavior: 'smooth'
@@ -382,7 +375,7 @@
 
       setupDots() {
         const totalDots = Math.ceil(this.items.length / {{ block.settings.products_per_row }});
-
+        
         for (let i = 0; i < totalDots; i++) {
           const dot = document.createElement('div');
           dot.classList.add('product-carousel-dot-{{ ai_gen_id }}');
@@ -390,7 +383,7 @@
           this.dotsContainer.appendChild(dot);
           this.dots.push(dot);
         }
-
+        
         if (this.dots.length > 0) {
           this.dots[0].classList.add('active');
         }
@@ -400,7 +393,7 @@
         const itemWidth = this.items[0].offsetWidth;
         const gapWidth = {{ block.settings.gap }};
         const targetScroll = index * (itemWidth * {{ block.settings.products_per_row }} + gapWidth * ({{ block.settings.products_per_row }} - 1));
-
+        
         this.container.scrollTo({
           left: targetScroll,
           behavior: 'smooth'
@@ -409,7 +402,7 @@
 
       updateActiveDot() {
         if (!this.dots.length) return;
-
+        
         const scrollPosition = this.container.scrollLeft;
         const containerWidth = this.container.offsetWidth;
         const scrollRatio = scrollPosition / (this.container.scrollWidth - containerWidth);
@@ -417,7 +410,7 @@
           Math.floor(scrollRatio * this.dots.length),
           this.dots.length - 1
         );
-
+        
         this.dots.forEach((dot, index) => {
           dot.classList.toggle('active', index === activeDotIndex);
         });
@@ -596,7 +589,7 @@
       "type": "color",
       "id": "card_background_color",
       "label": "Card background color",
-      "default": "#fbfbfb"
+      "default": "#ffffff"
     },
     {
       "type": "color",
@@ -626,7 +619,7 @@
       "type": "color",
       "id": "badge_text_color",
       "label": "Badge text color",
-      "default": "#fbfbfb"
+      "default": "#ffffff"
     },
     {
       "type": "color",
@@ -644,13 +637,13 @@
       "type": "color",
       "id": "button_text_color",
       "label": "Button text color",
-      "default": "#fbfbfb"
+      "default": "#ffffff"
     },
     {
       "type": "color",
       "id": "nav_button_color",
       "label": "Navigation button color",
-      "default": "#fbfbfb"
+      "default": "#ffffff"
     },
     {
       "type": "color",

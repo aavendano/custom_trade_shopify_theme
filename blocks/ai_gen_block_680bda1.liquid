@@ -1,6 +1,7 @@
 {% doc %}
   @prompt
     Create a responsive grid layout for blog articles that displays like a magazine layout. Each article card should include a large featured image, clear title, brief excerpt, category tag, and "Read More" button. The grid should be fully responsive and adapt to mobile, tablet, and desktop screens with proper spacing and hover effects.
+
 {% enddoc %}
 {% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
 
@@ -48,7 +49,7 @@
   .ai-magazine-image-placeholder-{{ ai_gen_id }} {
     width: 100%;
     height: 100%;
-    background-color: #fbfbfb;
+    background-color: #f4f4f4;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -197,7 +198,7 @@
               {{ 'blog-apparel-1' | placeholder_svg_tag }}
             </div>
           {% endif %}
-
+          
           {% if block.settings.show_category and article.tags.size > 0 %}
             <div class="ai-magazine-category-{{ ai_gen_id }}">
               {{ article.tags.first }}
@@ -205,8 +206,7 @@
           {% endif %}
         </div>
 
-        <div class="ai-magazine-content-{{ ai_gen_id }}">
-          <a href="{{ article.url }}" class="ai-magazine-title-{{ ai_gen_id }}">
+        <div class="ai-magazine-content-{{ ai_gen_id }}"><a href="{{ article.url }}" class="ai-magazine-title-{{ ai_gen_id }}">
             {{ article.title }}
           </a>
 
@@ -216,7 +216,9 @@
                 {{ article.published_at | date: '%B %d, %Y' }}
               </span>
               {% if article.author != blank %}
-                <span class="ai-magazine-author-{{ ai_gen_id }}"> by {{ article.author }} </span>
+                <span class="ai-magazine-author-{{ ai_gen_id }}">
+                  by {{ article.author }}
+                </span>
               {% endif %}
             </div>
           {% endif %}
@@ -236,30 +238,35 @@
   {% else %}
     {% for i in (1..6) %}
       <article class="ai-magazine-card-{{ ai_gen_id }}">
-        <div class="ai-magazine-image-wrapper-{{ ai_gen_id }}">
-          <div class="ai-magazine-image-placeholder-{{ ai_gen_id }}">
+        <div class="ai-magazine-image-wrapper-{{ ai_gen_id }}"><div class="ai-magazine-image-placeholder-{{ ai_gen_id }}">
             {{ 'blog-apparel-1' | placeholder_svg_tag }}
           </div>
-
+          
           {% if block.settings.show_category %}
-            <div class="ai-magazine-category-{{ ai_gen_id }}">Category</div>
+            <div class="ai-magazine-category-{{ ai_gen_id }}">
+              Category
+            </div>
           {% endif %}
         </div>
 
         <div class="ai-magazine-content-{{ ai_gen_id }}">
-          <a href="#" class="ai-magazine-title-{{ ai_gen_id }}"> Sample Article Title {{ i }} </a>
+          <a href="#" class="ai-magazine-title-{{ ai_gen_id }}">
+            Sample Article Title {{ i }}
+          </a>
 
           {% if block.settings.show_meta %}
             <div class="ai-magazine-meta-{{ ai_gen_id }}">
-              <span class="ai-magazine-date-{{ ai_gen_id }}"> January 15, 2024 </span
-              ><span class="ai-magazine-author-{{ ai_gen_id }}"> by Author Name </span>
+              <span class="ai-magazine-date-{{ ai_gen_id }}">
+                January 15, 2024
+              </span><span class="ai-magazine-author-{{ ai_gen_id }}">
+                by Author Name
+              </span>
             </div>
           {% endif %}
 
           {% if block.settings.show_excerpt %}
             <div class="ai-magazine-excerpt-{{ ai_gen_id }}">
-              This is a sample excerpt that gives readers a preview of what the article contains. It should be engaging
-              and informative.
+              This is a sample excerpt that gives readers a preview of what the article contains. It should be engaging and informative.
             </div>
           {% endif %}
 
@@ -371,7 +378,7 @@
       "type": "color",
       "id": "card_background",
       "label": "Card background",
-      "default": "#fbfbfb"
+      "default": "#ffffff"
     },
     {
       "type": "header",
@@ -441,7 +448,7 @@
       "type": "color",
       "id": "category_text_color",
       "label": "Category text color",
-      "default": "#fbfbfb"
+      "default": "#ffffff"
     },
     {
       "type": "header",
@@ -473,7 +480,7 @@
       "type": "color",
       "id": "button_text_color",
       "label": "Button text color",
-      "default": "#fbfbfb"
+      "default": "#ffffff"
     },
     {
       "type": "header",

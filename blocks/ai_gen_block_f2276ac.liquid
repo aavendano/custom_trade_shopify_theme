@@ -1,6 +1,7 @@
 {% doc %}
   @prompt
     Create a rotating banner carousel section that automatically displays the latest products with smooth transitions. Include product images, titles, prices, and call-to-action buttons. The carousel should have navigation controls, auto-play functionality, and be fully responsive across all devices., imagenes cuadradas
+
 {% enddoc %}
 {% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
 
@@ -65,7 +66,7 @@
   .ai-product-image-placeholder-{{ ai_gen_id }} {
     width: 100%;
     height: 100%;
-    background-color: #fbfbfb;
+    background-color: #f4f4f4;
     border-radius: {{ block.settings.image_border_radius }}px;
     display: flex;
     align-items: center;
@@ -285,9 +286,7 @@
               <h2 class="ai-product-title-{{ ai_gen_id }}">{{ product.title }}</h2>
               <div class="ai-product-price-{{ ai_gen_id }}">
                 {% if product.compare_at_price > product.price %}
-                  <span style="text-decoration: line-through; opacity: 0.6;">
-                    {{- product.compare_at_price | money -}}
-                  </span>
+                  <span style="text-decoration: line-through; opacity: 0.6;">{{ product.compare_at_price | money }}</span>
                 {% endif %}
                 {{ product.price | money }}
               </div>
@@ -551,7 +550,7 @@
       "type": "color",
       "id": "background_color",
       "label": "Color de fondo",
-      "default": "#fbfbfb"
+      "default": "#ffffff"
     },
     {
       "type": "color",
@@ -587,7 +586,7 @@
       "type": "color",
       "id": "button_text_color",
       "label": "Color de texto de botón",
-      "default": "#fbfbfb"
+      "default": "#ffffff"
     },
     {
       "type": "color",

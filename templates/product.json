@@ -58,11 +58,12 @@
         },
         "collapsible-row-1": {
           "type": "collapsible_tab",
+          "disabled": true,
           "settings": {
             "heading": "Shipping",
             "icon": "truck",
-            "content": "",
-            "page": "shipping-info"
+            "content": "<h2><strong>Shipping Zones & Rates</strong></h2><h3><strong>Canada</strong></h3><ul><li><strong>Standard shipping</strong>: $20.00 CAD</li><li><strong>Free Standard shipping</strong>: $0.00 CAD</li></ul><p></p>",
+            "page": "product-features"
           }
         }
       },
@@ -96,8 +97,8 @@
     "related-products": {
       "type": "related-products",
       "settings": {
-        "heading": "Related Products",
-        "heading_size": "h2",
+        "heading": "Other industry favorites",
+        "heading_size": "h1",
         "products_to_show": 5,
         "columns_desktop": 5,
         "columns_mobile": "2",
@@ -110,10 +111,10 @@
         "padding_top": 20,
         "padding_bottom": 20
       }
-    }
+    },
   },
   "order": [
     "main",
-    "related-products"
+    "related-products",
   ]
 }
