@@ -40,9 +40,7 @@
         "link_list",
         "brand_information_BAnPQg"
       ],
-      "custom_css": [
-        ".footer {}"
-      ],
+      "custom_css": [],
       "settings": {
         "color_scheme": "scheme-4",
         "gradient_start": "#000000",

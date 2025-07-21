@@ -1,5 +1,17 @@
+{%- liquid
+  assign section_classes = 'section-wrapper'
+  if section.settings.custom_class != blank
+    assign section_classes = section_classes | append: ' ' | append: section.settings.custom_class
+  endif
+-%}
+
 {%- style -%}
-  #shopify-section-{{ section.id }} .content-container-wrapper {
+  .custom-section-{{ section.id }} {
+    {% if section.settings.background_media == 'color' %}
+      background-color: {{ section.settings.background_color }};
+    {% endif %}
+  }
+  .custom-section-{{ section.id }} .content-container-wrapper {
     padding-top: {{ section.settings.content_padding_top }}px;
     padding-right: {{ section.settings.content_padding_right }}px;
     padding-bottom: {{ section.settings.content_padding_bottom }}px;
@@ -7,16 +19,17 @@
   }
 {%- endstyle -%}
 
-{% capture children %}
-    {% content_for 'blocks' %}
-{% endcapture %}
+<div class="{{ section_classes }} custom-section-{{ section.id }}">
+  {% capture children %}
+      {% content_for 'blocks' %}
+  {% endcapture %}
 
-{% render 'section', section: section, children: children %}
+  {% render 'section', section: section, children: children %}
+</div>
 
 {% schema %}
 {
   "name": "custom section",
-  "class": "section-wrapper",
   "blocks": [
     {
       "type": "@theme"
@@ -248,6 +261,10 @@
           "label": "none"
         },
         {
+          "value": "color",
+          "label": "color"
+        },
+        {
           "value": "image",
           "label": "image"
         },
@@ -257,6 +274,13 @@
         }
       ],
       "default": "none"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "background_color",
+      "default": "#FFFFFF",
+      "visible_if": "{{ section.settings.background_media == 'color' }}"
     },
     {
       "type": "video",
@@ -442,6 +466,17 @@
       "step": 1,
       "unit": "px",
       "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Advanced"
+    },
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom CSS Class",
+      "info": "Add a custom class for additional styling.",
+      "default": "custom-section-class"
     }
   ],
   "presets": [

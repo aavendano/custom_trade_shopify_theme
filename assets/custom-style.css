@@ -26,21 +26,14 @@
   display: block;
 }
 
+
+
 .plt-gradient-background {
   background: linear-gradient(
-    to right,
-    #231f20 0%,
-    #251f21 9.09%,
-    #332129 18.18%,
-    #4e264b 27.27%,
-    #542e6e 36.36%,
-    #533278 45.45%,
-    #543278 54.54%,
-    #61337c 63.64%,
-    #953385 72.73%,
-    #db3779 81.82%,
-    #f1416e 90.91%,
-    #f4436c 100%
+    115deg,
+    rgba(35, 31, 32, 1) 0%,
+    rgba(83, 50, 120, 1) 50%,
+    rgba(244, 67, 108, 1) 100%
   ) !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;

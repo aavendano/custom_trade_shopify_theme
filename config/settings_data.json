@@ -43,7 +43,7 @@
     "inputs_shadow_horizontal_offset": 0,
     "inputs_shadow_vertical_offset": 0,
     "inputs_shadow_blur": 5,
-    "card_style": "standard",
+    "card_style": "card",
     "card_image_padding": 12,
     "card_text_alignment": "left",
     "card_color_scheme": "scheme-3",
@@ -224,7 +224,7 @@
       "scheme-017ef066-9f36-43bb-9764-26433e015017": {
         "settings": {
           "background": "#f4f4f4",
-          "background_gradient": "linear-gradient(334deg, rgba(35, 31, 32, 1) 66%, rgba(83, 50, 120, 1) 96%)",
+          "background_gradient": "linear-gradient(209deg, rgba(35, 31, 32, 1) 23%, rgba(8, 63, 75, 0.87) 79%, rgba(35, 31, 32, 1) 100%)",
           "text": "#ffffff",
           "button": "#f4436c",
           "button_label": "#ffffff",

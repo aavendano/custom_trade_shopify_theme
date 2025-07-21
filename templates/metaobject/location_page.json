@@ -155,6 +155,106 @@
         "bottom_margin": -100
       }
     },
+    "custom_section_izgFRq": {
+      "type": "custom_section",
+      "blocks": {
+        "flexible_content_HCCE9N": {
+          "type": "flexible-content",
+          "name": "Flex Content",
+          "settings": {
+            "title": "{{ closest.metaobject.location_page.header1.value }}",
+            "title_tag": "h1",
+            "subtitle": "{{ closest.metaobject.location_page.header2.value }}",
+            "subtitle_tag": "h2",
+            "description": "",
+            "image_position": "right",
+            "primary_button_text": "Comprar ahora",
+            "primary_button_link": "",
+            "secondary_button_text": "Más información",
+            "secondary_button_link": "",
+            "layout_direction": "row",
+            "vertical_alignment": "center",
+            "spacing": 30,
+            "layout_direction_mobile": "column",
+            "spacing_mobile": 20,
+            "title_size": 52,
+            "title_weight": 700,
+            "title_spacing": 15,
+            "subtitle_size": 32,
+            "subtitle_weight": 600,
+            "subtitle_spacing": 0,
+            "text_size": 16,
+            "text_spacing": 0,
+            "title_size_mobile": 28,
+            "title_spacing_mobile": 10,
+            "subtitle_size_mobile": 20,
+            "subtitle_spacing_mobile": 10,
+            "text_size_mobile": 14,
+            "text_spacing_mobile": 15,
+            "button_text_size": 16,
+            "button_border_radius": 4,
+            "button_text_size_mobile": 14,
+            "image_max_width": 600,
+            "image_border_radius": 8,
+            "background_color": "rgba(0,0,0,0)",
+            "title_color": "#533278",
+            "subtitle_color": "#545c52",
+            "text_color": "#666666",
+            "primary_button_color": "#000000",
+            "primary_button_text_color": "#ffffff",
+            "primary_button_hover_color": "#333333",
+            "secondary_button_color": "#ffffff",
+            "secondary_button_text_color": "#000000",
+            "secondary_button_hover_color": "#f5f5f5",
+            "padding_top": 60,
+            "padding_right": 60,
+            "padding_bottom": 60,
+            "padding_left": 60,
+            "padding_top_mobile": 30,
+            "padding_right_mobile": 20,
+            "padding_bottom_mobile": 30,
+            "padding_left_mobile": 20,
+            "border_radius": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "flexible_content_HCCE9N"
+      ],
+      "name": "custom section",
+      "settings": {
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "center",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 0,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "color",
+        "background_color": "rgba(0,0,0,0)",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "content_padding_top": 0,
+        "content_padding_bottom": 0,
+        "content_padding_left": 0,
+        "content_padding_right": 0,
+        "custom_class": "custom-section-class"
+      }
+    },
     "multicolumn_2x2_rMUj4F": {
       "type": "multicolumn-2x2",
       "blocks": {
@@ -391,7 +491,7 @@
       ],
       "name": "Top Categories",
       "settings": {
-        "title": "{{ metaobject.city.value }} Sex Toys",
+        "title": "{{ metaobject.city.value }} Adult Toys Collections",
         "heading_size": "h1",
         "image_ratio": "portrait",
         "columns_desktop": 6,
@@ -432,9 +532,9 @@
       "settings": {
         "collection": "best-adult-toys",
         "products_to_show": 10,
-        "title": "<strong>Best Adult Toys </strong><strong>{{ metaobject.city.value }}</strong>",
+        "title": "{{ metaobject.city.value }} Best Sex Toys",
         "heading_size": "h1",
-        "description": "<p>Ready for a wild ride? Check out our collection of the best adult toys in {{ metaobject.city.value }}. Let's make playtime more exciting!</p>",
+        "description": "<p>Ready for a wild ride? Check out our collection of the best adult toys in <em>{{ metaobject.city.value }}</em>. Let's make playtime more exciting!</p>",
         "show_description": false,
         "description_style": "body",
         "columns_desktop": 5,
@@ -648,7 +748,7 @@
             "image": "shopify://shop_images/editor_choice_50dp_533278_FILL0_wght400_GRAD0_opsz48.svg",
             "cloudinary_src": "",
             "title": "<strong>Quality and Safe Products</strong>",
-            "text": "<p>At <em>PlayLoveToys</em>, we're passionate about enhancing connection and pleasure for everyone in {{ metaobject.city.value }}. We meticulously curate a premium selection of high-quality <em>adult toys</em> and wellness products for {{ metaobject.city.value }} residents, designed to elevate your intimate experiences and support your journey towards greater sexual well-being and joy</p>",
+            "text": "<p>At <em>PlayLoveToys</em>, we're passionate about enhancing connection and pleasure for everyone in <em>{{ metaobject.city.value }}</em>. We meticulously curate a premium selection of high-quality <em>adult toys</em> and wellness products for <em>{{ metaobject.city.value }}</em> residents, designed to elevate your intimate experiences and support your journey towards greater sexual well-being and joy</p>",
             "link_label": "",
             "link": ""
           }
@@ -660,7 +760,7 @@
             "image": "shopify://shop_images/verified_user_50dp_533278_FILL0_wght400_GRAD0_opsz48.svg",
             "cloudinary_src": "",
             "title": "Privacy & Discretion",
-            "text": "<p>Your privacy is paramount at <em>PlayLoveToys</em>. All orders shipped to {{ metaobject.city.value }} and throughout the rest of Canada arrive in plain, unmarked packaging. We are committed to ensuring your purchases are delivered discreetly and securely right to your doorstep in {{ metaobject.city.value }}, safeguarding your personal choices.</p>",
+            "text": "<p>Your privacy is paramount at <em>PlayLoveToys</em>. All orders shipped to <em>{{ metaobject.city.value }}</em> and throughout the rest of Canada arrive in plain, unmarked packaging. We are committed to ensuring your purchases are delivered discreetly and securely right to your doorstep in <em>{{ metaobject.city.value }}</em>, safeguarding your personal choices.</p>",
             "link_label": "",
             "link": ""
           }
@@ -672,7 +772,7 @@
             "image": "shopify://shop_images/diversity_1_50dp_533278_FILL0_wght400_GRAD0_opsz48_1.svg",
             "cloudinary_src": "",
             "title": "<strong>Inclusivity & Respect</strong>",
-            "text": "<p>We believe in pleasure for all, regardless of gender, orientation, or relationship status. We strive to create a welcoming and inclusive environment for all {{ metaobject.city.value }} customers to explore and enjoy our products.</p>",
+            "text": "<p>We believe in pleasure for all, regardless of gender, orientation, or relationship status. We strive to create a welcoming and inclusive environment for all <em>{{ metaobject.city.value }}</em> customers to explore and enjoy our products.</p>",
             "link_label": "",
             "link": ""
           }
@@ -803,9 +903,9 @@
       "settings": {
         "collection": "sex-toys-new-arrival",
         "products_to_show": 6,
-        "title": "{{ metaobject.city.value }} - Adult Toys Collection",
+        "title": "{{ metaobject.city.value }} Sexy Shop Collection",
         "heading_size": "h1",
-        "description": "<p>Calling all {{ metaobject.city.value }}-dwellers! Dive into our top-notch adult toy collection. Turn up the heat and have some fun tonight!</p>",
+        "description": "<p>Calling all <em>{{ metaobject.city.value }}</em>-dwellers! Dive into our top-notch adult toy collection. Turn up the heat and have some fun tonight!</p>",
         "show_description": false,
         "description_style": "body",
         "columns_desktop": 5,
@@ -829,13 +929,36 @@
     "custom_section_KmFRFa": {
       "type": "custom_section",
       "blocks": {
+        "breadcrumb_9WLURm": {
+          "type": "breadcrumb",
+          "settings": {
+            "home_text": "",
+            "show_home_icon": true,
+            "separator_style": "arrow",
+            "font_size": 18,
+            "font_weight": "500",
+            "background_color": "#f4f4f4",
+            "link_color": "#533278",
+            "link_hover_color": "#f4436c",
+            "link_hover_background": "#f4f4f4",
+            "current_color": "#533278",
+            "current_background": "#f4f4f4",
+            "separator_color": "#533278",
+            "focus_color": "#0c7489",
+            "padding_top": 4,
+            "padding_bottom": 10,
+            "item_spacing": 4,
+            "border_radius": 6
+          },
+          "blocks": {}
+        },
         "flexible_content_3XEdnk": {
           "type": "flexible-content",
           "name": "Contenido Flexible",
           "settings": {
-            "title": "{{ metaobject.header1.value }}",
-            "title_tag": "h1",
-            "subtitle": "Your Premier Online Sex Shop in {{ closest.metaobject.location_page.city.value }}, {{ closest.metaobject.location_page.province.value }}",
+            "title": "Online Sexy Shop in {{ closest.metaobject.location_page.city.value }}",
+            "title_tag": "h2",
+            "subtitle": "Online Adult Shop in {{ closest.metaobject.location_page.province.value }}",
             "subtitle_tag": "h2",
             "description": "<p>{{ metaobject.greeting | metafield_tag }}</p>",
             "image_position": "right",
@@ -918,11 +1041,11 @@
             "map_shadow_blur": 10,
             "map_shadow_spread": 0,
             "map_shadow_color": "#b4b4b4",
-            "title": "Adult Store {{ metaobject.city.value }} Online Service",
+            "title": "{{ metaobject.city.value }} Area We Serve",
             "title_font": "inter_n4",
             "title_size": 32,
             "title_color": "#533278",
-            "text": "<p><strong>PlayLoveToys,</strong> {{ metaobject.header2.value }}, ships discreetly to the entire {{ metaobject.city.value }} area shown on this map. Explore our high-quality <strong>adult toys</strong> and intimacy products online, with private delivery to your city home.</p>",
+            "text": "<p><strong>PlayLoveToys,</strong> <em>{{ metaobject.header2.value }}</em>, ships discreetly to the entire <em>{{ metaobject.city.value }}</em> area shown on this map. Explore our high-quality <strong>adult toys</strong> and intimacy products online, with private delivery to your city home.</p>",
             "text_size": 18,
             "text_color": "#333333",
             "button_text": "Shop Now!",
@@ -937,6 +1060,7 @@
         }
       },
       "block_order": [
+        "breadcrumb_9WLURm",
         "flexible_content_3XEdnk",
         "location_map_VyEDUx"
       ],
@@ -955,6 +1079,7 @@
         "section_height_custom": 50,
         "color_scheme": "scheme-1",
         "background_media": "none",
+        "background_color": "#ffffff",
         "video_position": "cover",
         "background_image_position": "cover",
         "border": "none",
@@ -968,12 +1093,14 @@
         "content_padding_top": 0,
         "content_padding_bottom": 0,
         "content_padding_left": 0,
-        "content_padding_right": 0
+        "content_padding_right": 0,
+        "custom_class": "custom-section-class"
       }
     }
   },
   "order": [
     "slideshow_4nGYLi",
+    "custom_section_izgFRq",
     "multicolumn_2x2_rMUj4F",
     "collection_list",
     "rich_text",
