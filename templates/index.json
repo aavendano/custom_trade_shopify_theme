@@ -11,34 +11,6 @@
   "sections": {
     "custom_section_p7NKD8": {
       "type": "custom_section",
-      "blocks": {
-        "breadcrumb_6piaQK": {
-          "type": "breadcrumb",
-          "settings": {
-            "home_text": "",
-            "show_home_icon": true,
-            "separator_style": "arrow",
-            "font_size": 18,
-            "font_weight": "500",
-            "background_color": "#f4f4f4",
-            "link_color": "#533278",
-            "link_hover_color": "#f4436c",
-            "link_hover_background": "#f4f4f4",
-            "current_color": "#533278",
-            "current_background": "#f4f4f4",
-            "separator_color": "#533278",
-            "focus_color": "#0c7489",
-            "padding_top": 4,
-            "padding_bottom": 10,
-            "item_spacing": 4,
-            "border_radius": 6
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "breadcrumb_6piaQK"
-      ],
       "name": "Breadcrumb",
       "settings": {
         "content_direction": "column",
