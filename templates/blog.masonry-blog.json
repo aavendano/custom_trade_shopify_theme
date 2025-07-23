@@ -86,7 +86,7 @@
       }
     },
     "main_blog_mansory_cGYTif": {
-      "type": "main-blog-mansory",
+      "type": "blog-mansory",
       "name": "Masonry Blog 2",
       "settings": {
         "posts_per_page": 24,

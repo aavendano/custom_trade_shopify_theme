@@ -390,7 +390,7 @@
       "name": "Best Adult Toys",
       "settings": {
         "collection": "best-adult-toys",
-        "products_to_show": 10,
+        "products_to_show": 18,
         "title": "<strong>{{ section.settings.collection.title }}</strong>",
         "heading_size": "h1",
         "description": "{{ section.settings.collection.description }}",
