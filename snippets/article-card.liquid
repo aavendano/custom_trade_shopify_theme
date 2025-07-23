@@ -96,9 +96,9 @@
               {%- if article.excerpt.size > 0 or article.content.size > 0 -%}
                 <p class="article-card__excerpt rte-width">
                   {%- if article.excerpt.size > 0 -%}
-                    {{ article.excerpt | strip_html | truncatewords: 30 }}
+                    {{ article.excerpt | strip_html | truncatewords: 50 }}
                   {%- else -%}
-                    {{ article.content | strip_html | truncatewords: 30 }}
+                    {{ article.content | strip_html | truncatewords: 50 }}
                   {%- endif -%}
                 </p>
               {%- endif -%}
@@ -120,7 +120,7 @@
         <div class="card__information">
           <h3 class="card__heading{% if show_excerpt %} h2{% endif %}">
             <a href="{{ article.url }}" class="full-unstyled-link">
-              {{ article.title | truncate: 50 | escape }}
+              {{ article.title | truncate: 100 | escape }}
             </a>
           </h3>
           <div class="article-card__info caption-with-letter-spacing h5">
@@ -138,9 +138,9 @@
             {%- if article.excerpt.size > 0 or article.content.size > 0 -%}
               <p class="article-card__excerpt rte-width">
                 {%- if article.excerpt.size > 0 -%}
-                  {{ article.excerpt | strip_html | truncatewords: 30 }}
+                  {{ article.excerpt | strip_html | truncatewords: 50 }}
                 {%- else -%}
-                  {{ article.content | strip_html | truncatewords: 30 }}
+                  {{ article.content | strip_html | truncatewords: 50 }}
                 {%- endif -%}
               </p>
             {%- endif -%}
