@@ -29,7 +29,7 @@
   {%- endif -%}
 
   {%- if section.settings.menu_type_desktop != "drawer" -%}
-    @media screen and (min-width: 990px) {
+    @media screen and (min-width: 1325px) {
       header-drawer {
         display: none;
       }
@@ -98,37 +98,6 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
-
-  .header-wrapper {
-    position: relative;
-  }
-
-  .header-wrapper::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: -1;
-    opacity: {{ section.settings.background_image_opacity | divided_by: 100.0 }};
-    {%- if section.settings.background_image_desktop != blank -%}
-      background-image: url('{{ section.settings.background_image_desktop | image_url }}');
-    {%- endif -%}
-  }
-
-  @media screen and (max-width: 749px) {
-    .header-wrapper::before {
-      {%- if section.settings.background_image_mobile != blank -%}
-        background-image: url('{{ section.settings.background_image_mobile | image_url }}');
-      {%- elsif section.settings.background_image_desktop != blank -%}
-        background-image: url('{{ section.settings.background_image_desktop | image_url }}');
-      {%- endif -%}
-    }
-  }
 {%- endstyle -%}
 
 <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
@@ -153,7 +122,7 @@
   {% if header_tag == 'sticky-header' %}
     data-sticky-type="{{ section.settings.sticky_header_type }}"
   {% endif %}
-  class="header-wrapper plt-gradient-background color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}"
+  class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}"
 >
   {%- liquid
     assign social_links = false
@@ -358,7 +327,7 @@
 
       this.setHeaderHeight();
 
-      window.matchMedia('(max-width: 990px)').addEventListener('change', this.setHeaderHeight.bind(this));
+      window.matchMedia('(max-width: 1325px)').addEventListener('change', this.setHeaderHeight.bind(this));
 
       if (this.headerIsAlwaysSticky) {
         this.header.classList.add('shopify-section-header-sticky');
@@ -615,30 +584,6 @@
       "id": "menu_color_scheme",
       "label": "t:sections.header.settings.menu_color_scheme.label",
       "default": "scheme-1"
-    },
-    {
-      "type": "header",
-      "content": "Background Image"
-    },
-    {
-      "type": "image_picker",
-      "id": "background_image_desktop",
-      "label": "Desktop Background Image"
-    },
-    {
-      "type": "image_picker",
-      "id": "background_image_mobile",
-      "label": "Mobile Background Image"
-    },
-    {
-      "type": "range",
-      "id": "background_image_opacity",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "%",
-      "label": "Background Image Opacity",
-      "default": 100
     },
     {
       "type": "header",

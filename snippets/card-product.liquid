@@ -124,7 +124,6 @@
               </a>
             </h3>
           </div>
-         
         </div>
       </div>
       <div class="card__content">
@@ -201,24 +200,19 @@
                 class="badge color-{{ settings.sale_badge_color_scheme }}"
               >
                 {%- assign percentage = 0 -%}
-{%- if card_product.compare_at_price > card_product.price -%}
-  {%- assign percentage = card_product.compare_at_price | minus: card_product.price | times: 100 | divided_by: card_product.compare_at_price -%}
-{%- endif -%}
-{{- 'products.product.on_sale' | t }} -{{ percentage }}%</span>
-
+                {%- if card_product.compare_at_price > card_product.price -%}
+                  {%- assign percentage = card_product.compare_at_price
+                    | minus: card_product.price
+                    | times: 100
+                    | divided_by: card_product.compare_at_price
+                  -%}
+                {%- endif -%}
+                {{- 'products.product.on_sale' | t }} -{{ percentage }}%</span
+              >
             {%- endif -%}
 
-
-
             {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
-            
-            
-            
-            
-            
-            
-            
-            
+
             {%- if card_product.quantity_price_breaks_configured? -%}
               {% if card_product.variants_count == 1 and quick_add == 'bulk' %}
                 {% liquid
@@ -636,5 +630,3 @@
     </div>
   </div>
 {%- endif -%}
-
-

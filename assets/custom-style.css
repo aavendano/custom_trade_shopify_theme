@@ -62,4 +62,16 @@
   }
 }
 
+@media screen and (max-width: 1455px) {
 
+  #HeaderMenu-home {
+    display: none !important;
+  }
+
+  #HeaderMenu-blog {
+    display: none !important;
+  }
+
+
+
+}

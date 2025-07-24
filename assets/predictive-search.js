@@ -167,7 +167,7 @@ class PredictiveSearch extends SearchForm {
     if (selectedOption) selectedOption.click();
   }
 
-  async getSearchResults(searchTerm) {
+  getSearchResults(searchTerm) {
     const queryKey = searchTerm.replace(' ', '-').toLowerCase();
     this.setLiveRegionLoadingState();
 
@@ -175,33 +175,37 @@ class PredictiveSearch extends SearchForm {
       this.renderSearchResults(this.cachedResults[queryKey]);
       return;
     }
-    try {
-      const response = await fetch(
-        `${routes.predictive_search_url}?q=${encodeURIComponent(searchTerm)}&section_id=predictive-search`,
-        {
-          signal: this.abortController.signal,
+
+    fetch(`${routes.predictive_search_url}?q=${encodeURIComponent(searchTerm)}&section_id=predictive-search`, {
+      signal: this.abortController.signal,
+    })
+      .then((response) => {
+        if (!response.ok) {
+          var error = new Error(response.status);
+          this.close();
+          throw error;
         }
-      );
 
-      if (!response.ok) {
-        throw new Error(response.status);
-      }
-
-      const text = await response.text();
-      const resultsMarkup = new DOMParser()
-        .parseFromString(text, 'text/html')
-        .querySelector('#shopify-section-predictive-search').innerHTML;
-      // Save bandwidth keeping the cache in all instances synced
-      this.allPredictiveSearchInstances.forEach((predictiveSearchInstance) => {
-        predictiveSearchInstance.cachedResults[queryKey] = resultsMarkup;
-      });
-      this.renderSearchResults(resultsMarkup);
-    } catch (error) {
-      if (error.name !== 'AbortError') {
+        return response.text();
+      })
+      .then((text) => {
+        const resultsMarkup = new DOMParser()
+          .parseFromString(text, 'text/html')
+          .querySelector('#shopify-section-predictive-search').innerHTML;
+        // Save bandwidth keeping the cache in all instances synced
+        this.allPredictiveSearchInstances.forEach((predictiveSearchInstance) => {
+          predictiveSearchInstance.cachedResults[queryKey] = resultsMarkup;
+        });
+        this.renderSearchResults(resultsMarkup);
+      })
+      .catch((error) => {
+        if (error?.code === 20) {
+          // Code 20 means the call was aborted
+          return;
+        }
         this.close();
         throw error;
-      }
-    }
+      });
   }
 
   setLiveRegionLoadingState() {
