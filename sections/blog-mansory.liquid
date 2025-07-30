@@ -26,20 +26,20 @@
     }
     .blog-article {
       max-height: 100%;
-      overflow: hidden; 
+      overflow: hidden;
       font-size: clamp(.5rem, 4vw, 2rem);
 
     }
     .blog-articles--masonry .blog-articles__article--span-1 {
       grid-column: span 1;
       font-size: clamp(.5rem, 4vw, 3rem);
-      
+
     }
 
     .blog-articles--masonry .blog-articles__article--span-1s {
       grid-column: span 1;
       font-size: clamp(.5rem, 4vw, 1.25rem);
-      
+
     }
     .blog-articles--masonry .blog-articles__article--span-2 {
       grid-column: span 2;
@@ -57,7 +57,7 @@
       grid-column: span 4;
       font-size: clamp(.5rem, 4vw, 1.5rem);
     }
-    
+
     .blog-articles--masonry .blog-articles__article--span-c2 {
       grid-row: span 2;
     }
@@ -102,7 +102,7 @@
   <div class="blog-articles blog-articles--masonry">
     {%- for article in paginated_articles -%}
       <div
-        class="blog-article blog-articles__article--span-{%- cycle '3', '1s', '4', '2s', '2s','1s', '1s', '1s', '1s', '1s', '2', '1s', '1s', '2', '1s' -%} {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+        class="blog-articles__article blog-articles__article--span-{%- cycle '2', '1s', '1s', '1s', '1s','2', '1s', '2', '1s', '1s', '1s', '1s', '1s' -%} {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
         {% if settings.animations_reveal_on_scroll %}
           data-cascade
           style="--animation-order: {{ forloop.index }};"
@@ -116,7 +116,8 @@
           show_date: section.settings.show_date,
           show_author: section.settings.show_author,
           show_excerpt: true,
-          show_blog_title: true
+          show_blog_title: true,
+          show_cta_button: true
         -%}
       </div>
     {%- else -%}

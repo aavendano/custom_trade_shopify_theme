@@ -28,6 +28,21 @@
 
     {% render 'meta-tags' %}
 
+    <!-- Matomo Tag Manager -->
+    <script>
+      var _mtm = (window._mtm = window._mtm || []);
+      _mtm.push({ 'mtm.startTime': new Date().getTime(), event: 'mtm.Start' });
+      (function () {
+        var d = document,
+          g = d.createElement('script'),
+          s = d.getElementsByTagName('script')[0];
+        g.async = true;
+        g.src = 'https://analytics.avendano.site/js/container_ytk6IELU.js';
+        s.parentNode.insertBefore(g, s);
+      })();
+    </script>
+    <!-- End Matomo Tag Manager -->
+
     <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
@@ -316,6 +331,12 @@
         {{ collection.metafields.custom.faqs }}
       </script>
     {% endif %}
+
+    <script
+      type="module"
+      src="https://cdn.shopify.com/storefront/web-components.js"
+    ></script>
+    <shopify-store store-domain="https://{{ shop.permanent_domain }}"> </shopify-store>
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">

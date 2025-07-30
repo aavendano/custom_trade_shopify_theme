@@ -29,7 +29,7 @@
   {%- endif -%}
 
   {%- if section.settings.menu_type_desktop != "drawer" -%}
-    @media screen and (min-width: 1325px) {
+    @media screen and (min-width: 990px) {
       header-drawer {
         display: none;
       }
@@ -327,7 +327,7 @@
 
       this.setHeaderHeight();
 
-      window.matchMedia('(max-width: 1325px)').addEventListener('change', this.setHeaderHeight.bind(this));
+      window.matchMedia('(max-width: 990px)').addEventListener('change', this.setHeaderHeight.bind(this));
 
       if (this.headerIsAlwaysSticky) {
         this.header.classList.add('shopify-section-header-sticky');

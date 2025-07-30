@@ -61,17 +61,3 @@
     padding: .15rem .5rem .15rem !important;
   }
 }
-
-@media screen and (max-width: 1455px) {
-
-  #HeaderMenu-home {
-    display: none !important;
-  }
-
-  #HeaderMenu-blog {
-    display: none !important;
-  }
-
-
-
-}

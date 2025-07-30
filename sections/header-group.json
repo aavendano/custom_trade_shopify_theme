@@ -13,31 +13,6 @@
   "sections": {
     "blocks_BfbfQe": {
       "type": "_blocks",
-      "blocks": {
-        "marquee_cN4JCy": {
-          "type": "marquee",
-          "name": "Marquee Banner",
-          "settings": {
-            "text_line_1": "<p>Welcome to our store! Free shipping on orders over $50</p>",
-            "text_line_2": "<p>New arrivals now available - Shop the latest collection</p>",
-            "text_line_3": "<p>Sign up for our newsletter and get 10% off your first order</p>",
-            "separator": "•",
-            "direction": "right-to-left",
-            "scroll_speed": 80,
-            "spacing": 20,
-            "separator_spacing": 15,
-            "background_color": "#0c7489",
-            "text_color": "#ffffff",
-            "separator_color": "#f4436c",
-            "font_size": 26,
-            "padding": 15
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "marquee_cN4JCy"
-      ],
       "settings": {
         "content_direction": "row",
         "vertical_on_mobile": false,
@@ -74,7 +49,7 @@
       "settings": {
         "logo_position": "middle-left",
         "mobile_logo_position": "center",
-        "menu": "theme-trade-main-menu",
+        "menu": "theme-trade-main-menu-copy",
         "menu_type_desktop": "mega",
         "sticky_header_type": "reduce-logo-size",
         "show_line_separator": false,

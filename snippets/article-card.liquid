@@ -143,6 +143,24 @@
                   {{ article.content | strip_html | truncatewords: 50 }}
                 {%- endif -%}
               </p>
+              <p>
+                <a
+                  href="{{ article.url }}"
+                  class="article-card-link"
+                  style="
+                    color: #0C7489;
+                    text-decoration: none;
+                    display: inline-block;
+                    text-align: center;
+                    width: 100%;
+                    font-size: 1.2rem;
+                    font-weight: 600;
+                    margin-top: 1.75rem;
+                  "
+                >
+                  Read Full Article
+                </a>
+              </p>
             {%- endif -%}
             <div class="article-card__footer">
               {%- if article.comments_count > 0 and blog.comments_enabled? -%}

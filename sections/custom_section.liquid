@@ -1,5 +1,5 @@
 {%- liquid
-  assign section_classes = 'section-wrapper'
+  assign section_classes = 'page-width section-wrapper'
   if section.settings.custom_class != blank
     assign section_classes = section_classes | append: ' ' | append: section.settings.custom_class
   endif

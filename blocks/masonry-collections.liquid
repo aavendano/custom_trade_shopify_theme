@@ -76,13 +76,13 @@
     height: 100%;
     background-color: {{ block.settings.overlay_color }};
     opacity: {{ block.settings.overlay_opacity | divided_by: 100.0 }};
-    z-index: 3;
+    z-index: 1;
   }
 
   .collection-card-content-{{ ai_gen_id }} {
     padding: 15px;
     text-align: center;
-    z-index: 4;
+    z-index: 2;
     position: relative;
   }
 
