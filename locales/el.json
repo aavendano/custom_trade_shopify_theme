@@ -34,7 +34,8 @@
         "snapchat": "Snapchat",
         "youtube": "YouTube",
         "vimeo": "Vimeo",
-        "tiktok": "TikTok"
+        "tiktok": "TikTok",
+        "bluesky": "Bluesky"
       }
     },
     "continue_shopping": "Συνέχιση αγορών",
@@ -321,6 +322,7 @@
     },
     "featured_blog": {
       "view_all": "Προβολή όλων",
+      "view_all_label": "Προβολή όλων των αναρτήσεων στο ιστολόγιο {{ blog_title }}",
       "onboarding_title": "Ανάρτηση ιστολογίου",
       "onboarding_content": "Δώστε στους πελάτες σας μια σύνοψη της ανάρτησης ιστολογίου"
     },

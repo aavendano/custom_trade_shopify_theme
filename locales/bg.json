@@ -34,7 +34,8 @@
         "snapchat": "Snapchat",
         "youtube": "YouTube",
         "vimeo": "Vimeo",
-        "tiktok": "TikTok"
+        "tiktok": "TikTok",
+        "bluesky": "Bluesky"
       }
     },
     "continue_shopping": "Продължете да пазарувате",
@@ -321,6 +322,7 @@
     },
     "featured_blog": {
       "view_all": "Покажи всички",
+      "view_all_label": "Покажи всички публикации в блога {{ blog_title }}",
       "onboarding_title": "Публикация в блог",
       "onboarding_content": "Обобщете накратко блог публикацията"
     },

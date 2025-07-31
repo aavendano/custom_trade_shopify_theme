@@ -34,7 +34,8 @@
         "snapchat": "Snapchat",
         "youtube": "YouTube",
         "vimeo": "Vimeo",
-        "tiktok": "TikTok"
+        "tiktok": "TikTok",
+        "bluesky": "Bluesky"
       }
     },
     "continue_shopping": "继续购物",
@@ -321,6 +322,7 @@
     },
     "featured_blog": {
       "view_all": "查看全部",
+      "view_all_label": "查看博客 {{ blog_title }} 中的所有帖子",
       "onboarding_title": "博客文章",
       "onboarding_content": "向您的客户提供一份博客文章的摘要"
     },

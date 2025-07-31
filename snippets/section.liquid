@@ -1,61 +1,61 @@
 {%- doc -%}
   Renders a wrapper section
 
-  @param {section} section - The section object
+  @param {object} section_object - The section object
   @param {string} children - The children of the section
 {%- enddoc -%}
 
-<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div class="section-background color-{{ section_object.settings.color_scheme }}"></div>
 <div
-  class="page-width section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }}"
+  class="page-width section section--{{ section_object.settings.section_width }} color-{{ section_object.settings.color_scheme }}"
 
   {% if request.visual_preview_mode %}
     data-shopify-visual-preview
   {% endif %}
 
   style="
-    {% if section.settings.section_height == 'custom' %}
-      --section-min-height: {{ section.settings.section_height_custom }}svh;
-    {% elsif section.settings.section_height == 'full-screen' %}
+    {% if section_object.settings.section_height == 'custom' %}
+      --section-min-height: {{ section_object.settings.section_height_custom }}svh;
+    {% elsif section_object.settings.section_height == 'full-screen' %}
       --section-min-height: 100svh;
-    {% elsif section.settings.section_height != '' %}
-      --section-min-height: var(--section-height-{{ section.settings.section_height }});
+    {% elsif section_object.settings.section_height != '' %}
+      --section-min-height: var(--section-height-{{ section_object.settings.section_height }});
     {% endif %}
 
-    {% if section.settings.section_height != '' %}
+    {% if section_object.settings.section_height != '' %}
      --section-preview-height: 600px;
      {% endif %}
   "
 >
   <div class="custom-section-background">
     {% render 'background-media',
-      background_media: section.settings.background_media,
-      background_video: section.settings.video,
-      background_video_position: section.settings.video_position,
-      background_image: section.settings.background_image,
-      background_image_position: section.settings.background_image_position
+      background_media: section_object.settings.background_media,
+      background_video: section_object.settings.video,
+      background_video_position: section_object.settings.video_position,
+      background_image: section_object.settings.background_image,
+      background_image_position: section_object.settings.background_image_position
     %}
   </div>
 
   <div
     class="border-style custom-section-content"
-    style="{% render 'border-override', settings: section.settings %}"
+    style="{% render 'border-override', settings: section_object.settings %}"
   >
-    {% if section.settings.toggle_overlay %}
-      {% render 'overlay', settings: section.settings, layer: '0' %}
+    {% if section_object.settings.toggle_overlay %}
+      {% render 'overlay', settings: section_object.settings, layer: '0' %}
     {% endif %}
 
     <div
       class="
         spacing-style
         layout-panel-flex
-        layout-panel-flex--{{ section.settings.content_direction }}
+        layout-panel-flex--{{ section_object.settings.content_direction }}
         section-content-wrapper
-        {% if section.settings.vertical_on_mobile %} mobile-column{% endif %}
+        {% if section_object.settings.vertical_on_mobile %} mobile-column{% endif %}
       "
       style="
-        {% render 'layout-panel-style', settings: section.settings %}
-        {% render 'spacing-style', settings: section.settings %}
+        {% render 'layout-panel-style', settings: section_object.settings %}
+        {% render 'spacing-style', settings: section_object.settings %}
       "
       data-testid="section-content"
     >

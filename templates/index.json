@@ -799,7 +799,6 @@
             "show_date": true,
             "show_author": true,
             "show_content": true,
-            "show_button": false,
             "button_text": "Read more",
             "date_format": "%B %d, %Y",
             "width": 85,
@@ -819,26 +818,14 @@
             "title_font_weight": 700,
             "meta_font_size": 14,
             "content_font_size": 16,
-            "button_font_size": 16
+            "button_font_size": 16,
+            "show_button": false
           },
           "blocks": {}
-        },
-        "cloudinary_assetlink_cloudinary_asset_XzEVWH": {
-          "type": "shopify://apps/cloudinary-assetlink/blocks/cloudinary-asset/beb1bd33-2d11-4aea-9b3e-f6c41825e598",
-          "settings": {
-            "image_url": "",
-            "mobile_image_url": "",
-            "alt_text": "",
-            "mobile_image_auto_crop": true,
-            "image_height": "672",
-            "image_optimization": true,
-            "mobile_image_width": 750
-          }
         }
       },
       "block_order": [
-        "blog_post_display_jfQpeB",
-        "cloudinary_assetlink_cloudinary_asset_XzEVWH"
+        "blog_post_display_jfQpeB"
       ],
       "name": "custom section",
       "settings": {

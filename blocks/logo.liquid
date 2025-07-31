@@ -61,7 +61,7 @@
       {{ logo_image }}
     </div>
   {% else %}
-    {% render 'jumbo-text', text: shop.name %}
+    
   {% endif %}
 </div>
 
@@ -99,15 +99,14 @@
 
 {% schema %}
 {
-  "name": "t:names.logo",
+  "name": "Logo",
   "tag": null,
   "settings": [
     {
       "type": "checkbox",
       "label": "use_inverse_logo",
       "id": "inverse",
-      "default": false,
-      "visible_if": "{{ settings.logo_inverse }}"
+      "default": false
     },
     {
       "type": "select",
@@ -131,8 +130,7 @@
           "label": "accent"
         }
       ],
-      "default": "heading",
-      "visible_if": "{{ settings.logo == blank and settings.logo_inverse == blank or block.settings.inverse == false }}"
+      "default": "heading"
     },
     {
       "type": "paragraph",

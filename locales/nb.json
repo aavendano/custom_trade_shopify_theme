@@ -34,7 +34,8 @@
         "snapchat": "Snapchat",
         "youtube": "YouTube",
         "vimeo": "Vimeo",
-        "tiktok": "TikTok"
+        "tiktok": "TikTok",
+        "bluesky": "Bluesky"
       }
     },
     "continue_shopping": "Fortsett å handle",
@@ -321,6 +322,7 @@
     },
     "featured_blog": {
       "view_all": "Vis alle",
+      "view_all_label": "Vis alle innlegg i bloggen {{ blog_title }}",
       "onboarding_title": "Blogginnlegg",
       "onboarding_content": "Gi kundene et sammendrag av blogginnlegget"
     },

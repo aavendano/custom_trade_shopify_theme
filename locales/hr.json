@@ -34,7 +34,8 @@
         "snapchat": "Snapchat",
         "youtube": "YouTube",
         "vimeo": "Vimeo",
-        "tiktok": "TikTok"
+        "tiktok": "TikTok",
+        "bluesky": "Bluesky"
       }
     },
     "continue_shopping": "Nastavite s kupovinom",
@@ -331,6 +332,7 @@
     },
     "featured_blog": {
       "view_all": "Prikaži sve",
+      "view_all_label": "Prikaži sve objave na blogu {{ blog_title }}",
       "onboarding_title": "Objava na blogu",
       "onboarding_content": "Omogućite kupcima sažeti prikaz vaše objave na blogu"
     },

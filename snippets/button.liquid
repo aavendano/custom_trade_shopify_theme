@@ -20,7 +20,6 @@
     {{ block.settings.style_class }}
     {{ block.settings.style_class }}--{{ block.id }}
   "
-  style="{% render 'size-style', settings: block.settings %}"
   {%- if block.settings.open_in_new_tab -%}
     target="_blank"
     rel="noopener noreferrer"

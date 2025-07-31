@@ -34,7 +34,8 @@
         "snapchat": "Snapchat",
         "youtube": "YouTube",
         "vimeo": "Vimeo",
-        "tiktok": "TikTok"
+        "tiktok": "TikTok",
+        "bluesky": "Bluesky"
       }
     },
     "continue_shopping": "Tiếp tục mua sắm",
@@ -321,6 +322,7 @@
     },
     "featured_blog": {
       "view_all": "Xem tất cả",
+      "view_all_label": "Xem tất cả bài đăng trong blog {{ blog_title }}",
       "onboarding_title": "Bài viết blog",
       "onboarding_content": "Cho khách hàng xem tóm tắt bài viết blog"
     },

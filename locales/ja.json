@@ -34,7 +34,8 @@
         "snapchat": "Snapchat",
         "youtube": "YouTube",
         "vimeo": "Vimeo",
-        "tiktok": "TikTok"
+        "tiktok": "TikTok",
+        "bluesky": "Bluesky"
       }
     },
     "continue_shopping": "買い物を続ける",
@@ -321,6 +322,7 @@
     },
     "featured_blog": {
       "view_all": "すべてを表示する",
+      "view_all_label": "{{ blog_title }}ブログのすべての投稿を表示する",
       "onboarding_title": "ブログ記事",
       "onboarding_content": "お客様にブログ記事のサマリーを提供する"
     },

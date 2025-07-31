@@ -232,7 +232,7 @@
               "@type": "ListItem",
               "position": {{ position }},
               "item": {
-                "@id": "{{ product.collections.first.url | absolute_url }}",
+                "@id": "{{ shop.url | append: product.collections.first.url }}",
                 "name": "{{ product.collections.first.title | escape }}"
               }
             }
@@ -244,7 +244,7 @@
             "@type": "ListItem",
             "position": {{ position }},
             "item": {
-              "@id": "{{ product.url | absolute_url }}",
+              "@id": "{{ shop.url | append: product.url }}",
               "name": "{{ product.title | escape }}"
             }
           }
@@ -253,7 +253,7 @@
             "@type": "ListItem",
             "position": {{ position }},
             "item": {
-              "@id": "{{ collection.url | absolute_url }}",
+              "@id": "{{ shop.url | append: collection.url }}",
               "name": "{{ collection.title | escape }}"
             }
           }
@@ -262,7 +262,7 @@
             "@type": "ListItem",
             "position": {{ position }},
             "item": {
-              "@id": "{{ blog.url | absolute_url }}",
+              "@id": "{{ shop.url | append: blog.url }}",
               "name": "{{ blog.title | escape }}"
             }
           }
@@ -271,7 +271,7 @@
             "@type": "ListItem",
             "position": {{ position }},
             "item": {
-              "@id": "{{ blog.url | absolute_url }}",
+              "@id": "{{ shop.url | append: blog.url }}",
               "name": "{{ blog.title | escape }}"
             }
           }
@@ -282,7 +282,7 @@
             "@type": "ListItem",
             "position": {{ position }},
             "item": {
-              "@id": "{{ article.url | absolute_url }}",
+              "@id": "{{ shop.url | append: article.url }}",
               "name": "{{ article.title | escape }}"
             }
           }
@@ -291,7 +291,7 @@
             "@type": "ListItem",
             "position": {{ position }},
             "item": {
-              "@id": "{{ page.url | absolute_url }}",
+              "@id": "{{ shop.url | append: page.url }}",
               "name": "{{ page.title | escape }}"
             }
           }

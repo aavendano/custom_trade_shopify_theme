@@ -34,7 +34,8 @@
         "snapchat": "Snapchat",
         "youtube": "YouTube",
         "vimeo": "Vimeo",
-        "tiktok": "TikTok"
+        "tiktok": "TikTok",
+        "bluesky": "Bluesky"
       }
     },
     "continue_shopping": "쇼핑 계속하기",
@@ -321,6 +322,7 @@
     },
     "featured_blog": {
       "view_all": "모두 보기",
+      "view_all_label": "{{ blog_title }} 블로그의 모든 게시물 보기",
       "onboarding_title": "블로그 게시물",
       "onboarding_content": "고객에게 블로그 게시물의 요약 제공"
     },

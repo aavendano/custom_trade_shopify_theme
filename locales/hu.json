@@ -34,7 +34,8 @@
         "snapchat": "Snapchat",
         "youtube": "YouTube",
         "vimeo": "Vimeo",
-        "tiktok": "TikTok"
+        "tiktok": "TikTok",
+        "bluesky": "Bluesky"
       }
     },
     "continue_shopping": "Vásárlás folytatása",
@@ -321,6 +322,7 @@
     },
     "featured_blog": {
       "view_all": "Az összes megtekintése",
+      "view_all_label": "Az összes bejegyzés megtekintése a(z) {{ blog_title }} blogban",
       "onboarding_title": "Blogbejegyzés",
       "onboarding_content": "Itt foglalhatod össze a vásárlóidnak, miről szól a blogbejegyzésed"
     },

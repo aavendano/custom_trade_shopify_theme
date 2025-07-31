@@ -201,6 +201,8 @@
             <img 
               src="{{ image | image_url: width: 2000 }}" 
               alt="{{ image.alt | escape }}" 
+              width="2000"
+              height="{{ image.height | times: 2000 | divided_by: image.width }}"
               loading="{% if forloop.index == 1 %}eager{% else %}lazy{% endif %}" 
               class="ai-slideshow-slide-image-{{ ai_gen_id }}"
             >

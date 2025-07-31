@@ -10,6 +10,8 @@
 {%- assign sizes_desktop = sizes_desktop | default: '1400px' -%}
 
 <img
+  width="{{ image.width }}"
+  height="{{ image.height }}"
   {% if class and class != '' %}
     class="{{ class | escape }}"
   {% endif %}
@@ -18,7 +20,7 @@
   {% if loading_attr == 'eager' %}
     fetchpriority="high"
   {% endif %}
-  src=""
+  src="https://res.cloudinary.com/dv0xafomh/image/upload/f_auto%2Cq_auto%2Cw_100/{{ image_public_id }}"
   srcset="
     https://res.cloudinary.com/dv0xafomh/image/upload/f_auto%2Cq_auto%2Cw_100/{{ image_public_id }}   100w,
     https://res.cloudinary.com/dv0xafomh/image/upload/f_auto%2Cq_auto%2Cw_200/{{ image_public_id }}   200w,

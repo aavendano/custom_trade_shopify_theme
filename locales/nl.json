@@ -34,7 +34,8 @@
         "snapchat": "Snapchat",
         "youtube": "YouTube",
         "vimeo": "Vimeo",
-        "tiktok": "TikTok"
+        "tiktok": "TikTok",
+        "bluesky": "Bluesky"
       }
     },
     "continue_shopping": "Terugkeren naar winkel",
@@ -321,6 +322,7 @@
     },
     "featured_blog": {
       "view_all": "Alles bekijken",
+      "view_all_label": "Alle posts in de blog {{ blog_title }} bekijken",
       "onboarding_title": "Blogpost",
       "onboarding_content": "Geef je klanten een overzicht van je blogpost"
     },

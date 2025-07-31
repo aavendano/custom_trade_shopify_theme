@@ -34,7 +34,8 @@
         "snapchat": "Snapchat",
         "youtube": "YouTube",
         "vimeo": "Vimeo",
-        "tiktok": "TikTok"
+        "tiktok": "TikTok",
+        "bluesky": "Bluesky"
       }
     },
     "continue_shopping": "Continuer les achats",
@@ -331,6 +332,7 @@
     },
     "featured_blog": {
       "view_all": "Tout afficher",
+      "view_all_label": "Afficher toutes les publications du blog {{ blog_title }}",
       "onboarding_title": "Article de blog",
       "onboarding_content": "Donnez à vos clients un résumé de votre article de blog"
     },

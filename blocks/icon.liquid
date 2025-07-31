@@ -2,18 +2,7 @@
 
 {% capture icon %}
   {%- if block.settings.icon != 'none' and block.settings.image_upload == blank -%}
-    <svg
-      class="{{ icon_block_class }}"
-      aria-hidden="true"
-      focusable="false"
-      xmlns="http://www.w3.org/2000/svg"
-      width="{{ block.settings.width }}"
-      height="{{ block.settings.width }}"
-      viewBox="0 0 20 20"
-      {{ block.shopify_attributes }}
-    >
-      {%- render 'icon', icon: block.settings.icon -%}
-    </svg>
+    
   {%- elsif block.settings.image_upload != blank -%}
     {% liquid
       assign media_width_desktop = '100vw'
@@ -62,7 +51,7 @@
 
 {% schema %}
 {
-  "name": "t:names.icon",
+  "name": "Icon",
   "class": "icon-block",
   "settings": [
     {
@@ -338,7 +327,7 @@
   ],
   "presets": [
     {
-      "name": "t:names.icon",
+      "name": "Icon",
       "category": "basic",
       "settings": {
         "icon": "price_tag"

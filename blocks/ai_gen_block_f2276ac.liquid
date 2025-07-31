@@ -257,13 +257,15 @@
 >
   <div class="ai-carousel-container-{{ ai_gen_id }}">
     <div class="ai-carousel-track-{{ ai_gen_id }}">
-      {% if block.settings.featured_collection != blank %}
-        {% assign products = block.settings.featured_collection.products | limit: block.settings.product_limit %}
-      {% else %}
-        {% assign products = collections.all.products | limit: block.settings.product_limit %}
-      {% endif %}
+      {%- liquid
+        if block.settings.featured_collection != blank
+          assign products = block.settings.featured_collection.products
+        else
+          assign products = collections.all.products
+        endif
+      -%}
 
-      {% for product in products %}
+      {% for product in products limit: block.settings.product_limit %}
         <div class="ai-carousel-slide-{{ ai_gen_id }}" data-slide="{{ forloop.index0 }}">
           <div class="ai-slide-content-{{ ai_gen_id }}">
             <div class="ai-product-image-container-{{ ai_gen_id }}">

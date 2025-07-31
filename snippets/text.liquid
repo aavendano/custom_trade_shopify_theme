@@ -7,37 +7,57 @@
 {%- enddoc -%}
 
 {% liquid
-  assign plain_text = block.settings.text | strip_newlines | strip_html | strip
-  assign text_width = width | default: block.settings.width
+  assign block_settings = blank
+  assign block_shopify_attributes = blank
 
-  if block.settings.font_size contains 'heading-lg' or block.settings.font_size contains 'heading-xl'
-    assign type = 'display'
-  elsif block.settings.font_size contains 'heading'
-    assign type = 'heading'
-  else
-    assign type = 'body'
+  if block
+    assign block_settings = block.settings
+    assign block_shopify_attributes = block.shopify_attributes
   endif
-  if block.settings.type_preset == 'rte' or block.settings.type_preset == 'paragraph'
-    assign is_rte = true
+
+  assign plain_text = fallback_text
+  if block_settings.text
+    assign plain_text = block_settings.text | strip_newlines | strip_html | strip
+  endif
+
+  assign text_width = width
+  if block_settings.width
+    assign text_width = text_width | default: block_settings.width
+  endif
+
+  assign type = 'body'
+  if block_settings.font_size
+    if block_settings.font_size contains 'heading-lg' or block_settings.font_size contains 'heading-xl'
+      assign type = 'display'
+    elsif block_settings.font_size contains 'heading'
+      assign type = 'heading'
+    endif
+  endif
+
+  assign is_rte = false
+  if block_settings.type_preset
+    if block_settings.type_preset == 'rte' or block_settings.type_preset == 'paragraph'
+      assign is_rte = true
+    endif
   endif
 
   capture text_block_classes
     if text_width == '100%'
-      echo 'text-block--align-' | append: block.settings.alignment
-      if block.settings.max_width == 'none'
+      echo 'text-block--align-' | append: block_settings.alignment
+      if block_settings.max_width == 'none'
         echo ' text-block--full-width '
       endif
     endif
-    if block.settings.type_preset == 'custom'
+    if block_settings.type_preset == 'custom'
       echo ' custom-typography '
-      if block.settings.font_size != ''
+      if block_settings.font_size != ''
         echo ' custom-font-size '
       endif
-      if block.settings.color != ''
+      if block_settings.color != ''
         echo ' custom-color '
       endif
     endif
-    if block.settings.background
+    if block_settings.background
       echo ' text-block--background '
     endif
     if is_rte
@@ -47,26 +67,33 @@
 %}
 
 {% capture attributes %}
-  class="{{ class }} spacing-style text-block text-block--{{ block.id }} {{ block.settings.type_preset }}
+  class="{{ class }} spacing-style text-block
+    {% if block_settings %}
+      text-block--{% if block %}{{ block.id }}{% endif %} {{ block_settings.type_preset }}
+    {% endif %}
     {{ text_block_classes }}
   "
 
   style="
-    {% render 'spacing-padding', settings: block.settings %}
-    {% render 'typography-style', settings: block.settings %}
-    --width: {{ text_width }};
-    --max-width: var(--max-width--{{ type }}-{{ block.settings.max_width }});
-    {% if text_width == "100%" %}
-      --text-align: {{ block.settings.alignment }};
+    {% if block_settings %}
+      {% render 'spacing-padding', settings: block_settings %}
+      {% render 'typography-style', settings: block_settings %}
     {% endif %}
-    {% if block.settings.background %}
-      --text-background-color: {{ block.settings.background_color | default: 'rgb(255 255 255 / 1.0)' }};
-      --text-corner-radius: {{ block.settings.corner_radius }}px;
+    --width: {{ text_width }};
+    --max-width: var(--max-width--{{ type }}-{% if block_settings %}{{ block_settings.max_width }}{% else %}normal{% endif %});
+    {% if text_width == "100%" and block_settings %}
+      --text-align: {{ block_settings.alignment }};
+    {% endif %}
+    {% if block_settings and block_settings.background %}
+      --text-background-color: {{ block_settings.background_color | default: 'rgb(255 255 255 / 1.0)' }};
+      --text-corner-radius: {{ block_settings.corner_radius }}px;
       --text-padding: max(var(--padding-2xs), calc((var(--text-corner-radius) + var(--padding-xs)) * (1 - cos(45deg))));
     {% endif %}
   "
 
-  {{ block.shopify_attributes }}
+  {% if block_shopify_attributes %}
+    {{ block_shopify_attributes }}
+  {% endif %}
 {% endcapture %}
 {% liquid
   # {{ attributes }} must be on the immediate HTML parent of the text to preserve
@@ -85,7 +112,11 @@
   </div>
 {% elsif plain_text != blank %}
   <{{ element }} {{ attributes }}>
-    {{ block.settings.text }}
+    {% if block_settings %}
+      {{ block_settings.text }}
+    {% else %}
+      {{ plain_text }}
+    {% endif %}
   </{{ element }}>
 {% endif %}
 

@@ -34,7 +34,8 @@
         "snapchat": "Snapchat",
         "youtube": "YouTube",
         "vimeo": "Vimeo",
-        "tiktok": "TikTok"
+        "tiktok": "TikTok",
+        "bluesky": "Bluesky"
       }
     },
     "continue_shopping": "Lanjutkan belanja",
@@ -321,6 +322,7 @@
     },
     "featured_blog": {
       "view_all": "Lihat semua",
+      "view_all_label": "Lihat semua postingan di blog {{ blog_title }}",
       "onboarding_title": "Postingan blog",
       "onboarding_content": "Berikan pelanggan ringkasan postingan blog Anda"
     },

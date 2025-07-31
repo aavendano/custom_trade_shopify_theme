@@ -34,7 +34,8 @@
         "snapchat": "Snapchat",
         "youtube": "YouTube",
         "vimeo": "Vimeo",
-        "tiktok": "TikTok"
+        "tiktok": "TikTok",
+        "bluesky": "Bluesky"
       }
     },
     "continue_shopping": "Jatka ostoksia",
@@ -321,6 +322,7 @@
     },
     "featured_blog": {
       "view_all": "Näytä kaikki",
+      "view_all_label": "Näytä kaikki blogin {{ blog_title }} viestit",
       "onboarding_title": "Blogipostaus",
       "onboarding_content": "Anna asiakkaillesi yhteenveto blogipostauksestasi"
     },

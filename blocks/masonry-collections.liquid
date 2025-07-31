@@ -142,7 +142,7 @@
                         {{ product.featured_image | image_url: width: 600 }} 600w,
                         {{ product.featured_image | image_url: width: 800 }} 800w
                       "
-                      src=""
+                      src="{{ product.featured_image | image_url: width: 300 }}"
                     >
 
                     {% assign image_count = image_count | plus: 1 %}

@@ -1,12 +1,6 @@
-{% capture children %}
-  {% content_for 'blocks' %}
-{% endcapture %}
-
-{% render 'group', children: children, settings: block.settings, shopify_attributes: block.shopify_attributes %}
-
 {% schema %}
 {
-  "name": "t:names.group",
+  "name": "Group",
   "tag": null,
   "blocks": [
     {

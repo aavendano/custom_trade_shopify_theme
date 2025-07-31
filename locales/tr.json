@@ -34,7 +34,8 @@
         "snapchat": "Snapchat",
         "youtube": "YouTube",
         "vimeo": "Vimeo",
-        "tiktok": "TikTok"
+        "tiktok": "TikTok",
+        "bluesky": "Bluesky"
       }
     },
     "continue_shopping": "Alışverişe devam et",
@@ -321,6 +322,7 @@
     },
     "featured_blog": {
       "view_all": "Tümünü görüntüle",
+      "view_all_label": "{{ blog_title }} blogundaki tüm gönderileri görüntüle",
       "onboarding_title": "Blog gönderisi",
       "onboarding_content": "Müşterilerinize blog gönderinizin özetini gösterin"
     },

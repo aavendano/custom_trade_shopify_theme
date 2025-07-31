@@ -94,8 +94,8 @@
               style="--animation-order: {{ forloop.index }};"
             {% endif %}
           >
-            <div class="multicolumn-card content-container">
-              {%- if block.settings.article != blank -%}
+            {%- if block.settings.article != blank -%}
+              <div class="multicolumn-card content-container">
                 {%- assign article = block.settings.article -%}
                 {%- if article.image != blank -%}
                   <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--{{ section.settings.image_width }}-width{% if section.settings.image_width != 'full' %} multicolumn-card-spacing{% endif %}">
@@ -103,21 +103,21 @@
                   </div>
                 {%- endif -%}
 
-              <div class="multicolumn-card__info">
-                {%- assign article = block.settings.article -%}
-                <h3 class="inline-richtext">
-                  <a href="{{ article.url }}">{{ article.title }}</a>
-                </h3>
-                <a class="link animate-arrow" href="{{ article.url }}">
-                  Read more
-                  <span class="svg-wrapper">
-                    <span class="icon-wrap">&nbsp;{{ 'icon-arrow.svg' | inline_asset_content }}</span>
-                  </span>
-                </a>
+                <div class="multicolumn-card__info">
+                  {%- assign article = block.settings.article -%}
+                  <h3 class="inline-richtext">
+                    <a href="{{ article.url }}">{{ article.title }}</a>
+                  </h3>
+                  <a class="link animate-arrow" href="{{ article.url }}">
+                    Read more
+                    <span class="svg-wrapper">
+                      <span class="icon-wrap">&nbsp;{{ 'icon-arrow.svg' | inline_asset_content }}</span>
+                    </span>
+                  </a>
+                </div>
               </div>
-            </div>
-          {%- endif -%}
-        </li>
+            {%- endif -%}
+          </li>
         {%- endfor -%}
       </ul>
 

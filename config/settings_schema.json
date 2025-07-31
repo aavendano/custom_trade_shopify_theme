@@ -1321,11 +1321,17 @@
         "label": "t:settings_schema.social-media.settings.social_youtube_link.label",
         "placeholder": "t:settings_schema.social-media.settings.social_youtube_link.info"
       },
+            {
+        "type": "text",
+        "id": "social_bluesky_link",
+        "label": "bluesky",
+        "placeholder": "https://bsky.app/profile/playlovetoys.bsky.social"
+      },
       {
         "type": "text",
         "id": "social_tiktok_link",
         "label": "t:settings_schema.social-media.settings.social_tiktok_link.label",
-        "placeholder": "t:settings_schema.social-media.settings.social_tiktok_link.info"
+        "placeholder": "https://bsky.app/profile/playlovetoys.bsky.social"
       },
       {
         "type": "text",

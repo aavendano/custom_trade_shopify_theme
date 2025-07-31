@@ -255,7 +255,7 @@
           <a href="{{ product.url }}" class="product-carousel-image-wrapper-{{ ai_gen_id }}">
             {% if product.featured_media != blank %}
               <img
-                src="{{ product.featured_media | img_url: '500x500', crop: 'center' }}"
+                src="{{ product.featured_media | image_url: width: 500, height: 500, crop: 'center' }}"
                 alt="{{ product.featured_media.alt | escape }}"
                 loading="lazy"
                 class="product-carousel-image-{{ ai_gen_id }}"

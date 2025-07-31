@@ -34,7 +34,8 @@
         "snapchat": "„Snapchat“",
         "youtube": "„YouTube“",
         "vimeo": "„Vimeo“",
-        "tiktok": "„TikTok“"
+        "tiktok": "„TikTok“",
+        "bluesky": "Bluesky"
       }
     },
     "continue_shopping": "Tęsti apsipirkimą",
@@ -341,6 +342,7 @@
     },
     "featured_blog": {
       "view_all": "Žr. viską",
+      "view_all_label": "Žr. visus įrašus tinklaraštyje „{{ blog_title }}“",
       "onboarding_title": "Tinklaraščio įrašas",
       "onboarding_content": "Pateikite savo klientams savo tinklaraščio įrašo santrauką"
     },
