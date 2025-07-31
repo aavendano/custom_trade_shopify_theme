@@ -112,8 +112,8 @@
     "brand_image_width": 100,
     "social_facebook_link": "https://www.facebook.com/playlovetoys/",
     "social_instagram_link": "https://www.instagram.com/playlovetoys/",
-    "social_bluesky_link": "https://bsky.app/profile/playlovetoys.bsky.social",
     "social_youtube_link": "",
+    "social_bluesky_link": "https://bsky.app/profile/playlovetoys.bsky.social",
     "social_tiktok_link": "",
     "social_twitter_link": "",
     "social_snapchat_link": "",
@@ -154,6 +154,21 @@
         "type": "shopify://apps/avada-seo-suite/blocks/avada-seo/15507c6e-1aa3-45d3-b698-7e175e033440",
         "disabled": true,
         "settings": {}
+      },
+      "15121418464101390553": {
+        "type": "shopify://apps/cloudinary-assetlink/blocks/video-replacer/beb1bd33-2d11-4aea-9b3e-f6c41825e598",
+        "disabled": false,
+        "settings": {
+          "quality_level": "good",
+          "breakpoint_size": 400,
+          "max_width": 1920,
+          "optimize": true,
+          "retina_quality": false,
+          "autoplay": true,
+          "loop": true,
+          "controls": false,
+          "muted": true
+        }
       }
     },
     "color_schemes": {

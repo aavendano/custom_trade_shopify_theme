@@ -142,7 +142,7 @@
       "block_order": [
         "blog_post_display_bTAWEc"
       ],
-      "name": "custom section",
+      "name": "Featured Blog",
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -179,9 +179,9 @@
       "type": "after-page-content",
       "name": "AfterPageCont",
       "settings": {
-        "after_page_content": "{{ collection.metafields.blog.featured_article.value }}",
+        "after_page_content": "",
         "as_html": true,
-        "content_width": 1000,
+        "content_width": 650,
         "content_padding": 20
       }
     }
