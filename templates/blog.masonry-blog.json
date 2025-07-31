@@ -85,11 +85,11 @@
         "padding_bottom": 36
       }
     },
-    "main_blog_mansory_cGYTif": {
-      "type": "blog-mansory",
-      "name": "Masonry Blog 2",
+    "main_blog_mansory_LERzrV": {
+      "type": "main-blog-mansory",
+      "name": "Blog Mansory 3",
       "settings": {
-        "posts_per_page": 24,
+        "layout": "grid",
         "show_image": true,
         "image_height": "medium",
         "show_date": true,
@@ -102,6 +102,6 @@
   "order": [
     "custom_section_rbta8K",
     "main",
-    "main_blog_mansory_cGYTif"
+    "main_blog_mansory_LERzrV"
   ]
 }
