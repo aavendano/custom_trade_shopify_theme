@@ -59,7 +59,7 @@
             "gradient_start_distance": 75,
             "gradient_direction": "top_to_bottom",
             "heading": "Welcome to PlayLoveToys!",
-            "heading_size": "h0",
+            "heading_size": "hxl",
             "subheading": "Embrace Your Sexual Wellness",
             "button_label": "Explore Our Collections",
             "link": "shopify://collections",
@@ -83,7 +83,7 @@
             "gradient_start_distance": 75,
             "gradient_direction": "top_to_bottom",
             "heading": "Unleash Your Desires",
-            "heading_size": "h0",
+            "heading_size": "hxl",
             "subheading": "<strong>Discover a world of pleasure designed just for you</strong>",
             "button_label": "Explore Women Pleasure Collection",
             "link": "shopify://collections/sex-toys-for-women",
@@ -106,7 +106,7 @@
             "gradient_color": "#f4f4f4",
             "gradient_start_distance": 75,
             "gradient_direction": "top_to_bottom",
-            "heading": "Spice Things Up",
+            "heading": "<strong>Spice Things Up</strong>",
             "heading_size": "h0",
             "subheading": "<strong>Dive into our curated collection of adult toys </strong>",
             "button_label": "Check Couples Fun!",
@@ -190,10 +190,10 @@
         "bottom_margin": -100
       }
     },
-    "multicolumn_2x2_rMUj4F": {
+    "multicolumn_2x2_cmHDWp": {
       "type": "multicolumn-2x2",
       "blocks": {
-        "column_Ni4CNE": {
+        "column_Nw3TFk": {
           "type": "column",
           "name": "Col Sex Toys For Women",
           "settings": {
@@ -211,7 +211,7 @@
             "link": "shopify://collections/sex-toys-for-women"
           }
         },
-        "column_YWGbkU": {
+        "column_3ehtTn": {
           "type": "column",
           "settings": {
             "article": "",
@@ -228,7 +228,7 @@
             "link": "shopify://collections/best-sex-toys"
           }
         },
-        "column_HdJyF6": {
+        "column_Gr68XH": {
           "type": "column",
           "name": "Col Sex Toys for men",
           "settings": {
@@ -246,7 +246,7 @@
             "link": "shopify://collections/sex-toys-for-men"
           }
         },
-        "column_P8WrLm": {
+        "column_dR8xNk": {
           "type": "column",
           "settings": {
             "article": "sexual-wellness/intimate-toys-and-sex-toys",
@@ -262,15 +262,90 @@
             "link_label": "",
             "link": ""
           }
+        },
+        "column_QDGfRE": {
+          "type": "column",
+          "settings": {
+            "article": "",
+            "cloudinary_id": "",
+            "cloudinary_id_2": "",
+            "cloudinary_id_3": "",
+            "cloudinary_id_4": "",
+            "image": "shopify://shop_images/Deals_Under_20-Photoroom.webp",
+            "image_gap": 16,
+            "image_margin": 0,
+            "image_padding": 0,
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": "shopify://collections/under-20"
+          }
+        },
+        "column_UEg8EM": {
+          "type": "column",
+          "settings": {
+            "article": "",
+            "cloudinary_id": "",
+            "cloudinary_id_2": "",
+            "cloudinary_id_3": "",
+            "cloudinary_id_4": "",
+            "image": "shopify://shop_images/deals_under_30-Photoroom.webp",
+            "image_gap": 16,
+            "image_margin": 0,
+            "image_padding": 0,
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": "shopify://collections/under-30"
+          }
+        },
+        "column_dL3eBi": {
+          "type": "column",
+          "settings": {
+            "article": "",
+            "cloudinary_id": "",
+            "cloudinary_id_2": "",
+            "cloudinary_id_3": "",
+            "cloudinary_id_4": "",
+            "image": "shopify://shop_images/deals_under_50-Photoroom.webp",
+            "image_gap": 16,
+            "image_margin": 0,
+            "image_padding": 0,
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": "shopify://collections/under-50"
+          }
+        },
+        "column_i3TFDj": {
+          "type": "column",
+          "settings": {
+            "article": "",
+            "cloudinary_id": "",
+            "cloudinary_id_2": "",
+            "cloudinary_id_3": "",
+            "cloudinary_id_4": "",
+            "image": "shopify://shop_images/deals_under_100-Photoroom.webp",
+            "image_gap": 16,
+            "image_margin": 0,
+            "image_padding": 0,
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": "shopify://collections/under-100"
+          }
         }
       },
       "block_order": [
-        "column_Ni4CNE",
-        "column_YWGbkU",
-        "column_HdJyF6",
-        "column_P8WrLm"
+        "column_Nw3TFk",
+        "column_3ehtTn",
+        "column_Gr68XH",
+        "column_dR8xNk",
+        "column_QDGfRE",
+        "column_UEg8EM",
+        "column_dL3eBi",
+        "column_i3TFDj"
       ],
-      "custom_css": [],
       "name": "Multicolumn-2x2",
       "settings": {
         "title": "",
@@ -362,27 +437,71 @@
         "padding_bottom": 60
       }
     },
-    "rich_text": {
-      "type": "rich-text",
+    "image_with_text_EWeFiC": {
+      "type": "image-with-text",
       "blocks": {
-        "text": {
+        "heading_UPtYXM": {
+          "type": "heading",
+          "settings": {
+            "heading": "Embrace Your Sexual Wellness",
+            "heading_size": "h1"
+          }
+        },
+        "text_mgQCER": {
           "type": "text",
           "settings": {
-            "text": "<p><em>Our motto, </em><em><strong>\"Embrace Your Sexual Wellness,\"</strong></em><em> is promoting a philosophy centred around encouraging the public to prioritize their overall sexual health and happiness. Our commitment is to create a safe, inclusive, and empowering environment for everyone. </em></p>"
+            "text": "<p><em>...Our motto is promoting a philosophy centred around encouraging the public to prioritize their overall sexual health and happiness. Our commitment is to create a safe, inclusive, and empowering environment for everyone...</em></p>",
+            "text_style": "body"
           }
         }
       },
       "block_order": [
-        "text"
+        "heading_UPtYXM",
+        "text_mgQCER"
       ],
-      "name": "Motto",
+      "name": "t:sections.image-with-text.presets.name",
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "full_width": true,
-        "padding_top": 4,
-        "padding_bottom": 4
+        "image": "shopify://shop_images/logo_transparent_background_3.png",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "center",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 12,
+        "padding_bottom": 12
+      }
+    },
+    "1753880671a064caf7": {
+      "type": "apps",
+      "blocks": {
+        "forms_inline_fGKf7T": {
+          "type": "shopify://apps/forms/blocks/inline/8744a304-fcb1-4347-b211-bb6b4759a76a",
+          "settings": {
+            "form_id": "498644",
+            "text_color": "#231f20",
+            "button_background_color": "#0c7489",
+            "button_label_color": "#ffffff",
+            "links_color": "#1878B9",
+            "errors_color": "#E02229",
+            "text_alignment": "center",
+            "form_alignment": "center",
+            "padding_top": 0,
+            "padding_bottom": 24,
+            "padding_right": 0,
+            "padding_left": 0
+          }
+        }
+      },
+      "block_order": [
+        "forms_inline_fGKf7T"
+      ],
+      "settings": {
+        "include_margins": true
       }
     },
     "featured_collection1": {
@@ -656,8 +775,8 @@
         "color_scheme": "scheme-3",
         "columns_mobile": "1",
         "swipe_on_mobile": false,
-        "padding_top": 44,
-        "padding_bottom": 48
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "multicolumn_2x2_QnEPzH": {
@@ -877,9 +996,10 @@
   "order": [
     "custom_section_p7NKD8",
     "slideshow_4nGYLi",
-    "multicolumn_2x2_rMUj4F",
+    "multicolumn_2x2_cmHDWp",
     "collection_list",
-    "rich_text",
+    "image_with_text_EWeFiC",
+    "1753880671a064caf7",
     "featured_collection1",
     "multicolumn",
     "multicolumn2",

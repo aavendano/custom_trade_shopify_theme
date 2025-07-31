@@ -12,10 +12,10 @@
     "logo": "shopify://shop_images/PlayLoveToys-Logo.svg",
     "logo_width": 130,
     "favicon": "shopify://shop_images/favicon-playlovetoys-32x32.png",
-    "type_header_font": "roboto_condensed_n4",
-    "heading_scale": 105,
-    "type_body_font": "inter_n4",
-    "body_scale": 120,
+    "type_header_font": "oswald_n7",
+    "heading_scale": 120,
+    "type_body_font": "quicksand_n5",
+    "body_scale": 130,
     "page_width": 1400,
     "spacing_sections": 20,
     "spacing_grid_horizontal": 12,
@@ -115,6 +115,7 @@
     "social_youtube_link": "",
     "social_tiktok_link": "",
     "social_twitter_link": "",
+    "social_bluesky_link": "",
     "social_snapchat_link": "",
     "social_pinterest_link": "",
     "social_tumblr_link": "",
@@ -153,6 +154,14 @@
         "type": "shopify://apps/avada-seo-suite/blocks/avada-seo/15507c6e-1aa3-45d3-b698-7e175e033440",
         "disabled": true,
         "settings": {}
+<<<<<<< HEAD
+=======
+      },
+      "13768625480086291342": {
+        "type": "shopify://apps/forms/blocks/forms/8744a304-fcb1-4347-b211-bb6b4759a76a",
+        "disabled": false,
+        "settings": {}
+>>>>>>> 343b619f1c17933d84c894e31135a67bd1ffa746
       }
     },
     "color_schemes": {

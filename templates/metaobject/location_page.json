@@ -314,7 +314,7 @@
         "column_P8WrLm": {
           "type": "column",
           "settings": {
-            "article": "pleasure-lab/intimate-toys-and-sex-toys",
+            "article": "sexual-wellness/intimate-toys-and-sex-toys",
             "cloudinary_id": "",
             "cloudinary_id_2": "",
             "cloudinary_id_3": "",
@@ -503,27 +503,71 @@
         "padding_bottom": 60
       }
     },
-    "rich_text": {
-      "type": "rich-text",
+    "image_with_text_qpbbVU": {
+      "type": "image-with-text",
       "blocks": {
-        "text": {
+        "heading_GgeK3y": {
+          "type": "heading",
+          "settings": {
+            "heading": "Embrace Your Sexual Wellness",
+            "heading_size": "h1"
+          }
+        },
+        "text_dTGYBA": {
           "type": "text",
           "settings": {
-            "text": "<p><em>Our motto, </em><em><strong>\"Embrace Your Sexual Wellness,\"</strong></em><em> is promoting a philosophy centred around encouraging the public to prioritize their overall sexual health and happiness. Our commitment is to create a safe, inclusive, and empowering environment for everyone. </em></p>"
+            "text": "<p><em>...Our motto is promoting a philosophy centred around encouraging the public to prioritize their overall sexual health and happiness. Our commitment is to create a safe, inclusive, and empowering environment for everyone...</em></p>",
+            "text_style": "body"
           }
         }
       },
       "block_order": [
-        "text"
+        "heading_GgeK3y",
+        "text_dTGYBA"
       ],
-      "name": "Motto",
+      "name": "t:sections.image-with-text.presets.name",
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "full_width": true,
-        "padding_top": 4,
-        "padding_bottom": 4
+        "image": "shopify://shop_images/logo_transparent_background_3.png",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "apps_xwf3W6": {
+      "type": "apps",
+      "blocks": {
+        "forms_inline_yfpeEb": {
+          "type": "shopify://apps/forms/blocks/inline/8744a304-fcb1-4347-b211-bb6b4759a76a",
+          "settings": {
+            "form_id": "480509",
+            "text_color": "#231f20",
+            "button_background_color": "#533278",
+            "button_label_color": "#FFFFFF",
+            "links_color": "#1878B9",
+            "errors_color": "#E02229",
+            "text_alignment": "center",
+            "form_alignment": "center",
+            "padding_top": 0,
+            "padding_bottom": 24,
+            "padding_right": 0,
+            "padding_left": 0
+          }
+        }
+      },
+      "block_order": [
+        "forms_inline_yfpeEb"
+      ],
+      "settings": {
+        "include_margins": true
       }
     },
     "featured_collection1": {
@@ -561,7 +605,9 @@
         "column1": {
           "type": "column",
           "settings": {
+            "image_source": "shopify",
             "image": "shopify://shop_images/kiiroo.webp",
+            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -571,7 +617,9 @@
         "column2": {
           "type": "column",
           "settings": {
+            "image_source": "shopify",
             "image": "shopify://shop_images/Womanizer_logo.png",
+            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -581,7 +629,9 @@
         "column_ERdMBw": {
           "type": "column",
           "settings": {
+            "image_source": "shopify",
             "image": "shopify://shop_images/dorcel.webp",
+            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -591,7 +641,9 @@
         "column4": {
           "type": "column",
           "settings": {
+            "image_source": "shopify",
             "image": "shopify://shop_images/satisfyer_b3a89b80-25b3-4ec5-8a57-a3b1ca9b27e1.webp",
+            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -601,7 +653,9 @@
         "column5": {
           "type": "column",
           "settings": {
+            "image_source": "shopify",
             "image": "shopify://shop_images/b-vibe-Photoroom_1.webp",
+            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -611,7 +665,9 @@
         "column6": {
           "type": "column",
           "settings": {
+            "image_source": "shopify",
             "image": "shopify://shop_images/love-to-love.webp",
+            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -621,7 +677,9 @@
         "column_eWRKL9": {
           "type": "column",
           "settings": {
+            "image_source": "shopify",
             "image": "shopify://shop_images/tenga_logo_9b39df2f-48d0-4861-9228-aa7b025da25b.png",
+            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -631,7 +689,9 @@
         "column_EhwgVD": {
           "type": "column",
           "settings": {
+            "image_source": "shopify",
             "image": "shopify://shop_images/jo-lubricants.avif",
+            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -641,7 +701,9 @@
         "column_FGqXiG": {
           "type": "column",
           "settings": {
+            "image_source": "shopify",
             "image": "shopify://shop_images/je-joue_d4c59e83-0441-490c-8cc3-e4cdf3fb1d4b.webp",
+            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -651,7 +713,9 @@
         "column_j3HkVJ": {
           "type": "column",
           "settings": {
+            "image_source": "shopify",
             "image": "shopify://shop_images/emojibator.avif",
+            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -661,7 +725,9 @@
         "column_XL4QcY": {
           "type": "column",
           "settings": {
+            "image_source": "shopify",
             "image": "shopify://shop_images/LELO_Logo.png",
+            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -671,7 +737,9 @@
         "column_zKrE7L": {
           "type": "column",
           "settings": {
+            "image_source": "shopify",
             "image": "shopify://shop_images/We-Vibe_logo_2018.png",
+            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -720,7 +788,9 @@
         "column_Rhy9JY": {
           "type": "column",
           "settings": {
+            "image_source": "shopify",
             "image": "shopify://shop_images/editor_choice_50dp_533278_FILL0_wght400_GRAD0_opsz48.svg",
+            "cloudinary_src": "",
             "title": "<strong>Quality and Safe Products</strong>",
             "text": "<p>At <em>PlayLoveToys</em>, we're passionate about enhancing connection and pleasure for everyone in <em>{{ metaobject.city.value }}</em>. We meticulously curate a premium selection of high-quality <em>adult toys</em> and wellness products for <em>{{ metaobject.city.value }}</em> residents, designed to elevate your intimate experiences and support your journey towards greater sexual well-being and joy</p>",
             "link_label": "",
@@ -730,7 +800,9 @@
         "column_mfb8rc": {
           "type": "column",
           "settings": {
+            "image_source": "shopify",
             "image": "shopify://shop_images/verified_user_50dp_533278_FILL0_wght400_GRAD0_opsz48.svg",
+            "cloudinary_src": "",
             "title": "Privacy & Discretion",
             "text": "<p>Your privacy is paramount at <em>PlayLoveToys</em>. All orders shipped to <em>{{ metaobject.city.value }}</em> and throughout the rest of Canada arrive in plain, unmarked packaging. We are committed to ensuring your purchases are delivered discreetly and securely right to your doorstep in <em>{{ metaobject.city.value }}</em>, safeguarding your personal choices.</p>",
             "link_label": "",
@@ -740,7 +812,9 @@
         "column_EicGVg": {
           "type": "column",
           "settings": {
+            "image_source": "shopify",
             "image": "shopify://shop_images/diversity_1_50dp_533278_FILL0_wght400_GRAD0_opsz48_1.svg",
+            "cloudinary_src": "",
             "title": "<strong>Inclusivity & Respect</strong>",
             "text": "<p>We believe in pleasure for all, regardless of gender, orientation, or relationship status. We strive to create a welcoming and inclusive environment for all <em>{{ metaobject.city.value }}</em> customers to explore and enjoy our products.</p>",
             "link_label": "",
@@ -1016,7 +1090,8 @@
     "custom_section_izgFRq",
     "multicolumn_2x2_rMUj4F",
     "collection_list",
-    "rich_text",
+    "image_with_text_qpbbVU",
+    "apps_xwf3W6",
     "featured_collection1",
     "multicolumn",
     "multicolumn2",
