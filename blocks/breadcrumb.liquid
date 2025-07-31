@@ -219,7 +219,7 @@
         "position": {{ position }},
         "item": {
           "@id": "{{ shop.url | append: routes.root_url }}",
-          "name": "{{ block.settings.home_text | escape }}"
+          "name": "{{ block.settings.home_text | default: 'Home' | escape }}"
         }
       }
       {%- liquid
@@ -233,7 +233,7 @@
               "position": {{ position }},
               "item": {
                 "@id": "{{ shop.url | append: product.collections.first.url }}",
-                "name": "{{ product.collections.first.title | escape }}"
+                "name": "{{ product.collections.first.title | default: 'Collection' | escape }}"
               }
             }
             {%- liquid
@@ -245,7 +245,7 @@
             "position": {{ position }},
             "item": {
               "@id": "{{ shop.url | append: product.url }}",
-              "name": "{{ product.title | escape }}"
+              "name": "{{ product.title | default: 'Product' | escape }}"
             }
           }
         {%- when 'collection' -%}
@@ -254,7 +254,7 @@
             "position": {{ position }},
             "item": {
               "@id": "{{ shop.url | append: collection.url }}",
-              "name": "{{ collection.title | escape }}"
+              "name": "{{ collection.title | default: 'Collection' | escape }}"
             }
           }
         {%- when 'blog' -%}
@@ -263,7 +263,7 @@
             "position": {{ position }},
             "item": {
               "@id": "{{ shop.url | append: blog.url }}",
-              "name": "{{ blog.title | escape }}"
+              "name": "{{ blog.title | default: 'Blog' | escape }}"
             }
           }
         {%- when 'article' -%}
@@ -272,7 +272,7 @@
             "position": {{ position }},
             "item": {
               "@id": "{{ shop.url | append: blog.url }}",
-              "name": "{{ blog.title | escape }}"
+              "name": "{{ blog.title | default: 'Blog' | escape }}"
             }
           }
           {%- liquid
@@ -283,7 +283,7 @@
             "position": {{ position }},
             "item": {
               "@id": "{{ shop.url | append: article.url }}",
-              "name": "{{ article.title | escape }}"
+              "name": "{{ article.title | default: 'Article' | escape }}"
             }
           }
         {%- when 'page' -%}
@@ -292,7 +292,7 @@
             "position": {{ position }},
             "item": {
               "@id": "{{ shop.url | append: page.url }}",
-              "name": "{{ page.title | escape }}"
+              "name": "{{ page.title | default: 'Page' | escape }}"
             }
           }
         {%- else -%}
@@ -302,7 +302,7 @@
               "position": {{ position }},
               "item": {
                 "@id": "{{ request.origin }}{{ request.path }}",
-                "name": "{{ page_title | escape }}"
+                "name": "{{ page_title | default: 'Page' | escape }}"
               }
             }
           {%- endunless -%}

@@ -28,21 +28,6 @@
 
     {% render 'meta-tags' %}
 
-    <!-- Matomo Tag Manager -->
-    <script>
-      var _mtm = (window._mtm = window._mtm || []);
-      _mtm.push({ 'mtm.startTime': new Date().getTime(), event: 'mtm.Start' });
-      (function () {
-        var d = document,
-          g = d.createElement('script'),
-          s = d.getElementsByTagName('script')[0];
-        g.async = true;
-        g.src = 'https://analytics.avendano.site/js/container_ytk6IELU.js';
-        s.parentNode.insertBefore(g, s);
-      })();
-    </script>
-    <!-- End Matomo Tag Manager -->
-
     <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
@@ -318,6 +303,9 @@
       You can add your custom scripts here or in a separate file and include it in the theme.liquid file.
     {% endcomment %}
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <!-- Swiper.js JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     {% comment %}
       This is a custom CSS file that can be used to override the default styles of the theme.
       It is recommended to use this file for custom styles instead of editing the theme's core CSS files.
@@ -325,6 +313,9 @@
     {% endcomment %}
 
     {{ 'custom-style.css' | asset_url | stylesheet_tag }}
+
+    <!-- Swiper.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <!-- FAQ METADATA COLLECTIONS -->
     {% if collection.metafields.custom.faqs %}
