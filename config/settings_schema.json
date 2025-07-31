@@ -1335,12 +1335,6 @@
       },
       {
         "type": "text",
-        "id": "social_bluesky_link",
-        "label": "Bluesky",
-        "placeholder": "t:settings_schema.social-media.settings.social_twitter_link.info"
-      },
-      {
-        "type": "text",
         "id": "social_snapchat_link",
         "label": "t:settings_schema.social-media.settings.social_snapchat_link.label",
         "placeholder": "t:settings_schema.social-media.settings.social_snapchat_link.info"
