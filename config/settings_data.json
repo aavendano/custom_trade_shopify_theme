@@ -129,8 +129,6 @@
     "show_cart_note": false,
     "cart_drawer_collection": "",
     "cart_color_scheme": "scheme-1",
-    "enableimagekit": true,
-    "imagekiturl": "https://ik.imagekit.io/plt/",
     "sections": {
       "main-password-header": {
         "type": "main-password-header",

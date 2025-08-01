@@ -1457,32 +1457,5 @@
         "default": "scheme-1"
       }
     ]
-  },
-  {
-    "name": "imagekit",
-    "settings": [
-        {
-            "type": "paragraph",
-            "content": "Check out imagekit's [imagekit.io and Shopify integration](https://imagekit.io/docs/integration/shopify) to learn more about this."
-        },
-        {
-            "type": "checkbox",
-            "id": "enableimagekit",
-            "label": "Enable imagekit"
-        },
-        {
-            "type": "text",
-            "id": "imagekiturl",
-            "label": "imagekit url endpoint",
-            "info":"The URL endpoint you set within imagekit. Example: `https://ik.imagekit.io/your_imagekit_id/`."
-        },
-        {
-            "type": "text",
-            "id": "imagekitshopifycdnurl",
-            "label": "Shopify CDN domain",
-            "default":"//cdn.shopify.com",
-            "info":"Do not change this unless you have a proxy in place. Not sure? Leave it as is."
-        }
-    ]
-}
+  }
 ]
