@@ -305,7 +305,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     
     <!-- Swiper.js JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     {% comment %}
       This is a custom CSS file that can be used to override the default styles of the theme.
       It is recommended to use this file for custom styles instead of editing the theme's core CSS files.
@@ -323,6 +323,11 @@
         {{ collection.metafields.custom.faqs }}
       </script>
     {% endif %}
+
+  {% comment %}   PLAUSIBLE      {% endcomment %}
+<script defer data-domain="playlovetoys.ca" src="https://server.avendano.site/js/script.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js"></script>
+<script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+
 
     <script
       type="module"
