@@ -72,6 +72,57 @@
         "custom_class": "custom-section-class"
       }
     },
+    "1754612177c88f3af4": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_76093fc_HYRMCq": {
+          "type": "ai_gen_block_76093fc",
+          "settings": {
+            "metafield_namespace": "custom",
+            "metafield_key": "promotional_banner",
+            "max_width": 0,
+            "margin_top": 20,
+            "margin_bottom": 20,
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "padding_horizontal": 0,
+            "background_color": "rgba(0,0,0,0)",
+            "border_radius": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_76093fc_HYRMCq"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
     "main": {
       "type": "main-product",
       "blocks": {
@@ -113,34 +164,11 @@
           "type": "quantity_selector",
           "settings": {}
         },
-        "share": {
-          "type": "share",
-          "settings": {
-            "share_label": "Share"
-          }
-        },
         "buy_buttons_dRGG46": {
           "type": "buy_buttons",
           "settings": {
             "show_dynamic_checkout": false,
             "show_gift_card_recipient": false
-          }
-        },
-        "forms_inline_9fzndE": {
-          "type": "shopify://apps/forms/blocks/inline/8744a304-fcb1-4347-b211-bb6b4759a76a",
-          "settings": {
-            "form_id": "409689",
-            "text_color": "#202020",
-            "button_background_color": "#533278",
-            "button_label_color": "#ffffff",
-            "links_color": "#1878b9",
-            "errors_color": "#e02229",
-            "text_alignment": "center",
-            "form_alignment": "flex-start",
-            "padding_top": 0,
-            "padding_bottom": 24,
-            "padding_right": 0,
-            "padding_left": 0
           }
         },
         "complementary_hekA6V": {
@@ -178,9 +206,7 @@
         "inventory_cYdXmU",
         "variant_picker_NtNq9H",
         "quantity_selector_kGbd8x",
-        "share",
         "buy_buttons_dRGG46",
-        "forms_inline_9fzndE",
         "complementary_hekA6V",
         "description",
         "collapsible-row-1"
@@ -248,27 +274,31 @@
         "padding_bottom": 36
       }
     },
-    "1754662869c4289cac": {
-      "type": "apps",
-      "blocks": {
-        "aov_ai_bundle_upsell_offer_inline_DQHFW4": {
-          "type": "shopify://apps/aov-ai-bundle-upsell/blocks/offer-inline/0335d423-143c-4ad7-b224-99a1db74a9ee",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "aov_ai_bundle_upsell_offer_inline_DQHFW4"
-      ],
+    "featured_blog_iW9PRF": {
+      "type": "featured-blog",
+      "name": "Featured Blog",
       "settings": {
-        "include_margins": true
+        "blog": "sex-wellness",
+        "post_limit": 4,
+        "heading": "Blog posts",
+        "heading_size": "h1",
+        "columns_desktop": 4,
+        "show_view_all": true,
+        "show_image": true,
+        "show_date": true,
+        "show_author": false,
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     }
   },
   "order": [
     "custom_section_pEXVqj",
+    "1754612177c88f3af4",
     "main",
     "related-products",
     "featured_collection_XJ8yBQ",
-    "1754662869c4289cac"
+    "featured_blog_iW9PRF"
   ]
 }

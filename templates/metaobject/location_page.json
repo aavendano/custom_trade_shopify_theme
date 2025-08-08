@@ -430,6 +430,23 @@
     "custom_section_k34G9m": {
       "type": "custom_section",
       "blocks": {
+        "forms_inline_UedH4z": {
+          "type": "shopify://apps/forms/blocks/inline/8744a304-fcb1-4347-b211-bb6b4759a76a",
+          "settings": {
+            "form_id": "498644",
+            "text_color": "#202020",
+            "button_background_color": "#533278",
+            "button_label_color": "#FFFFFF",
+            "links_color": "#1878B9",
+            "errors_color": "#E02229",
+            "text_alignment": "center",
+            "form_alignment": "center",
+            "padding_top": 30,
+            "padding_bottom": 24,
+            "padding_right": 0,
+            "padding_left": 0
+          }
+        },
         "flexible_content_tXA8tn": {
           "type": "flexible-content",
           "name": "Flex Content",
@@ -493,6 +510,7 @@
         }
       },
       "block_order": [
+        "forms_inline_UedH4z",
         "flexible_content_tXA8tn"
       ],
       "name": "Motto",

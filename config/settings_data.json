@@ -37,8 +37,8 @@
     "variant_pills_shadow_vertical_offset": 4,
     "variant_pills_shadow_blur": 5,
     "inputs_border_thickness": 1,
-    "inputs_border_opacity": 55,
-    "inputs_radius": 6,
+    "inputs_border_opacity": 100,
+    "inputs_radius": 22,
     "inputs_shadow_opacity": 0,
     "inputs_shadow_horizontal_offset": 0,
     "inputs_shadow_vertical_offset": 0,
@@ -65,7 +65,7 @@
     "collection_card_shadow_horizontal_offset": 0,
     "collection_card_shadow_vertical_offset": 4,
     "collection_card_shadow_blur": 5,
-    "blog_card_style": "card",
+    "blog_card_style": "standard",
     "blog_card_image_padding": 0,
     "blog_card_text_alignment": "left",
     "blog_card_color_scheme": "scheme-3",
@@ -145,11 +145,6 @@
     },
     "content_for_index": [],
     "blocks": {
-      "9664103760669878543": {
-        "type": "shopify://apps/seoon-blog/blocks/avada-seoon-setting/a45c3e67-be9f-4255-a194-b255a24f37c9",
-        "disabled": false,
-        "settings": {}
-      },
       "1935445597218932304": {
         "type": "shopify://apps/avada-seo-suite/blocks/avada-seo/15507c6e-1aa3-45d3-b698-7e175e033440",
         "disabled": true,
@@ -169,6 +164,45 @@
           "controls": false,
           "muted": true
         }
+      },
+      "13768625480086291342": {
+        "type": "shopify://apps/forms/blocks/forms/8744a304-fcb1-4347-b211-bb6b4759a76a",
+        "disabled": false,
+        "settings": {}
+      },
+      "9664103760669878543": {
+        "type": "shopify://apps/seoon-blog/blocks/avada-seoon-setting/a45c3e67-be9f-4255-a194-b255a24f37c9",
+        "disabled": false,
+        "settings": {}
+      },
+      "14060646107696862457": {
+        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": false,
+        "settings": {}
+      },
+      "13088485011666827329": {
+        "type": "shopify://apps/appify-your-store/blocks/app-embed/ab160b86-d840-471a-8794-fa58be82e6d9",
+        "disabled": false,
+        "settings": {
+          "install_app_modal_version": "adaptive-bubble",
+          "notification_modal_version": "adaptive-bubble",
+          "install_app_btn_content": "",
+          "show_for_notification_permission": "all",
+          "show_app_install_popup": "only_home_page",
+          "show_on_ios": true,
+          "show_on_android": true,
+          "show_on_mac": false,
+          "show_on_windows": false,
+          "color_of_install_app_buton": "#533278",
+          "title_status": false,
+          "url_status": false,
+          "logo_status": false
+        }
+      },
+      "16605207545338212596": {
+        "type": "shopify://apps/aov-ai-bundle-upsell/blocks/aov-offer/0335d423-143c-4ad7-b224-99a1db74a9ee",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
