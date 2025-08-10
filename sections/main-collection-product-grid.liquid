@@ -28,10 +28,10 @@
       padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
     }
   .card__media--custom-background {
-    {% if collection.metafields.custom.media_card_custom_background %}
-      {{ collection.metafields.custom.media_card_custom_background }}
+    {% if collection.metafields.custom.product_card_color %}
+        background-color: {{ collection.metafields.custom.product_card_color }};
     {% else %}
-      background-color: white;
+      background-color: black;
     {% endif %}
   }
     @media screen and (min-width: 750px) {
