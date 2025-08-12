@@ -318,18 +318,27 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
     <!-- FAQ METADATA COLLECTIONS -->
-    {% if collection.metafields.custom.faqs %}
+    {% if collection and collection.metafields.custom.faqs %}
       <script type="application/ld+json">
-        {{ collection.metafields.custom.faqs | json }}
+        {{ collection.metafields.custom.faqs }}
       </script>
-    {% endif %}
-    <!-- FAQ Article COLLECTIONS -->
-    {% if article.metafields.custom.faqs %}
-    <script type="application/ld+json">
-    {{ article.metafields.custom.faqs | json }}
-    </script>
-    {% endif %}
+      <!-- FAQ Article COLLECTIONS -->
+      {% comment %} Detectar si estamos en una página de artículo {% endcomment %}
+    {% elsif article and article.metafields.custom.json_faqs %}
+      <script type="application/ld+json">
+        {{ article.metafields.custom.json_faqs }}
+      </script>
 
+      {% comment %} Para páginas de blog con lista de artículos {% endcomment %}
+    {% elsif blog and blog.articles.size > 0 %}
+      {% for article in blog.articles %}
+        {% if article.metafields.custom.json_faqs %}
+          <script type="application/ld+json">
+            {{ article.metafields.custom.json_faqs }}
+          </script>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
 
     {% comment %}
       PLAUSIBLE
