@@ -318,13 +318,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
     <!-- FAQ METADATA COLLECTIONS -->
-    {% if collection and collection.metafields.custom.faqs %}
+    {% if collection.metafields.custom.faqs %}
       <script type="application/ld+json">
         {{ collection.metafields.custom.faqs }}
       </script>
-      <!-- FAQ Article COLLECTIONS -->
-      {% comment %} Detectar si estamos en una página de artículo {% endcomment %}
-    {% elsif article and article.metafields.custom.json_faqs %}
+    {% endif %}
+    <!-- FAQ Article COLLECTIONS -->
+    {% comment %} Detectar si estamos en una página de artículo {% endcomment %}
+    {% if article and article.metafields.custom.json_faqs %}
       <script type="application/ld+json">
         {{ article.metafields.custom.json_faqs }}
       </script>

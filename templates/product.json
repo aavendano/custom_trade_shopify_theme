@@ -250,15 +250,6 @@
     },
     "1754662869c4289cac": {
       "type": "apps",
-      "blocks": {
-        "aov_ai_bundle_upsell_offer_inline_DQHFW4": {
-          "type": "shopify://apps/aov-ai-bundle-upsell/blocks/offer-inline/0335d423-143c-4ad7-b224-99a1db74a9ee",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "aov_ai_bundle_upsell_offer_inline_DQHFW4"
-      ],
       "settings": {
         "include_margins": true
       }
