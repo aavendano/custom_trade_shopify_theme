@@ -1,4 +1,4 @@
-{%- assign loading_attr = loading | default: 'eager' -%}
+{%- assign loading_attr = loading | default: 'lazy' -%}
 {%- assign image_public_id = public_id | default: 'sample.jpg' -%}
 {%- if alt and alt != '' -%}
   {%- assign alt_text = alt -%}
