@@ -16,7 +16,8 @@
   - horizontal_class: {Boolean} Add a card--horizontal class if set to true. Default: false (optional)
   - horizontal_quick_add: {Boolean} Changes the quick add button styles when set to true. Default: false (optional)
   - placeholder_image: {String} The placeholder image to use when no product exists. Default: 'product-apparel-2' (optional)
-
+  - image_max_width_desktop: {String} The max width of the image on desktop. (optional)
+  - image_max_width_mobile: {String} The max width of the image on mobile. (optional)
   Usage:
   {% render 'card-product', show_vendor: section.settings.show_vendor %}
 {% endcomment %}
@@ -61,7 +62,13 @@
           <div class="card__media{% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ settings.card_color_scheme }} gradient{% endif %} card__media--custom-background">
             <div class="media media--transparent media--hover-effect">
               {%- if card_product.metafields.custom.cloudinary_feature_image -%}
-                {% render 'aa-cloudinary-image', public_id: card_product.metafields.custom.cloudinary_feature_image %}
+                {%
+                  render 'aa-cloudinary-image',
+                  public_id: card_product.metafields.custom.cloudinary_feature_image,
+                  image_max_width_desktop: image_max_width_desktop | default: '100%',
+                  sizes_tablet: image_max_width_tablet | default: '100%',
+                  image_max_width_mobile: image_max_width_mobile | default: '100%'
+                %}
               {%- else -%}
                 {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
                 <img

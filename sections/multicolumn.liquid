@@ -92,7 +92,17 @@
                     {% endif %}
                   >
                     {%- if block.settings.image_source == 'cloudinary' -%}
-                      {%- render 'aa-cloudinary-image', public_id: block.settings.cloudinary_src -%}
+                      {%- liquid
+                        assign image_max_width_desktop = 100 | divided_by: section.settings.columns_desktop | append: 'vw'
+                        assign image_max_width_tablet = 100 | divided_by: section.settings.columns_mobile | append: 'vw'
+                        assign image_max_width_mobile = 100 | divided_by: section.settings.columns_mobile | append: 'vw'
+                      -%}
+                      {%- render 'aa-cloudinary-image',
+                        public_id: block.settings.cloudinary_src,
+                        image_max_width_desktop: image_max_width_desktop,
+                        sizes_tablet: image_max_width_tablet,
+                        image_max_width_mobile: image_max_width_mobile
+                      -%}
                     {%- else -%}
                       {%- liquid
                         assign number_of_columns = section.settings.columns_desktop

@@ -1,13 +1,15 @@
-{%- assign loading_attr = loading | default: 'lazy' -%}
+{%- assign loading_attr = image_loading_attr | default: 'lazy' -%}
 {%- assign image_public_id = public_id | default: 'sample.jpg' -%}
 {%- if alt and alt != '' -%}
   {%- assign alt_text = alt -%}
 {%- else -%}
   {%- assign alt_text = 'PlayLoveToys - ' | append: image_public_id -%}
 {%- endif -%}
-{%- assign sizes_mobile = sizes_mobile | default: '100vw' -%}
-{%- assign sizes_tablet = sizes_tablet | default: '100vw' -%}
-{%- assign sizes_desktop = sizes_desktop | default: '1400px' -%}
+{%- assign sizes_mobile = image_max_width_mobile | default: '50vw' -%}
+{%- assign sizes_tablet = sizes_tablet | default: '33vw' -%}
+{%- assign sizes_desktop = image_max_width_desktop | default: '25vw' -%}
+
+{%- assign transformation = 'f_auto,q_auto:good,dpr_auto' -%}
 
 <img
   width="{{ image.width }}"
@@ -20,18 +22,18 @@
   {% if loading_attr == 'eager' %}
     fetchpriority="high"
   {% endif %}
-  src="https://res.cloudinary.com/dv0xafomh/image/upload/f_auto%2Cq_auto%2Cw_100/{{ image_public_id }}"
+  src="https://res.cloudinary.com/dv0xafomh/image/upload/{{ transformation }},w_300/{{ image_public_id }}"
   srcset="
-    https://res.cloudinary.com/dv0xafomh/image/upload/f_auto%2Cq_auto%2Cw_100/{{ image_public_id }}   100w,
-    https://res.cloudinary.com/dv0xafomh/image/upload/f_auto%2Cq_auto%2Cw_200/{{ image_public_id }}   200w,
-    https://res.cloudinary.com/dv0xafomh/image/upload/f_auto%2Cq_auto%2Cw_300/{{ image_public_id }}   300w,
-    https://res.cloudinary.com/dv0xafomh/image/upload/f_auto%2Cq_auto%2Cw_400/{{ image_public_id }}   400w,
-    https://res.cloudinary.com/dv0xafomh/image/upload/f_auto%2Cq_auto%2Cw_600/{{ image_public_id }}   600w,
-    https://res.cloudinary.com/dv0xafomh/image/upload/f_auto%2Cq_auto%2Cw_800/{{ image_public_id }}   800w,
-    https://res.cloudinary.com/dv0xafomh/image/upload/f_auto%2Cq_auto%2Cw_1000/{{ image_public_id }} 1000w,
-    https://res.cloudinary.com/dv0xafomh/image/upload/f_auto%2Cq_auto%2Cw_1200/{{ image_public_id }} 1200w,
-    https://res.cloudinary.com/dv0xafomh/image/upload/f_auto%2Cq_auto%2Cw_1600/{{ image_public_id }} 1600w
+    https://res.cloudinary.com/dv0xafomh/image/upload/{{ transformation }},w_100/{{ image_public_id }}   100w,
+    https://res.cloudinary.com/dv0xafomh/image/upload/{{ transformation }},w_200/{{ image_public_id }}   200w,
+    https://res.cloudinary.com/dv0xafomh/image/upload/{{ transformation }},w_300/{{ image_public_id }}   300w,
+    https://res.cloudinary.com/dv0xafomh/image/upload/{{ transformation }},w_400/{{ image_public_id }}   400w,
+    https://res.cloudinary.com/dv0xafomh/image/upload/{{ transformation }},w_600/{{ image_public_id }}   600w,
+    https://res.cloudinary.com/dv0xafomh/image/upload/{{ transformation }},w_800/{{ image_public_id }}   800w,
+    https://res.cloudinary.com/dv0xafomh/image/upload/{{ transformation }},w_1000/{{ image_public_id }} 1000w,
+    https://res.cloudinary.com/dv0xafomh/image/upload/{{ transformation }},w_1200/{{ image_public_id }} 1200w,
+    https://res.cloudinary.com/dv0xafomh/image/upload/{{ transformation }},w_1600/{{ image_public_id }} 1600w
   "
-  sizes="(max-width: 768px) {{ sizes_mobile }}, (max-width: 1024px) {{ sizes_tablet }}, {{ sizes_desktop }}"
+  sizes="(min-width: 1024px) {{ sizes_desktop }}, (min-width: 768px) {{ sizes_tablet }}, {{ sizes_mobile }}"
   alt="{{ alt_text | escape }}"
 >

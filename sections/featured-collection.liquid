@@ -47,6 +47,7 @@
   endif
 
   assign columns_mobile_int = section.settings.columns_mobile | plus: 0
+  assign columns_tablet_int = section.settings.columns_tablet | plus: 0
   assign columns_desktop_int = section.settings.columns_desktop | plus: 0
   assign show_mobile_slider = false
   if section.settings.swipe_on_mobile and products_to_display > columns_mobile_int
@@ -62,6 +63,10 @@
   if section.settings.enable_desktop_slider and products_to_display > section.settings.columns_desktop
     assign show_desktop_slider = true
   endif
+
+  assign image_max_width_desktop = 100 | divided_by: columns_desktop_int | round: 2 | append: 'vw'
+  assign image_max_width_tablet = 100 | divided_by: columns_tablet_int | round: 2 | append: 'vw'
+  assign image_max_width_mobile = 100 | divided_by: columns_mobile_int | round: 2 | append: 'vw'
 -%}
 
 <div
@@ -127,7 +132,10 @@
                   show_rating: section.settings.show_rating,
                   skip_styles: skip_card_product_styles,
                   section_id: section.id,
-                  quick_add: section.settings.quick_add
+                  quick_add: section.settings.quick_add,
+                  image_max_width_desktop: image_max_width_desktop,
+                  image_max_width_tablet: image_max_width_tablet,
+                  image_max_width_mobile: image_max_width_mobile
                 %}
               </li>
               {%- assign skip_card_product_styles = true -%}
@@ -465,6 +473,30 @@
         {
           "value": "bulk",
           "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_3"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:sections.featured-collection.settings.header_tablet.content"
+    },
+    {
+      "type": "select",
+      "id": "columns_tablet",
+      "default": "3",
+      "label": "t:sections.featured-collection.settings.columns_tablet.label",
+      "options": [
+        {
+          "value": "1",
+          "label": "t:sections.featured-collection.settings.columns_tablet.options__1.label"
+        },
+        {
+          "value": "2",
+          "label": "t:sections.featured-collection.settings.columns_tablet.options__2.label"
+        },
+        {
+          "value": "3",
+          "label": "t:sections.featured-collection.settings.columns_tablet.options__3.label"
         }
       ]
     },
