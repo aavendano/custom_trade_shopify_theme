@@ -1,0 +1,831 @@
+{% doc %}
+  @prompt
+    Create a modern 2-column blog layout where the first column takes up 2/3 of the page width and contains: 1 featured article at the top (larger, prominent display), followed by 5 important articles below it (smaller but still prominent). The second column takes up 1/3 for a configurable sidebar with customizable content blocks that can include widgets, related articles, categories, newsletter signup, social media links, or any other content. Make the sidebar flexible and easily customizable through the theme editor. The design should be responsive, clean and modern with proper spacing. Ensure mobile responsiveness with columns stacking vertically.,  customization author and excerpt on featured article
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-blog-layout-{{ ai_gen_id }} {
+    max-width: {{ settings.page_width }}px;
+    margin: 0 auto;
+    padding: 0 {{ settings.spacing_grid_horizontal }}px;
+  }
+
+  .ai-blog-layout__container-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: {{ block.settings.column_gap }}px;
+    margin-top: {{ block.settings.top_spacing }}px;
+    margin-bottom: {{ block.settings.bottom_spacing }}px;
+  }
+
+  .ai-blog-layout__main-{{ ai_gen_id }} {
+    min-width: 0;
+  }
+
+  .ai-blog-layout__sidebar-{{ ai_gen_id }} {
+    background-color: {{ block.settings.sidebar_bg_color }};
+    padding: {{ block.settings.sidebar_padding }}px;
+    border-radius: {{ block.settings.sidebar_border_radius }}px;
+    height: fit-content;
+    position: sticky;
+    top: 20px;
+  }
+
+  .ai-blog-layout__featured-article-{{ ai_gen_id }} {
+    margin-bottom: {{ block.settings.featured_article_spacing }}px;
+    background-color: {{ block.settings.featured_bg_color }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    overflow: hidden;
+    box-shadow: 0 {{ block.settings.card_shadow_vertical }}px {{ block.settings.card_shadow_blur }}px rgba(0, 0, 0, {{ block.settings.card_shadow_opacity | divided_by: 100.0 }});
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .ai-blog-layout__featured-article-{{ ai_gen_id }}:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 {{ block.settings.card_shadow_vertical | plus: 4 }}px {{ block.settings.card_shadow_blur | plus: 8 }}px rgba(0, 0, 0, {{ block.settings.card_shadow_opacity | divided_by: 100.0 | times: 1.2 }});
+  }
+
+  .ai-blog-layout__featured-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: {{ block.settings.featured_image_height }}px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ai-blog-layout__featured-image-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .ai-blog-layout__featured-article-{{ ai_gen_id }}:hover .ai-blog-layout__featured-image-{{ ai_gen_id }} img {
+    transform: scale(1.05);
+  }
+
+  .ai-blog-layout__featured-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-blog-layout__featured-placeholder-{{ ai_gen_id }} svg {
+    width: 80px;
+    height: 80px;
+    opacity: 0.5;
+  }
+
+  .ai-blog-layout__featured-content-{{ ai_gen_id }} {
+    padding: {{ block.settings.featured_content_padding }}px;
+  }
+
+  .ai-blog-layout__featured-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.featured_title_size }}px;
+    font-weight: 700;
+    color: {{ block.settings.featured_text_color }};
+    margin: 0 0 12px 0;
+    line-height: 1.3;
+  }
+
+  .ai-blog-layout__featured-title-{{ ai_gen_id }} a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .ai-blog-layout__featured-title-{{ ai_gen_id }} a:hover {
+    color: {{ block.settings.link_hover_color }};
+  }
+
+  .ai-blog-layout__featured-excerpt-{{ ai_gen_id }} {
+    font-size: {{ block.settings.featured_excerpt_size }}px;
+    color: {{ block.settings.featured_text_color }};
+    line-height: 1.6;
+    margin: 0 0 16px 0;
+    opacity: 0.8;
+  }
+
+  .ai-blog-layout__featured-meta-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: {{ block.settings.featured_meta_size }}px;
+    color: {{ block.settings.featured_text_color }};
+    opacity: 0.7;
+  }
+
+  .ai-blog-layout__articles-grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: {{ block.settings.articles_gap }}px;
+  }
+
+  .ai-blog-layout__article-card-{{ ai_gen_id }} {
+    background-color: {{ block.settings.article_bg_color }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    overflow: hidden;
+    box-shadow: 0 {{ block.settings.card_shadow_vertical }}px {{ block.settings.card_shadow_blur }}px rgba(0, 0, 0, {{ block.settings.card_shadow_opacity | divided_by: 100.0 }});
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .ai-blog-layout__article-card-{{ ai_gen_id }}:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 {{ block.settings.card_shadow_vertical | plus: 2 }}px {{ block.settings.card_shadow_blur | plus: 4 }}px rgba(0, 0, 0, {{ block.settings.card_shadow_opacity | divided_by: 100.0 | times: 1.2 }});
+  }
+
+  .ai-blog-layout__article-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: {{ block.settings.article_image_height }}px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ai-blog-layout__article-image-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .ai-blog-layout__article-card-{{ ai_gen_id }}:hover .ai-blog-layout__article-image-{{ ai_gen_id }} img {
+    transform: scale(1.05);
+  }
+
+  .ai-blog-layout__article-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-blog-layout__article-placeholder-{{ ai_gen_id }} svg {
+    width: 40px;
+    height: 40px;
+    opacity: 0.5;
+  }
+
+  .ai-blog-layout__article-content-{{ ai_gen_id }} {
+    padding: {{ block.settings.article_content_padding }}px;
+  }
+
+  .ai-blog-layout__article-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.article_title_size }}px;
+    font-weight: 600;
+    color: {{ block.settings.article_text_color }};
+    margin: 0 0 8px 0;
+    line-height: 1.4;
+  }
+
+  .ai-blog-layout__article-title-{{ ai_gen_id }} a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .ai-blog-layout__article-title-{{ ai_gen_id }} a:hover {
+    color: {{ block.settings.link_hover_color }};
+  }
+
+  .ai-blog-layout__article-excerpt-{{ ai_gen_id }} {
+    font-size: {{ block.settings.article_excerpt_size }}px;
+    color: {{ block.settings.article_text_color }};
+    line-height: 1.5;
+    margin: 0 0 12px 0;
+    opacity: 0.8;
+  }
+
+  .ai-blog-layout__article-meta-{{ ai_gen_id }} {
+    font-size: 12px;
+    color: {{ block.settings.article_text_color }};
+    opacity: 0.6;
+  }
+
+  .ai-blog-layout__sidebar-content-{{ ai_gen_id }} {
+    color: {{ block.settings.sidebar_text_color }};
+  }
+
+  .ai-blog-layout__sidebar-content-{{ ai_gen_id }} h3 {
+    font-size: {{ block.settings.sidebar_heading_size }}px;
+    font-weight: 600;
+    margin: 0 0 16px 0;
+    color: {{ block.settings.sidebar_text_color }};
+  }
+
+  .ai-blog-layout__sidebar-content-{{ ai_gen_id }} p {
+    font-size: {{ block.settings.sidebar_text_size }}px;
+    line-height: 1.6;
+    margin: 0 0 16px 0;
+  }
+
+  .ai-blog-layout__sidebar-content-{{ ai_gen_id }} a {
+    color: {{ block.settings.link_hover_color }};
+    text-decoration: none;
+  }
+
+  .ai-blog-layout__sidebar-content-{{ ai_gen_id }} a:hover {
+    text-decoration: underline;
+  }
+
+  .ai-blog-layout__sidebar-content-{{ ai_gen_id }} ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 16px 0;
+  }
+
+  .ai-blog-layout__sidebar-content-{{ ai_gen_id }} li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .ai-blog-layout__sidebar-content-{{ ai_gen_id }} li:last-child {
+    border-bottom: none;
+  }
+
+  @media screen and (max-width: 990px) {
+    .ai-blog-layout__container-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: {{ block.settings.mobile_gap }}px;
+    }
+
+    .ai-blog-layout__sidebar-{{ ai_gen_id }} {
+      position: static;
+      order: {{ block.settings.mobile_sidebar_position }};
+    }
+
+    .ai-blog-layout__featured-image-{{ ai_gen_id }} {
+      height: {{ block.settings.featured_image_height | times: 0.7 }}px;
+    }
+
+    .ai-blog-layout__article-image-{{ ai_gen_id }} {
+      height: {{ block.settings.article_image_height | times: 0.8 }}px;
+    }
+
+    .ai-blog-layout__articles-grid-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-blog-layout__featured-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.featured_title_size | times: 0.9 }}px;
+    }
+
+    .ai-blog-layout__article-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.article_title_size | times: 0.9 }}px;
+    }
+
+    .ai-blog-layout__featured-content-{{ ai_gen_id }},
+    .ai-blog-layout__article-content-{{ ai_gen_id }} {
+      padding: {{ block.settings.featured_content_padding | times: 0.8 }}px;
+    }
+
+    .ai-blog-layout__sidebar-{{ ai_gen_id }} {
+      padding: {{ block.settings.sidebar_padding | times: 0.8 }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-blog-layout-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-blog-layout__container-{{ ai_gen_id }}">
+    <main class="ai-blog-layout__main-{{ ai_gen_id }}">
+      {% if block.settings.featured_article != blank %}
+        <article class="ai-blog-layout__featured-article-{{ ai_gen_id }}">
+          <div class="ai-blog-layout__featured-image-{{ ai_gen_id }}">
+            {% if block.settings.featured_article.image %}
+              <img
+                src="{{ block.settings.featured_article.image | image_url: width: 800}}"
+                alt="{{ block.settings.featured_article.image.alt | escape }}"
+                loading="lazy"
+                width="{{ block.settings.featured_article.image.width }}"
+                height="{{ block.settings.featured_article.image.height }}"
+              >
+            {% else %}
+              <div class="ai-blog-layout__featured-placeholder-{{ ai_gen_id }}">
+                {{ 'blog-apparel-1' | placeholder_svg_tag }}
+              </div>
+            {% endif %}
+          </div>
+          <div class="ai-blog-layout__featured-content-{{ ai_gen_id }}">
+            <h2 class="ai-blog-layout__featured-title-{{ ai_gen_id }}">
+              <a href="{{ block.settings.featured_article.url }}">{{ block.settings.featured_article.title }}</a>
+            </h2>
+            {% if block.settings.show_featured_excerpt %}
+              <div class="ai-blog-layout__featured-excerpt-{{ ai_gen_id }}">
+                {% if block.settings.custom_featured_excerpt != blank %}
+                  {{ block.settings.custom_featured_excerpt | truncate: block.settings.featured_excerpt_length }}
+                {% elsif block.settings.featured_article.excerpt != blank %}
+                  {{ block.settings.featured_article.excerpt | truncate: block.settings.featured_excerpt_length }}
+                {% endif %}
+              </div>
+            {% endif %}
+            {% if block.settings.show_featured_meta %}
+              <div class="ai-blog-layout__featured-meta-{{ ai_gen_id }}">
+                {% if block.settings.show_featured_date %}
+                  <span>{{ block.settings.featured_article.published_at | date: block.settings.featured_date_format }}</span>
+                {% endif %}
+                {% if block.settings.show_featured_author %}
+                  <span>By 
+                    {% if block.settings.custom_featured_author != blank %}
+                      {{ block.settings.custom_featured_author }}
+                    {% elsif block.settings.featured_article.author != blank %}
+                      {{ block.settings.featured_article.author }}
+                    {% else %}
+                      Admin
+                    {% endif %}
+                  </span>
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+        </article>
+      {% endif %}
+
+      {% if block.settings.articles_blog != blank %}
+        <div class="ai-blog-layout__articles-grid-{{ ai_gen_id }}">
+          {% assign articles_to_show = block.settings.articles_count | at_most: 5 %}
+          {% for article in block.settings.articles_blog.articles limit: articles_to_show %}
+            {% unless article.id == block.settings.featured_article.id %}
+              <article class="ai-blog-layout__article-card-{{ ai_gen_id }}">
+                <div class="ai-blog-layout__article-image-{{ ai_gen_id }}">
+                  {% if article.image %}
+                    <img
+                      src="{{ article.image | image_url: width: 400 }}"
+                      alt="{{ article.image.alt | escape }}"
+                      loading="lazy"
+                      width="{{ article.image.width }}"
+                      height="{{ article.image.height }}"
+                    >
+                  {% else %}
+                    <div class="ai-blog-layout__article-placeholder-{{ ai_gen_id }}">
+                      {{ 'blog-apparel-1' | placeholder_svg_tag }}
+                    </div>
+                  {% endif %}
+                </div>
+                <div class="ai-blog-layout__article-content-{{ ai_gen_id }}">
+                  <h3 class="ai-blog-layout__article-title-{{ ai_gen_id }}">
+                    <a href="{{ article.url }}">{{ article.title }}</a>
+                  </h3>
+                  {% if block.settings.show_article_excerpt and article.excerpt != blank %}
+                    <div class="ai-blog-layout__article-excerpt-{{ ai_gen_id }}">
+                      {{ article.excerpt | truncate: 120 }}
+                    </div>
+                  {% endif %}
+                  {% if block.settings.show_article_meta %}
+                    <div class="ai-blog-layout__article-meta-{{ ai_gen_id }}">
+                      {{ article.published_at | date: '%B %d, %Y' }}
+                    </div>
+                  {% endif %}
+                </div>
+              </article>
+            {% endunless %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </main>
+
+    <aside class="ai-blog-layout__sidebar-{{ ai_gen_id }}">
+      <div class="ai-blog-layout__sidebar-content-{{ ai_gen_id }}">
+        {% if block.settings.sidebar_content != blank %}
+          {{ block.settings.sidebar_content }}
+        {% else %}
+          <h3>About This Blog</h3>
+          <p>Stay updated with our latest news, insights, and stories. Subscribe to our newsletter for exclusive content and updates.</p>
+          
+          <h3>Categories</h3>
+          <ul>
+            <li><a href="#">Fashion</a></li>
+            <li><a href="#">Lifestyle</a></li>
+            <li><a href="#">News</a></li>
+            <li><a href="#">Tips & Guides</a></li>
+          </ul>
+          
+          <h3>Follow Us</h3>
+          <p>Connect with us on social media for daily updates and behind-the-scenes content.</p>
+        {% endif %}
+      </div>
+    </aside>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Modern blog layout",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Featured article"
+    },
+    {
+      "type": "article",
+      "id": "featured_article",
+      "label": "Featured article"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_featured_excerpt",
+      "label": "Show excerpt",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "custom_featured_excerpt",
+      "label": "Custom excerpt",
+      "info": "Leave blank to use the article's excerpt"
+    },
+    {
+      "type": "range",
+      "id": "featured_excerpt_length",
+      "min": 50,
+      "max": 400,
+      "step": 10,
+      "label": "Excerpt length",
+      "default": 200
+    },
+    {
+      "type": "checkbox",
+      "id": "show_featured_meta",
+      "label": "Show meta information",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_featured_date",
+      "label": "Show date",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "featured_date_format",
+      "label": "Date format",
+      "default": "%B %d, %Y",
+      "info": "Use Liquid date format. Examples: %B %d, %Y (January 01, 2024), %m/%d/%Y (01/01/2024)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_featured_author",
+      "label": "Show author",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "custom_featured_author",
+      "label": "Custom author name",
+      "info": "Leave blank to use the article's author"
+    },
+    {
+      "type": "range",
+      "id": "featured_image_height",
+      "min": 200,
+      "max": 500,
+      "step": 20,
+      "unit": "px",
+      "label": "Image height",
+      "default": 300
+    },
+    {
+      "type": "header",
+      "content": "Articles grid"
+    },
+    {
+      "type": "blog",
+      "id": "articles_blog",
+      "label": "Blog"
+    },
+    {
+      "type": "range",
+      "id": "articles_count",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "label": "Number of articles",
+      "default": 5
+    },
+    {
+      "type": "checkbox",
+      "id": "show_article_excerpt",
+      "label": "Show excerpt",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_article_meta",
+      "label": "Show date",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "article_image_height",
+      "min": 120,
+      "max": 300,
+      "step": 20,
+      "unit": "px",
+      "label": "Image height",
+      "default": 180
+    },
+    {
+      "type": "header",
+      "content": "Sidebar"
+    },
+    {
+      "type": "richtext",
+      "id": "sidebar_content",
+      "label": "Sidebar content"
+    },
+    {
+      "type": "select",
+      "id": "mobile_sidebar_position",
+      "label": "Mobile sidebar position",
+      "options": [
+        {
+          "value": "1",
+          "label": "Above articles"
+        },
+        {
+          "value": "2",
+          "label": "Below articles"
+        }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "featured_bg_color",
+      "label": "Featured article background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "featured_text_color",
+      "label": "Featured article text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "article_bg_color",
+      "label": "Article card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "article_text_color",
+      "label": "Article card text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "sidebar_bg_color",
+      "label": "Sidebar background",
+      "default": "#f8f8f8"
+    },
+    {
+      "type": "color",
+      "id": "sidebar_text_color",
+      "label": "Sidebar text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "link_hover_color",
+      "label": "Link hover color",
+      "default": "#0066cc"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "featured_title_size",
+      "min": 20,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Featured title size",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "featured_excerpt_size",
+      "min": 14,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Featured excerpt size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "featured_meta_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Featured meta size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "article_title_size",
+      "min": 16,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Article title size",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "article_excerpt_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Article excerpt size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "sidebar_heading_size",
+      "min": 16,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Sidebar heading size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "sidebar_text_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Sidebar text size",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "top_spacing",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top spacing",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "bottom_spacing",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom spacing",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "min": 20,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Column gap",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_gap",
+      "min": 16,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile gap",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "featured_article_spacing",
+      "min": 20,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Featured article bottom spacing",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "articles_gap",
+      "min": 16,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Articles grid gap",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "featured_content_padding",
+      "min": 16,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Featured content padding",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "article_content_padding",
+      "min": 12,
+      "max": 32,
+      "step": 4,
+      "unit": "px",
+      "label": "Article content padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "sidebar_padding",
+      "min": 16,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Sidebar padding",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Card border radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "sidebar_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Sidebar border radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "card_shadow_opacity",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "%",
+      "label": "Card shadow opacity",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "card_shadow_vertical",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Card shadow vertical offset",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "card_shadow_blur",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Card shadow blur",
+      "default": 12
+    }
+  ],
+  "presets": [
+    {
+      "name": "Modern blog layout"
+    }
+  ],
+  "tag": null
+}
+{% endschema %}

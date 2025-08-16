@@ -49,6 +49,11 @@
   assign columns_mobile_int = section.settings.columns_mobile | plus: 0
   assign columns_tablet_int = section.settings.columns_tablet | plus: 0
   assign columns_desktop_int = section.settings.columns_desktop | plus: 0
+
+  assign image_size_desktop = settings.page_width | divided_by: columns_desktop_int | ceil | plus: 10 | append: 'px'
+  assign image_size_tablet = 990 | divided_by: columns_tablet_int | ceil | plus: 20 | append: 'px'
+  assign image_size_mobile = 750 | divided_by: columns_mobile_int | ceil | plus: 20 | append: 'px'
+
   assign show_mobile_slider = false
   if section.settings.swipe_on_mobile and products_to_display > columns_mobile_int
     assign show_mobile_slider = true
@@ -63,10 +68,6 @@
   if section.settings.enable_desktop_slider and products_to_display > section.settings.columns_desktop
     assign show_desktop_slider = true
   endif
-
-  assign image_max_width_desktop = 100 | divided_by: columns_desktop_int | round: 2 | append: 'vw'
-  assign image_max_width_tablet = 100 | divided_by: columns_tablet_int | round: 2 | append: 'vw'
-  assign image_max_width_mobile = 100 | divided_by: columns_mobile_int | round: 2 | append: 'vw'
 -%}
 
 <div
@@ -133,9 +134,9 @@
                   skip_styles: skip_card_product_styles,
                   section_id: section.id,
                   quick_add: section.settings.quick_add,
-                  image_max_width_desktop: image_max_width_desktop,
-                  image_max_width_tablet: image_max_width_tablet,
-                  image_max_width_mobile: image_max_width_mobile
+                  image_size_desktop: image_size_desktop,
+                  image_size_tablet: image_size_tablet,
+                  image_size_mobile: image_size_mobile
                 %}
               </li>
               {%- assign skip_card_product_styles = true -%}
@@ -165,7 +166,10 @@
                 media_aspect_ratio: section.settings.image_ratio,
                 image_shape: section.settings.image_shape,
                 lazy_load: false,
-                placeholder_image: placeholder_image
+                placeholder_image: placeholder_image,
+                image_size_desktop: image_size_desktop,
+                image_size_tablet: image_size_tablet,
+                image_size_mobile: image_size_mobile
               %}
             </li>
           {%- endfor -%}
@@ -478,25 +482,29 @@
     },
     {
       "type": "header",
-      "content": "t:sections.featured-collection.settings.header_tablet.content"
+      "content": "Tablet Layout"
     },
     {
       "type": "select",
       "id": "columns_tablet",
-      "default": "3",
-      "label": "t:sections.featured-collection.settings.columns_tablet.label",
+      "default": "4",
+      "label": "Columns in Tablet",
       "options": [
         {
           "value": "1",
-          "label": "t:sections.featured-collection.settings.columns_tablet.options__1.label"
+          "label": "t:sections.featured-collection.settings.columns_mobile.options__1.label"
         },
         {
           "value": "2",
-          "label": "t:sections.featured-collection.settings.columns_tablet.options__2.label"
+          "label": "t:sections.featured-collection.settings.columns_mobile.options__2.label"
         },
         {
           "value": "3",
-          "label": "t:sections.featured-collection.settings.columns_tablet.options__3.label"
+          "label": "t:sections.featured-collection.settings.columns_mobile.options__3.label"
+        },
+        {
+          "value": "4",
+          "label": "t:sections.featured-collection.settings.columns_mobile.options__4.label"
         }
       ]
     },

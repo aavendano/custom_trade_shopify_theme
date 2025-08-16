@@ -16,11 +16,29 @@
   - horizontal_class: {Boolean} Add a card--horizontal class if set to true. Default: false (optional)
   - horizontal_quick_add: {Boolean} Changes the quick add button styles when set to true. Default: false (optional)
   - placeholder_image: {String} The placeholder image to use when no product exists. Default: 'product-apparel-2' (optional)
-  - image_max_width_desktop: {String} The max width of the image on desktop. (optional)
-  - image_max_width_mobile: {String} The max width of the image on mobile. (optional)
+  - image_size_mobile: {String} The image size to use on mobile devices. Default: '533x' (optional)
+  - image_size_tablet: {String} The image size to use on tablet devices. Default: '533x' (optional)
+  - image_size_desktop: {String} The image size to use on desktop devices. Default: '533x' (optional)
   Usage:
   {% render 'card-product', show_vendor: section.settings.show_vendor %}
 {% endcomment %}
+
+{% liquid
+  assign image_size_desktop = image_size_desktop | default: 500
+  assign image_size_tablet = image_size_tablet | default: 500
+  assign image_size_mobile = image_size_mobile | default: 750
+%}
+
+{% style %}
+  .aa-custom-product-card-image-responsive img {
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    object-fit: contain !important;
+    display: block;
+  }
+{% endstyle %}
+
 {%- unless skip_styles -%}
   {{ 'component-rating.css' | asset_url | stylesheet_tag }}
   {{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
@@ -60,14 +78,13 @@
       >
         {%- if card_product.metafields.custom.cloudinary_feature_image or card_product.featured_media -%}
           <div class="card__media{% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ settings.card_color_scheme }} gradient{% endif %} card__media--custom-background">
-            <div class="media media--transparent media--hover-effect">
+            <div class="media media--transparent media--hover-effect aa-custom-product-card-image-responsive">
               {%- if card_product.metafields.custom.cloudinary_feature_image -%}
-                {%
-                  render 'aa-cloudinary-image',
+                {% render 'aa-cloudinary-image',
                   public_id: card_product.metafields.custom.cloudinary_feature_image,
-                  image_max_width_desktop: image_max_width_desktop | default: '100%',
-                  sizes_tablet: image_max_width_tablet | default: '100%',
-                  image_max_width_mobile: image_max_width_mobile | default: '100%'
+                  image_size_desktop: image_size_desktop,
+                  image_size_tablet: image_size_tablet,
+                  image_size_mobile: image_size_mobile
                 %}
               {%- else -%}
                 {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
@@ -82,7 +99,7 @@
                     {{ card_product.featured_media | image_url }} {{ card_product.featured_media.width }}w
                   "
                   src="{{ card_product.featured_media | image_url: width: 533 }}"
-                  sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+                  sizes="(min-width: {{ settings.page_width }}) {{- image_size_desktop -}}, (min-width: 990px) {{- image_size_desktop -}}, (min-width: 750px) {{- image_size_mobile -}}, {{- image_size_mobile -}}"
                   alt="{{ card_product.featured_media.alt | escape }}"
                   class="motion-reduce"
                   {% unless lazy_load == false %}
