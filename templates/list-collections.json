@@ -113,7 +113,7 @@
             "title_size": 24,
             "title_weight": "600",
             "title_color": "#333333",
-            "enable_title_shadow": false,
+            "enable_title_shadow": true,
             "overlay_color": "#000000",
             "overlay_opacity": 0,
             "rotation_speed": 3
@@ -395,7 +395,7 @@
             "title": "",
             "text": "",
             "link_label": "",
-            "link": "shopify://collections/lelo"
+            "link": "shopify://collections/lelo-sex-toys"
           }
         },
         "column_f4kPhC": {
@@ -433,14 +433,14 @@
         "image_ratio": "adapt",
         "button_label": "",
         "button_link": "",
-        "columns_desktop": 4,
+        "columns_desktop": 5,
         "column_alignment": "center",
         "background_style": "none",
         "color_scheme": "scheme-3",
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 24,
-        "padding_bottom": 24
+        "padding_bottom": 56
       }
     },
     "collection_list_pjPpBm": {
@@ -528,6 +528,7 @@
         "show_vendor": true,
         "show_rating": false,
         "quick_add": "none",
+        "columns_tablet": "4",
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 36,

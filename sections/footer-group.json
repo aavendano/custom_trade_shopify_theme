@@ -14,6 +14,12 @@
     "footer": {
       "type": "footer",
       "blocks": {
+        "brand_information_BAnPQg": {
+          "type": "brand_information",
+          "settings": {
+            "show_social": false
+          }
+        },
         "link_list_nypeRK": {
           "type": "link_list",
           "settings": {
@@ -27,18 +33,12 @@
             "heading": "Quick links",
             "menu": "footer"
           }
-        },
-        "brand_information_BAnPQg": {
-          "type": "brand_information",
-          "settings": {
-            "show_social": true
-          }
         }
       },
       "block_order": [
+        "brand_information_BAnPQg",
         "link_list_nypeRK",
-        "link_list",
-        "brand_information_BAnPQg"
+        "link_list"
       ],
       "custom_css": [],
       "settings": {

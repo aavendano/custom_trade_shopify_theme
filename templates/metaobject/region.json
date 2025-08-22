@@ -272,7 +272,7 @@
             "title": "",
             "text": "",
             "link_label": "",
-            "link": "shopify://collections/under-20"
+            "link": "/collections/all?filter.v.availability=1&filter.v.price.gte=&filter.v.price.lte=20&sort_by=price-descending"
           }
         },
         "column_eVMGzx": {
@@ -290,7 +290,7 @@
             "title": "",
             "text": "",
             "link_label": "",
-            "link": "shopify://collections/under-30"
+            "link": "/collections/all?filter.v.availability=1&filter.v.price.gte=&filter.v.price.lte=30&sort_by=price-descending"
           }
         },
         "column_AYTjz9": {
@@ -308,7 +308,7 @@
             "title": "",
             "text": "",
             "link_label": "",
-            "link": "shopify://collections/under-50"
+            "link": "/collections/all?filter.v.availability=1&filter.v.price.gte=&filter.v.price.lte=50&sort_by=price-descending"
           }
         },
         "column_mDBhmP": {
@@ -326,7 +326,7 @@
             "title": "",
             "text": "",
             "link_label": "",
-            "link": "shopify://collections/under-100"
+            "link": "/collections/all?filter.v.availability=1&filter.v.price.gte=&filter.v.price.lte=100.00&sort_by=price-descending"
           }
         }
       },
@@ -436,9 +436,9 @@
             "form_id": "498644",
             "text_color": "#202020",
             "button_background_color": "#533278",
-            "button_label_color": "#FFFFFF",
-            "links_color": "#1878B9",
-            "errors_color": "#E02229",
+            "button_label_color": "#ffffff",
+            "links_color": "#1878b9",
+            "errors_color": "#e02229",
             "text_alignment": "center",
             "form_alignment": "center",
             "padding_top": 30,
@@ -550,7 +550,7 @@
       "type": "featured-collection",
       "name": "Best Adult Toys",
       "settings": {
-        "collection": "best-adult-toys",
+        "collection": "best-sex-toys",
         "products_to_show": 10,
         "title": "{{ metaobject.province.value }} Best Sex Toys",
         "heading_size": "h1",
@@ -565,10 +565,11 @@
         "color_scheme": "scheme-3",
         "image_ratio": "square",
         "image_shape": "default",
-        "show_secondary_image": true,
+        "show_secondary_image": false,
         "show_vendor": true,
         "show_rating": false,
         "quick_add": "none",
+        "columns_tablet": "4",
         "columns_mobile": "2",
         "swipe_on_mobile": true,
         "padding_top": 36,
@@ -707,7 +708,7 @@
             "title": "",
             "text": "",
             "link_label": "",
-            "link": "shopify://collections/lelo"
+            "link": "shopify://collections/lelo-sex-toys"
           }
         },
         "column_zKrE7L": {
@@ -936,10 +937,11 @@
         "color_scheme": "",
         "image_ratio": "square",
         "image_shape": "default",
-        "show_secondary_image": true,
+        "show_secondary_image": false,
         "show_vendor": true,
         "show_rating": false,
         "quick_add": "none",
+        "columns_tablet": "4",
         "columns_mobile": "2",
         "swipe_on_mobile": true,
         "padding_top": 36,
