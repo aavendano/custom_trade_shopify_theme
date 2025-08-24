@@ -215,32 +215,16 @@
                       style="--grid-gap: {{ block.settings.image_gap | default: 16 }}px; --grid-margin: {{ block.settings.image_margin | default: 0 }}px; --grid-padding: {{ block.settings.image_padding | default: 0 }}px;"
                     >
                       {%- if block.settings.image != blank -%}
-                        {{
-                          block.settings.image
-                          | image_url: width: 800
-                          | image_tag: class: 'multicolumn-grid__image', loading: 'lazy'
-                        }}
+                        {% render 'twicpics-image', image: block.settings.image, class: 'multicolumn-grid__image' %}
                       {%- endif -%}
                       {%- if block.settings.image_2 != blank -%}
-                        {{
-                          block.settings.image_2
-                          | image_url: width: 800
-                          | image_tag: class: 'multicolumn-grid__image', loading: 'lazy'
-                        }}
+                        {% render 'twicpics-image', image: block.settings.image_2, class: 'multicolumn-grid__image' %}
                       {%- endif -%}
                       {%- if block.settings.image_3 != blank -%}
-                        {{
-                          block.settings.image_3
-                          | image_url: width: 800
-                          | image_tag: class: 'multicolumn-grid__image', loading: 'lazy'
-                        }}
+                        {% render 'twicpics-image', image: block.settings.image_3, class: 'multicolumn-grid__image' %}
                       {%- endif -%}
                       {%- if block.settings.image_4 != blank -%}
-                        {{
-                          block.settings.image_4
-                          | image_url: width: 800
-                          | image_tag: class: 'multicolumn-grid__image', loading: 'lazy'
-                        }}
+                        {% render 'twicpics-image', image: block.settings.image_4, class: 'multicolumn-grid__image' %}
                       {%- endif -%}
                     </div>
                   </div>

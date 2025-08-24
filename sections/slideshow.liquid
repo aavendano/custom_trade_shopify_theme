@@ -192,17 +192,22 @@
               endif
             -%}
             {%- if forloop.first %}
-              {{
-                block.settings.image
-                | image_url: width: 3840
-                | image_tag: height: height, sizes: sizes, widths: widths, fetchpriority: fetch_priority
-              }}
+              {% if block.settings.serve_from_twicpics %}
+                {% render 'twicpics-image', image: block.settings.image %}
+              {% else %}
+                block.settings.image | image_url: width: 3840 | image_tag: height: height, sizes: sizes, widths: widths,
+                fetchpriority: fetch_priority
+              {% endif %}
             {%- else -%}
-              {{
-                block.settings.image
-                | image_url: width: 3840
-                | image_tag: loading: 'lazy', height: height, sizes: sizes, widths: widths
-              }}
+              {% if block.settings.serve_from_twicpics %}
+                {% render 'twicpics-image', image: block.settings.image, eager: true, focus: 'auto' %}
+              {% else %}
+                {{
+                  block.settings.image
+                  | image_url: width: 3840
+                  | image_tag: loading: 'lazy', height: height, sizes: sizes, widths: widths
+                }}
+              {% endif %}
             {%- endif -%}
           {%- else -%}
             {%- assign placeholder_slide = forloop.index | modulo: 2 -%}
@@ -479,6 +484,13 @@
           "type": "image_picker",
           "id": "image",
           "label": "t:sections.slideshow.blocks.slide.settings.image.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "serve_from_twicpics",
+          "label": "Serve from Twicpics",
+          "default": true,
+          "info": "If enabled, the image will be optimized and served via Twicpics"
         },
         {
           "type": "header",

@@ -1,0 +1,25 @@
+{%- liquid
+  assign class = class | default: ''
+  assign eager = eager | default: false
+  assign focus = focus | default: ''
+  assign value = value
+  assign image = image
+  assign image = image | image_url | master | split: '?' | first
+  if image contains '//playlovetoys.ca'
+    assign image = image | replace: '//playlovetoys.ca', ''
+  elsif image contains '//cdn.shopify.com'
+    assign image = image | replace: '//cdn.shopify.com/s/files/1/0603/8198/6891/', '/cdn/shop/'
+  endif
+-%}
+<img
+  data-twic-src="media:{{ image }}"
+  {% if class != '' %}
+    class="{{ class }}"
+  {% endif %}
+  {% if eager == true %}
+    data-twic-eager
+  {% endif %}
+  {% if focus != '' %}
+    data-twic-focus="{{ focus }}"
+  {% endif %}
+>

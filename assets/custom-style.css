@@ -2,6 +2,7 @@
 
 .badge {
     border-radius: 2px !important;
+    font-size: 1.2rem;
     font-weight: bold;
     padding: .25rem 1rem .28rem;
  }
@@ -25,10 +26,6 @@
 .price__badgets__container {
   display: block;
 }
-
-
-
-
 
 .plt-gradient-background {
   background: linear-gradient(
@@ -62,4 +59,23 @@
     font-size: 1rem !important;
     padding: .15rem .5rem .15rem !important;
   }
+}
+
+@import url('https://fonts.shopifycdn.com/oswald/oswald_n4.woff2');
+
+/* Crear clase para usar Oswald */
+.card__heading {
+  font-family: 'Oswald', sans-serif !important;
+  font-size: calc(var(--font-heading-scale) * 1.5rem);
+  letter-spacing: calc(var(--font-heading-scale) * 0.125rem);
+}
+
+.multicolumn-card__info h3 {
+    font-family: 'Oswald', sans-serif !important;
+  font-size: calc(var(--font-heading-scale) * 1.5rem);
+  letter-spacing: calc(var(--font-heading-scale) * 0.125rem);
+}
+.caption-with-letter-spacing {
+  font-size: 1.5rem;
+  letter-spacing: 0.2rem;
 }

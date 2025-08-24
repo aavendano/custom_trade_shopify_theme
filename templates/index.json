@@ -24,7 +24,7 @@
             "gradient_start_distance": 75,
             "gradient_direction": "top_to_bottom",
             "heading": "Welcome to PlayLoveToys!",
-            "heading_size": "h0",
+            "heading_size": "h1",
             "subheading": "Embrace Your Sexual Wellness",
             "button_label": "Explore Our Collections",
             "link": "shopify://collections",
@@ -72,7 +72,7 @@
             "gradient_start_distance": 75,
             "gradient_direction": "top_to_bottom",
             "heading": "Spice Things Up",
-            "heading_size": "h0",
+            "heading_size": "h1",
             "subheading": "<strong>Dive into our curated collection of adult toys </strong>",
             "button_label": "Check Couples Fun!",
             "link": "shopify://collections/best-sex-toys",
@@ -96,7 +96,7 @@
             "gradient_start_distance": 75,
             "gradient_direction": "top_to_bottom",
             "heading": "<strong>Find Your Ecstasy</strong>",
-            "heading_size": "hxxl",
+            "heading_size": "h0",
             "subheading": "",
             "button_label": "Shop Now",
             "link": "shopify://collections",
@@ -107,39 +107,13 @@
             "text_alignment_mobile": "left",
             "color_scheme": "scheme-017ef066-9f36-43bb-9764-26433e015017"
           }
-        },
-        "slide_AWNGgf": {
-          "type": "slide",
-          "disabled": true,
-          "settings": {
-            "cloudinary_id": "ar_16:9,c_crop,g_face/ahtziri-lagarde-ZW7ISsL8TwE-unsplash_1_atatyg",
-            "cloudinary_public_id": "",
-            "cloudinary_alt": "",
-            "image_overlay_opacity": 0,
-            "gradient_overlay_enabled": true,
-            "gradient_color": "#f4f4f4",
-            "gradient_start_distance": 75,
-            "gradient_direction": "top_to_bottom",
-            "heading": "Image slide",
-            "heading_size": "h1",
-            "subheading": "Tell your brand's story through images",
-            "button_label": "Button label",
-            "link": "",
-            "button_style_secondary": false,
-            "show_text_box": false,
-            "box_align": "top-right",
-            "text_alignment": "right",
-            "text_alignment_mobile": "center",
-            "color_scheme": "scheme-95e7720f-18c1-4aad-ba85-bed2b4548b6f"
-          }
         }
       },
       "block_order": [
         "slide_q86cHE",
         "slide_Wdgy3g",
         "slide_g63pLW",
-        "slide_cgPayf",
-        "slide_AWNGgf"
+        "slide_cgPayf"
       ],
       "name": "t:sections.slideshow.presets.name",
       "settings": {
