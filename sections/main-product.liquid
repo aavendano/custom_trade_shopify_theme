@@ -750,7 +750,13 @@
               "url": "{{ shop.url }}{{ variant.url }}"
             }{% unless forloop.last %},{% endunless %}
           {%- endfor -%}
-        ]
+        ]{%- if product.metafields.reviews.rating.value != blank -%},
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": {{ product.metafields.reviews.rating.value | json }},
+          "reviewCount": {{ product.metafields.reviews.rating_count | json }}
+        }
+        {%- endif -%}
       }
     </script>
   </div>
