@@ -15,7 +15,8 @@
         "slide_q86cHE": {
           "type": "slide",
           "settings": {
-            "cloudinary_id": "playlovetoys-hero-image-home",
+            "cloudinary_id": "",
+            "image": "shopify://shop_images/hero-image-home-playlovetoys.jpg",
             "serve_from_twicpics": true,
             "cloudinary_public_id": "",
             "cloudinary_alt": "",
@@ -40,7 +41,8 @@
         "slide_Wdgy3g": {
           "type": "slide",
           "settings": {
-            "cloudinary_id": "brian-lawson-9hObYo6Zul8-unsplash_cibqoc",
+            "cloudinary_id": "",
+            "image": "shopify://shop_images/brian-lawson-9hObYo6Zul8-unsplash_cibqoc.jpg",
             "serve_from_twicpics": true,
             "cloudinary_public_id": "",
             "cloudinary_alt": "",
@@ -65,7 +67,8 @@
         "slide_g63pLW": {
           "type": "slide",
           "settings": {
-            "cloudinary_id": "womanizer-toys-IAdsz1pcR74-unsplash_ilm58c",
+            "cloudinary_id": "",
+            "image": "shopify://shop_images/SEOon_womanizer-toys-IAdsz1pcR74-unsplash_2_-Photoroom.webp",
             "serve_from_twicpics": true,
             "cloudinary_public_id": "",
             "cloudinary_alt": "",
@@ -90,7 +93,8 @@
         "slide_cgPayf": {
           "type": "slide",
           "settings": {
-            "cloudinary_id": "kurt-francois-GJNLYb3U1-k-unsplash_zkbkev",
+            "cloudinary_id": "",
+            "image": "shopify://shop_images/kurt-francois-GJNLYb3U1-k-unsplash_1.jpg",
             "serve_from_twicpics": true,
             "cloudinary_public_id": "",
             "cloudinary_alt": "",
