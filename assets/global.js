@@ -865,7 +865,13 @@ class SlideshowComponent extends SliderComponent {
       });
     }
 
-    if (this.slider.getAttribute('data-autoplay') === 'true') this.setAutoPlay();
+    if (this.slider.getAttribute('data-autoplay') === 'true') {
+      if (document.readyState === 'complete') {
+        this.setAutoPlay();
+      } else {
+        window.addEventListener('load', () => this.setAutoPlay());
+      }
+    }
   }
 
   setAutoPlay() {
