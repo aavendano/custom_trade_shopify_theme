@@ -2,7 +2,7 @@
   assign class = class | default: ''
   assign eager = eager | default: false
   assign focus = focus | default: ''
-  assign pretransform = pretransform | default: ''
+  assign transform = transform | default: ''
   assign value = value
   assign image_url = image
   assign image_url = image_url | image_url | master | split: '?' | first
@@ -13,7 +13,7 @@
   endif
 -%}
 <img
-  data-twic-src="media:{{ image_url }}"
+  data-twic-src="image:{{ image_url }}"
 
   {% if class != '' %}
     class="{{ class }}"
@@ -27,7 +27,7 @@
     data-twic-focus="{{ focus }}"
   {% endif %}
 
-  {% if pretransform != '' %}
-    data-twic-transform="{{ pretransform }}"
+  {% if transform != '' %}
+    data-twic-transform="{{ transform }}"
   {% endif %}
 >
