@@ -316,12 +316,19 @@
 
     <!-- Swiper.js CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    <!-- TWICPICS -->
-    <script
-      async
-      defer
-      src="https://playlovetoys.twic.pics/?v1"
-    ></script>
+
+    <!--
+      TWICPICS
+        <script
+        async
+        defer
+        src="https://playlovetoys.twic.pics/?v1"
+      ></script>
+    -->
+
+    {{ 'twicpics-bundle.css' | asset_url | stylesheet_tag }}
+
+    <script src="{{ 'twicpics-bundle.js' | asset_url }}" defer="defer"></script>
 
     <!-- FAQ METADATA COLLECTIONS -->
     {% if collection.metafields.custom.faqs %}

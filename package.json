@@ -1,0 +1,27 @@
+{
+  "name": "custom_trade_shopify_theme",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "esbuild assets/custom.js --bundle --outfile=assets/twicpics-bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aavendano/custom_trade_shopify_theme.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aavendano/custom_trade_shopify_theme/issues"
+  },
+  "homepage": "https://github.com/aavendano/custom_trade_shopify_theme#readme",
+  "dependencies": {
+    "@twicpics/components": "^0.33.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.9"
+  }
+}
