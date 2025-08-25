@@ -76,7 +76,8 @@
               card_collection: block.settings.collection,
               media_aspect_ratio: section.settings.image_ratio,
               columns: columns,
-              placeholder_image: placeholder_image
+              placeholder_image: placeholder_image,
+              serve_from_twicpics: section.settings.serve_from_twicpics
             %}
           </li>
         {%- endfor -%}
@@ -180,6 +181,12 @@
     {
       "type": "header",
       "content": "t:sections.collection-list.settings.header_layout.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": false,
+      "label": "t:sections.featured-collection.settings.show_secondary_image.label"
     },
     {
       "type": "select",

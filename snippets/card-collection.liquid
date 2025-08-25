@@ -25,6 +25,7 @@
   endif
   assign card_color_scheme = settings.card_color_scheme
   assign card_style = settings.card_style
+  assign serve_from_twicpics = serve_from_twicpics | default: false
   if wrapper_class == null or wrapper_class == 'none'
     assign card_color_scheme = settings.collection_card_color_scheme
     assign card_style = settings.collection_card_style
@@ -50,13 +51,13 @@
       {%- if card_collection.featured_image -%}
         <div class="card__media">
           <div class="media media--transparent media--hover-effect">
-            <img
-              img
-              data-twic-src="media:{{ card_collection.featured_image | image_url | master | split: '?' | first | replace: '//playlovetoys.ca', '' }}"
-              data-twic-focus="auto"
-              class="motion-reduce"
-              data-twic-transform="background=remove/inside=1:1"
-            >
+            {% render 'twicpics-image',
+              eager: false,
+              focus: 'auto',
+              image: card_collection.featured_image,
+              class: 'motion-reduce',
+              pretransform: 'background=remove/refit-cover=1:1(5p)'
+            %}
           </div>
         </div>
       {%- endif -%}
