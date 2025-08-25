@@ -3,27 +3,23 @@
   assign eager = eager | default: false
   assign focus = focus | default: ''
   assign value = value
-  assign image_path = image
-  assign image_path = image_path | image_url | master | split: '?' | first
-  if image_path contains '//playlovetoys.ca'
-    assign image_path = image_path | replace: '//playlovetoys.ca', ''
-  elsif image_path contains '//cdn.shopify.com'
-    assign image_path = image_path | replace: '//cdn.shopify.com/s/files/1/0603/8198/6891/', '/cdn/shop/'
+  assign image = image
+  assign image = image | image_url | master | split: '?' | first
+  if image contains '//playlovetoys.ca'
+    assign image = image | replace: '//playlovetoys.ca', ''
+  elsif image contains '//cdn.shopify.com'
+    assign image = image | replace: '//cdn.shopify.com/s/files/1/0603/8198/6891/', '/cdn/shop/'
   endif
 -%}
-
-<twic-img
-  src="{{- image_path -}}"
+<img
+  data-twic-src="media:{{ image }}"
   {% if class != '' %}
     class="{{ class }}"
   {% endif %}
   {% if eager == true %}
-    eager
+    data-twic-eager
   {% endif %}
   {% if focus != '' %}
-    focus="{{ focus }}"
+    data-twic-focus="{{ focus }}"
   {% endif %}
-  {% if ratio != '' %}
-    ratio="{{ ratio }}"
-  {% endif %}
-/>
+>

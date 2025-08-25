@@ -16,6 +16,7 @@
           "type": "slide",
           "settings": {
             "cloudinary_id": "playlovetoys-hero-image-home",
+            "serve_from_twicpics": true,
             "cloudinary_public_id": "",
             "cloudinary_alt": "",
             "image_overlay_opacity": 0,
@@ -40,6 +41,7 @@
           "type": "slide",
           "settings": {
             "cloudinary_id": "brian-lawson-9hObYo6Zul8-unsplash_cibqoc",
+            "serve_from_twicpics": true,
             "cloudinary_public_id": "",
             "cloudinary_alt": "",
             "image_overlay_opacity": 0,
@@ -64,6 +66,7 @@
           "type": "slide",
           "settings": {
             "cloudinary_id": "womanizer-toys-IAdsz1pcR74-unsplash_ilm58c",
+            "serve_from_twicpics": true,
             "cloudinary_public_id": "",
             "cloudinary_alt": "",
             "image_overlay_opacity": 0,
@@ -88,6 +91,7 @@
           "type": "slide",
           "settings": {
             "cloudinary_id": "kurt-francois-GJNLYb3U1-k-unsplash_zkbkev",
+            "serve_from_twicpics": true,
             "cloudinary_public_id": "",
             "cloudinary_alt": "",
             "image_overlay_opacity": 0,
@@ -137,10 +141,14 @@
           "name": "Col Sex Toys For Women",
           "settings": {
             "article": "",
-            "cloudinary_id": "satisfyer-pro-2-classic-blossom-playlovetoys",
-            "cloudinary_id_2": "lelo-gigi-2-playlovetoys",
-            "cloudinary_id_3": "JE205PR_k8n86v",
-            "cloudinary_id_4": "JE601FS_vmijzy_vgamcs",
+            "cloudinary_id": "",
+            "cloudinary_id_2": "",
+            "cloudinary_id_3": "",
+            "cloudinary_id_4": "",
+            "image": "shopify://shop_images/satisfyer-pro-2-classic-blossom-playlovetoys-197615_cwunx6_miafqn.png",
+            "image_2": "shopify://shop_images/lelo-lelo-gigi-2-playlovetoys-782550_xs2sd6_e_background_removal_e_dropshadow_azimuth_220_elevation_60_spread_20_b_rgb_FFFFFF_f_png_lxcbbh.png",
+            "image_3": "shopify://shop_images/JE205PR_k8n86v_s85eds.png",
+            "image_4": "shopify://shop_images/JE601FS_vmijzy_vgamcs.png",
             "image_gap": 16,
             "image_margin": 0,
             "image_padding": 12,
@@ -154,10 +162,11 @@
           "type": "column",
           "settings": {
             "article": "",
-            "cloudinary_id": "sexy_couple__sq_image",
+            "cloudinary_id": "",
             "cloudinary_id_2": "",
             "cloudinary_id_3": "",
             "cloudinary_id_4": "",
+            "image": "shopify://shop_images/18608_w5s0wl_c_crop_ar_1_1_ftjr9e.jpg",
             "image_gap": 16,
             "image_margin": 0,
             "image_padding": 12,
@@ -172,10 +181,14 @@
           "name": "Col Sex Toys for men",
           "settings": {
             "article": "",
-            "cloudinary_id": "Tenga_Flip_Hole_Male_Mastubator",
-            "cloudinary_id_2": "Dorcel_Hydro_Pump_Penis_Pump",
-            "cloudinary_id_3": "Power_Cock_Ring-Satisfyer",
-            "cloudinary_id_4": "kiiroo-feel-britney-stroker-keon-combo-set-playlovetoys",
+            "cloudinary_id": "",
+            "cloudinary_id_2": "",
+            "cloudinary_id_3": "",
+            "cloudinary_id_4": "",
+            "image": "shopify://shop_images/Tenga_Flip_Hole_Male_Mastubator_vs2keg.png",
+            "image_2": "shopify://shop_images/Dorcel_Hydro_Pump_Penis_Pump_apoa9t.png",
+            "image_3": "shopify://shop_images/Power_Cock_Ring_-_Satisfyer_igtqai.png",
+            "image_4": "shopify://shop_images/kiiroo-feel-britney-stroker-keon-combo-set-playlovetoys-596758_1_jsnfku_pwk0yn.png",
             "image_gap": 12,
             "image_margin": 0,
             "image_padding": 12,
@@ -188,18 +201,19 @@
         "column_P8WrLm": {
           "type": "column",
           "settings": {
-            "article": "sexual-wellness/intimate-toys-and-sex-toys",
+            "article": "",
             "cloudinary_id": "",
             "cloudinary_id_2": "",
             "cloudinary_id_3": "",
             "cloudinary_id_4": "",
+            "image": "shopify://shop_images/why-play-love-with-sex-toys-656370.webp",
             "image_gap": 12,
             "image_margin": 0,
             "image_padding": 12,
-            "title": "",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_label": "",
-            "link": ""
+            "title": "Why Play Love With Sex Toys",
+            "text": "<p>Let's explore a fun journey of self-discovery with sex toys! Discover why playing is crucial for wellness and find your perfect intimate toy!</p>",
+            "link_label": "Continue Reading",
+            "link": "shopify://blogs/sexual-wellness/intimate-toys-and-sex-toys"
           }
         }
       },
@@ -366,13 +380,6 @@
           "settings": {
             "collection": "pheromones-1"
           }
-        },
-        "featured_collection_EyWXqM": {
-          "type": "featured_collection",
-          "disabled": true,
-          "settings": {
-            "collection": "sex-toy-cleaner"
-          }
         }
       },
       "block_order": [
@@ -381,8 +388,7 @@
         "featured_collection1",
         "featured_collection2",
         "featured_collection3",
-        "featured_collection4",
-        "featured_collection_EyWXqM"
+        "featured_collection4"
       ],
       "custom_css": [
         ".aa-custom-background-image {background-color: hsla(268, 41%, 33%, 1); background-image: radial-gradient( at 87% 33%, hsla(268, 41%, 33%, 1) 0px, transparent 50% ), radial-gradient(at 100% 94%, hsla(108, 5%, 34%, 1) 0px, transparent 50%), radial-gradient(at 5% 77%, hsla(190, 83%, 29%, 1) 0px, transparent 50%), radial-gradient(at 56% 26%, hsla(346, 88%, 60%, 1) 0px, transparent 50%);}"
@@ -393,7 +399,7 @@
         "heading_size": "h1",
         "image_ratio": "square",
         "columns_desktop": 6,
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-f943d0da-9014-44c1-a31b-1b744c4c0579",
         "show_view_all": true,
         "columns_mobile": "2",
         "swipe_on_mobile": false,
