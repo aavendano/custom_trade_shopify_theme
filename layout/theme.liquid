@@ -312,7 +312,7 @@
       You can add your custom styles here or in a separate file and include it in the theme.liquid file.
     {% endcomment %}
 
-    {{ 'custom-style.css' | asset_url | stylesheet_tag }}
+    {{ 'custom-style.css' | asset_url | stylesheet_tag: loading: 'defer' }}
 
     <!-- Swiper.js CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
