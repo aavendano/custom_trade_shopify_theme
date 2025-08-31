@@ -297,15 +297,12 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
-    {% comment %}
-      This is a custom script that loads Alpine.js for reactive components.
-      It is recommended to use this script for custom interactive elements in the theme.
-      You can add your custom scripts here or in a separate file and include it in the theme.liquid file.
-    {% endcomment %}
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
 
     <!-- Swiper.js JavaScript -->
     <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- Swiper.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     {% comment %}
       This is a custom CSS file that can be used to override the default styles of the theme.
       It is recommended to use this file for custom styles instead of editing the theme's core CSS files.
@@ -314,8 +311,6 @@
 
     {{ 'custom-style.css' | asset_url | stylesheet_tag: loading: 'defer' }}
 
-    <!-- Swiper.js CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <!-- TWICPICS -->
     <script
       async
@@ -380,11 +375,7 @@
       })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
     </script>
 
-    <script
-      type="module"
-      src="https://cdn.shopify.com/storefront/web-components.js"
-    ></script>
-    <shopify-store store-domain="https://{{ shop.permanent_domain }}"> </shopify-store>
+
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">

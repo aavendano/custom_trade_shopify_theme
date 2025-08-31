@@ -53,7 +53,7 @@
             "gradient_direction": "top_to_bottom",
             "heading": "Unleash Your Desires",
             "heading_size": "h1",
-            "subheading": "Discover a world of pleasure designed just for you",
+            "subheading": "<strong>Discover a world of pleasure designed just for you</strong>",
             "button_label": "Explore Women Pleasure Collection",
             "link": "shopify://collections/sex-toys-for-women",
             "button_style_secondary": true,
@@ -79,7 +79,7 @@
             "gradient_direction": "top_to_bottom",
             "heading": "Spice Things Up",
             "heading_size": "h1",
-            "subheading": "Dive into our curated collection of adult toys",
+            "subheading": "<strong>Dive into our curated collection of adult toys </strong>",
             "button_label": "Check Couples Fun!",
             "link": "shopify://collections/best-sex-toys",
             "button_style_secondary": false,
@@ -93,7 +93,8 @@
         "slide_cgPayf": {
           "type": "slide",
           "settings": {
-            "cloudinary_id": "kurt-francois-GJNLYb3U1-k-unsplash_zkbkev",
+            "cloudinary_id": "",
+            "image": "shopify://shop_images/kurt-francois-GJNLYb3U1-k-unsplash_1.jpg",
             "serve_from_twicpics": true,
             "cloudinary_public_id": "",
             "cloudinary_alt": "",
@@ -235,10 +236,10 @@
         "padding_bottom": 36
       }
     },
-    "multicolumn_2x2_QdwEpC": {
+    "multicolumn_2x2_xx3adw": {
       "type": "multicolumn-2x2",
       "blocks": {
-        "column_wEeUMW": {
+        "column_AFMw6c": {
           "type": "column",
           "settings": {
             "article": "",
@@ -256,7 +257,7 @@
             "link": "/collections/all?filter.v.availability=1&filter.v.price.gte=&filter.v.price.lte=20&sort_by=price-descending"
           }
         },
-        "column_hN4Mg9": {
+        "column_eVMGzx": {
           "type": "column",
           "settings": {
             "article": "",
@@ -274,7 +275,7 @@
             "link": "/collections/all?filter.v.availability=1&filter.v.price.gte=&filter.v.price.lte=30&sort_by=price-descending"
           }
         },
-        "column_m3zDrc": {
+        "column_AYTjz9": {
           "type": "column",
           "settings": {
             "article": "",
@@ -292,7 +293,7 @@
             "link": "/collections/all?filter.v.availability=1&filter.v.price.gte=&filter.v.price.lte=50&sort_by=price-descending"
           }
         },
-        "column_Hr8PFk": {
+        "column_mDBhmP": {
           "type": "column",
           "settings": {
             "article": "",
@@ -312,10 +313,10 @@
         }
       },
       "block_order": [
-        "column_wEeUMW",
-        "column_hN4Mg9",
-        "column_m3zDrc",
-        "column_Hr8PFk"
+        "column_AFMw6c",
+        "column_eVMGzx",
+        "column_AYTjz9",
+        "column_mDBhmP"
       ],
       "name": "Multicolumn-2x2",
       "settings": {
@@ -396,7 +397,7 @@
       ],
       "name": "Top Categories",
       "settings": {
-        "title": "{{ metaobject.city.value }} Adult Toys Collections",
+        "title": "Adult Toys Collections",
         "heading_size": "h1",
         "show_secondary_image": false,
         "image_ratio": "portrait",
@@ -409,10 +410,10 @@
         "padding_bottom": 60
       }
     },
-    "custom_section_k34G9m": {
+    "custom_section_HmcFRj": {
       "type": "custom_section",
       "blocks": {
-        "forms_inline_UedH4z": {
+        "forms_inline_PWQetk": {
           "type": "shopify://apps/forms/blocks/inline/8744a304-fcb1-4347-b211-bb6b4759a76a",
           "settings": {
             "form_id": "498644",
@@ -429,7 +430,7 @@
             "padding_left": 0
           }
         },
-        "flexible_content_tXA8tn": {
+        "flexible_content_8q3T8A": {
           "type": "flexible-content",
           "name": "Flex Content",
           "settings": {
@@ -492,8 +493,8 @@
         }
       },
       "block_order": [
-        "forms_inline_UedH4z",
-        "flexible_content_tXA8tn"
+        "forms_inline_PWQetk",
+        "flexible_content_8q3T8A"
       ],
       "name": "Motto",
       "settings": {
@@ -534,10 +535,10 @@
       "settings": {
         "collection": "best-sex-toys",
         "products_to_show": 10,
-        "title": "{{ metaobject.city.value }} Best Sex Toys",
+        "title": "Best Sex Toys",
         "heading_size": "h1",
-        "description": "<p>Ready for a wild ride? Check out our collection of the best adult toys in <em>{{ metaobject.city.value }}</em>. Let's make playtime more exciting!</p>",
-        "show_description": false,
+        "description": "",
+        "show_description": true,
         "description_style": "body",
         "columns_desktop": 5,
         "enable_desktop_slider": true,
@@ -752,7 +753,7 @@
             "image": "shopify://shop_images/editor_choice_50dp_533278_FILL0_wght400_GRAD0_opsz48.svg",
             "cloudinary_src": "",
             "title": "<strong>Quality and Safe Products</strong>",
-            "text": "<p>At <em>PlayLoveToys</em>, we're passionate about enhancing connection and pleasure for everyone in <em>{{ metaobject.city.value }}</em>. We meticulously curate a premium selection of high-quality <em>adult toys</em> and wellness products for <em>{{ metaobject.city.value }}</em> residents, designed to elevate your intimate experiences and support your journey towards greater sexual well-being and joy</p>",
+            "text": "<p>At <em>PlayLoveToys</em>, we're passionate about enhancing connection and pleasure for everyone in <em>{{ closest.metaobject.region.province.value }}</em>. We meticulously curate a premium selection of high-quality <em>adult toys</em> and wellness products for <em>{{ closest.metaobject.region.province.value }}</em> residents, designed to elevate your intimate experiences and support your journey towards greater sexual well-being and joy</p>",
             "link_label": "",
             "link": ""
           }
@@ -764,7 +765,7 @@
             "image": "shopify://shop_images/verified_user_50dp_533278_FILL0_wght400_GRAD0_opsz48.svg",
             "cloudinary_src": "",
             "title": "Privacy & Discretion",
-            "text": "<p>Your privacy is paramount at <em>PlayLoveToys</em>. All orders shipped to <em>{{ metaobject.city.value }}</em> and throughout the rest of Canada arrive in plain, unmarked packaging. We are committed to ensuring your purchases are delivered discreetly and securely right to your doorstep in <em>{{ metaobject.city.value }}</em>, safeguarding your personal choices.</p>",
+            "text": "<p>Your privacy is paramount at <em>PlayLoveToys</em>. All orders shipped to <em>{{ closest.metaobject.region.province.value }}</em> and throughout the rest of Canada arrive in plain, unmarked packaging. We are committed to ensuring your purchases are delivered discreetly and securely right to your doorstep in <em>{{ closest.metaobject.region.province.value }}</em>, safeguarding your personal choices.</p>",
             "link_label": "",
             "link": ""
           }
@@ -776,7 +777,7 @@
             "image": "shopify://shop_images/diversity_1_50dp_533278_FILL0_wght400_GRAD0_opsz48_1.svg",
             "cloudinary_src": "",
             "title": "<strong>Inclusivity & Respect</strong>",
-            "text": "<p>We believe in pleasure for all, regardless of gender, orientation, or relationship status. We strive to create a welcoming and inclusive environment for all <em>{{ metaobject.city.value }}</em> customers to explore and enjoy our products.</p>",
+            "text": "<p>We believe in pleasure for all, regardless of gender, orientation, or relationship status. We strive to create a welcoming and inclusive environment for all customers to explore and enjoy our products.</p>",
             "link_label": "",
             "link": ""
           }
@@ -907,9 +908,9 @@
       "settings": {
         "collection": "sex-toys-new-arrival",
         "products_to_show": 6,
-        "title": "{{ metaobject.city.value }} Sexy Shop Collection",
+        "title": "Sexy Shop Collection",
         "heading_size": "h1",
-        "description": "<p>Calling all <em>{{ metaobject.city.value }}</em>-dwellers! Dive into our top-notch adult toy collection. Turn up the heat and have some fun tonight!</p>",
+        "description": "{{ section.settings.collection.description }}",
         "show_description": false,
         "description_style": "body",
         "columns_desktop": 5,
@@ -935,7 +936,7 @@
     "custom_section_KmFRFa": {
       "type": "custom_section",
       "blocks": {
-        "breadcrumb_9WLURm": {
+        "breadcrumb_cyAd7w": {
           "type": "breadcrumb",
           "settings": {
             "home_text": "",
@@ -957,137 +958,10 @@
             "border_radius": 6
           },
           "blocks": {}
-        },
-        "flexible_content_MDxHAq": {
-          "type": "flexible-content",
-          "name": "Flex Content",
-          "settings": {
-            "title": "{{ closest.metaobject.location_page.header1.value }}",
-            "title_tag": "h1",
-            "subtitle": "{{ closest.metaobject.location_page.header2.value }}",
-            "subtitle_tag": "h2",
-            "description": "<p>{{ closest.metaobject.location_page.greeting | metafield_tag }}<strong><br/><br/>PlayLoveToys,</strong> <em>{{ metaobject.header2.value }}</em>, ships discreetly to the entire <em>{{ metaobject.city.value }}</em> area shown on this map. Explore our high-quality <strong>adult toys</strong> and intimacy products online, with private delivery to your city home.<br/></p>",
-            "image_position": "right",
-            "primary_button_text": "Comprar ahora",
-            "primary_button_link": "",
-            "secondary_button_text": "Más información",
-            "secondary_button_link": "",
-            "layout_direction": "row",
-            "vertical_alignment": "center",
-            "spacing": 30,
-            "layout_direction_mobile": "column",
-            "spacing_mobile": 20,
-            "title_size": 60,
-            "title_weight": 800,
-            "title_spacing": 15,
-            "subtitle_size": 40,
-            "subtitle_weight": 700,
-            "subtitle_spacing": 0,
-            "text_size": 24,
-            "text_spacing": 0,
-            "title_size_mobile": 40,
-            "title_spacing_mobile": 10,
-            "subtitle_size_mobile": 30,
-            "subtitle_spacing_mobile": 10,
-            "text_size_mobile": 20,
-            "text_spacing_mobile": 15,
-            "button_text_size": 16,
-            "button_border_radius": 4,
-            "button_text_size_mobile": 14,
-            "image_max_width": 600,
-            "image_border_radius": 8,
-            "background_color": "rgba(0,0,0,0)",
-            "title_color": "#533278",
-            "subtitle_color": "#545c52",
-            "text_color": "#666666",
-            "primary_button_color": "#000000",
-            "primary_button_text_color": "#ffffff",
-            "primary_button_hover_color": "#333333",
-            "secondary_button_color": "#ffffff",
-            "secondary_button_text_color": "#000000",
-            "secondary_button_hover_color": "#f5f5f5",
-            "padding_top": 60,
-            "padding_right": 0,
-            "padding_bottom": 60,
-            "padding_left": 0,
-            "padding_top_mobile": 30,
-            "padding_right_mobile": 0,
-            "padding_bottom_mobile": 30,
-            "padding_left_mobile": 0,
-            "border_radius": 0
-          },
-          "blocks": {}
-        },
-        "location_map_VyEDUx": {
-          "type": "location_map",
-          "name": "Location Map",
-          "settings": {
-            "content_direction": "column",
-            "mobile_content_direction": "column",
-            "content_width": 20,
-            "map_container_width": 80,
-            "content_gap": 8,
-            "padding": 0,
-            "background_color": "#f4f4f4",
-            "border_radius": 5,
-            "map_width": "1200",
-            "map_height": "700",
-            "City": "{{ metaobject.city.value }}",
-            "Province": "{{ closest.metaobject.location_page.province.value }}",
-            "Country": "Canada",
-            "GoogleMapsAPIKey": "{{ metaobjects.api_tokens[\"google-static-map-api\"].token.value }}",
-            "map_zoom": "14",
-            "show_map": true,
-            "schema_area_served": true,
-            "map_border_radius": 12,
-            "map_border_width": 1,
-            "map_border_color": "#b4b4b4",
-            "map_shadow_h_offset": 0,
-            "map_shadow_v_offset": 4,
-            "map_shadow_blur": 10,
-            "map_shadow_spread": 0,
-            "map_shadow_color": "#b4b4b4",
-            "title": "",
-            "title_font": "sans-serif",
-            "title_size": 42,
-            "title_color": "#533278",
-            "subtitle": "",
-            "subtitle_font": "sans-serif",
-            "subtitle_size": 24,
-            "subtitle_color": "#555555",
-            "text": "<p><br/></p>",
-            "text_size": 18,
-            "text_color": "#333333",
-            "button_text": "",
-            "button_link": "shopify://collections/all",
-            "button_alignment": "center",
-            "button_color": "#f4436c",
-            "button_hover_color": "#0c7489",
-            "button_text_color": "#ffffff",
-            "button_border_radius": 20
-          },
-          "blocks": {}
-        },
-        "spacer_AYthXm": {
-          "type": "spacer",
-          "name": "spacer",
-          "settings": {
-            "size": "pixel",
-            "percent_size": 100,
-            "pixel_size": 120,
-            "custom_mobile_size": true,
-            "size_mobile": "pixel",
-            "percent_size_mobile": 100,
-            "pixel_size_mobile": 120
-          },
-          "blocks": {}
         }
       },
       "block_order": [
-        "breadcrumb_9WLURm",
-        "flexible_content_MDxHAq",
-        "location_map_VyEDUx",
-        "spacer_AYthXm"
+        "breadcrumb_cyAd7w"
       ],
       "name": "custom section",
       "settings": {
@@ -1098,8 +972,8 @@
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "center",
         "vertical_alignment_flex_direction_column": "center",
-        "gap": 12,
-        "section_width": "page-width",
+        "gap": 0,
+        "section_width": "full-width",
         "section_height": "",
         "section_height_custom": 50,
         "color_scheme": "scheme-1",
@@ -1126,14 +1000,14 @@
   "order": [
     "slideshow_4nGYLi",
     "multicolumn_2x2_rMUj4F",
-    "multicolumn_2x2_QdwEpC",
+    "multicolumn_2x2_xx3adw",
+    "custom_section_KmFRFa",
     "collection_list",
-    "custom_section_k34G9m",
+    "custom_section_HmcFRj",
     "featured_collection1",
     "multicolumn",
     "multicolumn2",
     "multicolumn_2x2_QnEPzH",
-    "featured_collection2",
-    "custom_section_KmFRFa"
+    "featured_collection2"
   ]
 }

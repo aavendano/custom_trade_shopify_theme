@@ -50,10 +50,10 @@
     "card_border_thickness": 2,
     "card_border_opacity": 25,
     "card_corner_radius": 8,
-    "card_shadow_opacity": 40,
+    "card_shadow_opacity": 15,
     "card_shadow_horizontal_offset": -2,
     "card_shadow_vertical_offset": 4,
-    "card_shadow_blur": 5,
+    "card_shadow_blur": 15,
     "collection_card_style": "card",
     "collection_card_image_padding": 0,
     "collection_card_text_alignment": "left",
@@ -151,21 +151,6 @@
         "disabled": true,
         "settings": {}
       },
-      "15121418464101390553": {
-        "type": "shopify://apps/cloudinary-assetlink/blocks/video-replacer/beb1bd33-2d11-4aea-9b3e-f6c41825e598",
-        "disabled": false,
-        "settings": {
-          "quality_level": "good",
-          "breakpoint_size": 400,
-          "max_width": 1920,
-          "optimize": true,
-          "retina_quality": false,
-          "autoplay": true,
-          "loop": true,
-          "controls": false,
-          "muted": true
-        }
-      },
       "13768625480086291342": {
         "type": "shopify://apps/forms/blocks/forms/8744a304-fcb1-4347-b211-bb6b4759a76a",
         "disabled": false,
@@ -212,7 +197,7 @@
       },
       "7079518687644006178": {
         "type": "shopify://apps/checkout-blocks/blocks/app-embed/b0024ca5-9de8-4bf0-a92f-cd0783877ae2",
-        "disabled": false,
+        "disabled": true,
         "settings": {
           "utm_id": true,
           "utm_source": true,
@@ -220,6 +205,21 @@
           "utm_campaign": true,
           "utm_term": true,
           "ref": true
+        }
+      },
+      "15121418464101390553": {
+        "type": "shopify://apps/cloudinary-assetlink/blocks/video-replacer/beb1bd33-2d11-4aea-9b3e-f6c41825e598",
+        "disabled": true,
+        "settings": {
+          "quality_level": "good",
+          "breakpoint_size": 400,
+          "max_width": 1920,
+          "optimize": true,
+          "retina_quality": false,
+          "autoplay": true,
+          "loop": true,
+          "controls": false,
+          "muted": true
         }
       }
     },
