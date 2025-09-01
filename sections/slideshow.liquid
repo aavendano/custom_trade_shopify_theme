@@ -2,6 +2,25 @@
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 {{ 'component-slideshow.css' | asset_url | stylesheet_tag }}
 
+{%- liquid
+  assign loaded_fonts = ''
+-%}
+
+{%- style -%}
+  {%- for block in section.blocks -%}
+    {%- assign heading_font_family = block.settings.heading_font.family -%}
+    {%- unless loaded_fonts contains heading_font_family -%}
+      {{ block.settings.heading_font | font_face }}
+      {%- assign loaded_fonts = loaded_fonts | append: heading_font_family | append: ',' -%}
+    {%- endunless -%}
+    {%- assign subheading_font_family = block.settings.subheading_font.family -%}
+    {%- unless loaded_fonts contains subheading_font_family -%}
+      {{ block.settings.subheading_font | font_face }}
+      {%- assign loaded_fonts = loaded_fonts | append: subheading_font_family | append: ',' -%}
+    {%- endunless -%}
+  {%- endfor -%}
+{%- endstyle -%}
+
 {%- if section.settings.slide_height == 'adapt_image' and section.blocks.first.settings.image != blank -%}
   {%- style -%}
     @media screen and (max-width: 749px) {
@@ -123,6 +142,62 @@
         #Slide-{{ section.id }}-{{ forloop.index }} .banner__media::after {
           opacity: {{ block.settings.image_overlay_opacity | divided_by: 100.0 }};
         }
+        #Slide-{{ section.id }}-{{ forloop.index }} .banner__heading {
+          {%- if block.settings.heading_color != blank -%}
+            color: {{ block.settings.heading_color }};
+          {%- endif -%}
+          {%- if block.settings.heading_font_size_mobile -%}
+            font-size: {{ block.settings.heading_font_size_mobile }}px;
+          {%- endif -%}
+          {%- if block.settings.heading_font -%}
+            font-family: {{ block.settings.heading_font.family }}, {{ block.settings.heading_font.fallback_families }};
+            font-weight: {{ block.settings.heading_font.weight }};
+            font-style: {{ block.settings.heading_font.style }};
+          {%- endif -%}
+          {%- if block.settings.heading_shadow_enabled -%}
+            text-shadow: {{ block.settings.heading_shadow_x }}px {{ block.settings.heading_shadow_y }}px {{ block.settings.heading_shadow_blur }}px {{ block.settings.heading_shadow_color }};
+          {%- endif -%}
+        }
+
+        #Slide-{{ section.id }}-{{ forloop.index }} .banner__text {
+          {%- if block.settings.subheading_color != blank -%}
+            color: {{ block.settings.subheading_color }};
+          {%- endif -%}
+          {%- if block.settings.subheading_font_size_mobile -%}
+            font-size: {{ block.settings.subheading_font_size_mobile }}px;
+          {%- endif -%}
+          {%- if block.settings.subheading_font -%}
+            font-family: {{ block.settings.subheading_font.family }}, {{ block.settings.subheading_font.fallback_families }};
+            font-weight: {{ block.settings.subheading_font.weight }};
+            font-style: {{ block.settings.subheading_font.style }};
+          {%- endif -%}
+          {%- if block.settings.subheading_shadow_enabled -%}
+            text-shadow: {{ block.settings.subheading_shadow_x }}px {{ block.settings.subheading_shadow_y }}px {{ block.settings.subheading_shadow_blur }}px {{ block.settings.subheading_shadow_color }};
+          {%- endif -%}
+        }
+
+        #Slide-{{ section.id }}-{{ forloop.index }} .banner__buttons .button {
+          {%- if block.settings.button_text_color != blank -%}
+            color: {{ block.settings.button_text_color }};
+          {%- endif -%}
+          {%- if block.settings.button_background_color != blank -%}
+            background-color: {{ block.settings.button_background_color }};
+            border-color: {{ block.settings.button_background_color }};
+          {%- endif -%}
+        }
+
+        @media screen and (min-width: 750px) {
+          #Slide-{{ section.id }}-{{ forloop.index }} .banner__heading {
+            {%- if block.settings.heading_font_size -%}
+              font-size: {{ block.settings.heading_font_size }}px;
+            {%- endif -%}
+          }
+          #Slide-{{ section.id }}-{{ forloop.index }} .banner__text {
+            {%- if block.settings.subheading_font_size -%}
+              font-size: {{ block.settings.subheading_font_size }}px;
+            {%- endif -%}
+          }
+        }
         {%- if block.settings.gradient_overlay_enabled -%}
         #Slide-{{ section.id }}-{{ forloop.index }} .banner__media::before {
           content: '';
@@ -195,8 +270,11 @@
               {% if block.settings.serve_from_twicpics %}
                 {% render 'twicpics-image', image: block.settings.image, eager: true, focus: 'auto' %}
               {% else %}
-                block.settings.image | image_url: width: 3840 | image_tag: height: height, sizes: sizes, widths: widths,
-                fetchpriority: fetch_priority
+                {{
+                  block.settings.image
+                  | image_url: width: 3840
+                  | image_tag: height: height, sizes: sizes, widths: widths, fetchpriority: fetch_priority
+                }}
               {% endif %}
             {%- else -%}
               {% if block.settings.serve_from_twicpics %}
@@ -564,6 +642,83 @@
           "content": "t:sections.slideshow.blocks.slide.settings.header_text.content"
         },
         {
+          "type": "header",
+          "content": "Heading Styles"
+        },
+        {
+          "type": "font_picker",
+          "id": "heading_font",
+          "label": "Font",
+          "default": "assistant_n4"
+        },
+        {
+          "type": "range",
+          "id": "heading_font_size",
+          "min": 16,
+          "max": 120,
+          "step": 2,
+          "unit": "px",
+          "label": "Font size (Desktop)",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "heading_font_size_mobile",
+          "min": 16,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "label": "Font size (Mobile)",
+          "default": 30
+        },
+        {
+          "type": "color",
+          "id": "heading_color",
+          "label": "Color"
+        },
+        {
+          "type": "checkbox",
+          "id": "heading_shadow_enabled",
+          "label": "Enable text shadow",
+          "default": false
+        },
+        {
+          "type": "color",
+          "id": "heading_shadow_color",
+          "label": "Shadow color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "heading_shadow_blur",
+          "min": 0,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "label": "Shadow blur",
+          "default": 2
+        },
+        {
+          "type": "range",
+          "id": "heading_shadow_x",
+          "min": -10,
+          "max": 10,
+          "step": 1,
+          "unit": "px",
+          "label": "Shadow X offset",
+          "default": 2
+        },
+        {
+          "type": "range",
+          "id": "heading_shadow_y",
+          "min": -10,
+          "max": 10,
+          "step": 1,
+          "unit": "px",
+          "label": "Shadow Y offset",
+          "default": 2
+        },
+        {
           "type": "inline_richtext",
           "id": "heading",
           "default": "t:sections.slideshow.blocks.slide.settings.heading.default",
@@ -602,6 +757,97 @@
           "id": "subheading",
           "default": "t:sections.slideshow.blocks.slide.settings.subheading.default",
           "label": "t:sections.slideshow.blocks.slide.settings.subheading.label"
+        },
+        {
+          "type": "header",
+          "content": "Subheading Styles"
+        },
+        {
+          "type": "font_picker",
+          "id": "subheading_font",
+          "label": "Font",
+          "default": "assistant_n4"
+        },
+        {
+          "type": "range",
+          "id": "subheading_font_size",
+          "min": 10,
+          "max": 60,
+          "step": 1,
+          "unit": "px",
+          "label": "Font size (Desktop)",
+          "default": 18
+        },
+        {
+          "type": "range",
+          "id": "subheading_font_size_mobile",
+          "min": 10,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "label": "Font size (Mobile)",
+          "default": 16
+        },
+        {
+          "type": "color",
+          "id": "subheading_color",
+          "label": "Color"
+        },
+        {
+          "type": "checkbox",
+          "id": "subheading_shadow_enabled",
+          "label": "Enable text shadow",
+          "default": false
+        },
+        {
+          "type": "color",
+          "id": "subheading_shadow_color",
+          "label": "Shadow color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "subheading_shadow_blur",
+          "min": 0,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "label": "Shadow blur",
+          "default": 2
+        },
+        {
+          "type": "range",
+          "id": "subheading_shadow_x",
+          "min": -10,
+          "max": 10,
+          "step": 1,
+          "unit": "px",
+          "label": "Shadow X offset",
+          "default": 2
+        },
+        {
+          "type": "range",
+          "id": "subheading_shadow_y",
+          "min": -10,
+          "max": 10,
+          "step": 1,
+          "unit": "px",
+          "label": "Shadow Y offset",
+          "default": 2
+        },
+        {
+          "type": "header",
+          "content": "Button Styles"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Text color"
+        },
+        {
+          "type": "color",
+          "id": "button_background_color",
+          "label": "Background color"
         },
         {
           "type": "header",
