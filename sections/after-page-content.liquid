@@ -1,3 +1,4 @@
+{% if collection.metafields.custom.collection_description %}
 <div class="page-width" style="margin: 0 auto; padding: {{ section.settings.content_padding }}px;">
   <style>
     .responsive-figure {
@@ -13,7 +14,6 @@
   {{ 'faq.css' | asset_url | stylesheet_tag }}
   <script src="{{ 'faq.js' | asset_url }}" defer></script>
 
-  {% if collection.metafields.custom.collection_description %}
     {{ collection.metafields.custom.collection_description.value }}
   {% endif %}
 </div>
