@@ -69,7 +69,7 @@
             "image_overlay_opacity": 0,
             "gradient_overlay_enabled": true,
             "gradient_color": "#f4f4f4",
-            "gradient_start_distance": 80,
+            "gradient_start_distance": 75,
             "gradient_direction": "top_to_bottom",
             "heading_font": "michroma_n4",
             "heading_font_size": 76,
@@ -117,23 +117,23 @@
             "gradient_color": "#f4f4f4",
             "gradient_start_distance": 75,
             "gradient_direction": "top_to_bottom",
-            "heading_font": "assistant_n4",
-            "heading_font_size": 50,
-            "heading_font_size_mobile": 30,
-            "heading_color": "",
-            "heading_shadow_enabled": false,
+            "heading_font": "dm_serif_display_i4",
+            "heading_font_size": 80,
+            "heading_font_size_mobile": 46,
+            "heading_color": "#ffffff",
+            "heading_shadow_enabled": true,
             "heading_shadow_color": "#000000",
-            "heading_shadow_blur": 2,
+            "heading_shadow_blur": 7,
             "heading_shadow_x": 2,
-            "heading_shadow_y": 2,
+            "heading_shadow_y": 7,
             "heading": "Unleash Your Desires",
             "heading_size": "h1",
             "subheading": "<strong>Discover a world of pleasure designed just for you</strong>",
-            "subheading_font": "assistant_n4",
-            "subheading_font_size": 18,
+            "subheading_font": "sarabun_n7",
+            "subheading_font_size": 24,
             "subheading_font_size_mobile": 16,
-            "subheading_color": "",
-            "subheading_shadow_enabled": false,
+            "subheading_color": "#f4f4f4",
+            "subheading_shadow_enabled": true,
             "subheading_shadow_color": "#000000",
             "subheading_shadow_blur": 2,
             "subheading_shadow_x": 2,
@@ -209,8 +209,8 @@
             "gradient_color": "#f4f4f4",
             "gradient_start_distance": 75,
             "gradient_direction": "top_to_bottom",
-            "heading_font": "assistant_n4",
-            "heading_font_size": 50,
+            "heading_font": "nothing_you_could_do_n4",
+            "heading_font_size": 86,
             "heading_font_size_mobile": 30,
             "heading_color": "",
             "heading_shadow_enabled": false,
@@ -218,11 +218,11 @@
             "heading_shadow_blur": 2,
             "heading_shadow_x": 2,
             "heading_shadow_y": 2,
-            "heading": "<strong>Find Your Ecstasy</strong>",
+            "heading": "Find Your <em><strong>Ecstasy</strong></em>",
             "heading_size": "hxxl",
-            "subheading": "",
-            "subheading_font": "assistant_n4",
-            "subheading_font_size": 18,
+            "subheading": "Close the Pleasure Gap: Explore Our Sensational Products!",
+            "subheading_font": "roboto_condensed_n3",
+            "subheading_font_size": 26,
             "subheading_font_size_mobile": 16,
             "subheading_color": "",
             "subheading_shadow_enabled": false,
@@ -326,7 +326,7 @@
         "section_height_custom": 50,
         "color_scheme": "",
         "background_media": "none",
-        "background_color": "#FFFFFF",
+        "background_color": "#ffffff",
         "video_position": "cover",
         "background_image_position": "cover",
         "border": "none",
@@ -349,7 +349,7 @@
       "name": "Multicolumn Dynamic",
       "settings": {
         "blocks_list": "{{ metaobject.brands.value }}",
-        "title": "{{ metaobject.keyword_1.value }} Brands",
+        "title": "{{ metaobject.keyword_1.value }} Luxury Brands",
         "heading_size": "h1",
         "image_width": "full",
         "image_ratio": "adapt",
@@ -373,8 +373,8 @@
         "products_to_show": 10,
         "title": "Best {{ metaobject.keyword_1.value }}",
         "heading_size": "h1",
-        "description": "",
-        "show_description": true,
+        "description": "{{ metaobject.collection_description | metafield_tag }}",
+        "show_description": false,
         "description_style": "body",
         "columns_desktop": 5,
         "enable_desktop_slider": false,
@@ -396,72 +396,6 @@
         "padding_bottom": 52
       }
     },
-    "collection_list": {
-      "type": "collection-list",
-      "blocks": {
-        "featured_collection_Eqgtmc": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "vibrating-wand-1"
-          }
-        },
-        "featured_collection5": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "male-masturbators-strokers"
-          }
-        },
-        "featured_collection1": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "clitoral-stimulators"
-          }
-        },
-        "featured_collection2": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "dildos-dongs"
-          }
-        },
-        "featured_collection3": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "lubricant"
-          }
-        },
-        "featured_collection4": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "pheromones-1"
-          }
-        }
-      },
-      "block_order": [
-        "featured_collection_Eqgtmc",
-        "featured_collection5",
-        "featured_collection1",
-        "featured_collection2",
-        "featured_collection3",
-        "featured_collection4"
-      ],
-      "custom_css": [
-        ".aa-custom-background-image {background-color: hsla(268, 41%, 33%, 1); background-image: radial-gradient( at 87% 33%, hsla(268, 41%, 33%, 1) 0px, transparent 50% ), radial-gradient(at 100% 94%, hsla(108, 5%, 34%, 1) 0px, transparent 50%), radial-gradient(at 5% 77%, hsla(190, 83%, 29%, 1) 0px, transparent 50%), radial-gradient(at 56% 26%, hsla(346, 88%, 60%, 1) 0px, transparent 50%);}"
-      ],
-      "name": "Related Collections",
-      "settings": {
-        "title": "Related Collections",
-        "heading_size": "h1",
-        "show_secondary_image": false,
-        "image_ratio": "portrait",
-        "columns_desktop": 6,
-        "color_scheme": "scheme-017ef066-9f36-43bb-9764-26433e015017",
-        "show_view_all": false,
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 100,
-        "padding_bottom": 100
-      }
-    },
     "custom_section_HmcFRj": {
       "type": "custom_section",
       "blocks": {
@@ -481,72 +415,10 @@
             "padding_right": 0,
             "padding_left": 0
           }
-        },
-        "flexible_content_8q3T8A": {
-          "type": "flexible-content",
-          "name": "Flex Content",
-          "settings": {
-            "title": "Embrace Your Sexual Wellness...",
-            "title_tag": "h2",
-            "subtitle": "",
-            "subtitle_tag": "h3",
-            "description": "<p><em>We aim to promote a philosophy centred on encouraging the public to prioritize their overall sexual health and happiness. Our dedication is to establish a safe, inclusive, and empowering environment for everyone.</em></p>",
-            "image": "shopify://shop_images/PlayLoveToys-logo.png",
-            "image_position": "left",
-            "primary_button_text": "Comprar ahora",
-            "primary_button_link": "",
-            "secondary_button_text": "Más información",
-            "secondary_button_link": "",
-            "layout_direction": "row",
-            "vertical_alignment": "center",
-            "spacing": 100,
-            "layout_direction_mobile": "column",
-            "spacing_mobile": 20,
-            "title_size": 44,
-            "title_weight": 700,
-            "title_spacing": 0,
-            "subtitle_size": 24,
-            "subtitle_weight": 600,
-            "subtitle_spacing": 15,
-            "text_size": 24,
-            "text_spacing": 20,
-            "title_size_mobile": 30,
-            "title_spacing_mobile": 20,
-            "subtitle_size_mobile": 12,
-            "subtitle_spacing_mobile": 0,
-            "text_size_mobile": 19,
-            "text_spacing_mobile": 0,
-            "button_text_size": 16,
-            "button_border_radius": 4,
-            "button_text_size_mobile": 14,
-            "image_max_width": 800,
-            "image_border_radius": 0,
-            "background_color": "#f4f4f4",
-            "title_color": "#333333",
-            "subtitle_color": "#555555",
-            "text_color": "#666666",
-            "primary_button_color": "#000000",
-            "primary_button_text_color": "#ffffff",
-            "primary_button_hover_color": "#333333",
-            "secondary_button_color": "#ffffff",
-            "secondary_button_text_color": "#000000",
-            "secondary_button_hover_color": "#f5f5f5",
-            "padding_top": 60,
-            "padding_right": 60,
-            "padding_bottom": 60,
-            "padding_left": 60,
-            "padding_top_mobile": 30,
-            "padding_right_mobile": 20,
-            "padding_bottom_mobile": 30,
-            "padding_left_mobile": 20,
-            "border_radius": 0
-          },
-          "blocks": {}
         }
       },
       "block_order": [
-        "forms_inline_PWQetk",
-        "flexible_content_8q3T8A"
+        "forms_inline_PWQetk"
       ],
       "name": "Motto",
       "settings": {
@@ -581,76 +453,13 @@
         "custom_class": "custom-section-class"
       }
     },
-    "multicolumn2": {
-      "type": "multicolumn",
-      "blocks": {
-        "column_Rhy9JY": {
-          "type": "column",
-          "settings": {
-            "image_source": "shopify",
-            "image": "shopify://shop_images/editor_choice_50dp_533278_FILL0_wght400_GRAD0_opsz48.svg",
-            "cloudinary_src": "",
-            "title": "<strong>Quality and Safe Products</strong>",
-            "text": "<p>At <em>PlayLoveToys</em>, we're passionate about enhancing connection and pleasure for everyone in <em>{{ closest.metaobject.region.province.value }}</em>. We meticulously curate a premium selection of high-quality <em>adult toys</em> and wellness products for <em>{{ closest.metaobject.region.province.value }}</em> residents, designed to elevate your intimate experiences and support your journey towards greater sexual well-being and joy</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_mfb8rc": {
-          "type": "column",
-          "settings": {
-            "image_source": "shopify",
-            "image": "shopify://shop_images/verified_user_50dp_533278_FILL0_wght400_GRAD0_opsz48.svg",
-            "cloudinary_src": "",
-            "title": "Privacy & Discretion",
-            "text": "<p>Your privacy is paramount at <em>PlayLoveToys</em>. All orders shipped to <em>{{ closest.metaobject.region.province.value }}</em> and throughout the rest of Canada arrive in plain, unmarked packaging. We are committed to ensuring your purchases are delivered discreetly and securely right to your doorstep in <em>{{ closest.metaobject.region.province.value }}</em>, safeguarding your personal choices.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_EicGVg": {
-          "type": "column",
-          "settings": {
-            "image_source": "shopify",
-            "image": "shopify://shop_images/diversity_1_50dp_533278_FILL0_wght400_GRAD0_opsz48_1.svg",
-            "cloudinary_src": "",
-            "title": "<strong>Inclusivity & Respect</strong>",
-            "text": "<p>We believe in pleasure for all, regardless of gender, orientation, or relationship status. We strive to create a welcoming and inclusive environment for all customers to explore and enjoy our products.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "column_Rhy9JY",
-        "column_mfb8rc",
-        "column_EicGVg"
-      ],
-      "name": "Our Values",
-      "settings": {
-        "title": "<strong>Our Values</strong>",
-        "heading_size": "h1",
-        "image_width": "third",
-        "image_ratio": "adapt",
-        "button_label": "",
-        "button_link": "",
-        "columns_desktop": 3,
-        "column_alignment": "center",
-        "background_style": "primary",
-        "color_scheme": "scheme-3",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 44,
-        "padding_bottom": 48
-      }
-    },
     "multicolumn_2x2_QnEPzH": {
       "type": "multicolumn-2x2",
       "blocks": {
         "column_NMnBUc": {
           "type": "column",
           "settings": {
-            "article": "pleasure-lab/beginner-guide-adult-toys",
+            "article": "playful-connect/swinger-lifestyle-key-intimate",
             "cloudinary_id": "",
             "cloudinary_id_2": "",
             "cloudinary_id_3": "",
@@ -667,7 +476,7 @@
         "column_w3iQGy": {
           "type": "column",
           "settings": {
-            "article": "playful-connect/swinger-lifestyle-key-intimate",
+            "article": "sexual-wellness/tenga-flip-hole-male-masturbator",
             "cloudinary_id": "",
             "cloudinary_id_2": "",
             "cloudinary_id_3": "",
@@ -701,7 +510,41 @@
         "column_gQ3aca": {
           "type": "column",
           "settings": {
-            "article": "pleasure-lab/sexual-playing-adult-sex-games",
+            "article": "sexual-wellness/kiiroo-pleasure-intimate-experience",
+            "cloudinary_id": "",
+            "cloudinary_id_2": "",
+            "cloudinary_id_3": "",
+            "cloudinary_id_4": "",
+            "image_gap": 16,
+            "image_margin": 0,
+            "image_padding": 0,
+            "title": "Column",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_89FUJz": {
+          "type": "column",
+          "settings": {
+            "article": "sex-wellness/masturbation-body-positivity-self",
+            "cloudinary_id": "",
+            "cloudinary_id_2": "",
+            "cloudinary_id_3": "",
+            "cloudinary_id_4": "",
+            "image_gap": 16,
+            "image_margin": 0,
+            "image_padding": 0,
+            "title": "Column",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_nTM9xw": {
+          "type": "column",
+          "settings": {
+            "article": "sexual-wellness/tenga-redefining-male-sexual-pleasure",
             "cloudinary_id": "",
             "cloudinary_id_2": "",
             "cloudinary_id_3": "",
@@ -720,7 +563,9 @@
         "column_NMnBUc",
         "column_w3iQGy",
         "column_fpqVPT",
-        "column_gQ3aca"
+        "column_gQ3aca",
+        "column_89FUJz",
+        "column_nTM9xw"
       ],
       "name": "Blog Articles",
       "settings": {
@@ -730,12 +575,12 @@
         "image_ratio": "square",
         "button_label": "",
         "button_link": "",
-        "columns_desktop": 4,
-        "column_alignment": "center",
+        "columns_desktop": 6,
+        "column_alignment": "left",
         "background_style": "primary",
         "color_scheme": "scheme-1",
         "columns_mobile": "1",
-        "swipe_on_mobile": false,
+        "swipe_on_mobile": true,
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -788,9 +633,7 @@
     "custom_section_zXm7cT",
     "multicolumn_dynamic_VX6GTt",
     "featured_collection1",
-    "collection_list",
     "custom_section_HmcFRj",
-    "multicolumn2",
     "multicolumn_2x2_QnEPzH",
     "featured_collection2",
     "after_page_richtext_content_Y6YCXe"
