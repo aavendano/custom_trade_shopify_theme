@@ -86,6 +86,66 @@
     "custom_section_wqaQt9": {
       "type": "custom_section",
       "blocks": {
+        "flexible_content_q3EQYU": {
+          "type": "flexible-content",
+          "name": "Flex Content",
+          "settings": {
+            "title": "Adult Store and Novelties Collections",
+            "title_tag": "h1",
+            "subtitle": "",
+            "subtitle_tag": "h2",
+            "description": "",
+            "image_position": "right",
+            "primary_button_text": "Comprar ahora",
+            "primary_button_link": "",
+            "secondary_button_text": "Más información",
+            "secondary_button_link": "",
+            "layout_direction": "row",
+            "vertical_alignment": "center",
+            "spacing": 30,
+            "layout_direction_mobile": "column",
+            "spacing_mobile": 20,
+            "title_size": 40,
+            "title_weight": 700,
+            "title_spacing": 15,
+            "subtitle_size": 24,
+            "subtitle_weight": 600,
+            "subtitle_spacing": 15,
+            "text_size": 16,
+            "text_spacing": 20,
+            "title_size_mobile": 28,
+            "title_spacing_mobile": 10,
+            "subtitle_size_mobile": 20,
+            "subtitle_spacing_mobile": 10,
+            "text_size_mobile": 14,
+            "text_spacing_mobile": 15,
+            "button_text_size": 16,
+            "button_border_radius": 4,
+            "button_text_size_mobile": 14,
+            "image_max_width": 600,
+            "image_border_radius": 8,
+            "background_color": "#f4f4f4",
+            "title_color": "#333333",
+            "subtitle_color": "#555555",
+            "text_color": "#666666",
+            "primary_button_color": "#000000",
+            "primary_button_text_color": "#ffffff",
+            "primary_button_hover_color": "#333333",
+            "secondary_button_color": "#ffffff",
+            "secondary_button_text_color": "#000000",
+            "secondary_button_hover_color": "#f5f5f5",
+            "padding_top": 60,
+            "padding_right": 60,
+            "padding_bottom": 60,
+            "padding_left": 60,
+            "padding_top_mobile": 30,
+            "padding_right_mobile": 20,
+            "padding_bottom_mobile": 30,
+            "padding_left_mobile": 20,
+            "border_radius": 0
+          },
+          "blocks": {}
+        },
         "masonry_collections_N7QiyE": {
           "type": "masonry-collections",
           "name": "Masonry Collections",
@@ -122,6 +182,7 @@
         }
       },
       "block_order": [
+        "flexible_content_q3EQYU",
         "masonry_collections_N7QiyE"
       ],
       "custom_css": [
@@ -137,7 +198,7 @@
         "horizontal_alignment_flex_direction_column": "center",
         "vertical_alignment_flex_direction_column": "center",
         "gap": 12,
-        "section_width": "page-width",
+        "section_width": "full-width",
         "section_height": "",
         "section_height_custom": 50,
         "color_scheme": "",
@@ -150,7 +211,7 @@
         "border_opacity": 100,
         "border_radius": 0,
         "toggle_overlay": false,
-        "overlay_color": "#00000026",
+        "overlay_color": "#533278",
         "overlay_style": "solid",
         "gradient_direction": "to top",
         "content_padding_top": 0,
@@ -205,6 +266,7 @@
       "settings": {
         "title": "Women Collections",
         "heading_size": "h1",
+        "show_secondary_image": false,
         "image_ratio": "square",
         "columns_desktop": 5,
         "color_scheme": "",
@@ -253,6 +315,7 @@
       "settings": {
         "title": "Men Collections",
         "heading_size": "h1",
+        "show_secondary_image": false,
         "image_ratio": "square",
         "columns_desktop": 4,
         "color_scheme": "",
@@ -395,7 +458,7 @@
             "title": "",
             "text": "",
             "link_label": "",
-            "link": "shopify://collections/lelo-sex-toys"
+            "link": "shopify://collections/shop-by-brand-lelo"
           }
         },
         "column_f4kPhC": {
@@ -433,7 +496,7 @@
         "image_ratio": "adapt",
         "button_label": "",
         "button_link": "",
-        "columns_desktop": 5,
+        "columns_desktop": 6,
         "column_alignment": "center",
         "background_style": "none",
         "color_scheme": "scheme-3",
@@ -495,6 +558,7 @@
       "settings": {
         "title": "Collections",
         "heading_size": "h1",
+        "show_secondary_image": false,
         "image_ratio": "square",
         "columns_desktop": 6,
         "color_scheme": "",
@@ -517,7 +581,7 @@
         "show_description": false,
         "description_style": "body",
         "columns_desktop": 5,
-        "enable_desktop_slider": true,
+        "enable_desktop_slider": false,
         "full_width": false,
         "show_view_all": true,
         "view_all_style": "solid",
@@ -525,6 +589,7 @@
         "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": false,
+        "serve_from_twicpics": true,
         "show_vendor": true,
         "show_rating": false,
         "quick_add": "none",
@@ -533,6 +598,81 @@
         "swipe_on_mobile": false,
         "padding_top": 36,
         "padding_bottom": 36
+      }
+    },
+    "custom_section_CW6FQW": {
+      "type": "custom_section",
+      "blocks": {
+        "blog_post_display_DKDjyd": {
+          "type": "blog_post_display",
+          "name": "Blog Post Display",
+          "settings": {
+            "article": "sex-toys-artisans/adult-store-essentials",
+            "article_handle": "",
+            "show_image": true,
+            "show_meta": true,
+            "show_date": true,
+            "show_author": true,
+            "show_content": true,
+            "show_button": false,
+            "button_text": "Read more",
+            "date_format": "%B %d, %Y",
+            "width": 100,
+            "padding": 24,
+            "spacing": 20,
+            "border_radius": 8,
+            "image_aspect_ratio": "16/9",
+            "image_border_radius": 8,
+            "background_color": "#ffffff",
+            "title_color": "#000000",
+            "title_hover_color": "#555555",
+            "meta_color": "#777777",
+            "content_color": "#333333",
+            "button_color": "#000000",
+            "button_hover_color": "#555555",
+            "title_font_size": 28,
+            "title_font_weight": 700,
+            "meta_font_size": 14,
+            "content_font_size": 16,
+            "button_font_size": 16
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "blog_post_display_DKDjyd"
+      ],
+      "name": "custom section",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "background_color": "#FFFFFF",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "content_padding_top": 0,
+        "content_padding_bottom": 0,
+        "content_padding_left": 0,
+        "content_padding_right": 0,
+        "custom_class": "custom-section-class"
       }
     }
   },
@@ -544,6 +684,7 @@
     "collection_list_grQGBK",
     "multicolumn_ANCJWk",
     "collection_list_pjPpBm",
-    "featured_collection_fiV6Ui"
+    "featured_collection_fiV6Ui",
+    "custom_section_CW6FQW"
   ]
 }

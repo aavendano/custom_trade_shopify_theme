@@ -12,15 +12,15 @@
     "logo": "shopify://shop_images/PlayLoveToys-Logo.svg",
     "logo_width": 130,
     "favicon": "shopify://shop_images/favicon-playlovetoys-32x32.png",
-    "type_header_font": "radio_canada_big_n7",
+    "type_header_font": "urbanist_n7",
     "heading_scale": 120,
-    "type_body_font": "raleway_n4",
-    "body_scale": 120,
+    "type_body_font": "urbanist_n5",
+    "body_scale": 130,
     "page_width": 1600,
     "spacing_sections": 20,
     "spacing_grid_horizontal": 40,
     "spacing_grid_vertical": 24,
-    "animations_reveal_on_scroll": false,
+    "animations_reveal_on_scroll": true,
     "animations_hover_elements": "vertical-lift",
     "buttons_border_thickness": 1,
     "buttons_border_opacity": 100,
@@ -76,14 +76,14 @@
     "blog_card_shadow_horizontal_offset": 6,
     "blog_card_shadow_vertical_offset": 6,
     "blog_card_shadow_blur": 10,
-    "text_boxes_border_thickness": 1,
+    "text_boxes_border_thickness": 0,
     "text_boxes_border_opacity": 10,
     "text_boxes_radius": 8,
     "text_boxes_shadow_opacity": 30,
     "text_boxes_shadow_horizontal_offset": 0,
     "text_boxes_shadow_vertical_offset": 4,
     "text_boxes_shadow_blur": 5,
-    "media_border_thickness": 1,
+    "media_border_thickness": 0,
     "media_border_opacity": 5,
     "media_radius": 8,
     "media_shadow_opacity": 0,
@@ -107,7 +107,7 @@
     "badge_corner_radius": 40,
     "sale_badge_color_scheme": "scheme-ad2f8c43-2813-482e-bb3a-201fafbcf40d",
     "sold_out_badge_color_scheme": "scheme-95e7720f-18c1-4aad-ba85-bed2b4548b6f",
-    "brand_headline": "",
+    "brand_headline": "Connect With Us",
     "brand_description": "<p></p>",
     "brand_image": "shopify://shop_images/playlovetoys_icon-Photoroom_3.png",
     "brand_image_width": 340,
@@ -228,7 +228,7 @@
         "settings": {
           "background": "#f4f4f4",
           "background_gradient": "",
-          "text": "#231f20",
+          "text": "#000000",
           "button": "#533278",
           "button_label": "#ffffff",
           "secondary_button_label": "#f4436c",
@@ -343,6 +343,28 @@
           "button_label": "#ffffff",
           "secondary_button_label": "#f4436c",
           "shadow": "#ffffff"
+        }
+      },
+      "scheme-eb90073b-7795-4229-b2f9-489412848175": {
+        "settings": {
+          "background": "#f4f4f4",
+          "background_gradient": "linear-gradient(274deg, rgba(83, 50, 120, 1) 16%, rgba(203, 68, 194, 1) 52%, rgba(0, 0, 0, 1) 87%)",
+          "text": "#000000",
+          "button": "#533278",
+          "button_label": "#ffffff",
+          "secondary_button_label": "#f4436c",
+          "shadow": "#0c7489"
+        }
+      },
+      "scheme-72dbd1b9-59d4-47c2-b35f-de7ef472dd48": {
+        "settings": {
+          "background": "#f4f4f4",
+          "background_gradient": "linear-gradient(197deg, rgba(0, 0, 0, 1) 7%, rgba(8, 3, 65, 1) 50%, rgba(62, 57, 80, 1) 93.733%)",
+          "text": "#000000",
+          "button": "#533278",
+          "button_label": "#ffffff",
+          "secondary_button_label": "#f4436c",
+          "shadow": "#0c7489"
         }
       }
     }

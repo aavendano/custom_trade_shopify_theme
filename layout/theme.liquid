@@ -298,11 +298,15 @@
       }
     </script>
 
+    <!--
+      Swiper.js JavaScript
+      <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    -->
+    <!--
+      Swiper.js CSS
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    -->
 
-    <!-- Swiper.js JavaScript -->
-    <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <!-- Swiper.js CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     {% comment %}
       This is a custom CSS file that can be used to override the default styles of the theme.
       It is recommended to use this file for custom styles instead of editing the theme's core CSS files.
@@ -310,6 +314,7 @@
     {% endcomment %}
 
     {{ 'custom-style.css' | asset_url | stylesheet_tag: loading: 'defer' }}
+    {{ 'custom-twicpics-images.css' | asset_url | stylesheet_tag: loading: 'defer' }}
 
     <!-- TWICPICS -->
     <script
@@ -374,8 +379,6 @@
         a.appendChild(r);
       })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
     </script>
-
-
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">

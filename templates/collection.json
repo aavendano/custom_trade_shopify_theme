@@ -50,8 +50,8 @@
       ],
       "name": "Breadcrumb",
       "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
+        "content_direction": "row",
+        "vertical_on_mobile": false,
         "horizontal_alignment": "flex-start",
         "vertical_alignment": "center",
         "align_baseline": false,
@@ -88,7 +88,7 @@
           "type": "flexible-content",
           "name": "Flex Content",
           "settings": {
-            "title": "{{ closest.collection.title }}: Sex Toys",
+            "title": "{{ closest.collection.title }} Collection",
             "title_tag": "h1",
             "subtitle": "Adult Toys & Novelty Collections",
             "subtitle_tag": "h2",
@@ -277,6 +277,16 @@
         "custom_class": "custom-section-class"
       }
     },
+    "after_page_richtext_content_nT8LrB": {
+      "type": "after-page-richtext-content",
+      "name": "After Page Richtext",
+      "settings": {
+        "after_page_content": "{{ collection.metafields.custom.afterpage_richtext | metafield_tag }}",
+        "as_html": true,
+        "content_width": 1600,
+        "content_padding": 20
+      }
+    },
     "after_page_content_ArzyWy": {
       "type": "after-page-content",
       "name": "AfterPageCont",
@@ -286,56 +296,6 @@
         "content_width": 650,
         "content_padding": 20
       }
-    },
-    "1755751109947cca98": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_842a85c_zCUDrE": {
-          "type": "ai_gen_block_842a85c",
-          "settings": {
-            "metaobject_entry": "",
-            "card_background": "#ffffff",
-            "card_radius": 12,
-            "image_height": 240,
-            "title_size": 20,
-            "title_color": "#333333",
-            "description_size": 14,
-            "description_color": "#666666"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_842a85c_zCUDrE"
-      ],
-      "disabled": true,
-      "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 12,
-        "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "color_scheme": "",
-        "background_media": "none",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "padding-block-start": 0,
-        "padding-block-end": 0
-      }
     }
   },
   "order": [
@@ -344,7 +304,7 @@
     "custom_section_NWTLXi",
     "product-grid",
     "custom_section_EWcpUz",
-    "after_page_content_ArzyWy",
-    "1755751109947cca98"
+    "after_page_richtext_content_nT8LrB",
+    "after_page_content_ArzyWy"
   ]
 }

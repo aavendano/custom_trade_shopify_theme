@@ -173,7 +173,7 @@
             "heading": "Shipping Info",
             "icon": "truck",
             "content": "<p></p><p></p>",
-            "page": "shipping-info"
+            "page": "shipping-info-lingerie"
           }
         }
       },
@@ -196,10 +196,10 @@
       "settings": {
         "enable_sticky_info": true,
         "color_scheme": "scheme-2",
-        "media_size": "small",
+        "media_size": "medium",
         "constrain_to_viewport": true,
-        "media_fit": "contain",
-        "gallery_layout": "thumbnail_slider",
+        "media_fit": "cover",
+        "gallery_layout": "columns",
         "mobile_thumbnails": "show",
         "media_position": "left",
         "image_zoom": "hover",
@@ -209,41 +209,10 @@
         "padding_bottom": 36
       }
     },
-    "featured_collection_FxTmWx": {
-      "type": "featured-collection",
-      "name": "t:sections.featured-collection.presets.name",
-      "settings": {
-        "collection": "sexy-lingerie",
-        "products_to_show": 5,
-        "title": "Fresh Arrivals",
-        "heading_size": "h1",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "columns_desktop": 5,
-        "enable_desktop_slider": true,
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "color_scheme": "",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "serve_from_twicpics": true,
-        "show_vendor": true,
-        "show_rating": false,
-        "quick_add": "standard",
-        "columns_tablet": "4",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
     "related-products": {
       "type": "related-products",
       "settings": {
-        "heading": "Pleasure Toys",
+        "heading": "Related Products",
         "heading_size": "h1",
         "products_to_show": 5,
         "columns_desktop": 5,
@@ -258,50 +227,93 @@
         "padding_bottom": 20
       }
     },
-    "featured_collection_XJ8yBQ": {
-      "type": "featured-collection",
-      "name": "t:sections.featured-collection.presets.name",
+    "collection_list_PqLNKp": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_4y73Lm": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "romance"
+          }
+        },
+        "featured_collection_cGWfGP": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "sex-toys-for-women"
+          }
+        },
+        "featured_collection_JntBde": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "massage-relaxation"
+          }
+        },
+        "featured_collection_3q3ykm": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "clitoral-stimulators"
+          }
+        },
+        "featured_collection_G7dgX6": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "pheromones-1"
+          }
+        },
+        "featured_collection_CaY8TT": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "g-spot-stimulation"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_4y73Lm",
+        "featured_collection_cGWfGP",
+        "featured_collection_JntBde",
+        "featured_collection_3q3ykm",
+        "featured_collection_G7dgX6",
+        "featured_collection_CaY8TT"
+      ],
+      "name": "t:sections.collection-list.presets.name",
       "settings": {
-        "collection": "sex-toys-new-arrival",
-        "products_to_show": 5,
-        "title": "Fresh Arrivals",
+        "title": "Collections",
         "heading_size": "h1",
-        "description": "",
-        "show_description": true,
-        "description_style": "body",
-        "columns_desktop": 5,
-        "enable_desktop_slider": true,
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "color_scheme": "",
-        "image_ratio": "square",
-        "image_shape": "default",
         "show_secondary_image": false,
-        "serve_from_twicpics": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_tablet": "4",
-        "columns_mobile": "2",
+        "image_ratio": "square",
+        "columns_desktop": 6,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 36,
         "padding_bottom": 36
       }
     },
-    "1754662869c4289cac": {
-      "type": "apps",
+    "featured_blog_MUe4ec": {
+      "type": "featured-blog",
+      "name": "Featured Blog",
       "settings": {
-        "include_margins": true
+        "blog": "sex-wellness",
+        "post_limit": 4,
+        "heading": "Blog posts",
+        "heading_size": "h1",
+        "columns_desktop": 4,
+        "show_view_all": true,
+        "show_image": true,
+        "show_date": true,
+        "show_author": false,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 100
       }
     }
   },
   "order": [
     "custom_section_pEXVqj",
     "main",
-    "featured_collection_FxTmWx",
     "related-products",
-    "featured_collection_XJ8yBQ",
-    "1754662869c4289cac"
+    "collection_list_PqLNKp",
+    "featured_blog_MUe4ec"
   ]
 }

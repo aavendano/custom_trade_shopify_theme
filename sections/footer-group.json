@@ -17,14 +17,43 @@
         "brand_information_BAnPQg": {
           "type": "brand_information",
           "settings": {
-            "show_social": false
+            "show_social": true
           }
         },
-        "link_list_nypeRK": {
-          "type": "link_list",
+        "forms_inline_Adbmz7": {
+          "type": "shopify://apps/forms/blocks/inline/8744a304-fcb1-4347-b211-bb6b4759a76a",
           "settings": {
-            "heading": "Collections",
-            "menu": "footer-collections"
+            "form_id": "498644",
+            "text_color": "#ffffff",
+            "button_background_color": "#0c7489",
+            "button_label_color": "#ffffff",
+            "links_color": "#1878b9",
+            "errors_color": "#e02229",
+            "text_alignment": "center",
+            "form_alignment": "center",
+            "padding_top": 36,
+            "padding_bottom": 64,
+            "padding_right": 0,
+            "padding_left": 0
+          }
+        },
+        "shop_shop_login_button_app_block_h8LYN6": {
+          "type": "shopify://apps/shop/blocks/shop-login-button-app-block/7cab7c4a-1dfc-4b7e-8e53-31f104f2fa4e",
+          "settings": {}
+        },
+        "collabs_application_page_47BrGD": {
+          "type": "shopify://apps/collabs/blocks/application-page/54758706-9f25-4fa9-a553-64720a4c998b",
+          "settings": {
+            "heading": "Affiliate programme",
+            "show_square_logo": false,
+            "show_partnership_info": true,
+            "button_text": "Apply now",
+            "number_of_images": "4",
+            "logo_position": "left",
+            "corner_style": "rounded",
+            "button_background_color": "#0c7489",
+            "button_label_color": "#ffffff",
+            "link_color": "#2c6ecb"
           }
         },
         "link_list": {
@@ -33,12 +62,38 @@
             "heading": "Quick links",
             "menu": "footer"
           }
+        },
+        "text_afMBrY": {
+          "type": "text",
+          "settings": {
+            "heading": "",
+            "subtext": ""
+          }
+        },
+        "link_list_nypeRK": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Main Collections",
+            "menu": "footer-collections"
+          }
+        },
+        "link_list_HUHxky": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Others Collections",
+            "menu": "footer-collections-copy"
+          }
         }
       },
       "block_order": [
         "brand_information_BAnPQg",
+        "forms_inline_Adbmz7",
+        "shop_shop_login_button_app_block_h8LYN6",
+        "collabs_application_page_47BrGD",
+        "link_list",
+        "text_afMBrY",
         "link_list_nypeRK",
-        "link_list"
+        "link_list_HUHxky"
       ],
       "custom_css": [],
       "settings": {
@@ -53,8 +108,8 @@
         "enable_language_selector": true,
         "payment_enable": true,
         "show_policy": true,
-        "margin_top": 0,
-        "padding_top": 36,
+        "margin_top": 100,
+        "padding_top": 100,
         "padding_bottom": 36
       }
     }
