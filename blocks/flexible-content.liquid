@@ -165,21 +165,14 @@
     {% if block.settings.image != blank and block.settings.image_position == 'left' %}
       <div class="flexible-content__media-{{ ai_gen_id }}">
         <div class="flexible-content__image-wrapper-{{ ai_gen_id }}">
-          {% if block.settings.image_served_from_twicpics %}
-            {% render 'twicpics-image',
-              image: block.settings.image,
-              loading_eager: block.settings.image_loading_eager
-            %}
-          {% else %}
-            <img
-              src="{{ block.settings.image | image_url: width: 1500 }}"
-              alt="{{ block.settings.image.alt | escape }}"
-              loading="lazy"
-              width="{{ block.settings.image.width }}"
-              height="{{ block.settings.image.height }}"
-              class="flexible-content__image-{{ ai_gen_id }}"
-            >
-          {% endif %}
+          <img
+            src="{{ block.settings.image | image_url: width: 1500 }}"
+            alt="{{ block.settings.image.alt | escape }}"
+            loading="lazy"
+            width="{{ block.settings.image.width }}"
+            height="{{ block.settings.image.height }}"
+            class="flexible-content__image-{{ ai_gen_id }}"
+          >
         </div>
       </div>
     {% endif %}
@@ -245,21 +238,14 @@
     {% if block.settings.image != blank and block.settings.image_position == 'right' %}
       <div class="flexible-content__media-{{ ai_gen_id }}">
         <div class="flexible-content__image-wrapper-{{ ai_gen_id }}">
-          {% if block.settings.image_served_from_twicpics %}
-            {% render 'twicpics-image',
-              image: block.settings.image,
-              loading_eager: block.settings.image_loading_eager
-            %}
-          {% else %}
-            <img
-              src="{{ block.settings.image | image_url: width: 1500 }}"
-              alt="{{ block.settings.image.alt | escape }}"
-              loading="lazy"
-              width="{{ block.settings.image.width }}"
-              height="{{ block.settings.image.height }}"
-              class="flexible-content__image-{{ ai_gen_id }}"
-            >
-          {% endif %}
+          <img
+            src="{{ block.settings.image | image_url: width: 1500 }}"
+            alt="{{ block.settings.image.alt | escape }}"
+            loading="lazy"
+            width="{{ block.settings.image.width }}"
+            height="{{ block.settings.image.height }}"
+            class="flexible-content__image-{{ ai_gen_id }}"
+          >
         </div>
       </div>
     {% endif %}
@@ -361,18 +347,6 @@
       "type": "image_picker",
       "id": "image",
       "label": "Imagen (opcional)"
-    },
-    {
-      "type": "checkbox",
-      "id": "image_served_from_twicpics",
-      "default": true,
-      "label": "Serve image from TwicPics"
-    },
-    {
-      "type": "checkbox",
-      "id": "image_loading_eager",
-      "default": false,
-      "label": "Eager loading"
     },
     {
       "type": "select",

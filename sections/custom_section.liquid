@@ -1,176 +1,31 @@
 {%- liquid
-  # Set up dynamic classes for Tailwind
-  assign base_classes = ''
-  assign layout_classes = ''
-  assign alignment_classes = ''
-  assign spacing_classes = ''
-  assign size_classes = ''
-  assign background_classes = ''
-  assign overlay_classes = ''
-
-  # Layout direction
-  if section.settings.content_direction == 'row'
-    assign layout_classes = layout_classes | append: ' tw-flex-row'
-  else
-    assign layout_classes = layout_classes | append: ' tw-flex-col'
-  endif
-
-  # Mobile vertical if enabled
-  if section.settings.vertical_on_mobile
-    assign layout_classes = layout_classes | append: ' md:tw-flex-row'
-  endif
-
-  # Horizontal alignment (for row direction)
-  if section.settings.content_direction == 'row'
-    case section.settings.horizontal_alignment
-      when 'center'
-        assign alignment_classes = alignment_classes | append: ' tw-justify-center'
-      when 'flex-end'
-        assign alignment_classes = alignment_classes | append: ' tw-justify-end'
-      when 'space-between'
-        assign alignment_classes = alignment_classes | append: ' tw-justify-between'
-      else
-        assign alignment_classes = alignment_classes | append: ' tw-justify-start'
-    endcase
-
-    # Vertical alignment (for row direction)
-    case section.settings.vertical_alignment
-      when 'center'
-        assign alignment_classes = alignment_classes | append: ' tw-items-center'
-      when 'flex-end'
-        assign alignment_classes = alignment_classes | append: ' tw-items-end'
-      else
-        assign alignment_classes = alignment_classes | append: ' tw-items-start'
-    endcase
-  else
-    # Alignment for column direction
-    case section.settings.horizontal_alignment_flex_direction_column
-      when 'center'
-        assign alignment_classes = alignment_classes | append: ' tw-items-center'
-      when 'flex-end'
-        assign alignment_classes = alignment_classes | append: ' tw-items-end'
-      else
-        assign alignment_classes = alignment_classes | append: ' tw-items-start'
-    endcase
-
-    # Vertical alignment for column
-    if section.settings.vertical_alignment_flex_direction_column == 'space-between'
-      assign alignment_classes = alignment_classes | append: ' tw-justify-between'
-    else
-      case section.settings.vertical_alignment_flex_direction_column
-        when 'center'
-          assign alignment_classes = alignment_classes | append: ' tw-justify-center'
-        when 'flex-end'
-          assign alignment_classes = alignment_classes | append: ' tw-justify-end'
-        else
-          assign alignment_classes = alignment_classes | append: ' tw-justify-start'
-      endcase
-    endif
-  endif
-
-  # Gap
-  assign gap_value = section.settings.gap | divided_by: 4 | round | at_most: 16
-  if gap_value > 0
-    assign spacing_classes = spacing_classes | append: ' tw-gap-' | append: gap_value
-  endif
-
-  # Section width
-  if section.settings.section_width == 'page-width'
-    assign base_classes = ' tw-max-w-7xl tw-mx-auto'
-  endif
-
-  # Height
-  if section.settings.section_height != ''
-    case section.settings.section_height
-      when 'small'
-        assign size_classes = size_classes | append: ' tw-min-h-[50svh]'
-      when 'medium'
-        assign size_classes = size_classes | append: ' tw-min-h-[70svh]'
-      when 'large'
-        assign size_classes = size_classes | append: ' tw-min-h-[90svh]'
-      when 'full-screen'
-        assign size_classes = size_classes | append: ' tw-min-h-[100svh]'
-      when 'custom'
-        assign custom_height = section.settings.section_height_custom | append: 'svh'
-        assign size_classes = size_classes | append: ' tw-min-h-[' | append: custom_height | append: ']'
-    endcase
-  endif
-
-  # Background and overlay (simplified - using solid colors only)
-  if section.settings.background_media == 'color'
-    assign background_classes = ' tw-bg-gray-100'
-  endif
-
-  if section.settings.toggle_overlay
-    if section.settings.overlay_style == 'gradient'
-      assign overlay_classes = overlay_classes | append: ' tw-bg-gradient-to-t tw-from-black tw-to-transparent tw-bg-opacity-80'
-    else
-      assign overlay_classes = overlay_classes | append: ' tw-bg-black tw-bg-opacity-20'
-    endif
-  endif
-
-  # Border
-  if section.settings.border == 'solid'
-    assign border_width = section.settings.border_width | divided_by: 4 | round
-    assign border_classes = ' tw-border tw-border-gray-300'
-    if border_width > 0
-      assign border_classes = border_classes | append: ' tw-border-' | append: border_width
-    endif
-  endif
-
-  # Border radius
-  assign radius_value = section.settings.border_radius | divided_by: 4 | round
-  if radius_value > 0
-    assign border_classes = border_classes | append: ' tw-rounded-' | append: radius_value
-  endif
-
-  # Padding
-  assign top_padding = section.settings.content_padding_top | divided_by: 16 | round
-  assign bottom_padding = section.settings.content_padding_bottom | divided_by: 16 | round
-  assign left_padding = section.settings.content_padding_left | divided_by: 16 | round
-  assign right_padding = section.settings.content_padding_right | divided_by: 16 | round
-  if top_padding > 0
-    assign spacing_classes = spacing_classes | append: ' tw-pt-' | append: top_padding
-  endif
-  if bottom_padding > 0
-    assign spacing_classes = spacing_classes | append: ' tw-pb-' | append: bottom_padding
-  endif
-  if left_padding > 0
-    assign spacing_classes = spacing_classes | append: ' tw-pl-' | append: left_padding
-  endif
-  if right_padding > 0
-    assign spacing_classes = spacing_classes | append: ' tw-pr-' | append: right_padding
-  endif
-
-  # Custom class
-  assign final_classes = ' tw-relative tw-flex' | append: base_classes | append: layout_classes | append: alignment_classes | append: spacing_classes | append: size_classes | append: background_classes
+  assign section_classes = 'page-width section-wrapper'
   if section.settings.custom_class != blank
-    assign final_classes = final_classes | append: ' ' | append: section.settings.custom_class
+    assign section_classes = section_classes | append: ' ' | append: section.settings.custom_class
   endif
 -%}
-<section class="{{ final_classes }} custom-section-{{ section.id }}">
-  {%- if section.settings.toggle_overlay -%}
-    <div class="tw-absolute tw-top-0 tw-left-0 tw-w-full tw-h-full{{ overlay_classes }}"></div>
-  {%- endif -%}
-  <div class="tw-relative tw-w-full tw-z-10{{ border_classes }}">
-    {%- for block in section.blocks -%}
-      {% case block.type %}
-        {%- when '@theme' -%}
-          <div class="theme-block">
-            <!-- Theme block content -->
-          </div>
-        {%- when '@app' -%}
-          <div class="app-block">
-            <!-- App block content -->
-          </div>
-        {%- when '_divider' -%}
-          <hr class="divider">
-        {%- else -%}
-          {%- render block -%}
-      {%- endcase -%}
-    {%- endfor -%}
-  </div>
-</section>
+
+{%- style -%}
+  .custom-section-{{ section.id }} {
+    {% if section.settings.background_media == 'color' %}
+      background-color: {{ section.settings.background_color }};
+    {% endif %}
+  }
+  .custom-section-{{ section.id }} .content-container-wrapper {
+    padding-top: {{ section.settings.content_padding_top }}px;
+    padding-right: {{ section.settings.content_padding_right }}px;
+    padding-bottom: {{ section.settings.content_padding_bottom }}px;
+    padding-left: {{ section.settings.content_padding_left }}px;
+  }
+{%- endstyle -%}
+
+<div class="{{ section_classes }} custom-section-{{ section.id }}">
+  {% capture children %}
+      {% content_for 'blocks' %}
+  {% endcapture %}
+
+  {% render 'section', section_object: section, children: children %}
+</div>
 
 {% schema %}
 {
@@ -626,8 +481,7 @@
   ],
   "presets": [
     {
-      "name": "custom section",
-      "category": "Custom"
+      "name": "custom section"
     }
   ]
 }
