@@ -1,12 +1,154 @@
-{% capture children %}
-  {% content_for 'blocks' %}
-{% endcapture %}
+{%- liquid
+  # Set up dynamic classes for Tailwind
+  assign base_classes = ''
+  assign layout_classes = ''
+  assign alignment_classes = ''
+  assign spacing_classes = ''
+  assign size_classes = ''
+  assign background_classes = ''
+  assign border_classes = ''
+  assign overlay_classes = ''
 
-{% render 'section', section_object: section, children: children %}
+  # Layout direction
+  if section.settings.content_direction == 'row'
+    assign layout_classes = layout_classes | append: ' tw-flex-row'
+  else
+    assign layout_classes = layout_classes | append: ' tw-flex-col'
+  endif
+
+  # Mobile vertical if enabled
+  if section.settings.vertical_on_mobile
+    assign layout_classes = layout_classes | append: ' md:tw-flex-row'
+  endif
+
+  # Horizontal alignment (for row direction)
+  if section.settings.content_direction == 'row'
+    case section.settings.horizontal_alignment
+      when 'center'
+        assign alignment_classes = alignment_classes | append: ' tw-justify-center'
+      when 'flex-end'
+        assign alignment_classes = alignment_classes | append: ' tw-justify-end'
+      when 'space-between'
+        assign alignment_classes = alignment_classes | append: ' tw-justify-between'
+      else
+        assign alignment_classes = alignment_classes | append: ' tw-justify-start'
+    endcase
+
+    # Vertical alignment (for row direction)
+    case section.settings.vertical_alignment
+      when 'center'
+        assign alignment_classes = alignment_classes | append: ' tw-items-center'
+      when 'flex-end'
+        assign alignment_classes = alignment_classes | append: ' tw-items-end'
+      else
+        assign alignment_classes = alignment_classes | append: ' tw-items-start'
+    endcase
+  else
+    # Alignment for column direction
+    case section.settings.horizontal_alignment_flex_direction_column
+      when 'center'
+        assign alignment_classes = alignment_classes | append: ' tw-items-center'
+      when 'flex-end'
+        assign alignment_classes = alignment_classes | append: ' tw-items-end'
+      else
+        assign alignment_classes = alignment_classes | append: ' tw-items-start'
+    endcase
+
+    # Vertical alignment for column
+    if section.settings.vertical_alignment_flex_direction_column == 'space-between'
+      assign alignment_classes = alignment_classes | append: ' tw-justify-between'
+    else
+      case section.settings.vertical_alignment_flex_direction_column
+        when 'center'
+          assign alignment_classes = alignment_classes | append: ' tw-justify-center'
+        when 'flex-end'
+          assign alignment_classes = alignment_classes | append: ' tw-justify-end'
+        else
+          assign alignment_classes = alignment_classes | append: ' tw-justify-start'
+      endcase
+    endif
+  endif
+
+  # Gap
+  assign gap_value = section.settings.gap | divided_by: 4 | round | at_most: 16
+  if gap_value > 0
+    assign spacing_classes = spacing_classes | append: ' tw-gap-' | append: gap_value
+  endif
+
+  # Section width
+  if section.settings.section_width == 'page-width'
+    assign base_classes = ' tw-max-w-7xl tw-mx-auto'
+  endif
+
+  # Height
+  if section.settings.section_height != ''
+    case section.settings.section_height
+      when 'small'
+        assign size_classes = size_classes | append: ' tw-min-h-[50svh]'
+      when 'medium'
+        assign size_classes = size_classes | append: ' tw-min-h-[70svh]'
+      when 'large'
+        assign size_classes = size_classes | append: ' tw-min-h-[90svh]'
+      when 'full-screen'
+        assign size_classes = size_classes | append: ' tw-min-h-[100svh]'
+      when 'custom'
+        assign custom_height = section.settings.section_height_custom | append: 'svh'
+        assign size_classes = size_classes | append: ' tw-min-h-[' | append: custom_height | append: ']'
+    endcase
+  endif
+
+  # Background and overlay
+  if section.settings.color_scheme != 'scheme-1'
+    assign background_classes = ' tw-bg-gray-100'
+  endif
+
+  if section.settings.toggle_overlay
+    if section.settings.overlay_style == 'gradient'
+      assign overlay_classes = overlay_classes | append: ' tw-bg-gradient-to-t tw-from-black tw-to-transparent tw-bg-opacity-80'
+    else
+      assign overlay_classes = overlay_classes | append: ' tw-bg-black tw-bg-opacity-20'
+    endif
+  endif
+
+  # Border
+  if section.settings.border == 'solid'
+    assign border_classes = border_classes | append: ' tw-border tw-border-gray-300'
+    assign border_width = section.settings.border_width | divided_by: 4 | round
+    if border_width > 0
+      assign border_classes = border_classes | append: ' tw-border-' | append: border_width
+    endif
+  endif
+
+  # Border radius
+  assign radius_value = section.settings.border_radius | divided_by: 4 | round
+  if radius_value > 0
+    assign border_classes = border_classes | append: ' tw-rounded-' | append: radius_value
+  endif
+
+  # Padding
+  assign top_padding = section.settings.padding_block_start | divided_by: 16 | round
+  assign bottom_padding = section.settings.padding_block_end | divided_by: 16 | round
+  if top_padding > 0
+    assign spacing_classes = spacing_classes | append: ' tw-pt-' | append: top_padding
+  endif
+  if bottom_padding > 0
+    assign spacing_classes = spacing_classes | append: ' tw-pb-' | append: bottom_padding
+  endif
+-%}
+
+<section class="tw-relative tw-flex section-wrapper{{ base_classes }}{{ layout_classes }}{{ alignment_classes }}{{ spacing_classes }}{{ size_classes }}{{ background_classes }}">
+  {%- if section.settings.toggle_overlay -%}
+    <div class="tw-absolute tw-top-0 tw-left-0 tw-w-full tw-h-full{{ overlay_classes }}"></div>
+  {%- endif -%}
+
+  <div class="tw-relative tw-w-full tw-z-10{{ border_classes }}">
+    {%- content_for 'blocks' -%}
+  </div>
+</section>
 
 {% schema %}
 {
-  "name": "custom_section",
+  "name": "_Blocks",
   "class": "section-wrapper",
   "blocks": [
     {
@@ -417,7 +559,8 @@
   ],
   "presets": [
     {
-      "name": "custom_section"
+      "name": "_blocks",
+      "category": "Custom"
     }
   ]
 }
