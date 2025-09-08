@@ -1,0 +1,16 @@
+/* Tailwind CSS - Purged with tw- prefix */
+
+.tw-flex { display: flex; }
+.tw-items-center { align-items: center; }
+.tw-inline-flex { display: inline-flex; }
+
+/* Responsive variants */
+@media (min-width: 768px) {
+  .md\:tw-flex { display: flex; }
+  .md\:tw-items-center { align-items: center; }
+  .md\:tw-inline-flex { display: inline-flex; }
+}
+
+/* Hover states */
+.tw-bg-blue-600:hover { background-color: rgb(29 78 216); }
+.hover\:tw-bg-blue-700:hover { background-color: rgb(29 78 216); }
