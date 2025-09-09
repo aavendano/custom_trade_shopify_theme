@@ -3,12 +3,50 @@
 .tw-flex { display: flex; }
 .tw-items-center { align-items: center; }
 .tw-inline-flex { display: inline-flex; }
+.tw-justify-center { justify-content: center; }
+.tw-py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+.tw-py-24 { padding-top: 6rem; padding-bottom: 6rem; }
+.tw-flex-col { flex-direction: column; }
+.tw-gap-4 { gap: 1rem; }
+.tw-shadow-lg { box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); }
+.tw-rounded-xl { border-radius: 0.75rem; }
+.tw-text-center { text-align: center; }
+.tw-text-white { color: rgb(255 255 255); }
+.tw-text-2xl { font-size: 1.5rem; line-height: 2rem; }
+.tw-text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+.tw-font-bold { font-weight: 700; }
+.tw-inline-block { display: inline-block; }
+.tw-bg-white { background-color: rgb(255 255 255); }
+.tw-py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+.tw-px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+.tw-font-semibold { font-weight: 600; }
+.tw-shadow-md { box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }
+.tw-transition-colors { transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
 
 /* Responsive variants */
 @media (min-width: 768px) {
   .md\:tw-flex { display: flex; }
   .md\:tw-items-center { align-items: center; }
   .md\:tw-inline-flex { display: inline-flex; }
+  .md\:tw-justify-center { justify-content: center; }
+  .md\:tw-py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+  .md\:tw-py-24 { padding-top: 6rem; padding-bottom: 6rem; }
+  .md\:tw-flex-col { flex-direction: column; }
+  .md\:tw-gap-4 { gap: 1rem; }
+  .md\:tw-shadow-lg { box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); }
+  .md\:tw-rounded-xl { border-radius: 0.75rem; }
+  .md\:tw-text-center { text-align: center; }
+  .md\:tw-text-white { color: rgb(255 255 255); }
+  .md\:tw-text-2xl { font-size: 1.5rem; line-height: 2rem; }
+  .md\:tw-text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+  .md\:tw-font-bold { font-weight: 700; }
+  .md\:tw-inline-block { display: inline-block; }
+  .md\:tw-bg-white { background-color: rgb(255 255 255); }
+  .md\:tw-py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+  .md\:tw-px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .md\:tw-font-semibold { font-weight: 600; }
+  .md\:tw-shadow-md { box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }
+  .md\:tw-transition-colors { transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
 }
 
 /* Hover states */
