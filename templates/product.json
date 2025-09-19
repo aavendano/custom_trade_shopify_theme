@@ -280,22 +280,6 @@
       "settings": {
         "include_margins": true
       }
-    },
-    "video_Vt7gYG": {
-      "type": "video",
-      "name": "t:sections.video.presets.name",
-      "settings": {
-        "heading": "Video",
-        "heading_size": "h1",
-        "enable_video_looping": true,
-        "video_url": "https://vimeo.com/698488166",
-        "cover_image": "shopify://shop_images/ls9780-e.png",
-        "description": "",
-        "full_width": false,
-        "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
     }
   },
   "order": [
@@ -303,7 +287,6 @@
     "main",
     "related-products",
     "featured_collection_XJ8yBQ",
-    "1754662869c4289cac",
-    "video_Vt7gYG"
+    "1754662869c4289cac"
   ]
 }
