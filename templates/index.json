@@ -212,20 +212,20 @@
             "heading_font": "unbounded_n5",
             "heading_font_size": 50,
             "heading_font_size_mobile": 50,
-            "heading_color": "#ffffff",
+            "heading_color": "#f4f4f4",
             "heading_shadow_enabled": true,
             "heading_shadow_color": "#8870a3",
-            "heading_shadow_blur": 19,
+            "heading_shadow_blur": 13,
             "heading_shadow_x": 3,
             "heading_shadow_y": -3,
             "heading": "<strong>Find Your Ecstasy</strong>",
-            "heading_size": "h0",
+            "heading_size": "h1",
             "subheading": "",
             "subheading_font": "assistant_n4",
             "subheading_font_size": 18,
             "subheading_font_size_mobile": 16,
-            "subheading_color": "",
-            "subheading_shadow_enabled": false,
+            "subheading_color": "#ffffff",
+            "subheading_shadow_enabled": true,
             "subheading_shadow_color": "#000000",
             "subheading_shadow_blur": 2,
             "subheading_shadow_x": 2,
@@ -235,11 +235,11 @@
             "button_label": "Shop Now",
             "link": "shopify://collections",
             "button_style_secondary": false,
-            "show_text_box": false,
+            "show_text_box": true,
             "box_align": "bottom-left",
             "text_alignment": "left",
             "text_alignment_mobile": "left",
-            "color_scheme": "scheme-4"
+            "color_scheme": "scheme-1e7e173b-b749-44af-a53f-9042e23e8bdb"
           }
         }
       },
@@ -633,7 +633,7 @@
         "columns_desktop": 6,
         "color_scheme": "scheme-f943d0da-9014-44c1-a31b-1b744c4c0579",
         "show_view_all": true,
-        "columns_mobile": "2",
+        "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 76,
         "padding_bottom": 76
@@ -659,7 +659,7 @@
         "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": false,
-        "serve_from_twicpics": true,
+        "serve_from_twicpics": false,
         "show_vendor": true,
         "show_rating": false,
         "quick_add": "none",
@@ -1056,35 +1056,35 @@
         "padding_bottom": 36
       }
     },
-    "featured_collection2": {
+    "featured_collection_QgBiNd": {
       "type": "featured-collection",
-      "name": "New Arrivals",
+      "name": "Best Adult Toys",
       "settings": {
         "collection": "sex-toys-new-arrival",
         "products_to_show": 8,
-        "title": "<strong>New arrivals</strong>",
+        "title": "{{ section.settings.collection.metafields.custom.collection_title.value }}",
         "heading_size": "h1",
         "description": "{{ section.settings.collection.description }}",
         "show_description": false,
         "description_style": "body",
         "columns_desktop": 4,
         "enable_desktop_slider": false,
-        "full_width": true,
+        "full_width": false,
         "show_view_all": true,
         "view_all_style": "solid",
-        "color_scheme": "",
+        "color_scheme": "scheme-3",
         "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": false,
-        "serve_from_twicpics": true,
+        "serve_from_twicpics": false,
         "show_vendor": true,
         "show_rating": false,
         "quick_add": "none",
         "columns_tablet": "3",
         "columns_mobile": "1",
         "swipe_on_mobile": true,
-        "padding_top": 12,
-        "padding_bottom": 12
+        "padding_top": 36,
+        "padding_bottom": 52
       }
     },
     "custom_section_KxjEwk": {
@@ -1199,7 +1199,7 @@
     "1754498032a8a7e87c",
     "multicolumn2",
     "multicolumn_2x2_QnEPzH",
-    "featured_collection2",
+    "featured_collection_QgBiNd",
     "custom_section_KxjEwk"
   ]
 }

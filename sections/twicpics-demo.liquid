@@ -1,0 +1,152 @@
+{{ 'twicpics-components.css' | asset_url | stylesheet_tag }}
+
+<div class="page-width tw-py-16">
+  <div class="tw-text-center tw-mb-12">
+    <h2 class="tw-text-3xl tw-font-bold tw-mb-4">TwicPics Components Demo</h2>
+    <p class="tw-text-lg tw-text-gray-600">Ejemplos de uso de los componentes TwicPics</p>
+  </div>
+
+  <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-8">
+    
+    <!-- Basic Image -->
+    <div class="tw-bg-white tw-p-6 tw-rounded-lg tw-shadow-md">
+      <h3 class="tw-text-xl tw-font-semibold tw-mb-4">Imagen Básica</h3>
+      {% render 'twicpics-component',
+        image: section.settings.demo_image,
+        component: 'twic-img',
+        class: 'tw-w-full tw-rounded-lg',
+        alt: 'Demo image'
+      %}
+    </div>
+
+    <!-- Responsive Picture -->
+    <div class="tw-bg-white tw-p-6 tw-rounded-lg tw-shadow-md">
+      <h3 class="tw-text-xl tw-font-semibold tw-mb-4">Picture Responsivo</h3>
+      {% render 'twicpics-component',
+        image: section.settings.demo_image,
+        component: 'twic-picture',
+        class: 'tw-w-full tw-rounded-lg',
+        ratio: '16/9',
+        alt: 'Demo picture'
+      %}
+    </div>
+
+    <!-- Video Component -->
+    <div class="tw-bg-white tw-p-6 tw-rounded-lg tw-shadow-md">
+      <h3 class="tw-text-xl tw-font-semibold tw-mb-4">Video</h3>
+      {% render 'twicpics-component',
+        image: section.settings.demo_video,
+        component: 'twic-video',
+        class: 'tw-w-full tw-rounded-lg',
+        ratio: '16/9'
+      %}
+    </div>
+
+    <!-- With Transform -->
+    <div class="tw-bg-white tw-p-6 tw-rounded-lg tw-shadow-md">
+      <h3 class="tw-text-xl tw-font-semibold tw-mb-4">Con Transformación</h3>
+      {% render 'twicpics-component',
+        image: section.settings.demo_image,
+        component: 'twic-img',
+        class: 'tw-w-full tw-rounded-lg',
+        transform: 'blur=5/quality=80',
+        alt: 'Transformed image'
+      %}
+    </div>
+
+    <!-- Different Focus -->
+    <div class="tw-bg-white tw-p-6 tw-rounded-lg tw-shadow-md">
+      <h3 class="tw-text-xl tw-font-semibold tw-mb-4">Focus Personalizado</h3>
+      {% render 'twicpics-component',
+        image: section.settings.demo_image,
+        component: 'twic-img',
+        class: 'tw-w-full tw-rounded-lg',
+        focus: 'top-left',
+        mode: 'cover',
+        alt: 'Focused image'
+      %}
+    </div>
+
+    <!-- Eager Loading -->
+    <div class="tw-bg-white tw-p-6 tw-rounded-lg tw-shadow-md">
+      <h3 class="tw-text-xl tw-font-semibold tw-mb-4">Carga Inmediata</h3>
+      {% render 'twicpics-component',
+        image: section.settings.demo_image,
+        component: 'twic-img',
+        class: 'tw-w-full tw-rounded-lg',
+        eager: true,
+        alt: 'Eager loaded image'
+      %}
+    </div>
+
+  </div>
+
+  <!-- Usage Examples -->
+  <div class="tw-mt-16 tw-bg-gray-50 tw-p-8 tw-rounded-lg">
+    <h3 class="tw-text-2xl tw-font-bold tw-mb-6">Ejemplos de Uso</h3>
+    
+    <div class="tw-space-y-6">
+      <div>
+        <h4 class="tw-text-lg tw-font-semibold tw-mb-2">Imagen básica:</h4>
+        <pre class="tw-bg-gray-800 tw-text-green-400 tw-p-4 tw-rounded tw-text-sm tw-overflow-x-auto"><code>{% raw %}{% render 'twicpics-component',
+  image: product.featured_image,
+  component: 'twic-img',
+  class: 'product-image',
+  alt: product.title
+%}{% endraw %}</code></pre>
+      </div>
+
+      <div>
+        <h4 class="tw-text-lg tw-font-semibold tw-mb-2">Picture responsivo:</h4>
+        <pre class="tw-bg-gray-800 tw-text-green-400 tw-p-4 tw-rounded tw-text-sm tw-overflow-x-auto"><code>{% raw %}{% render 'twicpics-component',
+  image: collection.featured_image,
+  component: 'twic-picture',
+  class: 'collection-hero',
+  ratio: '16/9',
+  eager: true,
+  alt: collection.title
+%}{% endraw %}</code></pre>
+      </div>
+
+      <div>
+        <h4 class="tw-text-lg tw-font-semibold tw-mb-2">Con transformaciones:</h4>
+        <pre class="tw-bg-gray-800 tw-text-green-400 tw-p-4 tw-rounded tw-text-sm tw-overflow-x-auto"><code>{% raw %}{% render 'twicpics-component',
+  image: article.image,
+  component: 'twic-img',
+  class: 'blog-thumbnail',
+  transform: 'quality=85/sharpen=medium',
+  focus: 'center',
+  mode: 'cover',
+  alt: article.title
+%}{% endraw %}</code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "TwicPics Demo",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "demo_image",
+      "label": "Demo Image",
+      "info": "Imagen para demostrar los componentes"
+    },
+    {
+      "type": "image_picker",
+      "id": "demo_video",
+      "label": "Demo Video",
+      "info": "Video para demostrar el componente de video"
+    }
+  ],
+  "presets": [
+    {
+      "name": "TwicPics Demo"
+    }
+  ]
+}
+{% endschema %}

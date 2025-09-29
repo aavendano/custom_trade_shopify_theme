@@ -427,11 +427,39 @@
         "content_padding_right": 0,
         "custom_class": "custom-section-class"
       }
+    },
+    "bulma_section_WBGkmR": {
+      "type": "bulma-section",
+      "blocks": {
+        "bulma_row_img_text_Pr6hhF": {
+          "type": "bulma-row-img-text",
+          "name": "Bulma Row Image Text",
+          "settings": {
+            "image": "shopify://shop_images/lw0236-i_416e52cd-fdfc-4d4f-be04-8d80e218e0fb.png",
+            "alt_text": "Descriptive",
+            "image_ratio": "b-is-4by3",
+            "text": "texto 123"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "bulma_row_img_text_Pr6hhF"
+      ],
+      "name": "Bulma Section",
+      "settings": {
+        "header_text": "Alejandro",
+        "header_tag": "h1",
+        "subheader_text": "Avenbndano",
+        "subheader_tag": "h3",
+        "section_size": "b-is-medium"
+      }
     }
   },
   "order": [
     "custom_section_pqBHGH",
     "main",
-    "custom_section_D4NWgV"
+    "custom_section_D4NWgV",
+    "bulma_section_WBGkmR"
   ]
 }

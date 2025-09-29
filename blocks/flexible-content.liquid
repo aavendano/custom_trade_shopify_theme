@@ -179,37 +179,15 @@
 
     <div class="flexible-content__text-{{ ai_gen_id }}">
       {% if block.settings.title != blank %}
-        {% case block.settings.title_tag %}
-          {% when 'h1' %}
-            <h1 class="flexible-content__title-{{ ai_gen_id }}">{{ block.settings.title }}</h1>
-          {% when 'h2' %}
-            <h2 class="flexible-content__title-{{ ai_gen_id }}">{{ block.settings.title }}</h2>
-          {% when 'h3' %}
-            <h3 class="flexible-content__title-{{ ai_gen_id }}">{{ block.settings.title }}</h3>
-          {% when 'h4' %}
-            <h4 class="flexible-content__title-{{ ai_gen_id }}">{{ block.settings.title }}</h4>
-          {% when 'h5' %}
-            <h5 class="flexible-content__title-{{ ai_gen_id }}">{{ block.settings.title }}</h5>
-          {% when 'h6' %}
-            <h6 class="flexible-content__title-{{ ai_gen_id }}">{{ block.settings.title }}</h6>
-        {% endcase %}
+        {% assign htag = block.settings.title_tag %}
+        <{{- htag -}} class="flexible-content__title-{{ ai_gen_id }}">{{ block.settings.title }}</{{- htag -}}>
       {% endif %}
 
       {% if block.settings.subtitle != blank %}
-        {% case block.settings.subtitle_tag %}
-          {% when 'h1' %}
-            <h1 class="flexible-content__subtitle-{{ ai_gen_id }}">{{ block.settings.subtitle }}</h1>
-          {% when 'h2' %}
-            <h2 class="flexible-content__subtitle-{{ ai_gen_id }}">{{ block.settings.subtitle }}</h2>
-          {% when 'h3' %}
-            <h3 class="flexible-content__subtitle-{{ ai_gen_id }}">{{ block.settings.subtitle }}</h3>
-          {% when 'h4' %}
-            <h4 class="flexible-content__subtitle-{{ ai_gen_id }}">{{ block.settings.subtitle }}</h4>
-          {% when 'h5' %}
-            <h5 class="flexible-content__subtitle-{{ ai_gen_id }}">{{ block.settings.subtitle }}</h5>
-          {% when 'h6' %}
-            <h6 class="flexible-content__subtitle-{{ ai_gen_id }}">{{ block.settings.subtitle }}</h6>
-        {% endcase %}
+        {% assign htag2 = block.settings.subtitle_tag %}
+<{{ htag2 }} class="flexible-content__subtitle-{{ ai_gen_id }}">{{ block.settings.subtitle }}</{{ htag2 }}>
+
+
       {% endif %}
 
       {% if block.settings.description != blank %}
@@ -367,6 +345,18 @@
     {
       "type": "header",
       "content": "Botón Primario"
+    },
+    {
+    "type": "checkbox",
+    "id": "loading_lazy",
+    "label": "Image loading lazy",
+    "default": true
+    },
+        {
+    "type": "checkbox",
+    "id": "from_twicpics",
+    "label": "Image Served from Twicpics",
+    "default": true
     },
     {
       "type": "text",

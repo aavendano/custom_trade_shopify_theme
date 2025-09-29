@@ -1,0 +1,140 @@
+{%- liquid
+  assign header_tag = section.settings.header_tag
+  assign subheader_tag = section.settings.subheader_tag
+  assign header_text = section.settings.header_text
+  assign subheader_text = section.settings.subheader_text
+  assign section_size = section.settings.section_size
+-%}
+    <div class="b-container b-is-fullhd">
+<section class="b-section {{ section_size }}">
+  {% if header_text != blank and header_text != 'title' -%}
+    <{{ header_tag }} class="b-title">{{- header_text -}}</{{ header_tag }}>
+  {%- endif %}
+  {% if subheader_text != blank and subheader_text != 'subtitle' -%}
+    <{{ subheader_tag }} class="b-subtitle">
+      {{ subheader_text }}
+    </{{ subheader_tag }}>
+  {%- endif %}
+
+  {% capture children %}
+      {% content_for 'blocks' %}
+  {% endcapture %}
+
+  {% render 'section', section_object: section, children: children %}
+</section>
+</div>
+{% schema %}
+{
+  "name": "Bulma Section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "layout"
+    },
+    {
+      "type": "text",
+      "id": "header_text",
+      "label": "Header",
+      "default": "title"
+    },
+    {
+      "type": "select",
+      "id": "header_tag",
+      "label": "Header Tag",
+      "options": [
+        {
+          "value": "h1",
+          "label": "h1"
+        },
+        {
+          "value": "h2",
+          "label": "h2"
+        },
+        {
+          "value": "h3",
+          "label": "h3"
+        },
+        {
+          "value": "h4",
+          "label": "h4"
+        },
+        {
+          "value": "h5",
+          "label": "h5"
+        }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "text",
+      "id": "subheader_text",
+      "label": "SubHeader",
+      "default": "subtitle"
+    },
+    {
+      "type": "select",
+      "id": "subheader_tag",
+      "label": "SubHeader Tag",
+      "options": [
+        {
+          "value": "h2",
+          "label": "h2"
+        },
+        {
+          "value": "h3",
+          "label": "h3"
+        },
+        {
+          "value": "h4",
+          "label": "h4"
+        },
+        {
+          "value": "h5",
+          "label": "h5"
+        }
+      ],
+      "default": "h3"
+    },
+    {
+      "type": "header",
+      "content": "size"
+    },
+    {
+      "type": "select",
+      "id": "section_size",
+      "label": "Section Size",
+      "options": [
+        {
+          "value": "",
+          "label": "Small"
+        },
+        {
+          "value": "b-is-medium",
+          "label": "Medium"
+        },
+        {
+          "value": "b-is-large",
+          "label": "Large"
+        }
+      ],
+      "default": ""
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "@app"
+    },
+    {
+      "type": "_divider"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bulma Section"
+    }
+  ]
+}
+{% endschema %}

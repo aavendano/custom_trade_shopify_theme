@@ -620,7 +620,7 @@
       "type": "after-page-richtext-content",
       "name": "After Page Richtext",
       "settings": {
-        "after_page_content": "{{ metaobject.after_page_content | metafield_tag }}",
+        "after_page_content": "",
         "as_html": true,
         "content_width": 1600,
         "content_padding": 20
