@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "esbuild assets/custom.js --bundle --outfile=assets/twicpics-bundle.js",
-    "build:tailwind": "node build-tailwind.js",
-    "build:tailwind:purged": "node build-tailwind-purged.js",
-    "watch:tailwind": "node build-tailwind.js --watch"
+    "build:twicpics": "node build-twicpics.js",
+    "build-bulma": "sass --load-path=node_modules custom-bulma-project.scss assets/bulma-output.css",
+    "start": "npm run build-bulma -- --watch"
   },
   "repository": {
     "type": "git",
@@ -22,20 +22,16 @@
   },
   "homepage": "https://github.com/aavendano/custom_trade_shopify_theme#readme",
   "dependencies": {
-    "@tailwindcss/oxide-linux-x64-gnu": "^4.1.13",
     "@twicpics/components": "^0.33.0",
+    "bulma": "^1.0.4",
     "cowsay": "^1.6.0",
-    "preline": "^3.2.3"
+    "preline": "^3.2.3",
+    "sass": "^1.93.2"
   },
   "devDependencies": {
     "@shopify/prettier-plugin-liquid": "^1.9.4",
-    "@tailwindcss/forms": "^0.5.10",
-    "@tailwindcss/oxide": "^4.1.13",
-    "autoprefixer": "^10.4.21",
     "esbuild": "^0.25.9",
     "glob": "^11.0.3",
-    "postcss": "^8.5.6",
-    "prettier": "^3.6.2",
-    "tailwindcss": "^4.1.13"
+    "prettier": "^3.6.2"
   }
 }

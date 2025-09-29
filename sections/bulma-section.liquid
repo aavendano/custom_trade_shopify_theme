@@ -5,7 +5,6 @@
   assign subheader_text = section.settings.subheader_text
   assign section_size = section.settings.section_size
 -%}
-    <div class="b-container b-is-fullhd">
 <section class="b-section {{ section_size }}">
   {% if header_text != blank and header_text != 'title' -%}
     <{{ header_tag }} class="b-title">{{- header_text -}}</{{ header_tag }}>
@@ -22,7 +21,6 @@
 
   {% render 'section', section_object: section, children: children %}
 </section>
-</div>
 {% schema %}
 {
   "name": "Bulma Section",
