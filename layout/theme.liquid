@@ -257,7 +257,31 @@
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
-    {{ 'tailwind-output.css' | asset_url | stylesheet_tag }}
+    {{ 'bulma-output.css' | asset_url | stylesheet_tag }}
+
+    {% style %}
+      :root {
+        --b-primary-h: 346deg;
+        --b-primary-s: 89%;
+        --b-primary-l: 61%;
+        --b-link-h: 268deg;
+        --b-link-s: 41%;
+        --b-link-l: 33%;
+        --b-info-h: 190deg;
+        --b-info-s: 84%;
+        --b-info-l: 29%;
+        --b-success-l: 80%;
+        --b-warning-l: 80%;
+        --b-danger-l: 80%;
+        --b-body-background-color: #f4f4f4;
+        --b-subtitle-color: #f4436c;
+      }
+
+      .title {
+        --b-title-color: #533278;
+        --b-title-strong-color: #533278;
+      }
+    {% endstyle %}
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
     {%- if settings.cart_type == 'drawer' -%}
@@ -313,16 +337,11 @@
       It is recommended to use this file for custom styles instead of editing the theme's core CSS files.
       You can add your custom styles here or in a separate file and include it in the theme.liquid file.
     {% endcomment %}
-
     {{ 'custom-style.css' | asset_url | stylesheet_tag: loading: 'defer' }}
     {{ 'custom-twicpics-images.css' | asset_url | stylesheet_tag: loading: 'defer' }}
 
-    <!-- TWICPICS -->
-    <script
-      async
-      defer
-      src="https://playlovetoys.twic.pics/?v1"
-    ></script>
+    <!-- TWICPICS COMPONENTS -->
+    <script src="{{ 'twicpics-components.js' | asset_url }}" defer></script>
 
     <!-- FAQ METADATA COLLECTIONS -->
     {% if collection.metafields.custom.faqs %}
@@ -362,23 +381,6 @@
         function () {
           (window.plausible.q = window.plausible.q || []).push(arguments);
         };
-    </script>
-
-    <!-- Hotjar Tracking Code for https://playlovetoys.ca -->
-    <script>
-      (function (h, o, t, j, a, r) {
-        h.hj =
-          h.hj ||
-          function () {
-            (h.hj.q = h.hj.q || []).push(arguments);
-          };
-        h._hjSettings = { hjid: 6386447, hjsv: 6 };
-        a = o.getElementsByTagName('head')[0];
-        r = o.createElement('script');
-        r.async = 1;
-        r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-        a.appendChild(r);
-      })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
     </script>
   </head>
 

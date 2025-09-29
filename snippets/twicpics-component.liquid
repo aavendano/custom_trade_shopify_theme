@@ -1,0 +1,110 @@
+{%- liquid
+  assign class = class | default: ''
+  assign eager = eager | default: false
+  assign focus = focus | default: 'auto'
+  assign mode = mode | default: 'cover'
+  assign ratio = ratio | default: '1'
+  assign transform = transform | default: ''
+  assign alt = alt | default: ''
+  assign component = component | default: 'twic-img'
+
+  # Process image URL
+  assign this_image_url = image | image_url
+  if this_image_url contains '//playlovetoys.ca'
+    assign this_image_url = this_image_url | replace: '//playlovetoys.ca', ''
+  elsif this_image_url contains '//cdn.shopify.com'
+    assign this_image_url = this_image_url | replace: '//cdn.shopify.com/s/files/1/0603/8198/6891/', '/cdn/shop/'
+  endif
+
+  # Clean up the URL
+  assign this_image_url = this_image_url | image_url | master | split: '?' | first
+-%}
+
+{%- case component -%}
+  {%- when 'twic-img' -%}
+    <twic-img
+      src="{{ this_image_url }}"
+      {% if class != '' %}
+        class="{{ class }}"
+      {% endif %}
+      {% if eager %}
+        eager
+      {% endif %}
+      {% if focus != 'auto' %}
+        focus="{{ focus }}"
+      {% endif %}
+      {% if mode != 'cover' %}
+        mode="{{ mode }}"
+      {% endif %}
+      {% if ratio != '1' %}
+        ratio="{{ ratio }}"
+      {% endif %}
+      {% if transform != '' %}
+        pretransform="{{ transform }}"
+      {% endif %}
+      {% if alt != '' %}
+        alt="{{ alt }}"
+      {% endif %}
+    ></twic-img>
+
+  {%- when 'twic-picture' -%}
+    <twic-picture
+      src="{{ this_image_url }}"
+      {% if class != '' %}
+        class="{{ class }}"
+      {% endif %}
+      {% if eager %}
+        eager
+      {% endif %}
+      {% if focus != 'auto' %}
+        focus="{{ focus }}"
+      {% endif %}
+      {% if mode != 'cover' %}
+        mode="{{ mode }}"
+      {% endif %}
+      {% if ratio != '1' %}
+        ratio="{{ ratio }}"
+      {% endif %}
+      {% if transform != '' %}
+        pretransform="{{ transform }}"
+      {% endif %}
+      {% if alt != '' %}
+        alt="{{ alt }}"
+      {% endif %}
+    ></twic-picture>
+
+  {%- when 'twic-video' -%}
+    <twic-video
+      src="{{ this_image_url }}"
+      {% if class != '' %}
+        class="{{ class }}"
+      {% endif %}
+      {% if eager %}
+        eager
+      {% endif %}
+      {% if focus != 'auto' %}
+        focus="{{ focus }}"
+      {% endif %}
+      {% if mode != 'cover' %}
+        mode="{{ mode }}"
+      {% endif %}
+      {% if ratio != '1' %}
+        ratio="{{ ratio }}"
+      {% endif %}
+      {% if transform != '' %}
+        pretransform="{{ transform }}"
+      {% endif %}
+    ></twic-video>
+
+  {%- else -%}
+    <!-- Fallback to regular img -->
+    <img
+      src="https://playlovetoys.twic.pics{{ this_image_url }}"
+      {% if class != '' %}
+        class="{{ class }}"
+      {% endif %}
+      {% if alt != '' %}
+        alt="{{ alt }}"
+      {% endif %}
+    >
+{%- endcase -%}

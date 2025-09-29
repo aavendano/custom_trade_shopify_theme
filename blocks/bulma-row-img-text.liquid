@@ -1,0 +1,93 @@
+{% liquid
+  assign image_url = block.settings.image | image_url | master | split: '?' | first
+  if image_url contains '//playlovetoys.ca'
+    assign image_url = image_url | replace: '//playlovetoys.ca', ''
+  elsif image_url contains '//cdn.shopify.com'
+    assign image_url = image_url | replace: '//cdn.shopify.com/s/files/1/0603/8198/6891/', 'https://playlovetoys.twic.pics/cdn/shop/'
+  endif
+%}
+
+    
+        <div class="b-columns">
+            {% if block.settings.image != blank %}
+                <div class="b-column b-is-one-third">
+
+                        <div class="b-card">
+                            <div class="b-card-image">
+                                <figure class="b-image">
+                                    
+                                    <twic-img src="https://playlovetoys.twic.pics{{- block.settings.image | image_url -}}">
+                                </figure>
+              
+                            </div>
+                        </div>
+                </div>
+            {% endif %}
+                <div class="b-column">
+                    {% if block.settings.text != blank %}
+                        <div class="b-card">
+                            <p class="b-is-size-2">{{ block.settings.text }}</p>
+                        </div>
+                    {% endif %}
+                </div>
+                
+        </div>
+    
+{% schema %}
+{
+  "name": "Bulma Row Image Text",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "alt_text",
+      "label": "Alt Text",
+      "default": "Descriptive text for the image"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Image Ratio",
+      "options": [
+        {
+          "value": "b-is-1by1",
+          "label": "1 by 1"
+        },
+        {
+          "value": "b-is-4by3",
+          "label": "4 by 3"
+        },
+        {
+          "value": "b-is-16by9",
+          "label": "16 by 9"
+        },
+        {
+          "value": "b-is-3by2",
+          "label": "3 by 2"
+        },
+        {
+          "value": "b-is-2by1",
+          "label": "2 by 1"
+        }
+      ],
+      "default": "b-is-4by3"
+    },
+    {
+      "type": "text",
+      "label": "Text",
+      "id": "text",
+      "default": "Text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bulma Row Image Text",
+      "category": "Custom Sections"
+    }
+  ]
+}
+{% endschema %}

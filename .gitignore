@@ -6,5 +6,12 @@ node_modules# Archivos temporales y de backup
 *.backup
 *.bak
 *664232*
-node_modules
+node_modules/
+
+storage/
+qdrant/
+galery-components/
+.qdrant-initialized/
+.windsurfrules/
+
 

@@ -125,6 +125,36 @@ npm run build:tailwind:purged
 - **Recompilar** después de cambios en templates
 - **Usar purged** para producción
 
+## 🖼️ TwicPics Components
+
+### Instalación Completada ✅
+
+```bash
+npm install @twicpics/components
+npm run build:twicpics
+```
+
+### Uso Básico
+
+```liquid
+{% render 'twicpics-component',
+  image: product.featured_image,
+  component: 'twic-img',
+  class: 'tw-w-full tw-rounded-lg',
+  alt: product.title
+%}
+```
+
+### Componentes Disponibles
+
+- `twic-img` - Imagen optimizada
+- `twic-picture` - Picture responsivo  
+- `twic-video` - Video optimizado
+
+### Documentación Completa
+
+Ver [TWICPICS-COMPONENTS.md](./TWICPICS-COMPONENTS.md) para documentación detallada.
+
 ## 📝 Ejemplo Completo
 
 ```liquid
