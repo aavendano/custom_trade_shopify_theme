@@ -4,33 +4,38 @@
   assign focus = focus | default: 'auto'
   assign transform = transform | default: ''
   assign image_url = image
-  assign image_url = image_url | image_url | master | split: '?' | first
+  assign image_url = image_url | image_url | split: '?' | first
+  assign preview = preview | default: false
+
   if image_url contains '//playlovetoys.ca'
     assign image_url = image_url | replace: '//playlovetoys.ca', ''
   elsif image_url contains '//cdn.shopify.com'
     assign image_url = image_url | replace: '//cdn.shopify.com/s/files/1/0603/8198/6891/', '/cdn/shop/'
   endif
 -%}
-
-<figure
-  class="twic-image-wrapper"
-  data-twic-background="url(https://playlovetoys.twic.pics{{ image_url }}?twic=v1/output=preview)"
->
-  <img
-    data-twic-src="image:{{ image_url }}"
-    {% if class != '' %}
-      class="{{ class }}"
-    {% endif -%}
-    {% if eager == true %}
-      data-twic-eager
-    {% endif -%}
-    {% if focus != '' %}
-      data-twic-focus="{{ focus }}"
-    {% endif -%}
-    {% if transform != '' %}
-      data-twic-transform="{{ transform }}"
-    {% endif %}
-    data-twic-bot="contain=600x600/quality-max=75/output=webp"
-    data-twic-step="25"
+{% if preview %}
+  <figure
+    class="twic-image-wrapper"
+    data-twic-background="url(https://playlovetoys.twic.pics{{ image_url }}?twic=v1/output=preview)"
   >
-</figure>
+{% endif %}
+<img
+  data-twic-src="image:{{ image_url }}"
+  {% if class != '' %}
+    class="{{ class }}"
+  {% endif -%}
+  {% if eager == true %}
+    data-twic-eager
+  {% endif -%}
+  {% if focus != '' %}
+    data-twic-focus="{{ focus }}"
+  {% endif -%}
+  {% if transform != '' %}
+    data-twic-transform="{{ transform }}"
+  {% endif %}
+  data-twic-bot="contain=300x300/quality-max=50"
+  data-twic-step="25"
+>
+{% if preview %}
+  </figure>
+{% endif %}

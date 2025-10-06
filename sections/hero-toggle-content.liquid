@@ -1,0 +1,146 @@
+{% assign section_id = section.id %}
+
+<!-- Hero section with toggle functionality -->
+<section class="b-hero hero-section">
+  <div
+    x-data="{ showContent: {% if section.settings.initial_expanded %}true{% else %}false{% endif %} }"
+    class="b-hero-body"
+  >
+    <div class="b-container">
+      <div class="b-columns">
+        <!-- Left column - Image -->
+        <div class="b-column b-is-5">
+          <div class="b-card">
+            <div class="b-card-image">
+              <figure class="b-image">
+                {% render 'twicpics-image',
+                  class: '',
+                  eager: true,
+                  focus: 'top',
+                  transform: '',
+                  image: section.settings.hero_image,
+                  preview: true
+                %}
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right column - Content -->
+        <div class="b-column b-is-7 is-align-content-space-around --toggle-button-position--parent-{{- section_id -}}">
+          <h1 class="b-title">{{ section.settings.title }}</h1>
+          <h2 class="b-subtitle">{{ section.settings.subtitle }}</h2>
+          <a
+            href="{{ section.settings.button_url }}"
+            class="b-button b-is-large b-is-primary"
+          >
+            <strong>{{ section.settings.button_text }}</strong>
+          </a>
+
+          <!-- Toggle button -->
+          <button
+            id="toggle-button-{{ section.id }}"
+            class="b-button --toggle-button-position-{{- section_id -}}"
+            @click="showContent = !showContent"
+          >
+            <div class="b-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="48px"
+                viewBox="0 -960 960 960"
+                width="48px"
+                fill="hsl(var(--color-text))"
+              >
+                <path d="M480-114.26 293.78-300.48l49.74-49.74L480-213.5l136.48-136.72 49.74 49.74L480-114.26ZM343.52-606.5 293.78-656 480-842.22 666.22-656l-49.74 49.5L480-742.98 343.52-606.5Z"/>
+              </svg>
+            </div>
+          </button>
+        </div>
+      </div>
+      <template x-if="true">
+        <!-- Expandable content -->
+        <div class="b-content b-is-medium" x-show="showContent" x-transition>
+          {{ section.settings.expandable_content }}
+        </div>
+      </template>
+    </div>
+  </div>
+</section>
+
+<!-- Inline styles using theme CSS variables -->
+<style>
+  .--toggle-button-position--parent-{{- section_id }} {
+    position: relative;
+  }
+
+  .--toggle-button-position-{{- section_id }} {
+    position: absolute;
+    right: 5%;
+    top: 85%;
+
+  .twic-image-wrapper {
+    width: 100%;
+    height: 600px;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Hero w/ Toggle Content",
+  "tag": "section",
+  "class": "hero-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Main Title",
+      "default": "¡Hola Bulma!"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Un framework moderno para desarrollo frontend"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Comenzar"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button Link"
+    },
+    {
+      "type": "richtext",
+      "id": "expandable_content",
+      "label": "Additional Content",
+      "default": "<h1>Hello World</h1><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "initial_expanded",
+      "label": "Show content expanded initially",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero w/ Toggle Content",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

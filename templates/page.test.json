@@ -212,33 +212,7 @@
         "padding-block-end": 0
       }
     },
-    "bulma_section_rXzGmJ": {
-      "type": "bulma-section",
-      "blocks": {
-        "bulma_row_img_text_KgKWbA": {
-          "type": "bulma-row-img-text",
-          "name": "Bulma Row Image Text",
-          "settings": {
-            "image": "shopify://shop_images/we-vibe-toys-kON_xCzOPdQ-unsplash.jpg",
-            "alt_text": "Descriptive tealgoxt for the image",
-            "image_size": "b-is-1by1",
-            "text": "Textddd"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "bulma_row_img_text_KgKWbA"
-      ],
-      "name": "Bulma Section",
-      "settings": {
-        "header_text": "Alejandro",
-        "header_tag": "h1",
-        "subheader_text": "Alejandro",
-        "subheader_tag": "h2",
-        "section_size": "b-is-medium"
-      }
-    }
+
   },
   "order": [
     "custom_section_M4z9rE",
@@ -246,6 +220,6 @@
     "newsletter_8MGyJw",
     "featured_collection_pYtz6Q",
     "175306098485c3e01c",
-    "bulma_section_rXzGmJ"
+
   ]
 }
