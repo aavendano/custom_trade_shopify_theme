@@ -278,6 +278,8 @@
             "description": "<p>We aim to promote a philosophy centred on encouraging the public to prioritize their overall sexual health and happiness. Our dedication is to establish a safe, inclusive, and empowering environment for everyone.</p>",
             "image": "shopify://shop_images/PlayLoveToys-logo.png",
             "image_position": "left",
+            "loading_lazy": true,
+            "from_twicpics": true,
             "primary_button_text": "",
             "primary_button_link": "",
             "secondary_button_text": "",

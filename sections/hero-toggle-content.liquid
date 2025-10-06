@@ -1,0 +1,191 @@
+{% liquid
+  assign section_id = section.id
+  assign title_htag = section.settings.title_htag
+  assign subtitle_htag = section.settings.subtitle_htag
+  assign image = section.settings.hero_image
+  if image
+    assign l_cols = 'b-is-5'
+    assign r_cols = 'b-is-7'
+  else
+    assign l_cols = 'b-is-0'
+    assign r_cols = 'b-is-12'
+  endif
+%}
+
+<!-- Hero section with toggle functionality -->
+<section class="b-hero hero-section">
+  <div
+    x-data="{ showContent: {% if section.settings.initial_expanded %}true{% else %}false{% endif %} }"
+    class="b-hero-body"
+  >
+    <div class="b-container b-is-widescreen">
+      <div class="b-columns">
+        <!-- Left column - Image -->
+        {% if image %}
+        <div class="b-column {{ l_cols }}">
+          <div class="b-card">
+            <div class="b-card-image b-p-3">
+                {% render 'twicpics-image',
+                  eager: true,
+                  focus: 'auto',
+                  transform: '',
+                  image: image,
+                  preview: true,
+                  class:'b-image '
+                %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
+        <!-- Right column - Content -->
+        <div class="b-column {{ r_cols }} b-is-align-content-space-evenly b-px-6 --toggle-button-position--parent-{{- section_id -}}">
+          <div class="b-block">
+            <{{ title_htag }} class="b-title b-is-size-1-desktop">{{ section.settings.this_title }}</{{ title_htag }}>
+          </div>
+          <div class="b-block">
+            <{{ subtitle_htag }} class="b-subtitle b-is-size-4-desktop">{{ section.settings.this_subtitle }}</{{ subtitle_htag }}>
+          </div>  
+          {% if section.settings.button_text and section.settings.button_url %}
+          <div class="b-block">
+            <a
+              href="{{ section.settings.button_url }}"
+              class="b-button b-is-large b-is-primary"
+            >
+              <strong>{{ section.settings.button_text }}</strong>
+            </a>
+          </div>
+          {% endif %}
+          <!-- Toggle button -->
+          <button
+            id="toggle-button-{{ section.id }}"
+            class="b-button --toggle-button-position-{{- section_id -}}"
+            @click="showContent = !showContent"
+          >
+            <div class="b-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="48px"
+                viewBox="0 -960 960 960"
+                width="48px"
+                fill="hsl(var(--color-text))"
+              >
+                <path d="M480-114.26 293.78-300.48l49.74-49.74L480-213.5l136.48-136.72 49.74 49.74L480-114.26ZM343.52-606.5 293.78-656 480-842.22 666.22-656l-49.74 49.5L480-742.98 343.52-606.5Z"/>
+              </svg>
+            </div>
+          </button>
+        </div>
+      </div>
+      <template x-if="true">
+        <!-- Expandable content -->
+        <div class="b-content b-is-medium" x-show="showContent" x-transition>
+          {{ section.settings.expandable_content }}
+        </div>
+      </template>
+    </div>
+  </div>
+</section>
+
+<!-- Inline styles using theme CSS variables -->
+<style>
+  .--toggle-button-position--parent-{{- section_id }} {
+    position: relative;
+  }
+
+  .--toggle-button-position-{{- section_id }} {
+    position: absolute;
+    right: 5%;
+    top: 85%;
+
+  .twic-image-wrapper {
+    width: 100%;
+    height: 600px;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Hero-Content-collapsable",
+  "tag": "section",
+  "class": "hero-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Image"
+    },
+    {
+      "type": "text",
+      "id": "this_title",
+      "label": "Main Title",
+      "default": "Lorem Ipsum"
+    },
+    {
+    "type":"select",
+    "id":"title_htag",
+    "label": "Title H-tag",
+    "default": "h1",
+    "options":[
+        {"value": "h1", "label": "H1"},
+        {"value": "h2", "label": "H2"},
+        {"value": "h3", "label": "H3"},
+    ]
+    
+    },
+    {
+      "type": "text",
+      "id": "this_subtitle",
+      "label": "Subtitle",
+      "default": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet"
+    },
+    {
+    "type":"select",
+    "id":"subtitle_htag",
+    "label": "SubTitle H-tag",
+    "default": "h2",
+    "options":[
+        {"value": "h2", "label": "H2"},
+        {"value": "h3", "label": "H3"},
+        {"value": "h4", "label": "H4"},
+        {"value": "h5", "label": "H5"},
+        {"value": "h6", "label": "H6"}
+    ]
+    
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Comenzar"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button Link"
+    },
+    {
+      "type": "richtext",
+      "id": "expandable_content",
+      "label": "Additional Content",
+      "default": "<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "initial_expanded",
+      "label": "Show content expanded initially",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero-Content-collapsable",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

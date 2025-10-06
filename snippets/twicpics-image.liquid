@@ -4,7 +4,7 @@
   assign focus = focus | default: 'auto'
   assign transform = transform | default: ''
   assign image_url = image
-  assign image_url = image_url | image_url | master | split: '?' | first
+  assign image_url = image_url | image_url | split: '?' | first
   if image_url contains '//playlovetoys.ca'
     assign image_url = image_url | replace: '//playlovetoys.ca', ''
   elsif image_url contains '//cdn.shopify.com'
@@ -13,7 +13,7 @@
 -%}
 
 <figure
-  class="twic-image-wrapper"
+  class="twic-image-wrapper twic-image-preview"
   data-twic-background="url(https://playlovetoys.twic.pics{{ image_url }}?twic=v1/output=preview)"
 >
   <img

@@ -337,12 +337,12 @@
       It is recommended to use this file for custom styles instead of editing the theme's core CSS files.
       You can add your custom styles here or in a separate file and include it in the theme.liquid file.
     {% endcomment %}
-    {{ 'custom-style.css' | asset_url | stylesheet_tag: loading: 'defer' }}
-    {{ 'custom-twicpics-images.css' | asset_url | stylesheet_tag: loading: 'defer' }}
+    {{ 'custom-style.css' | asset_url | stylesheet_tag: }}
+      {{ 'custom-twicpics-images.css' | asset_url | stylesheet_tag: }}
+    
+    <!-- TWICPICS NATIVE -->
 
-    <!-- TWICPICS COMPONENTS -->
-    <script src="{{ 'twicpics-components.js' | asset_url }}" defer></script>
-
+    <script async defer src="https://playlovetoys.twic.pics/?v1"></script>
     <!-- FAQ METADATA COLLECTIONS -->
     {% if collection.metafields.custom.faqs %}
       <script type="application/ld+json">
@@ -405,6 +405,9 @@
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
       <li id="a11y-new-window-message">{{ 'accessibility.link_messages.new_window' | t }}</li>
     </ul>
+
+    <!-- LOAD ALPINE JS -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
     <script>
       window.shopUrl = '{{ request.origin }}';
