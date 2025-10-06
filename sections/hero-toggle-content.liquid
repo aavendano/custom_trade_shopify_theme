@@ -3,28 +3,24 @@
   assign title_htag = section.settings.title_htag
   assign subtitle_htag = section.settings.subtitle_htag
   assign image = section.settings.hero_image
-  if image
-    assign l_cols = 'b-is-5'
-    assign r_cols = 'b-is-7'
-  else
-    assign l_cols = 'b-is-0'
-    assign r_cols = 'b-is-12'
-  endif
 %}
 
 <!-- Hero section with toggle functionality -->
 <section class="b-hero hero-section">
   <div
-    x-data="{ showContent: {% if section.settings.initial_expanded %}true{% else %}false{% endif %} }"
+    x-data="{
+      has_image: {% if image %}true{% else %}false{% endif %},
+      has_content: {% if section.settings.expandable_content %}true{% else %}false{% endif %},
+      showContent: {% if section.settings.initial_expanded %}true{% else %}false{% endif %} }"
     class="b-hero-body"
   >
     <div class="b-container b-is-widescreen">
       <div class="b-columns">
         <!-- Left column - Image -->
-        {% if image %}
-        <div class="b-column {{ l_cols }}">
-          <div class="b-card">
-            <div class="b-card-image b-p-3">
+        <template x-if="has_image">
+          <div class="b-column">
+            <div class="b-card">
+              <div class="b-card-image b-p-3">
                 {% render 'twicpics-image',
                   eager: true,
                   focus: 'auto',
@@ -33,13 +29,13 @@
                   preview: true,
                   class:'b-image '
                 %}
+              </div>
             </div>
           </div>
-        </div>
-      {% endif %}
+        </template>
 
         <!-- Right column - Content -->
-        <div class="b-column {{ r_cols }} b-is-align-content-space-evenly b-px-6 --toggle-button-position--parent-{{- section_id -}}">
+        <div class="b-column b-is-align-content-space-evenly b-px-6 --toggle-button-position--parent-{{- section_id -}}">
           <div class="b-block">
             <{{ title_htag }} class="b-title b-is-size-1-desktop">{{ section.settings.this_title }}</{{ title_htag }}>
           </div>
@@ -61,6 +57,7 @@
             id="toggle-button-{{ section.id }}"
             class="b-button --toggle-button-position-{{- section_id -}}"
             @click="showContent = !showContent"
+            x-show="has_content"
           >
             <div class="b-icon">
               <svg
@@ -76,7 +73,7 @@
           </button>
         </div>
       </div>
-      <template x-if="true">
+      <template x-if="has_content">
         <!-- Expandable content -->
         <div class="b-content b-is-medium" x-show="showContent" x-transition>
           {{ section.settings.expandable_content }}
@@ -86,13 +83,13 @@
   </div>
 </section>
 
-<!-- Inline styles using theme CSS variables -->
-<style>
-  .--toggle-button-position--parent-{{- section_id }} {
+{%- style -%}
+
+.--toggle-button-position--parent-{{- section_id }} {
     position: relative;
   }
 
-  .--toggle-button-position-{{- section_id }} {
+  .--toggle-button-position-{{- section_id }} 
     position: absolute;
     right: 5%;
     top: 85%;
@@ -105,8 +102,8 @@
     object-position: center;
   }
 
-  }
-</style>
+  
+{%- endstyle -%}
 
 {% schema %}
 {
