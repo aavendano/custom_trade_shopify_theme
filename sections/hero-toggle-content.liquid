@@ -3,28 +3,45 @@
   assign title_htag = section.settings.title_htag
   assign subtitle_htag = section.settings.subtitle_htag
   assign image = section.settings.hero_image
+
+  if image
+    assign has_image = true
+  else
+    assign has_image = false
+  endif
+
+  if section.settings.expandable_content
+    assign has_content = true
+  else
+    assign has_content = false
+  endif
 %}
 
-<div
-  x-data="
-    {has_image: {% if image %}true{% else %}false{% endif %},
-    has_content: {% if section.settings.expandable_content %}true{% else %}false{% endif %},
-    showContent: {% if section.settings.initial_expanded %}true{% else %}false{% endif %} }
-  "
->
-  <!-- Hero section with toggle functionality -->
-  <section class="b-section">
-    <div class="b-container">
+<!-- Hero section with toggle functionality -->
+<section class="b-hero hero-section">
+  <div
+    x-data="
+      {
+        has_image: {{ has_image }},
+        has_content: {{ has_content }},
+        showContent: {% if section.settings.initial_expanded %}true{% else %}false{% endif %},
+        unfold_svg: 'M480-120 300-300l58-58 122 122 122-122 58 58-180 180ZM358-598l-58-58 180-180 180 180-58 58-122-122-122 122Z',
+        fold_svg: 'm356-160-56-56 180-180 180 180-56 56-124-124-124 124Zm124-404L300-744l56-56 124 124 124-124 56 56-180 180Z',
+      }
+    "
+    class="b-hero-body"
+  >
+    <div class="b-container b-is-widescreen">
       <div class="b-columns">
         <!-- Left column - Image -->
-        <template x-if="has_image">
+        {% if has_image %}
           <div class="b-column">
             <div class="b-box">
               <div class="b-image b-is-fullwidth">
                 {% render 'twicpics-image',
                   eager: true,
                   focus: 'auto',
-                  transform: 'background=white/inside=600x600',
+                  transform: 'background=white/inside=500x500',
                   image: image,
                   preview: true,
                   class: 'b-image '
@@ -32,90 +49,52 @@
               </div>
             </div>
           </div>
-        </template>
+        {% endif %}
         <!-- Right column - Content -->
-        <div class="b-column b-is-three-quarters-desktop b-is-full-mobile">
-          <div class="">
-            <div class="b-block --toggle-button-position--parent-{{- section_id -}}">
-              <{{ title_htag }} class="b-title b-is-size-1-desktop">{{ section.settings.this_title }}</{{ title_htag }}>
-            </div>
-            <div class="b-block">
-              <{{ subtitle_htag }} class="b-subtitle b-is-size-2-desktop">
-                {{- section.settings.this_subtitle -}}
-              </{{ subtitle_htag }}>
-            </div>
-            {% if section.settings.button_text and section.settings.button_url %}
-              <div class="b-block">
-                <a href="{{ section.settings.button_url }}" class="b-button b-is-large b-is-primary">
-                  <strong>{{ section.settings.button_text }}</strong>
-                </a>
-              </div>
-            {% endif %}
-            <!-- Toggle button -->
-            <template x-if="has_content">
-              <div class="b-block mt-6">
-                <div
-                  id="toggle-button-{{ section.id }}"
-                  class="b-icon-text b-is-size-4-desktop"
-                  @click="showContent = !showContent"
-                  x-show="has_content"
-                >
-                  <span x-show="!showContent" class="b-icon b-is-medium">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 -960 960 960"
-                    >
-                      <path d="M200-200v-240h80v160h160v80H200Zm480-320v-160H520v-80h240v240h-80Z"/>
-                    </svg>
-                  </span>
-                  <span x-show="showContent" class="b-icon b-is-medium">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 -960 960 960"
-                    >
-                      <path d="M440-440v240h-80v-160H200v-80h240Zm160-320v160h160v80H520v-240h80Z"/>
-                    </svg>
-                  </span>
-                  <span class="">Collection Description</span>
-                </div>
-              </div>
-            </template>
-            <div></div>
+        <div class="b-column b-is-align-content-space-evenly b-px-6">
+          <div class="b-block">
+            <{{ title_htag }} class="b-title b-is-size-1-desktop">{{ section.settings.this_title }}</{{ title_htag }}>
           </div>
+          <div class="b-block">
+            <{{ subtitle_htag }} class="b-subtitle b-is-size-4-desktop">
+              {{- section.settings.this_subtitle -}}
+            </{{ subtitle_htag }}>
+          </div>
+          {% if section.settings.button_text and section.settings.button_url %}
+            <div class="b-block">
+              <a
+                href="{{ section.settings.button_url }}"
+                class="b-button b-is-large b-is-primary"
+              >
+                <strong>{{ section.settings.button_text }}</strong>
+              </a>
+            </div>
+          {% endif %}
+          <!-- Toggle button -->
+          {% if has_content %}
+            <div
+              class="b-icon-text b-block b-mt-6"
+              @click="showContent = !showContent"
+            >
+              <span class="b-icon has-text-info b-is-size-5-desktop">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                  <path x-bind:d="showContent ? fold_svg : unfold_svg"/>
+                </svg></span
+              ><span class="has-text-info b-is-size-5-desktop"> Collection Details</span>
+            </div>
+          {% endif %}
         </div>
       </div>
-    </div>
-  </section>
-  <template x-if="has_content">
-    <section class="b-section" x-show="showContent" x-transition>
-      <!-- Expandable content -->
-      <div class="b-box">
-        <div class="b-content b-is-medium">
+      <div class="" x-show="showContent" x-transition>
+        <!-- Expandable content -->
+        <div class="b-content b-is-medium b-notification b-has-background-link-light">
+          <button class="b-delete b-is-large" @click="showContent = false"></button>
           {{ section.settings.expandable_content }}
         </div>
       </div>
-    </section>
-  </template>
-</div>
-
-{%- style -%}
-  .--toggle-button-position--parent-{{- section_id }} {
-      position: relative;
-    }
-
-    .--toggle-button-position-{{- section_id }}
-      position: absolute;
-      right: 5%;
-      top: 85%;
-
-    .twic-image-wrapper {
-      width: 100%;
-      height: 600px;
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
-      object-position: center;
-    }
-{%- endstyle -%}
+    </div>
+  </div>
+</section>
 
 {% schema %}
 {
