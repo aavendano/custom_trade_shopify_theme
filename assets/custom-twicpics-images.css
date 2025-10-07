@@ -47,7 +47,7 @@
 .twic-image-wrapper img:hover {
   transform: scale(1.1);
 }
-.twic-image-wrapper figcaption {
+    .twic-image-wrapper figcaption {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -56,4 +56,8 @@
   font-size: 12px;
   color: white;
   text-transform: uppercase;
+}
+
+.twic-image-preview .twic-background-done {
+  background-image: none !important;
 }

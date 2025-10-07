@@ -337,7 +337,8 @@
       It is recommended to use this file for custom styles instead of editing the theme's core CSS files.
       You can add your custom styles here or in a separate file and include it in the theme.liquid file.
     {% endcomment %}
-    {{ 'custom-style.css' | asset_url | stylesheet_tag: loading: 'defer' }}
+    {{ 'custom-style.css' | asset_url | stylesheet_tag: }}
+    {{ 'custom-twicpics-images.css' | asset_url | stylesheet_tag: }}
 
     <!-- TWICPICS NATIVE -->
 

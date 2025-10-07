@@ -1,97 +1,125 @@
-{% assign section_id = section.id %}
+{% liquid
+  assign section_id = section.id
+  assign title_htag = section.settings.title_htag
+  assign subtitle_htag = section.settings.subtitle_htag
+  assign image = section.settings.hero_image
+%}
 
-<!-- Hero section with toggle functionality -->
-<section class="b-hero hero-section">
-  <div
-    x-data="{ showContent: {% if section.settings.initial_expanded %}true{% else %}false{% endif %} }"
-    class="b-hero-body"
-  >
+<div
+  x-data="
+    {has_image: {% if image %}true{% else %}false{% endif %},
+    has_content: {% if section.settings.expandable_content %}true{% else %}false{% endif %},
+    showContent: {% if section.settings.initial_expanded %}true{% else %}false{% endif %} }
+  "
+>
+  <!-- Hero section with toggle functionality -->
+  <section class="b-section">
     <div class="b-container">
       <div class="b-columns">
         <!-- Left column - Image -->
-        <div class="b-column b-is-5">
-          <div class="b-card">
-            <div class="b-card-image">
-              <figure class="b-image">
+        <template x-if="has_image">
+          <div class="b-column">
+            <div class="b-box">
+              <div class="b-image b-is-fullwidth">
                 {% render 'twicpics-image',
-                  class: '',
                   eager: true,
-                  focus: 'top',
-                  transform: '',
-                  image: section.settings.hero_image,
-                  preview: true
+                  focus: 'auto',
+                  transform: 'background=white/inside=600x600',
+                  image: image,
+                  preview: true,
+                  class: 'b-image '
                 %}
-              </figure>
+              </div>
             </div>
           </div>
-        </div>
-
+        </template>
         <!-- Right column - Content -->
-        <div class="b-column b-is-7 is-align-content-space-around --toggle-button-position--parent-{{- section_id -}}">
-          <h1 class="b-title">{{ section.settings.title }}</h1>
-          <h2 class="b-subtitle">{{ section.settings.subtitle }}</h2>
-          <a
-            href="{{ section.settings.button_url }}"
-            class="b-button b-is-large b-is-primary"
-          >
-            <strong>{{ section.settings.button_text }}</strong>
-          </a>
-
-          <!-- Toggle button -->
-          <button
-            id="toggle-button-{{ section.id }}"
-            class="b-button --toggle-button-position-{{- section_id -}}"
-            @click="showContent = !showContent"
-          >
-            <div class="b-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="48px"
-                viewBox="0 -960 960 960"
-                width="48px"
-                fill="hsl(var(--color-text))"
-              >
-                <path d="M480-114.26 293.78-300.48l49.74-49.74L480-213.5l136.48-136.72 49.74 49.74L480-114.26ZM343.52-606.5 293.78-656 480-842.22 666.22-656l-49.74 49.5L480-742.98 343.52-606.5Z"/>
-              </svg>
+        <div class="b-column b-is-three-quarters-desktop b-is-full-mobile">
+          <div class="">
+            <div class="b-block --toggle-button-position--parent-{{- section_id -}}">
+              <{{ title_htag }} class="b-title b-is-size-1-desktop">{{ section.settings.this_title }}</{{ title_htag }}>
             </div>
-          </button>
+            <div class="b-block">
+              <{{ subtitle_htag }} class="b-subtitle b-is-size-2-desktop">
+                {{- section.settings.this_subtitle -}}
+              </{{ subtitle_htag }}>
+            </div>
+            {% if section.settings.button_text and section.settings.button_url %}
+              <div class="b-block">
+                <a href="{{ section.settings.button_url }}" class="b-button b-is-large b-is-primary">
+                  <strong>{{ section.settings.button_text }}</strong>
+                </a>
+              </div>
+            {% endif %}
+            <!-- Toggle button -->
+            <template x-if="has_content">
+              <div class="b-block mt-6">
+                <div
+                  id="toggle-button-{{ section.id }}"
+                  class="b-icon-text b-is-size-4-desktop"
+                  @click="showContent = !showContent"
+                  x-show="has_content"
+                >
+                  <span x-show="!showContent" class="b-icon b-is-medium">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 -960 960 960"
+                    >
+                      <path d="M200-200v-240h80v160h160v80H200Zm480-320v-160H520v-80h240v240h-80Z"/>
+                    </svg>
+                  </span>
+                  <span x-show="showContent" class="b-icon b-is-medium">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 -960 960 960"
+                    >
+                      <path d="M440-440v240h-80v-160H200v-80h240Zm160-320v160h160v80H520v-240h80Z"/>
+                    </svg>
+                  </span>
+                  <span class="">Collection Description</span>
+                </div>
+              </div>
+            </template>
+            <div></div>
+          </div>
         </div>
       </div>
-      <template x-if="true">
-        <!-- Expandable content -->
-        <div class="b-content b-is-medium" x-show="showContent" x-transition>
+    </div>
+  </section>
+  <template x-if="has_content">
+    <section class="b-section" x-show="showContent" x-transition>
+      <!-- Expandable content -->
+      <div class="b-box">
+        <div class="b-content b-is-medium">
           {{ section.settings.expandable_content }}
         </div>
-      </template>
-    </div>
-  </div>
-</section>
+      </div>
+    </section>
+  </template>
+</div>
 
-<!-- Inline styles using theme CSS variables -->
-<style>
+{%- style -%}
   .--toggle-button-position--parent-{{- section_id }} {
-    position: relative;
-  }
+      position: relative;
+    }
 
-  .--toggle-button-position-{{- section_id }} {
-    position: absolute;
-    right: 5%;
-    top: 85%;
+    .--toggle-button-position-{{- section_id }}
+      position: absolute;
+      right: 5%;
+      top: 85%;
 
-  .twic-image-wrapper {
-    width: 100%;
-    height: 600px;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-    object-position: center;
-  }
-
-  }
-</style>
+    .twic-image-wrapper {
+      width: 100%;
+      height: 600px;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      object-position: center;
+    }
+{%- endstyle -%}
 
 {% schema %}
 {
-  "name": "Hero w/ Toggle Content",
+  "name": "Hero-Content-collapsable",
   "tag": "section",
   "class": "hero-section",
   "settings": [
@@ -102,15 +130,39 @@
     },
     {
       "type": "text",
-      "id": "title",
+      "id": "this_title",
       "label": "Main Title",
-      "default": "¡Hola Bulma!"
+      "default": "Lorem Ipsum"
+    },
+    {
+      "type": "select",
+      "id": "title_htag",
+      "label": "Title H-tag",
+      "default": "h1",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" }
+      ]
     },
     {
       "type": "text",
-      "id": "subtitle",
+      "id": "this_subtitle",
       "label": "Subtitle",
-      "default": "Un framework moderno para desarrollo frontend"
+      "default": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet"
+    },
+    {
+      "type": "select",
+      "id": "subtitle_htag",
+      "label": "SubTitle H-tag",
+      "default": "h2",
+      "options": [
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" }
+      ]
     },
     {
       "type": "text",
@@ -127,7 +179,7 @@
       "type": "richtext",
       "id": "expandable_content",
       "label": "Additional Content",
-      "default": "<h1>Hello World</h1><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>"
+      "default": "<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>"
     },
     {
       "type": "checkbox",
@@ -138,7 +190,7 @@
   ],
   "presets": [
     {
-      "name": "Hero w/ Toggle Content",
+      "name": "Hero-Content-collapsable",
       "category": "Custom"
     }
   ]
