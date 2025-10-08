@@ -258,30 +258,13 @@
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
     {{ 'bulma-output.css' | asset_url | stylesheet_tag }}
+    <link
+      rel="stylesheet"
+      href="{{ 'component-bulma-overrides.css' | asset_url }}"
+      media="print"
+      onload="this.media='all'"
+    >
 
-    {% style %}
-      :root {
-        --b-primary-h: 346deg;
-        --b-primary-s: 89%;
-        --b-primary-l: 61%;
-        --b-link-h: 268deg;
-        --b-link-s: 41%;
-        --b-link-l: 33%;
-        --b-info-h: 190deg;
-        --b-info-s: 84%;
-        --b-info-l: 29%;
-        --b-success-l: 80%;
-        --b-warning-l: 80%;
-        --b-danger-l: 80%;
-        --b-body-background-color: #f4f4f4;
-        --b-subtitle-color: #f4436c;
-      }
-
-      .title {
-        --b-title-color: #533278;
-        --b-title-strong-color: #533278;
-      }
-    {% endstyle %}
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
     {%- if settings.cart_type == 'drawer' -%}
