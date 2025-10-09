@@ -321,15 +321,6 @@
       }
     </script>
 
-    <!--
-      Swiper.js JavaScript
-      <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    -->
-    <!--
-      Swiper.js CSS
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    -->
-
     {% comment %}
       This is a custom CSS file that can be used to override the default styles of the theme.
       It is recommended to use this file for custom styles instead of editing the theme's core CSS files.
@@ -385,6 +376,8 @@
           (window.plausible.q = window.plausible.q || []).push(arguments);
         };
     </script>
+        <!-- LOAD ALPINE JS -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
