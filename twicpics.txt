@@ -1,8 +1,0 @@
-{% render 'twicpics-image',
-class: '',
-eager: false,
-focus: 'auto',
-transform: '',
-image: image,
-preview: false
-%}

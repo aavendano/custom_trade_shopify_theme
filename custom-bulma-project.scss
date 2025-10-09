@@ -7,7 +7,7 @@ $beige-lighter: #eff0eb;
 
 // Path to Bulma's sass folder
 @use "bulma/sass" with (
-  $family-primary: '"Nunito", sans-serif',
+  $family-primary: '"Urbanist", sans-serif',
   $grey-dark: $brown,
   $grey-light: $beige-light,
   $primary: $purple,
@@ -19,4 +19,4 @@ $beige-lighter: #eff0eb;
 );
 
 // Import the Google Font
-@import url("https://fonts.googleapis.com/css?family=Nunito:400,700");
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');

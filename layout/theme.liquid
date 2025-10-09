@@ -327,8 +327,16 @@
       You can add your custom styles here or in a separate file and include it in the theme.liquid file.
     {% endcomment %}
 
-    {{ 'custom-style.css' | asset_url | stylesheet_tag: loading: 'defer' }}
-    {{ 'custom-twicpics-images.css' | asset_url | stylesheet_tag: loading: 'defer' }}
+        {{ 'aa-bulma.css' | asset_url | stylesheet_tag }}
+    <link
+      rel="stylesheet"
+      href="{{ 'aa-bulma-overrides.css' | asset_url }}"
+      media="print"
+      onload="this.media='all'"
+    >
+
+    {{ 'custom-style.css' | asset_url | stylesheet_tag }}
+    {{ 'custom-twicpics-images.css' | asset_url | stylesheet_tag }}
 
     <!-- TWICPICS -->
     <script

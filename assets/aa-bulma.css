@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /* Bulma Utilities */
-@import url("https://fonts.googleapis.com/css?family=Nunito:400,700");
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
 :root {
   --b-control-radius: var(--b-radius);
   --b-control-radius-small: var(--b-radius-small);
@@ -47,7 +47,7 @@
   --b-scheme-invert-ter-l: 14%;
   --b-scheme-invert-bis-l: 7%;
   --b-scheme-invert-l: 4%;
-  --b-family-primary: "Nunito", sans-serif;
+  --b-family-primary: "Urbanist", sans-serif;
   --b-family-secondary: Inter, SF Pro, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, Helvetica, Arial, sans-serif;
   --b-family-code: Inconsolata, Hack, SF Mono, Roboto Mono, Source Code Pro, Ubuntu Mono, monospace;
   --b-size-small: 0.75rem;
@@ -948,7 +948,7 @@
     --b-scheme-invert-ter-l: 14%;
     --b-scheme-invert-bis-l: 7%;
     --b-scheme-invert-l: 4%;
-    --b-family-primary: "Nunito", sans-serif;
+    --b-family-primary: "Urbanist", sans-serif;
     --b-family-secondary: Inter, SF Pro, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, Helvetica, Arial, sans-serif;
     --b-family-code: Inconsolata, Hack, SF Mono, Roboto Mono, Source Code Pro, Ubuntu Mono, monospace;
     --b-size-small: 0.75rem;
@@ -1866,7 +1866,7 @@
   --b-scheme-invert-ter-l: 14%;
   --b-scheme-invert-bis-l: 7%;
   --b-scheme-invert-l: 4%;
-  --b-family-primary: "Nunito", sans-serif;
+  --b-family-primary: "Urbanist", sans-serif;
   --b-family-secondary: Inter, SF Pro, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, Helvetica, Arial, sans-serif;
   --b-family-code: Inconsolata, Hack, SF Mono, Roboto Mono, Source Code Pro, Ubuntu Mono, monospace;
   --b-size-small: 0.75rem;
@@ -21046,7 +21046,7 @@ b-has-background-danger.is-hoverable:active {
 }
 
 .b-is-family-primary {
-  font-family: '"Nunito", sans-serif' !important;
+  font-family: '"Urbanist", sans-serif' !important;
 }
 
 .b-is-family-secondary {
@@ -21561,4 +21561,4 @@ b-has-background-danger.is-hoverable:active {
   pointer-events: all !important;
 }
 
-/*# sourceMappingURL=bulma-output.css.map */
+/*# sourceMappingURL=aa-bulma.css.map */
