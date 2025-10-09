@@ -1,3 +1,7 @@
+{%- comment -%}
+This file has been modified by the Yoast SEO for Shopify app.
+You can learn more about this (and learn how to cleanly revert these changes) at https://yoa.st/removing-theme-changes.
+{%- endcomment -%}
 <product-info
   id="MainProduct-{{ section.id }}"
   class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}"
@@ -9,20 +13,20 @@
     data-zoom-on-hover
   {% endif %}
 >
-  {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
-  {{ 'component-accordion.css' | asset_url | stylesheet_tag }}
-  {{ 'component-price.css' | asset_url | stylesheet_tag }}
-  {{ 'component-slider.css' | asset_url | stylesheet_tag }}
-  {{ 'component-rating.css' | asset_url | stylesheet_tag }}
-  {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+  {{ 'section-main-product.aio.min.css' | asset_url | stylesheet_tag }}
+  {{ 'component-accordion.aio.min.css' | asset_url | stylesheet_tag }}
+  {{ 'component-price.aio.min.css' | asset_url | stylesheet_tag }}
+  {{ 'component-slider.aio.min.css' | asset_url | stylesheet_tag }}
+  {{ 'component-rating.aio.min.css' | asset_url | stylesheet_tag }}
+  {{ 'component-deferred-media.aio.min.css' | asset_url | stylesheet_tag }}
 
   {% unless product.has_only_default_variant %}
-    {{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
-    {{ 'component-swatch-input.css' | asset_url | stylesheet_tag }}
-    {{ 'component-swatch.css' | asset_url | stylesheet_tag }}
+    {{ 'component-product-variant-picker.aio.min.css' | asset_url | stylesheet_tag }}
+    {{ 'component-swatch-input.aio.min.css' | asset_url | stylesheet_tag }}
+    {{ 'component-swatch.aio.min.css' | asset_url | stylesheet_tag }}
   {% endunless %}
   {%- if product.quantity_price_breaks_configured? -%}
-    {{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
+    {{ 'component-volume-pricing.aio.min.css' | asset_url | stylesheet_tag }}
   {%- endif -%}
 
   {%- style -%}
@@ -55,7 +59,7 @@
 
   {%- assign first_3d_model = product.media | where: 'media_type', 'model' | first -%}
   {%- if first_3d_model -%}
-    {{ 'component-product-model.css' | asset_url | stylesheet_tag }}
+    {{ 'component-product-model.aio.min.css' | asset_url | stylesheet_tag }}
     <link
       id="ModelViewerStyle"
       rel="stylesheet"
@@ -66,7 +70,7 @@
     <link
       id="ModelViewerOverride"
       rel="stylesheet"
-      href="{{ 'component-model-viewer-ui.css' | asset_url }}"
+      href="{{ 'component-model-viewer-ui.aio.min.css' | asset_url }}"
       media="print"
       onload="this.media='all'"
     >
@@ -705,10 +709,10 @@
                       </div>
                     </aside>
                   {%- endif -%}
-                  {{ 'component-card.css' | asset_url | stylesheet_tag }}
-                  {{ 'component-complementary-products.css' | asset_url | stylesheet_tag }}
+                  {{ 'component-card.aio.min.css' | asset_url | stylesheet_tag }}
+                  {{ 'component-complementary-products.aio.min.css' | asset_url | stylesheet_tag }}
                   {%- if block.settings.enable_quick_add -%}
-                    {{ 'quick-add.css' | asset_url | stylesheet_tag }}
+                    {{ 'quick-add.aio.min.css' | asset_url | stylesheet_tag }}
                     <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
                   {%- endif -%}
                 </product-recommendations>
@@ -764,7 +768,10 @@
       <script src="{{ 'product-model.js' | asset_url }}" defer></script>
     {%- endif -%}
 
-    <script type="application/ld+json">
+    {%- comment -%}Yoast SEO schema control block: start.{%- endcomment -%}
+{%- assign yoast_seo_settings = shop.metafields.yoast_seo.settings.value | default: shop.metafields.yoast_seo.settings -%}
+{%- if disabled_by_yoast_seo or yoast_seo_settings.schema.useTheme.schema or yoast_seo_settings.schema.useTheme.product -%}
+<script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Product",
@@ -801,7 +808,9 @@
         }
         {%- endif -%}
       }
-    </script>
+    {%- comment -%}Yoast SEO schema control block: end.{%- endcomment -%}
+</script>
+{%- endif -%}
   </div>
 </product-info>
 

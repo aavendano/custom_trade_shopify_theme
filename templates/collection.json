@@ -81,21 +81,6 @@
         "custom_class": "custom-section-class"
       }
     },
-    "hero_toggle_content_8XPA7t": {
-      "type": "hero-toggle-content",
-      "name": "Hero-Content-collapsable",
-      "settings": {
-        "hero_image": "{{ collection.image }}",
-        "this_title": "{{ collection.metafields.custom.collection_title.value }}",
-        "title_htag": "h1",
-        "this_subtitle": "{{ collection.metafields.custom.collection_subtitle.value }}",
-        "subtitle_htag": "h2",
-        "button_text": "",
-        "button_url": "",
-        "expandable_content": "{{ collection.description }}",
-        "initial_expanded": false
-      }
-    },
     "custom_section_NWTLXi": {
       "type": "custom_section",
       "blocks": {
@@ -110,8 +95,6 @@
             "description": "{{ closest.collection.description }}",
             "image": "{{ closest.collection.image }}",
             "image_position": "right",
-            "loading_lazy": true,
-            "from_twicpics": true,
             "primary_button_text": "Comprar ahora",
             "primary_button_link": "",
             "secondary_button_text": "Más información",
@@ -166,7 +149,6 @@
       "block_order": [
         "flexible_content_7B89wn"
       ],
-      "disabled": true,
       "name": "custom section",
       "settings": {
         "content_direction": "row",
@@ -319,7 +301,6 @@
   "order": [
     "banner",
     "custom_section_HqwefC",
-    "hero_toggle_content_8XPA7t",
     "custom_section_NWTLXi",
     "product-grid",
     "custom_section_EWcpUz",

@@ -493,7 +493,7 @@
         "column_fpqVPT": {
           "type": "column",
           "settings": {
-            "article": "sexual-wellness/men-sex-toys-guide-pleasure",
+            "article": "playful-connect/swingers-club-canada",
             "cloudinary_id": "",
             "cloudinary_id_2": "",
             "cloudinary_id_3": "",
@@ -575,8 +575,8 @@
         "image_ratio": "square",
         "button_label": "",
         "button_link": "",
-        "columns_desktop": 6,
-        "column_alignment": "left",
+        "columns_desktop": 4,
+        "column_alignment": "center",
         "background_style": "primary",
         "color_scheme": "scheme-1",
         "columns_mobile": "1",
@@ -596,7 +596,7 @@
         "description": "{{ section.settings.collection.description }}",
         "show_description": false,
         "description_style": "body",
-        "columns_desktop": 5,
+        "columns_desktop": 4,
         "enable_desktop_slider": true,
         "full_width": false,
         "show_view_all": true,
@@ -609,7 +609,7 @@
         "show_vendor": true,
         "show_rating": false,
         "quick_add": "none",
-        "columns_tablet": "4",
+        "columns_tablet": "3",
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 36,
@@ -625,6 +625,81 @@
         "content_width": 1600,
         "content_padding": 20
       }
+    },
+    "custom_section_UKfxB3": {
+      "type": "custom_section",
+      "blocks": {
+        "blog_post_display_7JE86K": {
+          "type": "blog_post_display",
+          "name": "Blog Post Display",
+          "settings": {
+            "article": "",
+            "article_handle": "{{ metaobject.after_page_article_handle.value }}",
+            "show_image": true,
+            "show_meta": false,
+            "show_date": false,
+            "show_author": false,
+            "show_content": true,
+            "show_button": false,
+            "button_text": "Read more",
+            "date_format": "%B %d, %Y",
+            "width": 100,
+            "padding": 24,
+            "spacing": 20,
+            "border_radius": 8,
+            "image_aspect_ratio": "16/9",
+            "image_border_radius": 8,
+            "background_color": "#ffffff",
+            "title_color": "#000000",
+            "title_hover_color": "#555555",
+            "meta_color": "#777777",
+            "content_color": "#333333",
+            "button_color": "#000000",
+            "button_hover_color": "#555555",
+            "title_font_size": 28,
+            "title_font_weight": 700,
+            "meta_font_size": 14,
+            "content_font_size": 16,
+            "button_font_size": 16
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "blog_post_display_7JE86K"
+      ],
+      "name": "After Page Article",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "background_color": "#FFFFFF",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "content_padding_top": 0,
+        "content_padding_bottom": 0,
+        "content_padding_left": 0,
+        "content_padding_right": 0,
+        "custom_class": "custom-section-class"
+      }
     }
   },
   "order": [
@@ -636,6 +711,7 @@
     "custom_section_HmcFRj",
     "multicolumn_2x2_QnEPzH",
     "featured_collection2",
-    "after_page_richtext_content_Y6YCXe"
+    "after_page_richtext_content_Y6YCXe",
+    "custom_section_UKfxB3"
   ]
 }

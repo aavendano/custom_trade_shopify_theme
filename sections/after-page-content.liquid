@@ -1,4 +1,5 @@
 {% if collection.metafields.custom.collection_description %}
+<div class="page-width" style="margin: 0 auto; padding: {{ section.settings.content_padding }}px;">
   <style>
     .responsive-figure {
       max-width: 100%;
@@ -9,17 +10,13 @@
       display: block;
     }
   </style>
-  
-  {{ 'faq.css' | asset_url | stylesheet_tag }}
+
+  {{ 'faq.aio.min.css' | asset_url | stylesheet_tag }}
   <script src="{{ 'faq.js' | asset_url }}" defer></script>
-  
-  <div class="page-width" style="margin: 0 auto; padding: {{ section.settings.content_padding }}px;">
-    <div class="b-content b-is-medium">
-      
+
     {{ collection.metafields.custom.collection_description.value }}
-  </div>
-</div>
   {% endif %}
+</div>
 
 {% schema %}
 {

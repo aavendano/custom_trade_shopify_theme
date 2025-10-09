@@ -1,18 +1,18 @@
 {% for group in robots.default_groups %}
-  {{- group.user_agent }}
+{{- group.user_agent }}
 
-  {%- for rule in group.rules %}
-    {{- rule -}}
-  {% endfor %}
-
-# Reglas personalizadas
-Disallow: /collections/*/
-Disallow: /collections/*/*
-Disallow: /*?*
-Disallow: *.atom
+{%- for rule in group.rules %}
+  {{- rule -}}
+{% endfor %}
 
 {%- if group.sitemap != blank %}
 {{- group.sitemap -}}
 {% endif %}
 {% endfor %}
 
+# Reglas personalizadas adicionales
+Disallow: /search
+Disallow: /cart
+Disallow: /checkout
+Disallow: /account
+Disallow: *.atom

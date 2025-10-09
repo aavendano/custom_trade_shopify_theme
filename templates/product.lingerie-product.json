@@ -216,9 +216,9 @@
         "heading_size": "h1",
         "products_to_show": 5,
         "columns_desktop": 5,
-        "columns_mobile": "2",
+        "columns_mobile": "1",
         "color_scheme": "scheme-1",
-        "image_ratio": "square",
+        "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": false,
         "show_vendor": true,
@@ -257,7 +257,7 @@
         "featured_collection_G7dgX6": {
           "type": "featured_collection",
           "settings": {
-            "collection": "pheromones-1"
+            "collection": "pheromones"
           }
         },
         "featured_collection_CaY8TT": {
@@ -294,14 +294,14 @@
       "type": "featured-blog",
       "name": "Featured Blog",
       "settings": {
-        "blog": "sex-wellness",
+        "blog": "pleasure-lab",
         "post_limit": 4,
         "heading": "Blog posts",
         "heading_size": "h1",
         "columns_desktop": 4,
         "show_view_all": true,
         "show_image": true,
-        "show_date": true,
+        "show_date": false,
         "show_author": false,
         "color_scheme": "",
         "padding_top": 36,

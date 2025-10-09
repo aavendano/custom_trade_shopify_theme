@@ -1,29 +1,51 @@
+{%- comment -%}
+This file has been modified by the Yoast SEO for Shopify app.
+You can learn more about this (and learn how to cleanly revert these changes) at https://yoa.st/removing-theme-changes.
+{%- endcomment -%}
 <!doctype html>
 <html class="js" lang="{{ request.locale.iso_code }}">
-  <head>
+  <head>{% render 'yoast-seo' %}
+	<!-- Added by AVADA SEO Suite -->
+	{% include 'avada-seo' %}
+	<!-- /Added by AVADA SEO Suite -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="theme-color" content="">
-    <link rel="canonical" href="{{ canonical_url }}">
+    {%- comment -%}Auto-disabled. Yoast plugin is taking care of Meta Tags output.{%- endcomment -%}
+{%- if disabled_by_yoast_seo -%}
+<link rel="canonical" href="{{ canonical_url }}">
+{%- comment -%} End Yoast auto-disable. {%- endcomment -%}
+{%- endif -%}
 
     {%- if settings.favicon != blank -%}
-      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+      <link rel="icon" type="image/x-icon" href="{{ 'playlovetoys_favicon.ico' | asset_url }}">
+      <link rel="icon" type="image/png" sizes="16x16" href="{{ settings.favicon | image_url: width: 16, height: 16 }}">
+      <link rel="icon" type="image/png" sizes="32x32" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+      <link rel="icon" type="image/png" sizes="48x48" href="{{ settings.favicon | image_url: width: 48, height: 48 }}">
     {%- endif -%}
 
     {%- unless settings.type_header_font.system? and settings.type_body_font.system? -%}
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endunless -%}
 
-    <title>
+    {%- comment -%}Auto-disabled. Yoast plugin is taking care of SEO output.{%- endcomment -%}
+{%- if disabled_by_yoast_seo -%}
+<title>
       {{ page_title }}
       {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
       {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
       {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
     </title>
+{%- comment -%} End Yoast auto-disable. {%- endcomment -%}
+{%- endif -%}
 
     {% if page_description %}
-      <meta name="description" content="{{ page_description | escape }}">
+      {%- comment -%}Auto-disabled. Yoast plugin is taking care of Meta Tags output.{%- endcomment -%}
+{%- if disabled_by_yoast_seo -%}
+<meta name="description" content="{{ page_description | escape }}">
+{%- comment -%} End Yoast auto-disable. {%- endcomment -%}
+{%- endif -%}
     {% endif %}
 
     {% render 'meta-tags' %}
@@ -256,23 +278,15 @@
       }
     {% endstyle %}
 
-    {{ 'base.css' | asset_url | stylesheet_tag }}
-    {{ 'bulma-output.css' | asset_url | stylesheet_tag }}
-    <link
-      rel="stylesheet"
-      href="{{ 'component-bulma-overrides.css' | asset_url }}"
-      media="print"
-      onload="this.media='all'"
-    >
-
-    <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
+    {{ 'base.aio.min.css' | asset_url | stylesheet_tag }}
+    <link rel="stylesheet" href="{{ 'component-cart-items.aio.min.css' | asset_url }}" media="print" onload="this.media='all'">
 
     {%- if settings.cart_type == 'drawer' -%}
-      {{ 'component-cart-drawer.css' | asset_url | stylesheet_tag }}
-      {{ 'component-cart.css' | asset_url | stylesheet_tag }}
-      {{ 'component-totals.css' | asset_url | stylesheet_tag }}
-      {{ 'component-price.css' | asset_url | stylesheet_tag }}
-      {{ 'component-discounts.css' | asset_url | stylesheet_tag }}
+      {{ 'component-cart-drawer.aio.min.css' | asset_url | stylesheet_tag }}
+      {{ 'component-cart.aio.min.css' | asset_url | stylesheet_tag }}
+      {{ 'component-totals.aio.min.css' | asset_url | stylesheet_tag }}
+      {{ 'component-price.aio.min.css' | asset_url | stylesheet_tag }}
+      {{ 'component-discounts.aio.min.css' | asset_url | stylesheet_tag }}
     {%- endif -%}
 
     {%- unless settings.type_body_font.system? -%}
@@ -287,14 +301,14 @@
     {%- endunless -%}
 
     {%- if localization.available_countries.size > 1 or localization.available_languages.size > 1 -%}
-      {{ 'component-localization-form.css' | asset_url | stylesheet_tag: preload: true }}
+      {{ 'component-localization-form.aio.min.css' | asset_url | stylesheet_tag: preload: true }}
       <script src="{{ 'localization-form.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
     {%- if settings.predictive_search_enabled -%}
       <link
         rel="stylesheet"
-        href="{{ 'component-predictive-search.css' | asset_url }}"
+        href="{{ 'component-predictive-search.aio.min.css' | asset_url }}"
         media="print"
         onload="this.media='all'"
       >
@@ -320,12 +334,17 @@
       It is recommended to use this file for custom styles instead of editing the theme's core CSS files.
       You can add your custom styles here or in a separate file and include it in the theme.liquid file.
     {% endcomment %}
-    {{ 'custom-style.css' | asset_url | stylesheet_tag: }}
-    {{ 'custom-twicpics-images.css' | asset_url | stylesheet_tag: }}
 
-    <!-- TWICPICS NATIVE -->
+    {{ 'custom-style.aio.min.css' | asset_url | stylesheet_tag: loading: 'defer' }}
+    {{ 'custom-twicpics-images.aio.min.css' | asset_url | stylesheet_tag: loading: 'defer' }}
 
-    <script async defer src="https://playlovetoys.twic.pics/?v1"></script>
+    <!-- TWICPICS -->
+    <script
+      async
+      defer
+      src="https://playlovetoys.twic.pics/?v1"
+    ></script>
+
     <!-- FAQ METADATA COLLECTIONS -->
     {% if collection.metafields.custom.faqs %}
       <script type="application/ld+json">
@@ -365,6 +384,7 @@
           (window.plausible.q = window.plausible.q || []).push(arguments);
         };
     </script>
+
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
@@ -388,9 +408,6 @@
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
       <li id="a11y-new-window-message">{{ 'accessibility.link_messages.new_window' | t }}</li>
     </ul>
-
-    <!-- LOAD ALPINE JS -->
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
     <script>
       window.shopUrl = '{{ request.origin }}';

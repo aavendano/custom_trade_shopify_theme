@@ -41,21 +41,6 @@
           "type": "shopify://apps/shop/blocks/shop-login-button-app-block/7cab7c4a-1dfc-4b7e-8e53-31f104f2fa4e",
           "settings": {}
         },
-        "collabs_application_page_47BrGD": {
-          "type": "shopify://apps/collabs/blocks/application-page/54758706-9f25-4fa9-a553-64720a4c998b",
-          "settings": {
-            "heading": "Affiliate programme",
-            "show_square_logo": false,
-            "show_partnership_info": true,
-            "button_text": "Apply now",
-            "number_of_images": "4",
-            "logo_position": "left",
-            "corner_style": "rounded",
-            "button_background_color": "#0c7489",
-            "button_label_color": "#ffffff",
-            "link_color": "#2c6ecb"
-          }
-        },
         "link_list": {
           "type": "link_list",
           "settings": {
@@ -89,7 +74,6 @@
         "brand_information_BAnPQg",
         "forms_inline_Adbmz7",
         "shop_shop_login_button_app_block_h8LYN6",
-        "collabs_application_page_47BrGD",
         "link_list",
         "text_afMBrY",
         "link_list_nypeRK",

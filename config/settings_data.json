@@ -11,16 +11,16 @@
   "current": {
     "logo": "shopify://shop_images/PlayLoveToys-Logo.svg",
     "logo_width": 130,
-    "favicon": "shopify://shop_images/favicon-playlovetoys-32x32.png",
+    "favicon": "shopify://shop_images/logo_transparent_background_square_768x768_2afcc193-35b9-4367-9384-7f617601861c.png",
     "type_header_font": "urbanist_n7",
     "heading_scale": 120,
     "type_body_font": "urbanist_n5",
     "body_scale": 130,
-    "page_width": 1600,
+    "page_width": 1200,
     "spacing_sections": 20,
     "spacing_grid_horizontal": 40,
     "spacing_grid_vertical": 24,
-    "animations_reveal_on_scroll": true,
+    "animations_reveal_on_scroll": false,
     "animations_hover_elements": "vertical-lift",
     "buttons_border_thickness": 1,
     "buttons_border_opacity": 100,
@@ -111,7 +111,7 @@
     "brand_description": "<p></p>",
     "brand_image": "shopify://shop_images/playlovetoys_icon-Photoroom_3.png",
     "brand_image_width": 340,
-    "social_facebook_link": "https://www.facebook.com/playlovetoys/",
+    "social_facebook_link": "https://www.facebook.com/playlovetoys",
     "social_instagram_link": "https://www.instagram.com/playlovetoys/",
     "social_youtube_link": "",
     "social_bluesky_link": "https://bsky.app/profile/playlovetoys.bsky.social",
@@ -192,6 +192,26 @@
           "controls": false,
           "muted": true
         }
+      },
+      "2200952712151285029": {
+        "type": "shopify://apps/microsoft-clarity/blocks/brandAgents_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
+        "disabled": false,
+        "settings": {}
+      },
+      "2567389343055140935": {
+        "type": "shopify://apps/microsoft-clarity/blocks/clarity_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
+        "disabled": false,
+        "settings": {}
+      },
+      "53419374109736018": {
+        "type": "shopify://apps/nabu-redirect-manager/blocks/script-block/1ec76215-4f32-4e94-950a-ce6073ea1b48",
+        "disabled": false,
+        "settings": {}
+      },
+      "yoast-seo-metatags": {
+        "type": "shopify://apps/yoast-seo-seo-for-everyone/blocks/metatags/7c777011-bc88-4743-a24e-64336e1e5b46",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
