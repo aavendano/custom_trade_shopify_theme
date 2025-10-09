@@ -1,7 +1,7 @@
-{{ 'component-cart.aio.min.css' | asset_url | stylesheet_tag }}
-{{ 'component-totals.aio.min.css' | asset_url | stylesheet_tag }}
-{{ 'component-price.aio.min.css' | asset_url | stylesheet_tag }}
-{{ 'component-discounts.aio.min.css' | asset_url | stylesheet_tag }}
+{{ 'component-cart.css' | asset_url | stylesheet_tag }}
+{{ 'component-totals.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-discounts.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -147,7 +147,7 @@
     {
       "type": "header",
       "content": "t:sections.all.padding.section_padding_heading"
-    },    
+    },
     {
       "type": "range",
       "id": "padding_top",
