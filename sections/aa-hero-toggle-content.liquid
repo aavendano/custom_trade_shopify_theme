@@ -30,7 +30,7 @@
       }
     "
   >
-    <div id="container-xyz" class="b-page-width b-container">
+    <div class="b-page-width b-container">
       <div class="b-box">
         <div class="b-columns">
           <!-- Left column - Image -->
@@ -75,19 +75,22 @@
               <a
                 href="#"
                 class="b-icon-text b-is-size-3-desktop b-is-size-5 b-block b-mt-6"
-                @click="showContent = !showContent"
+                @click.prevent="showContent = !showContent"
+                :aria-expanded="showContent.toString()"
               >
-                <span class="b-icon b-has-text-info">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
-                    <path x-bind:d="showContent ? fold_svg : unfold_svg"/>
-                  </svg></span
-                ><span>Learn More</span>
+                <div id="content-{{- section_id -}}">
+                  <span class="b-icon b-has-text-info">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                      <path x-bind:d="showContent ? fold_svg : unfold_svg"/>
+                    </svg></span
+                  ><span>Learn More</span>
+                </div>
               </a>
             {% endif %}
           </div>
         </div>
         <template x-if="true">
-          <div id="content-{{- section_id -}}" :class="{ 'visually-hidden': !showContent}" x-transition>
+          <div :class="{ 'visually-hidden': !showContent}" x-transition>
             <!-- Expandable content -->
             <div class="b-notification b-has-background-link-light">
               <button class="b-delete b-is-large" @click="showContent = false"></button>

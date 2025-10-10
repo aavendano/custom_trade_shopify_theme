@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "esbuild assets/custom.js --bundle --outfile=assets/twicpics-bundle.js",
     "build:twicpics": "node build-twicpics.js",
-    "build-bulma": "sass --load-path=node_modules custom-bulma-project.scss assets/bulma-output.css",
+    "build-bulma": "sass --load-path=node_modules custom-bulma-project.scss assets/aa-bulma-custom.css",
     "start": "npm run build-bulma -- --watch"
   },
   "repository": {

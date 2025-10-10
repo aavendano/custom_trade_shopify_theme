@@ -257,13 +257,8 @@
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
-    {{ 'bulma-output.css' | asset_url | stylesheet_tag }}
-    <link
-      rel="stylesheet"
-      href="{{ 'component-bulma-overrides.css' | asset_url }}"
-      media="print"
-      onload="this.media='all'"
-    >
+    {{ 'aa-bulma-custom.css' | asset_url | stylesheet_tag }}
+    {{ 'aa-bulma-custom-overrides.css' | asset_url | stylesheet_tag }}
 
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 

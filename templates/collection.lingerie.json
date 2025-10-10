@@ -82,7 +82,7 @@
       }
     },
     "hero_toggle_content_ecBBAd": {
-      "type": "hero-toggle-content",
+      "type": "aa-hero-toggle-content",
       "name": "Hero-Content-collapsable",
       "settings": {
         "hero_image": "{{ collection.image }}",

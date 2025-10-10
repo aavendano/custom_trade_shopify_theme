@@ -4,10 +4,13 @@ $pink: #fa7c91;
 $brown: #757763;
 $beige-light: #d0d1cd;
 $beige-lighter: #eff0eb;
+$black: #000000;
 
 // Path to Bulma's sass folder
 @use "bulma/sass" with (
-  $family-primary: '"Nunito", sans-serif',
+  $text: $black,
+  $family-primary: 'Lexend, "Nunito", sans-serif',
+  $family-secondary: '"Rubik", sans-serif',
   $grey-dark: $brown,
   $grey-light: $beige-light,
   $primary: $purple,
@@ -19,4 +22,4 @@ $beige-lighter: #eff0eb;
 );
 
 // Import the Google Font
-@import url("https://fonts.googleapis.com/css?family=Nunito:400,700");
+@import url('https://fonts.googleapis.com/css2?family=Nunito:400,700&family=Aclonica&family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Chelsea+Market&family=Lexend:wght@100..900&family=Radio+Canada+Big:ital,wght@0,400..700;1,400..700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
