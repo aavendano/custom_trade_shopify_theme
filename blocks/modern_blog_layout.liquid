@@ -6,11 +6,7 @@
 
 
 <blog-layout-{{ ai_gen_id }} class="tw-py-8 tw-bg-gray-50" {{ block.shopify_attributes }}>
-<<<<<<< HEAD
   <div class="tw-w-full tw-mx-auto tw-px-4" style="max-width: 1600px;">
-=======
-  <div class="tw-w-full tw-mx-auto tw-px-4" style="max-width: 1200px;">
->>>>>>> a0b592ccb79eb2d9e800676b4796aecb3fbeb881
     <div class="tw-grid tw-grid-cols-1 lg:tw-grid-cols-3 tw-gap-8">
       <!-- Main Content Section -->
       <div class="lg:tw-col-span-2 tw-space-y-6" id="main-content">
@@ -24,6 +20,8 @@
                 <img
                   src="{{ featured_article.image | image_url: width: 800 }}"
                   alt="{{ featured_article.image.alt | escape }}"
+                  width="{{ featured_article.image.width }}"
+                  height="{{ featured_article.image.height }}"
                   loading="lazy"
                   class="tw-w-full tw-h-full tw-object-cover tw-transition-transform tw-duration-300 hover:tw-scale-105"
                 >
@@ -71,6 +69,8 @@
                       <img
                         src="{{ article.image | image_url: width: 400 }}"
                         alt="{{ article.image.alt | escape }}"
+                        width="{{ article.image.width }}"
+                        height="{{ article.image.height }}"
                         loading="lazy"
                         class="tw-w-full tw-h-full tw-object-cover tw-transition-transform tw-duration-300 group-hover:tw-scale-105"
                       >
@@ -109,6 +109,8 @@
                         <img
                           src="{{ article.image | image_url: width: 300 }}"
                           alt="{{ article.image.alt | escape }}"
+                          width="{{ article.image.width }}"
+                          height="{{ article.image.height }}"
                           loading="lazy"
                           class="tw-w-full tw-h-full tw-object-cover tw-transition-transform tw-duration-300 group-hover:tw-scale-105"
                         >
@@ -166,6 +168,8 @@
                       <img
                         src="{{ article.image | image_url: width: 240 }}"
                         alt="{{ article.image.alt | escape }}"
+                        width="{{ article.image.width }}"
+                        height="{{ article.image.height }}"
                         loading="lazy"
                         class="tw-w-full tw-h-full tw-object-cover"
                       >
@@ -326,6 +330,8 @@
                             <img
                               src="{{ article.image | image_url: width: 120 }}"
                               alt="{{ article.image.alt | escape }}"
+                              width="{{ article.image.width }}"
+                              height="{{ article.image.height }}"
                               loading="lazy"
                               class="tw-w-full tw-h-full tw-object-cover"
                             >
@@ -358,6 +364,8 @@
                     <img
                       src="{{ product.featured_image | image_url: width: 200 }}"
                       alt="{{ product.featured_image.alt | escape }}"
+                      width="{{ product.featured_image.width }}"
+                      height="{{ product.featured_image.height }}"
                       loading="lazy"
                       class="tw-w-full tw-h-full tw-object-cover tw-transition-transform tw-duration-300 group-hover:tw-scale-105"
                     >

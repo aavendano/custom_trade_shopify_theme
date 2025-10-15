@@ -1,0 +1,110 @@
+{% style %}
+  #iqmg {
+    width: 100%;
+    background-image: radial-gradient(circle at 99% 93%, #533278, #29193c, rgba(0, 0, 0, 1));
+  }
+{% endstyle %}
+{{ 'aa-banner-html.css' | asset_url | stylesheet_tag }}
+
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&amp;display=swap" rel="stylesheet">
+
+<div id="iqmg" class="b-container b-is-fluid">
+  <div data-type-role="flex-row" id="iqmg" class="banner-wrapper">
+    <div data-type-role="flex-column" id="i44j" class="gjs-plg-flex-column">
+      <div data-type-role="flex-row" class="gjs-plg-flex-row">
+        <div data-type-role="flex-column" id="i6kk" class="gjs-plg-flex-column image-column-gradient">
+          {% if section.settings.banner_image != blank %}
+            <img
+              data-twic-src="image:{{- section.settings.banner_image | image_url | split: '?' | first -}}"
+              width="{{ section.settings.banner_image.width }}"
+              height="{{ section.settings.banner_image.height }}"
+              alt="{{ section.settings.banner_image.alt }}"
+              data-twic-eager
+              data-twic-focus="auto"
+              data-twic-bot="inside=600x600/quality-max=75/output=webp"
+              data-twic-step="25"
+            >
+          {% endif %}
+        </div>
+        <div data-type-role="flex-column" id="ivkh" class="gjs-plg-flex-column">
+          <h1 id="il3ml">{{ section.settings.banner_heading }}</h1>
+          <h1 id="il3ml-2">{{ section.settings.banner_subheading }}</h1>
+          <button type="button" id="ier7b">{{ section.settings.button_text }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "AA-Banner-HTML",
+  "tag": "section",
+  "class": "AA Custom",
+  "settings": [
+    {
+      "type": "text",
+      "id": "banner_heading",
+      "label": "Banner Heading",
+      "default": "No Tricks, Just Treats."
+    },
+    {
+      "type": "select",
+      "id": "select_title_htag",
+      "label": "Select Title HTML Tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "text",
+      "id": "banner_subheading",
+      "label": "Banner Subheading",
+      "default": "Unwrap something wicked good this Halloween."
+    },
+    {
+      "type": "select",
+      "id": "select_subtitle_htag",
+      "label": "Select Subtitle HTML Tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" }
+      ],
+      "default": "h3"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner Image"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link",
+      "default": "/"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Shop the Collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "AA-Banner-HTML",
+      "category": "AA Custom"
+    }
+  ]
+}
+{% endschema %}

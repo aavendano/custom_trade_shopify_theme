@@ -10,6 +10,7 @@
   elsif image_url contains '//cdn.shopify.com'
     assign image_url = image_url | replace: '//cdn.shopify.com/s/files/1/0603/8198/6891/', '/cdn/shop/'
   endif
+  assign alt = alt | default: image.alt | escape
 -%}
 
 <figure
@@ -18,6 +19,9 @@
 >
   <img
     data-twic-src="image:{{ image_url }}"
+    width="{{ image.width }}"
+    height="{{ image.height }}"
+    alt="{{ alt }}"
     {% if class != '' %}
       class="{{ class }}"
     {% endif -%}

@@ -1,0 +1,322 @@
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  blocks/custom_html.liquid                                                   │
+│                                                                              │
+│                                                                              │
+│  [error]: UnknownFilter                                                      │
+│  Unknown filter 'raw' used.                                                  │
+│                                                                              │
+│  56  {{ block.settings.custom_html | raw }}                                  │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  blocks/modern_blog_layout.liquid                                            │
+│                                                                              │
+│                                                                              │
+│  [error]: LiquidHTMLSyntaxError                                              │
+│  SyntaxError: expected a letter, "{{", "wbr" (case-insensitive), "track"     │
+│  (case-insensitive), "source" (case-insensitive), "param"                    │
+│  (case-insensitive), "meta" (case-insensitive), "link" (case-insensitive),   │
+│  "keygen" (case-insensitive), "input" (case-insensitive), "img"              │
+│  (case-insensitive), "hr" (case-insensitive), "embed" (case-insensitive),    │
+│  "command" (case-insensitive), "col" (case-insensitive), "br"                │
+│  (case-insensitive), "base" (case-insensitive), "area" (case-insensitive),   │
+│  "svg", "style", or "script"                                                 │
+│                                                                              │
+│  9  <<<<<<< HEAD                                                             │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  layout/theme.liquid                                                         │
+│                                                                              │
+│                                                                              │
+│  [warning]: RemoteAsset                                                      │
+│  Asset should be served by the Shopify CDN for better performance.           │
+│                                                                              │
+│  323  <script async defer                                                    │
+│  src="https://playlovetoys.twic.pics/?v1"></script>                          │
+│                                                                              │
+│                                                                              │
+│  [warning]: RemoteAsset                                                      │
+│  Asset should be served by the Shopify CDN for better performance.           │
+│                                                                              │
+│  354  src="https://server.avendano.site/js/script.hash.outbound-links.pagev  │
+│  iew-props.revenue.tagged-events.js"                                         │
+│                                                                              │
+│                                                                              │
+│  [warning]: RemoteAsset                                                      │
+│  Asset should be served by the Shopify CDN for better performance.           │
+│                                                                              │
+│  388  <script                                                                │
+│  src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"           │
+│  defer></script>                                                             │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  sections/aa-newsletter.liquid                                               │
+│                                                                              │
+│                                                                              │
+│  [warning]: RemoteAsset                                                      │
+│  Asset should be served by the Shopify CDN for better performance.           │
+│                                                                              │
+│  16  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlin  │
+│  ed:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=mail"       │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  sections/main-product.liquid                                                │
+│                                                                              │
+│                                                                              │
+│  [warning]: UnclosedHTMLElement                                              │
+│  Opening tag does not have a matching closing tag for condition              │
+│  `product['description'] != ` in LiquidBranch 'LiquidBranch'                 │
+│                                                                              │
+│  196  <div class="product__description rte quick-add-hidden" {{              │
+│  block.shopify_attributes }}>                                                │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  sections/plt-breadcrumbs.liquid                                             │
+│                                                                              │
+│                                                                              │
+│  [error]: MissingAsset                                                       │
+│  'assets/tailwind-output.css' does not exist                                 │
+│                                                                              │
+│  2  {{ 'tailwind-output.css' | asset_url | stylesheet_tag }}                 │
+│                                                                              │
+│                                                                              │
+│  [warning]: HardcodedRoutes                                                  │
+│  Use routes object {{ routes.root_url }} instead of hardcoding /             │
+│                                                                              │
+│  7  <a class="tw-flex tw-items-center tw-text-sm tw-text-gray-500            │
+│  hover:tw-text-blue-600 focus:tw-outline-hidden focus:tw-text-blue-600"      │
+│  href="/">                                                                   │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'block' used.                                                │
+│                                                                              │
+│  27  <a class="tw-flex tw-items-center tw-text-sm tw-text-gray-500           │
+│  hover:tw-text-blue-600 focus:tw-outline-hidden focus:tw-text-blue-600"      │
+│  href="{{- block.settings.link-url.value -}}">                               │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  snippets/aa-cloudinary-image.liquid                                         │
+│                                                                              │
+│                                                                              │
+│  [warning]: RemoteAsset                                                      │
+│  Asset should be served by the Shopify CDN for better performance.           │
+│                                                                              │
+│  23  src="https://res.cloudinary.com/dv0xafomh/image/upload/f_webp%2Cq_auto  │
+│  %2Cdpr_auto%2Cw_{{- sizes_mobile | remove: "px" -}}/{{- image_public_id     │
+│  -}}"                                                                        │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  snippets/avada-seo-meta.liquid                                              │
+│                                                                              │
+│                                                                              │
+│  [warning]: UnusedAssign                                                     │
+│  The variable 'page_title' is assigned but not used                          │
+│                                                                              │
+│  66  {%- assign page_title = seo_title -%}                                   │
+│                                                                              │
+│                                                                              │
+│  [warning]: UnusedAssign                                                     │
+│  The variable 'og_title' is assigned but not used                            │
+│                                                                              │
+│  67  {%- assign og_title = seo_title -%}                                     │
+│                                                                              │
+│                                                                              │
+│  [warning]: UnusedAssign                                                     │
+│  The variable 'og_description' is assigned but not used                      │
+│                                                                              │
+│  71  {%- assign og_description = page_description -%}                        │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  snippets/avada-seo.liquid                                                   │
+│                                                                              │
+│                                                                              │
+│  [error]: MissingTemplate                                                    │
+│  'snippets/avada-seo-status.liquid' does not exist                           │
+│                                                                              │
+│  2  {%- include 'avada-seo-status' -%}                                       │
+│                                                                              │
+│                                                                              │
+│  [warning]: VariableName                                                     │
+│  The variable 'avada-seo-snippets' uses wrong naming format                  │
+│                                                                              │
+│  1  {%- capture avada-seo-snippets -%}                                       │
+│                                                                              │
+│                                                                              │
+│  [warning]: DeprecatedTag                                                    │
+│  Use the 'render' tag instead of 'include'                                   │
+│                                                                              │
+│  2  {%- include 'avada-seo-status' -%}                                       │
+│                                                                              │
+│                                                                              │
+│  [warning]: DeprecatedTag                                                    │
+│  Use the 'render' tag instead of 'include'                                   │
+│                                                                              │
+│  4  {%- include 'avada-seo-other' -%}                                        │
+│                                                                              │
+│                                                                              │
+│  [warning]: DeprecatedTag                                                    │
+│  Use the 'render' tag instead of 'include'                                   │
+│                                                                              │
+│  5  {%- include 'avada-seo-meta' -%}                                         │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  snippets/text.liquid                                                        │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'block' used.                                                │
+│                                                                              │
+│  14  assign block_settings = block.settings                                  │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'block' used.                                                │
+│                                                                              │
+│  15  assign block_shopify_attributes = block.shopify_attributes              │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'block' used.                                                │
+│                                                                              │
+│  13  if block                                                                │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'block' used.                                                │
+│                                                                              │
+│  72  text-block--{% if block %}{{ block.id }}{% endif %} {{                  │
+│  block_settings.type_preset }}                                               │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'block' used.                                                │
+│                                                                              │
+│  72  text-block--{% if block %}{{ block.id }}{% endif %} {{                  │
+│  block_settings.type_preset }}                                               │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  snippets/twicpics-image.liquid                                              │
+│                                                                              │
+│                                                                              │
+│  [error]: ImgWidthAndHeight                                                  │
+│  Missing width and height attributes on img tag                              │
+│                                                                              │
+│  19    <img                                                                  │
+│  20      data-twic-src="image:{{ image_url }}"                               │
+│  21      {% if class != '' %}                                                │
+│  22        class="{{ class }}"                                               │
+│  23      {% endif -%}                                                        │
+│  24      {% if eager == true %}                                              │
+│  25        data-twic-eager                                                   │
+│  26      {% endif -%}                                                        │
+│  27      {% if focus != '' %}                                                │
+│  28        data-twic-focus="{{ focus }}"                                     │
+│  29      {% endif -%}                                                        │
+│  30      {% if transform != '' %}                                            │
+│  31        data-twic-transform="{{ transform }}"                             │
+│  32      {% endif %}                                                         │
+│  33      data-twic-bot="inside=600x600/quality-max=75/output=webp"           │
+│  34      data-twic-step="25"                                                 │
+│  35    >                                                                     │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  templates/metaobject/location_page.json                                     │
+│                                                                              │
+│                                                                              │
+│  [error]: JSONMissingBlock                                                   │
+│  Theme block 'blocks/shopify://apps/forms/blocks/inline/8744a304-fcb1-4347-  │
+│  b211-bb6b4759a76a.liquid' does not exist.                                   │
+│                                                                              │
+│  416  "type":                                                                │
+│  "shopify://apps/forms/blocks/inline/8744a304-fcb1-4347-b211-bb6b4759a76a",  │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  templates/metaobject/region.json                                            │
+│                                                                              │
+│                                                                              │
+│  [error]: JSONMissingBlock                                                   │
+│  Theme block 'blocks/shopify://apps/forms/blocks/inline/8744a304-fcb1-4347-  │
+│  b211-bb6b4759a76a.liquid' does not exist.                                   │
+│                                                                              │
+│  422  "type":                                                                │
+│  "shopify://apps/forms/blocks/inline/8744a304-fcb1-4347-b211-bb6b4759a76a",  │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  templates/metaobject/seo_collection.json                                    │
+│                                                                              │
+│                                                                              │
+│  [error]: JSONMissingBlock                                                   │
+│  Theme block 'blocks/shopify://apps/forms/blocks/inline/8744a304-fcb1-4347-  │
+│  b211-bb6b4759a76a.liquid' does not exist.                                   │
+│                                                                              │
+│  403  "type":                                                                │
+│  "shopify://apps/forms/blocks/inline/8744a304-fcb1-4347-b211-bb6b4759a76a",  │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  templates/page.avada-articles-tags.liquid                                   │
+│                                                                              │
+│                                                                              │
+│  [warning]: RemoteAsset                                                      │
+│  Asset should be served by the Shopify CDN for better performance.           │
+│                                                                              │
+│  6  <img src="https://cdnapps.avada.io/seo/icon/Search.png" width="20"       │
+│  height="20" />                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  Theme Check Summary.                                                        │
+│                                                                              │
+│  295 files inspected with 29 total offenses found across 15 files.           │
+│  8 errors.                                                                   │
+│  21 warnings.                                                                │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+

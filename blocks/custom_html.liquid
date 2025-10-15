@@ -53,7 +53,7 @@ Create a flexible Liquid section that allows merchants to input and display cust
 
   <div class="ai-custom-html-{{ block_id }}" {{ block.shopify_attributes }}>
     <div class="ai-custom-html-content-{{ block_id }} article-template__content page-width page-width--narrow rte">
-      {{ block.settings.custom_html | raw }}
+      {{ block.settings.custom_html }}
     </div>
   </div>
 {% endif %}
