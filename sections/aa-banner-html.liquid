@@ -1,40 +1,112 @@
-{% style %}
-  #iqmg {
-    width: 100%;
-    background-image: radial-gradient(circle at 99% 93%, #533278, #29193c, rgba(0, 0, 0, 1));
-  }
-{% endstyle %}
 {{ 'aa-banner-html.css' | asset_url | stylesheet_tag }}
 
-<link href="https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&amp;display=swap" rel="stylesheet">
+{% style %}
+  {{ section.settings.title-font | font_face }}
+    {{ section.settings.subtitle-font | font_face }}
+{% endstyle %}
 
+{% liquid
+  assign title_htag = section.settings.title_htag
+  assign subtitle_htag = section.settings.subtitle_htag
+%}
 <div id="iqmg" class="b-container b-is-fluid">
   <div data-type-role="flex-row" id="iqmg" class="banner-wrapper">
     <div data-type-role="flex-column" id="i44j" class="gjs-plg-flex-column">
       <div data-type-role="flex-row" class="gjs-plg-flex-row">
         <div data-type-role="flex-column" id="i6kk" class="gjs-plg-flex-column image-column-gradient">
           {% if section.settings.banner_image != blank %}
-            <img
-              data-twic-src="image:{{- section.settings.banner_image | image_url | split: '?' | first -}}"
-              width="{{ section.settings.banner_image.width }}"
-              height="{{ section.settings.banner_image.height }}"
-              alt="{{ section.settings.banner_image.alt }}"
-              data-twic-eager
-              data-twic-focus="auto"
-              data-twic-bot="inside=600x600/quality-max=75/output=webp"
-              data-twic-step="25"
-            >
+            <figure class="banner-image-{{ section.id }}">
+              <img
+                data-twic-src="image:{{- section.settings.banner_image | image_url | split: '?' | first -}}"
+                width="{{ section.settings.banner_image.width }}"
+                height="{{ section.settings.banner_image.height }}"
+                alt="{{ section.settings.banner_image.alt }}"
+                data-twic-eager
+                data-twic-focus="auto"
+                data-twic-bot="inside=600x600/quality-max=75/output=webp"
+                data-twic-step="25"
+              >
+            </figure>
           {% endif %}
         </div>
         <div data-type-role="flex-column" id="ivkh" class="gjs-plg-flex-column">
-          <h1 id="il3ml">{{ section.settings.banner_heading }}</h1>
-          <h1 id="il3ml-2">{{ section.settings.banner_subheading }}</h1>
+          <{{ title_htag }} id="banner-title-{{- section.id -}}">{{ section.settings.banner_title }}</{{ title_htag }}>
+          <{{ subtitle_htag }} id="banner-subtitle-{{- section.id -}}">
+            {{- section.settings.banner_subtitle -}}
+          </{{ subtitle_htag }}>
           <button type="button" id="ier7b">{{ section.settings.button_text }}</button>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+{% style %}
+  {{ section.settings.title-font | font_face }}
+  {{ section.settings.subtitle-font | font_face }}
+
+  #banner-title-{{- section.id -}} {
+    font-family: {{ section.settings.title-font.family }}, {{ section.settings.title-font.fallback_families }};
+    font-weight: {{ section.settings.title-font.weight }};
+    font-style: {{ section.settings.title-font.style }};
+    color: #E2511B;
+    font-size: 3.25em;
+    text-align: center;
+    text-transform: capitalize;
+    white-space: pre-wrap;
+    vertical-align: middle;
+    margin-top: 2em;
+
+    margin-bottom: 2rem;
+
+  }
+  #banner-subtitle-{{- section.id -}}  {
+    font-family: {{ section.settings.subtitle-font.family }}, {{ section.settings.subtitle-font.fallback_families }};
+    font-weight: {{ section.settings.subtitle-font.weight }};
+    font-style: {{ section.settings.subtitle-font.style }};
+      color: rgba(255, 255, 255, 1);
+      text-align: center;
+      font-weight: 600;
+      font-size: 1.75rem;
+      letter-spacing: 0.2rem;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+
+           }
+           #iqmg {
+             width: 100%;
+           background-image: radial-gradient(circle at 99% 93%, #533278, #29193c, rgba(0, 0, 0, 1));
+         }
+         .banner-image-{{ section.id }} {
+           margin-left: auto;
+           max-width: 350px;
+           height: 350px;
+           margin-top: 1rem;
+           margin-bottom: 1rem;
+
+         }
+
+
+
+
+
+
+  @media (max-width: 992px)  {
+         #il3ml-2 {
+           font-size: 1rem;
+           letter-spacing: 0.3rem;
+           line-height: 1.5rem;
+       }
+
+       #il3ml {
+           margin-top: 1rem;
+           margin-right: 1rem;
+           margin-bottom: 1rem;
+           margin-left: 1rem;
+           font-size: 2.25rem;
+       }
+   }
+{% endstyle %}
 
 {% schema %}
 {
@@ -44,13 +116,13 @@
   "settings": [
     {
       "type": "text",
-      "id": "banner_heading",
-      "label": "Banner Heading",
+      "id": "banner_title",
+      "label": "Banner Title",
       "default": "No Tricks, Just Treats."
     },
     {
       "type": "select",
-      "id": "select_title_htag",
+      "id": "title_htag",
       "label": "Select Title HTML Tag",
       "options": [
         { "value": "h1", "label": "H1" },
@@ -63,14 +135,26 @@
       "default": "h2"
     },
     {
+      "type": "header",
+      "content": "Banner Google Font Settings"
+    },
+    {
+      "type": "font_picker",
+      "id": "title_font",
+      "label": "Title Font",
+      "default": "assistant_n4",
+      "info": "Selecciona la fuente para los encabezados"
+    },
+
+    {
       "type": "text",
-      "id": "banner_subheading",
-      "label": "Banner Subheading",
+      "id": "banner_subtitle",
+      "label": "banner subtitle",
       "default": "Unwrap something wicked good this Halloween."
     },
     {
       "type": "select",
-      "id": "select_subtitle_htag",
+      "id": "subtitle_htag",
       "label": "Select Subtitle HTML Tag",
       "options": [
         { "value": "h1", "label": "H1" },
@@ -81,6 +165,14 @@
         { "value": "h6", "label": "H6" }
       ],
       "default": "h3"
+    },
+
+    {
+      "type": "font_picker",
+      "id": "subtitle_font",
+      "label": "SubTitle Font",
+      "default": "assistant_n4",
+      "info": "Selecciona la fuente para los encabezados"
     },
     {
       "type": "image_picker",
