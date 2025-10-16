@@ -257,13 +257,8 @@
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
-    {{ 'bulma-output.css' | asset_url | stylesheet_tag }}
-    <link
-      rel="stylesheet"
-      href="{{ 'component-bulma-overrides.css' | asset_url }}"
-      media="print"
-      onload="this.media='all'"
-    >
+    {{ 'aa-bulma-custom.css' | asset_url | stylesheet_tag }}
+    {{ 'aa-bulma-custom-overrides.css' | asset_url | stylesheet_tag }}
 
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
@@ -305,6 +300,15 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
+
+    <!--
+      Swiper.js JavaScript
+      <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    -->
+    <!--
+      Swiper.js CSS
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    -->
 
     {% comment %}
       This is a custom CSS file that can be used to override the default styles of the theme.
@@ -356,8 +360,6 @@
           (window.plausible.q = window.plausible.q || []).push(arguments);
         };
     </script>
-        <!-- LOAD ALPINE JS -->
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
@@ -381,6 +383,9 @@
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
       <li id="a11y-new-window-message">{{ 'accessibility.link_messages.new_window' | t }}</li>
     </ul>
+
+    <!-- LOAD ALPINE JS -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
     <script>
       window.shopUrl = '{{ request.origin }}';

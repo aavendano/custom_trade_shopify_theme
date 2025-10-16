@@ -4,9 +4,6 @@
   assign subtitle_htag = section.settings.subtitle_htag
   assign image = section.settings.hero_image
 
-  assing icon_fold_svg: 'm356-160-56-56 180-180 180 180-56 56-124-124-124 124Zm124-404L300-744l56-56 124 124 124-124 56 56-180 180Z'
-  assing icon_unfold_svg: 'M480-120 300-300l58-58 122 122 122-122 58 58-180 180ZM358-598l-58-58 180-180 180 180-58 58-122-122-122 122Z'
-
   if image
     assign has_image = true
   else
@@ -28,12 +25,12 @@
         has_image: {{ has_image }},
         has_content: {{ has_content }},
         showContent: {% if section.settings.initial_expanded %}true{% else %}false{% endif %},
-        fold_svg: {{ icon_fold_svg }} 
-        unfold_svg: {{ icon_unfold_svg }}, 
+        unfold_svg: 'M480-120 300-300l58-58 122 122 122-122 58 58-180 180ZM358-598l-58-58 180-180 180 180-58 58-122-122-122 122Z',
+        fold_svg: 'm356-160-56-56 180-180 180 180-56 56-124-124-124 124Zm124-404L300-744l56-56 124 124 124-124 56 56-180 180Z',
       }
     "
   >
-    <div id="container-xyz" class="b-page-width b-container">
+    <div class="b-page-width b-container">
       <div class="b-box">
         <div class="b-columns">
           <!-- Left column - Image -->
@@ -78,19 +75,22 @@
               <a
                 href="#"
                 class="b-icon-text b-is-size-3-desktop b-is-size-5 b-block b-mt-6"
-                @click="showContent = !showContent"
+                @click.prevent="showContent = !showContent"
+                :aria-expanded="showContent.toString()"
               >
-                <span class="b-icon b-has-text-info">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
-                    <path x-bind:d="showContent ? fold_svg : unfold_svg"/>
-                  </svg></span
-                ><span>Learn More</span>
+                <div id="content-{{- section_id -}}">
+                  <span class="b-icon b-has-text-info">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                      <path x-bind:d="showContent ? fold_svg : unfold_svg"/>
+                    </svg></span
+                  ><span>Learn More</span>
+                </div>
               </a>
             {% endif %}
           </div>
         </div>
         <template x-if="true">
-          <div id="content-{{- section_id -}}" :class="{ 'visually-hidden': !showContent}" x-transition>
+          <div :class="{ 'visually-hidden': !showContent}" x-transition>
             <!-- Expandable content -->
             <div class="b-notification b-has-background-link-light">
               <button class="b-delete b-is-large" @click="showContent = false"></button>
