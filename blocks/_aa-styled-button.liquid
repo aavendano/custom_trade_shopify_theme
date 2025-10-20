@@ -1,6 +1,6 @@
 {% if block.settings.button_text != blank and block.settings.button_url != blank %}
   {% liquid
-    assign button_classes = 'aa-styled-button button'
+    assign button_classes = "b-button"
     assign alignment_classes = ''
 
     # Size classes
@@ -50,10 +50,10 @@
     endfor
   %}
 
-  <div class="aa-styled-button-container-{{ block.id }}{{ alignment_classes }}">
+  <div class="{{ alignment_classes }}">
     <a
       href="{{ block.settings.button_url }}"
-      class="aa-styled-button-{{ block.id }} {{ button_classes }}"
+      class="{{ button_classes }}"
       {% if block.settings.button_new_tab %}
         target="_blank" rel="noopener"
       {% endif %}
@@ -63,15 +63,6 @@
     </a>
   </div>
 {% endif %}
-
-{% style %}
-  /* Container styles - Use Bulma utilities only */
-  .aa-styled-button-container-{{ block.id }} {
-    @apply flex;
-  }
-
-
-{% endstyle %}
 
 {% schema %}
 {
@@ -86,19 +77,6 @@
     { "type": "header", "content": "Button Settings" },
     {
       "type": "select",
-      "id": "button_type",
-      "label": "Button Type",
-      "options": [
-        { "value": "button", "label": "Button" },
-        { "value": "link", "label": "Link" }
-      ],
-      "default": "button"
-    },
-
-
-
-    {
-      "type": "select",
       "id": "button_size",
       "label": "Button Size",
       "options": [
@@ -110,15 +88,12 @@
       "default": "normal"
     },
 
-    { "type": "checkbox", "id": "b_is_fullwidth", "label": "Full Width", "default": false },
-
-    { "type": "checkbox", "id": "button_new_tab", "label": "Open in new tab", "default": false },
-
+    
     {
       "type": "header",
       "content": "Responsive Button Alignment"
     },
-
+    
     {
       "type": "paragraph",
       "content": "Control button alignment for different screen sizes using Bulma's responsive alignment classes."
@@ -130,10 +105,10 @@
       "label": "Mobile (up to 768px)",
       "options": [
         { "value": "", "label": "Default" },
-        { "value": "has-text-centered-mobile", "label": "Centered" },
-        { "value": "has-text-justified-mobile", "label": "Justified" },
-        { "value": "has-text-left-mobile", "label": "Left" },
-        { "value": "has-text-right-mobile", "label": "Right" }
+        { "value": "b-has-text-centered-mobile", "label": "Centered" },
+        { "value": "b-has-text-justified-mobile", "label": "Justified" },
+        { "value": "b-has-text-left-mobile", "label": "Left" },
+        { "value": "b-has-text-right-mobile", "label": "Right" }
       ],
       "default": ""
     },
@@ -144,10 +119,10 @@
       "label": "Tablet (769px+)",
       "options": [
         { "value": "", "label": "Default" },
-        { "value": "has-text-centered-tablet", "label": "Centered" },
-        { "value": "has-text-justified-tablet", "label": "Justified" },
-        { "value": "has-text-left-tablet", "label": "Left" },
-        { "value": "has-text-right-tablet", "label": "Right" }
+        { "value": "b-has-text-centered-tablet", "label": "Centered" },
+        { "value": "b-has-text-justified-tablet", "label": "Justified" },
+        { "value": "b-has-text-left-tablet", "label": "Left" },
+        { "value": "b-has-text-right-tablet", "label": "Right" }
       ],
       "default": ""
     },
@@ -158,24 +133,24 @@
       "label": "Desktop (1024px+)",
       "options": [
         { "value": "", "label": "Default" },
-        { "value": "has-text-centered-desktop", "label": "Centered" },
-        { "value": "has-text-justified-desktop", "label": "Justified" },
-        { "value": "has-text-left-desktop", "label": "Left" },
-        { "value": "has-text-right-desktop", "label": "Right" }
-      ],
-      "default": ""
-    },
-
-    {
-      "type": "select",
-      "id": "button_alignment_widescreen",
-      "label": "Widescreen (1216px+)",
+        { "value": "b-has-text-centered-desktop", "label": "Centered" },
+        { "value": "b-has-text-justified-desktop", "label": "Justified" },
+        { "value": "b-has-text-left-desktop", "label": "Left" },
+        { "value": "b-has-text-right-desktop", "label": "Right" }
+        ],
+        "default": ""
+      },
+      
+      {
+        "type": "select",
+        "id": "button_alignment_widescreen",
+        "label": "Widescreen (1216px+)",
       "options": [
         { "value": "", "label": "Default" },
-        { "value": "has-text-centered-widescreen", "label": "Centered" },
-        { "value": "has-text-justified-widescreen", "label": "Justified" },
-        { "value": "has-text-left-widescreen", "label": "Left" },
-        { "value": "has-text-right-widescreen", "label": "Right" }
+        { "value": "b-has-text-centered-widescreen", "label": "Centered" },
+        { "value": "b-has-text-justified-widescreen", "label": "Justified" },
+        { "value": "b-has-text-left-widescreen", "label": "Left" },
+        { "value": "b-has-text-right-widescreen", "label": "Right" }
       ],
       "default": ""
     },
@@ -186,22 +161,26 @@
       "label": "Full HD (1408px+)",
       "options": [
         { "value": "", "label": "Default" },
-        { "value": "has-text-centered-fullhd", "label": "Centered" },
-        { "value": "has-text-justified-fullhd", "label": "Justified" },
-        { "value": "has-text-left-fullhd", "label": "Left" },
-        { "value": "has-text-right-fullhd", "label": "Right" }
-      ],
-      "default": ""
-    },
-
-    { "type": "header", "content": "Button Style Classes" },
-
-    { "type": "checkbox", "id": "b_is_outlined", "label": "Outlined", "default": false },
-    { "type": "checkbox", "id": "b_is_text", "label": "Text Style", "default": false },
+        { "value": "b-has-text-centered-fullhd", "label": "Centered" },
+        { "value": "b-has-text-justified-fullhd", "label": "Justified" },
+        { "value": "b-has-text-left-fullhd", "label": "Left" },
+        { "value": "b-has-text-right-fullhd", "label": "Right" }
+        ],
+        "default": ""
+      },
+      
+      { "type": "header", "content": "Button Style Classes" },
+      
+      { "type": "checkbox", "id": "b_is_outlined", "label": "Outlined", "default": false },
+      { "type": "checkbox", "id": "b_is_text", "label": "Text Style", "default": false },
     { "type": "checkbox", "id": "b_is_ghost", "label": "Ghost", "default": false },
     { "type": "checkbox", "id": "b_is_light", "label": "Light", "default": false },
     { "type": "checkbox", "id": "b_is_responsive", "label": "Responsive", "default": false },
     { "type": "checkbox", "id": "b_is_rounded", "label": "Rounded", "default": false },
+    { "type": "checkbox", "id": "b_is_fullwidth", "label": "Full Width", "default":false },
+    { "type": "checkbox", "id": "button_new_tab", "label": "Open in new tab", "default": false },
+
+    { "type": "header", "content": "Color Style"},
 
     {
       "type": "select",

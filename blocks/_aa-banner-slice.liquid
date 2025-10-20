@@ -10,7 +10,7 @@
     assign style_attr = 'background: linear-gradient(' | append: dir | append: ', ' | append: c1 | append: ', ' | append: c2 | append: ')'
   endif
 %}
-<div class="b-box b-is-link b-notification banner-content-{{ block.id }}">
+<div class="b-box b-notification banner-content-{{ block.id }}">
   <div
     class="b-columns slice-{{ block.id }}"
     {% if style_attr != '' %}
