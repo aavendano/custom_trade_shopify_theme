@@ -1,85 +1,76 @@
 {% if block.settings.button_text != blank and block.settings.button_url != blank %}
   {% liquid
-    assign button_classes = 'b-button'
+    assign button_classes = 'aa-styled-button button'
     assign alignment_classes = ''
 
-    if block.settings.button_size == 'small'
-      assign button_classes = button_classes | append: ' b-is-small'
-    elsif block.settings.button_size == 'large'
-      assign button_classes = button_classes | append: ' b-is-large'
+    # Size classes
+    assign button_classes = button_classes | append: ' b-is-' | append: block.settings.button_size
+
+    # Boolean style classes
+    if block.settings.b_is_outlined
+      assign button_classes = button_classes | append: ' b-is-outlined'
     endif
 
-    if block.settings.button_width == 'full'
-      assign button_classes = button_classes | append: ' b-is-fullwidth'
-    endif
-
-    if block.settings.button_style == 'link'
+    if block.settings.b_is_text
       assign button_classes = button_classes | append: ' b-is-text'
     endif
 
-    if block.settings.button_alignment_mobile != ''
-      assign alignment_classes = alignment_classes | append: ' ' | append: block.settings.button_alignment_mobile
+    if block.settings.b_is_ghost
+      assign button_classes = button_classes | append: ' b-is-ghost'
     endif
 
-    if block.settings.button_alignment_tablet != ''
-      assign alignment_classes = alignment_classes | append: ' ' | append: block.settings.button_alignment_tablet
+    if block.settings.b_is_light
+      assign button_classes = button_classes | append: ' b-is-light'
     endif
 
-    if block.settings.button_alignment_desktop != ''
-      assign alignment_classes = alignment_classes | append: ' ' | append: block.settings.button_alignment_desktop
+    if block.settings.b_is_responsive
+      assign button_classes = button_classes | append: ' b-is-responsive'
     endif
 
-    if block.settings.button_alignment_widescreen != ''
-      assign alignment_classes = alignment_classes | append: ' ' | append: block.settings.button_alignment_widescreen
+    if block.settings.b_is_rounded
+      assign button_classes = button_classes | append: ' b-is-rounded'
     endif
 
-    if block.settings.button_alignment_fullhd != ''
-      assign alignment_classes = alignment_classes | append: ' ' | append: block.settings.button_alignment_fullhd
+    if block.settings.b_is_fullwidth
+      assign button_classes = button_classes | append: ' b-is-fullwidth'
     endif
+
+    # Color style classes (select/radio)
+    assign button_classes = button_classes | append: ' b-is-' | append: block.settings.button_color_style
+
+ 
+
+    assign alignment_settings = 'button_alignment_mobile,button_alignment_tablet,button_alignment_desktop,button_alignment_widescreen,button_alignment_fullhd' | split: ','
+
+    for setting in alignment_settings
+      assign value = block.settings[setting]
+      if value != ''
+        assign alignment_classes = alignment_classes | append: ' ' | append: value
+      endif
+    endfor
   %}
 
-  <a
-    href="{{ block.settings.button_url }}"
-    class="aa-styled-button-{{ block.id }} {{ button_classes }}{{ alignment_classes }}"
-    {% if block.settings.button_new_tab %}
-      target="_blank" rel="noopener"
-    {% endif %}
-    {{ block.shopify_attributes }}
-  >
-    {{ block.settings.button_text }}
-  </a>
+  <div class="aa-styled-button-container-{{ block.id }}{{ alignment_classes }}">
+    <a
+      href="{{ block.settings.button_url }}"
+      class="aa-styled-button-{{ block.id }} {{ button_classes }}"
+      {% if block.settings.button_new_tab %}
+        target="_blank" rel="noopener"
+      {% endif %}
+      {{ block.shopify_attributes }}
+    >
+      {{ block.settings.button_text }}
+    </a>
+  </div>
 {% endif %}
 
 {% style %}
-  {{ block.settings.button_font | font_face }}
-
-  .aa-styled-button-{{ block.id }} {
-    --b-button-h: {{ block.settings.button_text_color | color_extract: 'hue' }};
-    --b-button-s: {{ block.settings.button_text_color | color_extract: 'saturation' }};
-    --b-button-l: {{ block.settings.button_text_color | color_extract: 'lightness' }};
-    --b-button-background-l: {{ block.settings.button_bg_color | color_extract: 'lightness' }};
-    --b-button-color-l: {{ block.settings.button_text_color | color_extract: 'lightness' }};
-    --b-button-border-l: {{ block.settings.button_border_color | color_extract: 'lightness' }};
-    font-family: {{ block.settings.button_font.family | default: 'Inter' }}, {{ block.settings.button_font.fallback_families | default: 'sans-serif' }};
-    font-weight: {{ block.settings.button_font.weight | default: '400' }};
-    font-style: {{ block.settings.button_font.style | default: 'normal' }};
-    border-radius: {{ block.settings.button_border_radius | default: '4px' }};
-    padding: {{ block.settings.button_padding | default: '12px 24px' }};
-    {% if block.settings.button_width != 'auto' %}
-      width: {{ block.settings.button_width }};
-    {% endif %}
+  /* Container styles - Use Bulma utilities only */
+  .aa-styled-button-container-{{ block.id }} {
+    @apply flex;
   }
 
-  .aa-styled-button-{{ block.id }}.b-button {
-    background-color: {{ block.settings.button_bg_color | default: '#f5f5f5' }};
-    border-color: {{ block.settings.button_border_color | default: '#dddddd' }};
-    color: {{ block.settings.button_text_color | default: '#111111' }};
-  }
 
-  .aa-styled-button-{{ block.id }}.b-button:hover {
-    background-color: {{ block.settings.button_hover_bg_color | default: '#eeeeee' }};
-    color: {{ block.settings.button_hover_text_color | default: '#000000' }};
-  }
 {% endstyle %}
 
 {% schema %}
@@ -104,7 +95,7 @@
       "default": "button"
     },
 
-    { "type": "font_picker", "id": "button_font", "label": "Button Font", "default": "assistant_n4" },
+
 
     {
       "type": "select",
@@ -112,25 +103,14 @@
       "label": "Button Size",
       "options": [
         { "value": "small", "label": "Small" },
+        { "value": "normal", "label": "Normal" },
         { "value": "medium", "label": "Medium" },
         { "value": "large", "label": "Large" }
       ],
-      "default": "medium"
+      "default": "normal"
     },
 
-    {
-      "type": "select",
-      "id": "button_width",
-      "label": "Button Width",
-      "options": [
-        { "value": "auto", "label": "Auto" },
-        { "value": "full", "label": "Full Width" },
-        { "value": "25%", "label": "25%" },
-        { "value": "50%", "label": "50%" },
-        { "value": "75%", "label": "75%" }
-      ],
-      "default": "auto"
-    },
+    { "type": "checkbox", "id": "b_is_fullwidth", "label": "Full Width", "default": false },
 
     { "type": "checkbox", "id": "button_new_tab", "label": "Open in new tab", "default": false },
 
@@ -150,10 +130,10 @@
       "label": "Mobile (up to 768px)",
       "options": [
         { "value": "", "label": "Default" },
-        { "value": "b-has-text-centered-mobile", "label": "Centered" },
-        { "value": "b-has-text-justified-mobile", "label": "Justified" },
-        { "value": "b-has-text-left-mobile", "label": "Left" },
-        { "value": "b-has-text-right-mobile", "label": "Right" }
+        { "value": "has-text-centered-mobile", "label": "Centered" },
+        { "value": "has-text-justified-mobile", "label": "Justified" },
+        { "value": "has-text-left-mobile", "label": "Left" },
+        { "value": "has-text-right-mobile", "label": "Right" }
       ],
       "default": ""
     },
@@ -164,10 +144,10 @@
       "label": "Tablet (769px+)",
       "options": [
         { "value": "", "label": "Default" },
-        { "value": "b-has-text-centered-tablet", "label": "Centered" },
-        { "value": "b-has-text-justified-tablet", "label": "Justified" },
-        { "value": "b-has-text-left-tablet", "label": "Left" },
-        { "value": "b-has-text-right-tablet", "label": "Right" }
+        { "value": "has-text-centered-tablet", "label": "Centered" },
+        { "value": "has-text-justified-tablet", "label": "Justified" },
+        { "value": "has-text-left-tablet", "label": "Left" },
+        { "value": "has-text-right-tablet", "label": "Right" }
       ],
       "default": ""
     },
@@ -178,10 +158,10 @@
       "label": "Desktop (1024px+)",
       "options": [
         { "value": "", "label": "Default" },
-        { "value": "b-has-text-centered-desktop", "label": "Centered" },
-        { "value": "b-has-text-justified-desktop", "label": "Justified" },
-        { "value": "b-has-text-left-desktop", "label": "Left" },
-        { "value": "b-has-text-right-desktop", "label": "Right" }
+        { "value": "has-text-centered-desktop", "label": "Centered" },
+        { "value": "has-text-justified-desktop", "label": "Justified" },
+        { "value": "has-text-left-desktop", "label": "Left" },
+        { "value": "has-text-right-desktop", "label": "Right" }
       ],
       "default": ""
     },
@@ -192,10 +172,10 @@
       "label": "Widescreen (1216px+)",
       "options": [
         { "value": "", "label": "Default" },
-        { "value": "b-has-text-centered-widescreen", "label": "Centered" },
-        { "value": "b-has-text-justified-widescreen", "label": "Justified" },
-        { "value": "b-has-text-left-widescreen", "label": "Left" },
-        { "value": "b-has-text-right-widescreen", "label": "Right" }
+        { "value": "has-text-centered-widescreen", "label": "Centered" },
+        { "value": "has-text-justified-widescreen", "label": "Justified" },
+        { "value": "has-text-left-widescreen", "label": "Left" },
+        { "value": "has-text-right-widescreen", "label": "Right" }
       ],
       "default": ""
     },
@@ -206,34 +186,37 @@
       "label": "Full HD (1408px+)",
       "options": [
         { "value": "", "label": "Default" },
-        { "value": "b-has-text-centered-fullhd", "label": "Centered" },
-        { "value": "b-has-text-justified-fullhd", "label": "Justified" },
-        { "value": "b-has-text-left-fullhd", "label": "Left" },
-        { "value": "b-has-text-right-fullhd", "label": "Right" }
+        { "value": "has-text-centered-fullhd", "label": "Centered" },
+        { "value": "has-text-justified-fullhd", "label": "Justified" },
+        { "value": "has-text-left-fullhd", "label": "Left" },
+        { "value": "has-text-right-fullhd", "label": "Right" }
       ],
       "default": ""
     },
 
-    { "type": "header", "content": "Button Styling" },
+    { "type": "header", "content": "Button Style Classes" },
+
+    { "type": "checkbox", "id": "b_is_outlined", "label": "Outlined", "default": false },
+    { "type": "checkbox", "id": "b_is_text", "label": "Text Style", "default": false },
+    { "type": "checkbox", "id": "b_is_ghost", "label": "Ghost", "default": false },
+    { "type": "checkbox", "id": "b_is_light", "label": "Light", "default": false },
+    { "type": "checkbox", "id": "b_is_responsive", "label": "Responsive", "default": false },
+    { "type": "checkbox", "id": "b_is_rounded", "label": "Rounded", "default": false },
+
     {
       "type": "select",
-      "id": "button_style",
-      "label": "Button Style",
+      "id": "button_color_style",
+      "label": "Color Style",
       "options": [
+        { "value": "link", "label": "Link" },
         { "value": "primary", "label": "Primary" },
-        { "value": "link", "label": "Link Style" }
+        { "value": "info", "label": "Info" },
+        { "value": "success", "label": "Success" },
+        { "value": "warning", "label": "Warning" },
+        { "value": "danger", "label": "Danger" }
       ],
       "default": "primary"
-    },
-
-    { "type": "color", "id": "button_text_color", "label": "Text Color", "default": "#111111" },
-    { "type": "color", "id": "button_bg_color", "label": "Background Color", "default": "#f5f5f5" },
-    { "type": "color", "id": "button_border_color", "label": "Border Color", "default": "#dddddd" },
-    { "type": "color", "id": "button_hover_bg_color", "label": "Hover Background", "default": "#eeeeee" },
-    { "type": "color", "id": "button_hover_text_color", "label": "Hover Text Color", "default": "#000000" },
-
-    { "type": "text", "id": "button_border_radius", "label": "Border Radius", "default": "4px" },
-    { "type": "text", "id": "button_padding", "label": "Padding", "default": "12px 24px" }
+    }
   ],
 
   "presets": [

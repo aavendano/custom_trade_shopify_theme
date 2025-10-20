@@ -193,6 +193,7 @@
                 </p>
               {%- when 'description' -%}
                 {%- if product.description != blank -%}
+                  {% comment %} TODO: Fix unclosed HTML element - ensure proper opening/closing tags {% endcomment %}
                   <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
                     {{ product.description }}
                     <br>
