@@ -417,7 +417,6 @@
     },
     "custom_section_HmcFRj": {
       "type": "custom_section",
-      "blocks": {},
       "name": "Motto",
       "settings": {
         "content_direction": "column",

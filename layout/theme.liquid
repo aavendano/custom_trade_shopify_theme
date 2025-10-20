@@ -113,6 +113,13 @@
         --font-body-scale: {{ settings.body_scale | divided_by: 100.0 }};
         --font-heading-scale: {{ settings.heading_scale | times: 1.0 | divided_by: settings.body_scale }};
 
+        /* Responsive Font Scale Variables */
+        --font-scale-mobile: {{ settings.font_scale_mobile | divided_by: 100.0 }};
+        --font-scale-tablet: {{ settings.font_scale_tablet | divided_by: 100.0 }};
+        --font-scale-desktop: {{ settings.font_scale_desktop | divided_by: 100.0 }};
+        --font-scale-widescreen: {{ settings.font_scale_widescreen | divided_by: 100.0 }};
+        --font-scale-fullhd: {{ settings.font_scale_fullhd | divided_by: 100.0 }};
+
         --media-padding: {{ settings.media_padding }}px;
         --media-border-opacity: {{ settings.media_border_opacity | divided_by: 100.0 }};
         --media-border-width: {{ settings.media_border_thickness }}px;
@@ -231,7 +238,7 @@
 
       html {
         box-sizing: border-box;
-        font-size: calc(var(--font-body-scale) * 62.5%);
+        font-size: calc(var(--font-body-scale) * var(--font-scale-mobile) * 62.5%);
         height: 100%;
       }
 
@@ -243,22 +250,59 @@
         margin: 0;
         font-size: 1.5rem;
         letter-spacing: 0.06rem;
-        line-height: calc(1 + 0.8 / var(--font-body-scale));
+        line-height: calc(1 + 0.8 / (var(--font-body-scale) * var(--font-scale-mobile)));
         font-family: var(--font-body-family);
         font-style: var(--font-body-style);
         font-weight: var(--font-body-weight);
       }
 
+      /* Tablet breakpoint - 769px and up */
+      @media screen and (min-width: 769px) {
+        html {
+          font-size: calc(var(--font-body-scale) * var(--font-scale-tablet) * 62.5%);
+        }
+        body {
+          line-height: calc(1 + 0.8 / (var(--font-body-scale) * var(--font-scale-tablet)));
+        }
+      }
+
+      /* Desktop breakpoint - 1024px and up */
+      @media screen and (min-width: 1024px) {
+        html {
+          font-size: calc(var(--font-body-scale) * var(--font-scale-desktop) * 62.5%);
+        }
+        body {
+          line-height: calc(1 + 0.8 / (var(--font-body-scale) * var(--font-scale-desktop)));
+        }
+      }
+
+      /* Widescreen breakpoint - 1216px and up */
+      @media screen and (min-width: 1216px) {
+        html {
+          font-size: calc(var(--font-body-scale) * var(--font-scale-widescreen) * 62.5%);
+        }
+        body {
+          line-height: calc(1 + 0.8 / (var(--font-body-scale) * var(--font-scale-widescreen)));
+        }
+      }
+
+      /* Full HD breakpoint - 1408px and up */
+      @media screen and (min-width: 1408px) {
+        html {
+          font-size: calc(var(--font-body-scale) * var(--font-scale-fullhd) * 62.5%);
+        }
+        body {
+          line-height: calc(1 + 0.8 / (var(--font-body-scale) * var(--font-scale-fullhd)));
+        }
+      }
+
+      /* Legacy support - maintain existing 750px breakpoint for body font-size */
       @media screen and (min-width: 750px) {
         body {
           font-size: 1.6rem;
         }
       }
     {% endstyle %}
-
-    {{ 'base.css' | asset_url | stylesheet_tag }}
-    {{ 'aa-bulma-custom.css' | asset_url | stylesheet_tag }}
-    {{ 'aa-bulma-custom-overrides.css' | asset_url | stylesheet_tag }}
 
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
@@ -301,15 +345,6 @@
       }
     </script>
 
-    <!--
-      Swiper.js JavaScript
-      <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    -->
-    <!--
-      Swiper.js CSS
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    -->
-
     {% comment %}
       This is a custom CSS file that can be used to override the default styles of the theme.
       It is recommended to use this file for custom styles instead of editing the theme's core CSS files.
@@ -330,6 +365,27 @@
         {{ collection.metafields.custom.faqs }}
       </script>
     {% endif %}
+    <!-- STYLESHEETS -->
+    {{ 'base.css' | asset_url | stylesheet_tag }}
+    <!-- BULMA -->
+    {{ 'aa-bulma-custom.css' | asset_url | stylesheet_tag }}
+    {{ 'aa-bulma-custom-overrides.css' | asset_url | stylesheet_tag }}
+
+    <!-- TWICPICS COMPONENTS -->
+
+    <script type="module">
+      import {
+        installTwicpics,
+        TwicImg,
+        TwicPicture,
+      } from 'https://unpkg.com/@twicpics/components/webcomponents/module.mjs';
+      installTwicpics({
+        domain: 'https://playlovetoys.twic.pics',
+      });
+      customElements.define('twic-img', TwicImg);
+      customElements.define('twic-picture', TwicPicture);
+    </script>
+
     <!-- FAQ Article COLLECTIONS -->
     {% comment %} Detectar si estamos en una página de artículo {% endcomment %}
     {% if article and article.metafields.custom.json_faqs %}
