@@ -81,6 +81,21 @@
         "custom_class": "custom-section-class"
       }
     },
+    "hero_toggle_content_8XPA7t": {
+      "type": "aa-hero-toggle-content",
+      "name": "Hero-Content-collapsable",
+      "settings": {
+        "hero_image": "{{ collection.image }}",
+        "this_title": "{{ collection.metafields.custom.collection_title.value }}",
+        "title_htag": "h1",
+        "this_subtitle": "{{ collection.metafields.custom.collection_subtitle.value }}",
+        "subtitle_htag": "h2",
+        "button_text": "",
+        "button_url": "",
+        "expandable_content": "{{ collection.description }}",
+        "initial_expanded": false
+      }
+    },
     "custom_section_NWTLXi": {
       "type": "custom_section",
       "blocks": {

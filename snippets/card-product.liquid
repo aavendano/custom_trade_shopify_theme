@@ -63,7 +63,13 @@
                 %}
 
               {% elsif card_product.featured_media and serve_from_twicpics %}
-                {% render 'twicpics-image', eager: false, focus: 'auto', image: card_product.featured_media -%}
+                {%
+                  render 'twicpics-image',
+                  eager: false,
+                  focus: 'auto',
+                  image: card_product.featured_media | image_url: width:400,
+                  alt: card_product.featured_media.alt | escape,
+                -%}
               {%- else %}
                 {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
                 <img

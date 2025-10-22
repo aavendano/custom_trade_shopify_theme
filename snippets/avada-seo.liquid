@@ -1,10 +1,10 @@
-{%- capture avada-seo-snippets -%}
-{%- include 'avada-seo-status' -%}
+{%- capture avada_seo_snippets -%}
+{%- render 'avada-seo-status' -%}
 {%- if avadaSeoStatus -%}
-{%- include 'avada-seo-other' -%}
-{%- include 'avada-seo-meta' -%}
+{%- render 'avada-seo-other' -%}
+{%- render 'avada-seo-meta' -%}
 {%- endif -%}
 {%- endcapture -%}
-{%- unless avada-seo-snippets contains 'Liquid error' -%}
-{{ avada-seo-snippets }}
+{%- unless avada_seo_snippets contains 'Liquid error' -%}
+{{ avada_seo_snippets }}
 {%- endunless -%}

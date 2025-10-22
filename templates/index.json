@@ -9,106 +9,195 @@
  */
 {
   "sections": {
-    "custom_section_y8hdyp": {
-      "type": "custom_section",
+    "aa_banner_html_copy_YGMYdR": {
+      "type": "aa-banner-html-copy",
       "blocks": {
-        "flexible_content_Q4ngMk": {
-          "type": "flexible-content",
-          "name": "Flex Content",
+        "aa_banner_slice_JKW44B": {
+          "type": "_aa-banner-slice",
+          "name": "aa-banner-slice",
           "settings": {
-            "title": "Adult Toys, Sexy Lingerie & Novelties Collections",
-            "title_tag": "h1",
-            "subtitle": "",
-            "subtitle_tag": "h2",
-            "description": "",
-            "image": "shopify://shop_images/Logo-PlayLoveToys-3by2-800x534.png",
-            "image_position": "left",
-            "primary_button_text": "",
-            "primary_button_link": "",
-            "secondary_button_text": "",
-            "secondary_button_link": "",
-            "layout_direction": "row",
-            "vertical_alignment": "center",
-            "spacing": 60,
-            "layout_direction_mobile": "column",
-            "spacing_mobile": 50,
-            "title_size": 44,
-            "title_weight": 700,
-            "title_spacing": 15,
-            "subtitle_size": 28,
-            "subtitle_weight": 600,
-            "subtitle_spacing": 15,
-            "text_size": 24,
-            "text_spacing": 20,
-            "title_size_mobile": 20,
-            "title_spacing_mobile": 20,
-            "subtitle_size_mobile": 16,
-            "subtitle_spacing_mobile": 30,
-            "text_size_mobile": 16,
-            "text_spacing_mobile": 30,
-            "button_text_size": 16,
-            "button_border_radius": 4,
-            "button_text_size_mobile": 14,
-            "image_max_width": 800,
-            "image_border_radius": 0,
-            "background_color": "#f4f4f4",
-            "title_color": "#000000",
-            "subtitle_color": "#323841",
-            "text_color": "#323841",
-            "primary_button_color": "#000000",
-            "primary_button_text_color": "#ffffff",
-            "primary_button_hover_color": "#333333",
-            "secondary_button_color": "#ffffff",
-            "secondary_button_text_color": "#000000",
-            "secondary_button_hover_color": "#f5f5f5",
-            "padding_top": 60,
-            "padding_right": 0,
-            "padding_bottom": 60,
-            "padding_left": 0,
-            "padding_top_mobile": 30,
-            "padding_right_mobile": 0,
-            "padding_bottom_mobile": 60,
-            "padding_left_mobile": 0,
-            "border_radius": 0
+            "slice_image": "shopify://shop_images/Halloween-themed_product_display.png",
+            "slice_background_type": "gradient",
+            "slice_bg_solid_color": "#231f20",
+            "slice_gradient_color_1": "#000000",
+            "slice_gradient_color_2": "#fe6a00",
+            "slice_gradient_direction": "to bottom right"
           },
-          "blocks": {}
+          "blocks": {
+            "aa_styled_text_block_dHhQ3t": {
+              "type": "_aa-styled-text-block",
+              "name": "aa-styled-text-block",
+              "settings": {
+                "text_content": "Your styled text here",
+                "text_htag": "p",
+                "text_font": "bungee_n4",
+                "text_alignment_mobile": "b-has-text-centered-mobile",
+                "text_alignment_tablet": "b-has-text-centered-tablet",
+                "text_alignment_desktop": "",
+                "text_alignment_widescreen": "",
+                "text_alignment_fullhd": "",
+                "text_size_mobile": "b-is-size-2-mobile",
+                "text_size_tablet": "b-is-size-2-tablet",
+                "text_size_desktop": "b-is-size-1-desktop",
+                "text_size_widescreen": "",
+                "text_size_fullhd": "",
+                "text_color_mode": "solid",
+                "text_color_gradient": "linear-gradient(181deg, rgba(12, 116, 137, 1), rgba(37, 103, 152, 1) 97.41%)",
+                "text_color_solid": "#ffffff"
+              },
+              "blocks": {}
+            },
+            "aa_styled_text_block_bEdjJm": {
+              "type": "_aa-styled-text-block",
+              "name": "aa-styled-text-block",
+              "settings": {
+                "text_content": "Your styled text here",
+                "text_htag": "p",
+                "text_font": "assistant_n4",
+                "text_alignment_mobile": "b-has-text-centered-mobile",
+                "text_alignment_tablet": "b-has-text-centered-tablet",
+                "text_alignment_desktop": "",
+                "text_alignment_widescreen": "",
+                "text_alignment_fullhd": "",
+                "text_size_mobile": "b-is-size-2-mobile",
+                "text_size_tablet": "b-is-size-2-tablet",
+                "text_size_desktop": "",
+                "text_size_widescreen": "",
+                "text_size_fullhd": "",
+                "text_color_mode": "solid",
+                "text_color_gradient": "linear-gradient(181deg, rgba(255, 255, 255, 1), rgba(37, 103, 152, 1) 97.41%)",
+                "text_color_solid": "#ffffff"
+              },
+              "blocks": {}
+            },
+            "aa_styled_button_N94w4g": {
+              "type": "_aa-styled-button",
+              "name": "aa-styled-button",
+              "settings": {
+                "button_text": "Click Here",
+                "button_url": "shopify://collections",
+                "button_size": "large",
+                "button_alignment_mobile": "b-has-text-centered-mobile",
+                "button_alignment_tablet": "b-has-text-centered-tablet",
+                "button_alignment_desktop": "b-has-text-centered-desktop",
+                "button_alignment_widescreen": "b-has-text-centered-widescreen",
+                "button_alignment_fullhd": "b-has-text-centered-fullhd",
+                "b_is_outlined": false,
+                "b_is_text": false,
+                "b_is_ghost": false,
+                "b_is_light": false,
+                "b_is_responsive": false,
+                "b_is_rounded": true,
+                "b_is_fullwidth": false,
+                "button_new_tab": false,
+                "button_color_style": "success"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "aa_styled_text_block_dHhQ3t",
+            "aa_styled_text_block_bEdjJm",
+            "aa_styled_button_N94w4g"
+          ]
+        },
+        "aa_banner_slice_LLzYtK": {
+          "type": "_aa-banner-slice",
+          "name": "aa-banner-slice",
+          "disabled": true,
+          "settings": {
+            "slice_image": "shopify://shop_images/Gemini_Generated_Image_ycp0d2ycp0d2ycp0.png",
+            "slice_background_type": "solid",
+            "slice_bg_solid_color": "#001128",
+            "slice_gradient_color_1": "#667eea",
+            "slice_gradient_color_2": "#764ba2",
+            "slice_gradient_direction": "to bottom"
+          },
+          "blocks": {
+            "aa_styled_text_block_bPaXPj": {
+              "type": "_aa-styled-text-block",
+              "name": "aa-styled-text-block",
+              "settings": {
+                "text_content": "Your styled text here",
+                "text_htag": "p",
+                "text_font": "abril_fatface_n4",
+                "text_alignment_mobile": "b-has-text-centered-mobile",
+                "text_alignment_tablet": "b-has-text-centered-tablet",
+                "text_alignment_desktop": "",
+                "text_alignment_widescreen": "",
+                "text_alignment_fullhd": "",
+                "text_size_mobile": "b-is-size-2-mobile",
+                "text_size_tablet": "b-is-size-2-tablet",
+                "text_size_desktop": "b-is-size-1-desktop",
+                "text_size_widescreen": "",
+                "text_size_fullhd": "",
+                "text_color_mode": "gradient",
+                "text_color_gradient": "linear-gradient(181deg, rgba(255, 255, 255, 1), rgba(37, 103, 152, 1) 97.41%)",
+                "text_color_solid": "#ffffff"
+              },
+              "blocks": {}
+            },
+            "aa_styled_text_block_kpcn8N": {
+              "type": "_aa-styled-text-block",
+              "name": "aa-styled-text-block",
+              "settings": {
+                "text_content": "Your styled text here",
+                "text_htag": "p",
+                "text_font": "assistant_n4",
+                "text_alignment_mobile": "b-has-text-centered-mobile",
+                "text_alignment_tablet": "b-has-text-centered-tablet",
+                "text_alignment_desktop": "",
+                "text_alignment_widescreen": "",
+                "text_alignment_fullhd": "",
+                "text_size_mobile": "b-is-size-4-mobile",
+                "text_size_tablet": "b-is-size-4-tablet",
+                "text_size_desktop": "",
+                "text_size_widescreen": "",
+                "text_size_fullhd": "",
+                "text_color_mode": "solid",
+                "text_color_gradient": "linear-gradient(181deg, rgba(255, 255, 255, 1), rgba(37, 103, 152, 1) 97.41%)",
+                "text_color_solid": "#ffffff"
+              },
+              "blocks": {}
+            },
+            "aa_styled_button_PnExCa": {
+              "type": "_aa-styled-button",
+              "name": "aa-styled-button",
+              "settings": {
+                "button_text": "Click Here",
+                "button_url": "shopify://collections",
+                "button_size": "large",
+                "button_alignment_mobile": "b-has-text-right-mobile",
+                "button_alignment_tablet": "b-has-text-centered-tablet",
+                "button_alignment_desktop": "b-has-text-centered-desktop",
+                "button_alignment_widescreen": "b-has-text-centered-widescreen",
+                "button_alignment_fullhd": "b-has-text-centered-fullhd",
+                "b_is_outlined": true,
+                "b_is_text": false,
+                "b_is_ghost": false,
+                "b_is_light": false,
+                "b_is_responsive": false,
+                "b_is_rounded": true,
+                "b_is_fullwidth": false,
+                "button_new_tab": false,
+                "button_color_style": "success"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "aa_styled_text_block_bPaXPj",
+            "aa_styled_text_block_kpcn8N",
+            "aa_styled_button_PnExCa"
+          ]
         }
       },
       "block_order": [
-        "flexible_content_Q4ngMk"
+        "aa_banner_slice_JKW44B",
+        "aa_banner_slice_LLzYtK"
       ],
-      "name": "LOGO",
-      "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 0,
-        "section_width": "full-width",
-        "section_height": "custom",
-        "section_height_custom": 50,
-        "color_scheme": "",
-        "background_media": "image",
-        "background_color": "#ffffff",
-        "video_position": "cover",
-        "background_image_position": "fit",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": true,
-        "overlay_color": "#533278",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "content_padding_top": 0,
-        "content_padding_bottom": 0,
-        "content_padding_left": 0,
-        "content_padding_right": 0,
-        "custom_class": "custom-section-class"
-      }
+      "name": "AA-Slideshow-New",
+      "settings": {}
     },
     "slideshow_4nGYLi": {
       "type": "slideshow",
@@ -1190,6 +1279,11 @@
     }
   },
   "order": [
+<<<<<<< HEAD
+=======
+    "aa_banner_html_copy_YGMYdR",
+    "slideshow_4nGYLi",
+>>>>>>> dev
     "custom_section_y8hdyp",
     "slideshow_4nGYLi",
     "multicolumn_2x2_rMUj4F",

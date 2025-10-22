@@ -20,6 +20,11 @@
     .b-title {
         --b-title-color: #533278;
         --b-title-strong-color: #533278;
+        font-family: "Chelsea Market", system-ui;
+    }
+
+    .b-subtitle {
+        font-family: "Chelsea Market", system-ui;
     }
 
     .b-hero {

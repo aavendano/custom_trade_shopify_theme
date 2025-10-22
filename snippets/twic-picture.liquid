@@ -1,0 +1,41 @@
+{% liquid
+  assign image_url = image | image_url | split: '?' | first | replace: '/asgiti-0w.myshopify.com', '' | replace: '//cdn.shopify.com/s/files/1/0603/8198/6891/', '/cdn/shop/' | replace: '//playlovetoys.ca', ''
+%}
+
+<twic-picture
+  src="{{ image_url }}"
+  alt="{{ alt }}"
+  {% if anchor %}
+    anchor="{{ anchor }}"
+  {% endif %}
+  crossorigin="{{ crossorigin | default: "anonymous"}}"
+  {% if eager %}
+    eager="true"
+    fetchpriority="high"
+  {% else %}
+    fetchpriority="auto"
+  {% endif %}
+  focus="{{ focus | default: "auto" }}"
+  {% if id != '' %}
+    id="{{ id }}"
+  {% endif %}
+  mode="{{ mode | default: "contain" }}"
+  position="{{ position | default: "center" }}"
+  {% if transform != '' %}
+    preTransform="{{ transform | default: "output=auto"}}"
+  {% endif %}
+  ratio="{{ ratio | default: "none" }}"
+  refit="{{ refit | default: "false"  }}"
+  {% if role != '' %}
+    role="{{ role }}"
+  {% endif %}
+  {% if sizes != '' %}
+    sizes="{{ sizes }}"
+  {% endif %}
+  {% if style != '' %}
+    style="{{ style }}"
+  {% endif %}
+  {% if tabindex %}
+    tabindex="{{ tabindex }}"
+  {% endif %}
+/>

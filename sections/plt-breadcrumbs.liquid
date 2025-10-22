@@ -1,34 +1,56 @@
-
-
-
-
+{% comment %} TODO: Fix missing 'tailwind-output.css' asset and hardcoded routes {% endcomment %}
 <ul class="tw-flex tw-items-center tw-whitespace-nowrap">
-        <li class="tw-inline-flex tw-items-center">
-            <a class="tw-flex tw-items-center tw-text-sm tw-text-gray-500 hover:tw-text-blue-600 focus:tw-outline-hidden focus:tw-text-blue-600" href="/">
-                Home
-            </a>
-                <svg class="tw-shrink-0 tw-mx-2 tw-size-4 tw-text-gray-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <li class="tw-inline-flex tw-items-center">
+    <a
+      class="tw-flex tw-items-center tw-text-sm tw-text-gray-500 hover:tw-text-blue-600 focus:tw-outline-hidden focus:tw-text-blue-600"
+      href="{{ routes.root_url }}"
+    >
+      Home
+    </a>
+    <svg
+      class="tw-shrink-0 tw-mx-2 tw-size-4 tw-text-gray-400"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
       <path d="m9 18 6-6-6-6"></path>
     </svg>
-        </li>
-{% for block in section.blocks %}
-
-        <li class="tw-inline-flex tw-items-center">
-            <a class="tw-flex tw-items-center tw-text-sm tw-text-gray-500 hover:tw-text-blue-600 focus:tw-outline-hidden focus:tw-text-blue-600" href="{{- block.settings.link-url -}}">
-                {{- block.settings.link-text -}}
-            </a>
-                <svg class="tw-shrink-0 tw-mx-2 tw-size-4 tw-text-gray-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="m9 18 6-6-6-6"></path>
-    </svg>
-        </li>
-
-    {% endfor %}
-            <li class="tw-inline-flex tw-items-center">
-            <a class="tw-flex tw-items-center tw-text-sm tw-text-gray-500 hover:tw-text-blue-600 focus:tw-outline-hidden focus:tw-text-blue-600" href="{{- block.settings.link-url.value -}}">
-                {{ page_title }}
-            </a>
-        </li>
-
+  </li>
+  {% for block in section.blocks %}
+    <li class="tw-inline-flex tw-items-center">
+      <a
+        class="tw-flex tw-items-center tw-text-sm tw-text-gray-500 hover:tw-text-blue-600 focus:tw-outline-hidden focus:tw-text-blue-600"
+        href="{{- block.settings.link-url -}}"
+      >
+        {{- block.settings['link-text'] -}}
+      </a>
+      {% unless forloop.last %}
+        <svg
+          class="tw-shrink-0 tw-mx-2 tw-size-4 tw-text-gray-400"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m9 18 6-6-6-6"></path>
+        </svg>
+      {% endunless %}
+    </li>
+  {% endfor %}
+  <li class="tw-inline-flex tw-items-center tw-text-sm tw-text-gray-800 font-semibold" aria-current="page">
+    {{ page_title }}
+  </li>
 </ul>
 
 {% schema %}
@@ -36,35 +58,37 @@
   "name": "PLT-Breadcrumbs",
   "tag": "section",
   "class": "section",
-  "settings": [{
-    "type": "header",
-    "content": "Breadcrumbs Settings"
-}
-],
-"blocks": [
+  "settings": [
     {
-    "type": "Level",
-    "name": "Level",
-    "limit": 5,
-    "settings": [{
-        "type": "text",
-        "id": "link-text",
-        "label": "Link Text",
-        "default": "Link"
-    },
-    {
-    "type": "url",
-    "id": "link-url",
-    "label": "Link URL"
+      "type": "header",
+      "content": "Breadcrumbs Settings"
     }
-    ]},
-
-],
-"presets": [{
-    "name": "PLT-Breadcrumbs",
-    "category": "Custom"
-}]
-
+  ],
+  "blocks": [
+    {
+      "type": "Level",
+      "name": "Level",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "text",
+          "id": "link-text",
+          "label": "Link Text",
+          "default": "Link"
+        },
+        {
+          "type": "url",
+          "id": "link-url",
+          "label": "Link URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PLT-Breadcrumbs",
+      "category": "Custom"
+    }
+  ]
 }
-
 {% endschema %}
