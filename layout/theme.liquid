@@ -51,16 +51,7 @@
 
     {% render 'meta-tags' %}
 
-    <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>
-
-    {%- if settings.animations_reveal_on_scroll -%}
-      <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
-    {%- endif -%}
+    <script src="{{ 'application.js' | asset_url }}" defer="defer"></script>
 
     {{ content_for_header }}
 
@@ -389,13 +380,6 @@
 
     {{ 'custom-style.css' | asset_url | stylesheet_tag }}
 
-    <!-- TWICPICS -->
-    <script
-      async
-      defer
-      src="https://playlovetoys.twic.pics/?v1"
-    ></script>
-
     <!-- FAQ METADATA COLLECTIONS -->
     {% if collection.metafields.custom.faqs %}
       <script type="application/ld+json">
@@ -409,19 +393,7 @@
     {{ 'aa-bulma-custom-overrides.css' | asset_url | stylesheet_tag }}
 
     <!-- TWICPICS COMPONENTS -->
-
-    <script type="module">
-      import {
-        installTwicpics,
-        TwicImg,
-        TwicPicture,
-      } from 'https://unpkg.com/@twicpics/components/webcomponents/module.mjs';
-      installTwicpics({
-        domain: 'https://playlovetoys.twic.pics',
-      });
-      customElements.define('twic-img', TwicImg);
-      customElements.define('twic-picture', TwicPicture);
-    </script>
+    <script src="{{ 'twicpics.js' | asset_url }}" type="module"></script>
 
     <!-- FAQ Article COLLECTIONS -->
     {% comment %} Detectar si estamos en una página de artículo {% endcomment %}
