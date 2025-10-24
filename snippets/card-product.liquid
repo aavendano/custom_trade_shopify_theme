@@ -64,7 +64,7 @@
 
               {% elsif card_product.featured_media and serve_from_twicpics %}
                 {%
-                  render 'twicpics-image',
+                  render 'twic-picture',
                   eager: false,
                   focus: 'auto',
                   image: card_product.featured_media | image_url: width:400,

@@ -38,7 +38,7 @@
             {%- if section.settings.image != blank -%}
               {% if section.settings.image_served_from_twicpics == true %}
                 {%
-                  render 'twicpics-image', image: section.settings.image,
+                  render 'twic-picture', image: section.settings.image,
                   'eager': section.settings.image_loading_eager
                 %}
               {% else %}

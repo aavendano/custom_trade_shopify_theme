@@ -269,7 +269,7 @@
             -%}
             {%- if forloop.first %}
               {% if block.settings.serve_from_twicpics %}
-                {% render 'twicpics-image', image: block.settings.image, eager: true, focus: 'auto' %}
+                {% render 'twic-picture', image: block.settings.image, eager: true, focus: 'auto' %}
               {% else %}
                 {{
                   block.settings.image
@@ -279,7 +279,7 @@
               {% endif %}
             {%- else -%}
               {% if block.settings.serve_from_twicpics %}
-                {% render 'twicpics-image', image: block.settings.image, focus: 'auto' %}
+                {% render 'twic-picture', image: block.settings.image, focus: 'auto' %}
               {% else %}
                 {{
                   block.settings.image
