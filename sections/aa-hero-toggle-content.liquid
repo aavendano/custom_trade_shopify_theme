@@ -4,6 +4,9 @@
   assign subtitle_htag = section.settings.subtitle_htag
   assign image = section.settings.hero_image
 
+  assign icon_fold_svg = 'm356-160-56-56 180-180 180 180-56 56-124-124-124 124Zm124-404L300-744l56-56 124 124 124-124 56 56-180 180Z'
+  assign icon_unfold_svg = 'M480-120 300-300l58-58 122 122 122-122 58 58-180 180ZM358-598l-58-58 180-180 180 180-58 58-122-122-122 122Z'
+
   if image
     assign has_image = true
   else
@@ -25,8 +28,8 @@
         has_image: {{ has_image }},
         has_content: {{ has_content }},
         showContent: {% if section.settings.initial_expanded %}true{% else %}false{% endif %},
-        unfold_svg: 'M480-120 300-300l58-58 122 122 122-122 58 58-180 180ZM358-598l-58-58 180-180 180 180-58 58-122-122-122 122Z',
-        fold_svg: 'm356-160-56-56 180-180 180 180-56 56-124-124-124 124Zm124-404L300-744l56-56 124 124 124-124 56 56-180 180Z',
+        fold_svg: '{{ icon_fold_svg }}', 
+        unfold_svg: '{{ icon_unfold_svg }}', 
       }
     "
   >

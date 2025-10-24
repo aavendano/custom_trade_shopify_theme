@@ -9,196 +9,6 @@
  */
 {
   "sections": {
-    "aa_banner_html_copy_YGMYdR": {
-      "type": "aa-banner-html-copy",
-      "blocks": {
-        "aa_banner_slice_JKW44B": {
-          "type": "_aa-banner-slice",
-          "name": "aa-banner-slice",
-          "settings": {
-            "slice_image": "shopify://shop_images/Halloween-themed_product_display.png",
-            "slice_background_type": "gradient",
-            "slice_bg_solid_color": "#231f20",
-            "slice_gradient_color_1": "#000000",
-            "slice_gradient_color_2": "#fe6a00",
-            "slice_gradient_direction": "to bottom right"
-          },
-          "blocks": {
-            "aa_styled_text_block_dHhQ3t": {
-              "type": "_aa-styled-text-block",
-              "name": "aa-styled-text-block",
-              "settings": {
-                "text_content": "Your styled text here",
-                "text_htag": "p",
-                "text_font": "bungee_n4",
-                "text_alignment_mobile": "b-has-text-centered-mobile",
-                "text_alignment_tablet": "b-has-text-centered-tablet",
-                "text_alignment_desktop": "",
-                "text_alignment_widescreen": "",
-                "text_alignment_fullhd": "",
-                "text_size_mobile": "b-is-size-2-mobile",
-                "text_size_tablet": "b-is-size-2-tablet",
-                "text_size_desktop": "b-is-size-1-desktop",
-                "text_size_widescreen": "",
-                "text_size_fullhd": "",
-                "text_color_mode": "solid",
-                "text_color_gradient": "linear-gradient(181deg, rgba(12, 116, 137, 1), rgba(37, 103, 152, 1) 97.41%)",
-                "text_color_solid": "#ffffff"
-              },
-              "blocks": {}
-            },
-            "aa_styled_text_block_bEdjJm": {
-              "type": "_aa-styled-text-block",
-              "name": "aa-styled-text-block",
-              "settings": {
-                "text_content": "Your styled text here",
-                "text_htag": "p",
-                "text_font": "assistant_n4",
-                "text_alignment_mobile": "b-has-text-centered-mobile",
-                "text_alignment_tablet": "b-has-text-centered-tablet",
-                "text_alignment_desktop": "",
-                "text_alignment_widescreen": "",
-                "text_alignment_fullhd": "",
-                "text_size_mobile": "b-is-size-2-mobile",
-                "text_size_tablet": "b-is-size-2-tablet",
-                "text_size_desktop": "",
-                "text_size_widescreen": "",
-                "text_size_fullhd": "",
-                "text_color_mode": "solid",
-                "text_color_gradient": "linear-gradient(181deg, rgba(255, 255, 255, 1), rgba(37, 103, 152, 1) 97.41%)",
-                "text_color_solid": "#ffffff"
-              },
-              "blocks": {}
-            },
-            "aa_styled_button_N94w4g": {
-              "type": "_aa-styled-button",
-              "name": "aa-styled-button",
-              "settings": {
-                "button_text": "Click Here",
-                "button_url": "shopify://collections",
-                "button_size": "large",
-                "button_alignment_mobile": "b-has-text-centered-mobile",
-                "button_alignment_tablet": "b-has-text-centered-tablet",
-                "button_alignment_desktop": "b-has-text-centered-desktop",
-                "button_alignment_widescreen": "b-has-text-centered-widescreen",
-                "button_alignment_fullhd": "b-has-text-centered-fullhd",
-                "b_is_outlined": false,
-                "b_is_text": false,
-                "b_is_ghost": false,
-                "b_is_light": false,
-                "b_is_responsive": false,
-                "b_is_rounded": true,
-                "b_is_fullwidth": false,
-                "button_new_tab": false,
-                "button_color_style": "success"
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "aa_styled_text_block_dHhQ3t",
-            "aa_styled_text_block_bEdjJm",
-            "aa_styled_button_N94w4g"
-          ]
-        },
-        "aa_banner_slice_LLzYtK": {
-          "type": "_aa-banner-slice",
-          "name": "aa-banner-slice",
-          "disabled": true,
-          "settings": {
-            "slice_image": "shopify://shop_images/Gemini_Generated_Image_ycp0d2ycp0d2ycp0.png",
-            "slice_background_type": "solid",
-            "slice_bg_solid_color": "#001128",
-            "slice_gradient_color_1": "#667eea",
-            "slice_gradient_color_2": "#764ba2",
-            "slice_gradient_direction": "to bottom"
-          },
-          "blocks": {
-            "aa_styled_text_block_bPaXPj": {
-              "type": "_aa-styled-text-block",
-              "name": "aa-styled-text-block",
-              "settings": {
-                "text_content": "Your styled text here",
-                "text_htag": "p",
-                "text_font": "abril_fatface_n4",
-                "text_alignment_mobile": "b-has-text-centered-mobile",
-                "text_alignment_tablet": "b-has-text-centered-tablet",
-                "text_alignment_desktop": "",
-                "text_alignment_widescreen": "",
-                "text_alignment_fullhd": "",
-                "text_size_mobile": "b-is-size-2-mobile",
-                "text_size_tablet": "b-is-size-2-tablet",
-                "text_size_desktop": "b-is-size-1-desktop",
-                "text_size_widescreen": "",
-                "text_size_fullhd": "",
-                "text_color_mode": "gradient",
-                "text_color_gradient": "linear-gradient(181deg, rgba(255, 255, 255, 1), rgba(37, 103, 152, 1) 97.41%)",
-                "text_color_solid": "#ffffff"
-              },
-              "blocks": {}
-            },
-            "aa_styled_text_block_kpcn8N": {
-              "type": "_aa-styled-text-block",
-              "name": "aa-styled-text-block",
-              "settings": {
-                "text_content": "Your styled text here",
-                "text_htag": "p",
-                "text_font": "assistant_n4",
-                "text_alignment_mobile": "b-has-text-centered-mobile",
-                "text_alignment_tablet": "b-has-text-centered-tablet",
-                "text_alignment_desktop": "",
-                "text_alignment_widescreen": "",
-                "text_alignment_fullhd": "",
-                "text_size_mobile": "b-is-size-4-mobile",
-                "text_size_tablet": "b-is-size-4-tablet",
-                "text_size_desktop": "",
-                "text_size_widescreen": "",
-                "text_size_fullhd": "",
-                "text_color_mode": "solid",
-                "text_color_gradient": "linear-gradient(181deg, rgba(255, 255, 255, 1), rgba(37, 103, 152, 1) 97.41%)",
-                "text_color_solid": "#ffffff"
-              },
-              "blocks": {}
-            },
-            "aa_styled_button_PnExCa": {
-              "type": "_aa-styled-button",
-              "name": "aa-styled-button",
-              "settings": {
-                "button_text": "Click Here",
-                "button_url": "shopify://collections",
-                "button_size": "large",
-                "button_alignment_mobile": "b-has-text-right-mobile",
-                "button_alignment_tablet": "b-has-text-centered-tablet",
-                "button_alignment_desktop": "b-has-text-centered-desktop",
-                "button_alignment_widescreen": "b-has-text-centered-widescreen",
-                "button_alignment_fullhd": "b-has-text-centered-fullhd",
-                "b_is_outlined": true,
-                "b_is_text": false,
-                "b_is_ghost": false,
-                "b_is_light": false,
-                "b_is_responsive": false,
-                "b_is_rounded": true,
-                "b_is_fullwidth": false,
-                "button_new_tab": false,
-                "button_color_style": "success"
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "aa_styled_text_block_bPaXPj",
-            "aa_styled_text_block_kpcn8N",
-            "aa_styled_button_PnExCa"
-          ]
-        }
-      },
-      "block_order": [
-        "aa_banner_slice_JKW44B",
-        "aa_banner_slice_LLzYtK"
-      ],
-      "name": "AA-Slideshow-New",
-      "settings": {}
-    },
     "slideshow_4nGYLi": {
       "type": "slideshow",
       "blocks": {
@@ -349,7 +159,7 @@
             "cloudinary_public_id": "",
             "cloudinary_alt": "",
             "image_overlay_opacity": 0,
-            "gradient_overlay_enabled": true,
+            "gradient_overlay_enabled": false,
             "gradient_color": "#f4f4f4",
             "gradient_start_distance": 75,
             "gradient_direction": "top_to_bottom",
@@ -402,20 +212,20 @@
             "heading_font": "unbounded_n5",
             "heading_font_size": 50,
             "heading_font_size_mobile": 50,
-            "heading_color": "#f4f4f4",
+            "heading_color": "#ffffff",
             "heading_shadow_enabled": true,
             "heading_shadow_color": "#8870a3",
-            "heading_shadow_blur": 13,
+            "heading_shadow_blur": 19,
             "heading_shadow_x": 3,
             "heading_shadow_y": -3,
             "heading": "<strong>Find Your Ecstasy</strong>",
-            "heading_size": "h1",
+            "heading_size": "h0",
             "subheading": "",
             "subheading_font": "assistant_n4",
             "subheading_font_size": 18,
             "subheading_font_size_mobile": 16,
-            "subheading_color": "#ffffff",
-            "subheading_shadow_enabled": true,
+            "subheading_color": "",
+            "subheading_shadow_enabled": false,
             "subheading_shadow_color": "#000000",
             "subheading_shadow_blur": 2,
             "subheading_shadow_x": 2,
@@ -425,11 +235,11 @@
             "button_label": "Shop Now",
             "link": "shopify://collections",
             "button_style_secondary": false,
-            "show_text_box": true,
+            "show_text_box": false,
             "box_align": "bottom-left",
             "text_alignment": "left",
             "text_alignment_mobile": "left",
-            "color_scheme": "scheme-1e7e173b-b749-44af-a53f-9042e23e8bdb"
+            "color_scheme": "scheme-4"
           }
         }
       },
@@ -450,113 +260,109 @@
         "hide_controls": true,
         "change_slides_speed": 9,
         "image_behavior": "none",
-        "show_text_below": true,
+        "show_text_below": false,
         "accessibility_info": "Slideshow about our brand",
         "bottom_margin": 0
       }
     },
-    "custom_section_y8hdyp": {
-      "type": "custom_section",
+    "aa_banner_html_copy_YGMYdR": {
+      "type": "aa-banner-html-copy",
       "blocks": {
-        "flexible_content_Q4ngMk": {
-          "type": "flexible-content",
-          "name": "Flex Content",
+        "aa_banner_slice_JKW44B": {
+          "type": "_aa-banner-slice",
+          "name": "aa-banner-slice",
           "settings": {
-            "title": "Adult Toys, Sexy Lingerie & Novelties Collections",
-            "title_tag": "h1",
-            "subtitle": "Embrace Your Sexual Wellness...",
-            "subtitle_tag": "h2",
-            "description": "<p>We aim to promote a philosophy centred on encouraging the public to prioritize their overall sexual health and happiness. Our dedication is to establish a safe, inclusive, and empowering environment for everyone.</p>",
-            "image": "shopify://shop_images/PlayLoveToys-logo.png",
-            "image_position": "left",
-            "loading_lazy": true,
-            "from_twicpics": true,
-            "primary_button_text": "",
-            "primary_button_link": "",
-            "secondary_button_text": "",
-            "secondary_button_link": "",
-            "layout_direction": "row",
-            "vertical_alignment": "center",
-            "spacing": 100,
-            "layout_direction_mobile": "column",
-            "spacing_mobile": 20,
-            "title_size": 44,
-            "title_weight": 700,
-            "title_spacing": 15,
-            "subtitle_size": 28,
-            "subtitle_weight": 600,
-            "subtitle_spacing": 15,
-            "text_size": 24,
-            "text_spacing": 20,
-            "title_size_mobile": 30,
-            "title_spacing_mobile": 20,
-            "subtitle_size_mobile": 18,
-            "subtitle_spacing_mobile": 0,
-            "text_size_mobile": 19,
-            "text_spacing_mobile": 30,
-            "button_text_size": 16,
-            "button_border_radius": 4,
-            "button_text_size_mobile": 14,
-            "image_max_width": 800,
-            "image_border_radius": 0,
-            "background_color": "#f4f4f4",
-            "title_color": "#000000",
-            "subtitle_color": "#323841",
-            "text_color": "#323841",
-            "primary_button_color": "#000000",
-            "primary_button_text_color": "#ffffff",
-            "primary_button_hover_color": "#333333",
-            "secondary_button_color": "#ffffff",
-            "secondary_button_text_color": "#000000",
-            "secondary_button_hover_color": "#f5f5f5",
-            "padding_top": 60,
-            "padding_right": 0,
-            "padding_bottom": 60,
-            "padding_left": 0,
-            "padding_top_mobile": 30,
-            "padding_right_mobile": 0,
-            "padding_bottom_mobile": 30,
-            "padding_left_mobile": 0,
-            "border_radius": 0
+            "slice_image": "shopify://shop_images/Halloween-themed_product_display.png",
+            "slice_background_type": "gradient",
+            "slice_bg_solid_color": "#231f20",
+            "slice_gradient_color_1": "#000000",
+            "slice_gradient_color_2": "#533278",
+            "slice_gradient_direction": "to bottom right"
           },
-          "blocks": {}
+          "blocks": {
+            "aa_styled_text_block_dHhQ3t": {
+              "type": "_aa-styled-text-block",
+              "name": "aa-styled-text-block",
+              "settings": {
+                "text_content": "No Tricks, Just Treats",
+                "text_htag": "p",
+                "text_font": "bungee_n4",
+                "text_alignment_mobile": "b-has-text-centered-mobile",
+                "text_alignment_tablet": "b-has-text-centered-tablet",
+                "text_alignment_desktop": "",
+                "text_alignment_widescreen": "",
+                "text_alignment_fullhd": "",
+                "text_size_mobile": "b-is-size-2-mobile",
+                "text_size_tablet": "b-is-size-2-tablet",
+                "text_size_desktop": "b-is-size-1-desktop",
+                "text_size_widescreen": "",
+                "text_size_fullhd": "",
+                "text_color_mode": "gradient",
+                "text_color_gradient": "linear-gradient(181deg, rgba(255, 71, 0, 1), rgba(255, 128, 0, 1) 97.41%)",
+                "text_color_solid": "#ffffff"
+              },
+              "blocks": {}
+            },
+            "aa_styled_text_block_bEdjJm": {
+              "type": "_aa-styled-text-block",
+              "name": "aa-styled-text-block",
+              "settings": {
+                "text_content": "Unwrap something wicked good this Halloween",
+                "text_htag": "p",
+                "text_font": "assistant_n4",
+                "text_alignment_mobile": "b-has-text-centered-mobile",
+                "text_alignment_tablet": "b-has-text-centered-tablet",
+                "text_alignment_desktop": "",
+                "text_alignment_widescreen": "",
+                "text_alignment_fullhd": "",
+                "text_size_mobile": "b-is-size-4-mobile",
+                "text_size_tablet": "b-is-size-3-tablet",
+                "text_size_desktop": "",
+                "text_size_widescreen": "",
+                "text_size_fullhd": "",
+                "text_color_mode": "solid",
+                "text_color_gradient": "linear-gradient(181deg, rgba(255, 255, 255, 1), rgba(37, 103, 152, 1) 97.41%)",
+                "text_color_solid": "#ffffff"
+              },
+              "blocks": {}
+            },
+            "aa_styled_button_N94w4g": {
+              "type": "_aa-styled-button",
+              "name": "aa-styled-button",
+              "settings": {
+                "button_text": "Shop Halloween Deals",
+                "button_url": "shopify://collections",
+                "button_size": "large",
+                "button_alignment_mobile": "b-has-text-centered-mobile",
+                "button_alignment_tablet": "b-has-text-centered-tablet",
+                "button_alignment_desktop": "b-has-text-centered-desktop",
+                "button_alignment_widescreen": "b-has-text-centered-widescreen",
+                "button_alignment_fullhd": "b-has-text-centered-fullhd",
+                "b_is_outlined": false,
+                "b_is_text": false,
+                "b_is_ghost": false,
+                "b_is_light": false,
+                "b_is_responsive": true,
+                "b_is_rounded": true,
+                "b_is_fullwidth": false,
+                "button_new_tab": false,
+                "button_color_style": "primary"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "aa_styled_text_block_dHhQ3t",
+            "aa_styled_text_block_bEdjJm",
+            "aa_styled_button_N94w4g"
+          ]
         }
       },
       "block_order": [
-        "flexible_content_Q4ngMk"
+        "aa_banner_slice_JKW44B"
       ],
-      "name": "LOGO",
-      "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 0,
-        "section_width": "page-width",
-        "section_height": "custom",
-        "section_height_custom": 50,
-        "color_scheme": "",
-        "background_media": "none",
-        "background_color": "#ffffff",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": true,
-        "overlay_color": "#533278",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "content_padding_top": 0,
-        "content_padding_bottom": 0,
-        "content_padding_left": 0,
-        "content_padding_right": 0,
-        "custom_class": "custom-section-class"
-      }
+      "name": "AA-Slideshow-New",
+      "settings": {}
     },
     "multicolumn_2x2_rMUj4F": {
       "type": "multicolumn-2x2",
@@ -666,6 +472,80 @@
         "padding_bottom": 0
       }
     },
+    "aa_banner_html_copy_NQ8MV9": {
+      "type": "aa-banner-html-copy",
+      "blocks": {
+        "aa_banner_slice_M8BmMp": {
+          "type": "_aa-banner-slice",
+          "name": "aa-banner-slice",
+          "settings": {
+            "slice_image": "shopify://shop_images/Logo-PlayLoveToys-3by2-800x534.png",
+            "slice_background_type": "solid",
+            "slice_bg_solid_color": "#ffffff",
+            "slice_gradient_color_1": "#f4f4f4",
+            "slice_gradient_color_2": "#b3b3b3",
+            "slice_gradient_direction": "135deg"
+          },
+          "blocks": {
+            "aa_styled_text_block_tMmXxx": {
+              "type": "_aa-styled-text-block",
+              "name": "aa-styled-text-block",
+              "settings": {
+                "text_content": "Embrace Your Sexual Wellness",
+                "text_htag": "h3",
+                "text_font": "caprasimo_n4",
+                "text_alignment_mobile": "b-has-text-centered-mobile",
+                "text_alignment_tablet": "b-has-text-centered-tablet",
+                "text_alignment_desktop": "",
+                "text_alignment_widescreen": "",
+                "text_alignment_fullhd": "",
+                "text_size_mobile": "b-is-size-2-mobile",
+                "text_size_tablet": "b-is-size-2-tablet",
+                "text_size_desktop": "b-is-size-1-desktop",
+                "text_size_widescreen": "",
+                "text_size_fullhd": "",
+                "text_color_mode": "gradient",
+                "text_color_gradient": "linear-gradient(90deg, rgba(244, 67, 108, 1), rgba(83, 50, 120, 0.73) 82%)",
+                "text_color_solid": "#ffffff"
+              },
+              "blocks": {}
+            },
+            "aa_styled_text_block_AfWQ8X": {
+              "type": "_aa-styled-text-block",
+              "name": "aa-styled-text-block",
+              "settings": {
+                "text_content": "We aim to promote a philosophy centred on encouraging the public to prioritize their overall sexual health and happiness. Our dedication is to establish a safe, inclusive, and empowering environment for everyone.",
+                "text_htag": "p",
+                "text_font": "caveat_n5",
+                "text_alignment_mobile": "b-has-text-centered-mobile",
+                "text_alignment_tablet": "b-has-text-centered-tablet",
+                "text_alignment_desktop": "",
+                "text_alignment_widescreen": "",
+                "text_alignment_fullhd": "",
+                "text_size_mobile": "b-is-size-4-mobile",
+                "text_size_tablet": "b-is-size-3-tablet",
+                "text_size_desktop": "",
+                "text_size_widescreen": "",
+                "text_size_fullhd": "",
+                "text_color_mode": "solid",
+                "text_color_gradient": "linear-gradient(90deg, rgba(12, 116, 137, 1), rgba(78, 205, 196, 1) 100%)",
+                "text_color_solid": "#323841"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "aa_styled_text_block_tMmXxx",
+            "aa_styled_text_block_AfWQ8X"
+          ]
+        }
+      },
+      "block_order": [
+        "aa_banner_slice_M8BmMp"
+      ],
+      "name": "AA-Slideshow-New",
+      "settings": {}
+    },
     "multicolumn_2x2_KapmK6": {
       "type": "multicolumn-2x2",
       "blocks": {
@@ -772,7 +652,7 @@
         "featured_collection_Eqgtmc": {
           "type": "featured_collection",
           "settings": {
-            "collection": "vibrating-wand-1"
+            "collection": "magic-wand-vibrators"
           }
         },
         "featured_collection5": {
@@ -802,7 +682,7 @@
         "featured_collection4": {
           "type": "featured_collection",
           "settings": {
-            "collection": "pheromones-1"
+            "collection": "pheromones"
           }
         }
       },
@@ -826,7 +706,7 @@
         "columns_desktop": 6,
         "color_scheme": "scheme-f943d0da-9014-44c1-a31b-1b744c4c0579",
         "show_view_all": true,
-        "columns_mobile": "1",
+        "columns_mobile": "2",
         "swipe_on_mobile": false,
         "padding_top": 76,
         "padding_bottom": 76
@@ -852,7 +732,7 @@
         "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": false,
-        "serve_from_twicpics": false,
+        "serve_from_twicpics": true,
         "show_vendor": true,
         "show_rating": false,
         "quick_add": "none",
@@ -1176,7 +1056,7 @@
         "column_w3iQGy": {
           "type": "column",
           "settings": {
-            "article": "sex-wellness/exploring-sexual-wellness-a-comprehensive-guide-to-intimate-health",
+            "article": "pleasure-lab/10-female-sexual-fantasies-womens-secret-desires",
             "cloudinary_id": "",
             "cloudinary_id_2": "",
             "cloudinary_id_3": "",
@@ -1193,7 +1073,7 @@
         "column_fpqVPT": {
           "type": "column",
           "settings": {
-            "article": "sex-wellness/new-tendencies-on-sex-toys-for-women",
+            "article": "after-page-content/wevibe",
             "cloudinary_id": "",
             "cloudinary_id_2": "",
             "cloudinary_id_3": "",
@@ -1249,16 +1129,16 @@
         "padding_bottom": 36
       }
     },
-    "featured_collection_QgBiNd": {
+    "featured_collection_AHDTiU": {
       "type": "featured-collection",
       "name": "Best Adult Toys",
       "settings": {
         "collection": "sex-toys-new-arrival",
         "products_to_show": 8,
-        "title": "{{ section.settings.collection.metafields.custom.collection_title.value }}",
+        "title": "{{ section.settings.collection.title }}",
         "heading_size": "h1",
-        "description": "{{ section.settings.collection.description }}",
-        "show_description": false,
+        "description": "",
+        "show_description": true,
         "description_style": "body",
         "columns_desktop": 4,
         "enable_desktop_slider": false,
@@ -1269,7 +1149,7 @@
         "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": false,
-        "serve_from_twicpics": false,
+        "serve_from_twicpics": true,
         "show_vendor": true,
         "show_rating": false,
         "quick_add": "none",
@@ -1322,11 +1202,11 @@
             "button_text": "Read more",
             "date_format": "%B %d, %Y",
             "width": 100,
-            "padding": 24,
-            "spacing": 20,
+            "padding": 0,
+            "spacing": 8,
             "border_radius": 8,
             "image_aspect_ratio": "16/9",
-            "image_border_radius": 8,
+            "image_border_radius": 0,
             "background_color": "#f4f4f4",
             "title_color": "#533278",
             "title_hover_color": "#0c7489",
@@ -1382,10 +1262,10 @@
     }
   },
   "order": [
-    "aa_banner_html_copy_YGMYdR",
     "slideshow_4nGYLi",
-    "custom_section_y8hdyp",
+    "aa_banner_html_copy_YGMYdR",
     "multicolumn_2x2_rMUj4F",
+    "aa_banner_html_copy_NQ8MV9",
     "multicolumn_2x2_KapmK6",
     "collection_list",
     "featured_collection1",
@@ -1393,7 +1273,7 @@
     "1754498032a8a7e87c",
     "multicolumn2",
     "multicolumn_2x2_QnEPzH",
-    "featured_collection_QgBiNd",
+    "featured_collection_AHDTiU",
     "custom_section_KxjEwk"
   ]
 }

@@ -106,10 +106,26 @@
         "content"
       ],
       "settings": {}
+    },
+    "1759540901f810ca43": {
+      "type": "apps",
+      "blocks": {
+        "seo_on_blog_post_information_MVcC7X": {
+          "type": "shopify://apps/seo-on-blog/blocks/post-information/a45c3e67-be9f-4255-a194-b255a24f37c9",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "seo_on_blog_post_information_MVcC7X"
+      ],
+      "settings": {
+        "include_margins": true
+      }
     }
   },
   "order": [
     "custom_section_XUkPN8",
-    "main"
+    "main",
+    "1759540901f810ca43"
   ]
 }

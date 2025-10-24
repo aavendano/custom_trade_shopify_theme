@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "esbuild assets/custom.js --bundle --outfile=assets/twicpics-bundle.js",
+    "build": "esbuild assets/bundle.js --bundle --minify --outfile=assets/application.js",
     "build:twicpics": "node build-twicpics.js",
     "build-bulma": "sass --load-path=node_modules custom-bulma-project.scss assets/aa-bulma-custom.css",
-    "start": "npm run build-bulma -- --watch"
+    "start": "npm run build-bulma -- --watch",
+    "build:css": "esbuild assets/bundle.css --bundle --minify --loader:.gif=dataurl --outfile=assets/application.css"
   },
   "repository": {
     "type": "git",

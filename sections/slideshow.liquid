@@ -45,12 +45,11 @@
 {%- endif -%}
 
 {%- style -%}
-
-@media screen and (min-width: 990px) { 
-  #slideshow-{{ section.id }} {
-    margin-bottom: {{ section.settings.bottom_margin }}px;
+  @media screen and (min-width: 990px) {
+    #slideshow-{{ section.id }} {
+      margin-bottom: {{ section.settings.bottom_margin }}px;
+    }
   }
-}
 {%- endstyle -%}
 
 <slideshow-component
