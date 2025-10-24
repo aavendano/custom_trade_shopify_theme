@@ -1,5 +1,5 @@
 {% liquid
-  assign image_url = image | image_url: 'master'
+  {% assign image_url = image | image_url | split: '?' | first | replace: '/asgiti-0w.myshopify.com', '' | replace: '//cdn.shopify.com/s/files/1/0603/8198/6891/', '/cdn/shop/' | replace: '//playlovetoys.ca', '' %}
 %}
 
 <twic-picture
