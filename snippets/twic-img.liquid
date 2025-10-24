@@ -1,0 +1,59 @@
+{% liquid
+  assign image_url = image | image_url: 'master'
+%}
+
+<twic-img
+  src="{{ image_url }}"
+  class="{{ class }}"
+  alt="{{ alt }}"
+  {% if anchor %}
+    anchor="{{ anchor }}"
+  {% endif %}
+  {% if bot %}
+    bot="{{ bot }}"
+  {% endif %}
+  crossorigin="{{ crossorigin | default: "anonymous"}}"
+  decoding="{{ decoding | default: "async" }}"
+  {% if draggable %}
+    draggable="{{ draggable }}"
+  {% endif %}
+  {% if eager %}
+    eager="true"
+  {% endif %}
+  focus="{{ focus | default: "auto" }}"
+  {% if id != '' %}
+    id="{{ id }}"
+  {% endif %}
+  {% if intrinsic %}
+    intrinsic="{{ intrinsic }}"
+  {% endif %}
+  mode="{{ mode | default: "cover" }}"
+  position="{{ position | default: "center" }}"
+  placeholder="{{ placeholder | default: "preview" }}"
+  {% if transform != '' %}
+    preTransform="{{ transform | default: "output=auto"}}"
+  {% endif %}
+  ratio="{{ ratio | default: "1" }}"
+  referrerpolicy="{{ referrerpolicy | default: "no-referrer" }}"
+  refit="{{ refit | default: "false"  }}"
+  {% if role != '' %}
+    role="{{ role }}"
+  {% endif %}
+  step="{{ step | default: "10" }}"
+  {% if style != '' %}
+    style="{{ style }}"
+  {% endif %}
+  {% if tabindex %}
+    tabindex="{{ tabindex }}"
+  {% endif %}
+  {% if title %}
+    title="{{ title }}"
+  {% endif %}
+  transition="{{ transition | default: "fade" }}"
+  transitionDelay="{{ transitionDelay | default: "0ms" }}"
+  transitionDuration="{{ transitionDuration | default: "400ms" }}"
+  transitionTimingFunction="{{ transitionTimingFunction | default: "ease" }}"
+  {% if zoom %}
+    zoom="{{ zoom }}"
+  {% endif %}
+/>
