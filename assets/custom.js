@@ -1,4 +1,4 @@
-import { installTwicpics, TwicImg, TwicPicture, TwicVideo } from '@twicpics/components/webcomponents';
+import { installTwicpics, TwicImg, TwicPicture, TwicVideo } from '@./twicpics/components/webcomponents';
 import '@twicpics/components/style.css';
 
 installTwicpics({

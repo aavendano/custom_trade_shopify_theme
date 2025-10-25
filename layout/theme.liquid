@@ -4,8 +4,9 @@
 {%- endcomment -%}
 <!doctype html>
 <html class="js" lang="{{ request.locale.iso_code }}">
-  <head>{% render 'yoast-seo' %}
-    
+  <head>
+    {% render 'yoast-seo' %}
+
     <!-- Added by AVADA SEO Suite -->
     {% include 'avada-seo' %}
     <!-- /Added by AVADA SEO Suite -->
@@ -391,9 +392,10 @@
     <!-- BULMA -->
     {{ 'aa-bulma-custom.css' | asset_url | stylesheet_tag }}
     {{ 'aa-bulma-custom-overrides.css' | asset_url | stylesheet_tag }}
+    {{ 'application.css' | asset_url | stylesheet_tag }}
 
     <!-- TWICPICS COMPONENTS -->
-    <script src="{{ 'twicpics.js' | asset_url }}" type="module"></script>
+    
 
     <!-- FAQ Article COLLECTIONS -->
     {% comment %} Detectar si estamos en una página de artículo {% endcomment %}
