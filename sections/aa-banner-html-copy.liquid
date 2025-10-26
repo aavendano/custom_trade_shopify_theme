@@ -383,7 +383,7 @@ function slideshowSection{{ section.id | replace: '-', '_' }}() {
   "class": "AA Sections",
   "blocks": [
     {
-      "type": "_aa-banner-slice"
+      "type": "aa-banner-slice"
     }
   ],
 
@@ -391,7 +391,11 @@ function slideshowSection{{ section.id | replace: '-', '_' }}() {
     {
       "name": "AA-Slideshow-New",
       "category": "AA Sections",
-      "blocks": []
+      "blocks": [
+        {
+          "type": "aa-banner-slice"
+        }
+      ]
     }
   ]
 }

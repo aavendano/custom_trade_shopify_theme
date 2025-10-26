@@ -1,0 +1,55 @@
+<section class="b-section {{ section.settings.section_size }}" {{ section.shopify_attributes }}>
+  <div class="b-container {{ section.settings.container_responsive_size }}">
+    {% for child_block in section.blocks %}
+      <div class="b-block" {{ child_block.shopify_attributes }}>
+        {{ child_block.type }}
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "AA Container",
+  "blocks": [
+    {
+      "type": "@theme"
+    }
+  ],
+  "settings": [
+    {
+      "type": "select",
+      "id": "section_size",
+      "label": "Section Size",
+      "options": [
+        { "label": "Small", "value": "" },
+        { "label": "Medium", "value": "b-is-medium" },
+        { "label": "Large", "value": "b-is-large" }
+      ],
+      "default": ""
+    },
+    {
+      "type": "select",
+      "id": "container_responsive_size",
+      "label": "Container Responsive Size",
+      "options": [
+        { "label": "Default", "value": "" },
+        { "label": "Desktop", "value": "b-is-desktop" },
+        { "label": "Widescreen", "value": "b-is-widescreen" },
+        { "label": "FullHD", "value": "b-is-fullhd" },
+        { "label": "Max_Tablet", "value": "b-is-max_tablet" },
+        { "label": "Max_Desktop", "value": "b-is-max_desktop" },
+        { "label": "Max_Widscreen", "value": "b-is-max_widescreen" },
+        { "label": "Fluid", "value": "b-is-fluid" }
+      ],
+      "default": ""
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "AA Container"
+    }
+  ]
+}
+{% endschema %}

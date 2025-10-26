@@ -269,7 +269,7 @@
       "type": "aa-banner-html-copy",
       "blocks": {
         "aa_banner_slice_JKW44B": {
-          "type": "_aa-banner-slice",
+          "type": "aa-banner-slice",
           "name": "aa-banner-slice",
           "settings": {
             "slice_image": "shopify://shop_images/Halloween-themed_product_display.png",
@@ -281,7 +281,7 @@
           },
           "blocks": {
             "aa_styled_text_block_dHhQ3t": {
-              "type": "_aa-styled-text-block",
+              "type": "aa-styled-text-block",
               "name": "aa-styled-text-block",
               "settings": {
                 "text_content": "No Tricks, Just Treats",
@@ -304,7 +304,7 @@
               "blocks": {}
             },
             "aa_styled_text_block_bEdjJm": {
-              "type": "_aa-styled-text-block",
+              "type": "aa-styled-text-block",
               "name": "aa-styled-text-block",
               "settings": {
                 "text_content": "Unwrap something wicked good this Halloween",
@@ -327,7 +327,7 @@
               "blocks": {}
             },
             "aa_styled_button_N94w4g": {
-              "type": "_aa-styled-button",
+              "type": "aa-styled-button",
               "name": "aa-styled-button",
               "settings": {
                 "button_text": "Shop Halloween Deals",
@@ -476,7 +476,7 @@
       "type": "aa-banner-html-copy",
       "blocks": {
         "aa_banner_slice_M8BmMp": {
-          "type": "_aa-banner-slice",
+          "type": "aa-banner-slice",
           "name": "aa-banner-slice",
           "settings": {
             "slice_image": "shopify://shop_images/Logo-PlayLoveToys-3by2-800x534.png",
@@ -488,7 +488,7 @@
           },
           "blocks": {
             "aa_styled_text_block_tMmXxx": {
-              "type": "_aa-styled-text-block",
+              "type": "aa-styled-text-block",
               "name": "aa-styled-text-block",
               "settings": {
                 "text_content": "Embrace Your Sexual Wellness",
@@ -511,7 +511,7 @@
               "blocks": {}
             },
             "aa_styled_text_block_AfWQ8X": {
-              "type": "_aa-styled-text-block",
+              "type": "aa-styled-text-block",
               "name": "aa-styled-text-block",
               "settings": {
                 "text_content": "We aim to promote a philosophy centred on encouraging the public to prioritize their overall sexual health and happiness. Our dedication is to establish a safe, inclusive, and empowering environment for everyone.",
