@@ -1,8 +1,15 @@
 <section class="b-section {{ section.settings.section_size }}" {{ section.shopify_attributes }}>
-  <div class="b-columns">
-    {% for child_block in section.blocks %}
-      {% render child_block %}
-    {% endfor %}
+  <div class="b-container {{ section.settings.container_responsive_size }}">
+    <div class="b-columns">
+      {% for block in section.blocks %}
+        <div {{ block.shopify_attributes }} 
+          x-data="{classList: 'b-column cambur'}"
+          :class="classList"
+        >
+           {% render block %}
+        </div>
+      {% endfor %}
+    </div>
   </div>
 </section>
 
@@ -11,7 +18,7 @@
   "name": "AA Columns",
   "blocks": [
     {
-      "type": "aa-column"
+    "type": "aa-column"
     }
   ],
   "settings": [
@@ -35,20 +42,20 @@
         { "label": "Desktop", "value": "b-is-desktop" },
         { "label": "Widescreen", "value": "b-is-widescreen" },
         { "label": "FullHD", "value": "b-is-fullhd" },
-        { "label": "Max_Tablet", "value": "b-is-max_tablet" },
-        { "label": "Max_Desktop", "value": "b-is-max_desktop" },
-        { "label": "Max_Widscreen", "value": "b-is-max_widescreen" },
+        { "label": "Max Tablet", "value": "b-is-max-tablet" },
+        { "label": "Max Desktop", "value": "b-is-max-desktop" },
+        { "label": "Max Widescreen", "value": "b-is-max-widescreen" },
         { "label": "Fluid", "value": "b-is-fluid" }
       ],
       "default": ""
-    }
+          
+        }
   ],
-
   "presets": [
     {
       "name": "AA Columns",
       "category": "01-custom",
-      "blocks": [{ "type": "aa-column" }, { "type": "aa-column" }]
+
     }
   ]
 }

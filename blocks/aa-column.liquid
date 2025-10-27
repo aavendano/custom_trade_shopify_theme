@@ -1,21 +1,84 @@
-<div class="b-column" {{ block.shopify_attributes }}>
-  First column
-  {% for child_block in block.blocks %}
-    {% render child_block %}
-  {% endfor %}
+{% liquid
+  assign column_width_class = 'b-column'
+  if block.settings.column_width > 0
+    assign column_width_class = column_width_class | append: ' b-is-' | append: block.settings.column_width
+  endif
+  if block.settings.column_offset > 0
+    assign column_width_class = column_width_class | append: ' b-is-offset-' | append: block.settings.column_offset
+  endif
+  if block.settings.narrow_column == true
+    assign column_width_class = column_width_class | append: ' b-is-narrow'
+    if block.settings.narrow_breakpoint != ""
+      assign column_width_class = column_width_class | append: '-' | append: block.settings.narrow_breakpoint
+    endif
+  endif
+%}
+
+
+<div x-init="{ classList.value = '{{ column_width_class }}'})">
+NFSIREAONJSP
+
 </div>
+
+
+
 
 {% schema %}
 {
   "name": "AA Column",
-  "tag": "div",
-  "class": "b-column",
   "blocks": [
     {
       "type": "@theme"
     }
   ],
-  "settings": [],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Column Width"
+    },
+    {
+      "type": "range",
+      "id": "column_width",
+      "label": "Width",
+      "info": "Column width as a fraction of 12. Set to 0 to enable auto-sizing",
+      "min": 0,
+      "max": 12,
+      "step": 1,
+      "default": 3
+    },
+        {
+      "type": "range",
+      "id": "column_offset",
+      "label": "OffSet",
+      "info": "Column offset",
+      "min": 0,
+      "max": 12,
+      "step": 1,
+      "default": 0
+    },
+    {
+    "type": "checkbox",
+    "id": "narrow_column",
+    "label": "Narrow Column",
+    "default": false,
+    "info": "Column only takes the space it needs"
+    },
+        {
+    "type": "select",
+    "id": "narrow_breakpoint",
+    "label": "Narrow Column Breakpoint",
+    "info": "Screen width when narrow column starts",
+    "options": [
+      {"label": "Default", "value": ""},
+      {"label": "Mobile", "value": "mobile"},
+      {"label": "Tablet", "value": "tablet"},
+      {"label": "Desktop", "value": "desktop"},
+      {"label": "Widthscreen", "value": "widthscreen"},
+      {"label": "FullHD", "value": "fullhd"}
+    ],
+    "default": ""
+    }
+  ],
   "presets": [
     {
       "name": "AA Column",
