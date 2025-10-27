@@ -73,7 +73,7 @@
       }
     },
     "aa_banner_html_copy_dT7QKk": {
-      "type": "aa-banner-html-copy",
+      "type": "aa-slideshow",
       "blocks": {
         "aa_banner_slice_mFeNYJ": {
           "type": "aa-banner-slice",
@@ -276,7 +276,7 @@
       }
     },
     "aa_banner_html_copy_3WQaDC": {
-      "type": "aa-banner-html-copy",
+      "type": "aa-slideshow",
       "blocks": {
         "aa_banner_slice_BNrD9R": {
           "type": "aa-banner-slice",

@@ -1,19 +1,17 @@
 <section class="b-section {{ section.settings.section_size }}" {{ section.shopify_attributes }}>
-  <div class="b-container {{ section.settings.container_responsive_size }}">
+  <div class="b-columns">
     {% for child_block in section.blocks %}
-      <div class="b-block" {{ child_block.shopify_attributes }}>
-        {% render child_block %}
-      </div>
+      {% render child_block %}
     {% endfor %}
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "AA Container",
+  "name": "AA Columns",
   "blocks": [
     {
-      "type": "@theme"
+      "type": "aa-column"
     }
   ],
   "settings": [
@@ -48,8 +46,9 @@
 
   "presets": [
     {
-      "name": "AA Container",
-      "category": "01-custom"
+      "name": "AA Columns",
+      "category": "01-custom",
+      "blocks": [{ "type": "aa-column" }, { "type": "aa-column" }]
     }
   ]
 }

@@ -203,11 +203,6 @@
         "disabled": false,
         "settings": {}
       },
-      "5839993489447824314": {
-        "type": "shopify://apps/snap-price-design-icon/blocks/star_rating/1400a1ec-e3b3-417d-94e0-224e1cffc7c6",
-        "disabled": false,
-        "settings": {}
-      },
       "yoast-seo-metatags": {
         "type": "shopify://apps/yoast-seo-seo-for-everyone/blocks/metatags/7c777011-bc88-4743-a24e-64336e1e5b46",
         "disabled": false,

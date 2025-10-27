@@ -4,8 +4,8 @@
 
 <twic-img
   src="{{ image_url }}"
-  class="{{ class }}"
-  alt="{{ alt }}"
+  class="b-image {{ class }}"
+  alt="{{ alt | default: image.alt}}"
   {% if anchor %}
     anchor="{{ anchor }}"
   {% endif %}

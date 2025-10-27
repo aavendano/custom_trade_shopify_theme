@@ -1,0 +1,26 @@
+<div class="b-column" {{ block.shopify_attributes }}>
+  First column
+  {% for child_block in block.blocks %}
+    {% render child_block %}
+  {% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "AA Column",
+  "tag": "div",
+  "class": "b-column",
+  "blocks": [
+    {
+      "type": "@theme"
+    }
+  ],
+  "settings": [],
+  "presets": [
+    {
+      "name": "AA Column",
+      "category": "AA Blocks"
+    }
+  ]
+}
+{% endschema %}
