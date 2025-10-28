@@ -1,0 +1,97 @@
+{% liquid
+  assign opt_class = 'b-columns'
+  if section.settings.vcentered == true
+    assign opt_class = opt_class | append: ' b-is-vcentered'
+  endif
+  if section.settings.multiline == true
+    assign opt_class = opt_class | append: ' b-is-multiline'
+  endif
+  if section.settings.centered == true
+    assign opt_class = opt_class | append: ' b-is-centered'
+  endif
+%}
+
+<section class="b-section {{ section.settings.section_size }}" {{ section.shopify_attributes }}>
+  <div class="b-container {{ section.settings.container_responsive_size }}">
+    <div class="{{ opt_class }}">
+      {% for block in section.blocks %}
+        <div
+          {{ block.shopify_attributes }}
+          x-data="{classList: '', showColumn: false}"
+          :class="classList"
+          x-show="showColumn"
+        >
+          {% render block %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "AA Columns",
+  "blocks": [
+    {
+      "type": "aa-column"
+    }
+  ],
+  "settings": [
+    {
+      "type": "select",
+      "id": "section_size",
+      "label": "Section Size",
+      "options": [
+        { "label": "Small", "value": "" },
+        { "label": "Medium", "value": "b-is-medium" },
+        { "label": "Large", "value": "b-is-large" }
+      ],
+      "default": ""
+    },
+    {
+      "type": "select",
+      "id": "container_responsive_size",
+      "label": "Container Responsive Size",
+      "options": [
+        { "label": "Default", "value": "" },
+        { "label": "Desktop", "value": "b-is-desktop" },
+        { "label": "Widescreen", "value": "b-is-widescreen" },
+        { "label": "FullHD", "value": "b-is-fullhd" },
+        { "label": "Max Tablet", "value": "b-is-max-tablet" },
+        { "label": "Max Desktop", "value": "b-is-max-desktop" },
+        { "label": "Max Widescreen", "value": "b-is-max-widescreen" },
+        { "label": "Fluid", "value": "b-is-fluid" }
+      ],
+      "default": ""
+    },
+    {
+      "type": "header",
+      "content": "Column options"
+    },
+    {
+      "type": "checkbox",
+      "id": "vcentered",
+      "label": "Vertical alignment",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "multiline",
+      "label": "Multiline",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "centered",
+      "label": "Centering columns",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "AA Columns",
+      "category": "01-custom"
+    }
+  ]
+}
+{% endschema %}

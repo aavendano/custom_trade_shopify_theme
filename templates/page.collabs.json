@@ -9,6 +9,17 @@
  */
 {
   "sections": {
+    "page_rwcb4e": {
+      "type": "page",
+      "name": "t:sections.page.presets.name",
+      "settings": {
+        "page": "affiliate-program",
+        "heading_size": "h1",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "collabs": {
       "type": "apps",
       "blocks": {
@@ -17,10 +28,10 @@
           "settings": {
             "heading": "Join the PlayLoveToys community",
             "show_square_logo": true,
-            "show_partnership_info": true,
+            "show_partnership_info": false,
             "button_text": "Apply now",
             "number_of_images": "4",
-            "logo_position": "above",
+            "logo_position": "left",
             "corner_style": "square",
             "button_background_color": "#533278",
             "button_label_color": "#ffffff",
@@ -34,9 +45,22 @@
       "settings": {
         "include_margins": true
       }
+    },
+    "contact_form_WQW8rC": {
+      "type": "contact-form",
+      "name": "t:sections.contact-form.presets.name",
+      "settings": {
+        "heading": "Contact us",
+        "heading_size": "h2",
+        "color_scheme": "",
+        "padding_top": 12,
+        "padding_bottom": 12
+      }
     }
   },
   "order": [
-    "collabs"
+    "page_rwcb4e",
+    "collabs",
+    "contact_form_WQW8rC"
   ]
 }

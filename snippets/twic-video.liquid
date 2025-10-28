@@ -1,0 +1,56 @@
+{% liquid
+  assign video_url = video | video_url: 'master'
+%}
+
+<twic-video
+  src="{{ video_url }}"
+  class="{{ class }}"
+  {% if anchor %}
+    anchor="{{ anchor }}"
+  {% endif %}
+  {% if bot %}
+    bot="{{ bot }}"
+  {% endif %}
+  crossorigin="{{ crossorigin | default: "anonymous"}}"
+  {% if draggable %}
+    draggable="{{ draggable }}"
+  {% endif %}
+  duration="{{ duration }}"
+  {% if eager %}
+    eager="true"
+  {% endif %}
+  focus="{{ focus | default: "auto" }}"
+  from="{{ from }}"
+  {% if id != '' %}
+    id="{{ id }}"
+  {% endif %}
+  {% if intrinsic %}
+    intrinsic="{{ intrinsic }}"
+  {% endif %}
+  mode="{{ mode | default: "cover" }}"
+  position="{{ position | default: "center" }}"
+  posterFrom="{{ posterFrom }}"
+  placeholder="{{ placeholder | default: "preview" }}"
+  {% if transform != '' %}
+    preTransform="{{ transform | default: "output=auto"}}"
+  {% endif %}
+  ratio="{{ ratio | default: "1" }}"
+  {% if role != '' %}
+    role="{{ role }}"
+  {% endif %}
+  step="{{ step | default: "10" }}"
+  {% if style != '' %}
+    style="{{ style }}"
+  {% endif %}
+  {% if tabindex %}
+    tabindex="{{ tabindex }}"
+  {% endif %}
+  {% if title %}
+    title="{{ title }}"
+  {% endif %}
+  to="{{ to }}"
+  transition="{{ transition | default: "fade" }}"
+  transitionDelay="{{ transitionDelay | default: "0ms" }}"
+  transitionDuration="{{ transitionDuration | default: "400ms" }}"
+  transitionTimingFunction="{{ transitionTimingFunction | default: "ease" }}"
+/>

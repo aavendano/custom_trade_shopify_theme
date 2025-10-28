@@ -378,20 +378,22 @@ function slideshowSection{{ section.id | replace: '-', '_' }}() {
 
 {% schema %}
 {
-  "name": "AA-Slideshow-New",
-  "tag": "section",
-  "class": "AA Sections",
+  "name": "AA Slideshow",
   "blocks": [
     {
-      "type": "_aa-banner-slice"
+      "type": "aa-banner-slice"
     }
   ],
 
   "presets": [
     {
-      "name": "AA-Slideshow-New",
-      "category": "AA Sections",
-      "blocks": []
+      "name": "AA Slideshow",
+      "category": "01-custom",
+      "blocks": [
+        {
+          "type": "aa-banner-slice"
+        }
+      ]
     }
   ]
 }

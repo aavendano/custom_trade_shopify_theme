@@ -109,8 +109,8 @@
     "sold_out_badge_color_scheme": "scheme-95e7720f-18c1-4aad-ba85-bed2b4548b6f",
     "brand_headline": "Connect With Us",
     "brand_description": "<p></p>",
-    "brand_image": "shopify://shop_images/playlovetoys_icon-Photoroom_3.png",
-    "brand_image_width": 340,
+    "brand_image": "shopify://shop_images/PlayLoveToys-Sexy-Shop-Adult-Toys-Logo.png",
+    "brand_image_width": 240,
     "social_facebook_link": "https://www.facebook.com/playlovetoys",
     "social_instagram_link": "https://www.instagram.com/playlovetoys/",
     "social_youtube_link": "",
@@ -203,13 +203,13 @@
         "disabled": false,
         "settings": {}
       },
-      "53419374109736018": {
-        "type": "shopify://apps/nabu-redirect-manager/blocks/script-block/1ec76215-4f32-4e94-950a-ce6073ea1b48",
+      "yoast-seo-metatags": {
+        "type": "shopify://apps/yoast-seo-seo-for-everyone/blocks/metatags/7c777011-bc88-4743-a24e-64336e1e5b46",
         "disabled": false,
         "settings": {}
       },
-      "yoast-seo-metatags": {
-        "type": "shopify://apps/yoast-seo-seo-for-everyone/blocks/metatags/7c777011-bc88-4743-a24e-64336e1e5b46",
+      "10746902591489815047": {
+        "type": "shopify://apps/rt-google-fonts-custom-fonts/blocks/app-embed/2caf2c68-0038-455e-b0b9-066a7c2ad923",
         "disabled": false,
         "settings": {}
       }

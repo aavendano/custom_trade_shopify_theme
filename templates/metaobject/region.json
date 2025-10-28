@@ -9,11 +9,11 @@
  */
 {
   "sections": {
-    "slideshow_4nGYLi": {
-      "type": "slideshow",
+    "custom_section_eKFP3F": {
+      "type": "custom_section",
       "blocks": {
-        "slide_q86cHE": {
-          "type": "slide",
+        "breadcrumb_WnL96G": {
+          "type": "breadcrumb",
           "settings": {
             "cloudinary_id": "",
             "image": "shopify://shop_images/home_page_hero_Playlovetoys.webp",
@@ -198,24 +198,139 @@
         }
       },
       "block_order": [
-        "slide_q86cHE",
-        "slide_Wdgy3g",
-        "slide_g63pLW",
-        "slide_cgPayf"
+        "breadcrumb_WnL96G"
       ],
-      "name": "t:sections.slideshow.presets.name",
+      "name": "custom section",
       "settings": {
-        "layout": "full_bleed",
-        "slide_height": "medium",
-        "slider_visual": "dots",
-        "auto_rotate": true,
-        "hide_controls": true,
-        "change_slides_speed": 3,
-        "image_behavior": "none",
-        "show_text_below": false,
-        "accessibility_info": "Slideshow about our brand",
-        "bottom_margin": -100
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 0,
+        "section_width": "full-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-1",
+        "background_media": "none",
+        "background_color": "#ffffff",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#533278",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "content_padding_top": 0,
+        "content_padding_bottom": 0,
+        "content_padding_left": 0,
+        "content_padding_right": 0,
+        "custom_class": "custom-section-class"
       }
+    },
+    "aa_banner_html_copy_dT7QKk": {
+      "type": "aa-slideshow",
+      "blocks": {
+        "aa_banner_slice_mFeNYJ": {
+          "type": "aa-banner-slice",
+          "name": "aa-banner-slice",
+          "settings": {
+            "slice_image": "shopify://shop_images/Halloween-themed_product_display.png",
+            "slice_background_type": "gradient",
+            "slice_bg_solid_color": "#231f20",
+            "slice_gradient_color_1": "#000000",
+            "slice_gradient_color_2": "#533278",
+            "slice_gradient_direction": "to bottom right"
+          },
+          "blocks": {
+            "aa_styled_text_block_Cx3TUE": {
+              "type": "aa-styled-text-block",
+              "name": "aa-styled-text-block",
+              "settings": {
+                "text_content": "No Tricks, Just Treats",
+                "text_htag": "p",
+                "text_font": "bungee_n4",
+                "text_alignment_mobile": "b-has-text-centered-mobile",
+                "text_alignment_tablet": "b-has-text-centered-tablet",
+                "text_alignment_desktop": "",
+                "text_alignment_widescreen": "",
+                "text_alignment_fullhd": "",
+                "text_size_mobile": "b-is-size-2-mobile",
+                "text_size_tablet": "b-is-size-2-tablet",
+                "text_size_desktop": "b-is-size-1-desktop",
+                "text_size_widescreen": "",
+                "text_size_fullhd": "",
+                "text_color_mode": "gradient",
+                "text_color_gradient": "linear-gradient(181deg, rgba(255, 71, 0, 1), rgba(255, 128, 0, 1) 97.41%)",
+                "text_color_solid": "#ffffff"
+              },
+              "blocks": {}
+            },
+            "aa_styled_text_block_8BpqxB": {
+              "type": "aa-styled-text-block",
+              "name": "aa-styled-text-block",
+              "settings": {
+                "text_content": "Unwrap something wicked good this Halloween",
+                "text_htag": "p",
+                "text_font": "assistant_n4",
+                "text_alignment_mobile": "b-has-text-centered-mobile",
+                "text_alignment_tablet": "b-has-text-centered-tablet",
+                "text_alignment_desktop": "",
+                "text_alignment_widescreen": "",
+                "text_alignment_fullhd": "",
+                "text_size_mobile": "b-is-size-2-mobile",
+                "text_size_tablet": "b-is-size-2-tablet",
+                "text_size_desktop": "",
+                "text_size_widescreen": "",
+                "text_size_fullhd": "",
+                "text_color_mode": "solid",
+                "text_color_gradient": "linear-gradient(181deg, rgba(255, 255, 255, 1), rgba(37, 103, 152, 1) 97.41%)",
+                "text_color_solid": "#ffffff"
+              },
+              "blocks": {}
+            },
+            "aa_styled_button_bT8qAC": {
+              "type": "aa-styled-button",
+              "name": "aa-styled-button",
+              "settings": {
+                "button_text": "Shop Halloween Deals",
+                "button_url": "shopify://collections",
+                "button_size": "large",
+                "button_alignment_mobile": "b-has-text-centered-mobile",
+                "button_alignment_tablet": "b-has-text-centered-tablet",
+                "button_alignment_desktop": "b-has-text-centered-desktop",
+                "button_alignment_widescreen": "b-has-text-centered-widescreen",
+                "button_alignment_fullhd": "b-has-text-centered-fullhd",
+                "b_is_outlined": false,
+                "b_is_text": false,
+                "b_is_ghost": false,
+                "b_is_light": false,
+                "b_is_responsive": true,
+                "b_is_rounded": true,
+                "b_is_fullwidth": false,
+                "button_new_tab": false,
+                "button_color_style": "primary"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "aa_styled_text_block_Cx3TUE",
+            "aa_styled_text_block_8BpqxB",
+            "aa_styled_button_bT8qAC"
+          ]
+        }
+      },
+      "block_order": [
+        "aa_banner_slice_mFeNYJ"
+      ],
+      "name": "AA-Slideshow-New",
+      "settings": {}
     },
     "multicolumn_2x2_rMUj4F": {
       "type": "multicolumn-2x2",
@@ -320,6 +435,80 @@
         "padding_top": 0,
         "padding_bottom": 36
       }
+    },
+    "aa_banner_html_copy_3WQaDC": {
+      "type": "aa-slideshow",
+      "blocks": {
+        "aa_banner_slice_BNrD9R": {
+          "type": "aa-banner-slice",
+          "name": "aa-banner-slice",
+          "settings": {
+            "slice_image": "shopify://shop_images/Logo-PlayLoveToys-3by2-800x534.png",
+            "slice_background_type": "solid",
+            "slice_bg_solid_color": "#f4f4f4",
+            "slice_gradient_color_1": "#f4f4f4",
+            "slice_gradient_color_2": "#b3b3b3",
+            "slice_gradient_direction": "135deg"
+          },
+          "blocks": {
+            "aa_styled_text_block_XRBWRa": {
+              "type": "aa-styled-text-block",
+              "name": "aa-styled-text-block",
+              "settings": {
+                "text_content": "Embrace Your Sexual Wellness",
+                "text_htag": "h3",
+                "text_font": "caprasimo_n4",
+                "text_alignment_mobile": "b-has-text-centered-mobile",
+                "text_alignment_tablet": "b-has-text-centered-tablet",
+                "text_alignment_desktop": "",
+                "text_alignment_widescreen": "",
+                "text_alignment_fullhd": "",
+                "text_size_mobile": "b-is-size-2-mobile",
+                "text_size_tablet": "b-is-size-2-tablet",
+                "text_size_desktop": "b-is-size-1-desktop",
+                "text_size_widescreen": "",
+                "text_size_fullhd": "",
+                "text_color_mode": "gradient",
+                "text_color_gradient": "linear-gradient(90deg, rgba(244, 67, 108, 1), rgba(83, 50, 120, 0.73) 82%)",
+                "text_color_solid": "#ffffff"
+              },
+              "blocks": {}
+            },
+            "aa_styled_text_block_xRKijf": {
+              "type": "aa-styled-text-block",
+              "name": "aa-styled-text-block",
+              "settings": {
+                "text_content": "We aim to promote a philosophy centred on encouraging the public to prioritize their overall sexual health and happiness. Our dedication is to establish a safe, inclusive, and empowering environment for everyone.",
+                "text_htag": "p",
+                "text_font": "caveat_n5",
+                "text_alignment_mobile": "b-has-text-centered-mobile",
+                "text_alignment_tablet": "b-has-text-centered-tablet",
+                "text_alignment_desktop": "",
+                "text_alignment_widescreen": "",
+                "text_alignment_fullhd": "",
+                "text_size_mobile": "b-is-size-3-mobile",
+                "text_size_tablet": "b-is-size-3-tablet",
+                "text_size_desktop": "",
+                "text_size_widescreen": "",
+                "text_size_fullhd": "",
+                "text_color_mode": "solid",
+                "text_color_gradient": "linear-gradient(90deg, rgba(12, 116, 137, 1), rgba(78, 205, 196, 1) 100%)",
+                "text_color_solid": "#323841"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "aa_styled_text_block_XRBWRa",
+            "aa_styled_text_block_xRKijf"
+          ]
+        }
+      },
+      "block_order": [
+        "aa_banner_slice_BNrD9R"
+      ],
+      "name": "AA-Slideshow-New",
+      "settings": {}
     },
     "multicolumn_2x2_xx3adw": {
       "type": "multicolumn-2x2",
@@ -619,13 +808,13 @@
       "name": "Best Adult Toys",
       "settings": {
         "collection": "best-sex-toys",
-        "products_to_show": 10,
+        "products_to_show": 8,
         "title": "{{ metaobject.province.value }} Best Sex Toys",
         "heading_size": "h1",
         "description": "",
         "show_description": true,
         "description_style": "body",
-        "columns_desktop": 5,
+        "columns_desktop": 4,
         "enable_desktop_slider": true,
         "full_width": false,
         "show_view_all": true,
@@ -891,10 +1080,10 @@
         "padding_bottom": 48
       }
     },
-    "multicolumn_2x2_QnEPzH": {
+    "multicolumn_2x2_rpFQzb": {
       "type": "multicolumn-2x2",
       "blocks": {
-        "column_NMnBUc": {
+        "column_xafx8G": {
           "type": "column",
           "settings": {
             "article": "pleasure-lab/beginner-guide-adult-toys",
@@ -911,10 +1100,10 @@
             "link": ""
           }
         },
-        "column_w3iQGy": {
+        "column_pDx4Yb": {
           "type": "column",
           "settings": {
-            "article": "sex-wellness/exploring-sexual-wellness-a-comprehensive-guide-to-intimate-health",
+            "article": "pleasure-lab/10-female-sexual-fantasies-womens-secret-desires",
             "cloudinary_id": "",
             "cloudinary_id_2": "",
             "cloudinary_id_3": "",
@@ -928,10 +1117,10 @@
             "link": ""
           }
         },
-        "column_fpqVPT": {
+        "column_zrEqYm": {
           "type": "column",
           "settings": {
-            "article": "sex-wellness/new-tendencies-on-sex-toys-for-women",
+            "article": "after-page-content/wevibe",
             "cloudinary_id": "",
             "cloudinary_id_2": "",
             "cloudinary_id_3": "",
@@ -945,7 +1134,7 @@
             "link": ""
           }
         },
-        "column_gQ3aca": {
+        "column_kXGmYg": {
           "type": "column",
           "settings": {
             "article": "pleasure-lab/sexual-playing-adult-sex-games",
@@ -964,17 +1153,17 @@
         }
       },
       "block_order": [
-        "column_NMnBUc",
-        "column_w3iQGy",
-        "column_fpqVPT",
-        "column_gQ3aca"
+        "column_xafx8G",
+        "column_pDx4Yb",
+        "column_zrEqYm",
+        "column_kXGmYg"
       ],
       "name": "Blog Articles",
       "settings": {
         "title": "<strong>Sex-Ed</strong>",
         "heading_size": "h1",
         "image_width": "full",
-        "image_ratio": "square",
+        "image_ratio": "adapt",
         "button_label": "",
         "button_link": "",
         "columns_desktop": 4,
@@ -992,13 +1181,13 @@
       "name": "New Arrivals",
       "settings": {
         "collection": "sex-toys-new-arrival",
-        "products_to_show": 6,
+        "products_to_show": 8,
         "title": "{{ metaobject.province.value }} Sexy Shop Collection",
         "heading_size": "h1",
         "description": "{{ section.settings.collection.description }}",
         "show_description": false,
         "description_style": "body",
-        "columns_desktop": 5,
+        "columns_desktop": 4,
         "enable_desktop_slider": true,
         "full_width": false,
         "show_view_all": true,
@@ -1226,15 +1415,17 @@
     }
   },
   "order": [
-    "slideshow_4nGYLi",
+    "custom_section_eKFP3F",
+    "aa_banner_html_copy_dT7QKk",
     "multicolumn_2x2_rMUj4F",
+    "aa_banner_html_copy_3WQaDC",
     "multicolumn_2x2_xx3adw",
     "collection_list",
     "custom_section_HmcFRj",
     "featured_collection1",
     "multicolumn",
     "multicolumn2",
-    "multicolumn_2x2_QnEPzH",
+    "multicolumn_2x2_rpFQzb",
     "featured_collection2",
     "custom_section_KmFRFa"
   ]

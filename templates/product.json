@@ -212,7 +212,7 @@
     "related-products": {
       "type": "related-products",
       "settings": {
-        "heading": "Top Picks",
+        "heading": "Related Products",
         "heading_size": "h1",
         "products_to_show": 5,
         "columns_desktop": 5,
@@ -253,32 +253,90 @@
         "quick_add": "none",
         "columns_tablet": "4",
         "columns_mobile": "1",
-        "swipe_on_mobile": false,
+        "swipe_on_mobile": true,
         "padding_top": 36,
         "padding_bottom": 36
       }
     },
-    "1754662869c4289cac": {
-      "type": "apps",
+    "collection_list_AUF9AK": {
+      "type": "collection-list",
       "blocks": {
-        "cloudinary_assetlink_cloudinary_asset_H3Xmct": {
-          "type": "shopify://apps/cloudinary-assetlink/blocks/cloudinary-asset/beb1bd33-2d11-4aea-9b3e-f6c41825e598",
+        "featured_collection_BjpDUt": {
+          "type": "featured_collection",
           "settings": {
-            "image_url": "https://vimeo.com/698488166",
-            "mobile_image_url": "https://vimeo.com/698488166",
-            "alt_text": "",
-            "mobile_image_auto_crop": true,
-            "image_height": "672",
-            "image_optimization": true,
-            "mobile_image_width": 750
+            "collection": "sex-toys-for-women"
+          }
+        },
+        "featured_collection_rUxk9n": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "sex-toys-for-couples"
+          }
+        },
+        "featured_collection_7RzUtE": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "sex-toys-for-men"
+          }
+        },
+        "featured_collection_h6JAE9": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "lubricant"
+          }
+        },
+        "featured_collection_arNwTB": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "erotic-games"
+          }
+        },
+        "featured_collection_4yUDhh": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "gift-sets"
           }
         }
       },
       "block_order": [
-        "cloudinary_assetlink_cloudinary_asset_H3Xmct"
+        "featured_collection_BjpDUt",
+        "featured_collection_rUxk9n",
+        "featured_collection_7RzUtE",
+        "featured_collection_h6JAE9",
+        "featured_collection_arNwTB",
+        "featured_collection_4yUDhh"
       ],
+      "name": "Top Categories",
       "settings": {
-        "include_margins": true
+        "title": "Shop our top categories",
+        "heading_size": "h1",
+        "show_secondary_image": false,
+        "image_ratio": "square",
+        "columns_desktop": 6,
+        "color_scheme": "scheme-1",
+        "show_view_all": true,
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 76,
+        "padding_bottom": 76
+      }
+    },
+    "featured_blog_NqiWKH": {
+      "type": "featured-blog",
+      "name": "Featured Blog",
+      "settings": {
+        "blog": "pleasure-lab",
+        "post_limit": 4,
+        "heading": "Blog posts",
+        "heading_size": "h2",
+        "columns_desktop": 4,
+        "show_view_all": true,
+        "show_image": true,
+        "show_date": true,
+        "show_author": false,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     }
   },
@@ -287,6 +345,7 @@
     "main",
     "related-products",
     "featured_collection_XJ8yBQ",
-    "1754662869c4289cac"
+    "collection_list_AUF9AK",
+    "featured_blog_NqiWKH"
   ]
 }

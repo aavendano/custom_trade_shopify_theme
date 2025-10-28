@@ -209,25 +209,38 @@
                     </div>
                   </div>
                 {%- elsif has_images -%}
-                  <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--{{ section.settings.image_width }}-width{% if section.settings.image_width != 'full' %} multicolumn-card-spacing{% endif %}">
-                    <div
-                      class="multicolumn-image-grid multicolumn-image-grid--{{ image_count }}"
-                      style="--grid-gap: {{ block.settings.image_gap | default: 16 }}px; --grid-margin: {{ block.settings.image_margin | default: 0 }}px; --grid-padding: {{ block.settings.image_padding | default: 0 }}px;"
-                    >
+                  {% if image_count > 1 %}
+                    <div class="b-fixed-grid b-has-2-cols b-p-2">
+                      <div class="b-grid b-is-gap-1">
+                        <div class="b-cell">
+                          {%- if block.settings.image != blank -%}
+                            {% render 'twic-img', image: block.settings.image, class: 'multicolumn-grid__image' %}
+                          {%- endif -%}
+                        </div>
+                        <div class="b-cell">
+                          {%- if block.settings.image_2 != blank -%}
+                            {% render 'twic-img', image: block.settings.image_2, class: 'multicolumn-grid__image' %}
+                          {%- endif -%}
+                        </div>
+                        <div class="b-cell">
+                          {%- if block.settings.image_3 != blank -%}
+                            {% render 'twic-img', image: block.settings.image_3, class: 'multicolumn-grid__image' %}
+                          {%- endif -%}
+                        </div>
+                        <div class="b-cell">
+                          {%- if block.settings.image_4 != blank -%}
+                            {% render 'twic-img', image: block.settings.image_4, class: 'multicolumn-grid__image' %}
+                          {%- endif -%}
+                        </div>
+                      </div>
+                    </div>
+                  {% elsif image_count == 1 %}
+                    <div class="b-image b-is-square b-p-2">
                       {%- if block.settings.image != blank -%}
-                        {% render 'twicpics-image', image: block.settings.image, class: 'multicolumn-grid__image' %}
-                      {%- endif -%}
-                      {%- if block.settings.image_2 != blank -%}
-                        {% render 'twicpics-image', image: block.settings.image_2, class: 'multicolumn-grid__image' %}
-                      {%- endif -%}
-                      {%- if block.settings.image_3 != blank -%}
-                        {% render 'twicpics-image', image: block.settings.image_3, class: 'multicolumn-grid__image' %}
-                      {%- endif -%}
-                      {%- if block.settings.image_4 != blank -%}
-                        {% render 'twicpics-image', image: block.settings.image_4, class: 'multicolumn-grid__image' %}
+                        {% render 'twic-img', image: block.settings.image, class: 'multicolumn-grid__image' %}
                       {%- endif -%}
                     </div>
-                  </div>
+                  {%- endif -%}
                 {%- endif -%}
               {%- endif -%}
               <div class="multicolumn-card__info">

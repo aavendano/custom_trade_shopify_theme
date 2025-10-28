@@ -118,7 +118,7 @@
       "name": "t:sections.featured-collection.presets.name",
       "settings": {
         "collection": "sex-toys-new-arrival",
-        "products_to_show": 18,
+        "products_to_show": 8,
         "title": "New Arrivals",
         "heading_size": "h1",
         "description": "",
@@ -144,72 +144,85 @@
         "padding_bottom": 36
       }
     },
-    "175306098485c3e01c": {
-      "type": "_blocks",
+    "collection_list_iND7KB": {
+      "type": "collection-list",
       "blocks": {
-        "ai_gen_block_81d98c4_HUhb3N": {
-          "type": "blog-carousel",
+        "featured_collection_xDR7hi": {
+          "type": "featured_collection",
           "settings": {
-            "heading": "Latest Blog Posts",
-            "subheading": "Stay updated with our latest articles and insights",
-            "blog": "playful-connect",
-            "max_posts": 12,
-            "posts_per_view": 4,
-            "posts_per_view_mobile": 1,
-            "card_gap": 20,
-            "image_height": 400,
-            "text_alignment": "center",
-            "show_navigation": true,
-            "show_dots": true,
-            "autoplay": true,
-            "autoplay_speed": 5,
-            "background_color": "#f4f4f4",
-            "text_color": "#000000",
-            "card_background_color": "#ffffff",
-            "card_text_color": "#000000",
-            "nav_button_color": "#f4436c",
-            "nav_button_text_color": "#ffffff",
-            "nav_button_hover_color": "#333333",
-            "dot_color": "#0c7489",
-            "dot_active_color": "#000000",
-            "heading_size": 32,
-            "subheading_size": 16,
-            "section_padding": 40,
-            "border_radius": 8,
-            "card_border_radius": 8
-          },
-          "blocks": {}
+            "collection": "sex-toys-for-women"
+          }
+        },
+        "featured_collection_fQxVxU": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "sex-toys-for-couples"
+          }
+        },
+        "featured_collection_DzEjgG": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "sex-toys-for-men"
+          }
+        },
+        "featured_collection_jDMNXE": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "lubricant"
+          }
+        },
+        "featured_collection_kD7hwK": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "erotic-games"
+          }
+        },
+        "featured_collection_Aginza": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "gift-sets"
+          }
         }
       },
       "block_order": [
-        "ai_gen_block_81d98c4_HUhb3N"
+        "featured_collection_xDR7hi",
+        "featured_collection_fQxVxU",
+        "featured_collection_DzEjgG",
+        "featured_collection_jDMNXE",
+        "featured_collection_kD7hwK",
+        "featured_collection_Aginza"
       ],
+      "name": "Top Categories",
       "settings": {
-        "content_direction": "row",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "center",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 12,
-        "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
+        "title": "Shop our top categories",
+        "heading_size": "h1",
+        "show_secondary_image": false,
+        "image_ratio": "square",
+        "columns_desktop": 6,
+        "color_scheme": "scheme-1",
+        "show_view_all": true,
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 76,
+        "padding_bottom": 76
+      }
+    },
+    "featured_blog_CN3Wee": {
+      "type": "featured-blog",
+      "name": "Featured Blog",
+      "settings": {
+        "blog": "sexual-wellness",
+        "post_limit": 4,
+        "heading": "Blog posts",
+        "heading_size": "h2",
+        "columns_desktop": 4,
+        "show_view_all": true,
+        "show_image": true,
+        "show_date": true,
+        "show_author": false,
         "color_scheme": "",
-        "background_media": "none",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#533278",
-        "overlay_style": "gradient",
-        "gradient_direction": "to bottom",
-        "padding-block-start": 0,
-        "padding-block-end": 0
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     }
   },
@@ -218,6 +231,7 @@
     "main",
     "newsletter_8MGyJw",
     "featured_collection_pYtz6Q",
-    "175306098485c3e01c"
+    "collection_list_iND7KB",
+    "featured_blog_CN3Wee"
   ]
 }

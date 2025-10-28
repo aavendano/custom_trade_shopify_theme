@@ -106,7 +106,7 @@
       "type": "featured-collection",
       "settings": {
         "collection": "jo-lubricants",
-        "products_to_show": 8,
+        "products_to_show": 5,
         "title": "More industry favorites",
         "heading_size": "h2",
         "description": "",
