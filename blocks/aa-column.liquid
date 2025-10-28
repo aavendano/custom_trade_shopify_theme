@@ -8,20 +8,19 @@
   endif
   if block.settings.narrow_column == true
     assign column_width_class = column_width_class | append: ' b-is-narrow'
-    if block.settings.narrow_breakpoint != ""
+    if block.settings.narrow_breakpoint != ''
       assign column_width_class = column_width_class | append: '-' | append: block.settings.narrow_breakpoint
     endif
   endif
 %}
 
-
-<div x-init="{ classList.value = '{{ column_width_class }}'})">
-NFSIREAONJSP
-
+<div x-init="classList = '{{ column_width_class }}'; showColumn = true">
+  {% for block in block.blocks %}
+    <div {{ block.shopify_attributes }}>
+      {% render block %}
+    </div>
+  {% endfor %}
 </div>
-
-
-
 
 {% schema %}
 {
@@ -46,7 +45,7 @@ NFSIREAONJSP
       "step": 1,
       "default": 3
     },
-        {
+    {
       "type": "range",
       "id": "column_offset",
       "label": "OffSet",
@@ -57,26 +56,26 @@ NFSIREAONJSP
       "default": 0
     },
     {
-    "type": "checkbox",
-    "id": "narrow_column",
-    "label": "Narrow Column",
-    "default": false,
-    "info": "Column only takes the space it needs"
+      "type": "checkbox",
+      "id": "narrow_column",
+      "label": "Narrow Column",
+      "default": false,
+      "info": "Column only takes the space it needs"
     },
-        {
-    "type": "select",
-    "id": "narrow_breakpoint",
-    "label": "Narrow Column Breakpoint",
-    "info": "Screen width when narrow column starts",
-    "options": [
-      {"label": "Default", "value": ""},
-      {"label": "Mobile", "value": "mobile"},
-      {"label": "Tablet", "value": "tablet"},
-      {"label": "Desktop", "value": "desktop"},
-      {"label": "Widthscreen", "value": "widthscreen"},
-      {"label": "FullHD", "value": "fullhd"}
-    ],
-    "default": ""
+    {
+      "type": "select",
+      "id": "narrow_breakpoint",
+      "label": "Narrow Column Breakpoint",
+      "info": "Screen width when narrow column starts",
+      "options": [
+        { "label": "Default", "value": "" },
+        { "label": "Mobile", "value": "mobile" },
+        { "label": "Tablet", "value": "tablet" },
+        { "label": "Desktop", "value": "desktop" },
+        { "label": "Widthscreen", "value": "widthscreen" },
+        { "label": "FullHD", "value": "fullhd" }
+      ],
+      "default": ""
     }
   ],
   "presets": [

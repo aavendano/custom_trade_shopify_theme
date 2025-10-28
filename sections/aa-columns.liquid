@@ -1,12 +1,27 @@
+{% liquid
+  assign opt_class = 'b-columns'
+  if section.settings.vcentered == true
+    assign opt_class = opt_class | append: ' b-is-vcentered'
+  endif
+  if section.settings.multiline == true
+    assign opt_class = opt_class | append: ' b-is-multiline'
+  endif
+  if section.settings.centered == true
+    assign opt_class = opt_class | append: ' b-is-centered'
+  endif
+%}
+
 <section class="b-section {{ section.settings.section_size }}" {{ section.shopify_attributes }}>
   <div class="b-container {{ section.settings.container_responsive_size }}">
-    <div class="b-columns">
+    <div class="{{ opt_class }}">
       {% for block in section.blocks %}
-        <div {{ block.shopify_attributes }} 
-          x-data="{classList: 'b-column cambur'}"
+        <div
+          {{ block.shopify_attributes }}
+          x-data="{classList: '', showColumn: false}"
           :class="classList"
+          x-show="showColumn"
         >
-           {% render block %}
+          {% render block %}
         </div>
       {% endfor %}
     </div>
@@ -18,7 +33,7 @@
   "name": "AA Columns",
   "blocks": [
     {
-    "type": "aa-column"
+      "type": "aa-column"
     }
   ],
   "settings": [
@@ -48,14 +63,34 @@
         { "label": "Fluid", "value": "b-is-fluid" }
       ],
       "default": ""
-          
-        }
+    },
+    {
+      "type": "header",
+      "content": "Column options"
+    },
+    {
+      "type": "checkbox",
+      "id": "vcentered",
+      "label": "Vertical alignment",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "multiline",
+      "label": "Multiline",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "centered",
+      "label": "Centering columns",
+      "default": false
+    }
   ],
   "presets": [
     {
       "name": "AA Columns",
-      "category": "01-custom",
-
+      "category": "01-custom"
     }
   ]
 }
