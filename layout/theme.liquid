@@ -370,6 +370,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 
     {{ 'aa-bulma.css' | asset_url | stylesheet_tag }}
+    {% render 'inline-critical-css' %}
+    <link
+      rel="preload"
+      href="{{ 'aa-bulma-async.css' | asset_url }}"
+      as="style"
+      onload="this.rel='stylesheet'"
+    >
+    <noscript>
+      <link rel="stylesheet" href="{{ 'aa-bulma-async.css' | asset_url }}">
+    </noscript>
     <link
       rel="stylesheet"
       href="{{ 'aa-bulma-overrides.css' | asset_url }}"
@@ -388,7 +398,7 @@
     <!-- STYLESHEETS -->
     {{ 'base.css' | asset_url | stylesheet_tag }}
     <!-- BULMA -->
-    {{ 'aa-bulma-custom.css' | asset_url | stylesheet_tag }}
+    {%- comment -%} Critical Bulma CSS is inlined; async bundle loads above. {%- endcomment -%}
     {{ 'aa-bulma-custom-overrides.css' | asset_url | stylesheet_tag }}
     {{ 'application.css' | asset_url | stylesheet_tag }}
 

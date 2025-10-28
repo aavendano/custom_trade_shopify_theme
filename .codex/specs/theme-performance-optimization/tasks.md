@@ -4,16 +4,16 @@
   - Prompt: "Create `scripts/perf-audit.js` that runs Playwright-powered Lighthouse probes via MCP against home, collection, and product templates, exporting JSON reports to `storage/perf-reports/{timestamp}.json` with LCP, CLS, FID, TTFB, and blocking asset details. Include retry logic (3 attempts, exponential backoff) and a CLI interface (`--templates`, `--output`, `--base-url`). Add unit tests for CLI flag parsing and retry handling."
   - _Requirements: R1.1, R1.2, R1.3_
 
-- [ ] 1.1 Build asset analyzer for render-blocking resources
+- [x] 1.1 Build asset analyzer for render-blocking resources
   - Prompt: "Implement `scripts/analyze-assets.js` that ingests the baseline JSON reports, extracts render-blocking assets, annotates third-party origins, and outputs both Markdown and CSV summaries. Ensure tests cover third-party tagging and missing file warnings."
   - _Requirements: R1.2, R1.3_
 
-- [ ] 2. Refactor CSS delivery for critical path performance
-  - Prompt: "Split `custom-bulma-project.scss` into critical and async bundles using the existing Sass pipeline. Inline critical CSS in `layout/theme.liquid` and lazy-load the async bundle with a preload-onload swap. Preserve all `b-` prefixed classes and avoid stripping native Shopify selectors. Add integration tests that confirm critical selectors render and async CSS attaches post-load."
+- [x] 2. Refactor CSS delivery for critical path performance
+  - Prompt: "Split `custom-bulma-project.scss` into critical and async bundles while migrating to Bulma's module-based `@use` imports so only required components ship. Inline critical CSS in `layout/theme.liquid`, lazy-load the async bundle with a preload-onload swap, and preserve all `b-` prefixed classes alongside native Shopify selectors. Add integration tests that confirm critical selectors render and async CSS attaches post-load."
   - _Requirements: R2.1, R3.1_
 
-- [ ] 2.1 Introduce namespace-aware PurgeCSS step
-  - Prompt: "Add a PurgeCSS-style filter during the build that only prunes unused `b-` prefixed selectors while leaving Shopify classes untouched. Provide tests that confirm retention of native classes and removal of unused custom classes."
+- [x] 2.1 Adopt module-scoped Bulma imports and safeguards
+  - Prompt: "Replace any remaining global Bulma imports with explicit module-level `@use` statements for both critical and async bundles. Add automated checks that fail the build if legacy `@import` usage returns, and cover tests ensuring required `b-` selectors remain available without relying on PurgeCSS."
   - _Requirements: R2.1_
 
 - [ ] 3. Optimize JavaScript loading and preserve Alpine.js interactions

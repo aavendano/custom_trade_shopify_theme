@@ -1,18 +1,18 @@
-.shopify
-.qodo
 node_modules# Archivos temporales y de backup
-*.tmp*
-*~
-*.backup
-*.bak
-*664232*
 node_modules/
-
 storage/
 qdrant/
 galery-components/
-.qdrant-initialized/
-.windsurfrules/
-
 
 .sass-cache/
+.qdrant-initialized/
+.windsurfrules/
+.claude
+.shopify
+.qodo
+*.tmp*
+*~
+
+*.backup
+*.bak
+*664232*

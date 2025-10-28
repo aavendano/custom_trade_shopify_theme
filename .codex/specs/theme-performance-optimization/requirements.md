@@ -17,7 +17,7 @@ This feature focuses on auditing and optimizing the Shopify theme to improve Cor
 **User Story:** As a Shopify theme developer, I want to implement loading optimizations, so that the storefront delivers faster perceived performance without breaking existing styling conventions.
 
 #### Acceptance Criteria
-1. WHEN theme CSS is refactored or split THEN the system SHALL preserve the `b-` prefix on all custom Bulma classes while leaving native Shopify classes unchanged and ensure their availability at runtime.
+1. WHEN the Bulma framework integration is refactored THEN the system SHALL replace monolithic imports with module-scoped `@use` bundles, preserving the `b-` prefix on custom classes while leaving native Shopify selectors unchanged and ensuring their availability at runtime.
 2. WHEN above-the-fold imagery or media assets are optimized THEN the system SHALL serve them in modern formats or responsive sizes without regressing visual fidelity.
 3. WHEN JavaScript bundles are deferred, split, or lazy-loaded THEN the system SHALL keep Alpine.js components registered and event bindings functional.
 

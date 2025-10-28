@@ -8,8 +8,8 @@ This design implements a performance optimization program for the Shopify theme 
   - Add a headless MCP-driven Playwright script that runs Lighthouse-style probes against key templates (homepage, collection, product). Results persisted as JSON snapshots in `storage/perf-reports/{timestamp}.json` with metrics LCP, CLS, FID, TTFB, and asset waterfall data.
   - Provide npm scripts `perf:baseline` and `perf:compare` to execute tests and diff against prior snapshots.
 - **CSS Delivery Optimization (Req 2.1, Req 3.1)**
-  - Split `custom-bulma-project.scss` into critical (above-the-fold) and async bundles. Critical CSS inlined via Liquid in `layout/theme.liquid`, async bundle loaded with `rel="preload"` + `onload` swap, preserving `b-` prefixed classes while leaving native Shopify selectors intact.
-  - Introduce PurgeCSS-style tree shaking constrained to custom namespace (`b-`) to avoid stripping Shopify classes.
+  - Split `custom-bulma-project.scss` into critical (above-the-fold) and async bundles while migrating to Bulma's module-based `@use` imports so only required components ship. Critical CSS inlined via Liquid in `layout/theme.liquid`, async bundle loaded with `rel="preload"` + `onload` swap, preserving `b-` prefixed classes while leaving native Shopify selectors intact.
+  - Document a curated set of Bulma modules for each bundle (utilities, base, navbar, buttons, etc.) and automate verification that no global Bulma import remains, using targeted tests to flag regressions.
 - **JavaScript Loading Strategy (Req 2.3, Req 3.2)**
   - Convert `assets/global.js` and other large bundles into ES modules. Use `type="module"` with `defer` and Alpine.js `alpine:init` hooks to ensure component registration occurs before DOMReady. Lazy-load Alpine-dependent sections via `IntersectionObserver` wrappers.
   - Maintain hydration order by emitting a manifest (`storage/js-manifest.json`) that maps dependencies for runtime validation.
@@ -39,7 +39,7 @@ graph TD
 - **Asset Analyzer (`scripts/analyze-assets.js`)**
   - Consumes audit waterfall JSON, outputs CSV/Markdown summary of blocking CSS/JS, includes third-party tag annotations for mitigation tracking (Req 1.2, Req 1.3).
 - **CSS Build Pipeline (Sass + Esbuild)**
-  - Adds configuration in `build-bulma` script to output `critical.css` and `async.css`. Maintains `b-` names by restricting minification and purge scopes (Req 2.1).
+  - Adds configuration in `build-bulma` script to output `critical.css` and `async.css`. The build composes Bulma via `@use` module entry points aligned to critical/async bundles, keeping `b-` names intact without relying on post-processing purges (Req 2.1).
 - **JS Loader Manifest (`scripts/build-js-manifest.js`)**
   - Generates dependency graph and ensures Alpine.js component definitions (`assets/custom.js`, `assets/quick-add.js`, etc.) load before dependent snippets (Req 2.3).
 - **TwicPics Integration Layer (`snippets/twic-media.liquid`)**
@@ -95,7 +95,7 @@ graph TD
 - **Interaction Smoke Tests**
   - Use Playwright to trigger Alpine.js components (cart drawer, quick add, predictive search) validating state transitions remain intact (Req 3.2).
 - **Build Validation**
-  - CI step runs `npm run build-bulma`, `npm run build:css`, and JS manifest generation to confirm `b-` namespace preservation and dependency graph integrity (Req 2.1, Req 2.3).
+  - CI step runs `npm run build-bulma`, `npm run build:css`, and JS manifest generation to confirm `b-` namespace preservation, absence of legacy Bulma global imports, and dependency graph integrity (Req 2.1, Req 2.3).
 - **Fallback Coverage**
   - Unit tests for the TwicPics snippet ensure noscript fallbacks emit correct `<img>` markup and proper attribute propagation (Req 2.2, Req 3.1).
 - **Reporting Verification**
