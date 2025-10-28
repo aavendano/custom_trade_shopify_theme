@@ -12,7 +12,15 @@ class SearchForm extends HTMLElement {
           this.onChange(event);
         }, 300).bind(this)
       );
+
+      this.input.addEventListener('focus', this.loadPredictiveSearch.bind(this), { once: true });
     }
+  }
+
+  loadPredictiveSearch() {
+    const script = document.createElement('script');
+    script.src = window.predictiveSearchUrl;
+    document.head.appendChild(script);
   }
 
   toggleResetButton() {
