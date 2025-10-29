@@ -26,6 +26,10 @@ test('buildAll produces critical and async CSS bundles', async () => {
   assert.ok(/\.b-panel/.test(asyncCss), 'async css should add deferred component styling');
   assert.ok(!/\.b-panel/.test(criticalCss), 'panel styles remain in async bundle');
   assert.ok(inlineSnippet.includes('<style id="inline-critical-css">'), 'inline snippet should contain style tag');
+  assert.ok(
+    inlineSnippet.includes("<link rel=\"stylesheet\" href=\"{{ 'aa-bulma-critical.css' | asset_url }}\">"),
+    'inline snippet should link back to critical asset for full coverage'
+  );
 });
 
 test('applyNamespacePurge removes unused b- selectors and preserves others', async () => {

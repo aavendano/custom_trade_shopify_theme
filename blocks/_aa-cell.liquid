@@ -1,0 +1,158 @@
+{% liquid
+  assign class_list = 'b-cell' | append: block.settings.col_span | append: block.settings.col_start | append: block.settings.col_end | append: block.settings.row_span | append: block.settings.row_start | append: block.settings.row_end
+  assign class_list = class_list | replace: '&', ' '
+%}
+
+<div class="{{ class_list }}" {{ block.shopify_attributes }}>
+  {% for child_block in block.blocks %}
+    {% render child_block %}
+  {% endfor %}
+</div>
+{% schema %}
+{
+  "name": "AA Grid Cell",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Column options"
+    },
+    {
+      "type": "select",
+      "id": "col_span",
+      "label": "Column Span",
+      "options": [
+        { "label": "N/A", "value": "" },
+        { "label": "2", "value": "&b-is-col-span-2" },
+        { "label": "3", "value": "&b-is-col-span-3" },
+        { "label": "4", "value": "&b-is-col-span-4" },
+        { "label": "5", "value": "&b-is-col-span-5" },
+        { "label": "6", "value": "&b-is-col-span-6" },
+        { "label": "7", "value": "&b-is-col-span-7" },
+        { "label": "8", "value": "&b-is-col-span-8" },
+        { "label": "9", "value": "&b-is-col-span-9" },
+        { "label": "10", "value": "&b-is-col-span-10" },
+        { "label": "11", "value": "&b-is-col-span-11" },
+        { "label": "12", "value": "&b-is-col-span-12" }
+      ],
+      "default": ""
+    },
+    {
+      "type": "select",
+      "id": "col_end",
+      "label": "Column from end",
+      "options": [
+        { "label": "N/A", "value": "" },
+        { "label": "2", "value": "&b-is-col-from-end-2" },
+        { "label": "3", "value": "&b-is-col-from-end-3" },
+        { "label": "4", "value": "&b-is-col-from-end-4" },
+        { "label": "5", "value": "&b-is-col-from-end-5" },
+        { "label": "6", "value": "&b-is-col-from-end-6" },
+        { "label": "7", "value": "&b-is-col-from-end-7" },
+        { "label": "8", "value": "&b-is-col-from-end-8" },
+        { "label": "9", "value": "&b-is-col-from-end-9" },
+        { "label": "10", "value": "&b-is-col-from-end-10" },
+        { "label": "11", "value": "&b-is-col-from-end-11" },
+        { "label": "12", "value": "&b-is-col-from-end-12" }
+      ],
+      "default": ""
+    },
+    {
+      "type": "select",
+      "id": "col_start",
+      "label": "Column from start",
+      "options": [
+        { "label": "N/A", "value": "" },
+        { "label": "2", "value": "&b-is-col-start-2" },
+        { "label": "3", "value": "&b-is-col-start-3" },
+        { "label": "4", "value": "&b-is-col-start-4" },
+        { "label": "5", "value": "&b-is-col-start-5" },
+        { "label": "6", "value": "&b-is-col-start-6" },
+        { "label": "7", "value": "&b-is-col-start-7" },
+        { "label": "8", "value": "&b-is-col-start-8" },
+        { "label": "9", "value": "&b-is-col-start-9" },
+        { "label": "10", "value": "&b-is-col-start-10" },
+        { "label": "11", "value": "&b-is-col-start-11" },
+        { "label": "12", "value": "&b-is-col-start-12" }
+      ],
+      "default": ""
+    },
+    {
+      "type": "header",
+      "content": "Row options"
+    },
+    {
+      "type": "select",
+      "id": "row_span",
+      "label": "Row Span",
+      "options": [
+        { "label": "N/A", "value": "" },
+        { "label": "2", "value": "&b-is-row-span-2" },
+        { "label": "3", "value": "&b-is-row-span-3" },
+        { "label": "4", "value": "&b-is-row-span-4" },
+        { "label": "5", "value": "&b-is-row-span-5" },
+        { "label": "6", "value": "&b-is-row-span-6" },
+        { "label": "7", "value": "&b-is-row-span-7" },
+        { "label": "8", "value": "&b-is-row-span-8" },
+        { "label": "9", "value": "&b-is-row-span-9" },
+        { "label": "10", "value": "&b-is-row-span-10" },
+        { "label": "11", "value": "&b-is-row-span-11" },
+        { "label": "12", "value": "&b-is-row-span-12" }
+      ],
+      "default": ""
+    },
+    {
+      "type": "select",
+      "id": "row_start",
+      "label": "Row from start",
+      "options": [
+        { "label": "N/A", "value": "" },
+        { "label": "2", "value": "&b-is-row-start-2" },
+        { "label": "3", "value": "&b-is-row-start-3" },
+        { "label": "4", "value": "&b-is-row-start-4" },
+        { "label": "5", "value": "&b-is-row-start-5" },
+        { "label": "6", "value": "&b-is-row-start-6" },
+        { "label": "7", "value": "&b-is-row-start-7" },
+        { "label": "8", "value": "&b-is-row-start-8" },
+        { "label": "9", "value": "&b-is-row-start-9" },
+        { "label": "10", "value": "&b-is-row-start-10" },
+        { "label": "11", "value": "&b-is-row-start-11" },
+        { "label": "12", "value": "&b-is-row-start-12" }
+      ],
+      "default": ""
+    },
+    {
+      "type": "select",
+      "id": "row_end",
+      "label": "Row from end",
+      "options": [
+        { "label": "N/A", "value": "" },
+        { "label": "2", "value": "&b-is-row-from-end-2" },
+        { "label": "3", "value": "&b-is-row-from-end-3" },
+        { "label": "4", "value": "&b-is-row-from-end-4" },
+        { "label": "5", "value": "&b-is-row-from-end-5" },
+        { "label": "6", "value": "&b-is-row-from-end-6" },
+        { "label": "7", "value": "&b-is-row-from-end-7" },
+        { "label": "8", "value": "&b-is-row-from-end-8" },
+        { "label": "9", "value": "&b-is-row-from-end-9" },
+        { "label": "10", "value": "&b-is-row-from-end-10" },
+        { "label": "11", "value": "&b-is-row-from-end-11" },
+        { "label": "12", "value": "&b-is-row-from-end-12" }
+      ],
+      "default": ""
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "AA Grid Cell"
+    }
+  ]
+}
+{% endschema %}

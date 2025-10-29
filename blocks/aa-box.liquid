@@ -1,0 +1,24 @@
+<div class="b-box" {{ block.shopify_attributes }}>
+  {% for child_block in block.blocks %}
+    {% render child_block %}
+  {% endfor %}
+</div>
+{% schema %}
+{
+  "name": "AA Box",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "AA Box"
+    }
+  ]
+}
+{% endschema %}
