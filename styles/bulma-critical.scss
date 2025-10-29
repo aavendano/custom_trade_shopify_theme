@@ -20,7 +20,7 @@ $class-prefix: 'b-';
 
 @import "bulma/sass/utilities";
 @import "bulma/sass/base";
-@import "bulma/sass/helpers";
+// @import "bulma/sass/helpers";
 @import "bulma/sass/grid/columns";
 @import "bulma/sass/layout/container";
 @import "bulma/sass/layout/hero";
@@ -28,9 +28,9 @@ $class-prefix: 'b-';
 @import "bulma/sass/elements/title";
 @import "bulma/sass/elements/content";
 @import "bulma/sass/elements/button";
-@import "bulma/sass/elements/tag";
-@import "bulma/sass/elements/notification";
+// @import "bulma/sass/elements/tag";
+// @import "bulma/sass/elements/notification";
 @import "bulma/sass/components/navbar";
-@import "bulma/sass/components/menu";
+// @import "bulma/sass/components/menu";
 
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+// The Urbanist font is now loaded in layout/theme.liquid to avoid bloating the critical CSS.
