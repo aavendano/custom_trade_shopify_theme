@@ -51,7 +51,7 @@
 
     {% render 'meta-tags' %}
 
-    <script src="{{ 'application.js' | asset_url }}" type="module" defer="defer"></script>
+    <script src="{{ 'application.js' | asset_url }}" defer="defer"></script>
 
     {{ content_for_header }}
 
@@ -388,7 +388,6 @@
     >
 
     {{ 'custom-style.css' | asset_url | stylesheet_tag }}
-    {{ 'fonts.css' | asset_url | stylesheet_tag }}
 
     <!-- FAQ METADATA COLLECTIONS -->
     {% if collection.metafields.custom.faqs %}
@@ -507,11 +506,10 @@
         recipientFormCollapsed: `{{ 'recipient.form.collapsed' | t }}`,
         countrySelectorSearchCount: `{{ 'localization.country_results_count' | t: count: '[count]' }}`,
       };
-
-      window.predictiveSearchUrl = '{{ "predictive-search.js" | asset_url }}';
     </script>
 
     {%- if settings.predictive_search_enabled -%}
+      <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
     <script>
@@ -521,5 +519,24 @@
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+
+    <script>
+      document.addEventListener('alpine:init', () => {
+        Alpine.data('productTracker', () => ({
+          init() {
+            if (window.location.pathname.includes('/products/')) {
+              const handle = window.location.pathname.split('/products/')[1].split('?')[0];
+              if (handle) {
+                let handles = JSON.parse(localStorage.getItem(window.STORAGE_KEY) || '[]');
+                handles = handles.filter((h) => h !== handle);
+                handles.unshift(handle);
+                handles = handles.slice(0, 10);
+                localStorage.setItem(window.STORAGE_KEY, JSON.stringify(handles));
+              }
+            }
+          },
+        }));
+      });
+    </script>
   </body>
 </html>
