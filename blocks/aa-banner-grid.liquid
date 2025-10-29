@@ -10,12 +10,14 @@
     assign style_attr = 'background: linear-gradient(' | append: dir | append: ', ' | append: c1 | append: ', ' | append: c2 | append: ')'
   endif
 %}
-<div class="b-box b-grid banner-content-{{ block.id }}" {{ block.shopify_attributes }}>
-      {% for child_block in block.blocks %}
-        <div class="b-block">
-          {% render child_block %}
-        </div>
-      {% endfor %}
+<div class="b-box" {{ block.shopify_attributes }}>
+    <div class="b-grid banner-content-{{ block.id }}">
+        {% for child_block in block.blocks %}
+            <div {{ block.shopify_attributes }} x-data="{childClasses: '', showChild: false}" :class="childClasses" x-show="showChild">
+                {% render child_block %}
+            </div>
+        {% endfor %}
+    </div>
 </div>
 {% style %}
   /* Banner slice styles */
@@ -28,7 +30,7 @@
   "name": "AA-Banner-Grid",
   "blocks": [
     {
-    "type": "_aa-grid"
+    "type": "_aa-cell"
     }
   ],
 

@@ -3,7 +3,7 @@
   assign class_list = class_list | replace: '&', ' '
 %}
 
-<div class="{{ class_list }}" {{ block.shopify_attributes }}>
+<div x-init="childClasses = '{{ class_list }}'; showChild = true" {{ block.shopify_attributes }}>
   {% for child_block in block.blocks %}
     {% render child_block %}
   {% endfor %}

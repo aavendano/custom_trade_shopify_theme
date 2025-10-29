@@ -28,7 +28,14 @@
 
 <div class="{{ class_list }}" {{ block.shopify_attributes }}>
   {% for child_block in block.blocks %}
+  <div
+      {{ block.shopify_attributes }}
+      x-data="{childClasses: '', showChild: false}"
+      :class="childClasses"
+      x-show="showChild"
+  >
     {% render child_block %}
+</div>
   {% endfor %}
 </div>
 

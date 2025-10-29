@@ -38,7 +38,7 @@
     # Color style classes (select/radio)
     assign button_classes = button_classes | append: ' b-is-' | append: block.settings.button_color_style
 
- 
+
 
     assign alignment_settings = 'button_alignment_mobile,button_alignment_tablet,button_alignment_desktop,button_alignment_widescreen,button_alignment_fullhd' | split: ','
 
@@ -67,8 +67,6 @@
 {% schema %}
 {
   "name": "AA Styled Button",
-  "tag": "block",
-  "class": "AA Blocks",
 
   "settings": [
     { "type": "text", "id": "button_text", "label": "Button Text", "default": "Click Here" },
@@ -88,12 +86,12 @@
       "default": "normal"
     },
 
-    
+
     {
       "type": "header",
       "content": "Responsive Button Alignment"
     },
-    
+
     {
       "type": "paragraph",
       "content": "Control button alignment for different screen sizes using Bulma's responsive alignment classes."
@@ -140,7 +138,7 @@
         ],
         "default": ""
       },
-      
+
       {
         "type": "select",
         "id": "button_alignment_widescreen",
@@ -168,9 +166,9 @@
         ],
         "default": ""
       },
-      
+
       { "type": "header", "content": "Button Style Classes" },
-      
+
       { "type": "checkbox", "id": "b_is_outlined", "label": "Outlined", "default": false },
       { "type": "checkbox", "id": "b_is_text", "label": "Text Style", "default": false },
     { "type": "checkbox", "id": "b_is_ghost", "label": "Ghost", "default": false },
