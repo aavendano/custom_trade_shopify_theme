@@ -117,11 +117,26 @@ function getCollectionProducts(collectionHandle) {
 }
 
 document.addEventListener('alpine:init', () => {
-        Alpine.data('carrusel', () => ({
-            open: false,
- 
-            toggle() {
-                this.open = ! this.open
-            }
-        }))
-    })
+  Alpine.data('carrusel', () => ({
+    open: false,
+
+    toggle() {
+      this.open = !this.open;
+    },
+  }));
+
+  Alpine.data('productTracker', () => ({
+    init() {
+      if (window.location.pathname.includes('/products/')) {
+        const handle = window.location.pathname.split('/products/')[1].split('?')[0];
+        if (handle) {
+          let handles = JSON.parse(localStorage.getItem(window.STORAGE_KEY) || '[]');
+          handles = handles.filter(h => h !== handle);
+          handles.unshift(handle);
+          handles = handles.slice(0, 10);
+          localStorage.setItem(window.STORAGE_KEY, JSON.stringify(handles));
+        }
+      }
+    },
+  }));
+});
