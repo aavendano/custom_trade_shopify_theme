@@ -2,9 +2,9 @@
   class="b-notification {{ block.settings.notification_style }}{% if block.settings.notification_light_style %} b-is-light {%- endif %}"
   {{ block.shopify_attributes }}
 >
-  {% for child_block in section.blocks %}
+  {% for child_block in block.blocks %}
     <div class="b-block" {{ child_block.shopify_attributes }}>
-      {{ child_block.type }}
+      {% render child_block %}
     </div>
   {% endfor %}
 </div>
