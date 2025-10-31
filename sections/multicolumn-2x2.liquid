@@ -1,28 +1,24 @@
 <div class="b-section">
   <div class="b-page-width b-container">
-
-    {% if section.settings.section_title != blank and section.settings.section_title != "#" %}
+    {% if section.settings.section_title != blank and section.settings.section_title != '#' %}
       {% assign section_title_tag = section.settings.section_title_tag %}
       {% assign section_title_size = section.settings.section_title_size %}
-      <{{- section_title_tag -}} class="b-title b-is-{{- section_title_size -}}">{{ section.settings.section_title }}</{{- section_title_tag -}}>
+      <{{ section_title_tag }} class="b-title b-is-{{- section_title_size -}}">
+        {{- section.settings.section_title -}}
+      </{{ section_title_tag }}>
     {% endif %}
 
     <div class="b-columns" id="section-{{ section.id }}">
       {%- for block in section.blocks -%}
-        <div class="b-column">
-
+        {% assign cta_label = block.settings.cta_label %}
+        {% assign cta_link = block.settings.cta_link %}
+        <div class="b-column b-is-flex">
           {%- case block.settings.card_content -%}
-
             {%- when 'blog_article' -%}
               {%- if block.settings.article != blank %}
                 {% assign article = block.settings.article %}
-                <div class="b-card" {{ block.shopify_attributes }}>
-                  <div class="b-card-header">
-                    <p class="b-card-header-title b-title b-is-4">
-                      {{ article.title }}
-                    </p>
-                  </div>
-                  <div class="b-card-content">
+                <div class="b-card b-is-flex-grow-1 b-p-1 b-has-background-primary-light" {{ block.shopify_attributes }}>
+                  <div class="b-card-image">
                     {%- if article.image != blank -%}
                       <div class="b-block">
                         <figure class="b-image b-is-square">
@@ -32,56 +28,69 @@
                     {%- endif -%}
                   </div>
                   <div class="b-card-footer">
-                    <a class="b-card-footer-item" href="{{ article.url }}">
-                      Continue Reading
-                    </a>
+                    <a class="b-card-footer-item b-button b-is-ghost" href="{{ article.url }}"> {{ article.title }} </a>
                   </div>
                 </div>
               {% endif %}
 
             {%- when 'image_1' -%}
-              {%- if block.settings.image != blank %}
-                <div class="b-card" {{ block.shopify_attributes }}>
-                  <div class="b-card-content">
+              <div class="b-card b-is-flex-grow-1 b-p-1 b-has-background-info-light" {{ block.shopify_attributes }}>
+                <div class="b-card-image">
+                  {%- if block.settings.image_1_1 != blank -%}
                     <figure class="b-image b-is-square">
-                      {% render 'twic-img', image: block.settings.image, width: 800, eager: true %}
+                      {% render 'twic-img', image: block.settings.image_1_1, width: 400 %}
                     </figure>
-                  </div>
+                  {%- endif -%}
                 </div>
-              {% endif %}
-
-            {%- when 'grid' -%}
-              <div class="b-card b-image-grid" {{ block.shopify_attributes }} style="gap: {{ block.settings.image_gap }}px; margin: {{ block.settings.image_margin }}px; padding: {{ block.settings.image_padding }}px;">
-                {%- if block.settings.image_1_1 != blank %}
-                  <figure class="b-image">
-                    {% render 'twic-img', image: block.settings.image_1_1, width: 400 %}
-                  </figure>
-                {% endif %}
-                {%- if block.settings.image_1_2 != blank %}
-                  <figure class="b-image">
-                    {% render 'twic-img', image: block.settings.image_1_2, width: 400 %}
-                  </figure>
-                {% endif %}
-                {%- if block.settings.image_2_1 != blank %}
-                  <figure class="b-image">
-                    {% render 'twic-img', image: block.settings.image_2_1, width: 400 %}
-                  </figure>
-                {% endif %}
-                {%- if block.settings.image_2_2 != blank %}
-                  <figure class="b-image">
-                    {% render 'twic-img', image: block.settings.image_2_2, width: 400 %}
-                  </figure>
-                {% endif %}
+                <div class="b-card-footer">
+                  <a class="b-card-footer-item b-button b-is-ghost" href="{{ cta_link }}">{{- cta_label -}}</a>
+                </div>
               </div>
 
+            {%- when 'grid' -%}
+              <div class="b-card b-is-flex-grow-1 b-p-1 b-has-background-link-light" {{ block.shopify_attributes }}>
+                <div class="b-fixed-grid b-has-2-cols b-has-2-cols-mobile b-mb-0">
+                  <div class="b-grid b-is-gap-0.5">
+                    <div class="b-cell">
+                      {%- if block.settings.image_1_1 != blank %}
+                        <figure class="b-image b-is-square">
+                          {% render 'twic-img', image: block.settings.image_1_1, width: 400 %}
+                        </figure>
+                      {% endif %}
+                    </div>
+                    <div class="b-cell">
+                      {%- if block.settings.image_1_2 != blank %}
+                        <figure class="b-image b-is-square">
+                          {% render 'twic-img', image: block.settings.image_1_2, width: 400 %}
+                        </figure>
+                      {% endif %}
+                    </div>
+                    <div class="b-cell">
+                      {%- if block.settings.image_2_1 != blank %}
+                        <figure class="b-image b-is-square">
+                          {% render 'twic-img', image: block.settings.image_2_1, width: 400 %}
+                        </figure>
+                      {% endif %}
+                    </div>
+                    <div class="b-cell">
+                      {%- if block.settings.image_2_2 != blank %}
+                        <figure class="b-image b-is-square">
+                          {% render 'twic-img', image: block.settings.image_2_2, width: 400 %}
+                        </figure>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+                <div class="b-card-footer">
+                  <a class="b-card-footer-item b-button b-is-ghost" href="{{ cta_link }}">{{- cta_label -}}</a>
+                </div>
+              </div>
           {%- endcase -%}
-
         </div>
-      {%  endfor %}
+      {% endfor %}
     </div>
   </div>
 </div>
-
 
 {% schema %}
 {
@@ -118,69 +127,44 @@
           "value": "h4",
           "label": "Header 4"
         }
-
       ],
       "default": "h2",
       "label": "Section Header Tag"
     },
     {
-
-        "type": "range",
-        "id": "section_title_size",
-        "min": 1,
-        "max": 7,
-        "step": 1,
-        "default": 2,
-        "label": "Section Header Size"
+      "type": "range",
+      "id": "section_title_size",
+      "min": 1,
+      "max": 7,
+      "step": 1,
+      "default": 2,
+      "label": "Section Header Size"
     },
 
-    {
-      "type": "header",
-      "content": "CTA Content"
-    },
-    {
-      "type": "text",
-      "id": "cta_label",
-      "default": "#",
-      "label": "Action Label",
-      "info": "Text to display on the CTA button"
-    },
-    {
-      "type": "url",
-      "id": "cta_link",
-      "label": "CTA Link"
-    },
     {
       "type": "header",
       "content": "t:sections.multicolumn.settings.header_layout.content"
-    },
-
+    }
   ],
   "blocks": [
     {
       "type": "column",
       "name": "t:sections.multicolumn.blocks.column.name",
       "settings": [
-
         {
-            "type": "header",
-            "content": "Card Options"
+          "type": "header",
+          "content": "Card Options"
         },
         {
-            "type": "radio",
-            "label": "Card Content",
-            "id": "card_content",
-            "options":[
-                {"value":"blog_article",
-                    "label": "Blog Article"
-                },
-                {"value":"image_1",
-                    "label": "Single Image"
-                },
-                {"label": "grid",
-                "value": "grid"}
-            ],
-            "default": "image_1"
+          "type": "radio",
+          "label": "Card Content",
+          "id": "card_content",
+          "options": [
+            { "value": "blog_article", "label": "Blog Article" },
+            { "value": "image_1", "label": "Single Image" },
+            { "label": "grid", "value": "grid" }
+          ],
+          "default": "image_1"
         },
 
         {
@@ -206,35 +190,29 @@
         {
           "type": "article",
           "id": "article",
-          "label": "Blog Article",
+          "label": "Blog Article"
         },
+
         {
           "type": "header",
-          "content": "Image Grid (Shopify)"
+          "content": "CTA Content"
         },
         {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image 1"
+          "type": "text",
+          "id": "cta_label",
+          "default": "#",
+          "label": "Action Label",
+          "info": "Text to display on the CTA button"
         },
         {
-          "type": "image_picker",
-          "id": "image_2",
-          "label": "Image 2"
-        },
-        {
-          "type": "image_picker",
-          "id": "image_3",
-          "label": "Image 3"
-        },
-        {
-          "type": "image_picker",
-          "id": "image_4",
-          "label": "Image 4"
+          "type": "url",
+          "id": "cta_link",
+          "label": "CTA Link"
         }
-      ],
-      }
-  ],"presets": [
+      ]
+    }
+  ],
+  "presets": [
     {
       "name": "Multicolumn-2x2",
       "category": "Layout",
