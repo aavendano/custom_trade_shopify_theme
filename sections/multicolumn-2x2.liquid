@@ -1,272 +1,93 @@
-{{ 'section-multicolumn.css' | asset_url | stylesheet_tag }}
-{{ 'component-slider.css' | asset_url | stylesheet_tag }}
-
-{%- style -%}
-  .multicolumn-image-grid {
-    display: grid;
-    gap: var(--grid-gap, 1rem);
-    margin: var(--grid-margin, 0);
-    padding: var(--grid-padding, 0);
-  }
-  .multicolumn-image-grid--1,
-  .multicolumn-image-grid--2,
-  .multicolumn-image-grid--3 { grid-template-columns: 1fr; }
-  .multicolumn-image-grid--4 { grid-template-columns: repeat(2, 1fr); }
-  .multicolumn-image-grid img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
-  .multicolumn-card__link {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-  }
-  .multicolumn-card__link:hover {
-    text-decoration: none;
-  }
-
-
-
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-    }
-
-    @media screen and (min-width: 750px) {
-      .section-{{ section.id }}-padding {
-        padding-top: {{ section.settings.padding_top }}px;
-        padding-bottom: {{ section.settings.padding_bottom }}px;
-      }
-    }
-{%- endstyle -%}
-
-{%- liquid
-  assign columns_mobile_int = section.settings.columns_mobile | plus: 0
-  assign show_mobile_slider = false
-  if section.settings.swipe_on_mobile and section.blocks.size > columns_mobile_int
-    assign show_mobile_slider = true
-  endif
--%}
-
-<div class="multicolumn color-{{ section.settings.color_scheme }} gradient{% unless section.settings.background_style == 'none' and settings.text_boxes_border_thickness > 0 or settings.text_boxes_shadow_opacity > 0 %} background-{{ section.settings.background_style }}{% endunless %}{% if section.settings.title == blank %} no-heading{% endif %}">
-  <div
-    class="page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-    {% if settings.animations_reveal_on_scroll %}
-      data-cascade
+<div class="b-section">
+  <div class="b-page-width b-container">
+    {% if section.settings.section_title != blank and section.settings.section_title != '#' %}
+      {% assign section_title_tag = section.settings.section_title_tag %}
+      {% assign section_title_size = section.settings.section_title_size %}
+      <{{ section_title_tag }} class="b-title b-is-{{- section_title_size -}}">
+        {{- section.settings.section_title -}}
+      </{{ section_title_tag }}>
     {% endif %}
-  >
-    {%- unless section.settings.title == blank -%}
-      <div class="title-wrapper-with-link title-wrapper--self-padded-mobile title-wrapper--no-top-margin multicolumn__title">
-        <h2 class="title inline-richtext {{ section.settings.heading_size }}">
-          {{ section.settings.title }}
-        </h2>
-        {%- if section.settings.button_label != blank and show_mobile_slider -%}
-          <a href="{{ section.settings.button_link }}" class="link underlined-link large-up-hide">
-            {{- section.settings.button_label | escape -}}
-          </a>
-        {%- endif -%}
-      </div>
-    {%- endunless -%}
-    <slider-component class="slider-mobile-gutter">
-      <ul
-        class="multicolumn-list contains-content-container grid grid--{{ section.settings.columns_mobile }}-col-tablet-down grid--{{ section.settings.columns_desktop }}-col-desktop{% if show_mobile_slider %} slider slider--tablet grid--peek{% endif %}"
-        id="Slider-{{ section.id }}"
-        role="list"
-      >
-        {%- liquid
-          assign highest_ratio = 0
-          for block in section.blocks
-            if block.settings.image.aspect_ratio > highest_ratio
-              assign highest_ratio = block.settings.image.aspect_ratio
-            endif
-          endfor
-        -%}
-        {%- for block in section.blocks -%}
-          {%- assign empty_column = '' -%}
-          {%- if block.settings.article == blank
-            and block.settings.image == blank
-            and block.settings.title == blank
-            and block.settings.text == blank
-            and block.settings.link_label == blank
-          -%}
-            {%- assign empty_column = ' multicolumn-list__item--empty' -%}
-          {%- endif -%}
 
-          <li
-            id="Slide-{{ section.id }}-{{ forloop.index }}"
-            class="multicolumn-list__item grid__item{% if section.settings.swipe_on_mobile %} slider__slide{% endif %}{% if section.settings.column_alignment == 'center' %} center{% endif %}{{ empty_column }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-            {{ block.shopify_attributes }}
-            {% if settings.animations_reveal_on_scroll %}
-              data-cascade
-              style="--animation-order: {{ forloop.index }};"
-            {% endif %}
-          >
-            {%- liquid
-              assign card_link = ''
-              if block.settings.article != blank
-                assign card_link = block.settings.article.url
-              elsif block.settings.link != blank
-                assign card_link = block.settings.link
-              endif
-            -%}
-            <div class="multicolumn-card content-container">
-              {%- if card_link != blank -%}<a href="{{ card_link }}" class="multicolumn-card__link">{%- endif -%}
-              {%- if block.settings.article != blank -%}
-                {%- assign article = block.settings.article -%}
-                {%- if article.image != blank -%}
-                  <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--{{ section.settings.image_width }}-width{% if section.settings.image_width != 'full' %} multicolumn-card-spacing{% endif %}">
-                    <div
-                      class="multicolumn-image-grid multicolumn-image-grid--1"
-                      style="--grid-gap: {{ block.settings.image_gap | default: 16 }}px; --grid-margin: {{ block.settings.image_margin | default: 0 }}px; --grid-padding: {{ block.settings.image_padding | default: 0 }}px;"
-                    >
-                      {{
-                        article.image
-                        | image_url: width: 800
-                        | image_tag: class: 'multicolumn-grid__image', loading: 'lazy'
-                      }}
+    <div class="b-columns" id="section-{{ section.id }}">
+      {%- for block in section.blocks -%}
+        {% assign cta_label = block.settings.cta_label %}
+        {% assign cta_link = block.settings.cta_link %}
+        <div class="b-column">
+          {%- case block.settings.card_content -%}
+            {%- when 'blog_article' -%}
+              {%- if block.settings.article != blank %}
+                {% assign article = block.settings.article %}
+                <div class="b-card b-p-1 b-has-background-primary-light" {{ block.shopify_attributes }}>
+                  <div class="b-card-image">
+                    {%- if article.image != blank -%}
+                      <div class="b-block">
+                        <figure class="b-image b-is-square">
+                          {% render 'twic-img', image: article.image, width: 800, eager: true %}
+                        </figure>
+                      </div>
+                    {%- endif -%}
+                  </div>
+                  <div class="b-card-footer">
+                    <a class="b-card-footer-item b-button b-is-ghost" href="{{ article.url }}"> {{ article.title }} </a>
+                  </div>
+                </div>
+              {% endif %}
+
+            {%- when 'image_1' -%}
+              <div class="b-card b-p-1 b-has-background-info-light" {{ block.shopify_attributes }}>
+                <div class="b-card-image">
+                  {%- if block.settings.image_1_1 != blank -%}
+                    <figure class="b-image b-is-square">
+                      {% render 'twic-img', image: block.settings.image_1_1, width: 400 %}
+                    </figure>
+                  {%- endif -%}
+                </div>
+                <div class="b-card-footer">
+                  <a class="b-card-footer-item b-button b-is-ghost" href="{{ cta_link }}">{{- cta_label -}}</a>
+                </div>
+              </div>
+
+            {%- when 'grid' -%}
+              <div class="b-card b-p-1 b-has-background-link-light" {{ block.shopify_attributes }}>
+                <div class="">
+                  <div class="b-grid b-is-gap-0.5 b-fixed-grid b-has-2-cols">
+                    <div class="b-cell">
+                      {%- if block.settings.image_1_1 != blank %}
+                        <figure class="b-image b-is-square">
+                          {% render 'twic-img', image: block.settings.image_1_1, width: 400 %}
+                        </figure>
+                      {% endif %}
+                    </div>
+                    <div class="b-cell">
+                      {%- if block.settings.image_1_2 != blank %}
+                        <figure class="b-image b-is-square">
+                          {% render 'twic-img', image: block.settings.image_1_2, width: 400 %}
+                        </figure>
+                      {% endif %}
+                    </div>
+                    <div class="b-cell">
+                      {%- if block.settings.image_2_1 != blank %}
+                        <figure class="b-image b-is-square">
+                          {% render 'twic-img', image: block.settings.image_2_1, width: 400 %}
+                        </figure>
+                      {% endif %}
+                    </div>
+                    <div class="b-cell">
+                      {%- if block.settings.image_2_2 != blank %}
+                        <figure class="b-image b-is-square">
+                          {% render 'twic-img', image: block.settings.image_2_2, width: 400 %}
+                        </figure>
+                      {% endif %}
                     </div>
                   </div>
-                {%- endif -%}
-              {%- else -%}
-                {%- assign has_images = false -%}
-                {%- if block.settings.image != blank
-                  or block.settings.image_2 != blank
-                  or block.settings.image_3 != blank
-                  or block.settings.image_4 != blank
-                -%}
-                  {%- assign has_images = true -%}
-                  {%- assign image_count = 0 -%}
-                  {%- if block.settings.image != blank -%}
-                    {%- assign image_count = image_count | plus: 1 -%}
-                  {%- endif -%}
-                  {%- if block.settings.image_2 != blank -%}
-                    {%- assign image_count = image_count | plus: 1 -%}
-                  {%- endif -%}
-                  {%- if block.settings.image_3 != blank -%}
-                    {%- assign image_count = image_count | plus: 1 -%}
-                  {%- endif -%}
-                  {%- if block.settings.image_4 != blank -%}
-                    {%- assign image_count = image_count | plus: 1 -%}
-                  {%- endif -%}
-                {%- endif -%}
-                {%- if has_images -%}
-                  {% if image_count > 1 %}
-                    <div class="b-fixed-grid b-has-2-cols b-p-2">
-                      <div class="b-grid b-is-gap-1">
-                        <div class="b-cell">
-                          {%- if block.settings.image != blank -%}
-                            {% render 'twic-img', image: block.settings.image, class: 'multicolumn-grid__image' %}
-                          {%- endif -%}
-                        </div>
-                        <div class="b-cell">
-                          {%- if block.settings.image_2 != blank -%}
-                            {% render 'twic-img', image: block.settings.image_2, class: 'multicolumn-grid__image' %}
-                          {%- endif -%}
-                        </div>
-                        <div class="b-cell">
-                          {%- if block.settings.image_3 != blank -%}
-                            {% render 'twic-img', image: block.settings.image_3, class: 'multicolumn-grid__image' %}
-                          {%- endif -%}
-                        </div>
-                        <div class="b-cell">
-                          {%- if block.settings.image_4 != blank -%}
-                            {% render 'twic-img', image: block.settings.image_4, class: 'multicolumn-grid__image' %}
-                          {%- endif -%}
-                        </div>
-                      </div>
-                    </div>
-                  {% elsif image_count == 1 %}
-                    <div class="b-image b-is-square b-p-2">
-                      {%- if block.settings.image != blank -%}
-                        {% render 'twic-img', image: block.settings.image, class: 'multicolumn-grid__image' %}
-                      {%- endif -%}
-                    </div>
-                  {%- endif -%}
-                {%- endif -%}
-              {%- endif -%}
-              <div class="multicolumn-card__info">
-                {%- if block.settings.article != blank -%}
-                  {%- assign article = block.settings.article -%}
-                  <h3 class="inline-richtext">
-                    <a href="{{ article.url }}">{{ article.title }}</a>
-                  </h3>
-                  <a class="link animate-arrow" href="{{ article.url }}">
-                    Continue Reading
-                    <span class="svg-wrapper">
-                      <span class="icon-wrap">&nbsp;{{ 'icon-arrow.svg' | inline_asset_content }}</span>
-                    </span>
-                  </a>
-                {%- else -%}
-                  {%- if block.settings.title != blank -%}
-                    <h3 class="inline-richtext">{{ block.settings.title }}</h3>
-                  {%- endif -%}
-                  {%- if block.settings.text != blank -%}
-                    <div class="rte">{{ block.settings.text }}</div>
-                  {%- endif -%}
-                  {%- if block.settings.link_label != blank -%}
-                    <a
-                      class="link animate-arrow"
-                      {% if block.settings.link == blank %}
-                        role="link" aria-disabled="true"
-                      {% else %}
-                        href="{{ block.settings.link }}"
-                      {% endif %}
-                    >
-                      {{- block.settings.link_label | escape -}}
-                      <span class="svg-wrapper"
-                        ><span class="icon-wrap">&nbsp;{{ 'icon-arrow.svg' | inline_asset_content }}</span></span
-                      >
-                    </a>
-                  {%- endif -%}
-                {%- endif -%}
+                </div>
+                <div class="b-card-footer">
+                  <a class="b-card-footer-item b-button b-is-ghost" href="{{ cta_link }}">{{- cta_label -}}</a>
+                </div>
               </div>
-              {%- if card_link != blank -%}</a>{%- endif -%}
-            </div>
-          </li>
-        {%- endfor -%}
-      </ul>
-
-      {%- if show_mobile_slider -%}
-        <div class="slider-buttons large-up-hide">
-          <button
-            type="button"
-            class="slider-button slider-button--prev"
-            name="previous"
-            aria-label="{{ 'general.slider.previous_slide' | t }}"
-          >
-            <span class="svg-wrapper">{{ 'icon-caret.svg' | inline_asset_content }}</span>
-          </button>
-          <div class="slider-counter caption">
-            <span class="slider-counter--current">1</span>
-            <span aria-hidden="true"> / </span>
-            <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
-            <span class="slider-counter--total">{{ section.blocks.size }}</span>
-          </div>
-          <button
-            type="button"
-            class="slider-button slider-button--next"
-            name="next"
-            aria-label="{{ 'general.slider.next_slide' | t }}"
-          >
-            <span class="svg-wrapper">{{ 'icon-caret.svg' | inline_asset_content }}</span>
-          </button>
+          {%- endcase -%}
         </div>
-      {%- endif -%}
-    </slider-component>
-    <div class="center{% if show_mobile_slider %} small-hide medium-hide{% endif %}">
-      {%- if section.settings.button_label != blank -%}
-        <a
-          class="button button--primary"
-          {% if section.settings.button_link == blank %}
-            role="link" aria-disabled="true"
-          {% else %}
-            href="{{ section.settings.button_link }}"
-          {% endif %}
-        >
-          {{ section.settings.button_label | escape }}
-        </a>
-      {%- endif -%}
+      {% endfor %}
     </div>
   </div>
 </div>
@@ -281,203 +102,48 @@
   },
   "settings": [
     {
-      "type": "inline_richtext",
-      "id": "title",
-      "default": "t:sections.multicolumn.settings.title.default",
-      "label": "t:sections.multicolumn.settings.title.label"
+      "type": "text",
+      "id": "section_title",
+      "default": "#",
+      "label": "Section Title"
     },
     {
       "type": "select",
-      "id": "heading_size",
+      "id": "section_title_tag",
       "options": [
-        {
-          "value": "h2",
-          "label": "t:sections.all.heading_size.options__1.label"
-        },
         {
           "value": "h1",
-          "label": "t:sections.all.heading_size.options__2.label"
+          "label": "Header 1"
         },
         {
-          "value": "h0",
-          "label": "t:sections.all.heading_size.options__3.label"
+          "value": "h2",
+          "label": "Header 2"
         },
         {
-          "value": "hxl",
-          "label": "t:sections.all.heading_size.options__4.label"
+          "value": "h3",
+          "label": "Header 3"
         },
         {
-          "value": "hxxl",
-          "label": "t:sections.all.heading_size.options__5.label"
+          "value": "h4",
+          "label": "Header 4"
         }
       ],
-      "default": "h1",
-      "label": "t:sections.all.heading_size.label"
+      "default": "h2",
+      "label": "Section Header Tag"
     },
     {
-      "type": "header",
-      "content": "t:sections.multicolumn.settings.header_image.content"
+      "type": "range",
+      "id": "section_title_size",
+      "min": 1,
+      "max": 7,
+      "step": 1,
+      "default": 2,
+      "label": "Section Header Size"
     },
-    {
-      "type": "select",
-      "id": "image_width",
-      "options": [
-        {
-          "value": "third",
-          "label": "t:sections.multicolumn.settings.image_width.options__1.label"
-        },
-        {
-          "value": "half",
-          "label": "t:sections.multicolumn.settings.image_width.options__2.label"
-        },
-        {
-          "value": "full",
-          "label": "t:sections.multicolumn.settings.image_width.options__3.label"
-        }
-      ],
-      "default": "full",
-      "label": "t:sections.multicolumn.settings.image_width.label"
-    },
-    {
-      "type": "select",
-      "id": "image_ratio",
-      "options": [
-        {
-          "value": "adapt",
-          "label": "t:sections.multicolumn.settings.image_ratio.options__1.label"
-        },
-        {
-          "value": "portrait",
-          "label": "t:sections.multicolumn.settings.image_ratio.options__2.label"
-        },
-        {
-          "value": "square",
-          "label": "t:sections.multicolumn.settings.image_ratio.options__3.label"
-        },
-        {
-          "value": "circle",
-          "label": "t:sections.multicolumn.settings.image_ratio.options__4.label"
-        }
-      ],
-      "default": "adapt",
-      "label": "t:sections.multicolumn.settings.image_ratio.label"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.multicolumn.settings.header_button.content"
-    },
-    {
-      "type": "text",
-      "id": "button_label",
-      "default": "t:sections.multicolumn.settings.button_label.default",
-      "label": "t:sections.multicolumn.settings.button_label.label",
-      "info": "t:sections.multicolumn.settings.button_label.info"
-    },
-    {
-      "type": "url",
-      "id": "button_link",
-      "label": "t:sections.multicolumn.settings.button_link.label"
-    },
+
     {
       "type": "header",
       "content": "t:sections.multicolumn.settings.header_layout.content"
-    },
-    {
-      "type": "range",
-      "id": "columns_desktop",
-      "min": 1,
-      "max": 6,
-      "step": 1,
-      "default": 3,
-      "label": "t:sections.multicolumn.settings.columns_desktop.label"
-    },
-    {
-      "type": "select",
-      "id": "column_alignment",
-      "options": [
-        {
-          "value": "left",
-          "label": "t:sections.multicolumn.settings.column_alignment.options__1.label"
-        },
-        {
-          "value": "center",
-          "label": "t:sections.multicolumn.settings.column_alignment.options__2.label"
-        }
-      ],
-      "default": "left",
-      "label": "t:sections.multicolumn.settings.column_alignment.label"
-    },
-    {
-      "type": "select",
-      "id": "background_style",
-      "options": [
-        {
-          "value": "none",
-          "label": "t:sections.multicolumn.settings.background_style.options__1.label"
-        },
-        {
-          "value": "primary",
-          "label": "t:sections.multicolumn.settings.background_style.options__2.label"
-        }
-      ],
-      "default": "primary",
-      "label": "t:sections.multicolumn.settings.background_style.label"
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "t:sections.all.colors.label",
-      "default": "scheme-1"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.multicolumn.settings.header_mobile.content"
-    },
-    {
-      "type": "select",
-      "id": "columns_mobile",
-      "options": [
-        {
-          "value": "1",
-          "label": "t:sections.multicolumn.settings.columns_mobile.options__1.label"
-        },
-        {
-          "value": "2",
-          "label": "t:sections.multicolumn.settings.columns_mobile.options__2.label"
-        }
-      ],
-      "default": "1",
-      "label": "t:sections.multicolumn.settings.columns_mobile.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "swipe_on_mobile",
-      "default": false,
-      "label": "t:sections.multicolumn.settings.swipe_on_mobile.label"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.all.padding.section_padding_heading"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_top",
-      "default": 36
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_bottom",
-      "default": 36
     }
   ],
   "blocks": [
@@ -486,86 +152,62 @@
       "name": "t:sections.multicolumn.blocks.column.name",
       "settings": [
         {
+          "type": "header",
+          "content": "Card Options"
+        },
+        {
+          "type": "radio",
+          "label": "Card Content",
+          "id": "card_content",
+          "options": [
+            { "value": "blog_article", "label": "Blog Article" },
+            { "value": "image_1", "label": "Single Image" },
+            { "label": "grid", "value": "grid" }
+          ],
+          "default": "image_1"
+        },
+
+        {
+          "type": "image_picker",
+          "id": "image_1_1",
+          "label": "Image (1,1)"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1_2",
+          "label": "Image (1,2)"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2_1",
+          "label": "Image (2,1)"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2_2",
+          "label": "Image (2,2)"
+        },
+        {
           "type": "article",
           "id": "article",
           "label": "Blog Article"
         },
+
         {
           "type": "header",
-          "content": "Image Grid (Shopify)"
-        },
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image 1"
-        },
-        {
-          "type": "image_picker",
-          "id": "image_2",
-          "label": "Image 2"
-        },
-        {
-          "type": "image_picker",
-          "id": "image_3",
-          "label": "Image 3"
-        },
-        {
-          "type": "image_picker",
-          "id": "image_4",
-          "label": "Image 4"
-        },
-        {
-          "type": "range",
-          "id": "image_gap",
-          "min": 0,
-          "max": 50,
-          "step": 2,
-          "unit": "px",
-          "label": "Image Gap",
-          "default": 16
-        },
-        {
-          "type": "range",
-          "id": "image_margin",
-          "min": 0,
-          "max": 50,
-          "step": 2,
-          "unit": "px",
-          "label": "Image Margin",
-          "default": 0
-        },
-        {
-          "type": "range",
-          "id": "image_padding",
-          "min": 0,
-          "max": 50,
-          "step": 2,
-          "unit": "px",
-          "label": "Image Padding",
-          "default": 0
-        },
-        {
-          "type": "inline_richtext",
-          "id": "title",
-          "default": "t:sections.multicolumn.blocks.column.settings.title.default",
-          "label": "t:sections.multicolumn.blocks.column.settings.title.label"
-        },
-        {
-          "type": "richtext",
-          "id": "text",
-          "default": "t:sections.multicolumn.blocks.column.settings.text.default",
-          "label": "t:sections.multicolumn.blocks.column.settings.text.label"
+          "content": "CTA Content"
         },
         {
           "type": "text",
-          "id": "link_label",
-          "label": "t:sections.multicolumn.blocks.column.settings.link_label.label",
-          "info": "t:sections.multicolumn.blocks.column.settings.link_label.info"
+          "id": "cta_label",
+          "default": "#",
+          "label": "Action Label",
+          "info": "Text to display on the CTA button"
         },
         {
           "type": "url",
-          "id": "link",
-          "label": "t:sections.multicolumn.blocks.column.settings.link.label"
+          "id": "cta_link",
+          "label": "CTA Link"
         }
       ]
     }

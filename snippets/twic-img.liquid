@@ -19,6 +19,9 @@
   {% endif %}
   {% if eager %}
     eager="true"
+    fetchpriority="high"
+  {% else %}
+    fetchpriority="auto"
   {% endif %}
   focus="{{ focus | default: "auto" }}"
   {% if id != '' %}

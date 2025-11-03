@@ -119,7 +119,7 @@ function getCollectionProducts(collectionHandle) {
 document.addEventListener('alpine:init', () => {
         Alpine.data('carrusel', () => ({
             open: false,
- 
+
             toggle() {
                 this.open = ! this.open
             }

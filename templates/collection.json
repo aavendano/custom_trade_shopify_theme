@@ -9,15 +9,6 @@
  */
 {
   "sections": {
-    "banner": {
-      "type": "main-collection-banner",
-      "disabled": true,
-      "settings": {
-        "show_collection_description": false,
-        "show_collection_image": false,
-        "color_scheme": "scheme-1"
-      }
-    },
     "custom_section_HqwefC": {
       "type": "custom_section",
       "blocks": {
@@ -211,24 +202,6 @@
         "content_padding": 20
       }
     },
-    "featured_blog_yJYyRi": {
-      "type": "featured-blog",
-      "name": "Featured Blog",
-      "settings": {
-        "blog": "playful-connect",
-        "post_limit": 4,
-        "heading": "Blog posts",
-        "heading_size": "h2",
-        "columns_desktop": 4,
-        "show_view_all": true,
-        "show_image": true,
-        "show_date": true,
-        "show_author": false,
-        "color_scheme": "",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
     "collection_list_gqnGhA": {
       "type": "collection-list",
       "blocks": {
@@ -291,17 +264,44 @@
         "padding_top": 76,
         "padding_bottom": 76
       }
+    },
+    "featured_blog_yJYyRi": {
+      "type": "featured-blog",
+      "name": "Featured Blog",
+      "settings": {
+        "blog": "playful-connect",
+        "post_limit": 4,
+        "heading": "Blog posts",
+        "heading_size": "h2",
+        "columns_desktop": 4,
+        "show_view_all": true,
+        "show_image": true,
+        "show_date": true,
+        "show_author": false,
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "banner": {
+      "type": "main-collection-banner",
+      "disabled": true,
+      "settings": {
+        "show_collection_description": false,
+        "show_collection_image": false,
+        "color_scheme": "scheme-1"
+      }
     }
   },
   "order": [
-    "banner",
-    "hero_toggle_content_8XPA7t",
     "custom_section_HqwefC",
+    "hero_toggle_content_8XPA7t",
     "product-grid",
     "custom_section_EWcpUz",
     "after_page_richtext_content_nT8LrB",
     "after_page_content_ArzyWy",
     "collection_list_gqnGhA",
-    "featured_blog_yJYyRi"
+    "featured_blog_yJYyRi",
+    "banner"
   ]
 }

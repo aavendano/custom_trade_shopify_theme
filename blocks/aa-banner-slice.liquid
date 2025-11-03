@@ -10,7 +10,16 @@
     assign style_attr = 'background: linear-gradient(' | append: dir | append: ', ' | append: c1 | append: ', ' | append: c2 | append: ')'
   endif
 %}
-<div class="b-box banner-content-{{ block.id }}">
+{% style %}
+    {{ '#id_image_' | append: block.id }} {
+      width: auto;
+      height: 100%;
+    }
+
+  }
+{% endstyle %}
+
+<div class="b-box b-notification banner-content-{{ block.id }}">
   <div
     class="b-columns slice-{{ block.id }}"
     {% if style_attr != '' %}
@@ -19,14 +28,16 @@
     {{ block.shopify_attributes }}
   >
     {% if block.settings.slice_image != blank %}
-      <div class="b-column b-is-3">
+      <div class="b-column b-is-half">
         <div class="b-image b-is-fullwidth">
+          {% assign image_id = 'id_image_' | append: block.id %}
           {% render 'twic-picture',
             image: block.settings.slice_image,
             ratio: '1',
             eager: true,
             focus: 'center',
-            mode: 'contain'
+            mode: 'contain',
+            id: image_id
           %}
         </div>
       </div>
@@ -43,7 +54,7 @@
       endfor
     %}
 
-    <div class="b-column b-is-align-content-space-evenly b-is-justify-content-center b-px-6-tablet b-mx-6-tablet{{ alignment_classes }}">
+    <div class="b-column b-is-align-content-space-evenly b-is-justify-content-center b-pb-6 {{ alignment_classes }}">
       {%- comment -%} Render child blocks {%- endcomment -%}
       {% for child_block in block.blocks %}
         <div class="b-block">
