@@ -130,12 +130,20 @@
         "padding_top": 100,
         "padding_bottom": 100
       }
+    },
+    "aa_blog_list_w_left_panel_Dptia7": {
+      "type": "aa-blog-list-w-left-panel",
+      "name": "AA Blog w/Left Panel",
+      "settings": {
+        "blog": "playful-connect"
+      }
     }
   },
   "order": [
     "custom_section_rbta8K",
     "aa_header_section_MMCTXE",
     "newsletter_qeRfBx",
-    "main"
+    "main",
+    "aa_blog_list_w_left_panel_Dptia7"
   ]
 }

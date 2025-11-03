@@ -1,0 +1,138 @@
+{% liquid
+  assign blog = section.settings.blog
+  assign articles = blog.articles
+  assign n_article = -1
+  assign icon_calendar = "<i class='b-icon'><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'><path d='M200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm0 0v-80 80Zm280 240q-17 0-28.5-11.5T440-440q0-17 11.5-28.5T480-480q17 0 28.5 11.5T520-440q0 17-11.5 28.5T480-400Zm-160 0q-17 0-28.5-11.5T280-440q0-17 11.5-28.5T320-480q17 0 28.5 11.5T360-440q0 17-11.5 28.5T320-400Zm320 0q-17 0-28.5-11.5T600-440q0-17 11.5-28.5T640-480q17 0 28.5 11.5T680-440q0 17-11.5 28.5T640-400ZM480-240q-17 0-28.5-11.5T440-280q0-17 11.5-28.5T480-320q17 0 28.5 11.5T520-280q0 17-11.5 28.5T480-240Zm-160 0q-17 0-28.5-11.5T280-280q0-17 11.5-28.5T320-320q17 0 28.5 11.5T360-280q0 17-11.5 28.5T320-240Zm320 0q-17 0-28.5-11.5T600-280q0-17 11.5-28.5T640-320q17 0 28.5 11.5T680-280q0 17-11.5 28.5T640-240Z'/></svg></i>"
+%}
+
+
+<section class="b-section b-pb-0">
+  <div class="b-container">
+    <div class="b-columns b-is-desktop b-is-multiline">
+      <div class="b-column b-is-4-widescreen b-is-6-desktop b-mb-5">
+        <h2 class="b-title">Featured Articles</h2>
+
+        {% assign n_article = n_article | plus: 1 %}
+          {% assign article = articles[n_article] %}
+
+        <article class="b-card">
+
+          <div class="b-card-image">
+            {%
+              render 'twic-img', image: article.image, ratio: '4/3'
+            %}
+          </div>
+
+          <div class="b-card-header">
+            <h3 class="b-block"><a class="b-card-header-title b-title" href="{{ article.url }}">{{ article.title }}</a></h3>
+          </div>
+
+          <div class='b-card-content'>
+            
+<div class='b-block b-has-text-right'>
+              <span class='b-icon-text'>
+                {{ icon_calendar }}
+                {{ article.published_at | date: "%d/%m/%Y" }}
+              </span>
+            </div>
+              <div class='b-content b-has-text-justified'>{{ article.excerpt }}</div>
+  
+          </div>
+
+          <div class='b-card-footer'>
+            <a href="{{ article.url }}" class="b-button b-is-link b-is-light b-card-footer-item">Read More</a>
+          </div>
+
+        </article>
+      </div>
+      <div class="b-column b-is-4-widescreen b-is-6-desktop b-mb-5">
+        <h2 class="b-title">Trending Post</h2>
+
+{% assign start = n_article | plus: 1  %}
+{% assign end = n_article | plus: 5  %}
+{% assign n_article = n_article | plus: 5  %}
+{% for n in (start..end) %}
+  {% assign article = articles[n] %}
+  <article class="b-media">
+    <figure class="b-media-left">
+      <div class='b-image b-is-128x128'>
+        {%
+          render 'twic-img', image: article.image, ratio: '4/3'
+        %}
+      </div>
+    </figure>
+    <div class="b-media-content">
+      <h4><a href="{{ article.url }}" class="b-title b-is-size-5">{{ article.title }}</a></h4>
+      <span class='b-icon-text'>
+        {{ icon_calendar }}
+        {{ article.published_at | date: "%d/%m/%Y" }}
+      </span>
+      
+    </div>
+
+</article>
+{% endfor %}
+</div>
+        {% assign n_article = n_article | plus: 1 %}
+          {% assign article = articles[n_article] %}
+      <div class="b-column b-is-4-widescreen b-mb-5">
+        <h2 class="b-title">Popular Post</h2>
+
+                <article class="b-card">
+
+          <div class="b-card-image">
+            {%
+              render 'twic-img', image: article.image, ratio: '4/3'
+            %}
+          </div>
+
+          <div class="b-card-header">
+            <h3 class="b-block"><a class="b-card-header-title b-title" href="{{ article.url }}">{{ article.title }}</a></h3>
+          </div>
+
+          <div class='b-card-content'>
+            
+<div class='b-block b-has-text-right'>
+              <span class='b-icon-text'>
+                {{ icon_calendar }}
+                {{ article.published_at | date: "%d/%m/%Y" }}
+              </span>
+            </div>
+              <div class='b-content b-has-text-justified'>{{ article.excerpt }}</div>
+  
+          </div>
+
+          <div class='b-card-footer'>
+            <a href="{{ article.url }}" class="b-button b-is-link b-is-light b-card-footer-item">Read More</a>
+          </div>
+
+        </article>
+      </div>
+      <div class="b-column b-is-12">
+        <div class="b-border-bottom b-border-default"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "AA Blog w/Left Panel",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+    "type": "header",
+    "content": "Blog"
+    },
+    {
+    "type": "blog",
+    "id": "blog",
+    "label": "Select Blog"
+    }
+  ],
+  "presets": [{
+    "name": "AA Blog w/Left Panel"
+  }]
+}
+{% endschema %}
