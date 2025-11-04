@@ -1,36 +1,21 @@
 // Critical Bulma bundle.
 // Contains foundational Bulma layers that should be inlined for fast first paint.
 
-$purple: #8a4d76;
-$pink: #fa7c91;
-$brown: #757763;
-$beige-light: #d0d1cd;
-$beige-lighter: #eff0eb;
-$black: #000000;
+@use "_variables";
 
-$family-primary: '"Urbanist", sans-serif';
-$grey-dark: $brown;
-$grey-light: $beige-light;
-$primary: $purple;
-$link: $pink;
-$control-border-width: 2px;
-$input-shadow: none;
-$cssvars-prefix: 'b-';
-$class-prefix: 'b-';
-
-@import "bulma/sass/utilities";
-@import "bulma/sass/base";
-@import "bulma/sass/helpers";
-@import "bulma/sass/grid/columns";
-@import "bulma/sass/layout/container";
-@import "bulma/sass/layout/hero";
-@import "bulma/sass/layout/section";
-@import "bulma/sass/elements/title";
-@import "bulma/sass/elements/content";
-@import "bulma/sass/elements/button";
-@import "bulma/sass/elements/tag";
-@import "bulma/sass/elements/notification";
-@import "bulma/sass/components/navbar";
-@import "bulma/sass/components/menu";
+@use "bulma/sass/utilities";
+@use "bulma/sass/base";
+@use "bulma/sass/helpers";
+@use "bulma/sass/grid/columns";
+@use "bulma/sass/layout/container";
+@use "bulma/sass/layout/hero";
+@use "bulma/sass/layout/section";
+@use "bulma/sass/elements/title";
+@use "bulma/sass/elements/content";
+@use "bulma/sass/elements/button";
+@use "bulma/sass/elements/tag";
+@use "bulma/sass/elements/notification";
+@use "bulma/sass/components/navbar";
+@use "bulma/sass/components/menu";
 
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');

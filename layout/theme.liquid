@@ -5,7 +5,7 @@
 <!doctype html>
 <html class="js" lang="{{ request.locale.iso_code }}">
   <head>
-    {% render 'yoast-seo' %}
+   
     <!-- Added by AVADA SEO Suite -->
     {% include 'avada-seo' %}
     <!-- /Added by AVADA SEO Suite -->
@@ -13,11 +13,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="theme-color" content="">
-    {%- comment -%}Auto-disabled. Yoast plugin is taking care of Meta Tags output.{%- endcomment -%}
-    {%- if disabled_by_yoast_seo -%}
+
       <link rel="canonical" href="{{ canonical_url }}">
-      {%- comment -%} End Yoast auto-disable. {%- endcomment -%}
-    {%- endif -%}
+
 
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/x-icon" href="{{ 'playlovetoys_favicon.ico' | asset_url }}">
@@ -30,23 +28,19 @@
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endunless -%}
 
-    {%- comment -%}Auto-disabled. Yoast plugin is taking care of SEO output.{%- endcomment -%}
-    {%- if disabled_by_yoast_seo -%}
+
       <title>
         {{ page_title }}
         {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
         {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
         {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
       </title>
-      {%- comment -%} End Yoast auto-disable. {%- endcomment -%}
-    {%- endif -%}
+
 
     {% if page_description %}
-      {%- comment -%}Auto-disabled. Yoast plugin is taking care of Meta Tags output.{%- endcomment -%}
-      {%- if disabled_by_yoast_seo -%}
+
         <meta name="description" content="{{ page_description | escape }}">
-        {%- comment -%} End Yoast auto-disable. {%- endcomment -%}
-      {%- endif -%}
+
     {% endif %}
 
     {% render 'meta-tags' %}
@@ -360,11 +354,6 @@
       }
     </script>
 
-    {% comment %}
-      This is a custom CSS file that can be used to override the default styles of the theme.
-      It is recommended to use this file for custom styles instead of editing the theme's core CSS files.
-      You can add your custom styles here or in a separate file and include it in the theme.liquid file.
-    {% endcomment %}
     <!-- IMPORT GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
@@ -380,12 +369,17 @@
     <noscript>
       <link rel="stylesheet" href="{{ 'aa-bulma-async.css' | asset_url }}">
     </noscript>
+    {% comment %}
     <link
       rel="stylesheet"
       href="{{ 'aa-bulma-overrides.css' | asset_url }}"
       media="print"
       onload="this.media='all'"
     >
+      {{ 'aa-bulma-custom-overrides.css' | asset_url | stylesheet_tag }}
+      
+      {% endcomment %}
+      {{ 'application.css' | asset_url | stylesheet_tag }}
 
     {{ 'custom-style.css' | asset_url | stylesheet_tag }}
 
@@ -399,10 +393,7 @@
     {{ 'base.css' | asset_url | stylesheet_tag }}
     <!-- BULMA -->
     {%- comment -%} Critical Bulma CSS is inlined; async bundle loads above. {%- endcomment -%}
-    {{ 'aa-bulma-custom-overrides.css' | asset_url | stylesheet_tag }}
-    {{ 'application.css' | asset_url | stylesheet_tag }}
 
-    <!-- TWICPICS COMPONENTS -->
 
     <!-- FAQ Article COLLECTIONS -->
     {% comment %} Detectar si estamos en una página de artículo {% endcomment %}

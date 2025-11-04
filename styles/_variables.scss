@@ -1,0 +1,30 @@
+// Shared Bulma variables - Edit these in one place only
+// These variables are used by both bulma-critical.scss and bulma-async.scss
+
+// Brand colors
+$purple: rgba(83, 50, 120, 1);
+$pink: #fa7c91;
+$brown: #757763;
+$beige-light: #d0d1cd;
+$beige-lighter: #eff0eb;
+$black: #000000;
+
+// Typography
+$family-primary: '"Urbanist", sans-serif';
+
+// Color mappings
+$grey-dark: $brown;
+$grey-light: $beige-light;
+$primary: blue;
+$link: $pink;
+
+// Component variables
+$control-border-width: 2px;
+$input-shadow: none;
+
+// Bulma configuration
+$cssvars-prefix: 'b-';
+$class-prefix: 'b-';
+
+
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');

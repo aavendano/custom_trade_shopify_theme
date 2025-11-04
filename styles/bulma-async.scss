@@ -1,50 +1,35 @@
 // Async Bulma bundle.
 // Loads non-critical Bulma modules after first paint using lazy stylesheet.
 
-$purple: #8a4d76;
-$pink: #fa7c91;
-$brown: #757763;
-$beige-light: #d0d1cd;
-$beige-lighter: #eff0eb;
-$black: #000000;
-
-$family-primary: '"Urbanist", sans-serif';
-$grey-dark: $brown;
-$grey-light: $beige-light;
-$primary: $purple;
-$link: $pink;
-$control-border-width: 2px;
-$input-shadow: none;
-$cssvars-prefix: 'b-';
-$class-prefix: 'b-';
+@use "_variables";
 
 // Remaining element helpers.
-@import "bulma/sass/utilities";
+@use "bulma/sass/utilities";
 
 // Remaining element helpers.
-@import "bulma/sass/elements/box";
-@import "bulma/sass/elements/image";
-@import "bulma/sass/elements/table";
-@import "bulma/sass/elements/progress";
-@import "bulma/sass/elements/notification";
-@import "bulma/sass/elements/tag";
+@use "bulma/sass/elements/box";
+@use "bulma/sass/elements/image";
+@use "bulma/sass/elements/table";
+@use "bulma/sass/elements/progress";
+@use "bulma/sass/elements/notification";
+@use "bulma/sass/elements/tag";
 
 // Layout patterns not required for first paint.
-@import "bulma/sass/layout/footer";
-@import "bulma/sass/layout/level";
-@import "bulma/sass/layout/media";
+@use "bulma/sass/layout/footer";
+@use "bulma/sass/layout/level";
+@use "bulma/sass/layout/media";
 
 // Components deferred until after initial paint.
-@import "bulma/sass/components/breadcrumb";
-@import "bulma/sass/components/card";
-@import "bulma/sass/components/dropdown";
-@import "bulma/sass/components/message";
-@import "bulma/sass/components/modal";
-@import "bulma/sass/components/pagination";
-@import "bulma/sass/components/panel";
-@import "bulma/sass/components/tabs";
+@use "bulma/sass/components/breadcrumb";
+@use "bulma/sass/components/card";
+@use "bulma/sass/components/dropdown";
+@use "bulma/sass/components/message";
+@use "bulma/sass/components/modal";
+@use "bulma/sass/components/pagination";
+@use "bulma/sass/components/panel";
+@use "bulma/sass/components/tabs";
 
 // Extensions and helpers.
-@import "bulma/sass/helpers/color";
-@import "bulma/sass/helpers/spacing";
-@import "bulma/sass/helpers/visibility";
+@use "bulma/sass/helpers/color";
+@use "bulma/sass/helpers/spacing";
+@use "bulma/sass/helpers/visibility";
