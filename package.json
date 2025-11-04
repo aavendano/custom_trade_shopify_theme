@@ -7,8 +7,8 @@
     "test": "node --test",
     "build": "esbuild assets/bundle.js --bundle --minify --platform=browser --outfile=assets/application.js",
     "build:twicpics": "node build-twicpics.js",
-    "build-bulma": "node scripts/build-css.js",
-    "start": "node scripts/build-css.js --watch",
+    "build-bulma": "gulp build",
+    "start": "gulp watch",
     "build:css": "esbuild assets/bundle.css --bundle --minify --loader:.gif=dataurl --outfile=assets/application.css"
   },
   "repository": {
@@ -37,7 +37,14 @@
     "@shopify/prettier-plugin-liquid": "^1.9.4",
     "esbuild": "^0.25.9",
     "glob": "^11.0.3",
+    "gulp": "^5.0.0",
+    "gulp-if": "^3.0.0",
+    "gulp-purgecss": "^6.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-replace": "^1.1.4",
+    "gulp-sass": "^5.1.0",
     "prettier": "^3.6.2",
-    "purgecss": "^7.0.2"
+    "purgecss": "^7.0.2",
+    "through2": "^4.0.2"
   }
 }

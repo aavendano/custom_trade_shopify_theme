@@ -294,7 +294,9 @@ async function main() {
 if (require.main === module) {
   main().catch((error) => {
     console.error('Failed to build Bulma CSS bundles:', error);
-    process.exitCode = 1;
+    process.exit(1);
+  });
+} process.exitCode = 1;
   });
 }
 
