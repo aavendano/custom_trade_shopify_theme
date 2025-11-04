@@ -153,7 +153,7 @@
       "settings": {}
     },
     "multicolumn_2x2_rMUj4F": {
-      "type": "multicolumn-2x2",
+      "type": "aa-multicolumn",
       "blocks": {
         "column_Ni4CNE": {
           "type": "column",
@@ -267,7 +267,7 @@
       "settings": {}
     },
     "multicolumn_2x2_xx3adw": {
-      "type": "multicolumn-2x2",
+      "type": "aa-multicolumn",
       "blocks": {
         "column_AFMw6c": {
           "type": "column",
@@ -774,7 +774,7 @@
       }
     },
     "multicolumn_2x2_rpFQzb": {
-      "type": "multicolumn-2x2",
+      "type": "aa-multicolumn",
       "blocks": {
         "column_xafx8G": {
           "type": "column",

@@ -101,7 +101,7 @@
       }
     },
     "multicolumn_2x2_rMUj4F": {
-      "type": "multicolumn-2x2",
+      "type": "aa-multicolumn",
       "blocks": {
         "column_Ni4CNE": {
           "type": "column",
@@ -109,7 +109,24 @@
           "settings": {
             "card_content": "image_1",
             "image_1_1": "shopify://shop_images/ss69607-c.png",
+            "imagen_1_1_auto_focus": false,
+            "image_1_1_focus": "bottom",
+            "image_1_1_custom_focus": "@lg center @xl bottom",
+            "imagen_1_2_auto_focus": true,
+            "image_1_2_focus": "center",
+            "image_1_2_custom_focus": "@lg center @xl bottom",
+            "imagen_2_1_auto_focus": true,
+            "image_2_1_focus": "center",
+            "image_2_1_custom_focus": "@lg center @xl bottom",
+            "imagen_2_2_auto_focus": true,
+            "image_2_2_focus": "center",
+            "image_2_2_custom_focus": "@md 250x250 @lg center @xl 50px50p",
             "article": "",
+            "imagen_article_auto_focus": true,
+            "image_article_focus": "center",
+            "image_article_custom_focus": "@lg center @xl bottom",
+            "background_color": "",
+            "background_shade": "",
             "cta_label": "Sex Toys For Women",
             "cta_link": "shopify://collections/sex-toys-for-women"
           }
@@ -119,7 +136,24 @@
           "settings": {
             "card_content": "image_1",
             "image_1_1": "shopify://shop_images/custom1000x1500_1057068.webp",
+            "imagen_1_1_auto_focus": true,
+            "image_1_1_focus": "center",
+            "image_1_1_custom_focus": "@lg center @xl bottom",
+            "imagen_1_2_auto_focus": true,
+            "image_1_2_focus": "center",
+            "image_1_2_custom_focus": "@lg center @xl bottom",
+            "imagen_2_1_auto_focus": true,
+            "image_2_1_focus": "center",
+            "image_2_1_custom_focus": "@lg center @xl bottom",
+            "imagen_2_2_auto_focus": true,
+            "image_2_2_focus": "center",
+            "image_2_2_custom_focus": "@md 250x250 @lg center @xl 50px50p",
             "article": "",
+            "imagen_article_auto_focus": true,
+            "image_article_focus": "center",
+            "image_article_custom_focus": "@lg center @xl bottom",
+            "background_color": "",
+            "background_shade": "",
             "cta_label": "#",
             "cta_link": ""
           }
@@ -129,7 +163,24 @@
           "name": "Col Sex Toys for men",
           "settings": {
             "card_content": "blog_article",
+            "imagen_1_1_auto_focus": true,
+            "image_1_1_focus": "center",
+            "image_1_1_custom_focus": "@lg center @xl bottom",
+            "imagen_1_2_auto_focus": true,
+            "image_1_2_focus": "center",
+            "image_1_2_custom_focus": "@lg center @xl bottom",
+            "imagen_2_1_auto_focus": true,
+            "image_2_1_focus": "center",
+            "image_2_1_custom_focus": "@lg center @xl bottom",
+            "imagen_2_2_auto_focus": true,
+            "image_2_2_focus": "center",
+            "image_2_2_custom_focus": "@md 250x250 @lg center @xl 50px50p",
             "article": "playful-connect/swingers-fashion-what-to-wear-to-your-first-party",
+            "imagen_article_auto_focus": false,
+            "image_article_focus": "center",
+            "image_article_custom_focus": "@lg center @xl bottom",
+            "background_color": "",
+            "background_shade": "",
             "cta_label": "#",
             "cta_link": ""
           }
@@ -138,7 +189,24 @@
           "type": "column",
           "settings": {
             "card_content": "blog_article",
+            "imagen_1_1_auto_focus": true,
+            "image_1_1_focus": "center",
+            "image_1_1_custom_focus": "@lg center @xl bottom",
+            "imagen_1_2_auto_focus": true,
+            "image_1_2_focus": "center",
+            "image_1_2_custom_focus": "@lg center @xl bottom",
+            "imagen_2_1_auto_focus": true,
+            "image_2_1_focus": "center",
+            "image_2_1_custom_focus": "@lg center @xl bottom",
+            "imagen_2_2_auto_focus": true,
+            "image_2_2_focus": "center",
+            "image_2_2_custom_focus": "@md 250x250 @lg center @xl 50px50p",
             "article": "sexual-wellness/intimate-toys-and-sex-toys",
+            "imagen_article_auto_focus": false,
+            "image_article_focus": "",
+            "image_article_custom_focus": "58px60p",
+            "background_color": "",
+            "background_shade": "",
             "cta_label": "#",
             "cta_link": ""
           }
@@ -155,17 +223,37 @@
       "settings": {
         "section_title": "#",
         "section_title_tag": "h2",
-        "section_title_size": 2
+        "section_title_size": 2,
+        "columns_row": "",
+        "background_color": "",
+        "background_shade": ""
       }
     },
     "multicolumn_2x2_KapmK6": {
-      "type": "multicolumn-2x2",
+      "type": "aa-multicolumn",
       "blocks": {
         "column_cgaxYg": {
           "type": "column",
           "settings": {
             "card_content": "image_1",
+            "imagen_1_1_auto_focus": true,
+            "image_1_1_focus": "center",
+            "image_1_1_custom_focus": "@lg center @xl bottom",
+            "imagen_1_2_auto_focus": true,
+            "image_1_2_focus": "center",
+            "image_1_2_custom_focus": "@lg center @xl bottom",
+            "imagen_2_1_auto_focus": true,
+            "image_2_1_focus": "center",
+            "image_2_1_custom_focus": "@lg center @xl bottom",
+            "imagen_2_2_auto_focus": true,
+            "image_2_2_focus": "center",
+            "image_2_2_custom_focus": "@md 250x250 @lg center @xl 50px50p",
             "article": "",
+            "imagen_article_auto_focus": true,
+            "image_article_focus": "center",
+            "image_article_custom_focus": "@lg center @xl bottom",
+            "background_color": "",
+            "background_shade": "",
             "cta_label": "#",
             "cta_link": ""
           }
@@ -174,7 +262,24 @@
           "type": "column",
           "settings": {
             "card_content": "image_1",
+            "imagen_1_1_auto_focus": true,
+            "image_1_1_focus": "center",
+            "image_1_1_custom_focus": "@lg center @xl bottom",
+            "imagen_1_2_auto_focus": true,
+            "image_1_2_focus": "center",
+            "image_1_2_custom_focus": "@lg center @xl bottom",
+            "imagen_2_1_auto_focus": true,
+            "image_2_1_focus": "center",
+            "image_2_1_custom_focus": "@lg center @xl bottom",
+            "imagen_2_2_auto_focus": true,
+            "image_2_2_focus": "center",
+            "image_2_2_custom_focus": "@md 250x250 @lg center @xl 50px50p",
             "article": "",
+            "imagen_article_auto_focus": true,
+            "image_article_focus": "center",
+            "image_article_custom_focus": "@lg center @xl bottom",
+            "background_color": "",
+            "background_shade": "",
             "cta_label": "#",
             "cta_link": ""
           }
@@ -183,7 +288,24 @@
           "type": "column",
           "settings": {
             "card_content": "image_1",
+            "imagen_1_1_auto_focus": true,
+            "image_1_1_focus": "center",
+            "image_1_1_custom_focus": "@lg center @xl bottom",
+            "imagen_1_2_auto_focus": true,
+            "image_1_2_focus": "center",
+            "image_1_2_custom_focus": "@lg center @xl bottom",
+            "imagen_2_1_auto_focus": true,
+            "image_2_1_focus": "center",
+            "image_2_1_custom_focus": "@lg center @xl bottom",
+            "imagen_2_2_auto_focus": true,
+            "image_2_2_focus": "center",
+            "image_2_2_custom_focus": "@md 250x250 @lg center @xl 50px50p",
             "article": "",
+            "imagen_article_auto_focus": true,
+            "image_article_focus": "center",
+            "image_article_custom_focus": "@lg center @xl bottom",
+            "background_color": "",
+            "background_shade": "",
             "cta_label": "#",
             "cta_link": ""
           }
@@ -192,7 +314,24 @@
           "type": "column",
           "settings": {
             "card_content": "image_1",
+            "imagen_1_1_auto_focus": true,
+            "image_1_1_focus": "center",
+            "image_1_1_custom_focus": "@lg center @xl bottom",
+            "imagen_1_2_auto_focus": true,
+            "image_1_2_focus": "center",
+            "image_1_2_custom_focus": "@lg center @xl bottom",
+            "imagen_2_1_auto_focus": true,
+            "image_2_1_focus": "center",
+            "image_2_1_custom_focus": "@lg center @xl bottom",
+            "imagen_2_2_auto_focus": true,
+            "image_2_2_focus": "center",
+            "image_2_2_custom_focus": "@md 250x250 @lg center @xl 50px50p",
             "article": "",
+            "imagen_article_auto_focus": true,
+            "image_article_focus": "center",
+            "image_article_custom_focus": "@lg center @xl bottom",
+            "background_color": "",
+            "background_shade": "",
             "cta_label": "#",
             "cta_link": ""
           }
@@ -208,7 +347,10 @@
       "settings": {
         "section_title": "#",
         "section_title_tag": "h2",
-        "section_title_size": 2
+        "section_title_size": 2,
+        "columns_row": "",
+        "background_color": "",
+        "background_shade": ""
       }
     },
     "collection_list": {
@@ -599,13 +741,30 @@
       }
     },
     "multicolumn_2x2_QnEPzH": {
-      "type": "multicolumn-2x2",
+      "type": "aa-multicolumn",
       "blocks": {
         "column_NMnBUc": {
           "type": "column",
           "settings": {
             "card_content": "image_1",
+            "imagen_1_1_auto_focus": true,
+            "image_1_1_focus": "center",
+            "image_1_1_custom_focus": "@lg center @xl bottom",
+            "imagen_1_2_auto_focus": true,
+            "image_1_2_focus": "center",
+            "image_1_2_custom_focus": "@lg center @xl bottom",
+            "imagen_2_1_auto_focus": true,
+            "image_2_1_focus": "center",
+            "image_2_1_custom_focus": "@lg center @xl bottom",
+            "imagen_2_2_auto_focus": true,
+            "image_2_2_focus": "center",
+            "image_2_2_custom_focus": "@md 250x250 @lg center @xl 50px50p",
             "article": "pleasure-lab/beginner-guide-adult-toys",
+            "imagen_article_auto_focus": true,
+            "image_article_focus": "center",
+            "image_article_custom_focus": "@lg center @xl bottom",
+            "background_color": "",
+            "background_shade": "",
             "cta_label": "#",
             "cta_link": ""
           }
@@ -614,7 +773,24 @@
           "type": "column",
           "settings": {
             "card_content": "image_1",
+            "imagen_1_1_auto_focus": true,
+            "image_1_1_focus": "center",
+            "image_1_1_custom_focus": "@lg center @xl bottom",
+            "imagen_1_2_auto_focus": true,
+            "image_1_2_focus": "center",
+            "image_1_2_custom_focus": "@lg center @xl bottom",
+            "imagen_2_1_auto_focus": true,
+            "image_2_1_focus": "center",
+            "image_2_1_custom_focus": "@lg center @xl bottom",
+            "imagen_2_2_auto_focus": true,
+            "image_2_2_focus": "center",
+            "image_2_2_custom_focus": "@md 250x250 @lg center @xl 50px50p",
             "article": "pleasure-lab/10-female-sexual-fantasies-womens-secret-desires",
+            "imagen_article_auto_focus": true,
+            "image_article_focus": "center",
+            "image_article_custom_focus": "@lg center @xl bottom",
+            "background_color": "",
+            "background_shade": "",
             "cta_label": "#",
             "cta_link": ""
           }
@@ -623,7 +799,24 @@
           "type": "column",
           "settings": {
             "card_content": "image_1",
+            "imagen_1_1_auto_focus": true,
+            "image_1_1_focus": "center",
+            "image_1_1_custom_focus": "@lg center @xl bottom",
+            "imagen_1_2_auto_focus": true,
+            "image_1_2_focus": "center",
+            "image_1_2_custom_focus": "@lg center @xl bottom",
+            "imagen_2_1_auto_focus": true,
+            "image_2_1_focus": "center",
+            "image_2_1_custom_focus": "@lg center @xl bottom",
+            "imagen_2_2_auto_focus": true,
+            "image_2_2_focus": "center",
+            "image_2_2_custom_focus": "@md 250x250 @lg center @xl 50px50p",
             "article": "after-page-content/wevibe",
+            "imagen_article_auto_focus": true,
+            "image_article_focus": "center",
+            "image_article_custom_focus": "@lg center @xl bottom",
+            "background_color": "",
+            "background_shade": "",
             "cta_label": "#",
             "cta_link": ""
           }
@@ -632,7 +825,24 @@
           "type": "column",
           "settings": {
             "card_content": "image_1",
+            "imagen_1_1_auto_focus": true,
+            "image_1_1_focus": "center",
+            "image_1_1_custom_focus": "@lg center @xl bottom",
+            "imagen_1_2_auto_focus": true,
+            "image_1_2_focus": "center",
+            "image_1_2_custom_focus": "@lg center @xl bottom",
+            "imagen_2_1_auto_focus": true,
+            "image_2_1_focus": "center",
+            "image_2_1_custom_focus": "@lg center @xl bottom",
+            "imagen_2_2_auto_focus": true,
+            "image_2_2_focus": "center",
+            "image_2_2_custom_focus": "@md 250x250 @lg center @xl 50px50p",
             "article": "pleasure-lab/sexual-playing-adult-sex-games",
+            "imagen_article_auto_focus": true,
+            "image_article_focus": "center",
+            "image_article_custom_focus": "@lg center @xl bottom",
+            "background_color": "",
+            "background_shade": "",
             "cta_label": "#",
             "cta_link": ""
           }
@@ -648,7 +858,10 @@
       "settings": {
         "section_title": "#",
         "section_title_tag": "h2",
-        "section_title_size": 2
+        "section_title_size": 2,
+        "columns_row": "",
+        "background_color": "",
+        "background_shade": ""
       }
     },
     "featured_collection_AHDTiU": {

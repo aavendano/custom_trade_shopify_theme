@@ -367,85 +367,32 @@
       }
     },
     "multicolumn_2x2_rMUj4F": {
-      "type": "multicolumn-2x2",
+      "type": "aa-multicolumn",
       "blocks": {
         "column_Ni4CNE": {
           "type": "column",
           "name": "Col Sex Toys For Women",
           "settings": {
-            "article": "",
-            "cloudinary_id": "",
-            "cloudinary_id_2": "",
-            "cloudinary_id_3": "",
-            "cloudinary_id_4": "",
-            "image": "shopify://shop_images/satisfyer-pro-2-classic-blossom-playlovetoys-197615_cwunx6_miafqn.png",
-            "image_2": "shopify://shop_images/lelo-lelo-gigi-2-playlovetoys-782550_xs2sd6_e_background_removal_e_dropshadow_azimuth_220_elevation_60_spread_20_b_rgb_FFFFFF_f_png_lxcbbh.png",
-            "image_3": "shopify://shop_images/JE205PR_k8n86v_s85eds.png",
-            "image_4": "shopify://shop_images/JE601FS_vmijzy_vgamcs.png",
-            "image_gap": 16,
-            "image_margin": 0,
-            "image_padding": 16,
-            "title": "Adult Toys for Women",
-            "text": "",
-            "link_label": "",
-            "link": "shopify://collections/sex-toys-for-women"
+            "article": ""
           }
         },
         "column_YWGbkU": {
           "type": "column",
           "settings": {
-            "article": "",
-            "cloudinary_id": "",
-            "cloudinary_id_2": "",
-            "cloudinary_id_3": "",
-            "cloudinary_id_4": "",
-            "image": "shopify://shop_images/18608_w5s0wl_c_crop_ar_1_1_ftjr9e.jpg",
-            "image_gap": 16,
-            "image_margin": 0,
-            "image_padding": 16,
-            "title": "Adult Toys For Couples",
-            "text": "",
-            "link_label": "",
-            "link": "shopify://collections/sex-toys-for-couples"
+            "article": ""
           }
         },
         "column_HdJyF6": {
           "type": "column",
           "name": "Col Sex Toys for men",
           "settings": {
-            "article": "",
-            "cloudinary_id": "",
-            "cloudinary_id_2": "",
-            "cloudinary_id_3": "",
-            "cloudinary_id_4": "",
-            "image": "shopify://shop_images/Tenga_Flip_Hole_Male_Mastubator_vs2keg.png",
-            "image_2": "shopify://shop_images/Dorcel_Hydro_Pump_Penis_Pump_apoa9t.png",
-            "image_3": "shopify://shop_images/Power_Cock_Ring_-_Satisfyer_igtqai.png",
-            "image_4": "shopify://shop_images/kiiroo-feel-britney-stroker-keon-combo-set-playlovetoys-596758_1_jsnfku_pwk0yn.png",
-            "image_gap": 16,
-            "image_margin": 0,
-            "image_padding": 16,
-            "title": "Adult Toys For Men",
-            "text": "",
-            "link_label": "",
-            "link": "shopify://collections/sex-toys-for-men"
+            "article": ""
           }
         },
         "column_P8WrLm": {
           "type": "column",
           "settings": {
-            "article": "sexual-wellness/intimate-toys-and-sex-toys",
-            "cloudinary_id": "",
-            "cloudinary_id_2": "",
-            "cloudinary_id_3": "",
-            "cloudinary_id_4": "",
-            "image_gap": 16,
-            "image_margin": 0,
-            "image_padding": 16,
-            "title": "Why Play Love With Adult Toys",
-            "text": "<p>Let's explore a fun journey of self-discovery with sex toys! Discover why playing is crucial for wellness and find your perfect intimate toy!</p>",
-            "link_label": "Continue Reading",
-            "link": "shopify://blogs/sexual-wellness/intimate-toys-and-sex-toys"
+            "article": "sexual-wellness/intimate-toys-and-sex-toys"
           }
         }
       },
@@ -457,96 +404,33 @@
       ],
       "custom_css": [],
       "name": "Multicolumn-2x2",
-      "settings": {
-        "title": "",
-        "heading_size": "h1",
-        "image_width": "full",
-        "image_ratio": "square",
-        "button_label": "",
-        "button_link": "",
-        "columns_desktop": 4,
-        "column_alignment": "center",
-        "background_style": "primary",
-        "color_scheme": "scheme-3",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
+      "settings": {}
     },
     "multicolumn_2x2_KapmK6": {
-      "type": "multicolumn-2x2",
+      "type": "aa-multicolumn",
       "blocks": {
         "column_cgaxYg": {
           "type": "column",
           "settings": {
-            "article": "",
-            "cloudinary_id": "",
-            "cloudinary_id_2": "",
-            "cloudinary_id_3": "",
-            "cloudinary_id_4": "",
-            "image": "shopify://shop_images/banner_ligerie-Photoroom-Photoroom_1.webp",
-            "image_gap": 16,
-            "image_margin": 0,
-            "image_padding": 16,
-            "title": "Sexy Lingerie",
-            "text": "",
-            "link_label": "",
-            "link": "shopify://collections/sexy-lingerie"
+            "article": ""
           }
         },
         "column_ieqFMj": {
           "type": "column",
           "settings": {
-            "article": "",
-            "cloudinary_id": "",
-            "cloudinary_id_2": "",
-            "cloudinary_id_3": "",
-            "cloudinary_id_4": "",
-            "image": "shopify://shop_images/deals_under_30-Photoroom.webp",
-            "image_gap": 16,
-            "image_margin": 0,
-            "image_padding": 16,
-            "title": "",
-            "text": "",
-            "link_label": "",
-            "link": "/collections/all?filter.v.availability=1&filter.v.price.gte=&filter.v.price.lte=30&sort_by=price-descending"
+            "article": ""
           }
         },
         "column_YNUk4N": {
           "type": "column",
           "settings": {
-            "article": "",
-            "cloudinary_id": "",
-            "cloudinary_id_2": "",
-            "cloudinary_id_3": "",
-            "cloudinary_id_4": "",
-            "image": "shopify://shop_images/deals_under_50-Photoroom.webp",
-            "image_gap": 16,
-            "image_margin": 0,
-            "image_padding": 16,
-            "title": "",
-            "text": "",
-            "link_label": "",
-            "link": "/collections/all?filter.v.availability=1&filter.v.price.gte=&filter.v.price.lte=50&sort_by=price-descending"
+            "article": ""
           }
         },
         "column_xkpdBA": {
           "type": "column",
           "settings": {
-            "article": "",
-            "cloudinary_id": "",
-            "cloudinary_id_2": "",
-            "cloudinary_id_3": "",
-            "cloudinary_id_4": "",
-            "image": "shopify://shop_images/deals_under_100-Photoroom.webp",
-            "image_gap": 16,
-            "image_margin": 0,
-            "image_padding": 16,
-            "title": "",
-            "text": "",
-            "link_label": "",
-            "link": "/collections/all?filter.v.availability=1&filter.v.price.gte=&filter.v.price.lte=100.00&sort_by=price-descending"
+            "article": ""
           }
         }
       },
@@ -557,22 +441,7 @@
         "column_xkpdBA"
       ],
       "name": "Multicolumn-2x2",
-      "settings": {
-        "title": "",
-        "heading_size": "h1",
-        "image_width": "full",
-        "image_ratio": "square",
-        "button_label": "",
-        "button_link": "",
-        "columns_desktop": 4,
-        "column_alignment": "center",
-        "background_style": "primary",
-        "color_scheme": "scheme-3",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
+      "settings": {}
     },
     "collection_list": {
       "type": "collection-list",
@@ -962,74 +831,30 @@
       }
     },
     "multicolumn_2x2_QnEPzH": {
-      "type": "multicolumn-2x2",
+      "type": "aa-multicolumn",
       "blocks": {
         "column_NMnBUc": {
           "type": "column",
           "settings": {
-            "article": "pleasure-lab/beginner-guide-adult-toys",
-            "cloudinary_id": "",
-            "cloudinary_id_2": "",
-            "cloudinary_id_3": "",
-            "cloudinary_id_4": "",
-            "image_gap": 16,
-            "image_margin": 0,
-            "image_padding": 0,
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_label": "",
-            "link": ""
+            "article": "pleasure-lab/beginner-guide-adult-toys"
           }
         },
         "column_w3iQGy": {
           "type": "column",
           "settings": {
-            "article": "sex-wellness/exploring-sexual-wellness-a-comprehensive-guide-to-intimate-health",
-            "cloudinary_id": "",
-            "cloudinary_id_2": "",
-            "cloudinary_id_3": "",
-            "cloudinary_id_4": "",
-            "image_gap": 16,
-            "image_margin": 0,
-            "image_padding": 0,
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_label": "",
-            "link": ""
+            "article": "sex-wellness/exploring-sexual-wellness-a-comprehensive-guide-to-intimate-health"
           }
         },
         "column_fpqVPT": {
           "type": "column",
           "settings": {
-            "article": "sex-wellness/new-tendencies-on-sex-toys-for-women",
-            "cloudinary_id": "",
-            "cloudinary_id_2": "",
-            "cloudinary_id_3": "",
-            "cloudinary_id_4": "",
-            "image_gap": 16,
-            "image_margin": 0,
-            "image_padding": 0,
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_label": "",
-            "link": ""
+            "article": "sex-wellness/new-tendencies-on-sex-toys-for-women"
           }
         },
         "column_gQ3aca": {
           "type": "column",
           "settings": {
-            "article": "pleasure-lab/sexual-playing-adult-sex-games",
-            "cloudinary_id": "",
-            "cloudinary_id_2": "",
-            "cloudinary_id_3": "",
-            "cloudinary_id_4": "",
-            "image_gap": 16,
-            "image_margin": 0,
-            "image_padding": 0,
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_label": "",
-            "link": ""
+            "article": "pleasure-lab/sexual-playing-adult-sex-games"
           }
         }
       },
@@ -1040,22 +865,7 @@
         "column_gQ3aca"
       ],
       "name": "Blog Articles",
-      "settings": {
-        "title": "<strong>Sex-Ed</strong>",
-        "heading_size": "h1",
-        "image_width": "full",
-        "image_ratio": "adapt",
-        "button_label": "",
-        "button_link": "",
-        "columns_desktop": 4,
-        "column_alignment": "center",
-        "background_style": "primary",
-        "color_scheme": "scheme-1",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
+      "settings": {}
     },
     "featured_collection_AHDTiU": {
       "type": "featured-collection",

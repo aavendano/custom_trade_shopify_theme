@@ -1,0 +1,329 @@
+{% liquid
+  assign image = block.settings.image
+  assign image_url = image | image_url | split: '?' | first | replace: '//asgiti-0w.myshopify.com', '' | replace: '//cdn.shopify.com/s/files/1/0603/8198/6891/', '/cdn/shop/' | replace: '//playlovetoys.ca', ''
+%}
+
+{% if block.settings.critical_image %}
+  <twic-picture
+    src="{{ image_url }}"
+    class="{{ class }}"
+    alt="{{ block.settings.alt | default: image.alt }}"
+    {% if block.settings.anchor %}
+      anchor="{{ block.settings.anchor }}"
+    {% endif %}
+    crossorigin="{{ block.settings.crossorigin | default: "anonymous"}}"
+    {% if block.settings.eager %}
+      eager="true"
+      fetchpriority="high"
+    {% else %}
+      fetchpriority="auto"
+    {% endif %}
+    focus="{{ block.settings.focus | default: "auto" }}"
+    {% if block.settings.id != '' %}
+      id="{{ block.settings.id }}"
+    {% endif %}
+    mode="{{ block.settings.mode | default: "contain" }}"
+    position="{{ block.settings.position | default: "center" }}"
+    {% if block.settings.transform != '' %}
+      preTransform="{{ block.settings.transform | default: "output=auto"}}"
+    {% endif %}
+    ratio="{{ block.settings.ratio | default: "none" }}"
+    refit="{{ block.settings.refit | default: "false"  }}"
+    {% if block.settings.role != '' %}
+      role="{{ block.settings.role }}"
+    {% endif %}
+    {% if block.settings.sizes != '' %}
+      sizes="{{ block.settings.sizes }}"
+    {% endif %}
+    {% if block.settings.style != '' %}
+      style="{{ block.settings.style }}"
+    {% endif %}
+    {% if block.settings.tabindex %}
+      tabindex="{{ block.settings.tabindex }}"
+    {% endif %}
+  />
+
+{% else %}
+  <twic-img
+    src="{{ image_url }}"
+    class="b-image {{ class }}"
+    alt="{{ block.settings.alt | default: image.alt}}"
+    {% if block.settings.anchor %}
+      anchor="{{ block.settings.anchor }}"
+    {% endif %}
+    {% if block.settings.bot %}
+      bot="{{ block.settings.bot }}"
+    {% endif %}
+    crossorigin="{{ block.settings.crossorigin | default: "anonymous"}}"
+    decoding="{{ block.settings.decoding | default: "async" }}"
+    {% if block.settings.draggable %}
+      draggable="{{ block.settings.draggable }}"
+    {% endif %}
+    {% if block.settings.eager %}
+      eager="true"
+      fetchpriority="high"
+    {% else %}
+      fetchpriority="auto"
+    {% endif %}
+    focus="{{ block.settings.focus | default: "auto" }}"
+    {% if block.settings.id != '' %}
+      id="{{ block.settings.id }}"
+    {% endif %}
+    {% if block.settings.intrinsic %}
+      intrinsic="{{ block.settings.intrinsic }}"
+    {% endif %}
+    mode="{{ block.settings.mode | default: "cover" }}"
+    position="{{ block.settings.position | default: "center" }}"
+    placeholder="{{ block.settings.placeholder | default: "preview" }}"
+    {% if block.settings.transform != '' %}
+      preTransform="{{ block.settings.transform | default: "output=auto"}}"
+    {% endif %}
+    ratio="{{ block.settings.ratio | default: "1" }}"
+    referrerpolicy="{{ block.settings.referrerpolicy | default: "no-referrer" }}"
+    refit="{{ block.settings.refit | default: "false"  }}"
+    {% if block.settings.role != '' %}
+      role="{{ block.settings.role }}"
+    {% endif %}
+    step="{{ block.settings.step | default: "10" }}"
+    {% if block.settings.style != '' %}
+      style="{{ block.settings.style }}"
+    {% endif %}
+    {% if block.settings.tabindex %}
+      tabindex="{{ block.settings.tabindex }}"
+    {% endif %}
+    {% if block.settings.title %}
+      title="{{ block.settings.title }}"
+    {% endif %}
+    transition="{{ block.settings.transition | default: "fade" }}"
+    transitionDelay="{{ block.settings.transitionDelay | default: "0ms" }}"
+    transitionDuration="{{ block.settings.transitionDuration | default: "400ms" }}"
+    transitionTimingFunction="{{ block.settings.transitionTimingFunction | default: "ease" }}"
+    {% if block.settings.zoom %}
+      zoom="{{ block.settings.zoom }}"
+    {% endif %}
+  />
+{% endif %}
+
+{% schema %}
+{
+  "name": "AA Media",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "alt",
+      "label": "Alt Text",
+      "info": "Alternative text for accessibility"
+    },
+    {
+      "type": "header",
+      "content": "Display Options"
+    },
+    {
+      "type": "select",
+      "id": "mode",
+      "label": "Mode",
+      "default": "cover",
+      "options": [
+        { "label": "Cover", "value": "cover" },
+        { "label": "Contain", "value": "contain" },
+        { "label": "Scale", "value": "scale" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "ratio",
+      "label": "Aspect Ratio",
+      "default": "1",
+      "options": [
+        { "label": "Square (1:1)", "value": "1" },
+        { "label": "Portrait (3:4)", "value": "0.75" },
+        { "label": "Landscape (4:3)", "value": "1.333" },
+        { "label": "Wide (16:9)", "value": "1.777" },
+        { "label": "Ultra Wide (21:9)", "value": "2.333" },
+        { "label": "None", "value": "none" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "focus",
+      "label": "Focus",
+      "default": "auto",
+      "options": [
+        { "label": "Auto", "value": "auto" },
+        { "label": "Center", "value": "center" },
+        { "label": "Top", "value": "top" },
+        { "label": "Bottom", "value": "bottom" },
+        { "label": "Left", "value": "left" },
+        { "label": "Right", "value": "right" },
+        { "label": "Top Left", "value": "top-left" },
+        { "label": "Top Right", "value": "top-right" },
+        { "label": "Bottom Left", "value": "bottom-left" },
+        { "label": "Bottom Right", "value": "bottom-right" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "position",
+      "label": "Position",
+      "default": "center",
+      "options": [
+        { "label": "Center", "value": "center" },
+        { "label": "Top", "value": "top" },
+        { "label": "Bottom", "value": "bottom" },
+        { "label": "Left", "value": "left" },
+        { "label": "Right", "value": "right" },
+        { "label": "Top Left", "value": "top-left" },
+        { "label": "Top Right", "value": "top-right" },
+        { "label": "Bottom Left", "value": "bottom-left" },
+        { "label": "Bottom Right", "value": "bottom-right" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Performance & Loading"
+    },
+    {
+      "type": "checkbox",
+      "id": "critical_image",
+      "default": false,
+      "label": "Critical Image",
+      "info": "Enable to prioritize loading"
+    },
+    {
+      "type": "checkbox",
+      "id": "eager",
+      "default": false,
+      "label": "Eager Loading",
+      "info": "Load image immediately instead of lazy loading"
+    },
+    {
+      "type": "select",
+      "id": "placeholder",
+      "label": "Placeholder",
+      "default": "preview",
+      "options": [
+        { "label": "Preview", "value": "preview" },
+        { "label": "Main Color", "value": "maincolor" },
+        { "label": "Meancolor", "value": "meancolor" },
+        { "label": "None", "value": "none" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Animation & Transition"
+    },
+    {
+      "type": "select",
+      "id": "transition",
+      "label": "Transition Effect",
+      "default": "fade",
+      "options": [
+        { "label": "Fade", "value": "fade" },
+        { "label": "Zoom", "value": "zoom" },
+        { "label": "None", "value": "none" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "step",
+      "label": "Zoom Step",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "default": 10,
+      "unit": "%"
+    },
+    {
+      "type": "text",
+      "id": "transitionDelay",
+      "label": "Transition Delay",
+      "default": "0ms",
+      "info": "Delay before transition starts (e.g., 200ms)"
+    },
+    {
+      "type": "text",
+      "id": "transitionDuration",
+      "label": "Transition Duration",
+      "default": "400ms",
+      "info": "Duration of the transition (e.g., 300ms)"
+    },
+    {
+      "type": "select",
+      "id": "transitionTimingFunction",
+      "label": "Transition Timing",
+      "default": "ease",
+      "options": [
+        { "label": "Ease", "value": "ease" },
+        { "label": "Linear", "value": "linear" },
+        { "label": "Ease In", "value": "ease-in" },
+        { "label": "Ease Out", "value": "ease-out" },
+        { "label": "Ease In Out", "value": "ease-in-out" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Advanced Settings"
+    },
+    {
+      "type": "text",
+      "id": "transform",
+      "label": "Image Transform",
+      "info": "Custom transform operations (e.g., output=auto)"
+    },
+    {
+      "type": "text",
+      "id": "style",
+      "label": "Custom CSS",
+      "info": "Additional CSS styles"
+    },
+    {
+      "type": "text",
+      "id": "sizes",
+      "label": "Sizes Attribute",
+      "info": "Responsive image sizes (e.g., (max-width: 768px) 100vw, 50vw)"
+    },
+    {
+      "type": "checkbox",
+      "id": "intrinsic",
+      "default": false,
+      "label": "Intrinsic Sizing",
+      "info": "Use intrinsic dimensions"
+    },
+    {
+      "type": "checkbox",
+      "id": "refit",
+      "default": false,
+      "label": "Refit",
+      "info": "Allow image to be refitted"
+    },
+    {
+      "type": "checkbox",
+      "id": "zoom",
+      "default": false,
+      "label": "Enable Zoom",
+      "info": "Allow mouse/touch zoom interaction"
+    },
+    {
+      "type": "checkbox",
+      "id": "draggable",
+      "default": false,
+      "label": "Draggable",
+      "info": "Make image draggable"
+    }
+  ],
+  "presets": [
+    {
+      "name": "AA Media"
+    }
+  ]
+}
+{% endschema %}
