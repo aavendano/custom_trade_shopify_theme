@@ -1,35 +1,28 @@
-// Async Bulma bundle.
-// Loads non-critical Bulma modules after first paint using lazy stylesheet.
 
-@use "_variables";
+@use "./styles/bulma/sass/elements/button";
 
-// Remaining element helpers.
-@use "bulma/sass/utilities";
+@use "./styles/bulma/sass/elements/box";
+// @use "./styles/bulma/sass/elements/table";
+@use "./styles/bulma/sass/elements/progress";
+@use "./styles/bulma/sass/elements/notification";
+@use "./styles/bulma/sass/elements/tag";
 
-// Remaining element helpers.
-@use "bulma/sass/elements/box";
-@use "bulma/sass/elements/image";
-@use "bulma/sass/elements/table";
-@use "bulma/sass/elements/progress";
-@use "bulma/sass/elements/notification";
-@use "bulma/sass/elements/tag";
+// 3. Layouts secundarios
+@use "./styles/bulma/sass/layout/footer";
+@use "./styles/bulma/sass/layout/level";
+@use "./styles/bulma/sass/layout/media";
 
-// Layout patterns not required for first paint.
-@use "bulma/sass/layout/footer";
-@use "bulma/sass/layout/level";
-@use "bulma/sass/layout/media";
+// 4. Componentes pesados (diferidos)
+@use "./styles/bulma/sass/components/breadcrumb";
+@use "./styles/bulma/sass/components/card";
+@use "./styles/bulma/sass/components/dropdown";
+@use "./styles/bulma/sass/components/message";
 
-// Components deferred until after initial paint.
-@use "bulma/sass/components/breadcrumb";
-@use "bulma/sass/components/card";
-@use "bulma/sass/components/dropdown";
-@use "bulma/sass/components/message";
-@use "bulma/sass/components/modal";
-@use "bulma/sass/components/pagination";
-@use "bulma/sass/components/panel";
-@use "bulma/sass/components/tabs";
+@use "./styles/bulma/sass/components/pagination";
+@use "./styles/bulma/sass/components/panel";
+@use "./styles/bulma/sass/components/tabs";
+@use "./styles/bulma/sass/helpers";
+@use "./styles/bulma/sass/elements/content";
 
-// Extensions and helpers.
-@use "bulma/sass/helpers/color";
-@use "bulma/sass/helpers/spacing";
-@use "bulma/sass/helpers/visibility";
+// 6. Fuente principal
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");

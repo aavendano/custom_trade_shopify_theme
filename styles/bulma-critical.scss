@@ -1,21 +1,42 @@
-// Critical Bulma bundle.
-// Contains foundational Bulma layers that should be inlined for fast first paint.
+// ===========================================================
+// Bulma Critical Build
+// ===========================================================
+//
+// Este archivo define el CSS crítico del tema Shopify.
+// Contiene los estilos necesarios para el primer render:
+// layout, tipografía, botones, navbar, helpers y estructura base.
+//
+// Se compila mediante Gulp y se incrusta inline en el head
+// del tema Shopify como <style id="inline-critical-css">.
+//
+// Basado en la copia local de Bulma ubicada en: styles/bulma/bulma.scss
+// ===========================================================
 
-@use "_variables";
+// 1. Importar la versión personalizada de Bulma
+//    (usa tus colores, tipografía y prefijo b-)
 
-@use "bulma/sass/utilities";
-@use "bulma/sass/base";
-@use "bulma/sass/helpers";
-@use "bulma/sass/grid/columns";
-@use "bulma/sass/layout/container";
-@use "bulma/sass/layout/hero";
-@use "bulma/sass/layout/section";
-@use "bulma/sass/elements/title";
-@use "bulma/sass/elements/content";
-@use "bulma/sass/elements/button";
-@use "bulma/sass/elements/tag";
-@use "bulma/sass/elements/notification";
-@use "bulma/sass/components/navbar";
-@use "bulma/sass/components/menu";
 
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+// 2. Cargar los módulos más esenciales de Bulma
+@use "./styles/bulma/sass/utilities";
+@use "./styles/bulma/sass/base";
+@use "./styles/bulma/sass/grid/columns";
+@use "./styles/bulma/sass/layout/container";
+@use "./styles/bulma/sass/layout/hero";
+@use "./styles/bulma/sass/layout/section";
+
+// 3. Elementos fundamentales
+@use "./styles/bulma/sass/elements/title";
+
+
+// 4. Componentes mínimos para navegación o interacción básica
+@use "./styles/bulma/sass/components/navbar";
+@use "./styles/bulma/sass/components/menu";
+
+
+
+// 6. Fuente principal (coincide con la del build async)
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
+
+// ===========================================================
+// Fin del CSS crítico
+// ===========================================================

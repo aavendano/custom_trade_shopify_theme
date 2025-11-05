@@ -1,121 +1,155 @@
-const { src, dest, watch, parallel, series } = require('gulp');
-const sass = require('gulp-sass')(require('sass'));
-const purgecss = require('gulp-purgecss');
-const rename = require('gulp-rename');
-const replace = require('gulp-replace');
-const gulpif = require('gulp-if');
-const through2 = require('through2');
-const fs = require('fs');
-const path = require('path');
+// ===========================================================
+// GULPFILE — Bulma Custom Build para Shopify
+// ===========================================================
+//
+// Este flujo compila Bulma en dos fases (crítico y async),
+// aplica PurgeCSS agresivo, minifica con CSSNano y genera
+// el snippet inline para Shopify.
+//
+// -----------------------------------------------------------
 
-// Configuration
-const INLINE_BYTE_LIMIT = process.env.BULMA_INLINE_LIMIT ? parseInt(process.env.BULMA_INLINE_LIMIT) : 220 * 1024;
-const DISABLE_PURGE = process.env.BULMA_DISABLE_NAMESPACE_PURGE && process.env.BULMA_DISABLE_NAMESPACE_PURGE !== '0';
+const { src, dest, watch, parallel, series } = require("gulp");
+const sass = require("gulp-sass")(require("sass"));
+const purgecss = require("gulp-purgecss");
+const rename = require("gulp-rename");
+const gulpif = require("gulp-if");
+const through2 = require("through2");
+const postcss = require("gulp-postcss");
+const cssnano = require("cssnano");
+const fs = require("fs");
+
+// ===========================================================
+// Configuración general
+// ===========================================================
+
+const INLINE_BYTE_LIMIT = 120 * 1024; // Máximo para inline CSS (~120 KB)
+const DISABLE_PURGE = process.env.BULMA_DISABLE_NAMESPACE_PURGE === "1";
 
 const paths = {
   styles: {
-    critical: 'styles/bulma-critical.scss',
-    async: 'styles/bulma-async.scss',
-    watch: 'styles/**/*.scss'
+    critical: "styles/bulma-critical.scss",
+    async: "styles/bulma-async.scss",
+    watch: "styles/**/*.scss",
   },
   output: {
-    assets: 'assets',
-    snippets: 'snippets'
+    assets: "assets",
+    snippets: "snippets",
   },
   content: [
-    'layout/**/*.liquid',
-    'sections/**/*.liquid', 
-    'snippets/**/*.liquid',
-    'templates/**/*.liquid',
-    'templates/**/*.json',
-    'blocks/**/*.liquid',
-    'assets/**/*.js',
-    'assets/**/*.ts'
-  ]
+    "layout/**/*.liquid",
+    "sections/**/*.liquid",
+    "snippets/**/*.liquid",
+    "templates/**/*.liquid",
+    "templates/**/*.json",
+    "blocks/**/*.liquid",
+    "assets/**/*.js",
+  ],
 };
 
-// Load namespace safelist
-function loadSafelist() {
-  const safelistPath = process.env.BULMA_NAMESPACE_SAFELIST || 'config/namespace-safelist.json';
-  try {
-    const data = JSON.parse(fs.readFileSync(safelistPath, 'utf8'));
-    return Array.isArray(data) ? data : [];
-  } catch {
-    return [];
-  }
-}
+// ===========================================================
+// PurgeCSS agresivo
+// ===========================================================
 
-// PurgeCSS configuration
 const purgeConfig = {
   content: paths.content,
-  defaultExtractor: content => content.match(/\b(b-[A-Za-z0-9_-]+)/g) || [],
+  defaultExtractor: (content) => content.match(/\b(b-[A-Za-z0-9_-]+)/g) || [],
   safelist: {
-    standard: ['html', 'body', ...loadSafelist()],
-    greedy: [/^(?!.*\bb-).*/]
-  }
+    standard: [
+      "html",
+      "body",
+      "is-active",
+      "is-hidden",
+      "is-loading",
+      "has-text-centered",
+      "has-text-white",
+      "has-background-primary",
+      "has-background-dark",
+      "b-button",
+      "b-navbar",
+      "b-tag",
+      "b-notification",
+      "b-modal",
+      "b-modal-background",
+      "b-modal-content",
+    ],
+    greedy: [/^b-/, /^is-/, /^has-/],
+  },
 };
 
-// Sass configuration
+// ===========================================================
+// Configuración de Sass
+// ===========================================================
+
 const sassConfig = {
-  outputStyle: 'compressed',
-  includePaths: ['node_modules']
+  outputStyle: "compressed",
+  includePaths: ["styles/bulma"],
 };
 
-// Create inline snippet transform
+// ===========================================================
+// Snippet inline: genera <style> + <link preload>
+// ===========================================================
+
 function createInlineSnippet() {
-  return through2.obj(function(file, enc, cb) {
+  return through2.obj(function (file, enc, cb) {
     if (file.isNull()) return cb(null, file);
-    
+
     let css = file.contents.toString();
-    let trailingMarkup = '';
-    
-    // Handle size limit
+    let trailingMarkup = "";
+
     if (css.length > INLINE_BYTE_LIMIT) {
-      const safeCutoff = css.lastIndexOf('}', INLINE_BYTE_LIMIT);
-      const cutoffIndex = safeCutoff === -1 ? INLINE_BYTE_LIMIT : safeCutoff + 1;
-      css = css.slice(0, cutoffIndex);
-      
+      const cutoff = css.lastIndexOf("}", INLINE_BYTE_LIMIT);
+      const safeCut = cutoff === -1 ? INLINE_BYTE_LIMIT : cutoff + 1;
+      css = css.slice(0, safeCut);
+
       const assetUrl = `{{ 'aa-bulma-critical.css' | asset_url }}`;
       trailingMarkup = `\n<link rel="preload" href="${assetUrl}" as="style">\n<link rel="stylesheet" href="${assetUrl}">\n<noscript><link rel="stylesheet" href="${assetUrl}"></noscript>`;
     }
-    
-    const content = `{% comment %} Auto-generated by gulpfile.js. Do not edit manually. {% endcomment %}\n<style id="inline-critical-css">${css}</style>${trailingMarkup}\n`;
-    
+
+    const content = `{% comment %} Auto-generado por Gulp. No editar. {% endcomment %}\n<style id="inline-critical-css">${css}</style>${trailingMarkup}\n`;
     file.contents = Buffer.from(content);
-    file.extname = '.liquid';
-    
+    file.extname = ".liquid";
+
     cb(null, file);
   });
 }
 
-// Build critical CSS
+// ===========================================================
+// Tareas de build
+// ===========================================================
+
+// 🔹 Build Critical
 function buildCritical() {
   return src(paths.styles.critical)
-    .pipe(sass(sassConfig).on('error', sass.logError))
+    .pipe(sass(sassConfig).on("error", sass.logError))
     .pipe(gulpif(!DISABLE_PURGE, purgecss(purgeConfig)))
-    .pipe(rename('aa-bulma-critical.css'))
+    .pipe(postcss([cssnano()])) // minificación automática
+    .pipe(rename("aa-bulma-critical.css"))
     .pipe(dest(paths.output.assets))
     .pipe(createInlineSnippet())
-    .pipe(rename('inline-critical-css.liquid'))
+    .pipe(rename("inline-critical-css.liquid"))
     .pipe(dest(paths.output.snippets));
 }
 
-// Build async CSS
+// 🔹 Build Async
 function buildAsync() {
   return src(paths.styles.async)
-    .pipe(sass(sassConfig).on('error', sass.logError))
+    .pipe(sass(sassConfig).on("error", sass.logError))
     .pipe(gulpif(!DISABLE_PURGE, purgecss(purgeConfig)))
-    .pipe(rename('aa-bulma-async.css'))
+    .pipe(postcss([cssnano()])) // minificación automática
+    .pipe(rename("aa-bulma-async.css"))
     .pipe(dest(paths.output.assets));
 }
 
-// Watch task
+// 🔹 Watch
 function watchFiles() {
-  console.log('Watching Bulma styles for changes...');
+  console.log("👀 Observando cambios en estilos Bulma...");
   watch(paths.styles.watch, parallel(buildCritical, buildAsync));
 }
 
-// Export tasks
+// ===========================================================
+// Exportar tareas
+// ===========================================================
+
 exports.critical = buildCritical;
 exports.async = buildAsync;
 exports.build = parallel(buildCritical, buildAsync);

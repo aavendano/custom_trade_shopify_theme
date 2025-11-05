@@ -5,7 +5,6 @@
 <!doctype html>
 <html class="js" lang="{{ request.locale.iso_code }}">
   <head>
-   
     <!-- Added by AVADA SEO Suite -->
     {% include 'avada-seo' %}
     <!-- /Added by AVADA SEO Suite -->
@@ -14,8 +13,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="theme-color" content="">
 
-      <link rel="canonical" href="{{ canonical_url }}">
-
+    <link rel="canonical" href="{{ canonical_url }}">
 
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/x-icon" href="{{ 'playlovetoys_favicon.ico' | asset_url }}">
@@ -28,19 +26,15 @@
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endunless -%}
 
-
-      <title>
-        {{ page_title }}
-        {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
-        {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
-        {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
-      </title>
-
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
 
     {% if page_description %}
-
-        <meta name="description" content="{{ page_description | escape }}">
-
+      <meta name="description" content="{{ page_description | escape }}">
     {% endif %}
 
     {% render 'meta-tags' %}
@@ -354,11 +348,6 @@
       }
     </script>
 
-    <!-- IMPORT GOOGLE FONTS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-
-    {{ 'aa-bulma.css' | asset_url | stylesheet_tag }}
     {% render 'inline-critical-css' %}
     <link
       rel="preload"
@@ -369,19 +358,27 @@
     <noscript>
       <link rel="stylesheet" href="{{ 'aa-bulma-async.css' | asset_url }}">
     </noscript>
-    {% comment %}
-    <link
-      rel="stylesheet"
-      href="{{ 'aa-bulma-overrides.css' | asset_url }}"
-      media="print"
-      onload="this.media='all'"
-    >
-      {{ 'aa-bulma-custom-overrides.css' | asset_url | stylesheet_tag }}
-      
-      {% endcomment %}
-      {{ 'application.css' | asset_url | stylesheet_tag }}
+    {% style %}
+      :root {
+        --bulma-primary-h: 268deg;
+        --bulma-primary-s: 41%;
+        --bulma-primary-l: 33%;
+        --bulma-link-h: 346deg;
+        --bulma-link-s: 89%;
+        --bulma-link-l: 61%;
+        --bulma-info-h: 190deg;
+        --bulma-info-s: 84%;
+        --bulma-info-l: 29%;
+        --bulma-body-background-color: #f4f4f4;
+      }
+    {% endstyle %}
 
-    {{ 'custom-style.css' | asset_url | stylesheet_tag }}
+    {{ 'application.css' | asset_url | stylesheet_tag }}
+
+    {{ 'aa-custom-style.css' | asset_url | stylesheet_tag }}
+    <!-- IMPORT GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 
     <!-- FAQ METADATA COLLECTIONS -->
     {% if collection.metafields.custom.faqs %}
@@ -389,11 +386,9 @@
         {{ collection.metafields.custom.faqs }}
       </script>
     {% endif %}
-    <!-- STYLESHEETS -->
-    {{ 'base.css' | asset_url | stylesheet_tag }}
+
     <!-- BULMA -->
     {%- comment -%} Critical Bulma CSS is inlined; async bundle loads above. {%- endcomment -%}
-
 
     <!-- FAQ Article COLLECTIONS -->
     {% comment %} Detectar si estamos en una página de artículo {% endcomment %}
@@ -401,16 +396,6 @@
       <script type="application/ld+json">
         {{ article.metafields.custom.json_faqs }}
       </script>
-
-      {% comment %} Para páginas de blog con lista de artículos {% endcomment %}
-    {% elsif blog and blog.articles.size > 0 %}
-      {% for article in blog.articles %}
-        {% if article.metafields.custom.json_faqs %}
-          <script type="application/ld+json">
-            {{ article.metafields.custom.json_faqs }}
-          </script>
-        {% endif %}
-      {% endfor %}
     {% endif %}
 
     {% comment %}

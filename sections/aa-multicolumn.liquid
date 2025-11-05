@@ -49,9 +49,9 @@
               {%- if block.settings.article != blank %}
                 {% assign article = block.settings.article %}
                 <div class="b-card {{ card_background_color_class }}" {{ block.shopify_attributes }}>
-                  <div class="b-card-image">
+                  <div class="">
                     {%- if article.image != blank -%}
-                      <div class="b-block">
+                      <div class="b-card-image">
                         {% liquid
                           assign focus = 'auto'
                           if block.settings.imagen_article_auto_focus == false
@@ -62,9 +62,9 @@
                             endif
                           endif
                         %}
-                        <figure class="b-image b-is-square">
-                          {% render 'twic-img', image: article.image, width: 800, eager: true, focus: focus %}
-                        </figure>
+                        <div class="b-image b-is-16by9">
+                          {% render 'twic-img', image: article.image, eager: true, focus: focus %}
+                        </div>
                       </div>
                     {%- endif -%}
                   </div>
@@ -100,9 +100,9 @@
                         endif
                       endif
                     %}
-                    <figure class="b-image b-is-square">
-                      {% render 'twic-img', image: block.settings.image_1_1, width: 400, focus: focus %}
-                    </figure>
+                    <div class="b-image">
+                      {% render 'twic-img', image: block.settings.image_1_1, focus: focus %}
+                    </div>
                   {%- endif -%}
                 </div>
                 <div class="b-card-footer">
@@ -148,8 +148,8 @@
                             endif
                           endif
                         %}
-                        <figure class="b-image b-is-square">
-                          {% render 'twic-img', image: block.settings.image_1_2, width: 400, focus: focus_12 %}
+                        <figure class="b-image">
+                          {% render 'twic-img', image: block.settings.image_1_2, focus: focus_12 %}
                         </figure>
                       {% endif %}
                     </div>
