@@ -374,6 +374,7 @@
     {% endstyle %}
 
     {{ 'application.css' | asset_url | stylesheet_tag }}
+    {{ 'mobile-menu-fix.css' | asset_url | stylesheet_tag }}
 
     {{ 'aa-custom-style.css' | asset_url | stylesheet_tag }}
     <!-- IMPORT GOOGLE FONTS -->
@@ -495,6 +496,8 @@
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+
+    <script src="{{ 'mobile-menu-fix.js' | asset_url }}" defer="defer"></script>
 
     <script>
       document.addEventListener('alpine:init', () => {
