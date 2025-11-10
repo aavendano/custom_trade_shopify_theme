@@ -25,9 +25,6 @@
   .multicolumn-card__link:hover {
     text-decoration: none;
   }
-
-
-
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
       padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
@@ -122,15 +119,20 @@
                     >
                       {{
                         article.image
-                        | image_url: width: 800
-                        | image_tag: class: 'multicolumn-grid__image', loading: 'lazy'
+                        | image_url: width: 600
+                        | image_tag:
+                          widths: '50, 100,150, 200, 250, 300, 350, 400, 450, 500, 550, 600',
+                          class: 'multicolumn-grid__image',
+                          preload: true,
+                          pad_color: '#ffffff',
+                          loading: 'lazy'
                       }}
                     </div>
                   </div>
                 {%- endif -%}
               {%- else -%}
                 {%- assign has_images = false -%}
-                {%- assign has_cloudinary = false -%}
+
                 {%- if block.settings.image != blank
                   or block.settings.image_2 != blank
                   or block.settings.image_3 != blank
@@ -151,80 +153,64 @@
                     {%- assign image_count = image_count | plus: 1 -%}
                   {%- endif -%}
                 {%- endif -%}
-                {%- if block.settings.cloudinary_id != blank
-                  or block.settings.cloudinary_id_2 != blank
-                  or block.settings.cloudinary_id_3 != blank
-                  or block.settings.cloudinary_id_4 != blank
-                -%}
-                  {%- assign has_cloudinary = true -%}
-                  {%- assign cloudinary_count = 0 -%}
-                  {%- if block.settings.cloudinary_id != blank -%}
-                    {%- assign cloudinary_count = cloudinary_count | plus: 1 -%}
-                  {%- endif -%}
-                  {%- if block.settings.cloudinary_id_2 != blank -%}
-                    {%- assign cloudinary_count = cloudinary_count | plus: 1 -%}
-                  {%- endif -%}
-                  {%- if block.settings.cloudinary_id_3 != blank -%}
-                    {%- assign cloudinary_count = cloudinary_count | plus: 1 -%}
-                  {%- endif -%}
-                  {%- if block.settings.cloudinary_id_4 != blank -%}
-                    {%- assign cloudinary_count = cloudinary_count | plus: 1 -%}
-                  {%- endif -%}
-                {%- endif -%}
 
-                {%- if has_cloudinary -%}
-                  <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--{{ section.settings.image_width }}-width{% if section.settings.image_width != 'full' %} multicolumn-card-spacing{% endif %}">
-                    <div
-                      class="multicolumn-image-grid multicolumn-image-grid--{{ cloudinary_count }}"
-                      style="--grid-gap: {{ block.settings.image_gap | default: 16 }}px; --grid-margin: {{ block.settings.image_margin | default: 0 }}px; --grid-padding: {{ block.settings.image_padding | default: 0 }}px;"
-                    >
-                      {%- if block.settings.cloudinary_id != blank -%}
-                        {% render 'aa-cloudinary-image',
-                          public_id: block.settings.cloudinary_id,
-                          class: 'multicolumn-grid__image',
-                          loading: 'lazy'
-                        %}
-                      {%- endif -%}
-                      {%- if block.settings.cloudinary_id_2 != blank -%}
-                        {% render 'aa-cloudinary-image',
-                          public_id: block.settings.cloudinary_id_2,
-                          class: 'multicolumn-grid__image',
-                          loading: 'lazy'
-                        %}
-                      {%- endif -%}
-                      {%- if block.settings.cloudinary_id_3 != blank -%}
-                        {% render 'aa-cloudinary-image',
-                          public_id: block.settings.cloudinary_id_3,
-                          class: 'multicolumn-grid__image',
-                          loading: 'lazy'
-                        %}
-                      {%- endif -%}
-                      {%- if block.settings.cloudinary_id_4 != blank -%}
-                        {% render 'aa-cloudinary-image',
-                          public_id: block.settings.cloudinary_id_4,
-                          class: 'multicolumn-grid__image',
-                          loading: 'lazy'
-                        %}
-                      {%- endif -%}
-                    </div>
-                  </div>
-                {%- elsif has_images -%}
+                {%- if has_images -%}
                   <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--{{ section.settings.image_width }}-width{% if section.settings.image_width != 'full' %} multicolumn-card-spacing{% endif %}">
                     <div
                       class="multicolumn-image-grid multicolumn-image-grid--{{ image_count }}"
                       style="--grid-gap: {{ block.settings.image_gap | default: 16 }}px; --grid-margin: {{ block.settings.image_margin | default: 0 }}px; --grid-padding: {{ block.settings.image_padding | default: 0 }}px;"
                     >
                       {%- if block.settings.image != blank -%}
-                        {% render 'twicpics-image', image: block.settings.image, class: 'multicolumn-grid__image' %}
+                        {{
+                          block.settings.image
+                          | image_url: width: 600
+                          | image_tag:
+                            widths: '50, 100,150, 200, 250, 300, 350, 400, 450, 500, 550, 600',
+                            class: 'multicolumn-grid__image',
+                            preload: true,
+                            pad_color: '#ffffff',
+                            loading: 'eager'
+                        }}
+
+                        {% comment %}
+                          {% render 'twicpics-image', image: block.settings.image, class: 'multicolumn-grid__image' %}
+                        {% endcomment %}
                       {%- endif -%}
                       {%- if block.settings.image_2 != blank -%}
-                        {% render 'twicpics-image', image: block.settings.image_2, class: 'multicolumn-grid__image' %}
+                        {{
+                          block.settings.image_2
+                          | image_url: width: 600
+                          | image_tag:
+                            widths: '50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600',
+                            class: 'multicolumn-grid__image',
+                            preload: true,
+                            pad_color: '#ffffff',
+                            loading: 'eager'
+                        }}
                       {%- endif -%}
                       {%- if block.settings.image_3 != blank -%}
-                        {% render 'twicpics-image', image: block.settings.image_3, class: 'multicolumn-grid__image' %}
+                        {{
+                          block.settings.image_3
+                          | image_url: width: 600
+                          | image_tag:
+                            widths: '50, 100,150, 200, 250, 300, 350, 400, 450, 500, 550, 600',
+                            class: 'multicolumn-grid__image',
+                            preload: true,
+                            pad_color: '#ffffff',
+                            loading: 'eager'
+                        }}
                       {%- endif -%}
                       {%- if block.settings.image_4 != blank -%}
-                        {% render 'twicpics-image', image: block.settings.image_4, class: 'multicolumn-grid__image' %}
+                        {{
+                          block.settings.image_4
+                          | image_url: width: 600
+                          | image_tag:
+                            widths: '50, 100,150, 200, 250, 300, 350, 400, 450, 500, 550, 600',
+                            class: 'multicolumn-grid__image',
+                            preload: true,
+                            pad_color: '#ffffff',
+                            loading: 'eager'
+                        }}
                       {%- endif -%}
                     </div>
                   </div>
@@ -643,7 +629,7 @@
   "presets": [
     {
       "name": "Multicolumn-2x2",
-         "category": "Layout",
+      "category": "Layout",
       "blocks": [
         {
           "type": "column"

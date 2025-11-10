@@ -145,7 +145,7 @@
               "sex-toys-for-women",
               "gift-sets",
               "lubricant",
-              "pheromones-1"
+              "pheromones"
             ],
             "columns_desktop": 6,
             "columns_tablet": 2,
@@ -244,7 +244,7 @@
         "featured_collection_9qBR9t": {
           "type": "featured_collection",
           "settings": {
-            "collection": "vibrating-wand-1"
+            "collection": "magic-wand-vibrators"
           }
         }
       },
@@ -592,81 +592,6 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
-    },
-    "custom_section_CW6FQW": {
-      "type": "custom_section",
-      "blocks": {
-        "blog_post_display_DKDjyd": {
-          "type": "blog_post_display",
-          "name": "Blog Post Display",
-          "settings": {
-            "article": "sex-toys-artisans/adult-store-essentials",
-            "article_handle": "",
-            "show_image": true,
-            "show_meta": true,
-            "show_date": true,
-            "show_author": true,
-            "show_content": true,
-            "show_button": false,
-            "button_text": "Read more",
-            "date_format": "%B %d, %Y",
-            "width": 100,
-            "padding": 24,
-            "spacing": 20,
-            "border_radius": 8,
-            "image_aspect_ratio": "16/9",
-            "image_border_radius": 8,
-            "background_color": "#ffffff",
-            "title_color": "#000000",
-            "title_hover_color": "#555555",
-            "meta_color": "#777777",
-            "content_color": "#333333",
-            "button_color": "#000000",
-            "button_hover_color": "#555555",
-            "title_font_size": 28,
-            "title_font_weight": 700,
-            "meta_font_size": 14,
-            "content_font_size": 16,
-            "button_font_size": 16
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "blog_post_display_DKDjyd"
-      ],
-      "name": "custom section",
-      "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 12,
-        "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "color_scheme": "",
-        "background_media": "none",
-        "background_color": "#ffffff",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "content_padding_top": 0,
-        "content_padding_bottom": 0,
-        "content_padding_left": 0,
-        "content_padding_right": 0,
-        "custom_class": "custom-section-class"
-      }
     }
   },
   "order": [
@@ -677,7 +602,6 @@
     "collection_list_grQGBK",
     "multicolumn_ANCJWk",
     "collection_list_pjPpBm",
-    "featured_collection_fiV6Ui",
-    "custom_section_CW6FQW"
+    "featured_collection_fiV6Ui"
   ]
 }

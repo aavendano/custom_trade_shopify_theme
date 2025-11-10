@@ -216,9 +216,9 @@
         "heading_size": "h1",
         "products_to_show": 5,
         "columns_desktop": 5,
-        "columns_mobile": "2",
+        "columns_mobile": "1",
         "color_scheme": "scheme-1",
-        "image_ratio": "square",
+        "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": false,
         "show_vendor": true,
@@ -227,81 +227,81 @@
         "padding_bottom": 20
       }
     },
-    "collection_list_PqLNKp": {
+    "collection_list_TpPUCa": {
       "type": "collection-list",
       "blocks": {
-        "featured_collection_4y73Lm": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "romance"
-          }
-        },
-        "featured_collection_cGWfGP": {
+        "featured_collection_dVpdH3": {
           "type": "featured_collection",
           "settings": {
             "collection": "sex-toys-for-women"
           }
         },
-        "featured_collection_JntBde": {
+        "featured_collection_cTcMHX": {
           "type": "featured_collection",
           "settings": {
-            "collection": "massage-relaxation"
+            "collection": "sex-toys-for-couples"
           }
         },
-        "featured_collection_3q3ykm": {
+        "featured_collection_YXBcBy": {
           "type": "featured_collection",
           "settings": {
-            "collection": "clitoral-stimulators"
+            "collection": "sex-toys-for-men"
           }
         },
-        "featured_collection_G7dgX6": {
+        "featured_collection_qtPeXF": {
           "type": "featured_collection",
           "settings": {
-            "collection": "pheromones-1"
+            "collection": "lubricant"
           }
         },
-        "featured_collection_CaY8TT": {
+        "featured_collection_mkCayE": {
           "type": "featured_collection",
           "settings": {
-            "collection": "g-spot-stimulation"
+            "collection": "erotic-games"
+          }
+        },
+        "featured_collection_KyzH4g": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "gift-sets"
           }
         }
       },
       "block_order": [
-        "featured_collection_4y73Lm",
-        "featured_collection_cGWfGP",
-        "featured_collection_JntBde",
-        "featured_collection_3q3ykm",
-        "featured_collection_G7dgX6",
-        "featured_collection_CaY8TT"
+        "featured_collection_dVpdH3",
+        "featured_collection_cTcMHX",
+        "featured_collection_YXBcBy",
+        "featured_collection_qtPeXF",
+        "featured_collection_mkCayE",
+        "featured_collection_KyzH4g"
       ],
-      "name": "t:sections.collection-list.presets.name",
+      "name": "Top Categories",
       "settings": {
-        "title": "Collections",
-        "heading_size": "h1",
+        "title": "Shop our top categories",
+        "heading_size": "h2",
         "show_secondary_image": false,
         "image_ratio": "square",
         "columns_desktop": 6,
-        "color_scheme": "",
-        "show_view_all": false,
+        "color_scheme": "scheme-1",
+        "show_view_all": true,
         "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "swipe_on_mobile": true,
+        "padding_top": 76,
+        "padding_bottom": 76
       }
     },
     "featured_blog_MUe4ec": {
       "type": "featured-blog",
       "name": "Featured Blog",
       "settings": {
-        "blog": "sex-wellness",
+        "blog": "pleasure-lab",
         "post_limit": 4,
         "heading": "Blog posts",
-        "heading_size": "h1",
+        "heading_size": "h2",
         "columns_desktop": 4,
         "show_view_all": true,
         "show_image": true,
-        "show_date": true,
+        "show_date": false,
         "show_author": false,
         "color_scheme": "",
         "padding_top": 36,
@@ -313,7 +313,7 @@
     "custom_section_pEXVqj",
     "main",
     "related-products",
-    "collection_list_PqLNKp",
+    "collection_list_TpPUCa",
     "featured_blog_MUe4ec"
   ]
 }

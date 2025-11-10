@@ -10,84 +10,6 @@
   Usage:
   {% render 'buy-buttons', block: block, product: product, product_form_id: product_form_id, section_id: section.id, show_pickup_availability: true %}
 {% endcomment %}
-
-<style>
-  .shimmer-effect-button {
-    position: relative;
-    padding: 0.5rem;
-    font-size: 1.8rem !important;
-    background: #333;
-    color: #ffffff;
-    background-color: #f4436c;
-    border-color: #000000 !important;
-    /* Fallback background */
-    cursor: pointer;
-    overflow: hidden;
-    z-index: 1;
-    transition: color 0.4s ease;
-    text-shadow: #000000 2px 4px 6px;
-    font-weight: 800;
-  }
-
-  .shimmer-effect-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    /* Start off-screen to the left */
-    width: 200%;
-    /* Make it wider to cover the button entirely during animation */
-    height: 100%;
-    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.75), /* Shimmer color */ transparent);
-    transition: transform 0.2s ease-in-out;
-    animation: wave 1s infinite linear;
-    /* Apply the animation */
-    z-index: -1;
-  }
-
-  .shimmer-effect-button:hover {
-    color: #fff;
-  }
-
-  .shimmer-effect-button:hover::before {
-    transform: translateX(50%);
-    /* Move the gradient across */
-  }
-
-  @keyframes wave {
-    0% {
-      transform: translateX(-50%);
-      /* Start slightly to the left */
-    }
-
-    100% {
-      transform: translateX(50%);
-      /* End slightly to the right */
-    }
-  }
-
-  /* You can add a background gradient to the button itself if desired */
-  .shimmer-effect-button.with-bg {
-    background: linear-gradient(90deg, #533278, #ea2264, #f78d60);
-    background-size: 400% 400%;
-    animation: backgroundShift 10s infinite linear;
-  }
-
-  @keyframes backgroundShift {
-    0% {
-      background-position: 0% 50%;
-    }
-
-    50% {
-      background-position: 100% 50%;
-    }
-
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-</style>
-
 <div {{ block.shopify_attributes }}>
   {%- if product != blank -%}
     {%- liquid
@@ -152,7 +74,7 @@
             id="ProductSubmitButton-{{ section_id }}"
             type="submit"
             name="add"
-            class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %} shimmer-effect-button with-bg"
+            class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
             {% if product.selected_or_first_available_variant.available == false
               or quantity_rule_soldout
               or product.selected_or_first_available_variant == null

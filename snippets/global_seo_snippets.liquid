@@ -1,0 +1,19 @@
+{% if collection.metafields.custom.faqs %}
+  <!-- FAQ METADATA COLLECTIONS -->
+  <script type="application/ld+json">
+    {{ collection.metafields.custom.faqs }}
+  </script>
+{% endif %}
+
+{% if article %}
+  <!-- Article structured_data -->
+  <script type="application/ld+json">
+    {{ article | structured_data }}
+  </script>
+  {% if article.metafields.custom.json_faqs %}
+    <!-- FAQ Article -->
+    <script type="application/ld+json">
+      {{ article.metafields.custom.json_faqs }}
+    </script>
+  {% endif %}
+{% endif %}

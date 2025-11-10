@@ -43,8 +43,8 @@
     "175808329474a167e4": {
       "type": "_blocks",
       "blocks": {
-        "custom_html": {
-          "type": "custom_html",
+        "ai_gen_block_ee9d13a_4tAwpT": {
+          "type": "ai_gen_block_ee9d13a",
           "settings": {
             "custom_html": "<p>{{ closest.metaobject.html_pages.html.value }}</p>",
             "custom_style": "",
@@ -60,7 +60,7 @@
         }
       },
       "block_order": [
-        "custom_html"
+        "ai_gen_block_ee9d13a_4tAwpT"
       ],
       "settings": {
         "content_direction": "column",
@@ -89,10 +89,107 @@
         "padding-block-start": 0,
         "padding-block-end": 0
       }
+    },
+    "image_banner_NbyFLW": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Chakrubs-Logo.webp",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "left",
+        "show_text_box": false,
+        "color_scheme": "",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
+    "multicolumn_2x2_tKjERW": {
+      "type": "multicolumn-2x2",
+      "blocks": {
+        "column_bebXaC": {
+          "type": "column",
+          "settings": {
+            "article": "",
+            "cloudinary_id": "",
+            "cloudinary_id_2": "",
+            "cloudinary_id_3": "",
+            "cloudinary_id_4": "",
+            "image_gap": 16,
+            "image_margin": 0,
+            "image_padding": 0,
+            "title": "Column",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_bbatYc": {
+          "type": "column",
+          "settings": {
+            "article": "",
+            "cloudinary_id": "",
+            "cloudinary_id_2": "",
+            "cloudinary_id_3": "",
+            "cloudinary_id_4": "",
+            "image_gap": 16,
+            "image_margin": 0,
+            "image_padding": 0,
+            "title": "Column",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_8JWqic": {
+          "type": "column",
+          "settings": {
+            "article": "",
+            "cloudinary_id": "",
+            "cloudinary_id_2": "",
+            "cloudinary_id_3": "",
+            "cloudinary_id_4": "",
+            "image_gap": 16,
+            "image_margin": 0,
+            "image_padding": 0,
+            "title": "Column",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_bebXaC",
+        "column_bbatYc",
+        "column_8JWqic"
+      ],
+      "name": "Multicolumn-2x2",
+      "settings": {
+        "title": "Multicolumn",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "Button label",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
     "blocks_BmwY93",
-    "175808329474a167e4"
+    "175808329474a167e4",
+    "image_banner_NbyFLW",
+    "multicolumn_2x2_tKjERW"
   ]
 }
