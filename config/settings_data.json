@@ -177,21 +177,6 @@
           "utm_term": true,
           "ref": true
         }
-      },
-      "15121418464101390553": {
-        "type": "shopify://apps/cloudinary-assetlink/blocks/video-replacer/beb1bd33-2d11-4aea-9b3e-f6c41825e598",
-        "disabled": true,
-        "settings": {
-          "quality_level": "good",
-          "breakpoint_size": 400,
-          "max_width": 1920,
-          "optimize": true,
-          "retina_quality": false,
-          "autoplay": true,
-          "loop": true,
-          "controls": false,
-          "muted": true
-        }
       }
     },
     "color_schemes": {

@@ -260,23 +260,6 @@
     },
     "1754662869c4289cac": {
       "type": "apps",
-      "blocks": {
-        "cloudinary_assetlink_cloudinary_asset_H3Xmct": {
-          "type": "shopify://apps/cloudinary-assetlink/blocks/cloudinary-asset/beb1bd33-2d11-4aea-9b3e-f6c41825e598",
-          "settings": {
-            "image_url": "https://vimeo.com/698488166",
-            "mobile_image_url": "https://vimeo.com/698488166",
-            "alt_text": "",
-            "mobile_image_auto_crop": true,
-            "image_height": "672",
-            "image_optimization": true,
-            "mobile_image_width": 750
-          }
-        }
-      },
-      "block_order": [
-        "cloudinary_assetlink_cloudinary_asset_H3Xmct"
-      ],
       "settings": {
         "include_margins": true
       }
