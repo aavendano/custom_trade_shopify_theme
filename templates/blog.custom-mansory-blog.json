@@ -85,40 +85,6 @@
         "button_text": "Shop Now"
       }
     },
-    "aa_newsletter_Etgtq4": {
-      "type": "aa-newsletter",
-      "blocks": {
-        "heading_ExA7W3": {
-          "type": "heading",
-          "settings": {
-            "heading": "Subscribe to our emails",
-            "heading_size": "h1"
-          }
-        },
-        "paragraph_XxiEti": {
-          "type": "paragraph",
-          "settings": {
-            "text": "<p>Be the first to know about new collections and exclusive offers.</p>"
-          }
-        },
-        "email_form_dfcFqN": {
-          "type": "email_form",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "heading_ExA7W3",
-        "paragraph_XxiEti",
-        "email_form_dfcFqN"
-      ],
-      "name": "aa email signup",
-      "settings": {
-        "color_scheme": "",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
-      }
-    },
     "newsletter_qeRfBx": {
       "type": "newsletter",
       "blocks": {
@@ -169,7 +135,6 @@
   "order": [
     "custom_section_rbta8K",
     "aa_header_section_MMCTXE",
-    "aa_newsletter_Etgtq4",
     "newsletter_qeRfBx",
     "main"
   ]

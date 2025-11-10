@@ -2,33 +2,33 @@
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 
 <style>
-/* Column width classes */
-@media screen and (min-width: 990px) {
-  .grid--3-col-desktop .multicolumn-list__item--double {
-    width: calc(66.66% - var(--grid-desktop-horizontal-spacing) / 3);
-    max-width: calc(66.66% - var(--grid-desktop-horizontal-spacing) / 3);
+  /* Column width classes */
+  @media screen and (min-width: 990px) {
+    .grid--3-col-desktop .multicolumn-list__item--double {
+      width: calc(66.66% - var(--grid-desktop-horizontal-spacing) / 3);
+      max-width: calc(66.66% - var(--grid-desktop-horizontal-spacing) / 3);
+    }
+    .grid--3-col-desktop .multicolumn-list__item--triple {
+      width: calc(100% - var(--grid-desktop-horizontal-spacing));
+      max-width: calc(100% - var(--grid-desktop-horizontal-spacing));
+    }
+    .grid--4-col-desktop .multicolumn-list__item--double {
+      width: calc(50% - var(--grid-desktop-horizontal-spacing) / 2);
+      max-width: calc(50% - var(--grid-desktop-horizontal-spacing) / 2);
+    }
+    .grid--4-col-desktop .multicolumn-list__item--triple {
+      width: calc(75% - var(--grid-desktop-horizontal-spacing) / 4);
+      max-width: calc(75% - var(--grid-desktop-horizontal-spacing) / 4);
+    }
+    .grid--6-col-desktop .multicolumn-list__item--double {
+      width: calc(33.33% - var(--grid-desktop-horizontal-spacing) * 2 / 3);
+      max-width: calc(33.33% - var(--grid-desktop-horizontal-spacing) * 2 / 3);
+    }
+    .grid--6-col-desktop .multicolumn-list__item--triple {
+      width: calc(50% - var(--grid-desktop-horizontal-spacing) / 2);
+      max-width: calc(50% - var(--grid-desktop-horizontal-spacing) / 2);
+    }
   }
-  .grid--3-col-desktop .multicolumn-list__item--triple {
-    width: calc(100% - var(--grid-desktop-horizontal-spacing));
-    max-width: calc(100% - var(--grid-desktop-horizontal-spacing));
-  }
-  .grid--4-col-desktop .multicolumn-list__item--double {
-    width: calc(50% - var(--grid-desktop-horizontal-spacing) / 2);
-    max-width: calc(50% - var(--grid-desktop-horizontal-spacing) / 2);
-  }
-  .grid--4-col-desktop .multicolumn-list__item--triple {
-    width: calc(75% - var(--grid-desktop-horizontal-spacing) / 4);
-    max-width: calc(75% - var(--grid-desktop-horizontal-spacing) / 4);
-  }
-  .grid--6-col-desktop .multicolumn-list__item--double {
-    width: calc(33.33% - var(--grid-desktop-horizontal-spacing) * 2 / 3);
-    max-width: calc(33.33% - var(--grid-desktop-horizontal-spacing) * 2 / 3);
-  }
-  .grid--6-col-desktop .multicolumn-list__item--triple {
-    width: calc(50% - var(--grid-desktop-horizontal-spacing) / 2);
-    max-width: calc(50% - var(--grid-desktop-horizontal-spacing) / 2);
-  }
-}
 </style>
 
 {%- style -%}
@@ -78,7 +78,6 @@
         id="Slider-{{ section.id }}"
         role="list"
       >
-
         {%- for block in section.blocks -%}
           {%- assign empty_column = '' -%}
           {%- if block.settings.article == blank -%}
@@ -231,23 +230,23 @@
     {
       "type": "header",
       "content": "t:sections.multicolumn.settings.header_button.content"
-    },    
+    },
     {
       "type": "text",
       "id": "button_label",
       "default": "t:sections.multicolumn.settings.button_label.default",
-      "label": "t:sections.multicolumn.settings.button_label.label", 
+      "label": "t:sections.multicolumn.settings.button_label.label",
       "info": "t:sections.multicolumn.settings.button_label.info"
     },
     {
       "type": "url",
       "id": "button_link",
       "label": "t:sections.multicolumn.settings.button_link.label"
-    },    
+    },
     {
       "type": "header",
       "content": "t:sections.multicolumn.settings.header_layout.content"
-    },     
+    },
     {
       "type": "range",
       "id": "columns_desktop",
@@ -294,7 +293,7 @@
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
-    },    
+    },
     {
       "type": "header",
       "content": "t:sections.multicolumn.settings.header_mobile.content"
@@ -382,7 +381,7 @@
   "presets": [
     {
       "name": "multi-article",
-         "category": "Layout",
+      "category": "Layout",
       "blocks": [
         {
           "type": "column"

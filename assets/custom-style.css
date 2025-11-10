@@ -1,15 +1,13 @@
-
-
 .badge {
-    border-radius: 2px !important;
-    font-size: 1.2rem;
-    font-weight: bold;
-    padding: .25rem 1rem .28rem;
- }
+  border-radius: 2px !important;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: .25rem 1rem .28rem;
+}
 
- .price-item {
-    font-weight: 500;
-    font-size: 1.5rem;
+.price-item {
+  font-weight: 500;
+  font-size: 1.5rem;
 }
 
 .custom-price-text-was {
@@ -19,8 +17,8 @@
 }
 
 .multicolumn-card__info .inline-richtext h3 {
-    font-size: 2.15rem;
-    font-weight: 600;
+  font-size: 2.15rem;
+  font-weight: 600;
 }
 
 .price__badgets__container {
@@ -28,12 +26,10 @@
 }
 
 .plt-gradient-background {
-  background: linear-gradient(
-    115deg,
-    rgba(35, 31, 32, 1) 0%,
-    rgba(83, 50, 120, 1) 50%,
-    rgba(244, 67, 108, 1) 100%
-  ) !important;
+  background: linear-gradient(115deg,
+      rgba(35, 31, 32, 1) 0%,
+      rgba(83, 50, 120, 1) 50%,
+      rgba(244, 67, 108, 1) 100%) !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
   background-position: center !important;
@@ -42,39 +38,51 @@
   /* You can set a height and width for the element you apply this to, for example: */
 }
 
-@media screen and (max-width: 750px){
-   .price-item {
-    font-weight: 500 !important; 
+#ProductCount {
+  font-size: 0.8rem;
+  line-height: calc(1 + 0.5 / var(--font-body-scale));
+}
+
+@media screen and (max-width: 750px) {
+  .price-item {
+    font-weight: 500 !important;
     font-size: 1.5rem !important;
-    }
+  }
+
   .custom-price-text-was {
     font-size: 1.2rem !important;
     font-weight: 300 !important;
     white-space: nowrap;
-    }
+  }
+
   button {
     font-size: 1.2rem !important;
   }
+
   .badge {
     font-size: 1rem !important;
     padding: .15rem .5rem .15rem !important;
   }
 }
 
-@import url('https://fonts.shopifycdn.com/oswald/oswald_n4.woff2');
 
-/* Crear clase para usar Oswald */
 .card__heading {
-  font-family: 'Oswald', sans-serif !important;
+
   font-size: calc(var(--font-heading-scale) * 1.5rem);
   letter-spacing: calc(var(--font-heading-scale) * 0.125rem);
 }
 
 .multicolumn-card__info h3 {
-    font-family: 'Oswald', sans-serif !important;
+
   font-size: calc(var(--font-heading-scale) * 1.5rem);
   letter-spacing: calc(var(--font-heading-scale) * 0.125rem);
 }
+
+/* Fallback font loading for sandboxed environments */
+.font-loading-fallback {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
 .caption-with-letter-spacing {
   font-size: 1.5rem;
   letter-spacing: 0.2rem;

@@ -28,7 +28,7 @@
         </h2>
       </div>
     {%- endunless -%}
-    
+
     <div class="image-grid-{{ section.id }} grid grid--{{ section.settings.columns_mobile }}-col-tablet-down grid--{{ section.settings.columns_desktop }}-col-desktop">
       {%- for block in section.blocks -%}
         {%- if block.settings.image != blank -%}
@@ -46,10 +46,7 @@
               {{
                 block.settings.image
                 | image_url: width: 1200
-                | image_tag:
-                  widths: '300, 400, 500, 750, 1000, 1200',
-                  sizes: sizes,
-                  class: 'image-grid__image'
+                | image_tag: widths: '300, 400, 500, 750, 1000, 1200', sizes: sizes, class: 'image-grid__image'
               }}
             </div>
           </div>

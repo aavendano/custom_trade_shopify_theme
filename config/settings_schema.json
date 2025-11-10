@@ -30,6 +30,12 @@
         "id": "favicon",
         "label": "t:settings_schema.logo.settings.favicon.label",
         "info": "t:settings_schema.logo.settings.favicon.info"
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon_ico",
+        "label": "Favicon (.ico file)",
+        "info": "Favicon (.ico file)"
       }
     ]
   },
@@ -143,6 +149,69 @@
         "unit": "%",
         "label": "t:settings_schema.typography.settings.body_scale.label",
         "default": 100
+      },
+      {
+        "type": "header",
+        "content": "Responsive Font Scaling"
+      },
+      {
+        "type": "paragraph",
+        "content": "Control font sizes across different device breakpoints for optimal readability."
+      },
+      {
+        "type": "range",
+        "id": "font_scale_mobile",
+        "min": 50,
+        "max": 150,
+        "step": 5,
+        "unit": "%",
+        "label": "Mobile Font Scale (up to 768px)",
+        "default": 80,
+        "info": "Font scale for mobile devices (0.8x base scale)"
+      },
+      {
+        "type": "range",
+        "id": "font_scale_tablet",
+        "min": 50,
+        "max": 150,
+        "step": 5,
+        "unit": "%",
+        "label": "Tablet Font Scale (769px+)",
+        "default": 100,
+        "info": "Font scale for tablet devices (1.0x base scale)"
+      },
+      {
+        "type": "range",
+        "id": "font_scale_desktop",
+        "min": 50,
+        "max": 150,
+        "step": 5,
+        "unit": "%",
+        "label": "Desktop Font Scale (1024px+)",
+        "default": 110,
+        "info": "Font scale for desktop devices (1.1x base scale)"
+      },
+      {
+        "type": "range",
+        "id": "font_scale_widescreen",
+        "min": 50,
+        "max": 150,
+        "step": 5,
+        "unit": "%",
+        "label": "Widescreen Font Scale (1216px+)",
+        "default": 120,
+        "info": "Font scale for widescreen devices (1.2x base scale)"
+      },
+      {
+        "type": "range",
+        "id": "font_scale_fullhd",
+        "min": 50,
+        "max": 150,
+        "step": 5,
+        "unit": "%",
+        "label": "Full HD Font Scale (1408px+)",
+        "default": 130,
+        "info": "Font scale for full HD devices (1.3x base scale)"
       }
     ]
   },
@@ -1321,7 +1390,7 @@
         "label": "t:settings_schema.social-media.settings.social_youtube_link.label",
         "placeholder": "t:settings_schema.social-media.settings.social_youtube_link.info"
       },
-            {
+      {
         "type": "text",
         "id": "social_bluesky_link",
         "label": "bluesky",
