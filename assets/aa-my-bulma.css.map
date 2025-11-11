@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AA4CQ,qEAA6D;AApCrE;;;;;;;;;;CAUC;AAGD;;CAEC;AACD;;CAEC;AAED,0BAA0B;AAC1B,qCAAqC;AACrC,sCAAsC;AACtC,uCAAuC;AACvC,qCAAqC;AACrC,mCAAmC;AACnC,sCAAsC;AACtC,2CAA2C;AAC3C,uCAAuC;AACvC,kCAAkC;AAClC,mCAAmC;AAGnC,4BAA4B",
-"sources": ["../.build/build-bulma.scss"],
-"names": [],
-"file": "aa-my-bulma.css"
-}

@@ -6,7 +6,7 @@
   "scripts": {
     "build": "esbuild assets/bundle.js --bundle --platform=browser --outfile=assets/application.js",
     "build:twicpics": "node build-twicpics.js",
-    "build-bulma": "sass .build/bulma/bulma.scss assets/abulma-full.css --no-map",
+    "build-bulma": "sass .build/bulma/bulma.scss assets/a-bulma-full.css",
     "purgecss": "npx postcss assets/a-bulma-full.css -o assets/a-bulma-purged.css --config .build/purgecss.config.js --no-map",
     "start": "npm run build-bulma -- --watch"
   },
