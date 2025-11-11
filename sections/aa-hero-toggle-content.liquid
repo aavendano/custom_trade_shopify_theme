@@ -28,8 +28,8 @@
         has_image: {{ has_image }},
         has_content: {{ has_content }},
         showContent: {% if section.settings.initial_expanded %}true{% else %}false{% endif %},
-        fold_svg: '{{ icon_fold_svg }}', 
-        unfold_svg: '{{ icon_unfold_svg }}', 
+        fold_svg: '{{ icon_fold_svg }}',
+        unfold_svg: '{{ icon_unfold_svg }}',
       }
     "
   >
@@ -38,16 +38,16 @@
         <div class="b-columns">
           <!-- Left column - Image -->
           {% if has_image %}
-            <div class="b-column b-is-3">
+            <div class="b-column b-is-3-tablet b-is-4-desktop b-is-align-content-center">
               <div class="b-image b-is-fullwidth">
-                {% render 'twic-picture',
-                  eager: true,
-                  focus: 'auto',
-                  transform: 'background=white/inside=500x500',
-                  image: image,
-                  preview: true,
-                  class: 'b-image '
-                %}
+                {{
+                  image
+                  | image_url: width: 1200
+                  | image_tag:
+                    widths: '300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000, 1050, 1100, 1150, 1200',
+                    preload: true,
+                    loading: 'eager'
+                }}
               </div>
             </div>
           {% endif %}
@@ -111,8 +111,7 @@
 {% schema %}
 {
   "name": "Hero-Content-collapsable",
-  "tag": "section",
-  "class": "hero-section",
+
   "settings": [
     {
       "type": "image_picker",

@@ -6,7 +6,6 @@
 
 {% style %}
   .aa-custom-product-card-image-responsive img {
-    max-width: 500px;
     width: 100%;
     height: auto;
     object-fit: contain !important;
@@ -64,7 +63,7 @@
 
               {% elsif card_product.featured_media and serve_from_twicpics %}
                 {%
-                  render 'twic-picture',
+                  render 'twicpics-image',
                   eager: false,
                   focus: 'auto',
                   image: card_product.featured_media | image_url: width:400,

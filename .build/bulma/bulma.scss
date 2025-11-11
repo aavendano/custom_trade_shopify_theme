@@ -1,0 +1,51 @@
+// Set your brand colors
+@charset "utf-8";
+
+
+$plt-purple: hsl(268, 41%, 33%);
+$plt-pink: hsl(346, 89%, 61%);
+$plt-teal: hsl(190, 84%, 29%);
+$plt-teal-light: hsl(190, 84%, 45%);
+$plt-gray-light: #B4B4B4;
+$plt-gray-dark: #545C52;
+$plt-family-primary: '"Baloo+2", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif';
+$plt-family-secondary: '"Atkinson Hyperlegible Next", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif';
+$plt-image-dimensions: 16 24 32 48 64 96 128 160 320 400 460 520;
+
+// Override global Sass variables from the /utilities folder
+@use "sass/utilities/initial-variables" with (
+      $primary: $plt-purple,
+      $info: $plt-teal,
+      $success: $plt-teal-light,
+      $light: $plt-gray-light,
+      $dark: $plt-gray-dark,
+      $link: $plt-pink,
+      $family-sans-serif-primary: $plt-family-primary,
+      $family-sans-serif-secondary: $plt-family-secondary,
+      $dimensions: $plt-image-dimensions
+    );
+
+@forward "sass/utilities/functions";
+@forward "sass/utilities/derived-variables";
+@forward "sass/utilities/controls";
+@forward "sass/base";
+@forward "sass/elements";
+//@forward "sass/form";
+@forward "sass/components";
+@forward "sass/grid";
+@forward "sass/layout";
+
+@forward "sass/helpers";
+
+@forward "sass/themes";
+
+// Import the Google Font
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Baloo+2:wght@400..800&display=swap');
+
+
+
+
+
+
+
+

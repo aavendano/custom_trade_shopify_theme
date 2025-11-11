@@ -1,0 +1,26 @@
+/* Error: Can't find stylesheet to import.
+ *    ,
+ * 14 | / @use "bulma/sass/utilities" with (
+ * 15 | |       $plt-purple: hsl(268, 41%, 33%),
+ * 16 | |     $plt-pink: hsl(346, 89%, 61%),
+ * 17 | |     $plt-teal: hsl(190, 84%, 29%),
+ * 18 | |     $plt-gray-light: #B4B4B4,
+ * 19 | |     $plt-gray-dark: #545C52,
+ * 20 | |     $plt-family-primary: '"Baloo+2", sans-serif',
+ * 21 | |     $plt-family-secondary: '"Atkinson Hyperlegible Next", sans-serif',
+ * 22 | |     $plt-dimensions: 16 24 32 48 64 96 128 160 320 400 460 520,
+ * 23 | |     );
+ *    | '-----^
+ *    '
+ *   .build/bulma/bulma.scss 14:1  root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Can't find stylesheet to import.\a    \2577 \a 14 \2502  \250c  @use \"bulma/sass/utilities\" with (\a 15 \2502  \2502        $plt-purple: hsl(268, 41%, 33%),\a 16 \2502  \2502      $plt-pink: hsl(346, 89%, 61%),\a 17 \2502  \2502      $plt-teal: hsl(190, 84%, 29%),\a 18 \2502  \2502      $plt-gray-light: #B4B4B4,\a 19 \2502  \2502      $plt-gray-dark: #545C52,\a 20 \2502  \2502      $plt-family-primary: '\"Baloo+2\", sans-serif',\a 21 \2502  \2502      $plt-family-secondary: '\"Atkinson Hyperlegible Next\", sans-serif',\a 22 \2502  \2502      $plt-dimensions: 16 24 32 48 64 96 128 160 320 400 460 520,\a 23 \2502  \2502      );\a    \2502  \2514 \2500 \2500 \2500 \2500 \2500 ^\a    \2575 \a   .build/bulma/bulma.scss 14:1  root stylesheet";
+}

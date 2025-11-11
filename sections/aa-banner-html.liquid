@@ -1,48 +1,62 @@
+{{ 'AA-Banner-HTML.css' | asset_url | stylesheet_tag }}
+
 {% style %}
   {{ section.settings.title_font | font_face }}
-  {{ section.settings.subtitle_font | font_face }}
-
-  #id_image_wrapper_{{ section.id }} {
-    width: 80vw;
-    height: calc(80vw);
-    ratio: 1;
-  }
-  @media (min-width: 769px)  {
-    #id_image_wrapper_{{ section.id }} {
-      width: 450px;
-      height: 450px;
-    }
-  }
+    {{ section.settings.subtitle_font | font_face }}
 {% endstyle %}
+
+{% liquid
+  assign title_htag = section.settings.title_htag
+  assign subtitle_htag = section.settings.subtitle_htag
+%}
 
 <!-- Hero section with toggle functionality -->
 <section class="b-section banner-section-{{ section.id }}">
   <div class="b-page-width b-container">
-    <div class="b-box banner-content-{{ section.id }}">
-      <div class="b-columns b-is-vcentered b-is-centered">
+    <div class="b-box b-is-primary b-notification banner-content-{{ section.id }}">
+      <div class="b-columns">
         <!-- Left column - Image -->
         {% if section.settings.banner_image != blank %}
-          <div class="b-column b-is-narrow">
-            <div class="b-image b-is-fullwidth b-mx-auto" id="id_image_wrapper_{{ section.id }}">
+          <div class="b-column b-is-3">
+            <div class="b-image b-is-fullwidth">
               {% render 'twic-picture',
                 image: section.settings.banner_image,
                 ratio: '1',
                 eager: true,
                 focus: 'center',
-                mode: 'contain',
-                id: 'image_id_{{ section.id }}',
-                sizes: '(min-width: 769px) 450px, 80vw'
+                mode: 'contain'
               %}
             </div>
           </div>
         {% endif %}
         <!-- Right column - Content -->
-        <div class="b-column b-px-6-tablet">
-          {% for block in section.blocks %}
-            <div class="b-block b-mx-auto">
-              {% render block %}
+        <div class="b-column b-is-align-content-space-evenly b-px-6-tablet b-mx-6-tablet">
+          <div class="b-block">
+            <{{ title_htag }}
+              id="banner-title-{{- section.id -}}"
+              class="b-title b-is-size-1-desktop b-is-size-4"
+            >
+              {{ section.settings.banner_title }}
+            </{{ title_htag }}>
+          </div>
+          <div class="b-block">
+            <{{ subtitle_htag }}
+              id="banner-subtitle-{{- section.id -}}"
+              class="b-subtitle b-mt-6 b-is-size-3-desktop b-is-size-5"
+            >
+              {{- section.settings.banner_subtitle -}}
+            </{{ subtitle_htag }}>
+          </div>
+          {% if section.settings.button_text != '' and section.settings.button_link %}
+            <div class="b-block">
+              <a
+                href="{{ section.settings.button_link }}"
+                class="b-button b-is-large b-is-link"
+              >
+                <strong>{{ section.settings.button_text }}</strong>
+              </a>
             </div>
-          {% endfor %}
+          {% endif %}
         </div>
       </div>
     </div>
@@ -50,6 +64,106 @@
 </section>
 
 {% style %}
+  {{ section.settings.title_font | font_face }}
+  {{ section.settings.subtitle_font | font_face }}
+
+  .custom-gradient-text {
+
+  }
+
+  {% liquid
+    assign _text_color_value = section.settings.text_color | default: ''
+    assign _subtitle_color_value = section.settings.subtitle_color | default: ''
+    assign _text_color_lc = _text_color_value | downcase
+    assign _subtitle_color_lc = _subtitle_color_value | downcase
+
+    comment
+      Backwards compatibility: if mode not set, infer by detecting 'gradient'
+    endcomment
+    assign _title_mode = section.settings.title_color_mode | default: ''
+    assign _subtitle_mode = section.settings.subtitle_color_mode | default: ''
+
+    assign _text_is_gradient = false
+    assign _subtitle_is_gradient = false
+
+    if _title_mode == 'gradient'
+      assign _text_is_gradient = true
+    elsif _title_mode == 'solid'
+      assign _text_is_gradient = false
+    elsif _text_color_lc contains 'gradient'
+      assign _text_is_gradient = true
+    endif
+
+    if _subtitle_mode == 'gradient'
+      assign _subtitle_is_gradient = true
+    elsif _subtitle_mode == 'solid'
+      assign _subtitle_is_gradient = false
+    elsif _subtitle_color_lc contains 'gradient'
+      assign _subtitle_is_gradient = true
+    endif
+
+    assign _title_solid = section.settings.title_color_solid | default: ''
+    assign _subtitle_solid = section.settings.subtitle_color_solid | default: ''
+  %}
+
+  #banner-title-{{- section.id -}} {
+    font-family: {{ section.settings.title_font.family }}, {{ section.settings.title_font.fallback_families }};
+    font-weight: {{ section.settings.title_font.weight }};
+    font-style: {{ section.settings.title_font.style }};
+    {% if _text_is_gradient %}
+      /* Gradient overlay for title */
+      background-image: {{ section.settings.text_color }};
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    {% else %}
+      /* Optional solid color for title */
+      {% if _title_solid != '' %}
+        color: {{ _title_solid }};
+      {% else %}
+        color: {{ section.settings.text_color }};
+      {% endif %}
+    {% endif %}
+  }
+  #banner-subtitle-{{- section.id -}}  {
+    font-family: {{ section.settings.subtitle_font.family }}, {{ section.settings.subtitle_font.fallback_families }};
+    font-weight: {{ section.settings.subtitle_font.weight }};
+    font-style: {{ section.settings.subtitle_font.style }};
+    {% if _subtitle_is_gradient %}
+      /* Gradient overlay for subtitle */
+      background-image: {{ section.settings.subtitle_color }};
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    {% else %}
+      /* Optional solid color for subtitle */
+      {% if _subtitle_solid != '' %}
+        color: {{ _subtitle_solid }};
+      {% else %}
+        color: {{ section.settings.subtitle_color }};
+      {% endif %}
+    {% endif %}
+  }
+           #iqmg {
+
+           background-image: radial-gradient(circle at 99% 93%, #533278, #29193c, rgba(0, 0, 0, 1));
+         }
+         .banner-image-{{ section.id }} {
+           margin-left: auto;
+           max-width: 350px;
+           height: 350px;
+           margin-top: 1rem;
+           margin-bottom: 1rem;
+
+         }
+
+
+
+
+
+
   /* Background Styles */
   .banner-section-{{ section.id }} {
     position: relative;
@@ -97,26 +211,153 @@
       z-index: 2;
     }
   {% endif %}
+
+  @media (max-width: 992px)  {
+         #il3ml-2 {
+           font-size: 1rem;
+           letter-spacing: 0.3rem;
+           line-height: 1.5rem;
+       }
+
+       #il3ml {
+           margin-top: 1rem;
+           margin-right: 1rem;
+           margin-bottom: 1rem;
+           margin-left: 1rem;
+           font-size: 2.25rem;
+       }
+   }
 {% endstyle %}
 
 {% schema %}
 {
   "name": "AA-Banner-HTML",
-  "blocks": [
+
+  "settings": [
     {
-      "type": "aa-styled-text-block"
+      "type": "text",
+      "id": "banner_title",
+      "label": "Banner Title",
+      "default": "No Tricks, Just Treats."
     },
     {
-      "type": "aa-styled-button"
-    }
-  ],
-  "settings": [
+      "type": "select",
+      "id": "title_htag",
+      "label": "Select Title HTML Tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "header",
+      "content": "Banner Google Font Settings"
+    },
+    {
+      "type": "font_picker",
+      "id": "title_font",
+      "label": "Title Font",
+      "default": "assistant_n4",
+      "info": "Selecciona la fuente para los encabezados"
+    },
+    {
+      "type": "select",
+      "id": "title_color_mode",
+      "label": "Title Color Mode",
+      "options": [
+        { "value": "gradient", "label": "Gradient (overlay)" },
+        { "value": "solid", "label": "Solid" }
+      ],
+      "default": "gradient",
+      "info": "Elige si el título usa gradiente o color sólido."
+    },
+    {
+      "type": "color_background",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "linear-gradient(90deg, #ff6b6b, #4ecdc4)"
+    },
+    {
+      "type": "color",
+      "id": "title_color_solid",
+      "label": "Title Solid Color (opcional)",
+      "default": "#111111"
+    },
+
+    {
+      "type": "text",
+      "id": "banner_subtitle",
+      "label": "banner subtitle",
+      "default": "Unwrap something wicked good this Halloween."
+    },
+    {
+      "type": "select",
+      "id": "subtitle_htag",
+      "label": "Select Subtitle HTML Tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" }
+      ],
+      "default": "h3"
+    },
+
+    {
+      "type": "font_picker",
+      "id": "subtitle_font",
+      "label": "SubTitle Font",
+      "default": "assistant_n4",
+      "info": "Selecciona la fuente para los encabezados"
+    },
+    {
+      "type": "select",
+      "id": "subtitle_color_mode",
+      "label": "Subtitle Color Mode",
+      "options": [
+        { "value": "gradient", "label": "Gradient (overlay)" },
+        { "value": "solid", "label": "Solid" }
+      ],
+      "default": "gradient",
+      "info": "Elige si el subtítulo usa gradiente o color sólido."
+    },
+
+    {
+      "type": "color_background",
+      "id": "subtitle_color",
+      "label": "Subtitle Color",
+      "default": "linear-gradient(90deg, #ff6b6b, #4ecdc4)"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color_solid",
+      "label": "Subtitle Solid Color (opcional)",
+      "default": "#333333"
+    },
     {
       "type": "image_picker",
       "id": "banner_image",
       "label": "Banner Image"
     },
-
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link",
+      "default": "/"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Shop the Collection"
+    },
     {
       "type": "header",
       "content": "Background Settings"
@@ -198,16 +439,8 @@
   ],
   "presets": [
     {
-      "name": "AA-Banner-HTML",
-      "category": "01-custom",
-      "blocks": [
-        {
-          "type": "aa-styled-text-block"
-        },
-        {
-          "type": "aa-styled-button"
-        }
-      ]
+      "name": "AA-Banner",
+      "category": "AA Sections"
     }
   ]
 }

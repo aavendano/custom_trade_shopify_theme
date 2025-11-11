@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,700");
+@use "bulma/sass/utilities" with (
+  $cssvars-prefix: 'b-',
+  $class-prefix: 'b-',
+  $family-primary: '"Nunito", sans-serif',
+  $grey-dark: $plt-gray-dark,
+  $grey-light: $plt-gray-light,
+  $primary: $plt-purple,
+  $link: $plt-pink,
+  $info: $plt-teal,
+  $control-border-width: 2px
+);
+@use "bulma/sass/form" with (
+  $input-shadow: none
+);
+@use "bulma/sass/elements/image" with (
+  $dimensions: 16 24 32 48 64 96 128 160 320 400 460 520,
+);
+@forward "bulma/sass/base";
+@forward "bulma/sass/components/card";
+@forward "bulma/sass/components/modal";
+@forward "bulma/sass/components/navbar";
+@forward "bulma/sass/elements/button";
+@forward "bulma/sass/elements/icon";
+@forward "bulma/sass/elements/content";
+@forward "bulma/sass/elements/notification";
+@forward "bulma/sass/elements/progress";
+@forward "bulma/sass/elements/tag";
+@forward "bulma/sass/layout/footer";
+@forward "bulma/sass/themes";
+
+/*# sourceMappingURL=aa-my-bulma.css.map */
