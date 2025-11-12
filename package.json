@@ -6,8 +6,9 @@
   "scripts": {
     "build": "esbuild assets/bundle.js --bundle --platform=browser --outfile=assets/application.js",
     "build:twicpics": "node build-twicpics.js",
-    "build-bulma": "sass .build/bulma/bulma.scss assets/a-bulma-full.css",
-    "purgecss": "npx postcss assets/a-bulma-full.css -o assets/a-bulma-purged.css --config .build/purgecss.config.js --no-map",
+    "build-bulma": "sass src/bulma/bulma.scss assets/a-bulma-full.css",
+    "prepurgecss": "node src/purge/extract-b-safelist.js",
+    "purgecss": "npx postcss assets/a-bulma-full.css -o assets/a-bulma-purged.css --config src --no-map",
     "start": "npm run build-bulma -- --watch"
   },
   "repository": {
