@@ -165,10 +165,8 @@ $alignments: (
   font-family: iv.$family-sans-serif !important;
 }
 
-.#{iv.$class-prefix}#{iv.$helpers-prefix}family-monospace {
-  font-family: iv.$family-monospace !important;
-}
+//.#{iv.$class-prefix}#{iv.$helpers-prefix}family-monospace {font-family: iv.$family-monospace !important;}
 
-.#{iv.$class-prefix}#{iv.$helpers-prefix}family-code {
-  font-family: dv.$family-code !important;
-}
+// .#{iv.$class-prefix}#{iv.$helpers-prefix}family-code {
+//   font-family: dv.$family-code !important;
+// }

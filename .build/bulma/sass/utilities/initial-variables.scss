@@ -1,3 +1,19 @@
+
+
+// CUSTOM VARIABLES (AA)
+
+$family-sans-serif-primary: "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif !default;
+$family-sans-serif-secondary: "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif !default;
+$light-background: hsl(0, 0%, 96%) !default; 
+$background: $light-background !default;
+$grey-light: hsl(221, 14%, 71%) !default;
+$grey: hsl(221, 14%, 48%) !default;
+$grey-dark:  hsl(108, 6%, 34%) !default;
+
+
+
+
+
 // Scheme Hue and Saturation
 
 $scheme-h: 221 !default;
@@ -8,18 +24,18 @@ $light-l: 90% !default;
 // Colors
 
 $black: hsl(221, 14%, 4%) !default;
-$black-bis: hsl(221, 14%, 9%) !default;
-$black-ter: hsl(221, 14%, 14%) !default;
+//$black-bis: hsl(221, 14%, 9%) !default;
+//$black-ter: hsl(221, 14%, 14%) !default;
 
-$grey-darker: hsl(221, 14%, 21%) !default;
-$grey-dark: hsl(221, 14%, 29%) !default;
-$grey: hsl(221, 14%, 48%) !default;
-$grey-light: hsl(221, 14%, 71%) !default;
-$grey-lighter: hsl(221, 14%, 86%) !default;
-$grey-lightest: hsl(221, 14%, 93%) !default;
+// $grey-darker: hsl(221, 14%, 21%) !default;
+// $grey-dark: hsl(221, 14%, 29%) !default;
+// $grey: hsl(221, 14%, 48%) !default;
+// $grey-light: hsl(221, 14%, 71%) !default;
+// $grey-lighter: hsl(221, 14%, 86%) !default;
+// $grey-lightest: hsl(221, 14%, 93%) !default;
 
-$white-ter: hsl(221, 14%, 96%) !default;
-$white-bis: hsl(221, 14%, 98%) !default;
+//$white-ter: hsl(221, 14%, 96%) !default;
+//$white-bis: hsl(221, 14%, 98%) !default;
 $white: hsl(221, 14%, 100%) !default;
 
 $orange: hsl(14, 100%, 53%) !default;
@@ -35,11 +51,7 @@ $red: hsl(348, 100%, 70%) !default;
 
 $family-sans-serif: "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
   "Helvetica Neue", "Helvetica", "Arial", sans-serif !default;
-$family-sans-serif-primary: "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif !default;
-$family-sans-serif-secondary: "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-  "Helvetica Neue", "Helvetica", "Arial", sans-serif !default;
-$family-monospace: "Inconsolata", "Hack", "SF Mono", "Roboto Mono",
-  "Source Code Pro", "Ubuntu Mono", monospace !default;
+//$family-monospace: "Inconsolata", "Hack", "SF Mono", "Roboto Mono", "Source Code Pro", "Ubuntu Mono", monospace !default;
 $render-mode: optimizeLegibility !default;
 
 $size-1: 3rem !default;
@@ -48,7 +60,7 @@ $size-3: 2rem !default;
 $size-4: 1.5rem !default;
 $size-5: 1.25rem !default;
 $size-6: 1rem !default;
-$size-7: 0.75rem !default;
+//$size-7: 0.75rem !default;
 
 $weight-light: 300 !default;
 $weight-normal: 400 !default;
@@ -161,9 +173,9 @@ $variables-host: ":root" !default;
 
 $primary: $turquoise !default;
 $info: $cyan !default;
-$success: $green !default;
-$warning: $yellow !default;
-$danger: $red !default;
+//$success: $green !default;
+//$warning: $yellow !default;
+//$danger: $red !default;
 $light: $white-ter !default;
 $dark: $grey-darker !default;
 

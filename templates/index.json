@@ -349,7 +349,7 @@
         "heading_size": "h1",
         "show_secondary_image": false,
         "image_ratio": "square",
-        "columns_desktop": 3,
+        "columns_desktop": 6,
         "color_scheme": "scheme-f943d0da-9014-44c1-a31b-1b744c4c0579",
         "show_view_all": true,
         "columns_mobile": "1",

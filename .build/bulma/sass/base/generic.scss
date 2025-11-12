@@ -15,10 +15,10 @@ $body-font-size: 1em !default;
 $body-weight: cv.getVar("weight-normal") !default;
 $body-line-height: 1.5 !default;
 
-$code-family: cv.getVar("family-code") !default;
-$code-padding: 0.25em 0.5em 0.25em !default;
-$code-weight: normal !default;
-$code-size: 0.875em !default;
+// $code-family: cv.getVar("family-code") !default;
+// $code-padding: 0.25em 0.5em 0.25em !default;
+// $code-weight: normal !default;
+// $code-size: 0.875em !default;
 
 $small-font-size: 0.875em !default;
 
@@ -47,10 +47,10 @@ $pre-code-font-size: 1em !default;
       "body-font-size": #{$body-font-size},
       "body-weight": #{$body-weight},
       "body-line-height": #{$body-line-height},
-      "code-family": #{$code-family},
-      "code-padding": #{$code-padding},
-      "code-weight": #{$code-weight},
-      "code-size": #{$code-size},
+      // "code-family": #{$code-family},
+      // "code-padding": #{$code-padding},
+      // "code-weight": #{$code-weight},
+      // "code-size": #{$code-size},
       "small-font-size": #{$small-font-size},
       "hr-background-color": #{$hr-background-color},
       "hr-height": #{$hr-height},
