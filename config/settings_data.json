@@ -126,9 +126,9 @@
     "predictive_search_show_price": true,
     "currency_code_enabled": true,
     "cart_type": "page",
-    "show_vendor": true,
+    "show_vendor": false,
     "show_cart_note": false,
-    "cart_drawer_collection": "",
+    "cart_drawer_collection": "lubricant",
     "cart_color_scheme": "scheme-1",
     "sections": {
       "main-password-header": {

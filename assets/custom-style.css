@@ -68,7 +68,7 @@
 
 .card__heading {
 
-  font-size: calc(var(--font-heading-scale) * 1.5rem);
+  font-size: calc(var(--font-heading-scale) * 1.15rem);
   letter-spacing: calc(var(--font-heading-scale) * 0.125rem);
 }
 
