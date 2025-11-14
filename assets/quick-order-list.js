@@ -160,11 +160,6 @@ if (!customElements.get('quick-order-list')) {
             section: 'cart-live-region-text',
             selector: '.shopify-section',
           },
-          {
-            id: 'CartDrawer',
-            selector: '.drawer__inner',
-            section: 'cart-drawer',
-          },
         ];
       }
 
@@ -234,9 +229,6 @@ if (!customElements.get('quick-order-list')) {
 
               this.initVariantEventListeners();
             }
-          } else if (section === 'cart-drawer') {
-            sectionElement.closest('cart-drawer')?.classList.toggle('is-empty', items.length === 0);
-            sectionElement.querySelector(selector).innerHTML = newSection.innerHTML;
           } else {
             sectionElement.innerHTML = newSection.innerHTML;
           }
@@ -391,8 +383,8 @@ if (!customElements.get('quick-order-list')) {
             ? window.quickOrderListStrings.itemRemoved
             : window.quickOrderListStrings.itemsRemoved
           : quantity === 1
-          ? window.quickOrderListStrings.itemAdded
-          : window.quickOrderListStrings.itemsAdded;
+            ? window.quickOrderListStrings.itemAdded
+            : window.quickOrderListStrings.itemsAdded;
 
         messages.forEach((msg) => (msg.innerHTML = textTemplate.replace('[quantity]', absQuantity)));
 
