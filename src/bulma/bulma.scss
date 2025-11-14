@@ -10,7 +10,7 @@ $plt-gray: hsl(0, 0%, 71%);
 $plt-gray-dark: hsl(108, 6%, 34%);
 $plt-family-primary: '"Baloo+2", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif';
 $plt-family-secondary: '"Atkinson Hyperlegible Next", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif';
-$plt-image-dimensions: 128 160 320 400 460 520;
+$plt-image-dimensions: 75 100 150 320 400 460 520;
 
 // Override global Sass variables from the /utilities folder
 @use "sass/utilities/initial-variables" with (

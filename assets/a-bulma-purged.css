@@ -970,6 +970,10 @@ div.b-icon-text {
   padding: var(--b-column-gap);
 }
 @media screen and (min-width: 769px), print {
+  .b-column.b-is-narrow {
+    flex: none;
+    width: unset;
+  }
   .b-column.b-is-3, .b-column.b-is-3-tablet {
     flex: none;
     width: 25%;
@@ -1028,6 +1032,11 @@ div.b-icon-text {
 @media screen and (min-width: 1024px) {
   .b-container {
     max-width: 960px;
+  }
+}
+@media screen and (max-width: 1215px) {
+  .b-container.b-is-widescreen:not(.b-is-max-tablet):not(.b-is-max-desktop) {
+    max-width: 1152px;
   }
 }
 @media screen and (min-width: 1216px) {
@@ -1093,6 +1102,10 @@ button.b-has-text-info:active {
 
 .b-is-align-content-space-evenly {
   align-content: space-evenly !important;
+}
+
+.b-is-clipped {
+  overflow: hidden !important;
 }
 
 .b-mr-3 {

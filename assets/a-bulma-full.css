@@ -1336,13 +1336,17 @@ div.b-icon-text {
   height: 100%;
   width: 100%;
 }
-.b-image.b-is-128x128 {
-  height: 128px;
-  width: 128px;
+.b-image.b-is-75x75 {
+  height: 75px;
+  width: 75px;
 }
-.b-image.b-is-160x160 {
-  height: 160px;
-  width: 160px;
+.b-image.b-is-100x100 {
+  height: 100px;
+  width: 100px;
+}
+.b-image.b-is-150x150 {
+  height: 150px;
+  width: 150px;
 }
 .b-image.b-is-320x320 {
   height: 320px;
