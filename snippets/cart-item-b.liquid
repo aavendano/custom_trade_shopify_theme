@@ -1,0 +1,138 @@
+{% liquid
+  assign quantity_rule = item.variant.quantity_rule
+  assign min_qty = quantity_rule.min | default: 1
+  assign max_qty = quantity_rule.max
+  assign increment_qty = quantity_rule.increment | default: 1
+  assign can_update_quantity = item.instructions.can_update_quantity | default: true
+  assign can_remove_item = item.instructions.can_remove | default: true
+  assign line_index = line_number | default: item.index | plus: 1
+%}
+
+<div
+  class="b-box b-p-4 b-mb-5"
+  x-data="
+    cartItem({
+      fragment: $data,
+      line: {{ line_index }},
+      quantity: {{ item.quantity }},
+      min: {{ min_qty }},
+      max: {% if max_qty %}{{ max_qty }}{% else %}null{% endif %},
+      increment: {{ increment_qty }},
+      canUpdate: {{ can_update_quantity | json }},
+      canRemove: {{ can_remove_item | json }}
+    })
+  "
+  x-bind:aria-busy="isUpdating"
+  x-bind:data-line="line"
+>
+  <!-- CARD HORIZONTAL -->
+  <article class="b-media">
+    <!-- IMAGEN + REMOVE (centrado) -->
+    <div class="b-media-left b-has-text-centered" style="max-width:110px;">
+      <figure class="b-image" style="max-width:100px; margin:0 auto;">
+        <img
+          src="{{ item.image | image_url: width: 300 }}"
+          alt="{{ item.image.alt | escape }}"
+          style="width:100%; height:auto; object-fit:contain;"
+        >
+      </figure>
+
+      <!-- Botón delete debajo de la imagen, centrado -->
+      <button
+        class="b-delete b-is-medium b-mt-3"
+        style="margin:0 auto;"
+        type="button"
+        @click.prevent="remove()"
+        :disabled="!canRemove || isUpdating"
+        :aria-disabled="(!canRemove || isUpdating).toString()"
+        aria-label="Remove item from cart"
+      ></button>
+    </div>
+
+    <!-- INFORMACIÓN DEL PRODUCTO -->
+    <div class="b-media-content b-pl-4">
+      <!-- Título -->
+      <a href="{{ item.url }}" class="b-title b-is-6 b-mb-2">
+        {{ item.product.title }}
+      </a>
+
+      <!-- Vendor -->
+      <p class="b-is-size-7 b-has-text-grey b-mb-2">
+        {{ item.product.vendor }}
+      </p>
+
+      <!-- Variantes -->
+      {% unless item.product.has_only_default_variant %}
+        {% for opt in item.options_with_values %}
+          <p class="b-is-size-7 b-has-text-grey">
+            <strong>{{ opt.name }}:</strong> {{ opt.value }}
+          </p>
+        {% endfor %}
+      {% endunless %}
+
+      <!-- OPERACIÓN: costo unitario x qty = subtotal (todo en una línea) -->
+      <!-- Unit price + label -->
+      <p class="b-is-size-7 b-has-text-grey"><strong> Price: </strong>{{ item.final_price | money }}</p>
+
+      <div class="b-block">
+        <!-- Qty label + selector -->
+        <p class="b-is-size-7 b-has-text-grey b-mr-1">
+          <strong>Qty:</strong>
+
+          <div class="b-field has-addons b-is-inline-flex b-mr-3">
+            <p class="b-control">
+              <button
+                class="b-button b-is-light b-is-small"
+                style="max-width:35px; height:25px;"
+                type="button"
+                @click="decrease()"
+                :disabled="isUpdating || !canDecrease()"
+                :aria-disabled="(isUpdating || !canDecrease()).toString()"
+              >
+                −
+              </button>
+            </p>
+
+            <p class="b-control">
+              <input
+                class="b-input b-has-text-centered"
+                style="max-width:55px; height:25px;"
+                type="number"
+                x-model.number="localQuantity"
+                @change="handleManualChange(localQuantity)"
+                :disabled="isUpdating || !canUpdate"
+                :aria-disabled="(isUpdating || !canUpdate).toString()"
+              >
+            </p>
+
+            <p class="b-control b-is-small">
+              <button
+                class="b-button b-is-light b-is-small"
+                style="max-width:35px; height:25px;"
+                type="button"
+                @click="increase()"
+                :disabled="isUpdating || !canIncrease()"
+                :aria-disabled="(isUpdating || !canIncrease()).toString()"
+              >
+                +
+              </button>
+            </p>
+          </div>
+        </p>
+      </div>
+
+      <p class="b-help b-is-danger" x-show="error" x-text="error" x-cloak></p>
+
+      <!-- Igual -->
+      <div class="b-mr-5 b-is-flex b-is-justify-content-flex-end">
+        <!-- Subtotal + label -->
+        <span class="b-is-size-7 b-has-text-grey">
+          Subtotal:
+          <strong class="b-is-size-5">
+            {{ item.final_line_price | money }}
+          </strong>
+        </span>
+      </div>
+    </div>
+  </article>
+</div>

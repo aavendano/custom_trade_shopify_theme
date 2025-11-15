@@ -1,0 +1,46 @@
+<!-- PLAUSIBLE ANALYTICS -->
+<script defer data-domain="playlovetoys.ca" src="{{ 'x_global-script-analytics.js' | asset_url }}"></script>
+<script>
+  window.plausible =
+    window.plausible ||
+    function () {
+      (window.plausible.q = window.plausible.q || []).push(arguments);
+    };
+</script>
+
+<!-- DEFER JS SCRIPTS -->
+{%- if localization.available_countries.size > 1 or localization.available_languages.size > 1 -%}
+  <script src="{{ 'localization-form.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+<script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'alpine-cart.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>
+
+{%- if settings.animations_reveal_on_scroll -%}
+  <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+<!-- DEFER JS SCRIPTS REQUIRED BY HEADER -->
+<script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
+
+<!-- SHOPIFY DESIGN MODE DETECTION -->
+<script>
+  if (Shopify.designMode) {
+    document.documentElement.classList.add('shopify-design-mode');
+  }
+</script>
+
+<!-- FONT LOADING OPTIMIZATION -->
+<script>
+  // Font loading optimization
+  if ('fonts' in document) {
+    document.fonts.ready.then(function() {
+      document.documentElement.classList.add('fonts-loaded');
+    });
+  }
+</script>
