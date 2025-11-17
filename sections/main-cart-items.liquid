@@ -1,12 +1,6 @@
 <div
   class="b-container b-is-max-tablet b-py-3"
   data-cart-fragment
-  data-cart='{{ cart | json | escape }}'
-  x-data="cartFragment()"
-  x-init="hydrate(JSON.parse($el.dataset.cart || '{}'))"
-  x-bind:aria-busy="isRefreshing"
-  x-bind:data-refreshing="isRefreshing"
-  x-bind:data-pending-requests="pendingRequests"
 >
   <div class="b-is-flex b-is-justify-content-space-between b-is-align-items-center b-mb-5 b-mx-2">
     <h1 class="b-title b-is-3 m-0">
@@ -37,9 +31,7 @@
   {% endif %}
 </div>
 
-{% javascript %}
-  window.__CART__ = {{ cart | json }};
-{% endjavascript %}
+<script src="{{ 'cart-fragment.js' | asset_url }}" defer="defer"></script>
 
 {% schema %}
 {

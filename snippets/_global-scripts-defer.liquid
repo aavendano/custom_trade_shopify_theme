@@ -16,7 +16,7 @@
 <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
-<script src="{{ 'alpine-cart.js' | asset_url }}" defer="defer"></script>
+
 <script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>
@@ -39,7 +39,7 @@
 <script>
   // Font loading optimization
   if ('fonts' in document) {
-    document.fonts.ready.then(function() {
+    document.fonts.ready.then(function () {
       document.documentElement.classList.add('fonts-loaded');
     });
   }
