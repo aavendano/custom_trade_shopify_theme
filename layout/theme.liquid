@@ -351,7 +351,7 @@
     {% sections 'header-group' %}
 
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
-      <div class="b-container is-fullhd">
+      <div class="b-container">
         {{ content_for_layout }}
       </div>
     </main>
@@ -373,9 +373,7 @@
       window.STORAGE_KEY = `{{ shop.permanent_domain | handle }}-recently-viewed`;
     </script>
 
-    {%- if settings.cart_type == 'drawer' -%}
-    {%- endif -%}
-
+    window.__CART__ = {{ cart | json }}
     {% render 'global_seo_snippets' %}
   </body>
 </html>

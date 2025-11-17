@@ -293,9 +293,12 @@
         {% endif %}
         <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
         {%- if cart != empty -%}
-          <div class="cart-count-bubble">
+          <div class="cart-count-bubble" x-data x-show="$store.cart.item_count > 0">
             {%- if cart.item_count < 100 -%}
-              <span aria-hidden="true" x-text="$store.cart.cart?.item_count">{{ cart.item_count }}</span>
+              <span aria-hidden="true" x-text="$store.cart.item_count">
+                {{- cart.item_count -}}
+              </span>
+            {%- else -%}
             {%- endif -%}
             <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
           </div>
