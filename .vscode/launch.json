@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Shopify JavaScript (Chrome)",
+            "type": "pwa-chrome",
+            "request": "launch",
+            "url": "https://asgiti-0w.myshopify.com/?preview_theme_id=136014987339",
+            "webRoot": "${workspaceFolder}",
+            "sourceMaps": true,
+            "trace": false,
+            "runtimeArgs": [
+                "--remote-debugging-port=9222"
+            ]
+        }
+    ]
+}

@@ -1,4 +1,5 @@
 <!-- PLAUSIBLE ANALYTICS -->
+{% comment %} PLAUSIBLE {% endcomment %}
 <script defer data-domain="playlovetoys.ca" src="{{ 'x_global-script-analytics.js' | asset_url }}"></script>
 <script>
   window.plausible =
@@ -12,8 +13,7 @@
 {%- if localization.available_countries.size > 1 or localization.available_languages.size > 1 -%}
   <script src="{{ 'localization-form.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
-
-<script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
+{% render '_global-constants' %}
 <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
 
