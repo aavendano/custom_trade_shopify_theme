@@ -109,18 +109,14 @@
   <!-- Checkout Buttons -->
   <div class="b-mt-4">
     <button
+      type="submit"
+      name="checkout"
+      form="cart"
+      id="checkout"
       x-data
       :class="$store.cart.item_count > 0? 'b-is-focused' : ''"
       :disabled="$store.cart.item_count <= 0"
-      type="submit"
-      id="checkout"
       class="b-button b-is-link b-is-fullwidth b-is-medium"
-      name="checkout"
-      form="cart"
-      @click="window.location.href = '/checkout')"
-      {% if cart == empty %}
-        disabled
-      {% endif %}
     >
       {{ 'sections.cart.checkout' | t }}
     </button>
