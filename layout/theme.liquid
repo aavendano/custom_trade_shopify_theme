@@ -316,7 +316,7 @@
 
     <!-- CUSTOM  CSS -->
     <!-- BULMA -->
-    {{ 'a-bulma-full.css' | asset_url | stylesheet_tag }}
+    {{ 'a-bulma-purged.css' | asset_url | stylesheet_tag }}
     {{ 'custom-style.css' | asset_url | stylesheet_tag }}
 
     <!-- TWICPICS COMPONENTS -->
@@ -372,8 +372,9 @@
     <script>
       window.STORAGE_KEY = `{{ shop.permanent_domain | handle }}-recently-viewed`;
     </script>
-
-    window.__CART__ = {{ cart | json }}
+    <script>
+      window.__CART__ = {{ cart | json }}
+    </script>
     {% render 'global_seo_snippets' %}
   </body>
 </html>

@@ -13,9 +13,9 @@
     "logo_width": 130,
     "favicon": "shopify://shop_images/favicon-playlovetoys-32x32.png",
     "type_header_font": "urbanist_n7",
-    "heading_scale": 120,
+    "heading_scale": 115,
     "type_body_font": "urbanist_n5",
-    "body_scale": 130,
+    "body_scale": 110,
     "page_width": 1600,
     "spacing_sections": 20,
     "spacing_grid_horizontal": 40,
@@ -156,11 +156,6 @@
         "disabled": false,
         "settings": {}
       },
-      "14060646107696862457": {
-        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-        "disabled": false,
-        "settings": {}
-      },
       "6603664506335945664": {
         "type": "shopify://apps/transtore/blocks/switcher_embed_block/afeffe82-e563-4f78-90f4-f1e3d96286c3",
         "disabled": true,
@@ -177,6 +172,29 @@
           "utm_term": true,
           "ref": true
         }
+      },
+      "14717942367183170102": {
+        "type": "shopify://apps/chizy-ai-chatbot/blocks/chat-bubble/fd61935c-4053-4b60-9385-bcbc00e2b2be",
+        "disabled": false,
+        "settings": {
+          "api_base_url": "https://ai-agent.chizy.io",
+          "app_url": "https://chatbot.chizy.io"
+        }
+      },
+      "2200952712151285029": {
+        "type": "shopify://apps/microsoft-clarity/blocks/brandAgents_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
+        "disabled": false,
+        "settings": {}
+      },
+      "2567389343055140935": {
+        "type": "shopify://apps/microsoft-clarity/blocks/clarity_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
+        "disabled": false,
+        "settings": {}
+      },
+      "14060646107696862457": {
+        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
