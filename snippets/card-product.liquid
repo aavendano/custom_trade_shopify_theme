@@ -4,7 +4,7 @@
       {%- if card_product.featured_media -%}
         <div class="b-card-image">
           <a href="{{ card_product.url }}" class="full-unstyled-link" tabindex="-1">
-            <figure class="b-image b-is-1by1">
+            <figure class="b-image">
               <img
                 srcset="
                   {%- if card_product.featured_media.width >= 165 -%}{{ card_product.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
@@ -52,14 +52,21 @@
       {%- endif -%}
       <div class="b-card-content b-is-flex b-is-flex-direction-column b-is-flex-grow-1">
         <div class="b-content b-is-flex-grow-1">
-          <p class="b-title b-is-5 b-mb-2">
+          <div class="b-is-flex b-is-pulled-right">
+            {%- if card_product.available == false -%}
+              <span class="b-tag b-is-info b-is-rounded">{{- 'products.product.sold_out' | t -}}</span>
+            {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
+              <span class="b-tag b-is-link b-is-rounded">{{- 'products.product.on_sale' | t -}}</span>
+            {%- endif -%}
+          </div>
+          <p class="b-title b-is-5 b-mb-2 b-has-text-primary">
             <a href="{{ card_product.url }}" class="full-unstyled-link">
               {{ card_product.title | escape }}
             </a>
           </p>
 
           {%- if show_vendor -%}
-            <p class="b-is-size-7 b-has-text-grey b-mb-2">{{ card_product.vendor }}</p>
+            <p class="b-is-size-6 b-has-text-grey-dark b-mb-2 b-subtitle">{{ card_product.vendor }}</p>
           {%- endif -%}
 
           {%- if show_rating and card_product.metafields.reviews.rating.value != blank -%}
@@ -95,12 +102,11 @@
           {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
 
           {%- if card_product.quantity_price_breaks_configured? -%}
-            <div class="b-is-size-7 b-has-text-grey b-mt-2">
+            <div class="b-is-size-6 b-has-text-grey b-mt-2">
               <span>{{ 'products.product.volume_pricing.note' | t }}</span>
             </div>
           {%- endif -%}
         </div>
-
         <div class="b-mt-auto">
           {% assign product_form_id = 'quick-add-' | append: section_id | append: card_product.id %}
           {% if quick_add == 'standard' %}
@@ -194,14 +200,6 @@
             </div>
           {%- endif -%}
         </div>
-      </div>
-
-      <div class="card__badge {{ settings.badge_position }}">
-        {%- if card_product.available == false -%}
-          <span class="b-tag b-is-dark">{{- 'products.product.sold_out' | t -}}</span>
-        {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
-          <span class="b-tag b-is-primary">{{- 'products.product.on_sale' | t -}}</span>
-        {%- endif -%}
       </div>
     </div>
   </div>

@@ -316,7 +316,32 @@
 
     <!-- CUSTOM  CSS -->
     <!-- BULMA -->
-    {{ 'a-bulma-purged.css' | asset_url | stylesheet_tag }}
+
+    {% liquid
+      assign use_full_css = false
+
+      # Detectar tema de desarrollo o no publicado
+      if theme.role == 'development' or theme.role == 'unpublished'
+        assign use_full_css = true
+      endif
+
+      # Detectar editor de temas (Liquid)
+      if request.design_mode
+        assign use_full_css = true
+      endif
+
+      # Override manual (opcional)
+      if settings.force_full_css
+        assign use_full_css = true
+      endif
+    %}
+
+    {% if use_full_css %}
+      {{ 'a-bulma-full.css' | asset_url | stylesheet_tag }}
+    {% else %}
+      {{ 'a-bulma-purged.css' | asset_url | stylesheet_tag }}
+    {% endif %}
+
     {{ 'custom-style.css' | asset_url | stylesheet_tag }}
 
     <!-- TWICPICS COMPONENTS -->
