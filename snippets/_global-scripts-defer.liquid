@@ -25,15 +25,10 @@
   <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
 
-<!-- DEFER JS SCRIPTS REQUIRED BY HEADER -->
-<script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
-
-<!-- SHOPIFY DESIGN MODE DETECTION -->
-<script>
-  if (Shopify.designMode) {
-    document.documentElement.classList.add('shopify-design-mode');
-  }
-</script>
+{% comment %}
+  <!-- DEFER JS SCRIPTS REQUIRED BY HEADER -->
+  <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
+{% endcomment %}
 
 <!-- FONT LOADING OPTIMIZATION -->
 <script>
