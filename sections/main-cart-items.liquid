@@ -9,7 +9,7 @@
 
     <a
       href="{{ routes.all_products_collection_url }}"
-      class="b-button b-is-text b-is-small"
+      class="b-button b-is-outline b-is-small b-is-primary b-is-rounded b-is-outlined"
     >
       {{ 'general.continue_shopping' | t }}
     </a>
@@ -25,9 +25,11 @@
       </a>
     </div>
   {% else %}
-    {% for item in cart.items %}
-      {% render 'cart-item-b', item: item, line_number: forloop.index %}
-    {% endfor %}
+    <form action="{{ routes.cart_url }}" method="post" id="cart">
+      {% for item in cart.items %}
+        {% render 'cart-item-b', item: item, line_number: forloop.index %}
+      {% endfor %}
+    </form>
   {% endif %}
 </div>
 

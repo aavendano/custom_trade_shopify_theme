@@ -70,46 +70,58 @@
       <!-- Unit price + label -->
       <p class="b-is-size-7 b-has-text-grey"><strong> Price: </strong>{{ item.final_price | money }}</p>
 
-      <div class="b-block">
+      <div class="b-block b-mt-5">
         <!-- Qty label + selector -->
         <p class="b-is-size-7 b-has-text-grey b-mr-1">
           <strong>Qty:</strong>
 
           <div class="b-field b-has-addons b-is-inline-flex b-mr-3">
-            <p class="b-control">
+            <div class="b-control">
               <button
-                class="b-button b-is-light b-is-small b-is-rounded"
-                style="max-width:15px; height:35px;"
+                class="b-button b-is-primary b-is-light b-is-rounded"
+                style="max-width:20px; height:35px;"
                 type="button"
                 @click.prevent="decrease()"
                 :disabled="$store.cart.isBusy"
               >
                 −
               </button>
-            </p>
+            </div>
 
-            <p class="b-control">
+            <div class="b-control">
               <input
-                class="b-input b-has-text-centered "
+                class="b-input b-has-text-centered"
                 style="max-width:55px; height:35px;"
                 type="number"
+                name="updates[]"
                 x-model="quantity"
+                min="0"
+                id="updates_{{ item.key }}"
+                data-index="{{ forloop.index }}"
               >
-            </p>
+            </div>
 
-            <p class="b-control b-is-small">
+            <div class="b-control">
               <button
-                class="b-button b-is-light b-is-small b-is-rounded"
-                style="max-width:15px; height:35px;"
+                class="b-button b-is-primary b-is-light b-is-rounded"
+                style="max-width:20px; height:35px;"
                 type="button"
                 @click.prevent="increase()"
                 :disabled="$store.cart.isBusy"
               >
                 +
               </button>
-            </p>
+            </div>
+            <!-- Key del item (útil para identificación) -->
           </div>
         </p>
+        <input
+          type="hidden"
+          name="line_item_key[]"
+          value="{{ item.key }}"
+        >
+        <!-- Atributos del carrito (opcional) -->
+        <input type="hidden" name="attributes[gift_message]" value="">
       </div>
 
       <p
