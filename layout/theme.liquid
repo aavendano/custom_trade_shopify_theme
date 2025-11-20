@@ -338,6 +338,9 @@
 
     {% if use_full_css %}
       {{ 'a-bulma-full.css' | asset_url | stylesheet_tag }}
+      <script>
+        console.log('####### Using Full Bulma CSS #######');
+      </script>
     {% else %}
       {{ 'a-bulma-purged.css' | asset_url | stylesheet_tag }}
     {% endif %}
@@ -352,6 +355,7 @@
     <script src="{{ 'cart-api.js' | asset_url }}" defer></script>
     <script src="{{ 'cart-store.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'cart-fragment.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'alpine-product-card.js' | asset_url }}" defer></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.2/dist/cdn.min.js"></script>
   </head>
 
@@ -374,8 +378,6 @@
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
       <li id="a11y-new-window-message">{{ 'accessibility.link_messages.new_window' | t }}</li>
     </ul>
-
-    {% render '_global-constants' %}
 
     {%- if settings.predictive_search_enabled -%}
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>

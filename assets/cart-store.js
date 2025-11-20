@@ -2,15 +2,26 @@
 
 document.addEventListener("alpine:init", () => {
   Alpine.store("cart", {
-    cart: window.__CART__ || null,
+    cart: null,
     isBusy: false,
     error: null,
-    item_count: this.cart?.item_count || 0,
-    total_price: this.cart?.total_price || 0,
+    item_count: 0,
+    total_price: 0,
 
     async init() {
-      if (!this.cart) {
-        await this.refresh();
+      if (!window.__CART__) {
+        this.cart = await CartApi.get();
+
+      } else {
+        this.cart = window.__CART__;
+      }
+      try {
+        this.error = null;
+        this.item_count = this.cart?.item_count || 0;
+        this.total_price = this.cart?.total_price || 0;
+      } catch (err) {
+        this.error = err;
+        console.error("Failed to initialize cart:", err);
       }
     },
 
@@ -19,8 +30,8 @@ document.addEventListener("alpine:init", () => {
         this.cart = await CartApi.get();
         this.error = null;
         this.item_count = this.cart?.item_count || 0;
-        ((this.total_price = this.cart?.total_price || 0),
-          console.log("Cart refreshed:", this.cart));
+        this.total_price = this.cart?.total_price || 0;
+
       } catch (err) {
         this.error = err;
         console.error("Failed to refresh cart:", err);
