@@ -130,6 +130,7 @@
     "show_cart_note": false,
     "cart_drawer_collection": "lubricant",
     "cart_color_scheme": "scheme-1",
+    "storefront_public_access_token": "3e26b62b29d0391ee6599156c04e33fb",
     "sections": {
       "main-password-header": {
         "type": "main-password-header",
@@ -142,6 +143,10 @@
         "settings": {
           "color_scheme": "scheme-1"
         }
+      },
+      "main-collection-plt": {
+        "type": "main-collection-plt",
+        "settings": {}
       }
     },
     "content_for_index": [],

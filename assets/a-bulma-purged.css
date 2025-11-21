@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Baloo+2:wght@400..800&display=swap");
 :root {
   --b-control-radius: var(--b-radius);
@@ -311,6 +312,19 @@ table th {
   cursor: not-allowed;
 }
 
+.b-control.b-is-loading::after, .b-button.b-is-loading::after {
+  animation: spinAround 500ms infinite linear;
+  border: 2px solid var(--b-loading-color);
+  border-radius: var(--b-radius-rounded);
+  border-right-color: transparent;
+  border-top-color: transparent;
+  content: "";
+  display: block;
+  height: 1em;
+  position: relative;
+  width: 1em;
+}
+
  .b-button {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -567,6 +581,72 @@ a.b-box:active {
   border-color: var(--b-info);
   box-shadow: none;
 }
+.b-button.b-is-success {
+  --b-button-h: var(--b-success-h);
+  --b-button-s: var(--b-success-s);
+  --b-button-l: var(--b-success-l);
+  --b-button-background-l: var(--b-success-l);
+  --b-button-border-l: var(--b-success-l);
+  --b-button-border-width: 0px;
+  --b-button-color-l: var(--b-success-invert-l);
+  --b-button-outer-shadow-a: 0;
+}
+.b-button.b-is-success:focus-visible, .b-button.b-is-success.b-is-focused {
+  --b-button-border-width: 1px;
+}
+.b-button.b-is-success.b-is-light {
+  --b-button-background-l: var(--b-light-l);
+  --b-button-color-l: var(--b-success-light-invert-l);
+}
+.b-button.b-is-success[disabled], fieldset[disabled] .b-button.b-is-success {
+  background-color: var(--b-success);
+  border-color: var(--b-success);
+  box-shadow: none;
+}
+.b-button.b-is-warning {
+  --b-button-h: var(--b-warning-h);
+  --b-button-s: var(--b-warning-s);
+  --b-button-l: var(--b-warning-l);
+  --b-button-background-l: var(--b-warning-l);
+  --b-button-border-l: var(--b-warning-l);
+  --b-button-border-width: 0px;
+  --b-button-color-l: var(--b-warning-invert-l);
+  --b-button-outer-shadow-a: 0;
+}
+.b-button.b-is-warning:focus-visible, .b-button.b-is-warning.b-is-focused {
+  --b-button-border-width: 1px;
+}
+.b-button.b-is-warning.b-is-light {
+  --b-button-background-l: var(--b-light-l);
+  --b-button-color-l: var(--b-warning-light-invert-l);
+}
+.b-button.b-is-warning[disabled], fieldset[disabled] .b-button.b-is-warning {
+  background-color: var(--b-warning);
+  border-color: var(--b-warning);
+  box-shadow: none;
+}
+.b-button.b-is-danger {
+  --b-button-h: var(--b-danger-h);
+  --b-button-s: var(--b-danger-s);
+  --b-button-l: var(--b-danger-l);
+  --b-button-background-l: var(--b-danger-l);
+  --b-button-border-l: var(--b-danger-l);
+  --b-button-border-width: 0px;
+  --b-button-color-l: var(--b-danger-invert-l);
+  --b-button-outer-shadow-a: 0;
+}
+.b-button.b-is-danger:focus-visible, .b-button.b-is-danger.b-is-focused {
+  --b-button-border-width: 1px;
+}
+.b-button.b-is-danger.b-is-light {
+  --b-button-background-l: var(--b-light-l);
+  --b-button-color-l: var(--b-danger-light-invert-l);
+}
+.b-button.b-is-danger[disabled], fieldset[disabled] .b-button.b-is-danger {
+  background-color: var(--b-danger);
+  border-color: var(--b-danger);
+  box-shadow: none;
+}
 .b-button.b-is-outlined {
   --b-button-border-width: max(1px, 0.0625em);
   --b-loading-color: hsl(var(--b-button-h), var(--b-button-s), var(--b-button-l));
@@ -634,6 +714,17 @@ a.b-box:active {
 .b-button.b-is-fullwidth {
   display: flex;
   width: 100%;
+}
+.b-button.b-is-loading {
+  box-shadow: none;
+  color: transparent !important;
+  pointer-events: none;
+}
+.b-button.b-is-loading::after {
+  position: absolute;
+  left: calc(50% - 1em * 0.5);
+  top: calc(50% - 1em * 0.5);
+  position: absolute !important;
 }
 .b-button.b-is-rounded {
   border-radius: var(--b-radius-rounded);
@@ -1056,6 +1147,36 @@ div.b-icon-text {
   --b-notification-background-l: 90%;
   --b-notification-color-l: var(--b-info-light-invert-l);
 }
+.b-notification.b-is-success {
+  --b-notification-h: var(--b-success-h);
+  --b-notification-s: var(--b-success-s);
+  --b-notification-background-l: var(--b-success-l);
+  --b-notification-color-l: var(--b-success-invert-l);
+}
+.b-notification.b-is-success.b-is-light {
+  --b-notification-background-l: 90%;
+  --b-notification-color-l: var(--b-success-light-invert-l);
+}
+.b-notification.b-is-warning {
+  --b-notification-h: var(--b-warning-h);
+  --b-notification-s: var(--b-warning-s);
+  --b-notification-background-l: var(--b-warning-l);
+  --b-notification-color-l: var(--b-warning-invert-l);
+}
+.b-notification.b-is-warning.b-is-light {
+  --b-notification-background-l: 90%;
+  --b-notification-color-l: var(--b-warning-light-invert-l);
+}
+.b-notification.b-is-danger {
+  --b-notification-h: var(--b-danger-h);
+  --b-notification-s: var(--b-danger-s);
+  --b-notification-background-l: var(--b-danger-l);
+  --b-notification-color-l: var(--b-danger-invert-l);
+}
+.b-notification.b-is-danger.b-is-light {
+  --b-notification-background-l: 90%;
+  --b-notification-color-l: var(--b-danger-light-invert-l);
+}
 
 .b-tag {
   --b-tag-h: var(--b-scheme-h);
@@ -1133,6 +1254,36 @@ div.b-icon-text {
 .b-tag.b-is-info.b-is-light {
   --b-tag-background-l: var(--b-light-l);
   --b-tag-color-l: var(--b-info-light-invert-l);
+}
+.b-tag.b-is-success {
+  --b-tag-h: var(--b-success-h);
+  --b-tag-s: var(--b-success-s);
+  --b-tag-background-l: var(--b-success-l);
+  --b-tag-color-l: var(--b-success-invert-l);
+}
+.b-tag.b-is-success.b-is-light {
+  --b-tag-background-l: var(--b-light-l);
+  --b-tag-color-l: var(--b-success-light-invert-l);
+}
+.b-tag.b-is-warning {
+  --b-tag-h: var(--b-warning-h);
+  --b-tag-s: var(--b-warning-s);
+  --b-tag-background-l: var(--b-warning-l);
+  --b-tag-color-l: var(--b-warning-invert-l);
+}
+.b-tag.b-is-warning.b-is-light {
+  --b-tag-background-l: var(--b-light-l);
+  --b-tag-color-l: var(--b-warning-light-invert-l);
+}
+.b-tag.b-is-danger {
+  --b-tag-h: var(--b-danger-h);
+  --b-tag-s: var(--b-danger-s);
+  --b-tag-background-l: var(--b-danger-l);
+  --b-tag-color-l: var(--b-danger-invert-l);
+}
+.b-tag.b-is-danger.b-is-light {
+  --b-tag-background-l: var(--b-light-l);
+  --b-tag-color-l: var(--b-danger-light-invert-l);
 }
 .b-tag.b-is-normal {
   font-size: var(--b-size-small);
@@ -1222,9 +1373,6 @@ button.b-tag:active {
 .b-title.b-is-3 {
   font-size: 2rem;
 }
-.b-title.b-is-4 {
-  font-size: 1.5rem;
-}
 .b-title.b-is-5 {
   font-size: 1.25rem;
 }
@@ -1247,9 +1395,6 @@ button.b-tag:active {
 }
 .b-subtitle.b-is-3 {
   font-size: 2rem;
-}
-.b-subtitle.b-is-4 {
-  font-size: 1.5rem;
 }
 .b-subtitle.b-is-5 {
   font-size: 1.25rem;
@@ -1395,6 +1540,33 @@ button.b-tag:active {
   --b-input-focus-l: var(--b-info-l);
   --b-input-border-l: var(--b-info-l);
 }
+.b-is-success.b-textarea, .b-is-success.b-input {
+  --b-input-h: var(--b-success-h);
+  --b-input-s: var(--b-success-s);
+  --b-input-l: var(--b-success-l);
+  --b-input-focus-h: var(--b-success-h);
+  --b-input-focus-s: var(--b-success-s);
+  --b-input-focus-l: var(--b-success-l);
+  --b-input-border-l: var(--b-success-l);
+}
+.b-is-warning.b-textarea, .b-is-warning.b-input {
+  --b-input-h: var(--b-warning-h);
+  --b-input-s: var(--b-warning-s);
+  --b-input-l: var(--b-warning-l);
+  --b-input-focus-h: var(--b-warning-h);
+  --b-input-focus-s: var(--b-warning-s);
+  --b-input-focus-l: var(--b-warning-l);
+  --b-input-border-l: var(--b-warning-l);
+}
+.b-is-danger.b-textarea, .b-is-danger.b-input {
+  --b-input-h: var(--b-danger-h);
+  --b-input-s: var(--b-danger-s);
+  --b-input-l: var(--b-danger-l);
+  --b-input-focus-h: var(--b-danger-h);
+  --b-input-focus-s: var(--b-danger-s);
+  --b-input-focus-l: var(--b-danger-l);
+  --b-input-border-l: var(--b-danger-l);
+}
 .b-is-small.b-textarea, .b-is-small.b-input {
   border-radius: var(--b-radius-small);
   font-size: var(--b-size-small);
@@ -1488,6 +1660,15 @@ button.b-tag:active {
 .b-help.b-is-info {
   color: hsl(var(--b-info-h), var(--b-info-s), var(--b-info-on-scheme-l));
 }
+.b-help.b-is-success {
+  color: hsl(var(--b-success-h), var(--b-success-s), var(--b-success-on-scheme-l));
+}
+.b-help.b-is-warning {
+  color: hsl(var(--b-warning-h), var(--b-warning-s), var(--b-warning-on-scheme-l));
+}
+.b-help.b-is-danger {
+  color: hsl(var(--b-danger-h), var(--b-danger-s), var(--b-danger-on-scheme-l));
+}
 
 .b-field {
   --b-block-spacing: var(--b-field-block-spacing);
@@ -1541,6 +1722,21 @@ button.b-tag:active {
   position: relative;
   text-align: inherit;
 }
+.b-control.b-is-loading::after {
+  inset-inline-end: 0.75em;
+  position: absolute !important;
+  top: 0.75em;
+  z-index: 4;
+}
+.b-control.b-is-loading.b-is-small:after {
+  font-size: var(--b-size-small);
+}
+.b-control.b-is-loading.b-is-medium:after {
+  font-size: var(--b-size-medium);
+}
+.b-control.b-is-loading.b-is-large:after {
+  font-size: var(--b-size-large);
+}
 
 /* Bulma Components */
 .b-card {
@@ -1570,11 +1766,11 @@ button.b-tag:active {
   position: relative;
 }
 
- .b-card-content:first-child {
+.b-card-footer:first-child, .b-card-content:first-child {
   border-start-start-radius: var(--b-card-radius);
   border-start-end-radius: var(--b-card-radius);
 }
- .b-card-content:last-child {
+.b-card-footer:last-child, .b-card-content:last-child {
   border-end-start-radius: var(--b-card-radius);
   border-end-end-radius: var(--b-card-radius);
 }
@@ -1597,6 +1793,26 @@ button.b-tag:active {
   padding: var(--b-card-content-padding);
 }
 
+.b-card-footer {
+  background-color: var(--b-card-footer-background-color);
+  border-top: var(--b-card-footer-border-top);
+  align-items: stretch;
+  display: flex;
+}
+
+.b-card-footer-item {
+  align-items: center;
+  display: flex;
+  flex-basis: 0;
+  flex-grow: 1;
+  flex-shrink: 0;
+  justify-content: center;
+  padding: var(--b-card-footer-padding);
+}
+.b-card-footer-item:not(:last-child) {
+  border-inline-end: var(--b-card-footer-border-top);
+}
+
 .b-card .b-media:not(:last-child) {
   margin-bottom: var(--b-card-media-margin);
 }
@@ -1617,10 +1833,6 @@ button.b-tag:active {
   .b-column.b-is-3, .b-column.b-is-3-tablet {
     flex: none;
     width: 25%;
-  }
-  .b-column.b-is-4 {
-    flex: none;
-    width: 33.3333333333%;
   }
   .b-column.b-is-5 {
     flex: none;
@@ -1661,9 +1873,6 @@ button.b-tag:active {
   .b-columns.b-is-3-tablet {
     --b-column-gap: 0.75rem;
   }
-}
-.b-columns.b-is-4 {
-  --b-column-gap: 1rem;
 }
 @media screen and (min-width: 1024px) {
   .b-columns.b-is-4-desktop {
@@ -1811,6 +2020,20 @@ button.b-has-text-black:active {
   color: hsl(var(--b-black-h), var(--b-black-s), calc(var(--b-black-l) + var(--b-active-color-l-delta))) !important;
 }
 
+.b-has-text-primary {
+  color: hsl(var(--b-primary-h), var(--b-primary-s), var(--b-primary-l)) !important;
+}
+
+a.b-has-text-primary:hover, a.b-has-text-primary:focus-visible,
+button.b-has-text-primary:hover,
+button.b-has-text-primary:focus-visible {
+  color: hsl(var(--b-primary-h), var(--b-primary-s), calc(var(--b-primary-l) + var(--b-hover-color-l-delta))) !important;
+}
+a.b-has-text-primary:active,
+button.b-has-text-primary:active {
+  color: hsl(var(--b-primary-h), var(--b-primary-s), calc(var(--b-primary-l) + var(--b-active-color-l-delta))) !important;
+}
+
 .b-has-text-link-light {
   color: hsl(var(--b-link-h), var(--b-link-s), var(--b-link-light-l)) !important;
 }
@@ -1944,8 +2167,9 @@ button.b-has-text-info:active {
   margin-bottom: 3rem !important;
 }
 
-.b-mt-auto {
-  margin-top: auto !important;
+.b-px-2 {
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
 }
 
 .b-px-3 {
@@ -1983,6 +2207,10 @@ button.b-has-text-info:active {
   font-size: 1rem !important;
 }
 
+.b-is-size-7 {
+  font-size: 0.75rem !important;
+}
+
 @media screen and (max-width: 768px) {
   .b-is-size-1-mobile {
     font-size: 3rem !important;
@@ -2001,6 +2229,9 @@ button.b-has-text-info:active {
   }
   .b-is-size-6-mobile {
     font-size: 1rem !important;
+  }
+  .b-is-size-7-mobile {
+    font-size: 0.75rem !important;
   }
 }
 @media screen and (min-width: 769px), print {
@@ -2022,6 +2253,9 @@ button.b-has-text-info:active {
   .b-is-size-6-tablet {
     font-size: 1rem !important;
   }
+  .b-is-size-7-tablet {
+    font-size: 0.75rem !important;
+  }
 }
 @media screen and (min-width: 1024px) {
   .b-is-size-1-desktop {
@@ -2041,6 +2275,9 @@ button.b-has-text-info:active {
   }
   .b-is-size-6-desktop {
     font-size: 1rem !important;
+  }
+  .b-is-size-7-desktop {
+    font-size: 0.75rem !important;
   }
 }
 @media screen and (min-width: 1216px) {
@@ -2062,6 +2299,9 @@ button.b-has-text-info:active {
   .b-is-size-6-widescreen {
     font-size: 1rem !important;
   }
+  .b-is-size-7-widescreen {
+    font-size: 0.75rem !important;
+  }
 }
 @media screen and (min-width: 1408px) {
   .b-is-size-1-fullhd {
@@ -2081,6 +2321,9 @@ button.b-has-text-info:active {
   }
   .b-is-size-6-fullhd {
     font-size: 1rem !important;
+  }
+  .b-is-size-7-fullhd {
+    font-size: 0.75rem !important;
   }
 }
 .b-has-text-centered {
@@ -2230,6 +2473,114 @@ button.b-has-text-info:active {
   white-space: nowrap !important;
   width: 0.01em !important;
 }
+
+/* Bulma Form */
+/* ==========================================================
+   PlayLoveToys — Overlay Toolkit (Dynamic Bulma Colors)
+   Genera helpers según $these-colors (sin asumir nombres).
+   ========================================================== */
+/* Espaciado base para overlays */
+/* ============================================
+   Mixins de posicionamiento
+   ============================================ */
+/* ============================================
+   Contenedor base para overlays
+   ============================================ */
+
+/* ============================================
+   Helpers de posición (independientes del color)
+   ============================================ */
+
+/* Variante responsive:
+   - mobile: bottom-right
+   - tablet+: top-right
+*/
+
+/* Variante responsive 2:
+   - mobile: center
+   - tablet+: top-left
+*/
+
+/* ============================================
+   Funciones helper para leer $these-colors
+   $these-colors: ("primary": ($primary, $primary-invert), ...)
+   ============================================ */
+/* ============================================
+   Loop dinámico por todos los colores de Bulma
+   Genera:
+   - .b-badge-[color]
+   - .b-badge-circle-[color]
+   - .b-badge-pill-[color]
+   ============================================ */
+/* Badge rectangular */
+
+/* Badge tipo pill */
+
+/* Badge circular */
+
+/* Badge rectangular */
+
+/* Badge tipo pill */
+
+/* Badge circular */
+
+/* Badge rectangular */
+
+/* Badge tipo pill */
+
+/* Badge circular */
+
+/* Badge rectangular */
+
+/* Badge tipo pill */
+
+/* Badge circular */
+
+/* Badge rectangular */
+
+/* Badge tipo pill */
+
+/* Badge circular */
+
+/* Badge rectangular */
+
+/* Badge tipo pill */
+
+/* Badge circular */
+
+/* Badge rectangular */
+
+/* Badge tipo pill */
+
+/* Badge circular */
+
+/* Badge rectangular */
+
+/* Badge tipo pill */
+
+/* Badge circular */
+
+/* Badge rectangular */
+
+/* Badge tipo pill */
+
+/* Badge circular */
+
+/* Badge rectangular */
+
+/* Badge tipo pill */
+
+/* Badge circular */
+
+/* Badge rectangular */
+
+/* Badge tipo pill */
+
+/* Badge circular */
+
+/* ============================================
+   Gradients neutrales (no dependen del mapa)
+   ============================================ */
 
 /* Bulma Themes */
 :root {
@@ -2758,9 +3109,333 @@ button.b-has-text-info:active {
   --b-info-bold-invert: hsla(var(--b-info-h), var(--b-info-s), var(--b-bold-invert-l), 1);
   --b-info-on-scheme-l: 24%;
   --b-info-on-scheme: hsla(var(--b-info-h), var(--b-info-s), var(--b-info-on-scheme-l), 1);
+  --b-success: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-l), 1);
+  --b-success-base: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-l), 1);
+  --b-success-rgb: 71.6295, 198.6705, 141.50205;
+  --b-success-h: 153deg;
+  --b-success-s: 53%;
+  --b-success-l: 53%;
+  --b-success-00-l: 0%;
+  --b-success-05-l: 3%;
+  --b-success-10-l: 8%;
+  --b-success-15-l: 13%;
+  --b-success-20-l: 18%;
+  --b-success-25-l: 23%;
+  --b-success-30-l: 28%;
+  --b-success-35-l: 33%;
+  --b-success-40-l: 38%;
+  --b-success-45-l: 43%;
+  --b-success-50-l: 48%;
+  --b-success-55-l: 53%;
+  --b-success-60-l: 58%;
+  --b-success-65-l: 63%;
+  --b-success-70-l: 68%;
+  --b-success-75-l: 73%;
+  --b-success-80-l: 78%;
+  --b-success-85-l: 83%;
+  --b-success-90-l: 88%;
+  --b-success-95-l: 93%;
+  --b-success-100-l: 98%;
+  --b-success-00: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-00-l), 1);
+  --b-success-00-invert-l: var(--b-success-45-l);
+  --b-success-00-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-00-invert-l), 1);
+  --b-success-05: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-05-l), 1);
+  --b-success-05-invert-l: var(--b-success-45-l);
+  --b-success-05-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-05-invert-l), 1);
+  --b-success-10: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-10-l), 1);
+  --b-success-10-invert-l: var(--b-success-55-l);
+  --b-success-10-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-10-invert-l), 1);
+  --b-success-15: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-15-l), 1);
+  --b-success-15-invert-l: var(--b-success-75-l);
+  --b-success-15-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-15-invert-l), 1);
+  --b-success-20: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-20-l), 1);
+  --b-success-20-invert-l: var(--b-success-95-l);
+  --b-success-20-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-20-invert-l), 1);
+  --b-success-25: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-25-l), 1);
+  --b-success-25-invert-l: var(--b-success-100-l);
+  --b-success-25-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-25-invert-l), 1);
+  --b-success-30: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-30-l), 1);
+  --b-success-30-invert-l: var(--b-success-100-l);
+  --b-success-30-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-30-invert-l), 1);
+  --b-success-35: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-35-l), 1);
+  --b-success-35-invert-l: var(--b-success-100-l);
+  --b-success-35-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-35-invert-l), 1);
+  --b-success-40: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-40-l), 1);
+  --b-success-40-invert-l: var(--b-success-100-l);
+  --b-success-40-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-40-invert-l), 1);
+  --b-success-45: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-45-l), 1);
+  --b-success-45-invert-l: var(--b-success-05-l);
+  --b-success-45-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-45-invert-l), 1);
+  --b-success-50: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-50-l), 1);
+  --b-success-50-invert-l: var(--b-success-05-l);
+  --b-success-50-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-50-invert-l), 1);
+  --b-success-55: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-55-l), 1);
+  --b-success-55-invert-l: var(--b-success-10-l);
+  --b-success-55-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-55-invert-l), 1);
+  --b-success-60: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-60-l), 1);
+  --b-success-60-invert-l: var(--b-success-10-l);
+  --b-success-60-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-60-invert-l), 1);
+  --b-success-65: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-65-l), 1);
+  --b-success-65-invert-l: var(--b-success-10-l);
+  --b-success-65-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-65-invert-l), 1);
+  --b-success-70: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-70-l), 1);
+  --b-success-70-invert-l: var(--b-success-10-l);
+  --b-success-70-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-70-invert-l), 1);
+  --b-success-75: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-75-l), 1);
+  --b-success-75-invert-l: var(--b-success-15-l);
+  --b-success-75-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-75-invert-l), 1);
+  --b-success-80: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-80-l), 1);
+  --b-success-80-invert-l: var(--b-success-15-l);
+  --b-success-80-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-80-invert-l), 1);
+  --b-success-85: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-85-l), 1);
+  --b-success-85-invert-l: var(--b-success-15-l);
+  --b-success-85-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-85-invert-l), 1);
+  --b-success-90: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-90-l), 1);
+  --b-success-90-invert-l: var(--b-success-15-l);
+  --b-success-90-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-90-invert-l), 1);
+  --b-success-95: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-95-l), 1);
+  --b-success-95-invert-l: var(--b-success-20-l);
+  --b-success-95-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-95-invert-l), 1);
+  --b-success-100: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-100-l), 1);
+  --b-success-100-invert-l: var(--b-success-20-l);
+  --b-success-100-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-100-invert-l), 1);
+  --b-success-invert-l: var(--b-success-10-l);
+  --b-success-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-invert-l), 1);
+  --b-success-light-l: var(--b-success-90-l);
+  --b-success-light: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-light-l), 1);
+  --b-success-light-invert-l: var(--b-success-15-l);
+  --b-success-light-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-light-invert-l), 1);
+  --b-success-dark-l: var(--b-success-10-l);
+  --b-success-dark: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-dark-l), 1);
+  --b-success-dark-invert-l: var(--b-success-55-l);
+  --b-success-dark-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-dark-invert-l), 1);
+  --b-success-soft: hsla(var(--b-success-h), var(--b-success-s), var(--b-soft-l), 1);
+  --b-success-bold: hsla(var(--b-success-h), var(--b-success-s), var(--b-bold-l), 1);
+  --b-success-soft-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-soft-invert-l), 1);
+  --b-success-bold-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-bold-invert-l), 1);
+  --b-success-on-scheme-l: 23%;
+  --b-success-on-scheme: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-on-scheme-l), 1);
+  --b-warning: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-l), 1);
+  --b-warning-base: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-l), 1);
+  --b-warning-rgb: 255, 183.09, 15.3;
+  --b-warning-h: 42deg;
+  --b-warning-s: 100%;
+  --b-warning-l: 53%;
+  --b-warning-00-l: 0%;
+  --b-warning-05-l: 3%;
+  --b-warning-10-l: 8%;
+  --b-warning-15-l: 13%;
+  --b-warning-20-l: 18%;
+  --b-warning-25-l: 23%;
+  --b-warning-30-l: 28%;
+  --b-warning-35-l: 33%;
+  --b-warning-40-l: 38%;
+  --b-warning-45-l: 43%;
+  --b-warning-50-l: 48%;
+  --b-warning-55-l: 53%;
+  --b-warning-60-l: 58%;
+  --b-warning-65-l: 63%;
+  --b-warning-70-l: 68%;
+  --b-warning-75-l: 73%;
+  --b-warning-80-l: 78%;
+  --b-warning-85-l: 83%;
+  --b-warning-90-l: 88%;
+  --b-warning-95-l: 93%;
+  --b-warning-100-l: 98%;
+  --b-warning-00: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-00-l), 1);
+  --b-warning-00-invert-l: var(--b-warning-40-l);
+  --b-warning-00-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-00-invert-l), 1);
+  --b-warning-05: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-05-l), 1);
+  --b-warning-05-invert-l: var(--b-warning-45-l);
+  --b-warning-05-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-05-invert-l), 1);
+  --b-warning-10: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-10-l), 1);
+  --b-warning-10-invert-l: var(--b-warning-50-l);
+  --b-warning-10-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-10-invert-l), 1);
+  --b-warning-15: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-15-l), 1);
+  --b-warning-15-invert-l: var(--b-warning-70-l);
+  --b-warning-15-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-15-invert-l), 1);
+  --b-warning-20: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-20-l), 1);
+  --b-warning-20-invert-l: var(--b-warning-100-l);
+  --b-warning-20-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-20-invert-l), 1);
+  --b-warning-25: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-25-l), 1);
+  --b-warning-25-invert-l: var(--b-warning-100-l);
+  --b-warning-25-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-25-invert-l), 1);
+  --b-warning-30: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-30-l), 1);
+  --b-warning-30-invert-l: var(--b-warning-100-l);
+  --b-warning-30-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-30-invert-l), 1);
+  --b-warning-35: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-35-l), 1);
+  --b-warning-35-invert-l: var(--b-warning-100-l);
+  --b-warning-35-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-35-invert-l), 1);
+  --b-warning-40: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-40-l), 1);
+  --b-warning-40-invert-l: var(--b-warning-00-l);
+  --b-warning-40-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-40-invert-l), 1);
+  --b-warning-45: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-45-l), 1);
+  --b-warning-45-invert-l: var(--b-warning-05-l);
+  --b-warning-45-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-45-invert-l), 1);
+  --b-warning-50: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-50-l), 1);
+  --b-warning-50-invert-l: var(--b-warning-10-l);
+  --b-warning-50-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-50-invert-l), 1);
+  --b-warning-55: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-55-l), 1);
+  --b-warning-55-invert-l: var(--b-warning-10-l);
+  --b-warning-55-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-55-invert-l), 1);
+  --b-warning-60: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-60-l), 1);
+  --b-warning-60-invert-l: var(--b-warning-10-l);
+  --b-warning-60-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-60-invert-l), 1);
+  --b-warning-65: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-65-l), 1);
+  --b-warning-65-invert-l: var(--b-warning-10-l);
+  --b-warning-65-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-65-invert-l), 1);
+  --b-warning-70: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-70-l), 1);
+  --b-warning-70-invert-l: var(--b-warning-15-l);
+  --b-warning-70-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-70-invert-l), 1);
+  --b-warning-75: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-75-l), 1);
+  --b-warning-75-invert-l: var(--b-warning-15-l);
+  --b-warning-75-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-75-invert-l), 1);
+  --b-warning-80: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-80-l), 1);
+  --b-warning-80-invert-l: var(--b-warning-15-l);
+  --b-warning-80-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-80-invert-l), 1);
+  --b-warning-85: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-85-l), 1);
+  --b-warning-85-invert-l: var(--b-warning-15-l);
+  --b-warning-85-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-85-invert-l), 1);
+  --b-warning-90: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-90-l), 1);
+  --b-warning-90-invert-l: var(--b-warning-15-l);
+  --b-warning-90-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-90-invert-l), 1);
+  --b-warning-95: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-95-l), 1);
+  --b-warning-95-invert-l: var(--b-warning-15-l);
+  --b-warning-95-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-95-invert-l), 1);
+  --b-warning-100: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-100-l), 1);
+  --b-warning-100-invert-l: var(--b-warning-20-l);
+  --b-warning-100-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-100-invert-l), 1);
+  --b-warning-invert-l: var(--b-warning-10-l);
+  --b-warning-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-invert-l), 1);
+  --b-warning-light-l: var(--b-warning-90-l);
+  --b-warning-light: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-light-l), 1);
+  --b-warning-light-invert-l: var(--b-warning-15-l);
+  --b-warning-light-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-light-invert-l), 1);
+  --b-warning-dark-l: var(--b-warning-10-l);
+  --b-warning-dark: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-dark-l), 1);
+  --b-warning-dark-invert-l: var(--b-warning-50-l);
+  --b-warning-dark-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-dark-invert-l), 1);
+  --b-warning-soft: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-soft-l), 1);
+  --b-warning-bold: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-bold-l), 1);
+  --b-warning-soft-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-soft-invert-l), 1);
+  --b-warning-bold-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-bold-invert-l), 1);
+  --b-warning-on-scheme-l: 23%;
+  --b-warning-on-scheme: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-on-scheme-l), 1);
+  --b-danger: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-l), 1);
+  --b-danger-base: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-l), 1);
+  --b-danger-rgb: 255, 102, 132.6;
+  --b-danger-h: 348deg;
+  --b-danger-s: 100%;
+  --b-danger-l: 70%;
+  --b-danger-00-l: 0%;
+  --b-danger-05-l: 5%;
+  --b-danger-10-l: 10%;
+  --b-danger-15-l: 15%;
+  --b-danger-20-l: 20%;
+  --b-danger-25-l: 25%;
+  --b-danger-30-l: 30%;
+  --b-danger-35-l: 35%;
+  --b-danger-40-l: 40%;
+  --b-danger-45-l: 45%;
+  --b-danger-50-l: 50%;
+  --b-danger-55-l: 55%;
+  --b-danger-60-l: 60%;
+  --b-danger-65-l: 65%;
+  --b-danger-70-l: 70%;
+  --b-danger-75-l: 75%;
+  --b-danger-80-l: 80%;
+  --b-danger-85-l: 85%;
+  --b-danger-90-l: 90%;
+  --b-danger-95-l: 95%;
+  --b-danger-100-l: 100%;
+  --b-danger-00: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-00-l), 1);
+  --b-danger-00-invert-l: var(--b-danger-65-l);
+  --b-danger-00-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-00-invert-l), 1);
+  --b-danger-05: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-05-l), 1);
+  --b-danger-05-invert-l: var(--b-danger-70-l);
+  --b-danger-05-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-05-invert-l), 1);
+  --b-danger-10: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-10-l), 1);
+  --b-danger-10-invert-l: var(--b-danger-75-l);
+  --b-danger-10-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-10-invert-l), 1);
+  --b-danger-15: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-15-l), 1);
+  --b-danger-15-invert-l: var(--b-danger-80-l);
+  --b-danger-15-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-15-invert-l), 1);
+  --b-danger-20: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-20-l), 1);
+  --b-danger-20-invert-l: var(--b-danger-85-l);
+  --b-danger-20-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-20-invert-l), 1);
+  --b-danger-25: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-25-l), 1);
+  --b-danger-25-invert-l: var(--b-danger-90-l);
+  --b-danger-25-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-25-invert-l), 1);
+  --b-danger-30: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-30-l), 1);
+  --b-danger-30-invert-l: var(--b-danger-100-l);
+  --b-danger-30-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-30-invert-l), 1);
+  --b-danger-35: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-35-l), 1);
+  --b-danger-35-invert-l: var(--b-danger-100-l);
+  --b-danger-35-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-35-invert-l), 1);
+  --b-danger-40: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-40-l), 1);
+  --b-danger-40-invert-l: var(--b-danger-100-l);
+  --b-danger-40-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-40-invert-l), 1);
+  --b-danger-45: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-45-l), 1);
+  --b-danger-45-invert-l: var(--b-danger-100-l);
+  --b-danger-45-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-45-invert-l), 1);
+  --b-danger-50: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-50-l), 1);
+  --b-danger-50-invert-l: var(--b-danger-100-l);
+  --b-danger-50-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-50-invert-l), 1);
+  --b-danger-55: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-55-l), 1);
+  --b-danger-55-invert-l: var(--b-danger-100-l);
+  --b-danger-55-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-55-invert-l), 1);
+  --b-danger-60: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-60-l), 1);
+  --b-danger-60-invert-l: var(--b-danger-100-l);
+  --b-danger-60-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-60-invert-l), 1);
+  --b-danger-65: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-65-l), 1);
+  --b-danger-65-invert-l: var(--b-danger-00-l);
+  --b-danger-65-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-65-invert-l), 1);
+  --b-danger-70: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-70-l), 1);
+  --b-danger-70-invert-l: var(--b-danger-05-l);
+  --b-danger-70-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-70-invert-l), 1);
+  --b-danger-75: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-75-l), 1);
+  --b-danger-75-invert-l: var(--b-danger-10-l);
+  --b-danger-75-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-75-invert-l), 1);
+  --b-danger-80: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-80-l), 1);
+  --b-danger-80-invert-l: var(--b-danger-15-l);
+  --b-danger-80-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-80-invert-l), 1);
+  --b-danger-85: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-85-l), 1);
+  --b-danger-85-invert-l: var(--b-danger-20-l);
+  --b-danger-85-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-85-invert-l), 1);
+  --b-danger-90: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-90-l), 1);
+  --b-danger-90-invert-l: var(--b-danger-25-l);
+  --b-danger-90-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-90-invert-l), 1);
+  --b-danger-95: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-95-l), 1);
+  --b-danger-95-invert-l: var(--b-danger-25-l);
+  --b-danger-95-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-95-invert-l), 1);
+  --b-danger-100: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-100-l), 1);
+  --b-danger-100-invert-l: var(--b-danger-30-l);
+  --b-danger-100-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-100-invert-l), 1);
+  --b-danger-invert-l: var(--b-danger-05-l);
+  --b-danger-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-invert-l), 1);
+  --b-danger-light-l: var(--b-danger-90-l);
+  --b-danger-light: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-light-l), 1);
+  --b-danger-light-invert-l: var(--b-danger-25-l);
+  --b-danger-light-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-light-invert-l), 1);
+  --b-danger-dark-l: var(--b-danger-10-l);
+  --b-danger-dark: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-dark-l), 1);
+  --b-danger-dark-invert-l: var(--b-danger-75-l);
+  --b-danger-dark-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-dark-invert-l), 1);
+  --b-danger-soft: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-soft-l), 1);
+  --b-danger-bold: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-bold-l), 1);
+  --b-danger-soft-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-soft-invert-l), 1);
+  --b-danger-bold-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-bold-invert-l), 1);
+  --b-danger-on-scheme-l: 40%;
+  --b-danger-on-scheme: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-on-scheme-l), 1);
+  --b-black-bis: hsl(221, 14%, 9%);
+  --b-black-ter: hsl(221, 14%, 14%);
+  --b-grey-darker: hsl(221, 14%, 21%);
   --b-grey-dark: hsl(108, 6%, 34%);
   --b-grey: hsl(0, 0%, 71%);
   --b-grey-light: hsl(0, 0%, 96%);
+  --b-grey-lighter: hsl(221, 14%, 86%);
+  --b-white-ter: hsl(221, 14%, 96%);
+  --b-white-bis: hsl(221, 14%, 98%);
   --b-shadow-h: 221deg;
   --b-shadow-s: 14%;
   --b-shadow-l: 4%;
@@ -2770,39 +3445,7 @@ button.b-has-text-info:active {
   --b-size-4: 1.5rem;
   --b-size-5: 1.25rem;
   --b-size-6: 1rem;
-  --b-scheme-main: hsl(var(--b-scheme-h), var(--b-scheme-s), var(--b-scheme-main-l));
-  --b-scheme-main-bis: hsl(var(--b-scheme-h), var(--b-scheme-s), var(--b-scheme-main-bis-l));
-  --b-scheme-main-ter: hsl(var(--b-scheme-h), var(--b-scheme-s), var(--b-scheme-main-ter-l));
-  --b-background: hsl(var(--b-scheme-h), var(--b-scheme-s), var(--b-background-l));
-  --b-background-hover: hsl(var(--b-scheme-h), var(--b-scheme-s), calc(var(--b-background-l) + var(--b-hover-background-l-delta)));
-  --b-background-active: hsl(var(--b-scheme-h), var(--b-scheme-s), calc(var(--b-background-l) + var(--b-active-background-l-delta)));
-  --b-border-weak: hsl(var(--b-scheme-h), var(--b-scheme-s), var(--b-border-weak-l));
-  --b-border: hsl(var(--b-scheme-h), var(--b-scheme-s), var(--b-border-l));
-  --b-border-hover: hsl(var(--b-scheme-h), var(--b-scheme-s), calc(var(--b-border-l) + var(--b-hover-border-l-delta)));
-  --b-border-active: hsl(var(--b-scheme-h), var(--b-scheme-s), calc(var(--b-border-l) + var(--b-active-border-l-delta)));
-  --b-text-weak: hsl(var(--b-text-h), var(--b-text-s), var(--b-text-weak-l));
-  --b-text: hsl(var(--b-text-h), var(--b-text-s), var(--b-text-l));
-  --b-text-strong: hsl(var(--b-text-h), var(--b-text-s), var(--b-text-strong-l));
-  --b-scheme-invert-ter: hsl(var(--b-scheme-h), var(--b-scheme-s), var(--b-scheme-invert-ter-l));
-  --b-scheme-invert-bis: hsl(var(--b-scheme-h), var(--b-scheme-s), var(--b-scheme-invert-bis-l));
-  --b-scheme-invert: hsl(var(--b-scheme-h), var(--b-scheme-s), var(--b-scheme-invert-l));
-  --b-link: hsl(var(--b-link-h), var(--b-link-s), var(--b-link-l));
-  --b-link-text: hsl(var(--b-link-h), var(--b-link-s), var(--b-link-on-scheme-l));
-  --b-link-text-hover: hsl(var(--b-link-h), var(--b-link-s), calc(var(--b-link-on-scheme-l) + var(--b-hover-color-l-delta)));
-  --b-link-text-active: hsl(var(--b-link-h), var(--b-link-s), calc(var(--b-link-on-scheme-l) + var(--b-active-color-l-delta)));
-  --b-focus-h: var(--b-link-h);
-  --b-focus-s: var(--b-link-s);
-  --b-focus-l: var(--b-link-l);
-  --b-focus-offset: 1px;
-  --b-focus-style: solid;
-  --b-focus-width: 2px;
-  --b-focus-shadow-size: 0 0 0 0.1875em;
-  --b-focus-shadow-alpha: 0.25;
-  --b-code: hsl(var(--b-danger-h), var(--b-danger-s), var(--b-danger-on-scheme-l));
-  --b-code-background: var(--b-background);
-  --b-pre: var(--b-text);
-  --b-pre-background: var(--b-background);
-  --b-shadow: 0 0.5em 1em -0.125em hsla(var(--b-shadow-h), var(--b-shadow-s), var(--b-shadow-l), 0.1), 0 0px 0 1px hsla(var(--b-shadow-h), var(--b-shadow-s), var(--b-shadow-l), 0.02);
+  --b-size-7: 0.75rem;
 }
 
 @media (prefers-color-scheme: light) {
@@ -3332,9 +3975,333 @@ button.b-has-text-info:active {
     --b-info-bold-invert: hsla(var(--b-info-h), var(--b-info-s), var(--b-bold-invert-l), 1);
     --b-info-on-scheme-l: 24%;
     --b-info-on-scheme: hsla(var(--b-info-h), var(--b-info-s), var(--b-info-on-scheme-l), 1);
+    --b-success: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-l), 1);
+    --b-success-base: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-l), 1);
+    --b-success-rgb: 71.6295, 198.6705, 141.50205;
+    --b-success-h: 153deg;
+    --b-success-s: 53%;
+    --b-success-l: 53%;
+    --b-success-00-l: 0%;
+    --b-success-05-l: 3%;
+    --b-success-10-l: 8%;
+    --b-success-15-l: 13%;
+    --b-success-20-l: 18%;
+    --b-success-25-l: 23%;
+    --b-success-30-l: 28%;
+    --b-success-35-l: 33%;
+    --b-success-40-l: 38%;
+    --b-success-45-l: 43%;
+    --b-success-50-l: 48%;
+    --b-success-55-l: 53%;
+    --b-success-60-l: 58%;
+    --b-success-65-l: 63%;
+    --b-success-70-l: 68%;
+    --b-success-75-l: 73%;
+    --b-success-80-l: 78%;
+    --b-success-85-l: 83%;
+    --b-success-90-l: 88%;
+    --b-success-95-l: 93%;
+    --b-success-100-l: 98%;
+    --b-success-00: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-00-l), 1);
+    --b-success-00-invert-l: var(--b-success-45-l);
+    --b-success-00-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-00-invert-l), 1);
+    --b-success-05: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-05-l), 1);
+    --b-success-05-invert-l: var(--b-success-45-l);
+    --b-success-05-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-05-invert-l), 1);
+    --b-success-10: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-10-l), 1);
+    --b-success-10-invert-l: var(--b-success-55-l);
+    --b-success-10-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-10-invert-l), 1);
+    --b-success-15: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-15-l), 1);
+    --b-success-15-invert-l: var(--b-success-75-l);
+    --b-success-15-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-15-invert-l), 1);
+    --b-success-20: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-20-l), 1);
+    --b-success-20-invert-l: var(--b-success-95-l);
+    --b-success-20-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-20-invert-l), 1);
+    --b-success-25: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-25-l), 1);
+    --b-success-25-invert-l: var(--b-success-100-l);
+    --b-success-25-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-25-invert-l), 1);
+    --b-success-30: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-30-l), 1);
+    --b-success-30-invert-l: var(--b-success-100-l);
+    --b-success-30-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-30-invert-l), 1);
+    --b-success-35: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-35-l), 1);
+    --b-success-35-invert-l: var(--b-success-100-l);
+    --b-success-35-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-35-invert-l), 1);
+    --b-success-40: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-40-l), 1);
+    --b-success-40-invert-l: var(--b-success-100-l);
+    --b-success-40-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-40-invert-l), 1);
+    --b-success-45: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-45-l), 1);
+    --b-success-45-invert-l: var(--b-success-05-l);
+    --b-success-45-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-45-invert-l), 1);
+    --b-success-50: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-50-l), 1);
+    --b-success-50-invert-l: var(--b-success-05-l);
+    --b-success-50-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-50-invert-l), 1);
+    --b-success-55: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-55-l), 1);
+    --b-success-55-invert-l: var(--b-success-10-l);
+    --b-success-55-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-55-invert-l), 1);
+    --b-success-60: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-60-l), 1);
+    --b-success-60-invert-l: var(--b-success-10-l);
+    --b-success-60-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-60-invert-l), 1);
+    --b-success-65: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-65-l), 1);
+    --b-success-65-invert-l: var(--b-success-10-l);
+    --b-success-65-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-65-invert-l), 1);
+    --b-success-70: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-70-l), 1);
+    --b-success-70-invert-l: var(--b-success-10-l);
+    --b-success-70-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-70-invert-l), 1);
+    --b-success-75: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-75-l), 1);
+    --b-success-75-invert-l: var(--b-success-15-l);
+    --b-success-75-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-75-invert-l), 1);
+    --b-success-80: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-80-l), 1);
+    --b-success-80-invert-l: var(--b-success-15-l);
+    --b-success-80-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-80-invert-l), 1);
+    --b-success-85: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-85-l), 1);
+    --b-success-85-invert-l: var(--b-success-15-l);
+    --b-success-85-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-85-invert-l), 1);
+    --b-success-90: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-90-l), 1);
+    --b-success-90-invert-l: var(--b-success-15-l);
+    --b-success-90-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-90-invert-l), 1);
+    --b-success-95: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-95-l), 1);
+    --b-success-95-invert-l: var(--b-success-20-l);
+    --b-success-95-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-95-invert-l), 1);
+    --b-success-100: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-100-l), 1);
+    --b-success-100-invert-l: var(--b-success-20-l);
+    --b-success-100-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-100-invert-l), 1);
+    --b-success-invert-l: var(--b-success-10-l);
+    --b-success-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-invert-l), 1);
+    --b-success-light-l: var(--b-success-90-l);
+    --b-success-light: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-light-l), 1);
+    --b-success-light-invert-l: var(--b-success-15-l);
+    --b-success-light-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-light-invert-l), 1);
+    --b-success-dark-l: var(--b-success-10-l);
+    --b-success-dark: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-dark-l), 1);
+    --b-success-dark-invert-l: var(--b-success-55-l);
+    --b-success-dark-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-dark-invert-l), 1);
+    --b-success-soft: hsla(var(--b-success-h), var(--b-success-s), var(--b-soft-l), 1);
+    --b-success-bold: hsla(var(--b-success-h), var(--b-success-s), var(--b-bold-l), 1);
+    --b-success-soft-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-soft-invert-l), 1);
+    --b-success-bold-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-bold-invert-l), 1);
+    --b-success-on-scheme-l: 23%;
+    --b-success-on-scheme: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-on-scheme-l), 1);
+    --b-warning: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-l), 1);
+    --b-warning-base: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-l), 1);
+    --b-warning-rgb: 255, 183.09, 15.3;
+    --b-warning-h: 42deg;
+    --b-warning-s: 100%;
+    --b-warning-l: 53%;
+    --b-warning-00-l: 0%;
+    --b-warning-05-l: 3%;
+    --b-warning-10-l: 8%;
+    --b-warning-15-l: 13%;
+    --b-warning-20-l: 18%;
+    --b-warning-25-l: 23%;
+    --b-warning-30-l: 28%;
+    --b-warning-35-l: 33%;
+    --b-warning-40-l: 38%;
+    --b-warning-45-l: 43%;
+    --b-warning-50-l: 48%;
+    --b-warning-55-l: 53%;
+    --b-warning-60-l: 58%;
+    --b-warning-65-l: 63%;
+    --b-warning-70-l: 68%;
+    --b-warning-75-l: 73%;
+    --b-warning-80-l: 78%;
+    --b-warning-85-l: 83%;
+    --b-warning-90-l: 88%;
+    --b-warning-95-l: 93%;
+    --b-warning-100-l: 98%;
+    --b-warning-00: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-00-l), 1);
+    --b-warning-00-invert-l: var(--b-warning-40-l);
+    --b-warning-00-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-00-invert-l), 1);
+    --b-warning-05: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-05-l), 1);
+    --b-warning-05-invert-l: var(--b-warning-45-l);
+    --b-warning-05-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-05-invert-l), 1);
+    --b-warning-10: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-10-l), 1);
+    --b-warning-10-invert-l: var(--b-warning-50-l);
+    --b-warning-10-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-10-invert-l), 1);
+    --b-warning-15: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-15-l), 1);
+    --b-warning-15-invert-l: var(--b-warning-70-l);
+    --b-warning-15-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-15-invert-l), 1);
+    --b-warning-20: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-20-l), 1);
+    --b-warning-20-invert-l: var(--b-warning-100-l);
+    --b-warning-20-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-20-invert-l), 1);
+    --b-warning-25: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-25-l), 1);
+    --b-warning-25-invert-l: var(--b-warning-100-l);
+    --b-warning-25-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-25-invert-l), 1);
+    --b-warning-30: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-30-l), 1);
+    --b-warning-30-invert-l: var(--b-warning-100-l);
+    --b-warning-30-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-30-invert-l), 1);
+    --b-warning-35: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-35-l), 1);
+    --b-warning-35-invert-l: var(--b-warning-100-l);
+    --b-warning-35-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-35-invert-l), 1);
+    --b-warning-40: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-40-l), 1);
+    --b-warning-40-invert-l: var(--b-warning-00-l);
+    --b-warning-40-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-40-invert-l), 1);
+    --b-warning-45: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-45-l), 1);
+    --b-warning-45-invert-l: var(--b-warning-05-l);
+    --b-warning-45-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-45-invert-l), 1);
+    --b-warning-50: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-50-l), 1);
+    --b-warning-50-invert-l: var(--b-warning-10-l);
+    --b-warning-50-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-50-invert-l), 1);
+    --b-warning-55: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-55-l), 1);
+    --b-warning-55-invert-l: var(--b-warning-10-l);
+    --b-warning-55-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-55-invert-l), 1);
+    --b-warning-60: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-60-l), 1);
+    --b-warning-60-invert-l: var(--b-warning-10-l);
+    --b-warning-60-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-60-invert-l), 1);
+    --b-warning-65: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-65-l), 1);
+    --b-warning-65-invert-l: var(--b-warning-10-l);
+    --b-warning-65-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-65-invert-l), 1);
+    --b-warning-70: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-70-l), 1);
+    --b-warning-70-invert-l: var(--b-warning-15-l);
+    --b-warning-70-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-70-invert-l), 1);
+    --b-warning-75: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-75-l), 1);
+    --b-warning-75-invert-l: var(--b-warning-15-l);
+    --b-warning-75-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-75-invert-l), 1);
+    --b-warning-80: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-80-l), 1);
+    --b-warning-80-invert-l: var(--b-warning-15-l);
+    --b-warning-80-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-80-invert-l), 1);
+    --b-warning-85: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-85-l), 1);
+    --b-warning-85-invert-l: var(--b-warning-15-l);
+    --b-warning-85-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-85-invert-l), 1);
+    --b-warning-90: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-90-l), 1);
+    --b-warning-90-invert-l: var(--b-warning-15-l);
+    --b-warning-90-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-90-invert-l), 1);
+    --b-warning-95: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-95-l), 1);
+    --b-warning-95-invert-l: var(--b-warning-15-l);
+    --b-warning-95-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-95-invert-l), 1);
+    --b-warning-100: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-100-l), 1);
+    --b-warning-100-invert-l: var(--b-warning-20-l);
+    --b-warning-100-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-100-invert-l), 1);
+    --b-warning-invert-l: var(--b-warning-10-l);
+    --b-warning-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-invert-l), 1);
+    --b-warning-light-l: var(--b-warning-90-l);
+    --b-warning-light: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-light-l), 1);
+    --b-warning-light-invert-l: var(--b-warning-15-l);
+    --b-warning-light-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-light-invert-l), 1);
+    --b-warning-dark-l: var(--b-warning-10-l);
+    --b-warning-dark: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-dark-l), 1);
+    --b-warning-dark-invert-l: var(--b-warning-50-l);
+    --b-warning-dark-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-dark-invert-l), 1);
+    --b-warning-soft: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-soft-l), 1);
+    --b-warning-bold: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-bold-l), 1);
+    --b-warning-soft-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-soft-invert-l), 1);
+    --b-warning-bold-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-bold-invert-l), 1);
+    --b-warning-on-scheme-l: 23%;
+    --b-warning-on-scheme: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-on-scheme-l), 1);
+    --b-danger: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-l), 1);
+    --b-danger-base: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-l), 1);
+    --b-danger-rgb: 255, 102, 132.6;
+    --b-danger-h: 348deg;
+    --b-danger-s: 100%;
+    --b-danger-l: 70%;
+    --b-danger-00-l: 0%;
+    --b-danger-05-l: 5%;
+    --b-danger-10-l: 10%;
+    --b-danger-15-l: 15%;
+    --b-danger-20-l: 20%;
+    --b-danger-25-l: 25%;
+    --b-danger-30-l: 30%;
+    --b-danger-35-l: 35%;
+    --b-danger-40-l: 40%;
+    --b-danger-45-l: 45%;
+    --b-danger-50-l: 50%;
+    --b-danger-55-l: 55%;
+    --b-danger-60-l: 60%;
+    --b-danger-65-l: 65%;
+    --b-danger-70-l: 70%;
+    --b-danger-75-l: 75%;
+    --b-danger-80-l: 80%;
+    --b-danger-85-l: 85%;
+    --b-danger-90-l: 90%;
+    --b-danger-95-l: 95%;
+    --b-danger-100-l: 100%;
+    --b-danger-00: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-00-l), 1);
+    --b-danger-00-invert-l: var(--b-danger-65-l);
+    --b-danger-00-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-00-invert-l), 1);
+    --b-danger-05: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-05-l), 1);
+    --b-danger-05-invert-l: var(--b-danger-70-l);
+    --b-danger-05-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-05-invert-l), 1);
+    --b-danger-10: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-10-l), 1);
+    --b-danger-10-invert-l: var(--b-danger-75-l);
+    --b-danger-10-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-10-invert-l), 1);
+    --b-danger-15: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-15-l), 1);
+    --b-danger-15-invert-l: var(--b-danger-80-l);
+    --b-danger-15-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-15-invert-l), 1);
+    --b-danger-20: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-20-l), 1);
+    --b-danger-20-invert-l: var(--b-danger-85-l);
+    --b-danger-20-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-20-invert-l), 1);
+    --b-danger-25: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-25-l), 1);
+    --b-danger-25-invert-l: var(--b-danger-90-l);
+    --b-danger-25-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-25-invert-l), 1);
+    --b-danger-30: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-30-l), 1);
+    --b-danger-30-invert-l: var(--b-danger-100-l);
+    --b-danger-30-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-30-invert-l), 1);
+    --b-danger-35: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-35-l), 1);
+    --b-danger-35-invert-l: var(--b-danger-100-l);
+    --b-danger-35-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-35-invert-l), 1);
+    --b-danger-40: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-40-l), 1);
+    --b-danger-40-invert-l: var(--b-danger-100-l);
+    --b-danger-40-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-40-invert-l), 1);
+    --b-danger-45: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-45-l), 1);
+    --b-danger-45-invert-l: var(--b-danger-100-l);
+    --b-danger-45-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-45-invert-l), 1);
+    --b-danger-50: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-50-l), 1);
+    --b-danger-50-invert-l: var(--b-danger-100-l);
+    --b-danger-50-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-50-invert-l), 1);
+    --b-danger-55: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-55-l), 1);
+    --b-danger-55-invert-l: var(--b-danger-100-l);
+    --b-danger-55-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-55-invert-l), 1);
+    --b-danger-60: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-60-l), 1);
+    --b-danger-60-invert-l: var(--b-danger-100-l);
+    --b-danger-60-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-60-invert-l), 1);
+    --b-danger-65: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-65-l), 1);
+    --b-danger-65-invert-l: var(--b-danger-00-l);
+    --b-danger-65-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-65-invert-l), 1);
+    --b-danger-70: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-70-l), 1);
+    --b-danger-70-invert-l: var(--b-danger-05-l);
+    --b-danger-70-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-70-invert-l), 1);
+    --b-danger-75: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-75-l), 1);
+    --b-danger-75-invert-l: var(--b-danger-10-l);
+    --b-danger-75-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-75-invert-l), 1);
+    --b-danger-80: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-80-l), 1);
+    --b-danger-80-invert-l: var(--b-danger-15-l);
+    --b-danger-80-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-80-invert-l), 1);
+    --b-danger-85: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-85-l), 1);
+    --b-danger-85-invert-l: var(--b-danger-20-l);
+    --b-danger-85-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-85-invert-l), 1);
+    --b-danger-90: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-90-l), 1);
+    --b-danger-90-invert-l: var(--b-danger-25-l);
+    --b-danger-90-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-90-invert-l), 1);
+    --b-danger-95: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-95-l), 1);
+    --b-danger-95-invert-l: var(--b-danger-25-l);
+    --b-danger-95-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-95-invert-l), 1);
+    --b-danger-100: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-100-l), 1);
+    --b-danger-100-invert-l: var(--b-danger-30-l);
+    --b-danger-100-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-100-invert-l), 1);
+    --b-danger-invert-l: var(--b-danger-05-l);
+    --b-danger-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-invert-l), 1);
+    --b-danger-light-l: var(--b-danger-90-l);
+    --b-danger-light: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-light-l), 1);
+    --b-danger-light-invert-l: var(--b-danger-25-l);
+    --b-danger-light-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-light-invert-l), 1);
+    --b-danger-dark-l: var(--b-danger-10-l);
+    --b-danger-dark: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-dark-l), 1);
+    --b-danger-dark-invert-l: var(--b-danger-75-l);
+    --b-danger-dark-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-dark-invert-l), 1);
+    --b-danger-soft: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-soft-l), 1);
+    --b-danger-bold: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-bold-l), 1);
+    --b-danger-soft-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-soft-invert-l), 1);
+    --b-danger-bold-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-bold-invert-l), 1);
+    --b-danger-on-scheme-l: 40%;
+    --b-danger-on-scheme: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-on-scheme-l), 1);
+    --b-black-bis: hsl(221, 14%, 9%);
+    --b-black-ter: hsl(221, 14%, 14%);
+    --b-grey-darker: hsl(221, 14%, 21%);
     --b-grey-dark: hsl(108, 6%, 34%);
     --b-grey: hsl(0, 0%, 71%);
     --b-grey-light: hsl(0, 0%, 96%);
+    --b-grey-lighter: hsl(221, 14%, 86%);
+    --b-white-ter: hsl(221, 14%, 96%);
+    --b-white-bis: hsl(221, 14%, 98%);
     --b-shadow-h: 221deg;
     --b-shadow-s: 14%;
     --b-shadow-l: 4%;
@@ -3344,50 +4311,7 @@ button.b-has-text-info:active {
     --b-size-4: 1.5rem;
     --b-size-5: 1.25rem;
     --b-size-6: 1rem;
-  }
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --b-white-on-scheme-l: 100%;
-    --b-white-on-scheme: hsla(var(--b-white-h), var(--b-white-s), var(--b-white-on-scheme-l), 1);
-    --b-black-on-scheme-l: -51%;
-    --b-black-on-scheme: hsla(var(--b-black-h), var(--b-black-s), var(--b-black-on-scheme-l), 1);
-    --b-light-on-scheme-l: 96%;
-    --b-light-on-scheme: hsla(var(--b-light-h), var(--b-light-s), var(--b-light-on-scheme-l), 1);
-    --b-dark-on-scheme-l: 54%;
-    --b-dark-on-scheme: hsla(var(--b-dark-h), var(--b-dark-s), var(--b-dark-on-scheme-l), 1);
-    --b-text-on-scheme-l: 54%;
-    --b-text-on-scheme: hsla(var(--b-text-h), var(--b-text-s), var(--b-text-on-scheme-l), 1);
-    --b-primary-on-scheme-l: 63%;
-    --b-primary-on-scheme: hsla(var(--b-primary-h), var(--b-primary-s), var(--b-primary-on-scheme-l), 1);
-    --b-link-on-scheme-l: 66%;
-    --b-link-on-scheme: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-on-scheme-l), 1);
-    --b-info-on-scheme-l: 39%;
-    --b-info-on-scheme: hsla(var(--b-info-h), var(--b-info-s), var(--b-info-on-scheme-l), 1);
-    --b-scheme-brightness: dark;
-    --b-scheme-main-l: 9%;
-    --b-scheme-main-bis-l: 11%;
-    --b-scheme-main-ter-l: 13%;
-    --b-soft-l: 20%;
-    --b-bold-l: 90%;
-    --b-soft-invert-l: 90%;
-    --b-bold-invert-l: 20%;
-    --b-background-l: 14%;
-    --b-border-weak-l: 21%;
-    --b-border-l: 24%;
-    --b-text-weak-l: 53%;
-    --b-text-l: 71%;
-    --b-text-strong-l: 93%;
-    --b-text-title-l: 100%;
-    --b-hover-background-l-delta: 5%;
-    --b-active-background-l-delta: 10%;
-    --b-hover-border-l-delta: 10%;
-    --b-active-border-l-delta: 20%;
-    --b-hover-color-l-delta: 5%;
-    --b-active-color-l-delta: 10%;
-    --b-shadow-h: 0deg;
-    --b-shadow-s: 0%;
-    --b-shadow-l: 100%;
+    --b-size-7: 0.75rem;
   }
 }
 

@@ -13,6 +13,7 @@
     {% render '_global-scripts-defer' %}
 
     {{ content_for_header }}
+    {% render 'storefront-web-components-loader' %}
 
     {%- unless settings.type_header_font.system? and settings.type_body_font.system? -%}
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
@@ -357,6 +358,17 @@
     <script src="{{ 'cart-fragment.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'alpine-product-card.js' | asset_url }}" defer></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.2/dist/cdn.min.js"></script>
+
+    {% liquid
+      assign storefront_public_token = settings.storefront_public_access_token | default: '3e26b62b29d0391ee6599156c04e33fb'
+    %}
+
+    <shopify-store
+      store-domain="https://{{ shop.permanent_domain }}"
+      country="{{ localization.country.iso_code }}"
+      language="{{ localization.language.iso_code }}"
+      public-access-token="{{ storefront_public_token }}"
+    ></shopify-store>
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">

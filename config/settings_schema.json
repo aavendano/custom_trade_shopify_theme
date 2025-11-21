@@ -1522,5 +1522,16 @@
         "default": "scheme-1"
       }
     ]
+  },
+  {
+    "name": "Storefront Web Components",
+    "settings": [
+      {
+        "type": "text",
+        "id": "storefront_public_access_token",
+        "label": "Storefront public access token",
+        "info": "Required by Shopify Storefront Web Components. Create in Admin > Apps and sales channels > Develop apps > API credentials > Public access token."
+      }
+    ]
   }
 ]
