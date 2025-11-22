@@ -18,7 +18,6 @@ $plt-image-dimensions: 75 100 150 320 400 460 520;
 @use "sass/utilities/initial-variables" with (
     $primary: $plt-purple,
     $info: $plt-teal,
-    //      $success: $plt-teal-light,
     $light: $plt-gray-light,
     $dark: $plt-gray-dark,
     $link: $plt-pink,
@@ -40,8 +39,8 @@ $plt-image-dimensions: 75 100 150 320 400 460 520;
     @forward "sass/components";
     @forward "sass/grid";
     @forward "sass/layout";
-    
     @forward "sass/helpers";
+    @forward "sass/custom";
     
     @forward "sass/themes";
     

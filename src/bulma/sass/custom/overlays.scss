@@ -1,0 +1,192 @@
+/* ==========================================================
+   PlayLoveToys — Overlay Toolkit (Dynamic Bulma Colors)
+   Genera helpers según $these-colors (sin asumir nombres).
+   ========================================================== */
+
+@use "sass:map";
+@use "sass:list";
+
+@use "../utilities/initial-variables" as iv;
+@use "../utilities/css-variables" as cv;
+@use "../utilities/mixins" as mx;
+@use "../utilities/derived-variables" as dv;
+@use "../utilities/functions" as fn;
+
+
+
+
+/* Espaciado base para overlays */
+$overlay-offset: iv.$overlay-offset;
+$tablet: iv.$tablet;
+$these-colors: dv.$colors;
+
+
+
+/* ============================================
+   Mixins de posicionamiento
+   ============================================ */
+
+@mixin overlay-pos($vertical, $horizontal) {
+  position: absolute;
+  #{$vertical}: $overlay-offset;
+  #{$horizontal}: $overlay-offset;
+  z-index: 2;
+}
+
+@mixin overlay-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+
+/* ============================================
+   Contenedor base para overlays
+   ============================================ */
+
+.b-has-image-overlay {
+  position: relative;
+  display: block;
+  z-index: 0;
+}
+
+
+/* ============================================
+   Helpers de posición (independientes del color)
+   ============================================ */
+
+.b-tag-top-left     { @include overlay-pos(top, left); }
+.b-tag-top-right    { @include overlay-pos(top, right); }
+.b-tag-bottom-left  { @include overlay-pos(bottom, left); }
+.b-tag-bottom-right { @include overlay-pos(bottom, right); }
+.b-tag-center       { @include overlay-center; }
+
+/* Variante responsive:
+   - mobile: bottom-right
+   - tablet+: top-right
+*/
+.b-tag-responsive {
+  @include overlay-pos(bottom, right);
+
+  @media (min-width: $tablet) {
+    @include overlay-pos(top, right);
+  }
+}
+
+/* Variante responsive 2:
+   - mobile: center
+   - tablet+: top-left
+*/
+.b-tag-responsive-2 {
+  @include overlay-center;
+
+  @media (min-width: $tablet) {
+    @include overlay-pos(top, left);
+  }
+}
+
+
+/* ============================================
+   Funciones helper para leer $these-colors
+   $these-colors: ("primary": ($primary, $primary-invert), ...)
+   ============================================ */
+
+@function bulma-color($name) {
+  @return map-get(map-get($these-colors, $name), 0);
+}
+
+@function bulma-invert($name) {
+  @return map-get(map-get($these-colors, $name), 1);
+}
+
+
+/* ============================================
+   Loop dinámico por todos los colores de Bulma
+   Genera:
+   - .b-badge-[color]
+   - .b-badge-circle-[color]
+   - .b-badge-pill-[color]
+   ============================================ */
+
+
+@each $name, $pair in $these-colors {
+  $color: list.nth($pair, 1);
+  $invert: fn.bulmaFindColorInvert($color);
+
+
+  /* Badge rectangular */
+  .b-badge-#{$name} {
+    display: inline-block;
+    padding: 0.25rem 0.6rem;
+    border-radius: 0.4rem;
+    background-color: $color;
+    color: $invert;
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  /* Badge tipo pill */
+  .b-badge-pill-#{$name} {
+    display: inline-block;
+    padding: 0.25rem 0.8rem;
+    border-radius: 999px;
+    background-color: $color;
+    color: $invert;
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  /* Badge circular */
+  .b-badge-circle-#{$name} {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+
+    background-color: $color;
+    color: $invert;
+
+    font-weight: 700;
+    font-size: 0.9rem;
+    line-height: 1;
+  }
+}
+
+
+/* ============================================
+   Gradients neutrales (no dependen del mapa)
+   ============================================ */
+
+.b-overlay-gradient-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 40%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,0.6) 100%
+  );
+  z-index: 1;
+}
+
+.b-overlay-gradient-full {
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0.4) 0%,
+    rgba(0,0,0,0.8) 100%
+  );
+  z-index: 1;
+}

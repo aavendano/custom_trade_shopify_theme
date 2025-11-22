@@ -3,55 +3,88 @@
   x-data="{ isMobile: window.innerWidth < 769 }"
   x-init="window.addEventListener('resize', () => isMobile = window.innerWidth < 769)"
 >
-  <h1 class="b-title is-3 b-mb-5">{{ collection.title }}</h1>
+  <!-- Título de colección -->
+  <h1 class="b-title is-3 b-mb-5">
+    {{ collection.title }}
+  </h1>
 
-  <div class="b-columns b-is-multiline">
-    {% for product in collection.products limit: 36 %}
-      <div class="b-column b-is-half-mobile b-is-one-third-desktop b-is-4-desktop b-mb-5">
-        <div class="b-card b-is-flex b-is-flex-direction-column" style="width: '350px';">
-          <div
-            class="b-has-image-overlay b-card-image b-p-0"
-            :class="isMobile ? 'b-is-flex b-flex-row b-gap-3' : 'b-is-flex b-flex-column'"
-          >
-            <!-- IMAGEN -->
-            <figure
-              class="b-image b-is-1by1 b-is-fullwidth"
-              :class="isMobile ? 'auto' : ''"
-              style="overflow:hidden; border-radius:0.75rem;"
+  <!-- Web Component: Cargar la colección -->
+  <shopify-context type="collection" handle="{{ collection.handle }}">
+    <template>
+      <!-- Lista de productos -->
+      <shopify-list-context
+        type="product"
+        query="collection.products"
+        first="36"
+      >
+        <template>
+          <!-- Columna del producto -->
+          <div class="b-column is-half-mobile is-one-third-desktop b-mb-5">
+            <!-- CARD PLT -->
+            <div
+              class="b-has-image-overlay b-card-image b-p-0"
+              :class="
+                isMobile
+                ? 'b-is-flex b-flex-row b-gap-3'
+                : 'b-is-flex b-flex-column'
+              "
             >
-              {% if product.featured_image %}
-                {{
-                  product.featured_image
-                  | image_url: width: 300
-                  | image_tag: loading: 'lazy', width: 300, height: 300, alt: product.title, class: 'image'
-                }}
-              {% endif %}
-            </figure>
-
-            <!-- DETALLES -->
-            <div class="b-flex-grow-1 b-py-2">
-              <h3 class="b-title is-6 b-mb-1">{{ product.title }}</h3>
-              <p class="b-has-text-weight-bold">{{ product.price | money }}</p>
-              <p class="b-is-size-7 b-has-text-grey">{{ product.type }}</p>
-
-              <button
-                class="b-button b-is-small b-is-primary b-mt-2"
-                @click="$refs.modalContext.update(event); document.getElementById('plt-product-modal').showModal();"
-                data-product-id="{{ product.id }}"
+              <!-- IMAGEN -->
+              <figure
+                class="b-image b-is-1by1"
+                :class="isMobile ? 'b-mr-2' : ''"
+                style="overflow:hidden; border-radius:0.75rem;"
               >
-                Quick View
-              </button>
-            </div>
+                <shopify-media
+                  max-images="1"
+                  width="300"
+                  height="300"
+                  query="product.featuredImage"
+                ></shopify-media>
+              </figure>
 
-            <!-- BADGE SALE -->
-            {% if product.compare_at_price > product.price %}
-              <span class="b-tag-bottom-right b-badge-pill-primary">Sale</span>
-            {% endif %}
+              <!-- DETALLES -->
+              <div class="b-flex-grow-1 b-py-2">
+                <!-- Título -->
+                <h3 class="b-title is-6 b-mb-1">
+                  <shopify-data query="product.title"></shopify-data>
+                </h3>
+
+                <!-- Precio -->
+                <p class="b-has-text-weight-bold">
+                  <shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money>
+                </p>
+
+                <!-- Tipo de producto (opcional) -->
+                <p class="b-is-size-7 b-has-text-grey">
+                  <shopify-data query="product.productType"></shopify-data>
+                </p>
+
+                <!-- Quick View -->
+                <button
+                  class="b-button b-is-small b-is-primary b-mt-2"
+                  @click="
+                    $refs.modalContext.update(event);
+                    document.getElementById('plt-product-modal').showModal();
+                  "
+                >
+                  Quick View
+                </button>
+              </div>
+
+              <!-- BADGE SALE dinamico PLT -->
+              <span
+                class="b-tag-bottom-right b-badge-pill-primary"
+                shopify-attr--hidden="!(product.selectedOrFirstAvailableVariant.compareAtPrice.amount > product.selectedOrFirstAvailableVariant.price.amount)"
+              >
+                Sale
+              </span>
+            </div>
           </div>
-        </div>
-      </div>
-    {% endfor %}
-  </div>
+        </template>
+      </shopify-list-context>
+    </template>
+  </shopify-context>
 </div>
 
 <!-- MODAL QUICK VIEW PLT -->

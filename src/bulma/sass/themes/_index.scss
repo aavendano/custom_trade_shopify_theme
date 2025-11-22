@@ -19,9 +19,9 @@
 }
 
 // prefers-color-scheme: dark
-@include cv.system-theme($name: "dark") {
-  @include dark.dark-theme;
-}
+// @include cv.system-theme($name: "dark") {
+//   @include dark.dark-theme;
+// }
 
 // :root, [data-theme=light], .theme-light
 @include cv.bulma-theme($name: "light") {
@@ -30,7 +30,7 @@
 }
 
 // [data-theme=dark], .theme-dark
-@include cv.bulma-theme($name: "dark") {
-  @include dark.dark-theme;
-  @include setup.setup-theme;
-}
+// @include cv.bulma-theme($name: "dark") {
+//   @include dark.dark-theme;
+//   @include setup.setup-theme;
+// }
