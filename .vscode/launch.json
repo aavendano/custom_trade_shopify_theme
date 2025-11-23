@@ -3,9 +3,10 @@
     "configurations": [
         {
             "name": "Debug Shopify JavaScript (Chrome)",
-            "type": "pwa-chrome",
+            "type": "chrome",
             "request": "launch",
-            "url": "https://asgiti-0w.myshopify.com/?preview_theme_id=136014987339",
+            "url": "http://127.0.0.1:9292",
+            // "url": "https://asgiti-0w.myshopify.com/?preview_theme_id=136014987339",
             "webRoot": "${workspaceFolder}",
             "sourceMaps": true,
             "trace": false,
