@@ -15,8 +15,7 @@ $plt-family-secondary: '"Atkinson Hyperlegible Next", "Inter", "SF Pro", "Segoe 
 $plt-image-dimensions: 75 100 150 320 400 460 520;
 
 // Override global Sass variables from the /utilities folder
-@use "sass/utilities/initial-variables" with (
-    $primary: $plt-purple,
+@use "sass/utilities/initial-variables" with ($primary: $plt-purple,
     $info: $plt-teal,
     $light: $plt-gray-light,
     $dark: $plt-gray-dark,
@@ -27,21 +26,20 @@ $plt-image-dimensions: 75 100 150 320 400 460 520;
     $background: $plt-gray-light,
     $grey-light: $plt-gray-light,
     $grey: $plt-gray,
-    $grey-dark: $plt-gray-dark
-    );
-    
-    @forward "sass/utilities/functions";
-    @forward "sass/utilities/derived-variables";
-    @forward "sass/utilities/controls";
-    @forward "sass/base";
-    @forward "sass/elements";
-    @forward "sass/form";
-    @forward "sass/components";
-    @forward "sass/grid";
-    @forward "sass/layout";
-    @forward "sass/helpers";
-    @forward "sass/custom";
-    
-    @forward "sass/themes";
-    
-    @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Baloo+2:wght@400..800&display=swap');
+    $grey-dark: $plt-gray-dark );
+
+@forward "sass/utilities/functions";
+@forward "sass/utilities/derived-variables";
+@forward "sass/utilities/controls";
+@forward "sass/base";
+@forward "sass/elements";
+@forward "sass/form";
+@forward "sass/components";
+@forward "sass/grid";
+@forward "sass/layout";
+@forward "sass/helpers";
+@forward "sass/custom";
+
+@forward "sass/themes";
+
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Baloo+2:wght@400..800&display=swap');

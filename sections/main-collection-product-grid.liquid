@@ -1,5 +1,4 @@
 {{ 'a-main-collection-plt.css' | asset_url | stylesheet_tag }}
-{% render 'a-dummy-products' %}
 
 <section class="b-section">
   <div class="b-container">
@@ -11,80 +10,103 @@
     <div class="b-columns b-is-multiline c-columns">
       <!-- FORLOOP -->
       <!-- Web Component: Cargar la colección -->
-      <shopify-context type="collection" handle="{{ collection.handle }}">
-        <template>
-          <shopify-list-context
-            type="product"
-            query="collection.products"
-            first="36"
-          >
-            <template>
-              <div class="b-column b-card-column b-is-half-tablet b-is-one-quarter-desktop b-is-one-fifth-widescreen">
-                <!-- CARD -->
-                <div class="b-box b-p-2 b-align-items-stretch-tablet">
-                  <div class="b-columns b-is-mobile b-row-to-col-tablet">
-                    <div class="b-column b-is-half-mobile b-is-full-tablet b-card-image-wrapper">
-                      <figure class="b-image">
-                        <shopify-media
-                          max-images="1"
-                          width="500"
-                          height="auto"
-                          max-height="400"
-                          query="product.featuredImage"
-                          class="b-rounded-corners b-image"
-                          loading="lazy"
-                        ></shopify-media>
-                      </figure>
-                      <div class="b-mt-1 b-has-text-left">
-                        <span
-                          class="b-tag b-is-rounded b-is-link"
-                          shopify-attr--hidden="!(product.selectedOrFirstAvailableVariant.compareAtPrice.amount > product.selectedOrFirstAvailableVariant.price.amount)"
-                        >
-                          Sale
+      {%- paginate collection.products by section.settings.products_per_page -%}
+        {%- for product in collection.products -%}
+          <div class="b-column b-card-column b-is-half-tablet b-is-one-quarter-desktop b-is-one-fifth-widescreen">
+            <!-- CARD -->
+            <div class="b-box b-p-2 b-align-items-stretch-tablet">
+              <div class="b-columns b-is-mobile b-row-to-col-tablet">
+                <div class="b-column b-is-half-mobile b-is-full-tablet b-card-image-wrapper">
+                  <figure class="b-image">
+                    <a href="{{ product.url }}">
+                      {{
+                        product.featured_media
+                        | image_url: width: 300, pad_color: '000'
+                        | image_tag:
+                          widths: '100,150,200,250,300, 350, 400, 450, 500, 550, 600',
+                          preload: false,
+                          loading: 'lazy',
+                          style: 'object-fit: contain;',
+                          class: 'b-rounded-corners'
+                      }}
+                    </a>
+                  </figure>
+                  <div class="b-mt-3 b-level b-is-mobile">
+                    {%- if product.available == false -%}
+                      <span class="b-is-level-item b-tag b-has-background-gray b-is-size-7">
+                        {{- 'products.product.sold_out' | t -}}
+                      </span>
+                    {%- else -%}
+                      {% if product.compare_at_price > product.price %}
+                        <span class="b-is-level-item b-tag b-has-background-danger-light b-is-size-7">
+                          {{- 'products.product.on_sale' | t -}}
                         </span>
-
-                        <span class="b-tag b-is-rounded b-is-link b-is-light ">Package</span>
-                        <span class="b-tag b-is-primary">Bulma</span>
-                      </div>
-                    </div>
-                    <!-- MOBILE -->
-                    <div class="b-column b-is-half-mobile b-card-content-wrapper">
-                      <div class="b-block">
-                        <p class="b-title b-is-capitalized b-is-size-6">
-                          <shopify-data query="product.title"></shopify-data>
-                        </p>
-                        <p class="b-subtitle b-is-uppercase b-is-size-6">
-                          <shopify-data query="product.vendor"></shopify-data>
-                        </p>
-                        <p class="b-is-size-7">
-                          <shopify-data query="product.productType"></shopify-data>
-                        </p>
-                      </div>
-
-                      <div class="b-block">
-                        <p class="b-title b-is-size-4 b-has-text-primary">
-                          <shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money>
-
-                          <span class="b-tag b-is-rounded b-is-link b-is-light b-is-size-6"
-                            >Was:
-                            <shopify-money
-                              query="product.selectedOrFirstAvailableVariant.compareAtPrice"
-                            ></shopify-money
-                          ></span>
-                        </p>
-
-                        <button class="b-button b-is-primary b-is-outlined b-is-fullwidth b-is-rounded">
-                          Add to cart
-                        </button>
-                      </div>
-                    </div>
+                      {% endif %}
+                      {% if product.price >= 7500 -%}
+                        <span class="b-is-level-item b-tag b-mr-auto b-is-size-7 b-icon-text b-has-background-info-light">
+                          <span
+                            ><i>
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="15"
+                                height="15"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-truck-icon lucide-truck"
+                              >
+                                <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/>
+                              </svg>
+                            </i> </span
+                          ><span> Free</span>
+                        </span>
+                      {%- endif -%}
+                    {%- endif -%}
+                  </div>
+                </div>
+                <!-- MOBILE -->
+                <div class="b-column b-is-half-mobile b-card-content-wrapper">
+                  <div class="b-block">
+                    <p class="b-title b-is-6 b-mb-2 b-has-text-primary b-is-family-secondary">
+                      <a href="{{ product.url }}" class="full-unstyled-link">
+                        {{ product.title | escape }}
+                      </a>
+                    </p>
+                    <p class="b-subtitle b-is-uppercase b-is-6 b-mb-2 b-has-text-black b-is-family-secondary">
+                      <a href="{{ product.url }}" class="full-unstyled-link">
+                        {{ product.vendor | escape }}
+                      </a>
+                    </p>
+                    <p class="b-is-size-6">
+                      {{ product.type | default: '' }}
+                    </p>
+                  </div>
+                  <div class="b-block">
+                    <p class="b-title b-is-size-4 b-has-text-primary">
+                      {% render 'price', product: product, price_class: '', show_compare_at_price: true %}
+                    </p>
+                    {%- if product.available == false -%}
+                      <button
+                        disabled
+                        class="b-button b-is-primary b-is-light b-is-outlined b-is-fullwidth b-is-rounded b-is-normal b-is-responsive"
+                      >
+                        Out of stock
+                      </button>
+                    {%- else -%}
+                      <button class="b-button b-is-danger b-is-inverted b-is-fullwidth b-is-rounded b-is-focused b-is-responsive b-is-normal">
+                        Add to cart
+                      </button>
+                    {%- endif -%}
                   </div>
                 </div>
               </div>
-            </template>
-          </shopify-list-context>
-        </template>
-      </shopify-context>
+            </div>
+          </div>
+        {%- endfor -%}
+      {% endpaginate %}
       <!-- END FORLOOP -->
     </div>
   </div>
