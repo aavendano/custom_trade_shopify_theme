@@ -1,5 +1,18 @@
 {{ 'a-main-collection-plt.css' | asset_url | stylesheet_tag }}
 
+<style>
+  .b-button.b-is-circle {
+    border-radius: 50%;
+    width: 3rem; /* Adjust as needed */
+    height: 3rem; /* Must be equal to width */
+    display: flex; /* To center content */
+    align-items: center;
+    justify-content: center;
+    padding: 0rem;
+    margin: 0rem;
+  }
+</style>
+
 <section class="b-section">
   <div class="b-container">
     <h1 class="b-title">{{ collection.title }}</h1>
@@ -33,23 +46,23 @@
                   </figure>
                   <div class="b-mt-3 b-level b-is-mobile">
                     {%- if product.available == false -%}
-                      <span class="b-is-level-item b-tag b-has-background-gray b-is-size-7">
+                      <span class="b-is-level-item b-tag b-has-background-gray b-is-size-6">
                         {{- 'products.product.sold_out' | t -}}
                       </span>
                     {%- else -%}
                       {% if product.compare_at_price > product.price %}
-                        <span class="b-is-level-item b-tag b-has-background-danger-light b-is-size-7">
+                        <span class="b-is-level-item b-tag b-has-background-danger-light b-is-size-6">
                           {{- 'products.product.on_sale' | t -}}
                         </span>
                       {% endif %}
                       {% if product.price >= 7500 -%}
-                        <span class="b-is-level-item b-tag b-mr-auto b-is-size-7 b-icon-text b-has-background-info-light">
+                        <span class="b-is-level-item b-tag b-mr-auto b-is-size-6 b-icon-text b-has-background-info-light">
                           <span
                             ><i>
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                width="15"
-                                height="15"
+                                width="20"
+                                height="20"
                                 viewBox="0 0 24 24"
                                 fill="none"
                                 stroke="currentColor"
@@ -96,8 +109,22 @@
                         Out of stock
                       </button>
                     {%- else -%}
-                      <button class="b-button b-is-danger b-is-inverted b-is-fullwidth b-is-rounded b-is-focused b-is-responsive b-is-normal">
-                        Add to cart
+                      <button class="b-button b-is-circle b-is-danger b-is-inverted b-is-pulled-right b-is-focused">
+                        <span class="b-text-icon has-text-centered">
+                          <i class="b-icon">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="20"
+                              height="20"
+                              fill="currentColor"
+                              stroke-width="2"
+                              class="bi bi-bag-plus"
+                              viewBox="0 0 16 16"
+                            >
+                              <path fill-rule="evenodd" d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5"/>
+                              <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
+                            </svg></i
+                        ></span>
                       </button>
                     {%- endif -%}
                   </div>
