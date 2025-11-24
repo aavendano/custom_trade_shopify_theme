@@ -1,18 +1,5 @@
 {{ 'a-main-collection-plt.css' | asset_url | stylesheet_tag }}
 
-<style>
-  .b-button.b-is-circle {
-    border-radius: 50%;
-    width: 3rem; /* Adjust as needed */
-    height: 3rem; /* Must be equal to width */
-    display: flex; /* To center content */
-    align-items: center;
-    justify-content: center;
-    padding: 0rem;
-    margin: 0rem;
-  }
-</style>
-
 <section class="b-section">
   <div class="b-container">
     <h1 class="b-title">{{ collection.title }}</h1>
@@ -34,7 +21,7 @@
                     <a href="{{ product.url }}">
                       {{
                         product.featured_media
-                        | image_url: width: 300, pad_color: '000'
+                        | image_url: width: 600, pad_color: '000'
                         | image_tag:
                           widths: '100,150,200,250,300, 350, 400, 450, 500, 550, 600',
                           preload: false,
@@ -44,37 +31,69 @@
                       }}
                     </a>
                   </figure>
-                  <div class="b-mt-3 b-level b-is-mobile">
+                  <div class="b-tags b-has-addons b-my-3">
                     {%- if product.available == false -%}
-                      <span class="b-is-level-item b-tag b-has-background-gray b-is-size-6">
-                        {{- 'products.product.sold_out' | t -}}
+                      <span class="b-tag b-has-background-gray b-is-size-6">
+                        <i class="b-icon">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+
+                            height="1em"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
+                            <path d="m2 2 20 20"/><path d="M8.35 2.69A10 10 0 0 1 21.3 15.65"/><path d="M19.08 19.08A10 10 0 1 1 4.92 4.92"/>
+                          </svg></i
+                        ><span>
+                          {{- 'products.product.sold_out' | t -}}
+                        </span>
                       </span>
                     {%- else -%}
                       {% if product.compare_at_price > product.price %}
-                        <span class="b-is-level-item b-tag b-has-background-danger-light b-is-size-6">
-                          {{- 'products.product.on_sale' | t -}}
-                        </span>
+                        <span class="b-tag b-has-background-danger-light b-is-size-6">
+                          <i class="b-icon">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              height="1em"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            >
+                              <circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="M9 9h.01"/><path d="M15 15h.01"/>
+                            </svg>
+                          </i>
+                          <span>
+                            {{- 'products.product.on_sale' | t -}}
+                          </span></span
+                        >
                       {% endif %}
                       {% if product.price >= 7500 -%}
-                        <span class="b-is-level-item b-tag b-mr-auto b-is-size-6 b-icon-text b-has-background-info-light">
-                          <span
-                            ><i>
+                        <span class="b-tag b-is-size-6 b-has-background-info-light">
+                          <span class="b-icon-text">
+                            <i class="b-icon">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                width="20"
-                                height="20"
+                                transform="scale(-1,1)"
+                                height="1em"
                                 viewBox="0 0 24 24"
                                 fill="none"
                                 stroke="currentColor"
                                 stroke-width="2"
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
-                                class="lucide lucide-truck-icon lucide-truck"
                               >
                                 <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/>
                               </svg>
-                            </i> </span
-                          ><span> Free</span>
+                            </i>
+                            <span>Free</span>
+                          </span>
                         </span>
                       {%- endif -%}
                     {%- endif -%}
@@ -104,27 +123,30 @@
                     {%- if product.available == false -%}
                       <button
                         disabled
-                        class="b-button b-is-primary b-is-light b-is-outlined b-is-fullwidth b-is-rounded b-is-normal b-is-responsive"
+                        class="b-button b-has-background-gray b-is-fullwidth b-is-rounded"
                       >
                         Out of stock
                       </button>
                     {%- else -%}
-                      <button class="b-button b-is-circle b-is-danger b-is-inverted b-is-pulled-right b-is-focused">
-                        <span class="b-text-icon has-text-centered">
-                          <i class="b-icon">
+                      <button class="b-button b-is-danger b-is-inverted b-is-fullwidth b-is-small b-is-rounded b-is-focused">
+                        <span class="b-icon">
+                          <i>
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              width="20"
-                              height="20"
-                              fill="currentColor"
+                              height="1em"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
                               stroke-width="2"
-                              class="bi bi-bag-plus"
-                              viewBox="0 0 16 16"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
                             >
-                              <path fill-rule="evenodd" d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5"/>
-                              <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
-                            </svg></i
-                        ></span>
+                              <path d="M16 10a4 4 0 0 1-8 0"/><path d="M3.103 6.034h17.794"/><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"/>
+                            </svg>
+                          </i>
+                        </span>
+
+                        <span> Add To Bag</span>
                       </button>
                     {%- endif -%}
                   </div>
