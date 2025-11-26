@@ -126,10 +126,17 @@
       {%- else -%}
         <!-- PRODUCT GRID -->
 
-        <div class="b-columns b-is-multiline c-columns">
+        <div class="b-columns b-is-multiline c-columns b-is-0-mobile">
           <!-- FORLOOP -->
           <!-- Web Component: Cargar la colección -->
           {%- for product in collection.products -%}
+            {% liquid
+              assign target = product.selected_or_first_available_variant
+              assign compare_at_price = target.compare_at_price
+              assign price = target.price | default: 1999
+              assign money_price = price | money_with_currency
+            %}
+
             <div class="b-column b-card-column b-is-half-tablet b-is-one-quarter-desktop b-is-one-fifth-widescreen">
               <!-- CARD -->
               <div class="b-box b-p-2 b-align-items-stretch-tablet">
@@ -235,9 +242,55 @@
                         {{ product.type | default: '' }}
                       </p>
                     </div>
+                    {% if product.price >= 7500 -%}
+                      <span class="b-tag b-is-size-7 b-has-background-info-light b-has-text-black b-p-0 b-mt-2">
+                        <span class="b-icon-text b-p-0">
+                          <i class="b-icon b-p-0 b-mr-0">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              transform="scale(-1,1)"
+                              height="1em"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            >
+                              <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/>
+                            </svg>
+                          </i>
+                          <span class="b-p-0 b-mr-1">Free Shipping</span>
+                        </span>
+                      </span>
+                    {%- endif -%}
+
                     <div class="b-block">
-                      <p class="b-title b-is-size-4 b-has-text-primary">
-                        {% render 'price', product: product, price_class: '', show_compare_at_price: true %}
+                      <span class="b-is-sr-only">
+                        {{- 'products.product.price.regular_price' | t -}}
+                      </span>
+
+                      {% if compare_at_price > price %}
+                        {%- unless product.price_varies == false and product.compare_at_price_varies %}
+                          <p class="b-has-text-weight-normal b-is-size-6 b-subtitle b-has-text-gray-dark">
+                            Before: {{ compare_at_price | money -}}
+                            {% assign saved_amount = compare_at_price | minus: price %}
+                            {% assign saved_percentage = saved_amount
+                              | times: 100
+                              | divided_by: compare_at_price
+                              | round
+                            %}
+                            {% if saved_amount > 0 %}
+                              <span class="b-tag b-is-danger b-has-text-white b-is-size-7">
+                                {{- saved_percentage }}% OFF</span
+                              >
+                            {% endif %}
+                          </p>
+                        {%- endunless -%}
+                      {% endif %}
+
+                      <p class="b-has-text-weight-bold b-is-size-5 b-title">
+                        {{ money_price }}
                       </p>
 
                       {% comment %}
@@ -281,14 +334,11 @@
           <!-- END FORLOOP -->
         </div>
 
-        </section>
-
         <!-- END PRODUCT GRID -->
 
         {%- if paginate.pages > 1 -%}
           {% render 'pagination', paginate: paginate, anchor: '' %}
         {%- endif -%}
-        </div>
       {%- endif -%}
     </div>
   </section>
