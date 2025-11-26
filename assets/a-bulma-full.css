@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Baloo+2:wght@400..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
 :root {
   --b-control-radius: var(--b-radius);
   --b-control-radius-small: var(--b-radius-small);
@@ -317,7 +317,7 @@ table th {
 }
 
 .b-media:not(:last-child), .b-level:not(:last-child), .b-fixed-grid:not(:last-child), .b-grid:not(:last-child), .b-card:not(:last-child), .b-field:not(:last-child), .b-file:not(:last-child), .b-title:not(:last-child),
-.b-subtitle:not(:last-child), .b-tags:not(:last-child), .b-notification:not(:last-child), .b-content:not(:last-child), .b-buttons:not(:last-child), .b-box:not(:last-child), .b-block:not(:last-child), .b-skeleton-block:not(:last-child) {
+.b-subtitle:not(:last-child), .b-tags:not(:last-child), .b-table:not(:last-child), .b-table-container:not(:last-child), .b-progress:not(:last-child), .b-notification:not(:last-child), .b-content:not(:last-child), .b-buttons:not(:last-child), .b-box:not(:last-child), .b-block:not(:last-child), .b-skeleton-block:not(:last-child) {
   margin-bottom: var(--b-block-spacing);
 }
 
@@ -1892,6 +1892,384 @@ div.b-icon-text {
 .b-notification.b-is-danger.b-is-dark {
   --b-notification-background-l: 20%;
   --b-notification-color-l: var(--b-danger-dark-invert-l);
+}
+
+.b-progress {
+  --b-progress-border-radius: var(--b-radius-rounded);
+  --b-progress-bar-background-color: var(--b-border-weak);
+  --b-progress-value-background-color: var(--b-text);
+  --b-progress-indeterminate-duration: 1.5s;
+}
+
+.b-progress {
+  appearance: none;
+  border: none;
+  border-radius: var(--b-progress-border-radius);
+  display: block;
+  height: var(--b-size-normal);
+  overflow: hidden;
+  padding: 0;
+  width: 100%;
+}
+.b-progress::-webkit-progress-bar {
+  background-color: var(--b-progress-bar-background-color);
+}
+.b-progress::-webkit-progress-value {
+  background-color: var(--b-progress-value-background-color);
+}
+.b-progress::-moz-progress-bar {
+  background-color: var(--b-progress-value-background-color);
+}
+.b-progress::-ms-fill {
+  background-color: var(--b-progress-value-background-color);
+  border: none;
+}
+.b-progress.b-is-white {
+  --b-progress-value-background-color: var(--b-white);
+}
+.b-progress.b-is-black {
+  --b-progress-value-background-color: var(--b-black);
+}
+.b-progress.b-is-light {
+  --b-progress-value-background-color: var(--b-light);
+}
+.b-progress.b-is-dark {
+  --b-progress-value-background-color: var(--b-dark);
+}
+.b-progress.b-is-text {
+  --b-progress-value-background-color: var(--b-text);
+}
+.b-progress.b-is-primary {
+  --b-progress-value-background-color: var(--b-primary);
+}
+.b-progress.b-is-link {
+  --b-progress-value-background-color: var(--b-link);
+}
+.b-progress.b-is-info {
+  --b-progress-value-background-color: var(--b-info);
+}
+.b-progress.b-is-success {
+  --b-progress-value-background-color: var(--b-success);
+}
+.b-progress.b-is-warning {
+  --b-progress-value-background-color: var(--b-warning);
+}
+.b-progress.b-is-danger {
+  --b-progress-value-background-color: var(--b-danger);
+}
+.b-progress:indeterminate {
+  animation-duration: var(--b-progress-indeterminate-duration);
+  animation-iteration-count: infinite;
+  animation-name: moveIndeterminate;
+  animation-timing-function: linear;
+  background-color: var(--b-progress-bar-background-color);
+  background-image: linear-gradient(to right, var(--b-progress-value-background-color) 30%, var(--b-progress-bar-background-color) 30%);
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-size: 150% 150%;
+}
+.b-progress:indeterminate::-webkit-progress-bar {
+  background-color: transparent;
+}
+.b-progress:indeterminate::-moz-progress-bar {
+  background-color: transparent;
+}
+.b-progress:indeterminate::-ms-fill {
+  animation-name: none;
+}
+.b-progress.b-is-small {
+  height: var(--b-size-small);
+}
+.b-progress.b-is-medium {
+  height: var(--b-size-medium);
+}
+.b-progress.b-is-large {
+  height: var(--b-size-large);
+}
+
+@keyframes moveIndeterminate {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+.b-table {
+  --b-table-color: var(--b-text-strong);
+  --b-table-background-color: var(--b-scheme-main);
+  --b-table-cell-border-color: var(--b-border);
+  --b-table-cell-border-style: solid;
+  --b-table-cell-border-width: 0 0 1px;
+  --b-table-cell-padding: 0.5em 0.75em;
+  --b-table-cell-heading-color: var(--b-text-strong);
+  --b-table-cell-text-align: left;
+  --b-table-head-cell-border-width: 0 0 2px;
+  --b-table-head-cell-color: var(--b-text-strong);
+  --b-table-foot-cell-border-width: 2px 0 0;
+  --b-table-foot-cell-color: var(--b-text-strong);
+  --b-table-head-background-color: transparent;
+  --b-table-body-background-color: transparent;
+  --b-table-foot-background-color: transparent;
+  --b-table-row-hover-background-color: var(--b-scheme-main-bis);
+  --b-table-row-active-background-color: var(--b-primary);
+  --b-table-row-active-color: var(--b-primary-invert);
+  --b-table-striped-row-even-background-color: var(--b-scheme-main-bis);
+  --b-table-striped-row-even-hover-background-color: var(--b-scheme-main-ter);
+}
+
+.b-table {
+  background-color: var(--b-table-background-color);
+  color: var(--b-table-color);
+}
+.b-table td,
+.b-table th {
+  background-color: var(--b-table-cell-background-color);
+  border-color: var(--b-table-cell-border-color);
+  border-style: var(--b-table-cell-border-style);
+  border-width: var(--b-table-cell-border-width);
+  color: var(--b-table-color);
+  padding: var(--b-table-cell-padding);
+  vertical-align: top;
+}
+.b-table td.b-is-white,
+.b-table th.b-is-white {
+  --b-table-color: var(--b-white-invert);
+  --b-table-cell-heading-color: var(--b-white-invert);
+  --b-table-cell-background-color: var(--b-white);
+  --b-table-cell-border-color: var(--b-white);
+}
+.b-table td.b-is-black,
+.b-table th.b-is-black {
+  --b-table-color: var(--b-black-invert);
+  --b-table-cell-heading-color: var(--b-black-invert);
+  --b-table-cell-background-color: var(--b-black);
+  --b-table-cell-border-color: var(--b-black);
+}
+.b-table td.b-is-light,
+.b-table th.b-is-light {
+  --b-table-color: var(--b-light-invert);
+  --b-table-cell-heading-color: var(--b-light-invert);
+  --b-table-cell-background-color: var(--b-light);
+  --b-table-cell-border-color: var(--b-light);
+}
+.b-table td.b-is-dark,
+.b-table th.b-is-dark {
+  --b-table-color: var(--b-dark-invert);
+  --b-table-cell-heading-color: var(--b-dark-invert);
+  --b-table-cell-background-color: var(--b-dark);
+  --b-table-cell-border-color: var(--b-dark);
+}
+.b-table td.b-is-text,
+.b-table th.b-is-text {
+  --b-table-color: var(--b-text-invert);
+  --b-table-cell-heading-color: var(--b-text-invert);
+  --b-table-cell-background-color: var(--b-text);
+  --b-table-cell-border-color: var(--b-text);
+}
+.b-table td.b-is-primary,
+.b-table th.b-is-primary {
+  --b-table-color: var(--b-primary-invert);
+  --b-table-cell-heading-color: var(--b-primary-invert);
+  --b-table-cell-background-color: var(--b-primary);
+  --b-table-cell-border-color: var(--b-primary);
+}
+.b-table td.b-is-link,
+.b-table th.b-is-link {
+  --b-table-color: var(--b-link-invert);
+  --b-table-cell-heading-color: var(--b-link-invert);
+  --b-table-cell-background-color: var(--b-link);
+  --b-table-cell-border-color: var(--b-link);
+}
+.b-table td.b-is-info,
+.b-table th.b-is-info {
+  --b-table-color: var(--b-info-invert);
+  --b-table-cell-heading-color: var(--b-info-invert);
+  --b-table-cell-background-color: var(--b-info);
+  --b-table-cell-border-color: var(--b-info);
+}
+.b-table td.b-is-success,
+.b-table th.b-is-success {
+  --b-table-color: var(--b-success-invert);
+  --b-table-cell-heading-color: var(--b-success-invert);
+  --b-table-cell-background-color: var(--b-success);
+  --b-table-cell-border-color: var(--b-success);
+}
+.b-table td.b-is-warning,
+.b-table th.b-is-warning {
+  --b-table-color: var(--b-warning-invert);
+  --b-table-cell-heading-color: var(--b-warning-invert);
+  --b-table-cell-background-color: var(--b-warning);
+  --b-table-cell-border-color: var(--b-warning);
+}
+.b-table td.b-is-danger,
+.b-table th.b-is-danger {
+  --b-table-color: var(--b-danger-invert);
+  --b-table-cell-heading-color: var(--b-danger-invert);
+  --b-table-cell-background-color: var(--b-danger);
+  --b-table-cell-border-color: var(--b-danger);
+}
+.b-table td.b-is-narrow,
+.b-table th.b-is-narrow {
+  white-space: nowrap;
+  width: 1%;
+}
+.b-table td.b-is-selected,
+.b-table th.b-is-selected {
+  background-color: var(--b-table-row-active-background-color);
+  color: var(--b-table-row-active-color);
+}
+.b-table td.b-is-selected a,
+.b-table td.b-is-selected strong,
+.b-table th.b-is-selected a,
+.b-table th.b-is-selected strong {
+  color: currentColor;
+}
+.b-table td.b-is-vcentered,
+.b-table th.b-is-vcentered {
+  vertical-align: middle;
+}
+.b-table th {
+  color: var(--b-table-cell-heading-color);
+}
+.b-table th:not([align]) {
+  text-align: var(--b-table-cell-text-align);
+}
+.b-table tr.b-is-selected {
+  background-color: var(--b-table-row-active-background-color);
+  color: var(--b-table-row-active-color);
+}
+.b-table tr.b-is-selected a,
+.b-table tr.b-is-selected strong {
+  color: currentColor;
+}
+.b-table tr.b-is-selected td,
+.b-table tr.b-is-selected th {
+  border-color: var(--b-table-row-active-color);
+  color: currentColor;
+}
+.b-table tr.b-is-white {
+  --b-table-color: var(--b-white-invert);
+  --b-table-cell-heading-color: var(--b-white-invert);
+  --b-table-cell-background-color: var(--b-white);
+  --b-table-cell-border-color: var(--b-white);
+}
+.b-table tr.b-is-black {
+  --b-table-color: var(--b-black-invert);
+  --b-table-cell-heading-color: var(--b-black-invert);
+  --b-table-cell-background-color: var(--b-black);
+  --b-table-cell-border-color: var(--b-black);
+}
+.b-table tr.b-is-light {
+  --b-table-color: var(--b-light-invert);
+  --b-table-cell-heading-color: var(--b-light-invert);
+  --b-table-cell-background-color: var(--b-light);
+  --b-table-cell-border-color: var(--b-light);
+}
+.b-table tr.b-is-dark {
+  --b-table-color: var(--b-dark-invert);
+  --b-table-cell-heading-color: var(--b-dark-invert);
+  --b-table-cell-background-color: var(--b-dark);
+  --b-table-cell-border-color: var(--b-dark);
+}
+.b-table tr.b-is-text {
+  --b-table-color: var(--b-text-invert);
+  --b-table-cell-heading-color: var(--b-text-invert);
+  --b-table-cell-background-color: var(--b-text);
+  --b-table-cell-border-color: var(--b-text);
+}
+.b-table tr.b-is-primary {
+  --b-table-color: var(--b-primary-invert);
+  --b-table-cell-heading-color: var(--b-primary-invert);
+  --b-table-cell-background-color: var(--b-primary);
+  --b-table-cell-border-color: var(--b-primary);
+}
+.b-table tr.b-is-link {
+  --b-table-color: var(--b-link-invert);
+  --b-table-cell-heading-color: var(--b-link-invert);
+  --b-table-cell-background-color: var(--b-link);
+  --b-table-cell-border-color: var(--b-link);
+}
+.b-table tr.b-is-info {
+  --b-table-color: var(--b-info-invert);
+  --b-table-cell-heading-color: var(--b-info-invert);
+  --b-table-cell-background-color: var(--b-info);
+  --b-table-cell-border-color: var(--b-info);
+}
+.b-table tr.b-is-success {
+  --b-table-color: var(--b-success-invert);
+  --b-table-cell-heading-color: var(--b-success-invert);
+  --b-table-cell-background-color: var(--b-success);
+  --b-table-cell-border-color: var(--b-success);
+}
+.b-table tr.b-is-warning {
+  --b-table-color: var(--b-warning-invert);
+  --b-table-cell-heading-color: var(--b-warning-invert);
+  --b-table-cell-background-color: var(--b-warning);
+  --b-table-cell-border-color: var(--b-warning);
+}
+.b-table tr.b-is-danger {
+  --b-table-color: var(--b-danger-invert);
+  --b-table-cell-heading-color: var(--b-danger-invert);
+  --b-table-cell-background-color: var(--b-danger);
+  --b-table-cell-border-color: var(--b-danger);
+}
+.b-table thead {
+  background-color: var(--b-table-head-background-color);
+}
+.b-table thead td,
+.b-table thead th {
+  border-width: var(--b-table-head-cell-border-width);
+  color: var(--b-table-head-cell-color);
+}
+.b-table tfoot {
+  background-color: var(--b-table-foot-background-color);
+}
+.b-table tfoot td,
+.b-table tfoot th {
+  border-width: var(--b-table-foot-cell-border-width);
+  color: var(--b-table-foot-cell-color);
+}
+.b-table tbody {
+  background-color: var(--b-table-body-background-color);
+}
+.b-table tbody tr:last-child td,
+.b-table tbody tr:last-child th {
+  border-bottom-width: 0;
+}
+.b-table.b-is-bordered td,
+.b-table.b-is-bordered th {
+  border-width: 1px;
+}
+.b-table.b-is-bordered tr:last-child td,
+.b-table.b-is-bordered tr:last-child th {
+  border-bottom-width: 1px;
+}
+.b-table.b-is-fullwidth {
+  width: 100%;
+}
+.b-table.b-is-hoverable tbody tr:not(.b-is-selected):hover {
+  background-color: var(--b-table-row-hover-background-color);
+}
+.b-table.b-is-hoverable.b-is-striped tbody tr:not(.b-is-selected):hover {
+  background-color: var(--b-table-row-hover-background-color);
+}
+.b-table.b-is-hoverable.b-is-striped tbody tr:not(.b-is-selected):hover:nth-child(even) {
+  background-color: var(--b-table-striped-row-even-hover-background-color);
+}
+.b-table.b-is-narrow td,
+.b-table.b-is-narrow th {
+  padding: 0.25em 0.5em;
+}
+.b-table.b-is-striped tbody tr:not(.b-is-selected):nth-child(even) {
+  background-color: var(--b-table-striped-row-even-background-color);
+}
+
+.b-table-container {
+  -webkit-overflow-scrolling: touch;
+  overflow: auto;
+  overflow-y: hidden;
+  max-width: 100%;
 }
 
 .b-tags {
@@ -15868,11 +16246,11 @@ b-has-background-danger.is-hoverable:active {
 }
 
 .b-is-family-primary {
-  font-family: '"Baloo 2", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif' !important;
+  font-family: '"Archivo Narrow", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif' !important;
 }
 
 .b-is-family-secondary {
-  font-family: '"Atkinson Hyperlegible Next", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif' !important;
+  font-family: '"Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif' !important;
 }
 
 .b-is-family-sans-serif {
@@ -16965,8 +17343,8 @@ b-has-background-danger.is-hoverable:active {
   --b-scheme-invert-ter-l: 14%;
   --b-scheme-invert-bis-l: 7%;
   --b-scheme-invert-l: 4%;
-  --b-family-primary: "Baloo 2", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  --b-family-secondary: "Atkinson Hyperlegible Next", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  --b-family-primary: "Archivo Narrow", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  --b-family-secondary: "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   --b-size-normal: 1rem;
   --b-size-medium: 1.25rem;
   --b-size-large: 1.5rem;
@@ -17864,8 +18242,8 @@ b-has-background-danger.is-hoverable:active {
     --b-scheme-invert-ter-l: 14%;
     --b-scheme-invert-bis-l: 7%;
     --b-scheme-invert-l: 4%;
-    --b-family-primary: "Baloo 2", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-    --b-family-secondary: "Atkinson Hyperlegible Next", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    --b-family-primary: "Archivo Narrow", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    --b-family-secondary: "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
     --b-size-normal: 1rem;
     --b-size-medium: 1.25rem;
     --b-size-large: 1.5rem;
@@ -18730,8 +19108,8 @@ b-has-background-danger.is-hoverable:active {
   --b-scheme-invert-ter-l: 14%;
   --b-scheme-invert-bis-l: 7%;
   --b-scheme-invert-l: 4%;
-  --b-family-primary: "Baloo 2", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  --b-family-secondary: "Atkinson Hyperlegible Next", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  --b-family-primary: "Archivo Narrow", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  --b-family-secondary: "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   --b-size-normal: 1rem;
   --b-size-medium: 1.25rem;
   --b-size-large: 1.5rem;
