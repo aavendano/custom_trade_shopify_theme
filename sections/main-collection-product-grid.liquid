@@ -86,160 +86,161 @@
       {%- endif -%}
 
       <section class="b-section">
+        <div
+          class="b-container {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          id="ProductGridContainer"
+          {% if settings.animations_reveal_on_scroll %}
+            data-cascade
+          {% endif %}
+        >
+          {%- if collection.products.size == 0 -%}
+            <div class="b-container b-section b-has-text-centered" id="product-grid" data-id="{{ section.id }}">
+              <div class="loading-overlay gradient" style="display: none;"></div>
+              <div class="b-block">
+                <h2 class="b-title b-is-2">
+                  {{ 'sections.collection_template.empty' | t -}}
+                  <br>
+                  {{
+                    'sections.collection_template.use_fewer_filters_html'
+                    | t: link: collection.url, class: 'underlined-link link'
+                  }}
+                </h2>
+              </div>
+            </div>
+          {%- else -%}
+            <!-- PRODUCT GRID -->
+
             <div
-              class="b-container {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-              id="ProductGridContainer"
-              {% if settings.animations_reveal_on_scroll %}
-                data-cascade
-              {% endif %}
+              id="product-grid"
+              data-id="{{ section.id }}"
+              class="b-columns b-is-multiline c-columns b-is-0-mobile"
             >
-              {%- if collection.products.size == 0 -%}
-                <div class="b-container b-section b-has-text-centered" id="product-grid" data-id="{{ section.id }}">
-                  <div class="loading-overlay gradient" style="display: none;"></div>
-                  <div class="b-block">
-                    <h2 class="b-title b-is-2">
-                      {{ 'sections.collection_template.empty' | t -}}
-                      <br>
-                      {{
-                        'sections.collection_template.use_fewer_filters_html'
-                        | t: link: collection.url, class: 'underlined-link link'
-                      }}
-                    </h2>
-                  </div>
-                </div>
-              {%- else -%}
-                <!-- PRODUCT GRID -->
+              <!-- FORLOOP -->
+              <!-- Web Component: Cargar la colección -->
+              {%- for product in collection.products -%}
+                {% if product.available %}
+                  {% liquid
+                    assign target = product.selected_or_first_available_variant
+                    assign compare_at_price = target.compare_at_price
+                    assign price = target.price | default: 1999
+                    assign money_price = price | money_with_currency
+                    assign free_shipping = false
+                    if product.price >= 7500
+                      assign free_shipping = true
+                    endif
+                  %}
 
-                <div
-                  id="product-grid"
-                  data-id="{{ section.id }}"
-                  class="b-columns b-is-multiline c-columns b-is-0-mobile"
-                >
-                  <!-- FORLOOP -->
-                  <!-- Web Component: Cargar la colección -->
-                  {%- for product in collection.products -%}
-                    {% if product.available %}
-                      {% liquid
-                        assign target = product.selected_or_first_available_variant
-                        assign compare_at_price = target.compare_at_price
-                        assign price = target.price | default: 1999
-                        assign money_price = price | money_with_currency
-                        assign free_shipping = false
-                        if product.price >= 7500
-                          assign free_shipping = true
-                        endif
-                      %}
-
-                      <div class="b-column b-card-column b-is-half-tablet b-is-one-quarter-desktop b-is-one-fifth-widescreen">
-                        <!-- CARD -->
-                        <div class="b-box b-p-2 b-align-items-stretch-tablet">
-                          <div class="b-columns b-is-mobile b-row-to-col-tablet">
-                            <div class="b-column b-is-half-mobile b-is-full-tablet b-card-image-wrapper">
-                              <a href="{{ product.url }}">
-                                <figure class="b-image{% if free_shipping %} b-has-image-overlay{% endif %}">
-                                  {{
-                                    product.featured_media
-                                    | image_url: width: 600, height: 600, pad_color: 'ffffff'
-                                    | image_tag:
-                                      widths: '100,125,150,200,250,300, 350, 400, 450, 500, 550, 600',
-                                      preload: false,
-                                      ratio: '1',
-                                      loading: 'lazy',
-                                      style: 'object-fit: contain;',
-                                      class: 'b-has-rounded-corners'
-                                  }}
-                                  {% if free_shipping %}
-                                    <span class="b-tag-top-left b-badge-primary b-badge-custom">
-                                      <span class="b-icon-text b-is-size-7">
-                                        <i class="b-icon">
-                                          <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            transform="scale(-1,1)"
-                                            height="1em"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-width="2"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                          >
-                                            <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/>
-                                            <path d="M15 18H9"/>
-                                            <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/>
-                                            <circle cx="17" cy="18" r="2"/>
-                                            <circle cx="7" cy="18" r="2"/>
-                                          </svg></i
-                                        >Free
-                                      </span>
-                                    </span>
-                                  {%- endif %}
-                                </figure>
-                              </a>
-                            </div>
-                            <!-- MOBILE -->
-                            <div class="b-column b-is-half-mobile b-card-content-wrapper">
-                              <div class="b-block" style="margin-bottom: 0;">
-                                <p class="b-is-size-7-mobile b-is-size-6-tablet b-mb-2 b-has-text-black b-is-capitalized">
-                                  <a href="{{ product.url }}" class="full-unstyled-link">
-                                    <strong>{{ product.title | escape }}</strong>
-                                  </a>
-                                </p>
-                                <p class="b-is-uppercase b-is-size-7-mobile b-is-size-6-tablet b-mb-2 b-has-text-gray-dark">
-                                  <a href="{{ product.url }}" class="full-unstyled-link">
-                                    <strong>{{ product.vendor | escape }}</strong>
-                                  </a>
-                                </p>
-                                <p class="b-is-size-7 b-is-capitalized">
-                                  {{ product.type | default: '' }}
-                                </p>
-                              </div>
-
-                              <div class="b-block">
-                                <span class="b-is-sr-only">
-                                  {{- 'products.product.price.regular_price' | t -}}
+                  <div class="b-column b-card-column b-is-half-tablet b-is-one-quarter-desktop b-is-one-fifth-widescreen">
+                    <!-- CARD -->
+                    <div class="b-box b-p-2 b-align-items-stretch-tablet">
+                      <div class="b-columns b-is-mobile b-row-to-col-tablet">
+                        <div class="b-column b-is-half-mobile b-is-full-tablet b-card-image-wrapper">
+                          <a href="{{ product.url }}">
+                            <figure class="b-image{% if free_shipping %} b-has-image-overlay{% endif %}">
+                              {{
+                                product.featured_media
+                                | image_url: width: 600, height: 600, pad_color: 'ffffff'
+                                | image_tag:
+                                  widths: '100,125,150,200,250,300, 350, 400, 450, 500, 550, 600',
+                                  preload: false,
+                                  ratio: '1',
+                                  loading: 'lazy',
+                                  style: 'object-fit: contain;',
+                                  class: 'b-has-rounded-corners'
+                              }}
+                              {% if free_shipping %}
+                                <span class="b-tag-top-left b-badge-primary b-badge-custom">
+                                  <span class="b-icon-text b-is-size-7">
+                                    <i class="b-icon">
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        transform="scale(-1,1)"
+                                        height="1em"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      >
+                                        <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/>
+                                        <path d="M15 18H9"/>
+                                        <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/>
+                                        <circle cx="17" cy="18" r="2"/>
+                                        <circle cx="7" cy="18" r="2"/>
+                                      </svg></i
+                                    >Free
+                                  </span>
                                 </span>
+                              {%- endif %}
+                            </figure>
+                          </a>
+                        </div>
+                        <!-- MOBILE -->
+                        <div class="b-column b-is-half-mobile b-card-content-wrapper">
+                          <div class="b-block" style="margin-bottom: 0;">
+                            <p class="b-is-size-7-mobile b-is-size-6-tablet b-mb-2 b-has-text-black b-is-capitalized">
+                              <a href="{{ product.url }}" class="full-unstyled-link">
+                                <strong>{{ product.title | escape }}</strong>
+                              </a>
+                            </p>
+                            <p class="b-is-uppercase b-is-size-7-mobile b-is-size-6-tablet b-mb-2 b-has-text-gray-dark">
+                              <a href="{{ product.url }}" class="full-unstyled-link">
+                                <strong>{{ product.vendor | escape }}</strong>
+                              </a>
+                            </p>
+                            <p class="b-is-size-7 b-is-capitalized">
+                              {{ product.type | default: '' }}
+                            </p>
+                          </div>
 
-                                {% if compare_at_price > price %}
-                                  {%- unless product.price_varies == false and product.compare_at_price_varies %}
-                                    <p class="b-has-text-weight-normal b-is-size-6 b-subtitle b-has-text-gray-dark">
-                                      <s>{{ compare_at_price | money -}}</s>
-                                      {% assign saved_amount = compare_at_price | minus: price %}
-                                      {% assign saved_percentage = saved_amount
-                                        | times: 100
-                                        | divided_by: compare_at_price
-                                        | round
-                                      %}
-                                      {% if saved_amount > 0 %}
-                                        <span class="b-tag b-is-danger b-has-text-white b-is-size-7">
-                                          {{- saved_percentage }}% OFF</span
-                                        >
-                                      {% endif %}
-                                    </p>
-                                  {%- endunless -%}
-                                {% endif %}
+                          <div class="b-block">
+                            <span class="b-is-sr-only">
+                              {{- 'products.product.price.regular_price' | t -}}
+                            </span>
 
-                                <p class="b-has-text-weight-bold b-is-size-5 b-title">
-                                  {{ money_price }}
+                            {% if compare_at_price > price %}
+                              {%- unless product.price_varies == false and product.compare_at_price_varies %}
+                                <p class="b-has-text-weight-normal b-is-size-6 b-subtitle b-has-text-gray-dark">
+                                  <s>{{ compare_at_price | money -}}</s>
+                                  {% assign saved_amount = compare_at_price | minus: price %}
+                                  {% assign saved_percentage = saved_amount
+                                    | times: 100
+                                    | divided_by: compare_at_price
+                                    | round
+                                  %}
+                                  {% if saved_amount > 0 %}
+                                    <span class="b-tag b-is-danger b-has-text-white b-is-size-7">
+                                      {{- saved_percentage }}% OFF</span
+                                    >
+                                  {% endif %}
                                 </p>
-                              </div>
-                            </div>
+                              {%- endunless -%}
+                            {% endif %}
+
+                            <p class="b-has-text-weight-bold b-is-size-5 b-title">
+                              {{ money_price }}
+                            </p>
                           </div>
                         </div>
-                        <!-- END CARD -->
                       </div>
-                    {% endif %}
-                  {%- endfor -%}
-                  <!-- END FORLOOP -->
-                </div>
-
-                <!-- END PRODUCT GRID -->
-
-                {%- if paginate.pages > 1 -%}
-                  {% render 'pagination', paginate: paginate, anchor: '' %}
-                {%- endif -%}
-              {%- endif -%}
+                    </div>
+                    <!-- END CARD -->
+                  </div>
+                {% endif %}
+              {%- endfor -%}
+              <!-- END FORLOOP -->
             </div>
-          </section>
+
+            <!-- END PRODUCT GRID -->
+
+            {%- if paginate.pages > 1 -%}
+              {% render 'pagination', paginate: paginate, anchor: '' %}
+            {%- endif -%}
+          {%- endif -%}
+        </div>
+      </section>
+    </div>
   </div>
 {%- endpaginate -%}
 
@@ -256,141 +257,6 @@
       "step": 4,
       "default": 16,
       "label": "t:sections.main-collection-product-grid.settings.products_per_page.label"
-    },
-    {
-      "type": "range",
-      "id": "columns_desktop",
-      "min": 1,
-      "max": 6,
-      "step": 1,
-      "default": 4,
-      "label": "t:sections.main-collection-product-grid.settings.columns_desktop.label"
-    },
-    {
-      "type": "select",
-      "id": "columns_mobile",
-      "default": "2",
-      "label": "t:sections.main-collection-product-grid.settings.columns_mobile.label",
-      "options": [
-        {
-          "value": "1",
-          "label": "t:sections.main-collection-product-grid.settings.columns_mobile.options__1.label"
-        },
-        {
-          "value": "2",
-          "label": "t:sections.main-collection-product-grid.settings.columns_mobile.options__2.label"
-        }
-      ]
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "t:sections.all.colors.label",
-      "info": "t:sections.all.colors.has_cards_info",
-      "default": "scheme-1"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.main-collection-product-grid.settings.header__3.content"
-    },
-    {
-      "type": "select",
-      "id": "image_ratio",
-      "options": [
-        {
-          "value": "adapt",
-          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__1.label"
-        },
-        {
-          "value": "portrait",
-          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__2.label"
-        },
-        {
-          "value": "square",
-          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__3.label"
-        }
-      ],
-      "default": "adapt",
-      "label": "t:sections.main-collection-product-grid.settings.image_ratio.label"
-    },
-    {
-      "type": "select",
-      "id": "image_shape",
-      "options": [
-        {
-          "value": "default",
-          "label": "t:sections.all.image_shape.options__1.label"
-        },
-        {
-          "value": "arch",
-          "label": "t:sections.all.image_shape.options__2.label"
-        },
-        {
-          "value": "blob",
-          "label": "t:sections.all.image_shape.options__3.label"
-        },
-        {
-          "value": "chevronleft",
-          "label": "t:sections.all.image_shape.options__4.label"
-        },
-        {
-          "value": "chevronright",
-          "label": "t:sections.all.image_shape.options__5.label"
-        },
-        {
-          "value": "diamond",
-          "label": "t:sections.all.image_shape.options__6.label"
-        },
-        {
-          "value": "parallelogram",
-          "label": "t:sections.all.image_shape.options__7.label"
-        },
-        {
-          "value": "round",
-          "label": "t:sections.all.image_shape.options__8.label"
-        }
-      ],
-      "default": "default",
-      "label": "t:sections.all.image_shape.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_secondary_image",
-      "default": false,
-      "label": "t:sections.main-collection-product-grid.settings.show_secondary_image.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_vendor",
-      "default": false,
-      "label": "t:sections.main-collection-product-grid.settings.show_vendor.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_rating",
-      "default": false,
-      "label": "t:sections.main-collection-product-grid.settings.show_rating.label",
-      "info": "t:sections.main-collection-product-grid.settings.show_rating.info"
-    },
-    {
-      "type": "select",
-      "id": "quick_add",
-      "default": "none",
-      "label": "t:sections.main-collection-product-grid.settings.quick_add.label",
-      "options": [
-        {
-          "value": "none",
-          "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_1"
-        },
-        {
-          "value": "standard",
-          "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_2"
-        },
-        {
-          "value": "bulk",
-          "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_3"
-        }
-      ]
     },
     {
       "type": "header",
@@ -428,30 +294,6 @@
       "id": "enable_sorting",
       "default": true,
       "label": "t:sections.main-collection-product-grid.settings.enable_sorting.label"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.all.padding.section_padding_heading"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_top",
-      "default": 36
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_bottom",
-      "default": 36
     }
   ]
 }
