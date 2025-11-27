@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Baloo+2:wght@400..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
 :root {
   --b-control-radius: var(--b-radius);
   --b-control-radius-small: var(--b-radius-small);
@@ -278,8 +278,8 @@ table th {
   }
 }
 
-.b-media:not(:last-child), .b-level:not(:last-child), .b-card:not(:last-child), .b-field:not(:last-child), .b-title:not(:last-child),
-.b-subtitle:not(:last-child), .b-notification:not(:last-child), .b-content:not(:last-child), .b-box:not(:last-child), .b-block:not(:last-child) {
+.b-media:not(:last-child), .b-card:not(:last-child), .b-field:not(:last-child), .b-title:not(:last-child),
+.b-subtitle:not(:last-child), .b-tags:not(:last-child), .b-notification:not(:last-child), .b-content:not(:last-child), .b-box:not(:last-child), .b-block:not(:last-child) {
   margin-bottom: var(--b-block-spacing);
 }
 
@@ -1178,6 +1178,35 @@ div.b-icon-text {
   --b-notification-color-l: var(--b-danger-light-invert-l);
 }
 
+@keyframes moveIndeterminate {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.b-tags {
+  align-items: center;
+  color: hsl(var(--b-tag-h), var(--b-tag-s), var(--b-tag-color-l));
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: flex-start;
+}
+.b-tags.b-has-addons {
+  gap: 0;
+}
+.b-tags.b-has-addons .b-tag:not(:first-child) {
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
+}
+.b-tags.b-has-addons .b-tag:not(:last-child) {
+  border-start-end-radius: 0;
+  border-end-end-radius: 0;
+}
+
 .b-tag {
   --b-tag-h: var(--b-scheme-h);
   --b-tag-s: var(--b-scheme-s);
@@ -1846,6 +1875,10 @@ button.b-tag:active {
     flex: none;
     width: 50%;
   }
+  .b-column.b-is-0-mobile {
+    flex: none;
+    width: 0%;
+  }
 }
 @media screen and (min-width: 769px), print {
    .b-column.b-is-full-tablet {
@@ -1911,6 +1944,11 @@ button.b-tag:active {
     display: flex;
   }
 }
+@media screen and (max-width: 768px) {
+  .b-columns.b-is-0-mobile {
+    --b-column-gap: 0rem;
+  }
+}
 .b-columns.b-is-3 {
   --b-column-gap: 0.75rem;
 }
@@ -1960,32 +1998,6 @@ button.b-tag:active {
 @media screen and (min-width: 1408px) {
   .b-container:not(.b-is-max-tablet):not(.b-is-max-desktop):not(.b-is-max-widescreen) {
     max-width: 1344px;
-  }
-}
-
-.b-level {
-  --b-level-item-spacing: calc(var(--b-block-spacing) * 0.5);
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: var(--b-level-item-spacing);
-}
-.b-level code {
-  border-radius: var(--b-radius);
-}
-.b-level img {
-  display: inline-block;
-  vertical-align: top;
-}
-.b-level.b-is-mobile {
-  display: flex;
-  flex-direction: row;
-}
-@media screen and (min-width: 769px), print {
-  .b-level {
-    display: flex;
-    flex-direction: row;
   }
 }
 
@@ -2076,6 +2088,20 @@ button.b-tag:active {
 }
 
 /* Bulma Helpers */
+
+.b-has-text-white {
+  color: hsl(var(--b-white-h), var(--b-white-s), var(--b-white-l)) !important;
+}
+
+a.b-has-text-white:hover, a.b-has-text-white:focus-visible,
+button.b-has-text-white:hover,
+button.b-has-text-white:focus-visible {
+  color: hsl(var(--b-white-h), var(--b-white-s), calc(var(--b-white-l) + var(--b-hover-color-l-delta))) !important;
+}
+a.b-has-text-white:active,
+button.b-has-text-white:active {
+  color: hsl(var(--b-white-h), var(--b-white-s), calc(var(--b-white-l) + var(--b-active-color-l-delta))) !important;
+}
 
 .b-has-text-black {
   color: hsl(var(--b-black-h), var(--b-black-s), var(--b-black-l)) !important;
@@ -2212,6 +2238,11 @@ button.b-has-text-info:active {
   margin-right: 0.75rem !important;
 }
 
+.b-my-3 {
+  margin-top: 0.75rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
 .b-mt-4 {
   margin-top: 1rem !important;
 }
@@ -2239,10 +2270,6 @@ button.b-has-text-info:active {
 .b-my-6 {
   margin-top: 3rem !important;
   margin-bottom: 3rem !important;
-}
-
-.b-mr-auto {
-  margin-right: auto !important;
 }
 
 .b-p-0 {
@@ -2526,6 +2553,9 @@ button.b-has-text-info:active {
     text-align: right !important;
   }
 }
+.b-is-capitalized {
+  text-transform: capitalize !important;
+}
 
 .b-is-uppercase {
   text-transform: uppercase !important;
@@ -2548,7 +2578,7 @@ button.b-has-text-info:active {
 }
 
 .b-is-family-secondary {
-  font-family: '"Atkinson Hyperlegible Next", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif' !important;
+  font-family: '"Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif' !important;
 }
 
 
@@ -2595,11 +2625,17 @@ button.b-has-text-info:active {
 /* ============================================
    Helpers de posición (independientes del color)
    ============================================ */
+.b-tag-top-left {
+  position: absolute;
+  top: 0rem;
+  left: 0rem;
+  z-index: 2;
+}
 
 .b-tag-bottom-right {
   position: absolute;
-  bottom: 0.75rem;
-  right: 0.75rem;
+  bottom: 0rem;
+  right: 0rem;
   z-index: 2;
 }
 
@@ -2655,6 +2691,16 @@ button.b-has-text-info:active {
 /* Badge circular */
 
 /* Badge rectangular */
+.b-badge-primary {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border-radius: 0.4rem;
+  background-color: hsl(268, 41%, 33%);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
 
 /* Badge tipo pill */
 .b-badge-pill-primary {
@@ -2758,8 +2804,8 @@ button.b-has-text-info:active {
   --b-scheme-invert-ter-l: 14%;
   --b-scheme-invert-bis-l: 7%;
   --b-scheme-invert-l: 4%;
-  --b-family-primary: "Baloo 2", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  --b-family-secondary: "Atkinson Hyperlegible Next", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  --b-family-primary: "Roboto Condensed", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  --b-family-secondary: "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   --b-size-normal: 1rem;
   --b-size-medium: 1.25rem;
   --b-size-large: 1.5rem;
@@ -3657,8 +3703,8 @@ button.b-has-text-info:active {
     --b-scheme-invert-ter-l: 14%;
     --b-scheme-invert-bis-l: 7%;
     --b-scheme-invert-l: 4%;
-    --b-family-primary: "Baloo 2", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-    --b-family-secondary: "Atkinson Hyperlegible Next", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    --b-family-primary: "Roboto Condensed", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    --b-family-secondary: "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
     --b-size-normal: 1rem;
     --b-size-medium: 1.25rem;
     --b-size-large: 1.5rem;

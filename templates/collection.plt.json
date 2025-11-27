@@ -97,7 +97,8 @@
       }
     },
     "product-grid": {
-      "type": "main-collection-product-grid"
+      "type": "main-collection-product-grid",
+      "settings": {}
     },
     "custom_section_EWcpUz": {
       "type": "custom_section",
