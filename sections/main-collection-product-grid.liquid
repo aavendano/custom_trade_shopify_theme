@@ -130,206 +130,116 @@
           <!-- FORLOOP -->
           <!-- Web Component: Cargar la colección -->
           {%- for product in collection.products -%}
-            {% liquid
-              assign target = product.selected_or_first_available_variant
-              assign compare_at_price = target.compare_at_price
-              assign price = target.price | default: 1999
-              assign money_price = price | money_with_currency
-            %}
+            {% if product.available %}
+              {% liquid
+                assign target = product.selected_or_first_available_variant
+                assign compare_at_price = target.compare_at_price
+                assign price = target.price | default: 1999
+                assign money_price = price | money_with_currency
+                assign free_shipping = false
+                if product.price >= 7500
+                  assign free_shipping = true
+                endif
+              %}
 
-            <div class="b-column b-card-column b-is-half-tablet b-is-one-quarter-desktop b-is-one-fifth-widescreen">
-              <!-- CARD -->
-              <div class="b-box b-p-2 b-align-items-stretch-tablet">
-                <div class="b-columns b-is-mobile b-row-to-col-tablet">
-                  <div class="b-column b-is-half-mobile b-is-full-tablet b-card-image-wrapper">
-                    <figure class="b-image">
+              <div class="b-column b-card-column b-is-half-tablet b-is-one-quarter-desktop b-is-one-fifth-widescreen">
+                <!-- CARD -->
+                <div class="b-box b-p-2 b-align-items-stretch-tablet">
+                  <div class="b-columns b-is-mobile b-row-to-col-tablet">
+                    <div class="b-column b-is-half-mobile b-is-full-tablet b-card-image-wrapper">
                       <a href="{{ product.url }}">
-                        {{
-                          product.featured_media
-                          | image_url: width: 600, height: 600, pad_color: 'ffffff'
-                          | image_tag:
-                            widths: '100,150,200,250,300, 350, 400, 450, 500, 550, 600',
-                            preload: false,
-                            ratio: '1',
-                            loading: 'lazy',
-                            style: 'object-fit: contain;',
-                            class: 'b-rounded-corners'
-                        }}
+                        <figure class="b-image{% if free_shipping %} b-has-image-overlay{% endif %}">
+                          {{
+                            product.featured_media
+                            | image_url: width: 600, height: 600, pad_color: 'ffffff'
+                            | image_tag:
+                              widths: '100,125,150,200,250,300, 350, 400, 450, 500, 550, 600',
+                              preload: false,
+                              ratio: '1',
+                              loading: 'lazy',
+                              style: 'object-fit: contain;',
+                              class: 'b-rounded-corners'
+                          }}
+                          {% if free_shipping %}
+                            <span class="b-tag-top-left b-badge-primary b-badge-custom">
+                              <span class="b-icon-text b-is-size-7">
+                                <i class="b-icon">
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    transform="scale(-1,1)"
+                                    height="1em"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                  >
+                                    <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/>
+                                    <path d="M15 18H9"/>
+                                    <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/>
+                                    <circle cx="17" cy="18" r="2"/>
+                                    <circle cx="7" cy="18" r="2"/>
+                                  </svg></i
+                                >Free
+                              </span>
+                            </span>
+                          {%- endif %}
+                        </figure>
                       </a>
-                    </figure>
-                    <div class="b-tags b-has-addons b-my-3">
-                      {%- if product.available == false -%}
-                        <span class="b-tag b-has-background-gray b-is-size-7">
-                          <i class="b-icon">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
+                    </div>
+                    <!-- MOBILE -->
+                    <div class="b-column b-is-half-mobile b-card-content-wrapper">
+                      <div class="b-block" style="margin-bottom: 0;">
+                        <p class="b-is-size-7-mobile b-is-size-6-tablet b-mb-2 b-has-text-black b-is-capitalized">
+                          <a href="{{ product.url }}" class="full-unstyled-link">
+                            <strong>{{ product.title | escape }}</strong>
+                          </a>
+                        </p>
+                        <p class="b-is-uppercase b-is-size-7-mobile b-is-size-6-tablet b-mb-2 b-has-text-gray-dark">
+                          <a href="{{ product.url }}" class="full-unstyled-link">
+                            <strong>{{ product.vendor | escape }}</strong>
+                          </a>
+                        </p>
+                        <p class="b-is-size-7 b-is-capitalized">
+                          {{ product.type | default: '' }}
+                        </p>
+                      </div>
 
-                              height="1em"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            >
-                              <path d="m2 2 20 20"/><path d="M8.35 2.69A10 10 0 0 1 21.3 15.65"/><path d="M19.08 19.08A10 10 0 1 1 4.92 4.92"/>
-                            </svg></i
-                          ><span>
-                            {{- 'products.product.sold_out' | t -}}
-                          </span>
+                      <div class="b-block">
+                        <span class="b-is-sr-only">
+                          {{- 'products.product.price.regular_price' | t -}}
                         </span>
-                      {%- else -%}
-                        {% if product.compare_at_price > product.price %}
-                          <span class="b-tag b-has-background-danger-light b-is-size-7 b-has-text-black b-p-0">
-                            <i class="b-icon b-p-0 b-mr-0">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                height="1em"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                              >
-                                <circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="M9 9h.01"/><path d="M15 15h.01"/>
-                              </svg>
-                            </i>
-                            <span class="b-p-1">
-                              {{- 'products.product.on_sale' | t -}}
-                            </span></span
-                          >
+
+                        {% if compare_at_price > price %}
+                          {%- unless product.price_varies == false and product.compare_at_price_varies %}
+                            <p class="b-has-text-weight-normal b-is-size-6 b-subtitle b-has-text-gray-dark">
+                              <s>{{ compare_at_price | money -}}</s>
+                              {% assign saved_amount = compare_at_price | minus: price %}
+                              {% assign saved_percentage = saved_amount
+                                | times: 100
+                                | divided_by: compare_at_price
+                                | round
+                              %}
+                              {% if saved_amount > 0 %}
+                                <span class="b-tag b-is-danger b-has-text-white b-is-size-7">
+                                  {{- saved_percentage }}% OFF</span
+                                >
+                              {% endif %}
+                            </p>
+                          {%- endunless -%}
                         {% endif %}
-                        {% if product.price >= 7500 -%}
-                          <span class="b-tag b-is-size-7 b-has-background-info-light b-has-text-black b-p-0">
-                            <span class="b-icon-text b-p-0">
-                              <i class="b-icon b-p-0 b-mr-0">
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  transform="scale(-1,1)"
-                                  height="1em"
-                                  viewBox="0 0 24 24"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  stroke-width="2"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                >
-                                  <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/>
-                                </svg>
-                              </i>
-                              <span class="b-p-0 b-mr-1">Free</span>
-                            </span>
-                          </span>
-                        {%- endif -%}
-                      {%- endif -%}
-                    </div>
-                  </div>
-                  <!-- MOBILE -->
-                  <div class="b-column b-is-half-mobile b-card-content-wrapper">
-                    <div class="b-block" style="margin-bottom: 0;">
-                      <p class="b-is-size-7-mobile b-is-size-6-tablet b-mb-2 b-has-text-black b-is-capitalized">
-                        <a href="{{ product.url }}" class="full-unstyled-link">
-                          <strong>{{ product.title | escape }}</strong>
-                        </a>
-                      </p>
-                      <p class="b-is-uppercase b-is-size-7-mobile b-is-size-6-tablet b-mb-2 b-has-text-gray-dark">
-                        <a href="{{ product.url }}" class="full-unstyled-link">
-                          <strong>{{ product.vendor | escape }}</strong>
-                        </a>
-                      </p>
-                      <p class="b-is-size-7 b-is-capitalized">
-                        {{ product.type | default: '' }}
-                      </p>
-                    </div>
-                    {% if product.price >= 7500 -%}
-                      <span class="b-tag b-is-size-7 b-has-background-info-light b-has-text-black b-p-0 b-mt-2">
-                        <span class="b-icon-text b-p-0">
-                          <i class="b-icon b-p-0 b-mr-0">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              transform="scale(-1,1)"
-                              height="1em"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            >
-                              <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/>
-                            </svg>
-                          </i>
-                          <span class="b-p-0 b-mr-1">Free Shipping</span>
-                        </span>
-                      </span>
-                    {%- endif -%}
 
-                    <div class="b-block">
-                      <span class="b-is-sr-only">
-                        {{- 'products.product.price.regular_price' | t -}}
-                      </span>
-
-                      {% if compare_at_price > price %}
-                        {%- unless product.price_varies == false and product.compare_at_price_varies %}
-                          <p class="b-has-text-weight-normal b-is-size-6 b-subtitle b-has-text-gray-dark">
-                            Before: {{ compare_at_price | money -}}
-                            {% assign saved_amount = compare_at_price | minus: price %}
-                            {% assign saved_percentage = saved_amount
-                              | times: 100
-                              | divided_by: compare_at_price
-                              | round
-                            %}
-                            {% if saved_amount > 0 %}
-                              <span class="b-tag b-is-danger b-has-text-white b-is-size-7">
-                                {{- saved_percentage }}% OFF</span
-                              >
-                            {% endif %}
-                          </p>
-                        {%- endunless -%}
-                      {% endif %}
-
-                      <p class="b-has-text-weight-bold b-is-size-5 b-title">
-                        {{ money_price }}
-                      </p>
-
-                      {% comment %}
-                        {%- if product.available == false -%}
-                          <button
-                            disabled
-                            class="b-button b-has-background-gray b-is-fullwidth b-is-rounded"
-                          >
-                            Out of stock
-                          </button>
-                        {%- else -%}
-                          <button class="b-button b-is-danger b-is-inverted b-is-fullwidth b-is-small b-is-rounded b-is-focused">
-                            <span class="b-icon">
-                              <i>
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  height="1em"
-                                  viewBox="0 0 24 24"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  stroke-width="2"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                >
-                                  <path d="M16 10a4 4 0 0 1-8 0"/><path d="M3.103 6.034h17.794"/><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"/>
-                                </svg>
-                              </i>
-                            </span>
-
-                            <span> Add To Bag</span>
-                          </button>
-                        {%- endif -%}
-                      {% endcomment %}
+                        <p class="b-has-text-weight-bold b-is-size-5 b-title">
+                          {{ money_price }}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
+                <!-- END CARD -->
               </div>
-              <!-- END CARD -->
-            </div>
+            {% endif %}
           {%- endfor -%}
           <!-- END FORLOOP -->
         </div>

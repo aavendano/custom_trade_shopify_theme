@@ -16,7 +16,8 @@
 
 
 /* Espaciado base para overlays */
-$overlay-offset: iv.$overlay-offset;
+$overlay-offset-vertical: iv.$overlay-offset-vertical;
+$overlay-offset-horizontal: iv.$overlay-offset-horizontal;
 $tablet: iv.$tablet;
 $these-colors: dv.$colors;
 
@@ -28,8 +29,8 @@ $these-colors: dv.$colors;
 
 @mixin overlay-pos($vertical, $horizontal) {
   position: absolute;
-  #{$vertical}: $overlay-offset;
-  #{$horizontal}: $overlay-offset;
+  #{$vertical}: $overlay-offset-vertical;
+  #{$horizontal}: $overlay-offset-horizontal;
   z-index: 2;
 }
 
@@ -46,7 +47,7 @@ $these-colors: dv.$colors;
    Contenedor base para overlays
    ============================================ */
 
-.b-has-image-overlay {
+.#{iv.$class-prefix}has-image-overlay {
   position: relative;
   display: block;
   z-index: 0;
@@ -57,17 +58,31 @@ $these-colors: dv.$colors;
    Helpers de posición (independientes del color)
    ============================================ */
 
-.b-tag-top-left     { @include overlay-pos(top, left); }
-.b-tag-top-right    { @include overlay-pos(top, right); }
-.b-tag-bottom-left  { @include overlay-pos(bottom, left); }
-.b-tag-bottom-right { @include overlay-pos(bottom, right); }
-.b-tag-center       { @include overlay-center; }
+.#{iv.$class-prefix}tag-top-left {
+  @include overlay-pos(top, left);
+}
+
+.#{iv.$class-prefix}tag-top-right {
+  @include overlay-pos(top, right);
+}
+
+.#{iv.$class-prefix}tag-bottom-left {
+  @include overlay-pos(bottom, left);
+}
+
+.#{iv.$class-prefix}tag-bottom-right {
+  @include overlay-pos(bottom, right);
+}
+
+.#{iv.$class-prefix}tag-center {
+  @include overlay-center;
+}
 
 /* Variante responsive:
    - mobile: bottom-right
    - tablet+: top-right
 */
-.b-tag-responsive {
+.#{iv.$class-prefix}tag-responsive {
   @include overlay-pos(bottom, right);
 
   @media (min-width: $tablet) {
@@ -79,7 +94,7 @@ $these-colors: dv.$colors;
    - mobile: center
    - tablet+: top-left
 */
-.b-tag-responsive-2 {
+.#{iv.$class-prefix}tag-responsive-2 {
   @include overlay-center;
 
   @media (min-width: $tablet) {
@@ -105,9 +120,9 @@ $these-colors: dv.$colors;
 /* ============================================
    Loop dinámico por todos los colores de Bulma
    Genera:
-   - .b-badge-[color]
-   - .b-badge-circle-[color]
-   - .b-badge-pill-[color]
+   - .#{iv.$class-prefix}badge-[color]
+   - .#{iv.$class-prefix}badge-circle-[color]
+   - .#{iv.$class-prefix}badge-pill-[color]
    ============================================ */
 
 
@@ -117,7 +132,7 @@ $these-colors: dv.$colors;
 
 
   /* Badge rectangular */
-  .b-badge-#{$name} {
+  .#{iv.$class-prefix}badge-#{$name} {
     display: inline-block;
     padding: 0.25rem 0.6rem;
     border-radius: 0.4rem;
@@ -129,7 +144,7 @@ $these-colors: dv.$colors;
   }
 
   /* Badge tipo pill */
-  .b-badge-pill-#{$name} {
+  .#{iv.$class-prefix}badge-pill-#{$name} {
     display: inline-block;
     padding: 0.25rem 0.8rem;
     border-radius: 999px;
@@ -141,7 +156,7 @@ $these-colors: dv.$colors;
   }
 
   /* Badge circular */
-  .b-badge-circle-#{$name} {
+  .#{iv.$class-prefix}badge-circle-#{$name} {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -164,29 +179,25 @@ $these-colors: dv.$colors;
    Gradients neutrales (no dependen del mapa)
    ============================================ */
 
-.b-overlay-gradient-bottom {
+.#{iv.$class-prefix}overlay-gradient-bottom {
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
 
   height: 40%;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0) 0%,
-    rgba(0,0,0,0.6) 100%
-  );
+  background: linear-gradient(to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.6) 100%);
   z-index: 1;
 }
 
-.b-overlay-gradient-full {
+.#{iv.$class-prefix}overlay-gradient-full {
   position: absolute;
   inset: 0;
 
-  background: linear-gradient(
-    180deg,
-    rgba(0,0,0,0.4) 0%,
-    rgba(0,0,0,0.8) 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(0, 0, 0, 0.4) 0%,
+      rgba(0, 0, 0, 0.8) 100%);
   z-index: 1;
 }

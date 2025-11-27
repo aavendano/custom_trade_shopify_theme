@@ -16246,7 +16246,7 @@ b-has-background-danger.is-hoverable:active {
 }
 
 .b-is-family-primary {
-  font-family: '"Archivo Narrow", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif' !important;
+  font-family: '"Roboto Condensed", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif' !important;
 }
 
 .b-is-family-secondary {
@@ -16776,29 +16776,29 @@ b-has-background-danger.is-hoverable:active {
    ============================================ */
 .b-tag-top-left {
   position: absolute;
-  top: 0.75rem;
-  left: 0.75rem;
+  top: 0rem;
+  left: 0rem;
   z-index: 2;
 }
 
 .b-tag-top-right {
   position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
+  top: 0rem;
+  right: 0rem;
   z-index: 2;
 }
 
 .b-tag-bottom-left {
   position: absolute;
-  bottom: 0.75rem;
-  left: 0.75rem;
+  bottom: 0rem;
+  left: 0rem;
   z-index: 2;
 }
 
 .b-tag-bottom-right {
   position: absolute;
-  bottom: 0.75rem;
-  right: 0.75rem;
+  bottom: 0rem;
+  right: 0rem;
   z-index: 2;
 }
 
@@ -16816,15 +16816,15 @@ b-has-background-danger.is-hoverable:active {
 */
 .b-tag-responsive {
   position: absolute;
-  bottom: 0.75rem;
-  right: 0.75rem;
+  bottom: 0rem;
+  right: 0rem;
   z-index: 2;
 }
 @media (min-width: 769px) {
   .b-tag-responsive {
     position: absolute;
-    top: 0.75rem;
-    right: 0.75rem;
+    top: 0rem;
+    right: 0rem;
     z-index: 2;
   }
 }
@@ -16843,8 +16843,8 @@ b-has-background-danger.is-hoverable:active {
 @media (min-width: 769px) {
   .b-tag-responsive-2 {
     position: absolute;
-    top: 0.75rem;
-    left: 0.75rem;
+    top: 0rem;
+    left: 0rem;
     z-index: 2;
   }
 }
@@ -17343,7 +17343,7 @@ b-has-background-danger.is-hoverable:active {
   --b-scheme-invert-ter-l: 14%;
   --b-scheme-invert-bis-l: 7%;
   --b-scheme-invert-l: 4%;
-  --b-family-primary: "Archivo Narrow", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  --b-family-primary: "Roboto Condensed", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   --b-family-secondary: "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   --b-size-normal: 1rem;
   --b-size-medium: 1.25rem;
@@ -18242,7 +18242,7 @@ b-has-background-danger.is-hoverable:active {
     --b-scheme-invert-ter-l: 14%;
     --b-scheme-invert-bis-l: 7%;
     --b-scheme-invert-l: 4%;
-    --b-family-primary: "Archivo Narrow", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    --b-family-primary: "Roboto Condensed", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
     --b-family-secondary: "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
     --b-size-normal: 1rem;
     --b-size-medium: 1.25rem;
@@ -19108,7 +19108,7 @@ b-has-background-danger.is-hoverable:active {
   --b-scheme-invert-ter-l: 14%;
   --b-scheme-invert-bis-l: 7%;
   --b-scheme-invert-l: 4%;
-  --b-family-primary: "Archivo Narrow", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  --b-family-primary: "Roboto Condensed", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   --b-family-secondary: "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   --b-size-normal: 1rem;
   --b-size-medium: 1.25rem;

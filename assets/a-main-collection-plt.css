@@ -11,6 +11,14 @@
     max-width: 100%;
 }
 
+.b-badge-custom {
+    padding: 0 .15rem !important;
+    border-top-left-radius: var(--b-box-radius) !important;
+    border-bottom-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
 @media screen and (max-width: 768px) {
     .b-section {
         padding-left: 0rem !important;
@@ -21,24 +29,16 @@
         border-radius: 0.375rem;
     }
 
-
     .b-card-content-wrapper {
         padding-left: 0 !important;
         padding-right: 0.75rem !important;
     }
 
-
-
-
-
     :root {
         --b-column-gap: 0rem !important;
         --b-box-shadow: none !important;
         --b-shadow: none !important;
-        --b-scheme-main:
-            --b-scheme-h: 221;
-        --b-scheme-s: 10%;
-        --b-scheme-main-l: 92%;
+
     }
 
     .b-card-image-wrapper {
@@ -47,7 +47,11 @@
 
 
     .b-box {
-        border-radius: 0 !important;
+
+        margin-bottom: .25rem !important;
+        margin-top: .25rem !important;
+        margin-left: .25rem !important;
+        margin-right: .25rem !important;
     }
 }
 
