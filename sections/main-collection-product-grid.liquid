@@ -126,7 +126,11 @@
       {%- else -%}
         <!-- PRODUCT GRID -->
 
-        <div class="b-columns b-is-multiline c-columns b-is-0-mobile">
+        <div
+          id="product-grid"
+          data-id="{{ section.id }}"
+          class="collection b-columns b-is-multiline c-columns b-is-0-mobile"
+        >
           <!-- FORLOOP -->
           <!-- Web Component: Cargar la colección -->
           {%- for product in collection.products -%}
@@ -158,7 +162,7 @@
                               ratio: '1',
                               loading: 'lazy',
                               style: 'object-fit: contain;',
-                              class: 'b-rounded-corners'
+                              class: 'b-has-rounded-corners'
                           }}
                           {% if free_shipping %}
                             <span class="b-tag-top-left b-badge-primary b-badge-custom">
