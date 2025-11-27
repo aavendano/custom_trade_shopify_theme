@@ -1,0 +1,112 @@
+.b-image {
+    object-fit: contain;
+    /* max-height: auto; invalid */
+    width: 100%;
+    height: auto;
+}
+
+/* Fix: Apply to actual img tag */
+.b-image img {
+    object-fit: contain;
+    max-width: 100%;
+}
+
+.b-badge-custom {
+    padding: 0 .15rem !important;
+    border-top-left-radius: var(--b-box-radius) !important;
+    border-bottom-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+.b-has-rounded-corners {
+    border-radius: 0.375rem;
+}
+
+@media screen and (max-width: 768px) {
+    .b-section {
+        padding-left: 0rem !important;
+        padding-right: 0rem !important;
+    }
+
+    .b-card-content-wrapper {
+        padding-left: 0 !important;
+        padding-right: 0.75rem !important;
+    }
+
+    :root {
+        --b-column-gap: 0rem !important;
+        --b-box-shadow: none !important;
+        --b-shadow: none !important;
+
+    }
+
+    .b-card-image-wrapper {
+        padding-right: 0.5rem !important;
+    }
+
+
+    .b-box {
+
+        margin-bottom: .25rem !important;
+        margin-top: .25rem !important;
+        margin-left: .25rem !important;
+        margin-right: .25rem !important;
+    }
+}
+
+
+@media screen and (min-width: 769px) {
+
+
+    .b-card-column {
+        display: flex !important;
+        flex-direction: column !important;
+        /* Changed from row to column */
+        /* height: 100% !important; REMOVED: Let flex stretch handle height */
+    }
+
+    .b-row-to-col-tablet {
+        display: flex !important;
+        flex-direction: column !important;
+        /* align-items: stretch !important; */
+        height: 100% !important;
+        align-content: stretch !important;
+        flex-grow: 1 !important;
+        /* Grow to fill box */
+        /* flex-wrap: wrap !important; */
+    }
+
+    .b-card-content-wrapper {
+        display: flex !important;
+        flex-direction: column !important;
+        /* height: 100% !important;  Removed to prevent overflow in flex column */
+        flex-grow: 1 !important;
+        /* Grow to fill remaining space */
+        justify-content: space-between;
+        /* Ensure distribution */
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        padding-bottom: 1rem !important;
+        padding-top: 0 !important;
+    }
+
+    .b-align-items-stretch-tablet {
+        display: flex !important;
+        /* Make box a flex container */
+        flex-direction: column !important;
+        height: 100% !important;
+    }
+
+    .b-card-image-wrapper {
+        display: flex !important;
+        flex: 0 0 auto !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        padding-bottom: 0 !important;
+    }
+
+    .b-card-content-wrapper .block:last-child {
+        margin-top: auto;
+    }
+}

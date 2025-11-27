@@ -1,3 +1,28 @@
 {
-    "liveServer.settings.port": 5501
+    // Configuración general de VSCode
+    "editor.formatOnSave": true,
+    "files.autoSave": "onFocusChange",
+    // Configuración de Live Server
+    "liveServer.settings.port": 5501,
+    // --- File Size Extension Settings ---
+    "filesize.showInStatusBar": true, // Muestra tamaño del archivo actual en la barra inferior
+    "fileSize.showInExplorer": true, // Muestra tamaño de todos los archivos en el panel lateral
+    "fileSize.decimalPlaces": 1, // Un decimal (por ejemplo: 3.6 KB)
+    "fileSize.exclude": [ // Carpetas ignoradas al calcular tamaños
+        "**/node_modules/**",
+        "**/dist/**",
+        "**/build/**",
+        "**/.git/**",
+        "**/.vscode/**"
+    ],
+    "fileSize.followSymlinks": false, // No seguir enlaces simbólicos
+    "fileSize.cacheSize": 200, // Evita recálculos excesivos
+    "fileSize.format": "human", // Muestra en KB, MB, etc. (no en bytes)
+    // --- Opcional: mejora visual general ---
+    "explorer.compactFolders": false, // Muestra carpetas completas (no agrupadas)
+    "workbench.tree.indent": 16, // Más espacio para ver los tamaños sin cortar nombres
+    "workbench.colorCustomizations": {
+        "statusBar.foreground": "#FFFFFF",
+        "statusBar.background": "#333333"
+    }
 }

@@ -1,0 +1,62 @@
+/* Font Loading Optimization */
+
+/* Hide text until fonts are loaded to prevent FOUT (Flash of Unstyled Text) */
+html:not(.fonts-loaded) body {
+  visibility: hidden;
+}
+
+/* Show text with fallback fonts if fonts fail to load after 3 seconds */
+html body {
+  visibility: visible;
+}
+
+/* Font display optimization */
+@font-face {
+  font-family: 'Urbanist';
+  font-display: swap;
+}
+
+/* Ensure proper font loading for Urbanist */
+.font-loading-fallback {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Progressive enhancement for font loading */
+.fonts-loaded {
+  font-family: var(--font-body-family);
+}
+
+.fonts-loaded h1,
+.fonts-loaded h2,
+.fonts-loaded h3,
+.fonts-loaded h4,
+.fonts-loaded h5,
+.fonts-loaded h6,
+.fonts-loaded .h1,
+.fonts-loaded .h2,
+.fonts-loaded .h3,
+.fonts-loaded .h4,
+.fonts-loaded .h5,
+.fonts-loaded .h6 {
+  font-family: var(--font-heading-family);
+}
+
+/* Fallback for when fonts don't load */
+html:not(.fonts-loaded) body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+html:not(.fonts-loaded) h1,
+html:not(.fonts-loaded) h2,
+html:not(.fonts-loaded) h3,
+html:not(.fonts-loaded) h4,
+html:not(.fonts-loaded) h5,
+html:not(.fonts-loaded) h6,
+html:not(.fonts-loaded) .h1,
+html:not(.fonts-loaded) .h2,
+html:not(.fonts-loaded) .h3,
+html:not(.fonts-loaded) .h4,
+html:not(.fonts-loaded) .h5,
+html:not(.fonts-loaded) .h6 {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
