@@ -356,6 +356,7 @@
     <script src="{{ 'cart-store.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'cart-fragment.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'alpine-product-card.js' | asset_url }}" defer></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@imacrayon/alpine-ajax@0.12.0/dist/cdn.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.2/dist/cdn.min.js"></script>
 
     {% liquid
@@ -378,7 +379,7 @@
     {% sections 'header-group' %}
 
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
-      <div class="b-container">
+      <div class="b-container b-is-fluid">
         {{ content_for_layout }}
       </div>
     </main>
@@ -397,11 +398,11 @@
     <script>
       window.STORAGE_KEY = `{{ shop.permanent_domain | handle }}-recently-viewed`;
 
+      // SHOPIFY DESIGN MODE DETECTION
       if (Shopify.designMode) {
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
     {% render 'global_seo_snippets' %}
-    <!-- SHOPIFY DESIGN MODE DETECTION -->
   </body>
 </html>
