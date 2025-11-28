@@ -1,0 +1,110 @@
+/* ==========================================================================
+   PlayLoveToys — Drawer Component (Independent)
+   Componente totalmente autónomo y con prefijo genérico.
+   ========================================================================== */
+
+@use "../utilities/initial-variables" as iv;
+
+/* ============================================================
+   Root
+   ============================================================ */
+
+.#{iv.$class-prefix}drawer {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    /* por encima del navbar & filtros */
+    display: none;
+    pointer-events: none;
+}
+
+.#{iv.$class-prefix}drawer.#{iv.$class-prefix}is-active {
+    display: block;
+    pointer-events: auto;
+}
+
+/* ============================================================
+   Background overlay
+   ============================================================ */
+
+.#{iv.$class-prefix}drawer-background {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(10, 10, 10, 0.45);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.#{iv.$class-prefix}drawer.#{iv.$class-prefix}is-active .#{iv.$class-prefix}drawer-background {
+    opacity: 1;
+}
+
+/* ============================================================
+   Drawer panel (Left)
+   ============================================================ */
+
+.#{iv.$class-prefix}drawer-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: var(--#{iv.$class-prefix}drawer-width, 420px);
+    max-width: 85vw;
+    height: 100vh;
+
+    background-color: var(--bulma-scheme-main, #fff);
+    overflow-y: auto;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, .12);
+
+    transform: translateX(-100%);
+    transition: transform .3s ease;
+}
+
+.#{iv.$class-prefix}drawer.#{iv.$class-prefix}is-active .#{iv.$class-prefix}drawer-panel {
+    transform: translateX(0);
+}
+
+/* ============================================================
+   Right-side drawer
+   ============================================================ */
+
+.#{iv.$class-prefix}drawer-right .#{iv.$class-prefix}drawer-panel {
+    left: auto;
+    right: 0;
+    transform: translateX(100%);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, .12);
+}
+
+.#{iv.$class-prefix}drawer-right.#{iv.$class-prefix}is-active .#{iv.$class-prefix}drawer-panel {
+    transform: translateX(0);
+}
+
+/* ============================================================
+   Responsive width
+   ============================================================ */
+
+@media screen and (min-width: iv.$desktop) {
+    .#{iv.$class-prefix}drawer-panel {
+        width: var(--#{iv.$class-prefix}drawer-width-desktop, 25vw);
+        max-width: none;
+    }
+}
+
+@media (max-width: iv.$tablet) {
+    .#{iv.$class-prefix}drawer-panel {
+        width: var(--#{iv.$class-prefix}drawer-width, 100vw);
+        max-width: var(--#{iv.$class-prefix}drawer-width, 100vw);
+    }
+}
+
+/* ============================================================
+   Optional speed utilities
+   ============================================================ */
+
+.#{iv.$class-prefix}drawer-fast .#{iv.$class-prefix}drawer-panel {
+    transition-duration: 150ms;
+}
+
+.#{iv.$class-prefix}drawer-slow .#{iv.$class-prefix}drawer-panel {
+    transition-duration: 500ms;
+}

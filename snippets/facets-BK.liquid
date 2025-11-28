@@ -1,7 +1,10 @@
 {% comment %}
-  Facets Drawer — Independent Drawer Component Version
-  Usa el componente b-drawer (independiente de b-modal).
-  Mantiene formulario, lógica y funciones sin cambios.
+  Facets Drawer — Bulma-first version
+  Renders filtering & sorting inside a Bulma modal acting as a sliding drawer.
+  Accepts:
+    - results: {Object}
+    - enable_filtering: {Boolean}
+    - enable_sorting: {Boolean}
 {% endcomment %}
 
 {%- liquid
@@ -17,24 +20,56 @@
   endif
 -%}
 
-<div x-data="{ drawerOpen: false }" class="b-container facets-wrapper">
-  <!-- Trigger Sticky -->
-  <div class="b-level b-top-4 b-px-4 b-border-bottom-light">
+<style>
+  /* =========================================================
+     Drawer: convierte el modal de Bulma en un panel lateral
+     ========================================================= */
+
+  .b-modal {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .b-modal .b-modal-content {
+    width: 100%;
+    max-width: 420px;
+    height: 100vh;
+    overflow-y: auto;
+    background: white;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .b-modal.b-is-active .b-modal-content {
+    transform: translateX(0);
+  }
+
+  @media (min-width: 1024px) {
+    .b-modal .b-modal-content {
+      max-width: 25vw;
+    }
+  }
+</style>
+
+<div x-data="{ drawerOpen: false }" class="facets-wrapper">
+  <div class="b-level b-is-sticky b-top-4 b-px-4 b-has-background-white b-border-bottom-light">
     <div class="b-level-left">
       <button
         type="button"
-        class="b-button b-is-primary b-is-light"
+        class="b-button b-is-primary b-is-rounded"
         @click="drawerOpen = true"
       >
         <span class="b-icon">
           {{ 'icon-filter.svg' | inline_asset_content }}
         </span>
-        <span class="b-is-size-5">{{ 'products.facets.filter_and_sort' | t }}</span>
+        <span>{{ 'products.facets.filter_and_sort' | t }}</span>
       </button>
     </div>
 
     <div class="b-level-right">
-      <p class="b-is-size-5">
+      <p class="b-is-size-7">
         {% if results.results_count %}
           {{ 'templates.search.results_with_count' | t: terms: results.terms, count: results.results_count }}
         {% else %}
@@ -44,61 +79,52 @@
     </div>
   </div>
 
-  <!-- Drawer Component -->
   <div
-    class="b-drawer"
+    class="b-modal"
     :class="{ 'b-is-active': drawerOpen }"
     @keydown.escape.window="drawerOpen = false"
   >
-    <div class="b-drawer-background" @click="drawerOpen = false"></div>
+    <div class="b-modal-background" @click="drawerOpen = false"></div>
 
-    <div class="b-drawer-panel">
+    <div class="b-modal-content">
       <form
         id="FacetFiltersForm"
         action="{{ form_action }}"
         x-target="product-grid-container"
         x-on:input.debounce.800ms="$el.requestSubmit()"
-        class="b-is-flex b-is-flex-direction-column b-h-full b-px-4 b-py-6"
+        class="b-modal-card b-is-flex b-is-flex-direction-column b-h-full"
       >
-        <!-- Header -->
-        <header class="b-level b-is-mobile b-is-align-items-center b-py-4 b-px-4 b-border-bottom-light">
-          <p class="b-title b-is-3-tablet b-is-4-mobile b-my-0">
+        <header class="b-modal-card-head b-is-radiusless">
+          <p class="b-modal-card-title">
             {{ 'products.facets.filter_and_sort' | t }}
           </p>
           <button type="button" class="b-delete" @click="drawerOpen = false"></button>
         </header>
 
-        <!-- Body -->
-        <section class="b-px-4 b-py-4 b-is-flex-grow-1">
-          <!-- Valores ocultos de búsqueda -->
+        <section class="b-modal-card-body b-is-flex-grow-1">
           {% if results.terms %}
             <input type="hidden" name="q" value="{{ results.terms | escape }}">
             <input type="hidden" name="options[prefix]" value="last">
           {% endif %}
 
-          <!-- ---------- Sorting ---------- -->
           {% if enable_sorting %}
-            <div class="b-mb-5">
-              <h3 class="b-subtitle b-is-size-4 b-has-text-weight-semibold b-mb-2">
-                {{ 'products.facets.sort_by_label' | t }}
-              </h3>
+            <div class="b-field b-mb-5">
+              <label class="b-label" for="SortBy">{{ 'products.facets.sort_by_label' | t }}</label>
 
-              <div class="b-field">
-                <div class="b-control">
-                  <div class="b-select b-is-fullwidth b-is-light b-is-primary">
-                    <select name="sort_by" id="SortBy">
-                      {% for option in results.sort_options %}
-                        <option
-                          value="{{ option.value | escape }}"
-                          {% if option.value == sort_by %}
-                            selected
-                          {% endif %}
-                        >
-                          {{ option.name | escape }}
-                        </option>
-                      {% endfor %}
-                    </select>
-                  </div>
+              <div class="b-control">
+                <div class="b-select b-is-fullwidth">
+                  <select name="sort_by" id="SortBy">
+                    {% for option in results.sort_options %}
+                      <option
+                        value="{{ option.value | escape }}"
+                        {% if option.value == sort_by %}
+                          selected
+                        {% endif %}
+                      >
+                        {{ option.name | escape }}
+                      </option>
+                    {% endfor %}
+                  </select>
                 </div>
               </div>
             </div>
@@ -106,25 +132,19 @@
             <hr class="b-dropdown-divider">
           {% endif %}
 
-          <!-- ---------- Filters ---------- -->
           {% if enable_filtering %}
-            <h3 class="b-subtitle b-is-size-4 b-has-text-weight-semibold b-mb-2">
-              {{ products.facets.filters_label | default: 'Filters' }}
-            </h3>
-
             {% for filter in results.filters %}
-              <div class="b-mb-4" x-data="{ open: false }">
+              <div class="b-mb-4" x-data="{ open: true }">
                 <button
                   type="button"
-                  class="b-button b-is-primary b-is-light b-is-fullwidth b-is-justify-content-space-between b-py-3"
+                  class="b-button b-is-white b-is-fullwidth b-is-justify-content-space-between"
                   @click="open = !open"
-                  :aria-expanded="open"
                 >
-                  <span class="b-subtitle b-is-size-6 b-is-size-5-tablet b-has-text-weight-semibold b-mb-2">
+                  <span class="b-has-text-weight-bold">
                     {{ filter.label | escape }}
                   </span>
 
-                  <span class="b-icon b-is-size-7 b-is-size-6-tablet">
+                  <span class="b-icon b-is-small">
                     {{ 'icon-caret.svg' | inline_asset_content }}
                   </span>
                 </button>
@@ -134,8 +154,8 @@
                     {% case filter.type %}
                       {% when 'boolean', 'list' %}
                         {% for value in filter.values %}
-                          <div class="b-field b-my-1">
-                            <label class="b-checkbox b-is-size-7">
+                          <div class="b-field">
+                            <label class="b-checkbox">
                               <input
                                 type="checkbox"
                                 name="{{ value.param_name }}"
@@ -153,7 +173,7 @@
                         {% endfor %}
 
                       {% when 'price_range' %}
-                        <div class="b-box b-p-3 b-mt-2 facets__price">
+                        <div class="facets__price">
                           {% render 'price-facet', filter: filter, id_prefix: 'Filter-' %}
                         </div>
                     {% endcase %}
@@ -166,25 +186,14 @@
           {% endif %}
         </section>
 
-        <!-- ---------------- Footer ---------------- -->
-        <footer class="b-px-4 b-py-4 b-border-top-light">
-          <div class="b-is-flex b-is-flex-direction-column">
-            <a
-              href="{{ results_url }}"
-              class="b-button b-is-light b-is-fullwidth b-mb-2"
-              x-target="product-grid-container"
-            >
-              {{ 'products.facets.clear_all' | t }}
-            </a>
+        <footer class="b-modal-card-foot b-is-radiusless">
+          <a href="{{ results_url }}" class="b-button" x-target="product-grid-container">
+            {{ 'products.facets.clear_all' | t }}
+          </a>
 
-            <button
-              type="button"
-              class="b-button b-is-primary b-is-fullwidth"
-              @click="drawerOpen = false"
-            >
-              {{ 'products.facets.apply' | t }}
-            </button>
-          </div>
+          <button type="button" class="b-button b-is-primary" @click="drawerOpen = false">
+            {{ 'products.facets.apply' | t }}
+          </button>
         </footer>
       </form>
     </div>

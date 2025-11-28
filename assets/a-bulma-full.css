@@ -17309,6 +17309,103 @@ b-has-background-danger.is-hoverable:active {
   z-index: 1;
 }
 
+/* ==========================================================================
+   PlayLoveToys — Drawer Component (Independent)
+   Componente totalmente autónomo y con prefijo genérico.
+   ========================================================================== */
+/* ============================================================
+   Root
+   ============================================================ */
+.b-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  /* por encima del navbar & filtros */
+  display: none;
+  pointer-events: none;
+}
+
+.b-drawer.b-is-active {
+  display: block;
+  pointer-events: auto;
+}
+
+/* ============================================================
+   Background overlay
+   ============================================================ */
+.b-drawer-background {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(10, 10, 10, 0.45);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.b-drawer.b-is-active .b-drawer-background {
+  opacity: 1;
+}
+
+/* ============================================================
+   Drawer panel (Left)
+   ============================================================ */
+.b-drawer-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--b-drawer-width, 420px);
+  max-width: 85vw;
+  height: 100vh;
+  background-color: var(--bulma-scheme-main, #fff);
+  overflow-y: auto;
+  box-shadow: 5px 0 15px rgba(0, 0, 0, 0.12);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.b-drawer.b-is-active .b-drawer-panel {
+  transform: translateX(0);
+}
+
+/* ============================================================
+   Right-side drawer
+   ============================================================ */
+.b-drawer-right .b-drawer-panel {
+  left: auto;
+  right: 0;
+  transform: translateX(100%);
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.12);
+}
+
+.b-drawer-right.b-is-active .b-drawer-panel {
+  transform: translateX(0);
+}
+
+/* ============================================================
+   Responsive width
+   ============================================================ */
+@media screen and (min-width: 1024px) {
+  .b-drawer-panel {
+    width: var(--b-drawer-width-desktop, 25vw);
+    max-width: none;
+  }
+}
+@media (max-width: 769px) {
+  .b-drawer-panel {
+    width: var(--b-drawer-width, 100vw);
+    max-width: var(--b-drawer-width, 100vw);
+  }
+}
+/* ============================================================
+   Optional speed utilities
+   ============================================================ */
+.b-drawer-fast .b-drawer-panel {
+  transition-duration: 150ms;
+}
+
+.b-drawer-slow .b-drawer-panel {
+  transition-duration: 500ms;
+}
+
 /* Bulma Themes */
 :root {
   --b-scheme-h: 221;
