@@ -1,7 +1,7 @@
 {% comment %}
-  Facets Drawer — Independent Drawer Component Version
-  Usa el componente b-drawer (independiente de b-modal).
-  Mantiene formulario, lógica y funciones sin cambios.
+  Renders facets (filtering and sorting) as a unified drawer.
+  Accepts:
+  - results: {Object} Collection or Search object
 {% endcomment %}
 
 {%- liquid
@@ -62,7 +62,7 @@
       >
         <!-- Header -->
         <header class="b-level b-is-mobile b-is-align-items-center b-py-4 b-px-4 b-border-bottom-light">
-          <p class="b-title b-is-3-tablet b-is-4-mobile b-my-0">
+          <p class="b-title b-is-3 b-is-4-mobile b-my-0 b-has-text-primary ">
             {{ 'products.facets.filter_and_sort' | t }}
           </p>
           <button type="button" class="b-delete" @click="drawerOpen = false"></button>
@@ -73,69 +73,60 @@
           <!-- Valores ocultos de búsqueda -->
           {% if results.terms %}
             <input type="hidden" name="q" value="{{ results.terms | escape }}">
-            <input type="hidden" name="options[prefix]" value="last">
-          {% endif %}
+            <input name="options[prefix]" type="hidden" value="last">
+          {%- endif -%}
 
-          <!-- ---------- Sorting ---------- -->
-          {% if enable_sorting %}
-            <div class="b-mb-5">
-              <h3 class="b-subtitle b-is-size-4 b-has-text-weight-semibold b-mb-2">
-                {{ 'products.facets.sort_by_label' | t }}
-              </h3>
+          {% comment %} Sorting {% endcomment %}
 
-              <div class="b-field">
-                <div class="b-control">
-                  <div class="b-select b-is-fullwidth b-is-light b-is-primary">
-                    <select name="sort_by" id="SortBy">
-                      {% for option in results.sort_options %}
-                        <option
-                          value="{{ option.value | escape }}"
-                          {% if option.value == sort_by %}
-                            selected
-                          {% endif %}
-                        >
-                          {{ option.name | escape }}
-                        </option>
-                      {% endfor %}
-                    </select>
-                  </div>
-                </div>
+          <div class="b-field b-mb-5">
+            <label class="b-label " for="SortBy">{{ 'products.facets.sort_by_label' | t }}</label>
+            <div class="b-control">
+              <div class="b-select b-is-primary b-is-fullwidth">
+                <select
+                  name="sort_by"
+                  id="SortBy"
+                  aria-describedby="a11y-refresh-page-message"
+                >
+                  {%- for option in results.sort_options -%}
+                    <option
+                      value="{{ option.value | escape }}"
+                      {% if option.value == sort_by %}
+                        selected="selected"
+                      {% endif %}
+                    >
+                      {{ option.name | escape }}
+                    </option>
+                  {%- endfor -%}
+                </select>
               </div>
             </div>
+          </div>
+          <hr class="b-dropdown-divider">
 
-            <hr class="b-dropdown-divider">
-          {% endif %}
+          {% comment %} Filters {% endcomment %}
 
-          <!-- ---------- Filters ---------- -->
-          {% if enable_filtering %}
-            <h3 class="b-subtitle b-is-size-4 b-has-text-weight-semibold b-mb-2">
-              {{ products.facets.filters_label | default: 'Filters' }}
-            </h3>
+          {%- for filter in results.filters -%}
+            <div class="b-mb-4" x-data="{ open: false }">
+              <button
+                type="button"
+                class="b-button b-is-primary b-is-light b-is-fullwidth b-is-justify-content-space-between"
+                @click="open = !open"
+              >
+                <span class="b-has-text-primary">{{ filter.label | escape }}</span>
+                <span class="b-icon b-is-size-6">
+                  <i class="fas" :class="open ? 'fa-angle-up' : 'fa-angle-down'"></i>
+                  {{- 'icon-caret.svg' | inline_asset_content -}}
+                </span>
+              </button>
 
-            {% for filter in results.filters %}
-              <div class="b-mb-4" x-data="{ open: false }">
-                <button
-                  type="button"
-                  class="b-button b-is-primary b-is-light b-is-fullwidth b-is-justify-content-space-between b-py-3"
-                  @click="open = !open"
-                  :aria-expanded="open"
-                >
-                  <span class="b-subtitle b-is-size-6 b-is-size-5-tablet b-has-text-weight-semibold b-mb-2">
-                    {{ filter.label | escape }}
-                  </span>
-
-                  <span class="b-icon b-is-size-7 b-is-size-6-tablet">
-                    {{ 'icon-caret.svg' | inline_asset_content }}
-                  </span>
-                </button>
-
-                <div x-show="open" x-collapse>
-                  <div class="b-mt-2 b-pl-4">
-                    {% case filter.type %}
-                      {% when 'boolean', 'list' %}
-                        {% for value in filter.values %}
-                          <div class="b-field b-my-1">
-                            <label class="b-checkbox b-is-size-7">
+              <div x-show="open" x-collapse>
+                <div class="b-mt-2 b-pl-4">
+                  {% case filter.type %}
+                    {% when 'boolean', 'list' %}
+                      {%- for value in filter.values -%}
+                        <div class="b-field">
+                          <div class="b-control">
+                            <label class="b-checkbox">
                               <input
                                 type="checkbox"
                                 name="{{ value.param_name }}"
@@ -150,42 +141,40 @@
                               {{ value.label | escape }} ({{ value.count }})
                             </label>
                           </div>
-                        {% endfor %}
-
-                      {% when 'price_range' %}
-                        <div class="b-box b-p-3 b-mt-2 facets__price">
-                          {% render 'price-facet', filter: filter, id_prefix: 'Filter-' %}
                         </div>
-                    {% endcase %}
-                  </div>
+                      {%- endfor -%}
+                    {% when 'price_range' %}
+                      <div class="facets__price" x-data="priceRange()">
+                        {% render 'price-facet', filter: filter, id_prefix: 'Filter-' %}
+                      </div>
+                  {% endcase %}
                 </div>
               </div>
-
-              <hr class="b-dropdown-divider">
-            {% endfor %}
-          {% endif %}
+            </div>
+            <hr class="b-dropdown-divider">
+          {%- endfor -%}
         </section>
 
-        <!-- ---------------- Footer ---------------- -->
-        <footer class="b-px-4 b-py-4 b-border-top-light">
-          <div class="b-is-flex b-is-flex-direction-column">
-            <a
-              href="{{ results_url }}"
-              class="b-button b-is-light b-is-fullwidth b-mb-2"
-              x-target="product-grid-container"
-            >
-              {{ 'products.facets.clear_all' | t }}
-            </a>
-
+        {% comment %} Footer {% endcomment %}
+        <div class="b-drawer-footer b-is-radiusless">
+          <div class="b-level b-is-mobile">
             <button
               type="button"
-              class="b-button b-is-primary b-is-fullwidth"
+              class="b-button b-level-item b-is-primary b-is-small"
               @click="drawerOpen = false"
             >
               {{ 'products.facets.apply' | t }}
             </button>
+            <a
+              href="{{ results_url }}"
+              class="b-button b-level-item b-is-ghost b-has-text-link"
+              x-target="product-grid-container"
+            >
+              <span class="b-delete b-mr-2"></span>
+              {{- 'products.facets.clear_all' | t -}}
+            </a>
           </div>
-        </footer>
+        </div>
       </form>
     </div>
   </div>
