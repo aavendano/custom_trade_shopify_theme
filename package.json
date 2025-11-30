@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:twicpics": "node build-twicpics.js",
-    "build-bulma": "sass src/bulma/bulma.scss assets/a-bulma-full.css",
+    "build:bulma": "sass src/bulma/bulma.scss assets/a-bulma-full.css",
     "prepurgecss": "node src/purge/extract-b-safelist.js",
     "purgecss": "npx postcss assets/a-bulma-full.css -o assets/a-bulma-purged.css --config src --no-map",
-    "start": "npm run build-bulma -- --watch"
+    "build:alpine": "esbuild src/alpine-bundle.js --bundle --outfile=assets/alpine-bundle.js",
+    "start": "npm run build-bulma -- --watch",
+    "build": "npm run build:bulma && npm run prepurgecss && npm run purgecss && npm run build:alpine"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
   },
   "homepage": "https://github.com/aavendano/custom_trade_shopify_theme#readme",
   "dependencies": {
+    "@alpinejs/collapse": "^3.15.2",
     "@alpinejs/intersect": "^3.15.1",
     "@imacrayon/alpine-ajax": "^0.12.6",
     "@playwright/test": "^1.56.1",
@@ -35,7 +37,7 @@
     "@fullhuman/postcss-purgecss": "^7.0.2",
     "@shopify/prettier-plugin-liquid": "^1.9.4",
     "cssnano": "^7.0.6",
-    "esbuild": "^0.25.9",
+    "esbuild": "^0.25.12",
     "glob": "^11.0.3",
     "postcss": "^8.5.6",
     "postcss-cli": "^11.0.1",
