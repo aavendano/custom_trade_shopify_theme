@@ -57,7 +57,7 @@
         id="FacetFiltersForm"
         action="{{ form_action }}"
         x-target="product-grid-container"
-        x-on:input.debounce.800ms="$el.requestSubmit()"
+        x-on:input.debounce.800ms="if($el.isConnected) $el.requestSubmit()"
         class="b-is-flex b-is-flex-direction-column b-h-full b-px-4 b-py-6"
       >
         <!-- Header -->
