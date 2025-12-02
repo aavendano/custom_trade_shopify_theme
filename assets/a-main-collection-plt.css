@@ -46,12 +46,20 @@
     }
 
 
-    .b-box {
+    .b-box,
+    .b-title {
 
         margin-bottom: .25rem !important;
         margin-top: .25rem !important;
         margin-left: .25rem !important;
         margin-right: .25rem !important;
+    }
+
+    .b-content {
+        margin-bottom: .5rem !important;
+        margin-top: .5rem !important;
+        margin-left: .5rem !important;
+        margin-right: .5rem !important;
     }
 }
 
