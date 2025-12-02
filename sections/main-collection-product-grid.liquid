@@ -1,5 +1,3 @@
-{{ 'a-main-collection-plt.css' | asset_url | stylesheet_tag }}
-
 {%- paginate collection.products by 20 -%}
   {% comment %} Sort is the first tabbable element when filter type is vertical {% endcomment %}
   <div id="product-grid-container" class="b-container">
