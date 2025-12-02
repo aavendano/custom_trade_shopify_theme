@@ -1,11 +1,71 @@
 {%- if card_product and card_product != empty -%}
+  {% assign product = card_product %}
+
+  <style>
+    /* ==========================================================
+   b-carousel — PlayLoveToys / b-bulma-alpine component
+   Scroll-snap horizontal, mobile-first, ultra minimal
+   ========================================================== */
+
+    .b-carousel {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 1rem;
+      padding-bottom: 0.25rem; /* espacio para evitar corte del shadow */
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+
+      /* Ocultar scrollbar en Chrome/Safari */
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* Cards dentro del carrusel */
+      > .b-carousel-item {
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+
+        /* Permite usar cualquier card interna sin romper layout */
+        width: auto;
+
+        /* Clamp de anchura para mobile (estilo tienda) */
+        max-width: 80vw;
+      }
+    }
+
+    /* Desktop: cards ligeramente más grandes */
+    @media screen and (min-width: 1024px) {
+      .b-carousel > .b-carousel-item {
+        max-width: 320px;
+      }
+    }
+
+    /* Opcional: flechas flotantes */
+    .b-carousel-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 20;
+      cursor: pointer;
+    }
+
+    .b-carousel-nav.is-left {
+      left: 0.25rem;
+    }
+
+    .b-carousel-nav.is-right {
+      right: 0.25rem;
+    }
+  </style>
+
   <div
     class="card-wrapper product-card-wrapper"
     x-data="
       productCard({
-        productUrl: '{{ card_product.url }}',
+        productUrl: '{{ product.url }}',
         sectionId: '{{ section.id }}',
-        productId: '{{ card_product.id }}'
+        productId: '{{ product.id }}'
       })
     "
   >
