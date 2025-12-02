@@ -16,6 +16,8 @@ document.addEventListener('alpine:init', () => {
             const formData = new FormData(formElement);
 
             // Add sections to update if cart drawer is present
+            // We assume a standard cart notification or drawer component might exist
+            // If not, we just redirect.
             const cartNotification = document.querySelector('cart-notification');
             if (cartNotification) {
                 formData.append(
@@ -40,30 +42,19 @@ document.addEventListener('alpine:init', () => {
                     if (response.status) {
                         // Error
                         this.errorMessage = response.errors || response.description || response.message;
-
-                        // Publish error event
-                        if (window.publish && window.PUB_SUB_EVENTS) {
-                            window.publish(window.PUB_SUB_EVENTS.cartError, {
-                                source: 'product-form',
-                                productVariantId: formData.get('id'),
-                                errors: response.errors || response.description,
-                                message: response.message
-                            });
-                        }
                         return;
                     }
 
-                    // Success
-                    if (window.publish && window.PUB_SUB_EVENTS) {
-                        window.publish(window.PUB_SUB_EVENTS.cartUpdate, {
-                            source: 'product-form',
-                            productVariantId: formData.get('id'),
-                            cartData: response
-                        });
-                    } else if (cartNotification) {
-                        cartNotification.renderContents(response);
+                    // Success - Dispatch event for other components (like Cart Drawer)
+                    window.dispatchEvent(new CustomEvent('cart-updated', { detail: { cart: response } }));
+
+                    if (cartNotification) {
+                         cartNotification.renderContents(response);
                     } else {
-                        window.location = window.routes.cart_url;
+                        // Fallback or explicit redirect if no drawer
+                        // window.location = window.routes.cart_url;
+                        // For now, let's trigger a refresh or generic event
+                        console.log('Added to cart');
                     }
                 })
                 .catch(e => {
@@ -73,70 +64,6 @@ document.addEventListener('alpine:init', () => {
                 .finally(() => {
                     this.loading = false;
                 });
-        },
-
-        openQuickAdd() {
-            if (this.quickAddInfo) {
-                this.modalOpen = true;
-                return;
-            }
-
-            this.loading = true;
-
-            fetch(productUrl)
-                .then(response => response.text())
-                .then(responseText => {
-                    const parser = new DOMParser();
-                    const responseHTML = parser.parseFromString(responseText, 'text/html');
-                    const productElement = responseHTML.querySelector('product-info');
-
-                    if (productElement) {
-                        this.preprocessHTML(productElement);
-                        this.quickAddInfo = productElement.outerHTML;
-                        this.modalOpen = true;
-
-                        // Initialize Shopify Payment Buttons and XR if needed
-                        this.$nextTick(() => {
-                            if (window.Shopify && Shopify.PaymentButton) {
-                                Shopify.PaymentButton.init();
-                            }
-                            if (window.ProductModel) window.ProductModel.loadShopifyXR();
-                        });
-                    } else {
-                        console.error('Product info not found in response');
-                    }
-                })
-                .catch(e => console.error(e))
-                .finally(() => {
-                    this.loading = false;
-                });
-        },
-
-        preprocessHTML(productElement) {
-            const oldId = sectionId;
-            const newId = `quickadd-${sectionId}`;
-
-            // Replace IDs to prevent conflicts
-            productElement.innerHTML = productElement.innerHTML.replaceAll(oldId, newId);
-
-            Array.from(productElement.attributes).forEach((attribute) => {
-                if (attribute.value.includes(oldId)) {
-                    productElement.setAttribute(attribute.name, attribute.value.replace(oldId, newId));
-                }
-            });
-
-            productElement.dataset.originalSection = sectionId;
-
-            // Remove unwanted elements that might conflict or are not needed in modal
-            productElement.querySelectorAll('pickup-availability, product-modal, modal-dialog').forEach(el => el.remove());
-
-            // Prevent URL switching when selecting variants
-            productElement.setAttribute('data-update-url', 'false');
-        },
-
-        closeModal() {
-            this.modalOpen = false;
         }
-
     }));
 });

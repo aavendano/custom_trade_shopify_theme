@@ -1,0 +1,24 @@
+<div class="b-field b-is-horizontal">
+    <div class="b-field-label b-is-normal">
+        <label class="b-label">{{ 'products.facets.sort_by_label' | t }}</label>
+    </div>
+    <div class="b-field-body">
+        <div class="b-field">
+            <div class="b-control">
+                <div class="b-select">
+                    <select
+                        name="sort_by"
+                        @change="$dispatch('sort-updated', { sortBy: $el.value }); $dispatch('filter-updated', { searchParams: new URLSearchParams(new FormData(document.getElementById('FacetFiltersForm'))).toString().replace(/sort_by=[^&]*/, 'sort_by=' + $el.value) })"
+                    >
+                        {%- assign sort_by = results.sort_by | default: results.default_sort_by -%}
+                        {%- for option in results.sort_options -%}
+                            <option value="{{ option.value | escape }}" {% if option.value == sort_by %}selected="selected"{% endif %}>
+                                {{ option.name | escape }}
+                            </option>
+                        {%- endfor -%}
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

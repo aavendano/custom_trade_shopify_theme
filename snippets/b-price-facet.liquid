@@ -1,0 +1,54 @@
+{% comment %}
+  Renders a price facet.
+  Accepts:
+  - filter: {Object} Filter object
+{% endcomment %}
+
+<div class="b-field b-is-grouped">
+  <div class="b-control b-is-expanded">
+    <div class="b-field has-addons">
+        <p class="b-control">
+            <a class="b-button b-is-static b-is-small">
+               {{ cart.currency.symbol }}
+            </a>
+        </p>
+        <p class="b-control b-is-expanded">
+            <input class="b-input b-is-small"
+                name="{{ filter.min_value.param_name }}"
+                id="Filter-{{ filter.label | escape }}-GTE"
+                {%- if filter.min_value.value -%}
+                    value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
+                {%- endif -%}
+                type="number"
+                placeholder="0"
+                min="0"
+                max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                @change="$dispatch('filter-updated', { searchParams: new URLSearchParams(new FormData($el.closest('form'))).toString() })"
+            >
+        </p>
+    </div>
+  </div>
+  <div class="b-control b-is-expanded">
+    <div class="b-field has-addons">
+        <p class="b-control">
+            <a class="b-button b-is-static b-is-small">
+               {{ cart.currency.symbol }}
+            </a>
+        </p>
+        <p class="b-control b-is-expanded">
+             <input class="b-input b-is-small"
+                name="{{ filter.max_value.param_name }}"
+                id="Filter-{{ filter.label | escape }}-LTE"
+                {%- if filter.max_value.value -%}
+                    value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
+                {%- endif -%}
+                type="number"
+                min="0"
+                placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                @change="$dispatch('filter-updated', { searchParams: new URLSearchParams(new FormData($el.closest('form'))).toString() })"
+            >
+        </p>
+    </div>
+  </div>
+</div>

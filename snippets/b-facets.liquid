@@ -1,0 +1,63 @@
+{% comment %}
+  Renders facets (filtering) for the sidebar.
+  Accepts:
+  - results: {Object} Collection or Search object
+{% endcomment %}
+
+{% liquid
+  if results.url
+    assign results_url = results.url
+  else
+    assign terms = results.terms | escape
+    assign results_url = '?q=' | append: terms | append: '&options%5Bprefix%5D=last&sort_by=' | append: sort_by
+  endif
+%}
+
+<form id="FacetFiltersForm" class="b-facets-form" @submit.prevent>
+  {% if results.terms %}
+    <input type="hidden" name="q" value="{{ results.terms | escape }}">
+    <input name="options[prefix]" type="hidden" value="last">
+  {% endif %}
+
+    <!-- Sort Hidden Input (synced with external sort select) -->
+     <input type="hidden" name="sort_by" :value="currentSort" x-data="{ currentSort: '{{ results.sort_by | default: results.default_sort_by }}' }" @sort-updated.window="currentSort = $event.detail.sortBy">
+
+  <div class="b-menu">
+    {%- for filter in results.filters -%}
+      <p class="b-menu-label b-is-size-6 b-mb-2 b-mt-4">{{ filter.label | escape }}</p>
+
+      {% case filter.type %}
+        {% when 'boolean', 'list' %}
+          <ul class="b-menu-list">
+            {%- for value in filter.values -%}
+              <li>
+                <label class="b-checkbox b-is-size-7 b-py-1">
+                  <input type="checkbox"
+                    name="{{ value.param_name }}"
+                    value="{{ value.value }}"
+                    {% if value.active %}checked{% endif %}
+                    {% if value.count == 0 and value.active == false %}disabled{% endif %}
+                    @change="$dispatch('filter-updated', { searchParams: new URLSearchParams(new FormData($el.closest('form'))).toString() })"
+                  >
+                  <span class="b-ml-2">{{ value.label | escape }}</span>
+                  <span class="b-is-pulled-right b-has-text-grey-light">{{ value.count }}</span>
+                </label>
+              </li>
+            {%- endfor -%}
+          </ul>
+
+        {% when 'price_range' %}
+            <div class="b-px-2 b-py-2">
+                {% render 'b-price-facet', filter: filter %}
+            </div>
+      {% endcase %}
+
+    {%- endfor -%}
+
+    <div class="b-mt-5">
+        <a href="{{ results_url }}" class="b-button b-is-ghost b-is-small b-pl-0">
+            {{ 'products.facets.clear_all' | t }}
+        </a>
+    </div>
+  </div>
+</form>

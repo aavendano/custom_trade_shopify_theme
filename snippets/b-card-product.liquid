@@ -1,0 +1,82 @@
+{%- if card_product and card_product != empty -%}
+  <div
+    class="b-card-wrapper"
+    x-data="
+      productCard({
+        productUrl: '{{ card_product.url }}',
+        sectionId: '{{ section.id }}',
+        productId: '{{ card_product.id }}'
+      })
+    "
+  >
+    <div class="b-card b-is-shadowless b-is-radiusless b-is-fullheight b-is-flex b-is-flex-direction-column">
+      {%- if card_product.featured_media -%}
+        <a href="{{ card_product.url }}" class="b-is-block" tabindex="-1">
+          <div class="b-card-image b-is-relative">
+            <figure class="b-image b-is-square">
+                {% liquid
+                    assign image_url = card_product.featured_media | image_url | split: '?' | first
+                %}
+                <twic-picture
+                    src="{{ image_url }}"
+                    alt="{{ card_product.featured_media.alt | escape }}"
+                    ratio="1/1"
+                    mode="contain"
+                    sizes="100vw (max-width: 768px) 50vw (max-width: 1024px) 25vw"
+                ></twic-picture>
+            </figure>
+
+            {%- if card_product.available == false -%}
+              <span class="b-tag b-is-danger b-is-light b-is-absolute" style="bottom: 0.5rem; right: 0.5rem;">
+                {{- 'products.product.sold_out' | t -}}
+              </span>
+            {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
+              <span class="b-tag b-is-danger b-is-absolute" style="bottom: 0.5rem; right: 0.5rem;">
+                {{- 'products.product.on_sale' | t -}}
+              </span>
+            {%- endif -%}
+          </div>
+        </a>
+      {%- endif -%}
+
+      <div class="b-card-content b-p-3 b-is-flex b-is-flex-direction-column b-is-flex-grow-1">
+        <div class="b-content b-is-flex-grow-1">
+          <p class="b-title b-is-6 b-mb-1">
+            <a href="{{ card_product.url }}" class="b-has-text-black b-is-family-secondary" style="text-decoration: none;">
+              {{ card_product.title | escape }}
+            </a>
+          </p>
+
+          {%- if show_vendor -%}
+             <p class="b-subtitle b-is-7 b-has-text-grey b-mb-2">{{ card_product.vendor }}</p>
+          {%- endif -%}
+
+          {% render 'price', product: card_product, price_class: 'b-is-size-6', show_compare_at_price: true %}
+
+          <!-- Error Message Display -->
+          <div class="b-notification b-is-danger b-is-light b-is-small b-mt-2" x-show="errorMessage" x-cloak>
+            <span x-text="errorMessage"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{%- else -%}
+  <div class="b-card-wrapper">
+    <div class="b-card b-is-shadowless b-is-radiusless b-is-fullheight">
+      <div class="b-card-image">
+        <figure class="b-image b-is-square">
+            {{ 'product-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
+        </figure>
+      </div>
+      <div class="b-card-content b-p-3">
+        <div class="b-content">
+          <p class="b-title b-is-6 b-mb-1">
+            {{ 'onboarding.product_title' | t }}
+          </p>
+          {% render 'price', placeholder: true, show_compare_at_price: true %}
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}

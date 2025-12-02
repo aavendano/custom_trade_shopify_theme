@@ -1,0 +1,127 @@
+{{ 'a-main-collection-plt.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'alpine-collection.js' | asset_url }}" defer></script>
+
+<div
+  class="b-section"
+  x-data="collectionHandler"
+  data-section-id="{{ section.id }}"
+>
+  <div class="b-container">
+
+    <!-- Header / Breadcrumbs -->
+    <div class="b-columns b-is-mobile b-is-multiline">
+        <div class="b-column b-is-12">
+             {% render 'plt-breadcrumbs' %}
+        </div>
+        <div class="b-column b-is-12 b-has-text-centered">
+            <h1 class="b-title b-is-2">{{ collection.title | escape }}</h1>
+            {% if collection.description != blank %}
+                <div class="b-content">{{ collection.description }}</div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="b-columns b-mt-5">
+      <!-- Sidebar Filters (Desktop) -->
+      <aside class="b-column b-is-3-desktop b-is-hidden-touch" id="facets-wrapper">
+        {% render 'b-facets', results: collection %}
+      </aside>
+
+      <!-- Main Content -->
+      <div class="b-column b-is-9-desktop b-is-12-touch">
+
+        <!-- Toolbar (Sort + Mobile Filter Trigger) -->
+        <div class="b-level b-mb-4">
+            <div class="b-level-left">
+                <div class="b-level-item b-is-hidden-desktop">
+                    <button class="b-button b-is-text" @click="$dispatch('open-filter-drawer')">
+                        <span class="b-icon"><i class="icon-filter"></i></span>
+                        <span>{{ 'products.facets.filter_and_sort' | t }}</span>
+                    </button>
+                </div>
+                <div class="b-level-item b-is-hidden-touch">
+                    <p class="b-subtitle b-is-6">
+                        {{ 'sections.collection_template.product_count' | t: product_count: collection.products_count, count: collection.all_products_count }}
+                    </p>
+                </div>
+            </div>
+            <div class="b-level-right">
+                <div class="b-level-item">
+                    {% render 'b-facets-sort', results: collection %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Grid -->
+        <div id="product-grid" class="b-columns b-is-multiline b-is-mobile" :class="loading ? 'b-is-skeleton' : ''">
+          {% paginate collection.products by section.settings.products_per_page %}
+            {% if collection.products.size == 0 %}
+                <div class="b-column b-is-12">
+                    <div class="b-notification b-is-info b-is-light">
+                        {{ 'sections.collection_template.empty' | t }}
+                    </div>
+                </div>
+            {% else %}
+                {% for product in collection.products %}
+                  <div class="b-column b-is-3-desktop b-is-6-mobile">
+                    {% render 'b-card-product',
+                        card_product: product,
+                        show_vendor: section.settings.show_vendor
+                    %}
+                  </div>
+                {% endfor %}
+            {% endif %}
+
+            {% if paginate.pages > 1 %}
+                <div class="b-column b-is-12 b-mt-5">
+                    {% render 'pagination', paginate: paginate %}
+                </div>
+            {% endif %}
+          {% endpaginate %}
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "B-Collection Grid",
+  "class": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 8,
+      "max": 32,
+      "step": 4,
+      "default": 16,
+      "label": "Products per page"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": false,
+      "label": "Show vendor"
+    },
+    {
+        "type": "checkbox",
+        "id": "enable_filtering",
+        "default": true,
+        "label": "Enable filtering"
+    },
+    {
+        "type": "checkbox",
+        "id": "enable_sorting",
+        "default": true,
+        "label": "Enable sorting"
+    }
+  ],
+  "presets": [
+    {
+      "name": "B-Collection Grid"
+    }
+  ]
+}
+{% endschema %}
