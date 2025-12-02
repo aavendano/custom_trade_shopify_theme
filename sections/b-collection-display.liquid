@@ -24,7 +24,7 @@
       scroll-snap-align: start;
 
       /* Permite usar cualquier card interna sin romper layout */
-      width: auto;
+      width: 100%;
 
       /* Clamp de anchura para mobile (estilo tienda) */
       max-width: 80vw;
@@ -35,6 +35,7 @@
   @media screen and (min-width: 1024px) {
     .b-carousel > .b-carousel-item {
       max-width: 320px;
+      width: 100%;
     }
   }
 
@@ -101,11 +102,10 @@
                 <div class="b-cell">
                   <img src="https://placehold.co/400x400" alt="">
                 </div>
+                <div class="b-cell">
+                  <img src="https://placehold.co/400x400" alt="">
+                </div>
               </div>
-            </div>
-
-            <div class="b-card-image">
-              <img src="https://placehold.co/400x400" alt="">
             </div>
           </div>
         </div>
