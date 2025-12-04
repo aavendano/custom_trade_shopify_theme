@@ -57,8 +57,6 @@
   }
 </style>
 
-{% assign products = section.settings.collection_id.products %}
-
 <section class="b-section">
   <div
     class="b-carousel"
@@ -102,11 +100,67 @@
                 <div class="b-cell">
                   <img src="https://placehold.co/400x400" alt="">
                 </div>
-                <div class="b-cell">
-                  <img src="https://placehold.co/400x400" alt="">
-                </div>
               </div>
             </div>
+          </div>
+        </div>
+      {% endif %}
+      {% if block.type == 'article' %}
+        <div class="b-carousel-item">
+          <div class="b-card">
+            <header class="b-card-header">
+              <p class="b-card-header-title b-is-capitalized b-title">{{ block.settings.article.title }}</p>
+            </header>
+            <div class="b-card-image">
+              <figure class="b-image">
+                {{
+                  block.settings.article.image
+                  | image_url: height: 800, pad_color: 'ffffff'
+                  | image_tag:
+                    widths: '50, 100,150, 200, 250, 300, 350, 400, 450, 500, 550, 600',
+                    preload: block.settings.priority
+                }}
+              </figure>
+            </div>
+            <div class="b-card-content">
+              <div class="b-content">
+                {{ block.settings.article.excerpt | truncatewords: '20', '...' }}
+              </div>
+            </div>
+            <footer class="b-card-footer">
+              <a href="{{ block.settings.article.url }}" class="b-card-footer-item b-button b-is-link b-is-ghost">
+                Read more
+              </a>
+            </footer>
+          </div>
+        </div>
+      {% elsif block.type == 'collection' %}
+        <div class="b-carousel-item">
+          <div class="b-card">
+            <header class="b-card-header">
+              <p class="b-card-header-title b-is-capitalized b-title">{{ block.settings.collection.title }}</p>
+            </header>
+            <div class="b-card-image">
+              <figure class="b-image">
+                {{
+                  block.settings.collection.featured_image
+                  | image_url: height: 800, pad_color: 'ffffff'
+                  | image_tag:
+                    widths: '50, 100,150, 200, 250, 300, 350, 400, 450, 500, 550, 600',
+                    preload: block.settings.priority
+                }}
+              </figure>
+            </div>
+            <div class="b-card-content">
+              <div class="b-content">
+                {{ block.settings.article.excerpt | truncatewords: '20', '...' }}
+              </div>
+            </div>
+            <footer class="b-card-footer">
+              <a href="{{ block.settings.article.url }}" class="b-card-footer-item b-button b-is-link b-is-ghost">
+                Read more
+              </a>
+            </footer>
           </div>
         </div>
       {% endif %}
@@ -132,6 +186,48 @@
     {
       "type": "carousel_item",
       "name": "Carousel Item"
+    },
+    {
+      "type": "article",
+      "name": "Article",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Article"
+        },
+        {
+          "type": "article",
+          "id": "article",
+          "label": "Article"
+        },
+        {
+          "type": "checkbox",
+          "id": "priority",
+          "label": "Priority (show first)",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Collection"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "checkbox",
+          "id": "priority",
+          "label": "Priority (show first)",
+          "default": false
+        }
+      ]
     }
   ],
   "presets": [
@@ -139,6 +235,9 @@
       "name": "Bulma Collection Display",
       "category": "Custom",
       "blocks": [
+        {
+          "type": "carousel_item"
+        },
         {
           "type": "carousel_item"
         },
