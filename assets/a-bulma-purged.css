@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Baloo+2:wght@400..800&display=swap");
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
 :root {
   --b-control-radius: var(--b-radius);
   --b-control-radius-small: var(--b-radius-small);
@@ -12,6 +13,86 @@
 }
 
 /* Bulma Base */
+/*! minireset.css v0.0.6 | MIT License | github.com/jgthms/minireset.css */
+html,
+body,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+iframe,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+ul {
+  list-style: none;
+}
+
+button,
+input,
+select,
+textarea {
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+img,
+video {
+  height: auto;
+  max-width: 100%;
+}
+
+iframe {
+  border: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+}
+td:not([align]),
+th:not([align]) {
+  text-align: inherit;
+}
+
 :root {
   --b-body-background-color: var(--b-scheme-main);
   --b-body-size: 1em;
@@ -183,13 +264,43 @@ table th {
   color: var(--b-text-strong);
 }
 
-/* Bulma Elements */
- .b-title:not(:last-child),
-.b-subtitle:not(:last-child), .b-notification:not(:last-child), .b-content:not(:last-child), .b-box:not(:last-child), .b-block:not(:last-child) {
+@keyframes spinAround {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+@keyframes pulsate {
+  50% {
+    opacity: 0.5;
+  }
+}
+.b-select:not(.b-is-multiple):not(.b-is-loading)::after {
+  border: 0.125em solid var(--b-arrow-color);
+  border-right: 0;
+  border-top: 0;
+  content: " ";
+  display: block;
+  height: 0.625em;
+  margin-top: -0.4375em;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  transform: rotate(-45deg);
+  transform-origin: center;
+  transition-duration: var(--b-duration);
+  transition-property: border-color;
+  width: 0.625em;
+}
+
+.b-media:not(:last-child), .b-level:not(:last-child), .b-card:not(:last-child), .b-field:not(:last-child), .b-title:not(:last-child),
+.b-subtitle:not(:last-child), .b-tags:not(:last-child), .b-notification:not(:last-child), .b-content:not(:last-child), .b-box:not(:last-child), .b-block:not(:last-child) {
   margin-bottom: var(--b-block-spacing);
 }
 
-.b-button {
+ .b-select select, .b-input, .b-textarea, .b-button {
   align-items: center;
   appearance: none;
   border-color: transparent;
@@ -211,14 +322,27 @@ table th {
   transition-property: background-color, border-color, box-shadow, color;
   vertical-align: top;
 }
-.b-button:focus, .b-button:focus-visible, .b-button:focus-within, .b-button:active {
+ .b-select select:focus, .b-input:focus, .b-textarea:focus, .b-button:focus, .b-select select:focus-visible, .b-input:focus-visible, .b-textarea:focus-visible, .b-button:focus-visible, .b-select select:focus-within, .b-input:focus-within, .b-textarea:focus-within, .b-button:focus-within, .b-select select.b-is-focused, .b-is-focused.b-input, .b-is-focused.b-textarea, .b-is-focused.b-button, .b-select select:active, .b-input:active, .b-textarea:active, .b-button:active, .b-select select.b-is-active, .b-is-active.b-input, .b-is-active.b-textarea, .b-is-active.b-button {
   outline: none;
 }
-[disabled].b-button, fieldset[disabled] .b-button {
+ .b-select select[disabled], [disabled].b-input, [disabled].b-textarea, [disabled].b-button, fieldset[disabled] .b-select select, .b-select fieldset[disabled] select, fieldset[disabled] .b-input, fieldset[disabled] .b-textarea, fieldset[disabled] .b-button {
   cursor: not-allowed;
 }
 
-.b-button {
+.b-control.b-is-loading::after, .b-select.b-is-loading::after, .b-button.b-is-loading::after {
+  animation: spinAround 500ms infinite linear;
+  border: 2px solid var(--b-loading-color);
+  border-radius: var(--b-radius-rounded);
+  border-right-color: transparent;
+  border-top-color: transparent;
+  content: "";
+  display: block;
+  height: 1em;
+  position: relative;
+  width: 1em;
+}
+
+ .b-button {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -226,6 +350,15 @@ table th {
   user-select: none;
 }
 
+:root {
+  --b-skeleton-background: var(--b-border);
+  --b-skeleton-radius: var(--b-radius-small);
+  --b-skeleton-block-min-height: 4.5em;
+  --b-skeleton-lines-gap: 0.75em;
+  --b-skeleton-line-height: 0.75em;
+}
+
+/* Bulma Elements */
 .b-box {
   --b-box-background-color: var(--b-scheme-main);
   --b-box-color: var(--b-text);
@@ -323,7 +456,7 @@ a.b-box:active {
 .b-button strong {
   color: inherit;
 }
-.b-button .b-icon, .b-button .b-icon.b-is-medium, .b-button .b-icon.b-is-large {
+.b-button .b-icon, .b-button .b-icon.b-is-small, .b-button .b-icon.b-is-medium, .b-button .b-icon.b-is-large {
   height: 1.5em;
   width: 1.5em;
 }
@@ -343,12 +476,12 @@ a.b-box:active {
   --b-button-background-l-delta: var(--b-button-hover-background-l-delta);
   --b-button-border-l-delta: var(--b-button-hover-border-l-delta);
 }
-.b-button:focus-visible {
+.b-button:focus-visible, .b-button.b-is-focused {
   --b-button-border-width: 1px;
   border-color: hsl(var(--b-focus-h), var(--b-focus-s), var(--b-focus-l));
   box-shadow: var(--b-focus-shadow-size) hsla(var(--b-focus-h), var(--b-focus-s), var(--b-focus-l), var(--b-focus-shadow-alpha));
 }
-.b-button:active {
+.b-button:active, .b-button.b-is-active {
   --b-button-background-l-delta: var(--b-button-active-background-l-delta);
   --b-button-border-l-delta: var(--b-button-active-border-l-delta);
   --b-button-outer-shadow-a: 0;
@@ -369,7 +502,7 @@ a.b-box:active {
   --b-button-color-l: var(--b-light-invert-l);
   --b-button-outer-shadow-a: 0;
 }
-.b-button.b-is-light:focus-visible {
+.b-button.b-is-light:focus-visible, .b-button.b-is-light.b-is-focused {
   --b-button-border-width: 1px;
 }
 .b-button.b-is-light[disabled], fieldset[disabled] .b-button.b-is-light {
@@ -387,7 +520,7 @@ a.b-box:active {
   --b-button-color-l: var(--b-text-invert-l);
   --b-button-outer-shadow-a: 0;
 }
-.b-button.b-is-text:focus-visible {
+.b-button.b-is-text:focus-visible, .b-button.b-is-text.b-is-focused {
   --b-button-border-width: 1px;
 }
 .b-button.b-is-text.b-is-light {
@@ -409,7 +542,7 @@ a.b-box:active {
   --b-button-color-l: var(--b-primary-invert-l);
   --b-button-outer-shadow-a: 0;
 }
-.b-button.b-is-primary:focus-visible {
+.b-button.b-is-primary:focus-visible, .b-button.b-is-primary.b-is-focused {
   --b-button-border-width: 1px;
 }
 .b-button.b-is-primary.b-is-light {
@@ -431,7 +564,7 @@ a.b-box:active {
   --b-button-color-l: var(--b-link-invert-l);
   --b-button-outer-shadow-a: 0;
 }
-.b-button.b-is-link:focus-visible {
+.b-button.b-is-link:focus-visible, .b-button.b-is-link.b-is-focused {
   --b-button-border-width: 1px;
 }
 .b-button.b-is-link.b-is-light {
@@ -441,6 +574,94 @@ a.b-box:active {
 .b-button.b-is-link[disabled], fieldset[disabled] .b-button.b-is-link {
   background-color: var(--b-link);
   border-color: var(--b-link);
+  box-shadow: none;
+}
+.b-button.b-is-info {
+  --b-button-h: var(--b-info-h);
+  --b-button-s: var(--b-info-s);
+  --b-button-l: var(--b-info-l);
+  --b-button-background-l: var(--b-info-l);
+  --b-button-border-l: var(--b-info-l);
+  --b-button-border-width: 0px;
+  --b-button-color-l: var(--b-info-invert-l);
+  --b-button-outer-shadow-a: 0;
+}
+.b-button.b-is-info:focus-visible, .b-button.b-is-info.b-is-focused {
+  --b-button-border-width: 1px;
+}
+.b-button.b-is-info.b-is-light {
+  --b-button-background-l: var(--b-light-l);
+  --b-button-color-l: var(--b-info-light-invert-l);
+}
+.b-button.b-is-info[disabled], fieldset[disabled] .b-button.b-is-info {
+  background-color: var(--b-info);
+  border-color: var(--b-info);
+  box-shadow: none;
+}
+.b-button.b-is-success {
+  --b-button-h: var(--b-success-h);
+  --b-button-s: var(--b-success-s);
+  --b-button-l: var(--b-success-l);
+  --b-button-background-l: var(--b-success-l);
+  --b-button-border-l: var(--b-success-l);
+  --b-button-border-width: 0px;
+  --b-button-color-l: var(--b-success-invert-l);
+  --b-button-outer-shadow-a: 0;
+}
+.b-button.b-is-success:focus-visible, .b-button.b-is-success.b-is-focused {
+  --b-button-border-width: 1px;
+}
+.b-button.b-is-success.b-is-light {
+  --b-button-background-l: var(--b-light-l);
+  --b-button-color-l: var(--b-success-light-invert-l);
+}
+.b-button.b-is-success[disabled], fieldset[disabled] .b-button.b-is-success {
+  background-color: var(--b-success);
+  border-color: var(--b-success);
+  box-shadow: none;
+}
+.b-button.b-is-warning {
+  --b-button-h: var(--b-warning-h);
+  --b-button-s: var(--b-warning-s);
+  --b-button-l: var(--b-warning-l);
+  --b-button-background-l: var(--b-warning-l);
+  --b-button-border-l: var(--b-warning-l);
+  --b-button-border-width: 0px;
+  --b-button-color-l: var(--b-warning-invert-l);
+  --b-button-outer-shadow-a: 0;
+}
+.b-button.b-is-warning:focus-visible, .b-button.b-is-warning.b-is-focused {
+  --b-button-border-width: 1px;
+}
+.b-button.b-is-warning.b-is-light {
+  --b-button-background-l: var(--b-light-l);
+  --b-button-color-l: var(--b-warning-light-invert-l);
+}
+.b-button.b-is-warning[disabled], fieldset[disabled] .b-button.b-is-warning {
+  background-color: var(--b-warning);
+  border-color: var(--b-warning);
+  box-shadow: none;
+}
+.b-button.b-is-danger {
+  --b-button-h: var(--b-danger-h);
+  --b-button-s: var(--b-danger-s);
+  --b-button-l: var(--b-danger-l);
+  --b-button-background-l: var(--b-danger-l);
+  --b-button-border-l: var(--b-danger-l);
+  --b-button-border-width: 0px;
+  --b-button-color-l: var(--b-danger-invert-l);
+  --b-button-outer-shadow-a: 0;
+}
+.b-button.b-is-danger:focus-visible, .b-button.b-is-danger.b-is-focused {
+  --b-button-border-width: 1px;
+}
+.b-button.b-is-danger.b-is-light {
+  --b-button-background-l: var(--b-light-l);
+  --b-button-color-l: var(--b-danger-light-invert-l);
+}
+.b-button.b-is-danger[disabled], fieldset[disabled] .b-button.b-is-danger {
+  background-color: var(--b-danger);
+  border-color: var(--b-danger);
   box-shadow: none;
 }
 .b-button.b-is-outlined {
@@ -472,7 +693,7 @@ a.b-box:active {
   background-color: var(--b-button-text-hover-background-color);
   color: var(--b-button-text-hover-color);
 }
-.b-button.b-is-text:active {
+.b-button.b-is-text:active, .b-button.b-is-text.b-is-active {
   color: var(--b-button-text-hover-color);
 }
 .b-button.b-is-text[disabled], fieldset[disabled] .b-button.b-is-text {
@@ -491,6 +712,10 @@ a.b-box:active {
   color: var(--b-button-ghost-hover-color);
   text-decoration: var(--b-button-ghost-hover-decoration);
 }
+.b-button.b-is-small {
+  --b-control-size: var(--b-size-small);
+  --b-control-radius: var(--b-radius-small);
+}
 .b-button.b-is-normal {
   --b-control-size: var(--b-size-normal);
   --b-control-radius: var(--b-radius);
@@ -507,6 +732,17 @@ a.b-box:active {
   display: flex;
   width: 100%;
 }
+.b-button.b-is-loading {
+  box-shadow: none;
+  color: transparent !important;
+  pointer-events: none;
+}
+.b-button.b-is-loading::after {
+  position: absolute;
+  left: calc(50% - 1em * 0.5);
+  top: calc(50% - 1em * 0.5);
+  position: absolute !important;
+}
 .b-button.b-is-rounded {
   border-radius: var(--b-radius-rounded);
   padding-left: calc(var(--b-button-padding-horizontal) + 0.25em - var(--b-button-border-width));
@@ -514,6 +750,9 @@ a.b-box:active {
 }
 
 @media screen and (max-width: 768px) {
+  .b-button.b-is-responsive.b-is-small {
+    font-size: calc(var(--b-size-small) * 0.75);
+  }
   .b-button.b-is-responsive,
   .b-button.b-is-responsive.b-is-normal {
     font-size: calc(var(--b-size-small) * 0.875);
@@ -526,6 +765,9 @@ a.b-box:active {
   }
 }
 @media screen and (min-width: 769px) and (max-width: 1023px) {
+  .b-button.b-is-responsive.b-is-small {
+    font-size: calc(var(--b-size-small) * 0.875);
+  }
   .b-button.b-is-responsive,
   .b-button.b-is-responsive.b-is-normal {
     font-size: var(--b-size-small);
@@ -685,6 +927,9 @@ a.b-box:active {
 .b-content table tbody tr:last-child th {
   border-bottom-width: var(--b-content-table-body-last-row-cell-border-bottom-width);
 }
+.b-content.b-is-small {
+  font-size: var(--b-size-small);
+}
 .b-content.b-is-normal {
   font-size: var(--b-size-normal);
 }
@@ -744,6 +989,9 @@ a.b-box:active {
 .b-delete:active {
   --b-delete-background-alpha: 0.5;
 }
+.b-delete.b-is-small {
+  --b-delete-dimensions: 1rem;
+}
 .b-delete.b-is-medium {
   --b-delete-dimensions: 1.5rem;
 }
@@ -769,6 +1017,10 @@ a.b-box:active {
   transition-duration: var(--b-duration);
   transition-property: color;
   width: var(--b-icon-dimensions);
+}
+.b-icon.b-is-small {
+  height: var(--b-icon-dimensions-small);
+  width: var(--b-icon-dimensions-small);
 }
 .b-icon.b-is-medium {
   height: var(--b-icon-dimensions-medium);
@@ -810,6 +1062,18 @@ div.b-icon-text {
   border-radius: var(--b-radius-rounded);
 }
 .b-image.b-is-fullwidth {
+  width: 100%;
+}
+.b-image.b-is-1by1 {
+  aspect-ratio: 1/1;
+}
+.b-image.b-is-1by1 img {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
   width: 100%;
 }
 
@@ -890,6 +1154,220 @@ div.b-icon-text {
   --b-notification-background-l: 90%;
   --b-notification-color-l: var(--b-link-light-invert-l);
 }
+.b-notification.b-is-info {
+  --b-notification-h: var(--b-info-h);
+  --b-notification-s: var(--b-info-s);
+  --b-notification-background-l: var(--b-info-l);
+  --b-notification-color-l: var(--b-info-invert-l);
+}
+.b-notification.b-is-info.b-is-light {
+  --b-notification-background-l: 90%;
+  --b-notification-color-l: var(--b-info-light-invert-l);
+}
+.b-notification.b-is-success {
+  --b-notification-h: var(--b-success-h);
+  --b-notification-s: var(--b-success-s);
+  --b-notification-background-l: var(--b-success-l);
+  --b-notification-color-l: var(--b-success-invert-l);
+}
+.b-notification.b-is-success.b-is-light {
+  --b-notification-background-l: 90%;
+  --b-notification-color-l: var(--b-success-light-invert-l);
+}
+.b-notification.b-is-warning {
+  --b-notification-h: var(--b-warning-h);
+  --b-notification-s: var(--b-warning-s);
+  --b-notification-background-l: var(--b-warning-l);
+  --b-notification-color-l: var(--b-warning-invert-l);
+}
+.b-notification.b-is-warning.b-is-light {
+  --b-notification-background-l: 90%;
+  --b-notification-color-l: var(--b-warning-light-invert-l);
+}
+.b-notification.b-is-danger {
+  --b-notification-h: var(--b-danger-h);
+  --b-notification-s: var(--b-danger-s);
+  --b-notification-background-l: var(--b-danger-l);
+  --b-notification-color-l: var(--b-danger-invert-l);
+}
+.b-notification.b-is-danger.b-is-light {
+  --b-notification-background-l: 90%;
+  --b-notification-color-l: var(--b-danger-light-invert-l);
+}
+
+@keyframes moveIndeterminate {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.b-tags {
+  align-items: center;
+  color: hsl(var(--b-tag-h), var(--b-tag-s), var(--b-tag-color-l));
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: flex-start;
+}
+.b-tags.b-has-addons {
+  gap: 0;
+}
+.b-tags.b-has-addons .b-tag:not(:first-child) {
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
+}
+.b-tags.b-has-addons .b-tag:not(:last-child) {
+  border-start-end-radius: 0;
+  border-end-end-radius: 0;
+}
+
+.b-tag {
+  --b-tag-h: var(--b-scheme-h);
+  --b-tag-s: var(--b-scheme-s);
+  --b-tag-background-l: var(--b-background-l);
+  --b-tag-background-l-delta: 0%;
+  --b-tag-hover-background-l-delta: var(--b-hover-background-l-delta);
+  --b-tag-active-background-l-delta: var(--b-active-background-l-delta);
+  --b-tag-color-l: var(--b-text-l);
+  --b-tag-radius: var(--b-radius);
+  --b-tag-delete-margin: 1px;
+  align-items: center;
+  background-color: hsl(var(--b-tag-h), var(--b-tag-s), calc(var(--b-tag-background-l) + var(--b-tag-background-l-delta)));
+  border-radius: var(--b-radius);
+  color: hsl(var(--b-tag-h), var(--b-tag-s), var(--b-tag-color-l));
+  display: inline-flex;
+  font-size: var(--b-size-small);
+  height: 2em;
+  justify-content: center;
+  line-height: 1.5;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  white-space: nowrap;
+}
+.b-tag .b-delete {
+  margin-inline-start: 0.25rem;
+  margin-inline-end: -0.375rem;
+}
+.b-tag.b-is-light {
+  --b-tag-h: var(--b-light-h);
+  --b-tag-s: var(--b-light-s);
+  --b-tag-background-l: var(--b-light-l);
+  --b-tag-color-l: var(--b-light-invert-l);
+}
+.b-tag.b-is-light.b-is-light {
+  --b-tag-background-l: var(--b-light-l);
+  --b-tag-color-l: var(--b-light-light-invert-l);
+}
+.b-tag.b-is-text {
+  --b-tag-h: var(--b-text-h);
+  --b-tag-s: var(--b-text-s);
+  --b-tag-background-l: var(--b-text-l);
+  --b-tag-color-l: var(--b-text-invert-l);
+}
+.b-tag.b-is-text.b-is-light {
+  --b-tag-background-l: var(--b-light-l);
+  --b-tag-color-l: var(--b-text-light-invert-l);
+}
+.b-tag.b-is-primary {
+  --b-tag-h: var(--b-primary-h);
+  --b-tag-s: var(--b-primary-s);
+  --b-tag-background-l: var(--b-primary-l);
+  --b-tag-color-l: var(--b-primary-invert-l);
+}
+.b-tag.b-is-primary.b-is-light {
+  --b-tag-background-l: var(--b-light-l);
+  --b-tag-color-l: var(--b-primary-light-invert-l);
+}
+.b-tag.b-is-link {
+  --b-tag-h: var(--b-link-h);
+  --b-tag-s: var(--b-link-s);
+  --b-tag-background-l: var(--b-link-l);
+  --b-tag-color-l: var(--b-link-invert-l);
+}
+.b-tag.b-is-link.b-is-light {
+  --b-tag-background-l: var(--b-light-l);
+  --b-tag-color-l: var(--b-link-light-invert-l);
+}
+.b-tag.b-is-info {
+  --b-tag-h: var(--b-info-h);
+  --b-tag-s: var(--b-info-s);
+  --b-tag-background-l: var(--b-info-l);
+  --b-tag-color-l: var(--b-info-invert-l);
+}
+.b-tag.b-is-info.b-is-light {
+  --b-tag-background-l: var(--b-light-l);
+  --b-tag-color-l: var(--b-info-light-invert-l);
+}
+.b-tag.b-is-success {
+  --b-tag-h: var(--b-success-h);
+  --b-tag-s: var(--b-success-s);
+  --b-tag-background-l: var(--b-success-l);
+  --b-tag-color-l: var(--b-success-invert-l);
+}
+.b-tag.b-is-success.b-is-light {
+  --b-tag-background-l: var(--b-light-l);
+  --b-tag-color-l: var(--b-success-light-invert-l);
+}
+.b-tag.b-is-warning {
+  --b-tag-h: var(--b-warning-h);
+  --b-tag-s: var(--b-warning-s);
+  --b-tag-background-l: var(--b-warning-l);
+  --b-tag-color-l: var(--b-warning-invert-l);
+}
+.b-tag.b-is-warning.b-is-light {
+  --b-tag-background-l: var(--b-light-l);
+  --b-tag-color-l: var(--b-warning-light-invert-l);
+}
+.b-tag.b-is-danger {
+  --b-tag-h: var(--b-danger-h);
+  --b-tag-s: var(--b-danger-s);
+  --b-tag-background-l: var(--b-danger-l);
+  --b-tag-color-l: var(--b-danger-invert-l);
+}
+.b-tag.b-is-danger.b-is-light {
+  --b-tag-background-l: var(--b-light-l);
+  --b-tag-color-l: var(--b-danger-light-invert-l);
+}
+.b-tag.b-is-normal {
+  font-size: var(--b-size-small);
+}
+.b-tag.b-is-medium {
+  font-size: var(--b-size-normal);
+}
+.b-tag.b-is-large {
+  font-size: var(--b-size-medium);
+}
+.b-tag .b-icon:first-child:not(:last-child) {
+  margin-inline-start: -0.375em;
+  margin-inline-end: 0.1875em;
+}
+.b-tag .b-icon:last-child:not(:first-child) {
+  margin-inline-start: 0.1875em;
+  margin-inline-end: -0.375em;
+}
+.b-tag .b-icon:first-child:last-child {
+  margin-inline-start: -0.375em;
+  margin-inline-end: -0.375em;
+}
+.b-tag.b-is-rounded {
+  border-radius: var(--b-radius-rounded);
+}
+
+a.b-tag,
+button.b-tag {
+  cursor: pointer;
+}
+a.b-tag:hover,
+button.b-tag:hover {
+  --b-tag-background-l-delta: var(--b-tag-hover-background-l-delta);
+}
+a.b-tag:active,
+button.b-tag:active {
+  --b-tag-background-l-delta: var(--b-tag-active-background-l-delta);
+}
 
 .b-title,
 .b-subtitle {
@@ -920,6 +1398,10 @@ div.b-icon-text {
 .b-subtitle span {
   font-weight: inherit;
 }
+.b-title .b-tag,
+.b-subtitle .b-tag {
+  vertical-align: middle;
+}
 
 .b-title {
   color: var(--b-title-color);
@@ -934,8 +1416,17 @@ div.b-icon-text {
 .b-title:not(.b-is-spaced):has(+ .b-subtitle) {
   margin-bottom: 0;
 }
+.b-title.b-is-2 {
+  font-size: 2.5rem;
+}
 .b-title.b-is-3 {
   font-size: 2rem;
+}
+.b-title.b-is-5 {
+  font-size: 1.25rem;
+}
+.b-title.b-is-6 {
+  font-size: 1rem;
 }
 
 .b-subtitle {
@@ -951,11 +1442,654 @@ div.b-icon-text {
 .b-subtitle:not(.b-is-spaced):has(+ .b-title) {
   margin-bottom: 0;
 }
+.b-subtitle.b-is-2 {
+  font-size: 2.5rem;
+}
 .b-subtitle.b-is-3 {
   font-size: 2rem;
 }
+.b-subtitle.b-is-5 {
+  font-size: 1.25rem;
+}
+.b-subtitle.b-is-6 {
+  font-size: 1rem;
+}
+
+/* Bulma Form */
+.b-control,
+.b-input,
+.b-textarea,
+.b-select {
+  --b-input-h: var(--b-scheme-h);
+  --b-input-s: var(--b-scheme-s);
+  --b-input-l: var(--b-scheme-main-l);
+  --b-input-border-style: solid;
+  --b-input-border-width: var(--b-control-border-width);
+  --b-input-border-l: var(--b-border-l);
+  --b-input-border-l-delta: 0%;
+  --b-input-border-color: hsl(var(--b-input-h), var(--b-input-s), calc(var(--b-input-border-l) + var(--b-input-border-l-delta)));
+  --b-input-hover-border-l-delta: var(--b-hover-border-l-delta);
+  --b-input-active-border-l-delta: var(--b-active-border-l-delta);
+  --b-input-focus-h: var(--b-focus-h);
+  --b-input-focus-s: var(--b-focus-s);
+  --b-input-focus-l: var(--b-focus-l);
+  --b-input-focus-shadow-size: var(--b-focus-shadow-size);
+  --b-input-focus-shadow-alpha: var(--b-focus-shadow-alpha);
+  --b-input-color-l: var(--b-text-strong-l);
+  --b-input-background-l: var(--b-scheme-main-l);
+  --b-input-background-l-delta: 0%;
+  --b-input-height: var(--b-control-height);
+  --b-input-shadow: inset 0 0.0625em 0.125em hsla(var(--b-scheme-h), var(--b-scheme-s), var(--b-scheme-invert-l), 0.05);
+  --b-input-placeholder-color: hsla(var(--b-text-h), var(--b-text-s), var(--b-text-strong-l), 0.3);
+  --b-input-disabled-color: var(--b-text-weak);
+  --b-input-disabled-background-color: var(--b-background);
+  --b-input-disabled-border-color: var(--b-background);
+  --b-input-disabled-placeholder-color: hsla(var(--b-text-h), var(--b-text-s), var(--b-text-weak-l), 0.3);
+  --b-input-arrow: var(--b-link);
+  --b-input-icon-color: var(--b-text-light);
+  --b-input-icon-hover-color: var(--b-text-weak);
+  --b-input-icon-focus-color: var(--b-link);
+  --b-input-radius: var(--b-radius);
+}
+
+.b-select select, .b-input, .b-textarea {
+  background-color: hsl(var(--b-input-h), var(--b-input-s), calc(var(--b-input-background-l) + var(--b-input-background-l-delta)));
+  border-color: var(--b-input-border-color);
+  border-radius: var(--b-input-radius);
+  color: hsl(var(--b-input-h), var(--b-input-s), var(--b-input-color-l));
+}
+.b-select select::-moz-placeholder, .b-input::-moz-placeholder, .b-textarea::-moz-placeholder {
+  color: var(--b-input-placeholder-color);
+}
+.b-select select::-webkit-input-placeholder, .b-input::-webkit-input-placeholder, .b-textarea::-webkit-input-placeholder {
+  color: var(--b-input-placeholder-color);
+}
+.b-select select:-moz-placeholder, .b-input:-moz-placeholder, .b-textarea:-moz-placeholder {
+  color: var(--b-input-placeholder-color);
+}
+.b-select select:-ms-input-placeholder, .b-input:-ms-input-placeholder, .b-textarea:-ms-input-placeholder {
+  color: var(--b-input-placeholder-color);
+}
+.b-select select:hover, .b-input:hover, .b-textarea:hover {
+  --b-input-border-l-delta: var(--b-input-hover-border-l-delta);
+}
+.b-select select:active, .b-input:active, .b-textarea:active, .b-select select.b-is-active, .b-is-active.b-input, .b-is-active.b-textarea {
+  --b-input-border-l-delta: var(--b-input-active-border-l-delta);
+}
+.b-select select:focus, .b-input:focus, .b-textarea:focus, .b-select select:focus-within, .b-input:focus-within, .b-textarea:focus-within, .b-select select.b-is-focused, .b-is-focused.b-input, .b-is-focused.b-textarea {
+  border-color: hsl(var(--b-input-focus-h), var(--b-input-focus-s), var(--b-input-focus-l));
+  box-shadow: var(--b-input-focus-shadow-size) hsla(var(--b-input-focus-h), var(--b-input-focus-s), var(--b-input-focus-l), var(--b-input-focus-shadow-alpha));
+}
+.b-select select[disabled], [disabled].b-input, [disabled].b-textarea, fieldset[disabled] .b-select select, .b-select fieldset[disabled] select, fieldset[disabled] .b-input, fieldset[disabled] .b-textarea {
+  background-color: var(--b-input-disabled-background-color);
+  border-color: var(--b-input-disabled-border-color);
+  box-shadow: none;
+  color: var(--b-input-disabled-color);
+}
+.b-select select[disabled]::-moz-placeholder, [disabled].b-input::-moz-placeholder, [disabled].b-textarea::-moz-placeholder, fieldset[disabled] .b-select select::-moz-placeholder, .b-select fieldset[disabled] select::-moz-placeholder, fieldset[disabled] .b-input::-moz-placeholder, fieldset[disabled] .b-textarea::-moz-placeholder {
+  color: var(--b-input-disabled-placeholder-color);
+}
+.b-select select[disabled]::-webkit-input-placeholder, [disabled].b-input::-webkit-input-placeholder, [disabled].b-textarea::-webkit-input-placeholder, fieldset[disabled] .b-select select::-webkit-input-placeholder, .b-select fieldset[disabled] select::-webkit-input-placeholder, fieldset[disabled] .b-input::-webkit-input-placeholder, fieldset[disabled] .b-textarea::-webkit-input-placeholder {
+  color: var(--b-input-disabled-placeholder-color);
+}
+.b-select select[disabled]:-moz-placeholder, [disabled].b-input:-moz-placeholder, [disabled].b-textarea:-moz-placeholder, fieldset[disabled] .b-select select:-moz-placeholder, .b-select fieldset[disabled] select:-moz-placeholder, fieldset[disabled] .b-input:-moz-placeholder, fieldset[disabled] .b-textarea:-moz-placeholder {
+  color: var(--b-input-disabled-placeholder-color);
+}
+.b-select select[disabled]:-ms-input-placeholder, [disabled].b-input:-ms-input-placeholder, [disabled].b-textarea:-ms-input-placeholder, fieldset[disabled] .b-select select:-ms-input-placeholder, .b-select fieldset[disabled] select:-ms-input-placeholder, fieldset[disabled] .b-input:-ms-input-placeholder, fieldset[disabled] .b-textarea:-ms-input-placeholder {
+  color: var(--b-input-disabled-placeholder-color);
+}
+
+/* Bulma Form */
+.b-textarea, .b-input {
+  box-shadow: inset 0 0.0625em 0.125em hsla(var(--b-scheme-h), var(--b-scheme-s), var(--b-scheme-invert-l), 0.05);
+  max-width: 100%;
+  width: 100%;
+}
+[readonly].b-textarea, [readonly].b-input {
+  box-shadow: none;
+}
+.b-is-light.b-textarea, .b-is-light.b-input {
+  --b-input-h: var(--b-light-h);
+  --b-input-s: var(--b-light-s);
+  --b-input-l: var(--b-light-l);
+  --b-input-focus-h: var(--b-light-h);
+  --b-input-focus-s: var(--b-light-s);
+  --b-input-focus-l: var(--b-light-l);
+  --b-input-border-l: var(--b-light-l);
+}
+.b-is-text.b-textarea, .b-is-text.b-input {
+  --b-input-h: var(--b-text-h);
+  --b-input-s: var(--b-text-s);
+  --b-input-l: var(--b-text-l);
+  --b-input-focus-h: var(--b-text-h);
+  --b-input-focus-s: var(--b-text-s);
+  --b-input-focus-l: var(--b-text-l);
+  --b-input-border-l: var(--b-text-l);
+}
+.b-is-primary.b-textarea, .b-is-primary.b-input {
+  --b-input-h: var(--b-primary-h);
+  --b-input-s: var(--b-primary-s);
+  --b-input-l: var(--b-primary-l);
+  --b-input-focus-h: var(--b-primary-h);
+  --b-input-focus-s: var(--b-primary-s);
+  --b-input-focus-l: var(--b-primary-l);
+  --b-input-border-l: var(--b-primary-l);
+}
+.b-is-link.b-textarea, .b-is-link.b-input {
+  --b-input-h: var(--b-link-h);
+  --b-input-s: var(--b-link-s);
+  --b-input-l: var(--b-link-l);
+  --b-input-focus-h: var(--b-link-h);
+  --b-input-focus-s: var(--b-link-s);
+  --b-input-focus-l: var(--b-link-l);
+  --b-input-border-l: var(--b-link-l);
+}
+.b-is-info.b-textarea, .b-is-info.b-input {
+  --b-input-h: var(--b-info-h);
+  --b-input-s: var(--b-info-s);
+  --b-input-l: var(--b-info-l);
+  --b-input-focus-h: var(--b-info-h);
+  --b-input-focus-s: var(--b-info-s);
+  --b-input-focus-l: var(--b-info-l);
+  --b-input-border-l: var(--b-info-l);
+}
+.b-is-success.b-textarea, .b-is-success.b-input {
+  --b-input-h: var(--b-success-h);
+  --b-input-s: var(--b-success-s);
+  --b-input-l: var(--b-success-l);
+  --b-input-focus-h: var(--b-success-h);
+  --b-input-focus-s: var(--b-success-s);
+  --b-input-focus-l: var(--b-success-l);
+  --b-input-border-l: var(--b-success-l);
+}
+.b-is-warning.b-textarea, .b-is-warning.b-input {
+  --b-input-h: var(--b-warning-h);
+  --b-input-s: var(--b-warning-s);
+  --b-input-l: var(--b-warning-l);
+  --b-input-focus-h: var(--b-warning-h);
+  --b-input-focus-s: var(--b-warning-s);
+  --b-input-focus-l: var(--b-warning-l);
+  --b-input-border-l: var(--b-warning-l);
+}
+.b-is-danger.b-textarea, .b-is-danger.b-input {
+  --b-input-h: var(--b-danger-h);
+  --b-input-s: var(--b-danger-s);
+  --b-input-l: var(--b-danger-l);
+  --b-input-focus-h: var(--b-danger-h);
+  --b-input-focus-s: var(--b-danger-s);
+  --b-input-focus-l: var(--b-danger-l);
+  --b-input-border-l: var(--b-danger-l);
+}
+.b-is-small.b-textarea, .b-is-small.b-input {
+  border-radius: var(--b-radius-small);
+  font-size: var(--b-size-small);
+}
+.b-is-medium.b-textarea, .b-is-medium.b-input {
+  font-size: var(--b-size-medium);
+}
+.b-is-large.b-textarea, .b-is-large.b-input {
+  font-size: var(--b-size-large);
+}
+.b-is-fullwidth.b-textarea, .b-is-fullwidth.b-input {
+  display: block;
+  width: 100%;
+}
+
+.b-input.b-is-rounded {
+  border-radius: var(--b-radius-rounded);
+  padding-left: calc(calc(0.75em - 1px) + 0.375em);
+  padding-right: calc(calc(0.75em - 1px) + 0.375em);
+}
+
+.b-textarea {
+  --b-textarea-padding: var(--b-control-padding-horizontal);
+  --b-textarea-max-height: 40em;
+  --b-textarea-min-height: 8em;
+  display: block;
+  max-width: 100%;
+  min-width: 100%;
+  padding: var(--b-textarea-padding);
+  resize: vertical;
+}
+.b-textarea:not([rows]) {
+  max-height: var(--b-textarea-max-height);
+  min-height: var(--b-textarea-min-height);
+}
+.b-textarea[rows] {
+  height: initial;
+}
+
+/* Bulma Form */
+ .b-checkbox {
+  cursor: pointer;
+  display: inline-block;
+  line-height: 1.25;
+  position: relative;
+}
+ .b-checkbox input {
+  cursor: pointer;
+}
+ [disabled].b-checkbox, fieldset[disabled] .b-checkbox,
+.b-checkbox input[disabled] {
+  color: var(--b-text-weak);
+  cursor: not-allowed;
+}
+
+/* Bulma Form */
+.b-select {
+  --b-input-h: var(--b-scheme-h);
+  --b-input-s: var(--b-scheme-s);
+  --b-input-border-style: solid;
+  --b-input-border-width: 1px;
+  --b-input-border-l: var(--b-border-l);
+  display: inline-block;
+  max-width: 100%;
+  position: relative;
+  vertical-align: top;
+}
+.b-select:not(.b-is-multiple) {
+  height: var(--b-control-height);
+}
+.b-select:not(.b-is-multiple):not(.b-is-loading)::after {
+  inset-inline-end: 1.125em;
+  z-index: 4;
+}
+.b-select.b-is-rounded select {
+  border-radius: var(--b-radius-rounded);
+  padding-inline-start: 1em;
+}
+.b-select select {
+  cursor: pointer;
+  display: block;
+  font-size: 1em;
+  max-width: 100%;
+  outline: none;
+}
+.b-select select::-ms-expand {
+  display: none;
+}
+.b-select select[disabled]:hover, fieldset[disabled] .b-select select:hover {
+  border-color: var(--b-background);
+}
+.b-select select:not([multiple]) {
+  padding-inline-end: 2.5em;
+}
+.b-select select[multiple] {
+  height: auto;
+  padding: 0;
+}
+.b-select select[multiple] option {
+  padding: 0.5em 1em;
+}
+.b-select.b-is-light {
+  --b-input-h: var(--b-light-h);
+  --b-input-s: var(--b-light-s);
+  --b-input-l: var(--b-light-l);
+  --b-input-focus-h: var(--b-light-h);
+  --b-input-focus-s: var(--b-light-s);
+  --b-input-focus-l: var(--b-light-l);
+  --b-input-border-l: var(--b-light-l);
+  --b-arrow-color: var(--b-light);
+}
+.b-select.b-is-text {
+  --b-input-h: var(--b-text-h);
+  --b-input-s: var(--b-text-s);
+  --b-input-l: var(--b-text-l);
+  --b-input-focus-h: var(--b-text-h);
+  --b-input-focus-s: var(--b-text-s);
+  --b-input-focus-l: var(--b-text-l);
+  --b-input-border-l: var(--b-text-l);
+  --b-arrow-color: var(--b-text);
+}
+.b-select.b-is-primary {
+  --b-input-h: var(--b-primary-h);
+  --b-input-s: var(--b-primary-s);
+  --b-input-l: var(--b-primary-l);
+  --b-input-focus-h: var(--b-primary-h);
+  --b-input-focus-s: var(--b-primary-s);
+  --b-input-focus-l: var(--b-primary-l);
+  --b-input-border-l: var(--b-primary-l);
+  --b-arrow-color: var(--b-primary);
+}
+.b-select.b-is-link {
+  --b-input-h: var(--b-link-h);
+  --b-input-s: var(--b-link-s);
+  --b-input-l: var(--b-link-l);
+  --b-input-focus-h: var(--b-link-h);
+  --b-input-focus-s: var(--b-link-s);
+  --b-input-focus-l: var(--b-link-l);
+  --b-input-border-l: var(--b-link-l);
+  --b-arrow-color: var(--b-link);
+}
+.b-select.b-is-info {
+  --b-input-h: var(--b-info-h);
+  --b-input-s: var(--b-info-s);
+  --b-input-l: var(--b-info-l);
+  --b-input-focus-h: var(--b-info-h);
+  --b-input-focus-s: var(--b-info-s);
+  --b-input-focus-l: var(--b-info-l);
+  --b-input-border-l: var(--b-info-l);
+  --b-arrow-color: var(--b-info);
+}
+.b-select.b-is-success {
+  --b-input-h: var(--b-success-h);
+  --b-input-s: var(--b-success-s);
+  --b-input-l: var(--b-success-l);
+  --b-input-focus-h: var(--b-success-h);
+  --b-input-focus-s: var(--b-success-s);
+  --b-input-focus-l: var(--b-success-l);
+  --b-input-border-l: var(--b-success-l);
+  --b-arrow-color: var(--b-success);
+}
+.b-select.b-is-warning {
+  --b-input-h: var(--b-warning-h);
+  --b-input-s: var(--b-warning-s);
+  --b-input-l: var(--b-warning-l);
+  --b-input-focus-h: var(--b-warning-h);
+  --b-input-focus-s: var(--b-warning-s);
+  --b-input-focus-l: var(--b-warning-l);
+  --b-input-border-l: var(--b-warning-l);
+  --b-arrow-color: var(--b-warning);
+}
+.b-select.b-is-danger {
+  --b-input-h: var(--b-danger-h);
+  --b-input-s: var(--b-danger-s);
+  --b-input-l: var(--b-danger-l);
+  --b-input-focus-h: var(--b-danger-h);
+  --b-input-focus-s: var(--b-danger-s);
+  --b-input-focus-l: var(--b-danger-l);
+  --b-input-border-l: var(--b-danger-l);
+  --b-arrow-color: var(--b-danger);
+}
+.b-select.b-is-small {
+  border-radius: var(--b-radius-small);
+  font-size: var(--b-size-small);
+}
+.b-select.b-is-medium {
+  font-size: var(--b-size-medium);
+}
+.b-select.b-is-large {
+  font-size: var(--b-size-large);
+}
+.b-select.b-is-fullwidth {
+  width: 100%;
+}
+.b-select.b-is-fullwidth select {
+  width: 100%;
+}
+.b-select.b-is-loading::after {
+  inset-inline-end: 0.625em;
+  margin-top: 0;
+  position: absolute;
+  top: 0.625em;
+  transform: none;
+}
+.b-select.b-is-loading.b-is-small:after {
+  font-size: var(--b-size-small);
+}
+.b-select.b-is-loading.b-is-medium:after {
+  font-size: var(--b-size-medium);
+}
+.b-select.b-is-loading.b-is-large:after {
+  font-size: var(--b-size-large);
+}
+
+/* Bulma Form */
+
+/* Bulma Form */
+:root {
+  --b-label-color: var(--b-text-strong);
+  --b-label-spacing: 0.5em;
+  --b-label-weight: var(--b-weight-semibold);
+  --b-help-size: var(--b-size-small);
+  --b-field-block-spacing: 0.75rem;
+}
+
+.b-label {
+  color: var(--b-label-color);
+  display: block;
+  font-size: var(--b-size-normal);
+  font-weight: var(--b-weight-semibold);
+}
+.b-label:not(:last-child) {
+  margin-bottom: var(--b-label-spacing);
+}
+.b-label.b-is-small {
+  font-size: var(--b-size-small);
+}
+.b-label.b-is-medium {
+  font-size: var(--b-size-medium);
+}
+.b-label.b-is-large {
+  font-size: var(--b-size-large);
+}
+
+.b-help {
+  display: block;
+  font-size: var(--b-help-size);
+  margin-top: 0.25rem;
+}
+.b-help.b-is-light {
+  color: hsl(var(--b-light-h), var(--b-light-s), var(--b-light-on-scheme-l));
+}
+.b-help.b-is-text {
+  color: hsl(var(--b-text-h), var(--b-text-s), var(--b-text-on-scheme-l));
+}
+.b-help.b-is-primary {
+  color: hsl(var(--b-primary-h), var(--b-primary-s), var(--b-primary-on-scheme-l));
+}
+.b-help.b-is-link {
+  color: hsl(var(--b-link-h), var(--b-link-s), var(--b-link-on-scheme-l));
+}
+.b-help.b-is-info {
+  color: hsl(var(--b-info-h), var(--b-info-s), var(--b-info-on-scheme-l));
+}
+.b-help.b-is-success {
+  color: hsl(var(--b-success-h), var(--b-success-s), var(--b-success-on-scheme-l));
+}
+.b-help.b-is-warning {
+  color: hsl(var(--b-warning-h), var(--b-warning-s), var(--b-warning-on-scheme-l));
+}
+.b-help.b-is-danger {
+  color: hsl(var(--b-danger-h), var(--b-danger-s), var(--b-danger-on-scheme-l));
+}
+
+.b-field {
+  --b-block-spacing: var(--b-field-block-spacing);
+}
+.b-field.b-has-addons {
+  display: flex;
+  justify-content: flex-start;
+}
+.b-field.b-has-addons .b-control:not(:last-child) {
+  margin-inline-end: -1px;
+}
+.b-field.b-has-addons .b-control:not(:first-child):not(:last-child) .b-button,
+.b-field.b-has-addons .b-control:not(:first-child):not(:last-child) .b-input,
+.b-field.b-has-addons .b-control:not(:first-child):not(:last-child) .b-select select {
+  border-radius: 0;
+}
+.b-field.b-has-addons .b-control:first-child:not(:only-child) .b-button,
+.b-field.b-has-addons .b-control:first-child:not(:only-child) .b-input,
+.b-field.b-has-addons .b-control:first-child:not(:only-child) .b-select select {
+  border-start-end-radius: 0;
+  border-end-end-radius: 0;
+}
+.b-field.b-has-addons .b-control:last-child:not(:only-child) .b-button,
+.b-field.b-has-addons .b-control:last-child:not(:only-child) .b-input,
+.b-field.b-has-addons .b-control:last-child:not(:only-child) .b-select select {
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
+}
+.b-field.b-has-addons .b-control .b-button:not([disabled]):hover,
+.b-field.b-has-addons .b-control .b-input:not([disabled]):hover,
+.b-field.b-has-addons .b-control .b-select select:not([disabled]):hover {
+  z-index: 2;
+}
+.b-field.b-has-addons .b-control .b-button:not([disabled]):focus, .b-field.b-has-addons .b-control .b-button:not([disabled]).b-is-focused, .b-field.b-has-addons .b-control .b-button:not([disabled]):active, .b-field.b-has-addons .b-control .b-button:not([disabled]).b-is-active,
+.b-field.b-has-addons .b-control .b-input:not([disabled]):focus,
+.b-field.b-has-addons .b-control .b-input:not([disabled]).b-is-focused,
+.b-field.b-has-addons .b-control .b-input:not([disabled]):active,
+.b-field.b-has-addons .b-control .b-input:not([disabled]).b-is-active,
+.b-field.b-has-addons .b-control .b-select select:not([disabled]):focus,
+.b-field.b-has-addons .b-control .b-select select:not([disabled]).b-is-focused,
+.b-field.b-has-addons .b-control .b-select select:not([disabled]):active,
+.b-field.b-has-addons .b-control .b-select select:not([disabled]).b-is-active {
+  z-index: 3;
+}
+.b-field.b-has-addons .b-control .b-button:not([disabled]):focus:hover, .b-field.b-has-addons .b-control .b-button:not([disabled]).b-is-focused:hover, .b-field.b-has-addons .b-control .b-button:not([disabled]):active:hover, .b-field.b-has-addons .b-control .b-button:not([disabled]).b-is-active:hover,
+.b-field.b-has-addons .b-control .b-input:not([disabled]):focus:hover,
+.b-field.b-has-addons .b-control .b-input:not([disabled]).b-is-focused:hover,
+.b-field.b-has-addons .b-control .b-input:not([disabled]):active:hover,
+.b-field.b-has-addons .b-control .b-input:not([disabled]).b-is-active:hover,
+.b-field.b-has-addons .b-control .b-select select:not([disabled]):focus:hover,
+.b-field.b-has-addons .b-control .b-select select:not([disabled]).b-is-focused:hover,
+.b-field.b-has-addons .b-control .b-select select:not([disabled]):active:hover,
+.b-field.b-has-addons .b-control .b-select select:not([disabled]).b-is-active:hover {
+  z-index: 4;
+}
+.b-field.b-has-addons .b-control.b-is-expanded {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.b-control {
+  box-sizing: border-box;
+  clear: both;
+  font-size: var(--b-size-normal);
+  position: relative;
+  text-align: inherit;
+}
+.b-control.b-has-icons-left .b-input:hover ~ .b-icon,
+.b-control.b-has-icons-left .b-select:hover ~ .b-icon {
+  color: var(--b-input-icon-hover-color);
+}
+.b-control.b-has-icons-left .b-input:focus ~ .b-icon,
+.b-control.b-has-icons-left .b-select:focus ~ .b-icon {
+  color: var(--b-input-icon-focus-color);
+}
+.b-control.b-has-icons-left .b-input.b-is-small ~ .b-icon,
+.b-control.b-has-icons-left .b-select.b-is-small ~ .b-icon {
+  font-size: var(--b-size-small);
+}
+.b-control.b-has-icons-left .b-input.b-is-medium ~ .b-icon,
+.b-control.b-has-icons-left .b-select.b-is-medium ~ .b-icon {
+  font-size: var(--b-size-medium);
+}
+.b-control.b-has-icons-left .b-input.b-is-large ~ .b-icon,
+.b-control.b-has-icons-left .b-select.b-is-large ~ .b-icon {
+  font-size: var(--b-size-large);
+}
+.b-control.b-has-icons-left .b-icon {
+  color: var(--b-input-icon-color);
+  height: var(--b-input-height);
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  width: var(--b-input-height);
+  z-index: 4;
+}
+.b-control.b-has-icons-left .b-input,
+.b-control.b-has-icons-left .b-select select {
+  padding-left: var(--b-input-height);
+}
+.b-control.b-has-icons-left .b-icon.b-is-left {
+  left: 0;
+}
+.b-control.b-is-loading::after {
+  inset-inline-end: 0.75em;
+  position: absolute !important;
+  top: 0.75em;
+  z-index: 4;
+}
+.b-control.b-is-loading.b-is-small:after {
+  font-size: var(--b-size-small);
+}
+.b-control.b-is-loading.b-is-medium:after {
+  font-size: var(--b-size-medium);
+}
+.b-control.b-is-loading.b-is-large:after {
+  font-size: var(--b-size-large);
+}
 
 /* Bulma Components */
+.b-card {
+  --b-card-color: var(--b-text);
+  --b-card-background-color: var(--b-scheme-main);
+  --b-card-shadow: var(--b-shadow);
+  --b-card-radius: 0.75rem;
+  --b-card-header-background-color: transparent;
+  --b-card-header-color: var(--b-text-strong);
+  --b-card-header-padding: 0.75rem 1rem;
+  --b-card-header-shadow: 0 0.125em 0.25em hsla(var(--b-scheme-h), var(--b-scheme-s), var(--b-scheme-invert-l), 0.1);
+  --b-card-header-weight: var(--b-weight-bold);
+  --b-card-content-background-color: transparent;
+  --b-card-content-padding: 1.5rem;
+  --b-card-footer-background-color: transparent;
+  --b-card-footer-border-top: 1px solid var(--b-border-weak);
+  --b-card-footer-padding: 0.75rem;
+  --b-card-media-margin: var(--b-block-spacing);
+}
+
+.b-card {
+  background-color: var(--b-card-background-color);
+  border-radius: var(--b-card-radius);
+  box-shadow: var(--b-card-shadow);
+  color: var(--b-card-color);
+  max-width: 100%;
+  position: relative;
+}
+
+.b-card-footer:first-child, .b-card-content:first-child {
+  border-start-start-radius: var(--b-card-radius);
+  border-start-end-radius: var(--b-card-radius);
+}
+.b-card-footer:last-child, .b-card-content:last-child {
+  border-end-start-radius: var(--b-card-radius);
+  border-end-end-radius: var(--b-card-radius);
+}
+
+.b-card-image {
+  display: block;
+  position: relative;
+}
+.b-card-image:first-child img {
+  border-start-start-radius: var(--b-card-radius);
+  border-start-end-radius: var(--b-card-radius);
+}
+.b-card-image:last-child img {
+  border-end-start-radius: var(--b-card-radius);
+  border-end-end-radius: var(--b-card-radius);
+}
+
+.b-card-content {
+  background-color: var(--b-card-content-background-color);
+  padding: var(--b-card-content-padding);
+}
+
+.b-card-footer {
+  background-color: var(--b-card-footer-background-color);
+  border-top: var(--b-card-footer-border-top);
+  align-items: stretch;
+  display: flex;
+}
+
+.b-card-footer-item {
+  align-items: center;
+  display: flex;
+  flex-basis: 0;
+  flex-grow: 1;
+  flex-shrink: 0;
+  justify-content: center;
+  padding: var(--b-card-footer-padding);
+}
+.b-card-footer-item:not(:last-child) {
+  border-inline-end: var(--b-card-footer-border-top);
+}
+
+.b-card .b-media:not(:last-child) {
+  margin-bottom: var(--b-card-media-margin);
+}
 
 /* Bulma Grid */
 :root {
@@ -969,16 +2103,76 @@ div.b-icon-text {
   flex-shrink: 1;
   padding: var(--b-column-gap);
 }
+.b-columns.b-is-mobile > .b-column.b-is-2 {
+  flex: none;
+  width: 16.6666666667%;
+}
+.b-columns.b-is-mobile > .b-column.b-is-3 {
+  flex: none;
+  width: 25%;
+}
+.b-columns.b-is-mobile > .b-column.b-is-5 {
+  flex: none;
+  width: 41.6666666667%;
+}
+.b-columns.b-is-mobile > .b-column.b-is-6 {
+  flex: none;
+  width: 50%;
+}
+@media screen and (max-width: 768px) {
+  .b-column.b-is-half-mobile {
+    flex: none;
+    width: 50%;
+  }
+  .b-column.b-is-0-mobile {
+    flex: none;
+    width: 0%;
+  }
+  .b-column.b-is-4-mobile {
+    flex: none;
+    width: 33.3333333333%;
+  }
+}
 @media screen and (min-width: 769px), print {
+   .b-column.b-is-full-tablet {
+    flex: none;
+    width: 100%;
+  }
+   .b-column.b-is-half-tablet {
+    flex: none;
+    width: 50%;
+  }
+  .b-column.b-is-2 {
+    flex: none;
+    width: 16.6666666667%;
+  }
   .b-column.b-is-3, .b-column.b-is-3-tablet {
     flex: none;
     width: 25%;
   }
+  .b-column.b-is-5 {
+    flex: none;
+    width: 41.6666666667%;
+  }
+  .b-column.b-is-6 {
+    flex: none;
+    width: 50%;
+  }
 }
 @media screen and (min-width: 1024px) {
+  .b-column.b-is-one-quarter-desktop {
+    flex: none;
+    width: 25%;
+  }
   .b-column.b-is-4-desktop {
     flex: none;
     width: 33.3333333333%;
+  }
+}
+@media screen and (min-width: 1216px) {
+  .b-column.b-is-one-fifth-widescreen {
+    flex: none;
+    width: 20%;
   }
 }
 
@@ -993,10 +2187,27 @@ div.b-icon-text {
 .b-columns:not(:last-child) {
   margin-bottom: calc(var(--b-block-spacing) - var(--b-column-gap));
 }
+.b-columns.b-is-mobile {
+  display: flex;
+}
+.b-columns.b-is-multiline {
+  flex-wrap: wrap;
+}
+.b-columns.b-is-vcentered {
+  align-items: center;
+}
 @media screen and (min-width: 769px), print {
   .b-columns:not(.b-is-desktop) {
     display: flex;
   }
+}
+@media screen and (max-width: 768px) {
+  .b-columns.b-is-0-mobile {
+    --b-column-gap: 0rem;
+  }
+}
+.b-columns.b-is-2 {
+  --b-column-gap: 0.5rem;
 }
 .b-columns.b-is-3 {
   --b-column-gap: 0.75rem;
@@ -1006,10 +2217,21 @@ div.b-icon-text {
     --b-column-gap: 0.75rem;
   }
 }
+@media screen and (max-width: 768px) {
+  .b-columns.b-is-4-mobile {
+    --b-column-gap: 1rem;
+  }
+}
 @media screen and (min-width: 1024px) {
   .b-columns.b-is-4-desktop {
     --b-column-gap: 1rem;
   }
+}
+.b-columns.b-is-5 {
+  --b-column-gap: 1.25rem;
+}
+.b-columns.b-is-6 {
+  --b-column-gap: 1.5rem;
 }
 
 /* Bulma Components */
@@ -1025,6 +2247,9 @@ div.b-icon-text {
   padding-right: 32px;
   width: 100%;
 }
+.b-container.b-is-max-tablet {
+  max-width: 705px;
+}
 @media screen and (min-width: 1024px) {
   .b-container {
     max-width: 960px;
@@ -1038,6 +2263,155 @@ div.b-icon-text {
 @media screen and (min-width: 1408px) {
   .b-container:not(.b-is-max-tablet):not(.b-is-max-desktop):not(.b-is-max-widescreen) {
     max-width: 1344px;
+  }
+}
+
+.b-level {
+  --b-level-item-spacing: calc(var(--b-block-spacing) * 0.5);
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--b-level-item-spacing);
+}
+.b-level code {
+  border-radius: var(--b-radius);
+}
+.b-level img {
+  display: inline-block;
+  vertical-align: top;
+}
+.b-level.b-is-mobile {
+  display: flex;
+  flex-direction: row;
+}
+.b-level.b-is-mobile .b-level-left,
+.b-level.b-is-mobile .b-level-right {
+  display: flex;
+}
+.b-level.b-is-mobile .b-level-item:not(.b-is-narrow) {
+  flex-grow: 1;
+}
+@media screen and (min-width: 769px), print {
+  .b-level {
+    display: flex;
+    flex-direction: row;
+  }
+  .b-level > .b-level-item:not(.b-is-narrow) {
+    flex-grow: 1;
+  }
+}
+
+.b-level-item {
+  align-items: center;
+  display: flex;
+  flex-basis: auto;
+  flex-grow: 0;
+  flex-shrink: 0;
+  justify-content: center;
+}
+.b-level-item .b-title,
+.b-level-item .b-subtitle {
+  margin-bottom: 0;
+}
+
+.b-level-left,
+.b-level-right {
+  flex-basis: auto;
+  flex-grow: 0;
+  flex-shrink: 0;
+  gap: calc(var(--b-block-spacing) * 0.5);
+}
+
+.b-level-left {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+@media screen and (min-width: 769px), print {
+  .b-level-left {
+    flex-direction: row;
+  }
+}
+
+.b-level-right {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+@media screen and (min-width: 769px), print {
+  .b-level-right {
+    flex-direction: row;
+  }
+}
+
+.b-media {
+  --b-media-border-color: hsla(var(--b-scheme-h), var(--b-scheme-s), var(--b-border-l), 0.5);
+  --b-media-border-size: 1px;
+  --b-media-spacing: 1rem;
+  --b-media-spacing-large: 1.5rem;
+  --b-media-content-spacing: 0.75rem;
+  --b-media-level-1-spacing: 0.75rem;
+  --b-media-level-1-content-spacing: 0.5rem;
+  --b-media-level-2-spacing: 0.5rem;
+  align-items: flex-start;
+  display: flex;
+  text-align: inherit;
+}
+.b-media .b-content:not(:last-child) {
+  margin-bottom: var(--b-media-content-spacing);
+}
+.b-media .b-media {
+  border-top-color: var(--b-media-border-color);
+  border-top-style: solid;
+  border-top-width: var(--b-media-border-size);
+  display: flex;
+  padding-top: var(--b-media-level-1-spacing);
+}
+.b-media .b-media .b-content:not(:last-child),
+.b-media .b-media .b-control:not(:last-child) {
+  margin-bottom: var(--b-media-level-1-content-spacing);
+}
+.b-media .b-media .b-media {
+  padding-top: var(--b-media-level-2-spacing);
+}
+.b-media .b-media .b-media + .b-media {
+  margin-top: var(--b-media-level-2-spacing);
+}
+.b-media + .b-media {
+  border-top-color: var(--b-media-border-color);
+  border-top-style: solid;
+  border-top-width: var(--b-media-border-size);
+  margin-top: var(--b-media-spacing);
+  padding-top: var(--b-media-spacing);
+}
+.b-media.b-is-large + .b-media {
+  margin-top: var(--b-media-spacing-large);
+  padding-top: var(--b-media-spacing-large);
+}
+
+.b-media-left {
+  flex-basis: auto;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.b-media-left {
+  margin-inline-end: var(--b-media-spacing);
+}
+
+.b-media-content {
+  flex-basis: auto;
+  flex-grow: 1;
+  flex-shrink: 1;
+  text-align: inherit;
+}
+
+@media screen and (max-width: 768px) {
+  .b-media-content {
+    overflow-x: auto;
   }
 }
 .b-section {
@@ -1061,6 +2435,52 @@ div.b-icon-text {
 
 /* Bulma Helpers */
 
+.b-has-text-white {
+  color: hsl(var(--b-white-h), var(--b-white-s), var(--b-white-l)) !important;
+}
+
+a.b-has-text-white:hover, a.b-has-text-white:focus-visible,
+button.b-has-text-white:hover,
+button.b-has-text-white:focus-visible {
+  color: hsl(var(--b-white-h), var(--b-white-s), calc(var(--b-white-l) + var(--b-hover-color-l-delta))) !important;
+}
+a.b-has-text-white:active,
+button.b-has-text-white:active {
+  color: hsl(var(--b-white-h), var(--b-white-s), calc(var(--b-white-l) + var(--b-active-color-l-delta))) !important;
+}
+
+.b-has-text-black {
+  color: hsl(var(--b-black-h), var(--b-black-s), var(--b-black-l)) !important;
+}
+
+a.b-has-text-black:hover, a.b-has-text-black:focus-visible,
+button.b-has-text-black:hover,
+button.b-has-text-black:focus-visible {
+  color: hsl(var(--b-black-h), var(--b-black-s), calc(var(--b-black-l) + var(--b-hover-color-l-delta))) !important;
+}
+a.b-has-text-black:active,
+button.b-has-text-black:active {
+  color: hsl(var(--b-black-h), var(--b-black-s), calc(var(--b-black-l) + var(--b-active-color-l-delta))) !important;
+}
+
+.b-has-text-primary {
+  color: hsl(var(--b-primary-h), var(--b-primary-s), var(--b-primary-l)) !important;
+}
+
+a.b-has-text-primary:hover, a.b-has-text-primary:focus-visible,
+button.b-has-text-primary:hover,
+button.b-has-text-primary:focus-visible {
+  color: hsl(var(--b-primary-h), var(--b-primary-s), calc(var(--b-primary-l) + var(--b-hover-color-l-delta))) !important;
+}
+a.b-has-text-primary:active,
+button.b-has-text-primary:active {
+  color: hsl(var(--b-primary-h), var(--b-primary-s), calc(var(--b-primary-l) + var(--b-active-color-l-delta))) !important;
+}
+
+.b-has-text-link {
+  color: hsl(var(--b-link-h), var(--b-link-s), var(--b-link-l)) !important;
+}
+
 .b-has-text-link-light {
   color: hsl(var(--b-link-h), var(--b-link-s), var(--b-link-light-l)) !important;
 }
@@ -1069,8 +2489,22 @@ div.b-icon-text {
   background-color: hsl(var(--b-link-h), var(--b-link-s), var(--b-link-light-l)) !important;
 }
 
+a.b-has-text-link:hover, a.b-has-text-link:focus-visible,
+button.b-has-text-link:hover,
+button.b-has-text-link:focus-visible {
+  color: hsl(var(--b-link-h), var(--b-link-s), calc(var(--b-link-l) + var(--b-hover-color-l-delta))) !important;
+}
+a.b-has-text-link:active,
+button.b-has-text-link:active {
+  color: hsl(var(--b-link-h), var(--b-link-s), calc(var(--b-link-l) + var(--b-active-color-l-delta))) !important;
+}
+
 .b-has-text-info {
   color: hsl(var(--b-info-h), var(--b-info-s), var(--b-info-l)) !important;
+}
+
+.b-has-background-info-light {
+  background-color: hsl(var(--b-info-h), var(--b-info-s), var(--b-info-light-l)) !important;
 }
 
 a.b-has-text-info:hover, a.b-has-text-info:focus-visible,
@@ -1083,8 +2517,32 @@ button.b-has-text-info:active {
   color: hsl(var(--b-info-h), var(--b-info-s), calc(var(--b-info-l) + var(--b-active-color-l-delta))) !important;
 }
 
+.b-has-background-danger-light {
+  background-color: hsl(var(--b-danger-h), var(--b-danger-s), var(--b-danger-light-l)) !important;
+}
+
+.b-has-text-grey-dark {
+  color: hsl(108, 6%, 34%) !important;
+}
+
+.b-has-text-grey {
+  color: hsl(0, 0%, 71%) !important;
+}
+
+.b-is-flex-direction-column {
+  flex-direction: column !important;
+}
+
+.b-is-justify-content-flex-end {
+  justify-content: flex-end !important;
+}
+
 .b-is-justify-content-center {
   justify-content: center !important;
+}
+
+.b-is-justify-content-space-between {
+  justify-content: space-between !important;
 }
 
 .b-is-align-content-center {
@@ -1095,12 +2553,79 @@ button.b-has-text-info:active {
   align-content: space-evenly !important;
 }
 
+.b-is-align-items-center {
+  align-items: center !important;
+}
+
+.b-is-flex-grow-1 {
+  flex-grow: 1 !important;
+}
+
+.b-my-0 {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.b-mr-1 {
+  margin-right: 0.25rem !important;
+}
+
+.b-mb-1 {
+  margin-bottom: 0.25rem !important;
+}
+
+.b-mt-2 {
+  margin-top: 0.5rem !important;
+}
+
+.b-mr-2 {
+  margin-right: 0.5rem !important;
+}
+
+.b-mb-2 {
+  margin-bottom: 0.5rem !important;
+}
+
+.b-ml-2 {
+  margin-left: 0.5rem !important;
+}
+
+.b-mx-2 {
+  margin-left: 0.5rem !important;
+  margin-right: 0.5rem !important;
+}
+
+.b-mt-3 {
+  margin-top: 0.75rem !important;
+}
+
 .b-mr-3 {
   margin-right: 0.75rem !important;
 }
 
+.b-my-3 {
+  margin-top: 0.75rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
 .b-mt-4 {
   margin-top: 1rem !important;
+}
+
+.b-mb-4 {
+  margin-bottom: 1rem !important;
+}
+
+.b-mt-5 {
+  margin-top: 1.5rem !important;
+}
+
+.b-mr-5 {
+  margin-right: 1.5rem !important;
+}
+
+.b-mb-5 {
+  margin-bottom: 1.5rem !important;
 }
 
 .b-mt-6 {
@@ -1112,12 +2637,76 @@ button.b-has-text-info:active {
   margin-bottom: 3rem !important;
 }
 
+.b-p-0 {
+  padding: 0 !important;
+}
+
+.b-p-2 {
+  padding: 0.5rem !important;
+}
+
+.b-px-2 {
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
+}
+
+.b-py-2 {
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+}
+
+.b-px-3 {
+  padding-left: 0.75rem !important;
+  padding-right: 0.75rem !important;
+}
+
+.b-py-3 {
+  padding-top: 0.75rem !important;
+  padding-bottom: 0.75rem !important;
+}
+
+.b-p-4 {
+  padding: 1rem !important;
+}
+
+.b-pl-4 {
+  padding-left: 1rem !important;
+}
+
+.b-px-4 {
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+.b-py-4 {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+
+.b-py-5 {
+  padding-top: 1.5rem !important;
+  padding-bottom: 1.5rem !important;
+}
+
+.b-py-6 {
+  padding-top: 3rem !important;
+  padding-bottom: 3rem !important;
+}
+
 .b-is-size-4 {
   font-size: 1.5rem !important;
 }
 
 .b-is-size-5 {
   font-size: 1.25rem !important;
+}
+
+.b-is-size-6 {
+  font-size: 1rem !important;
+}
+
+.b-is-size-7 {
+  font-size: 0.75rem !important;
 }
 
 @media screen and (max-width: 768px) {
@@ -1139,6 +2728,9 @@ button.b-has-text-info:active {
   .b-is-size-6-mobile {
     font-size: 1rem !important;
   }
+  .b-is-size-7-mobile {
+    font-size: 0.75rem !important;
+  }
 }
 @media screen and (min-width: 769px), print {
   .b-is-size-1-tablet {
@@ -1158,6 +2750,9 @@ button.b-has-text-info:active {
   }
   .b-is-size-6-tablet {
     font-size: 1rem !important;
+  }
+  .b-is-size-7-tablet {
+    font-size: 0.75rem !important;
   }
 }
 @media screen and (min-width: 1024px) {
@@ -1179,6 +2774,9 @@ button.b-has-text-info:active {
   .b-is-size-6-desktop {
     font-size: 1rem !important;
   }
+  .b-is-size-7-desktop {
+    font-size: 0.75rem !important;
+  }
 }
 @media screen and (min-width: 1216px) {
   .b-is-size-1-widescreen {
@@ -1199,6 +2797,9 @@ button.b-has-text-info:active {
   .b-is-size-6-widescreen {
     font-size: 1rem !important;
   }
+  .b-is-size-7-widescreen {
+    font-size: 0.75rem !important;
+  }
 }
 @media screen and (min-width: 1408px) {
   .b-is-size-1-fullhd {
@@ -1218,6 +2819,9 @@ button.b-has-text-info:active {
   }
   .b-is-size-6-fullhd {
     font-size: 1rem !important;
+  }
+  .b-is-size-7-fullhd {
+    font-size: 0.75rem !important;
   }
 }
 .b-has-text-centered {
@@ -1324,14 +2928,306 @@ button.b-has-text-info:active {
     text-align: right !important;
   }
 }
+.b-is-capitalized {
+  text-transform: capitalize !important;
+}
+
+.b-is-uppercase {
+  text-transform: uppercase !important;
+}
 
 .b-is-underlined {
   text-decoration: underline !important;
 }
 
+.b-has-text-weight-normal {
+  font-weight: 400 !important;
+}
+
+.b-has-text-weight-semibold {
+  font-weight: 600 !important;
+}
+
+.b-has-text-weight-bold {
+  font-weight: 700 !important;
+}
+
+.b-is-family-secondary {
+  font-family: '"Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif' !important;
+}
+
+
+.b-is-hidden {
+  display: none !important;
+}
+
 .b-is-flex {
   display: flex !important;
 }
+
+.b-is-inline-flex {
+  display: inline-flex !important;
+}
+.b-is-sr-only {
+  border: none !important;
+  clip: rect(0, 0, 0, 0) !important;
+  height: 0.01em !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  white-space: nowrap !important;
+  width: 0.01em !important;
+}
+.b-is-radiusless {
+  border-radius: 0 !important;
+}
+
+/* Bulma Form */
+/* ==========================================================
+   PlayLoveToys — Overlay Toolkit (Dynamic Bulma Colors)
+   Genera helpers según $these-colors (sin asumir nombres).
+   ========================================================== */
+/* Espaciado base para overlays */
+/* ============================================
+   Mixins de posicionamiento
+   ============================================ */
+/* ============================================
+   Contenedor base para overlays
+   ============================================ */
+.b-has-image-overlay {
+  position: relative;
+  display: block;
+  z-index: 0;
+}
+
+/* ============================================
+   Helpers de posición (independientes del color)
+   ============================================ */
+.b-tag-top-left {
+  position: absolute;
+  top: 0rem;
+  left: 0rem;
+  z-index: 2;
+}
+
+.b-tag-bottom-right {
+  position: absolute;
+  bottom: 0rem;
+  right: 0rem;
+  z-index: 2;
+}
+
+/* Variante responsive:
+   - mobile: bottom-right
+   - tablet+: top-right
+*/
+
+/* Variante responsive 2:
+   - mobile: center
+   - tablet+: top-left
+*/
+
+/* ============================================
+   Funciones helper para leer $these-colors
+   $these-colors: ("primary": ($primary, $primary-invert), ...)
+   ============================================ */
+/* ============================================
+   Loop dinámico por todos los colores de Bulma
+   Genera:
+   - .b-badge-[color]
+   - .b-badge-circle-[color]
+   - .b-badge-pill-[color]
+   ============================================ */
+/* Badge rectangular */
+
+/* Badge tipo pill */
+
+/* Badge circular */
+
+/* Badge rectangular */
+
+/* Badge tipo pill */
+
+/* Badge circular */
+
+/* Badge rectangular */
+
+/* Badge tipo pill */
+
+/* Badge circular */
+
+/* Badge rectangular */
+
+/* Badge tipo pill */
+
+/* Badge circular */
+
+/* Badge rectangular */
+
+/* Badge tipo pill */
+
+/* Badge circular */
+
+/* Badge rectangular */
+.b-badge-primary {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border-radius: 0.4rem;
+  background-color: hsl(268, 41%, 33%);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+/* Badge tipo pill */
+.b-badge-pill-primary {
+  display: inline-block;
+  padding: 0.25rem 0.8rem;
+  border-radius: 999px;
+  background-color: hsl(268, 41%, 33%);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+/* Badge circular */
+
+/* Badge rectangular */
+.b-badge-link {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border-radius: 0.4rem;
+  background-color: hsl(346, 89%, 61%);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+/* Badge tipo pill */
+
+/* Badge circular */
+
+/* Badge rectangular */
+.b-badge-info {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border-radius: 0.4rem;
+  background-color: hsl(190, 84%, 29%);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+/* Badge tipo pill */
+
+/* Badge circular */
+
+/* Badge rectangular */
+
+/* Badge tipo pill */
+
+/* Badge circular */
+
+/* Badge rectangular */
+
+/* Badge tipo pill */
+
+/* Badge circular */
+
+/* Badge rectangular */
+
+/* Badge tipo pill */
+
+/* Badge circular */
+
+/* ============================================
+   Gradients neutrales (no dependen del mapa)
+   ============================================ */
+
+/* ==========================================================================
+   PlayLoveToys — Drawer Component (Independent)
+   Componente totalmente autónomo y con prefijo genérico.
+   ========================================================================== */
+/* ============================================================
+   Root
+   ============================================================ */
+.b-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  /* por encima del navbar & filtros */
+  display: none;
+  pointer-events: none;
+}
+
+.b-drawer.b-is-active {
+  display: block;
+  pointer-events: auto;
+}
+
+/* ============================================================
+   Background overlay
+   ============================================================ */
+.b-drawer-background {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(10, 10, 10, 0.45);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.b-drawer.b-is-active .b-drawer-background {
+  opacity: 1;
+}
+
+/* ============================================================
+   Drawer panel (Left)
+   ============================================================ */
+.b-drawer-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--b-drawer-width, 420px);
+  max-width: 85vw;
+  height: 100vh;
+  background-color: var(--bulma-scheme-main, #fff);
+  overflow-y: auto;
+  box-shadow: 5px 0 15px rgba(0, 0, 0, 0.12);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.b-drawer.b-is-active .b-drawer-panel {
+  transform: translateX(0);
+}
+
+/* ============================================================
+   Right-side drawer
+   ============================================================ */
+
+/* ============================================================
+   Responsive width
+   ============================================================ */
+@media screen and (min-width: 1024px) {
+  .b-drawer-panel {
+    width: var(--b-drawer-width-desktop, 25vw);
+    max-width: none;
+  }
+}
+@media (max-width: 769px) {
+  .b-drawer-panel {
+    width: var(--b-drawer-width, 100vw);
+    max-width: var(--b-drawer-width, 100vw);
+  }
+}
+/* ============================================================
+   Optional speed utilities
+   ============================================================ */
+
 /* Bulma Themes */
 :root {
   --b-scheme-h: 221;
@@ -1366,8 +3262,8 @@ button.b-has-text-info:active {
   --b-scheme-invert-ter-l: 14%;
   --b-scheme-invert-bis-l: 7%;
   --b-scheme-invert-l: 4%;
-  --b-family-primary: "Baloo+2", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  --b-family-secondary: "Atkinson Hyperlegible Next", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  --b-family-primary: "Roboto Condensed", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  --b-family-secondary: "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   --b-size-normal: 1rem;
   --b-size-medium: 1.25rem;
   --b-size-large: 1.5rem;
@@ -1649,36 +3545,36 @@ button.b-has-text-info:active {
   --b-primary-on-scheme: hsla(var(--b-primary-h), var(--b-primary-s), var(--b-primary-on-scheme-l), 1);
   --b-link: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-l), 1);
   --b-link-base: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-l), 1);
-  --b-link-rgb: 66.3, 88.315, 255;
-  --b-link-h: 233deg;
-  --b-link-s: 100%;
-  --b-link-l: 63%;
-  --b-link-00-l: 0%;
-  --b-link-05-l: 3%;
-  --b-link-10-l: 8%;
-  --b-link-15-l: 13%;
-  --b-link-20-l: 18%;
-  --b-link-25-l: 23%;
-  --b-link-30-l: 28%;
-  --b-link-35-l: 33%;
-  --b-link-40-l: 38%;
-  --b-link-45-l: 43%;
-  --b-link-50-l: 48%;
-  --b-link-55-l: 53%;
-  --b-link-60-l: 58%;
-  --b-link-65-l: 63%;
-  --b-link-70-l: 68%;
-  --b-link-75-l: 73%;
-  --b-link-80-l: 78%;
-  --b-link-85-l: 83%;
-  --b-link-90-l: 88%;
-  --b-link-95-l: 93%;
-  --b-link-100-l: 98%;
+  --b-link-rgb: 244.0605, 67.0395, 108.3444;
+  --b-link-h: 346deg;
+  --b-link-s: 89%;
+  --b-link-l: 61%;
+  --b-link-00-l: 1%;
+  --b-link-05-l: 6%;
+  --b-link-10-l: 11%;
+  --b-link-15-l: 16%;
+  --b-link-20-l: 21%;
+  --b-link-25-l: 26%;
+  --b-link-30-l: 31%;
+  --b-link-35-l: 36%;
+  --b-link-40-l: 41%;
+  --b-link-45-l: 46%;
+  --b-link-50-l: 51%;
+  --b-link-55-l: 56%;
+  --b-link-60-l: 61%;
+  --b-link-65-l: 66%;
+  --b-link-70-l: 71%;
+  --b-link-75-l: 76%;
+  --b-link-80-l: 81%;
+  --b-link-85-l: 86%;
+  --b-link-90-l: 91%;
+  --b-link-95-l: 96%;
+  --b-link-100-l: 100%;
   --b-link-00: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-00-l), 1);
-  --b-link-00-invert-l: var(--b-link-75-l);
+  --b-link-00-invert-l: var(--b-link-65-l);
   --b-link-00-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-00-invert-l), 1);
   --b-link-05: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-05-l), 1);
-  --b-link-05-invert-l: var(--b-link-75-l);
+  --b-link-05-invert-l: var(--b-link-70-l);
   --b-link-05-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-05-invert-l), 1);
   --b-link-10: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-10-l), 1);
   --b-link-10-invert-l: var(--b-link-75-l);
@@ -1687,22 +3583,22 @@ button.b-has-text-info:active {
   --b-link-15-invert-l: var(--b-link-80-l);
   --b-link-15-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-15-invert-l), 1);
   --b-link-20: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-20-l), 1);
-  --b-link-20-invert-l: var(--b-link-80-l);
+  --b-link-20-invert-l: var(--b-link-85-l);
   --b-link-20-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-20-invert-l), 1);
   --b-link-25: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-25-l), 1);
-  --b-link-25-invert-l: var(--b-link-85-l);
+  --b-link-25-invert-l: var(--b-link-90-l);
   --b-link-25-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-25-invert-l), 1);
   --b-link-30: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-30-l), 1);
-  --b-link-30-invert-l: var(--b-link-90-l);
+  --b-link-30-invert-l: var(--b-link-95-l);
   --b-link-30-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-30-invert-l), 1);
   --b-link-35: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-35-l), 1);
-  --b-link-35-invert-l: var(--b-link-90-l);
+  --b-link-35-invert-l: var(--b-link-100-l);
   --b-link-35-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-35-invert-l), 1);
   --b-link-40: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-40-l), 1);
-  --b-link-40-invert-l: var(--b-link-95-l);
+  --b-link-40-invert-l: var(--b-link-100-l);
   --b-link-40-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-40-invert-l), 1);
   --b-link-45: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-45-l), 1);
-  --b-link-45-invert-l: var(--b-link-95-l);
+  --b-link-45-invert-l: var(--b-link-100-l);
   --b-link-45-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-45-invert-l), 1);
   --b-link-50: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-50-l), 1);
   --b-link-50-invert-l: var(--b-link-100-l);
@@ -1714,34 +3610,34 @@ button.b-has-text-info:active {
   --b-link-60-invert-l: var(--b-link-100-l);
   --b-link-60-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-60-invert-l), 1);
   --b-link-65: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-65-l), 1);
-  --b-link-65-invert-l: var(--b-link-100-l);
+  --b-link-65-invert-l: var(--b-link-00-l);
   --b-link-65-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-65-invert-l), 1);
   --b-link-70: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-70-l), 1);
-  --b-link-70-invert-l: var(--b-link-100-l);
+  --b-link-70-invert-l: var(--b-link-05-l);
   --b-link-70-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-70-invert-l), 1);
   --b-link-75: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-75-l), 1);
   --b-link-75-invert-l: var(--b-link-10-l);
   --b-link-75-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-75-invert-l), 1);
   --b-link-80: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-80-l), 1);
-  --b-link-80-invert-l: var(--b-link-20-l);
+  --b-link-80-invert-l: var(--b-link-15-l);
   --b-link-80-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-80-invert-l), 1);
   --b-link-85: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-85-l), 1);
-  --b-link-85-invert-l: var(--b-link-25-l);
+  --b-link-85-invert-l: var(--b-link-20-l);
   --b-link-85-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-85-invert-l), 1);
   --b-link-90: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-90-l), 1);
-  --b-link-90-invert-l: var(--b-link-35-l);
+  --b-link-90-invert-l: var(--b-link-25-l);
   --b-link-90-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-90-invert-l), 1);
   --b-link-95: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-95-l), 1);
-  --b-link-95-invert-l: var(--b-link-45-l);
+  --b-link-95-invert-l: var(--b-link-30-l);
   --b-link-95-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-95-invert-l), 1);
   --b-link-100: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-100-l), 1);
-  --b-link-100-invert-l: var(--b-link-50-l);
+  --b-link-100-invert-l: var(--b-link-30-l);
   --b-link-100-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-100-invert-l), 1);
   --b-link-invert-l: var(--b-link-100-l);
   --b-link-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-invert-l), 1);
   --b-link-light-l: var(--b-link-90-l);
   --b-link-light: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-light-l), 1);
-  --b-link-light-invert-l: var(--b-link-35-l);
+  --b-link-light-invert-l: var(--b-link-25-l);
   --b-link-light-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-light-invert-l), 1);
   --b-link-dark-l: var(--b-link-10-l);
   --b-link-dark: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-dark-l), 1);
@@ -1751,7 +3647,7 @@ button.b-has-text-info:active {
   --b-link-bold: hsla(var(--b-link-h), var(--b-link-s), var(--b-bold-l), 1);
   --b-link-soft-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-soft-invert-l), 1);
   --b-link-bold-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-bold-invert-l), 1);
-  --b-link-on-scheme-l: 58%;
+  --b-link-on-scheme-l: 41%;
   --b-link-on-scheme: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-on-scheme-l), 1);
   --b-info: hsla(var(--b-info-h), var(--b-info-s), var(--b-info-l), 1);
   --b-info-base: hsla(var(--b-info-h), var(--b-info-s), var(--b-info-l), 1);
@@ -1859,9 +3755,333 @@ button.b-has-text-info:active {
   --b-info-bold-invert: hsla(var(--b-info-h), var(--b-info-s), var(--b-bold-invert-l), 1);
   --b-info-on-scheme-l: 24%;
   --b-info-on-scheme: hsla(var(--b-info-h), var(--b-info-s), var(--b-info-on-scheme-l), 1);
+  --b-success: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-l), 1);
+  --b-success-base: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-l), 1);
+  --b-success-rgb: 71.6295, 198.6705, 141.50205;
+  --b-success-h: 153deg;
+  --b-success-s: 53%;
+  --b-success-l: 53%;
+  --b-success-00-l: 0%;
+  --b-success-05-l: 3%;
+  --b-success-10-l: 8%;
+  --b-success-15-l: 13%;
+  --b-success-20-l: 18%;
+  --b-success-25-l: 23%;
+  --b-success-30-l: 28%;
+  --b-success-35-l: 33%;
+  --b-success-40-l: 38%;
+  --b-success-45-l: 43%;
+  --b-success-50-l: 48%;
+  --b-success-55-l: 53%;
+  --b-success-60-l: 58%;
+  --b-success-65-l: 63%;
+  --b-success-70-l: 68%;
+  --b-success-75-l: 73%;
+  --b-success-80-l: 78%;
+  --b-success-85-l: 83%;
+  --b-success-90-l: 88%;
+  --b-success-95-l: 93%;
+  --b-success-100-l: 98%;
+  --b-success-00: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-00-l), 1);
+  --b-success-00-invert-l: var(--b-success-45-l);
+  --b-success-00-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-00-invert-l), 1);
+  --b-success-05: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-05-l), 1);
+  --b-success-05-invert-l: var(--b-success-45-l);
+  --b-success-05-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-05-invert-l), 1);
+  --b-success-10: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-10-l), 1);
+  --b-success-10-invert-l: var(--b-success-55-l);
+  --b-success-10-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-10-invert-l), 1);
+  --b-success-15: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-15-l), 1);
+  --b-success-15-invert-l: var(--b-success-75-l);
+  --b-success-15-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-15-invert-l), 1);
+  --b-success-20: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-20-l), 1);
+  --b-success-20-invert-l: var(--b-success-95-l);
+  --b-success-20-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-20-invert-l), 1);
+  --b-success-25: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-25-l), 1);
+  --b-success-25-invert-l: var(--b-success-100-l);
+  --b-success-25-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-25-invert-l), 1);
+  --b-success-30: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-30-l), 1);
+  --b-success-30-invert-l: var(--b-success-100-l);
+  --b-success-30-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-30-invert-l), 1);
+  --b-success-35: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-35-l), 1);
+  --b-success-35-invert-l: var(--b-success-100-l);
+  --b-success-35-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-35-invert-l), 1);
+  --b-success-40: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-40-l), 1);
+  --b-success-40-invert-l: var(--b-success-100-l);
+  --b-success-40-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-40-invert-l), 1);
+  --b-success-45: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-45-l), 1);
+  --b-success-45-invert-l: var(--b-success-05-l);
+  --b-success-45-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-45-invert-l), 1);
+  --b-success-50: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-50-l), 1);
+  --b-success-50-invert-l: var(--b-success-05-l);
+  --b-success-50-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-50-invert-l), 1);
+  --b-success-55: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-55-l), 1);
+  --b-success-55-invert-l: var(--b-success-10-l);
+  --b-success-55-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-55-invert-l), 1);
+  --b-success-60: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-60-l), 1);
+  --b-success-60-invert-l: var(--b-success-10-l);
+  --b-success-60-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-60-invert-l), 1);
+  --b-success-65: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-65-l), 1);
+  --b-success-65-invert-l: var(--b-success-10-l);
+  --b-success-65-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-65-invert-l), 1);
+  --b-success-70: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-70-l), 1);
+  --b-success-70-invert-l: var(--b-success-10-l);
+  --b-success-70-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-70-invert-l), 1);
+  --b-success-75: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-75-l), 1);
+  --b-success-75-invert-l: var(--b-success-15-l);
+  --b-success-75-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-75-invert-l), 1);
+  --b-success-80: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-80-l), 1);
+  --b-success-80-invert-l: var(--b-success-15-l);
+  --b-success-80-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-80-invert-l), 1);
+  --b-success-85: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-85-l), 1);
+  --b-success-85-invert-l: var(--b-success-15-l);
+  --b-success-85-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-85-invert-l), 1);
+  --b-success-90: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-90-l), 1);
+  --b-success-90-invert-l: var(--b-success-15-l);
+  --b-success-90-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-90-invert-l), 1);
+  --b-success-95: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-95-l), 1);
+  --b-success-95-invert-l: var(--b-success-20-l);
+  --b-success-95-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-95-invert-l), 1);
+  --b-success-100: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-100-l), 1);
+  --b-success-100-invert-l: var(--b-success-20-l);
+  --b-success-100-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-100-invert-l), 1);
+  --b-success-invert-l: var(--b-success-10-l);
+  --b-success-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-invert-l), 1);
+  --b-success-light-l: var(--b-success-90-l);
+  --b-success-light: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-light-l), 1);
+  --b-success-light-invert-l: var(--b-success-15-l);
+  --b-success-light-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-light-invert-l), 1);
+  --b-success-dark-l: var(--b-success-10-l);
+  --b-success-dark: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-dark-l), 1);
+  --b-success-dark-invert-l: var(--b-success-55-l);
+  --b-success-dark-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-dark-invert-l), 1);
+  --b-success-soft: hsla(var(--b-success-h), var(--b-success-s), var(--b-soft-l), 1);
+  --b-success-bold: hsla(var(--b-success-h), var(--b-success-s), var(--b-bold-l), 1);
+  --b-success-soft-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-soft-invert-l), 1);
+  --b-success-bold-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-bold-invert-l), 1);
+  --b-success-on-scheme-l: 23%;
+  --b-success-on-scheme: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-on-scheme-l), 1);
+  --b-warning: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-l), 1);
+  --b-warning-base: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-l), 1);
+  --b-warning-rgb: 255, 183.09, 15.3;
+  --b-warning-h: 42deg;
+  --b-warning-s: 100%;
+  --b-warning-l: 53%;
+  --b-warning-00-l: 0%;
+  --b-warning-05-l: 3%;
+  --b-warning-10-l: 8%;
+  --b-warning-15-l: 13%;
+  --b-warning-20-l: 18%;
+  --b-warning-25-l: 23%;
+  --b-warning-30-l: 28%;
+  --b-warning-35-l: 33%;
+  --b-warning-40-l: 38%;
+  --b-warning-45-l: 43%;
+  --b-warning-50-l: 48%;
+  --b-warning-55-l: 53%;
+  --b-warning-60-l: 58%;
+  --b-warning-65-l: 63%;
+  --b-warning-70-l: 68%;
+  --b-warning-75-l: 73%;
+  --b-warning-80-l: 78%;
+  --b-warning-85-l: 83%;
+  --b-warning-90-l: 88%;
+  --b-warning-95-l: 93%;
+  --b-warning-100-l: 98%;
+  --b-warning-00: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-00-l), 1);
+  --b-warning-00-invert-l: var(--b-warning-40-l);
+  --b-warning-00-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-00-invert-l), 1);
+  --b-warning-05: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-05-l), 1);
+  --b-warning-05-invert-l: var(--b-warning-45-l);
+  --b-warning-05-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-05-invert-l), 1);
+  --b-warning-10: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-10-l), 1);
+  --b-warning-10-invert-l: var(--b-warning-50-l);
+  --b-warning-10-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-10-invert-l), 1);
+  --b-warning-15: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-15-l), 1);
+  --b-warning-15-invert-l: var(--b-warning-70-l);
+  --b-warning-15-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-15-invert-l), 1);
+  --b-warning-20: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-20-l), 1);
+  --b-warning-20-invert-l: var(--b-warning-100-l);
+  --b-warning-20-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-20-invert-l), 1);
+  --b-warning-25: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-25-l), 1);
+  --b-warning-25-invert-l: var(--b-warning-100-l);
+  --b-warning-25-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-25-invert-l), 1);
+  --b-warning-30: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-30-l), 1);
+  --b-warning-30-invert-l: var(--b-warning-100-l);
+  --b-warning-30-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-30-invert-l), 1);
+  --b-warning-35: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-35-l), 1);
+  --b-warning-35-invert-l: var(--b-warning-100-l);
+  --b-warning-35-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-35-invert-l), 1);
+  --b-warning-40: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-40-l), 1);
+  --b-warning-40-invert-l: var(--b-warning-00-l);
+  --b-warning-40-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-40-invert-l), 1);
+  --b-warning-45: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-45-l), 1);
+  --b-warning-45-invert-l: var(--b-warning-05-l);
+  --b-warning-45-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-45-invert-l), 1);
+  --b-warning-50: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-50-l), 1);
+  --b-warning-50-invert-l: var(--b-warning-10-l);
+  --b-warning-50-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-50-invert-l), 1);
+  --b-warning-55: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-55-l), 1);
+  --b-warning-55-invert-l: var(--b-warning-10-l);
+  --b-warning-55-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-55-invert-l), 1);
+  --b-warning-60: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-60-l), 1);
+  --b-warning-60-invert-l: var(--b-warning-10-l);
+  --b-warning-60-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-60-invert-l), 1);
+  --b-warning-65: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-65-l), 1);
+  --b-warning-65-invert-l: var(--b-warning-10-l);
+  --b-warning-65-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-65-invert-l), 1);
+  --b-warning-70: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-70-l), 1);
+  --b-warning-70-invert-l: var(--b-warning-15-l);
+  --b-warning-70-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-70-invert-l), 1);
+  --b-warning-75: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-75-l), 1);
+  --b-warning-75-invert-l: var(--b-warning-15-l);
+  --b-warning-75-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-75-invert-l), 1);
+  --b-warning-80: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-80-l), 1);
+  --b-warning-80-invert-l: var(--b-warning-15-l);
+  --b-warning-80-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-80-invert-l), 1);
+  --b-warning-85: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-85-l), 1);
+  --b-warning-85-invert-l: var(--b-warning-15-l);
+  --b-warning-85-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-85-invert-l), 1);
+  --b-warning-90: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-90-l), 1);
+  --b-warning-90-invert-l: var(--b-warning-15-l);
+  --b-warning-90-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-90-invert-l), 1);
+  --b-warning-95: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-95-l), 1);
+  --b-warning-95-invert-l: var(--b-warning-15-l);
+  --b-warning-95-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-95-invert-l), 1);
+  --b-warning-100: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-100-l), 1);
+  --b-warning-100-invert-l: var(--b-warning-20-l);
+  --b-warning-100-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-100-invert-l), 1);
+  --b-warning-invert-l: var(--b-warning-10-l);
+  --b-warning-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-invert-l), 1);
+  --b-warning-light-l: var(--b-warning-90-l);
+  --b-warning-light: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-light-l), 1);
+  --b-warning-light-invert-l: var(--b-warning-15-l);
+  --b-warning-light-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-light-invert-l), 1);
+  --b-warning-dark-l: var(--b-warning-10-l);
+  --b-warning-dark: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-dark-l), 1);
+  --b-warning-dark-invert-l: var(--b-warning-50-l);
+  --b-warning-dark-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-dark-invert-l), 1);
+  --b-warning-soft: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-soft-l), 1);
+  --b-warning-bold: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-bold-l), 1);
+  --b-warning-soft-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-soft-invert-l), 1);
+  --b-warning-bold-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-bold-invert-l), 1);
+  --b-warning-on-scheme-l: 23%;
+  --b-warning-on-scheme: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-on-scheme-l), 1);
+  --b-danger: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-l), 1);
+  --b-danger-base: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-l), 1);
+  --b-danger-rgb: 255, 102, 132.6;
+  --b-danger-h: 348deg;
+  --b-danger-s: 100%;
+  --b-danger-l: 70%;
+  --b-danger-00-l: 0%;
+  --b-danger-05-l: 5%;
+  --b-danger-10-l: 10%;
+  --b-danger-15-l: 15%;
+  --b-danger-20-l: 20%;
+  --b-danger-25-l: 25%;
+  --b-danger-30-l: 30%;
+  --b-danger-35-l: 35%;
+  --b-danger-40-l: 40%;
+  --b-danger-45-l: 45%;
+  --b-danger-50-l: 50%;
+  --b-danger-55-l: 55%;
+  --b-danger-60-l: 60%;
+  --b-danger-65-l: 65%;
+  --b-danger-70-l: 70%;
+  --b-danger-75-l: 75%;
+  --b-danger-80-l: 80%;
+  --b-danger-85-l: 85%;
+  --b-danger-90-l: 90%;
+  --b-danger-95-l: 95%;
+  --b-danger-100-l: 100%;
+  --b-danger-00: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-00-l), 1);
+  --b-danger-00-invert-l: var(--b-danger-65-l);
+  --b-danger-00-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-00-invert-l), 1);
+  --b-danger-05: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-05-l), 1);
+  --b-danger-05-invert-l: var(--b-danger-70-l);
+  --b-danger-05-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-05-invert-l), 1);
+  --b-danger-10: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-10-l), 1);
+  --b-danger-10-invert-l: var(--b-danger-75-l);
+  --b-danger-10-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-10-invert-l), 1);
+  --b-danger-15: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-15-l), 1);
+  --b-danger-15-invert-l: var(--b-danger-80-l);
+  --b-danger-15-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-15-invert-l), 1);
+  --b-danger-20: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-20-l), 1);
+  --b-danger-20-invert-l: var(--b-danger-85-l);
+  --b-danger-20-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-20-invert-l), 1);
+  --b-danger-25: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-25-l), 1);
+  --b-danger-25-invert-l: var(--b-danger-90-l);
+  --b-danger-25-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-25-invert-l), 1);
+  --b-danger-30: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-30-l), 1);
+  --b-danger-30-invert-l: var(--b-danger-100-l);
+  --b-danger-30-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-30-invert-l), 1);
+  --b-danger-35: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-35-l), 1);
+  --b-danger-35-invert-l: var(--b-danger-100-l);
+  --b-danger-35-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-35-invert-l), 1);
+  --b-danger-40: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-40-l), 1);
+  --b-danger-40-invert-l: var(--b-danger-100-l);
+  --b-danger-40-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-40-invert-l), 1);
+  --b-danger-45: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-45-l), 1);
+  --b-danger-45-invert-l: var(--b-danger-100-l);
+  --b-danger-45-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-45-invert-l), 1);
+  --b-danger-50: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-50-l), 1);
+  --b-danger-50-invert-l: var(--b-danger-100-l);
+  --b-danger-50-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-50-invert-l), 1);
+  --b-danger-55: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-55-l), 1);
+  --b-danger-55-invert-l: var(--b-danger-100-l);
+  --b-danger-55-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-55-invert-l), 1);
+  --b-danger-60: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-60-l), 1);
+  --b-danger-60-invert-l: var(--b-danger-100-l);
+  --b-danger-60-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-60-invert-l), 1);
+  --b-danger-65: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-65-l), 1);
+  --b-danger-65-invert-l: var(--b-danger-00-l);
+  --b-danger-65-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-65-invert-l), 1);
+  --b-danger-70: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-70-l), 1);
+  --b-danger-70-invert-l: var(--b-danger-05-l);
+  --b-danger-70-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-70-invert-l), 1);
+  --b-danger-75: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-75-l), 1);
+  --b-danger-75-invert-l: var(--b-danger-10-l);
+  --b-danger-75-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-75-invert-l), 1);
+  --b-danger-80: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-80-l), 1);
+  --b-danger-80-invert-l: var(--b-danger-15-l);
+  --b-danger-80-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-80-invert-l), 1);
+  --b-danger-85: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-85-l), 1);
+  --b-danger-85-invert-l: var(--b-danger-20-l);
+  --b-danger-85-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-85-invert-l), 1);
+  --b-danger-90: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-90-l), 1);
+  --b-danger-90-invert-l: var(--b-danger-25-l);
+  --b-danger-90-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-90-invert-l), 1);
+  --b-danger-95: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-95-l), 1);
+  --b-danger-95-invert-l: var(--b-danger-25-l);
+  --b-danger-95-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-95-invert-l), 1);
+  --b-danger-100: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-100-l), 1);
+  --b-danger-100-invert-l: var(--b-danger-30-l);
+  --b-danger-100-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-100-invert-l), 1);
+  --b-danger-invert-l: var(--b-danger-05-l);
+  --b-danger-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-invert-l), 1);
+  --b-danger-light-l: var(--b-danger-90-l);
+  --b-danger-light: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-light-l), 1);
+  --b-danger-light-invert-l: var(--b-danger-25-l);
+  --b-danger-light-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-light-invert-l), 1);
+  --b-danger-dark-l: var(--b-danger-10-l);
+  --b-danger-dark: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-dark-l), 1);
+  --b-danger-dark-invert-l: var(--b-danger-75-l);
+  --b-danger-dark-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-dark-invert-l), 1);
+  --b-danger-soft: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-soft-l), 1);
+  --b-danger-bold: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-bold-l), 1);
+  --b-danger-soft-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-soft-invert-l), 1);
+  --b-danger-bold-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-bold-invert-l), 1);
+  --b-danger-on-scheme-l: 40%;
+  --b-danger-on-scheme: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-on-scheme-l), 1);
+  --b-black-bis: hsl(221, 14%, 9%);
+  --b-black-ter: hsl(221, 14%, 14%);
+  --b-grey-darker: hsl(221, 14%, 21%);
   --b-grey-dark: hsl(108, 6%, 34%);
   --b-grey: hsl(0, 0%, 71%);
   --b-grey-light: hsl(0, 0%, 96%);
+  --b-grey-lighter: hsl(221, 14%, 86%);
+  --b-white-ter: hsl(221, 14%, 96%);
+  --b-white-bis: hsl(221, 14%, 98%);
   --b-shadow-h: 221deg;
   --b-shadow-s: 14%;
   --b-shadow-l: 4%;
@@ -1871,6 +4091,7 @@ button.b-has-text-info:active {
   --b-size-4: 1.5rem;
   --b-size-5: 1.25rem;
   --b-size-6: 1rem;
+  --b-size-7: 0.75rem;
   --b-scheme-main: hsl(var(--b-scheme-h), var(--b-scheme-s), var(--b-scheme-main-l));
   --b-scheme-main-bis: hsl(var(--b-scheme-h), var(--b-scheme-s), var(--b-scheme-main-bis-l));
   --b-scheme-main-ter: hsl(var(--b-scheme-h), var(--b-scheme-s), var(--b-scheme-main-ter-l));
@@ -1940,8 +4161,8 @@ button.b-has-text-info:active {
     --b-scheme-invert-ter-l: 14%;
     --b-scheme-invert-bis-l: 7%;
     --b-scheme-invert-l: 4%;
-    --b-family-primary: "Baloo+2", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-    --b-family-secondary: "Atkinson Hyperlegible Next", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    --b-family-primary: "Roboto Condensed", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    --b-family-secondary: "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
     --b-size-normal: 1rem;
     --b-size-medium: 1.25rem;
     --b-size-large: 1.5rem;
@@ -2223,36 +4444,36 @@ button.b-has-text-info:active {
     --b-primary-on-scheme: hsla(var(--b-primary-h), var(--b-primary-s), var(--b-primary-on-scheme-l), 1);
     --b-link: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-l), 1);
     --b-link-base: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-l), 1);
-    --b-link-rgb: 66.3, 88.315, 255;
-    --b-link-h: 233deg;
-    --b-link-s: 100%;
-    --b-link-l: 63%;
-    --b-link-00-l: 0%;
-    --b-link-05-l: 3%;
-    --b-link-10-l: 8%;
-    --b-link-15-l: 13%;
-    --b-link-20-l: 18%;
-    --b-link-25-l: 23%;
-    --b-link-30-l: 28%;
-    --b-link-35-l: 33%;
-    --b-link-40-l: 38%;
-    --b-link-45-l: 43%;
-    --b-link-50-l: 48%;
-    --b-link-55-l: 53%;
-    --b-link-60-l: 58%;
-    --b-link-65-l: 63%;
-    --b-link-70-l: 68%;
-    --b-link-75-l: 73%;
-    --b-link-80-l: 78%;
-    --b-link-85-l: 83%;
-    --b-link-90-l: 88%;
-    --b-link-95-l: 93%;
-    --b-link-100-l: 98%;
+    --b-link-rgb: 244.0605, 67.0395, 108.3444;
+    --b-link-h: 346deg;
+    --b-link-s: 89%;
+    --b-link-l: 61%;
+    --b-link-00-l: 1%;
+    --b-link-05-l: 6%;
+    --b-link-10-l: 11%;
+    --b-link-15-l: 16%;
+    --b-link-20-l: 21%;
+    --b-link-25-l: 26%;
+    --b-link-30-l: 31%;
+    --b-link-35-l: 36%;
+    --b-link-40-l: 41%;
+    --b-link-45-l: 46%;
+    --b-link-50-l: 51%;
+    --b-link-55-l: 56%;
+    --b-link-60-l: 61%;
+    --b-link-65-l: 66%;
+    --b-link-70-l: 71%;
+    --b-link-75-l: 76%;
+    --b-link-80-l: 81%;
+    --b-link-85-l: 86%;
+    --b-link-90-l: 91%;
+    --b-link-95-l: 96%;
+    --b-link-100-l: 100%;
     --b-link-00: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-00-l), 1);
-    --b-link-00-invert-l: var(--b-link-75-l);
+    --b-link-00-invert-l: var(--b-link-65-l);
     --b-link-00-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-00-invert-l), 1);
     --b-link-05: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-05-l), 1);
-    --b-link-05-invert-l: var(--b-link-75-l);
+    --b-link-05-invert-l: var(--b-link-70-l);
     --b-link-05-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-05-invert-l), 1);
     --b-link-10: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-10-l), 1);
     --b-link-10-invert-l: var(--b-link-75-l);
@@ -2261,22 +4482,22 @@ button.b-has-text-info:active {
     --b-link-15-invert-l: var(--b-link-80-l);
     --b-link-15-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-15-invert-l), 1);
     --b-link-20: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-20-l), 1);
-    --b-link-20-invert-l: var(--b-link-80-l);
+    --b-link-20-invert-l: var(--b-link-85-l);
     --b-link-20-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-20-invert-l), 1);
     --b-link-25: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-25-l), 1);
-    --b-link-25-invert-l: var(--b-link-85-l);
+    --b-link-25-invert-l: var(--b-link-90-l);
     --b-link-25-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-25-invert-l), 1);
     --b-link-30: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-30-l), 1);
-    --b-link-30-invert-l: var(--b-link-90-l);
+    --b-link-30-invert-l: var(--b-link-95-l);
     --b-link-30-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-30-invert-l), 1);
     --b-link-35: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-35-l), 1);
-    --b-link-35-invert-l: var(--b-link-90-l);
+    --b-link-35-invert-l: var(--b-link-100-l);
     --b-link-35-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-35-invert-l), 1);
     --b-link-40: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-40-l), 1);
-    --b-link-40-invert-l: var(--b-link-95-l);
+    --b-link-40-invert-l: var(--b-link-100-l);
     --b-link-40-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-40-invert-l), 1);
     --b-link-45: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-45-l), 1);
-    --b-link-45-invert-l: var(--b-link-95-l);
+    --b-link-45-invert-l: var(--b-link-100-l);
     --b-link-45-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-45-invert-l), 1);
     --b-link-50: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-50-l), 1);
     --b-link-50-invert-l: var(--b-link-100-l);
@@ -2288,34 +4509,34 @@ button.b-has-text-info:active {
     --b-link-60-invert-l: var(--b-link-100-l);
     --b-link-60-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-60-invert-l), 1);
     --b-link-65: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-65-l), 1);
-    --b-link-65-invert-l: var(--b-link-100-l);
+    --b-link-65-invert-l: var(--b-link-00-l);
     --b-link-65-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-65-invert-l), 1);
     --b-link-70: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-70-l), 1);
-    --b-link-70-invert-l: var(--b-link-100-l);
+    --b-link-70-invert-l: var(--b-link-05-l);
     --b-link-70-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-70-invert-l), 1);
     --b-link-75: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-75-l), 1);
     --b-link-75-invert-l: var(--b-link-10-l);
     --b-link-75-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-75-invert-l), 1);
     --b-link-80: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-80-l), 1);
-    --b-link-80-invert-l: var(--b-link-20-l);
+    --b-link-80-invert-l: var(--b-link-15-l);
     --b-link-80-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-80-invert-l), 1);
     --b-link-85: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-85-l), 1);
-    --b-link-85-invert-l: var(--b-link-25-l);
+    --b-link-85-invert-l: var(--b-link-20-l);
     --b-link-85-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-85-invert-l), 1);
     --b-link-90: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-90-l), 1);
-    --b-link-90-invert-l: var(--b-link-35-l);
+    --b-link-90-invert-l: var(--b-link-25-l);
     --b-link-90-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-90-invert-l), 1);
     --b-link-95: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-95-l), 1);
-    --b-link-95-invert-l: var(--b-link-45-l);
+    --b-link-95-invert-l: var(--b-link-30-l);
     --b-link-95-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-95-invert-l), 1);
     --b-link-100: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-100-l), 1);
-    --b-link-100-invert-l: var(--b-link-50-l);
+    --b-link-100-invert-l: var(--b-link-30-l);
     --b-link-100-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-100-invert-l), 1);
     --b-link-invert-l: var(--b-link-100-l);
     --b-link-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-invert-l), 1);
     --b-link-light-l: var(--b-link-90-l);
     --b-link-light: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-light-l), 1);
-    --b-link-light-invert-l: var(--b-link-35-l);
+    --b-link-light-invert-l: var(--b-link-25-l);
     --b-link-light-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-light-invert-l), 1);
     --b-link-dark-l: var(--b-link-10-l);
     --b-link-dark: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-dark-l), 1);
@@ -2325,7 +4546,7 @@ button.b-has-text-info:active {
     --b-link-bold: hsla(var(--b-link-h), var(--b-link-s), var(--b-bold-l), 1);
     --b-link-soft-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-soft-invert-l), 1);
     --b-link-bold-invert: hsla(var(--b-link-h), var(--b-link-s), var(--b-bold-invert-l), 1);
-    --b-link-on-scheme-l: 58%;
+    --b-link-on-scheme-l: 41%;
     --b-link-on-scheme: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-on-scheme-l), 1);
     --b-info: hsla(var(--b-info-h), var(--b-info-s), var(--b-info-l), 1);
     --b-info-base: hsla(var(--b-info-h), var(--b-info-s), var(--b-info-l), 1);
@@ -2433,9 +4654,333 @@ button.b-has-text-info:active {
     --b-info-bold-invert: hsla(var(--b-info-h), var(--b-info-s), var(--b-bold-invert-l), 1);
     --b-info-on-scheme-l: 24%;
     --b-info-on-scheme: hsla(var(--b-info-h), var(--b-info-s), var(--b-info-on-scheme-l), 1);
+    --b-success: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-l), 1);
+    --b-success-base: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-l), 1);
+    --b-success-rgb: 71.6295, 198.6705, 141.50205;
+    --b-success-h: 153deg;
+    --b-success-s: 53%;
+    --b-success-l: 53%;
+    --b-success-00-l: 0%;
+    --b-success-05-l: 3%;
+    --b-success-10-l: 8%;
+    --b-success-15-l: 13%;
+    --b-success-20-l: 18%;
+    --b-success-25-l: 23%;
+    --b-success-30-l: 28%;
+    --b-success-35-l: 33%;
+    --b-success-40-l: 38%;
+    --b-success-45-l: 43%;
+    --b-success-50-l: 48%;
+    --b-success-55-l: 53%;
+    --b-success-60-l: 58%;
+    --b-success-65-l: 63%;
+    --b-success-70-l: 68%;
+    --b-success-75-l: 73%;
+    --b-success-80-l: 78%;
+    --b-success-85-l: 83%;
+    --b-success-90-l: 88%;
+    --b-success-95-l: 93%;
+    --b-success-100-l: 98%;
+    --b-success-00: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-00-l), 1);
+    --b-success-00-invert-l: var(--b-success-45-l);
+    --b-success-00-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-00-invert-l), 1);
+    --b-success-05: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-05-l), 1);
+    --b-success-05-invert-l: var(--b-success-45-l);
+    --b-success-05-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-05-invert-l), 1);
+    --b-success-10: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-10-l), 1);
+    --b-success-10-invert-l: var(--b-success-55-l);
+    --b-success-10-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-10-invert-l), 1);
+    --b-success-15: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-15-l), 1);
+    --b-success-15-invert-l: var(--b-success-75-l);
+    --b-success-15-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-15-invert-l), 1);
+    --b-success-20: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-20-l), 1);
+    --b-success-20-invert-l: var(--b-success-95-l);
+    --b-success-20-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-20-invert-l), 1);
+    --b-success-25: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-25-l), 1);
+    --b-success-25-invert-l: var(--b-success-100-l);
+    --b-success-25-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-25-invert-l), 1);
+    --b-success-30: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-30-l), 1);
+    --b-success-30-invert-l: var(--b-success-100-l);
+    --b-success-30-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-30-invert-l), 1);
+    --b-success-35: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-35-l), 1);
+    --b-success-35-invert-l: var(--b-success-100-l);
+    --b-success-35-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-35-invert-l), 1);
+    --b-success-40: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-40-l), 1);
+    --b-success-40-invert-l: var(--b-success-100-l);
+    --b-success-40-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-40-invert-l), 1);
+    --b-success-45: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-45-l), 1);
+    --b-success-45-invert-l: var(--b-success-05-l);
+    --b-success-45-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-45-invert-l), 1);
+    --b-success-50: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-50-l), 1);
+    --b-success-50-invert-l: var(--b-success-05-l);
+    --b-success-50-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-50-invert-l), 1);
+    --b-success-55: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-55-l), 1);
+    --b-success-55-invert-l: var(--b-success-10-l);
+    --b-success-55-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-55-invert-l), 1);
+    --b-success-60: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-60-l), 1);
+    --b-success-60-invert-l: var(--b-success-10-l);
+    --b-success-60-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-60-invert-l), 1);
+    --b-success-65: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-65-l), 1);
+    --b-success-65-invert-l: var(--b-success-10-l);
+    --b-success-65-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-65-invert-l), 1);
+    --b-success-70: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-70-l), 1);
+    --b-success-70-invert-l: var(--b-success-10-l);
+    --b-success-70-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-70-invert-l), 1);
+    --b-success-75: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-75-l), 1);
+    --b-success-75-invert-l: var(--b-success-15-l);
+    --b-success-75-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-75-invert-l), 1);
+    --b-success-80: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-80-l), 1);
+    --b-success-80-invert-l: var(--b-success-15-l);
+    --b-success-80-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-80-invert-l), 1);
+    --b-success-85: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-85-l), 1);
+    --b-success-85-invert-l: var(--b-success-15-l);
+    --b-success-85-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-85-invert-l), 1);
+    --b-success-90: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-90-l), 1);
+    --b-success-90-invert-l: var(--b-success-15-l);
+    --b-success-90-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-90-invert-l), 1);
+    --b-success-95: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-95-l), 1);
+    --b-success-95-invert-l: var(--b-success-20-l);
+    --b-success-95-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-95-invert-l), 1);
+    --b-success-100: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-100-l), 1);
+    --b-success-100-invert-l: var(--b-success-20-l);
+    --b-success-100-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-100-invert-l), 1);
+    --b-success-invert-l: var(--b-success-10-l);
+    --b-success-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-invert-l), 1);
+    --b-success-light-l: var(--b-success-90-l);
+    --b-success-light: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-light-l), 1);
+    --b-success-light-invert-l: var(--b-success-15-l);
+    --b-success-light-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-light-invert-l), 1);
+    --b-success-dark-l: var(--b-success-10-l);
+    --b-success-dark: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-dark-l), 1);
+    --b-success-dark-invert-l: var(--b-success-55-l);
+    --b-success-dark-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-dark-invert-l), 1);
+    --b-success-soft: hsla(var(--b-success-h), var(--b-success-s), var(--b-soft-l), 1);
+    --b-success-bold: hsla(var(--b-success-h), var(--b-success-s), var(--b-bold-l), 1);
+    --b-success-soft-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-soft-invert-l), 1);
+    --b-success-bold-invert: hsla(var(--b-success-h), var(--b-success-s), var(--b-bold-invert-l), 1);
+    --b-success-on-scheme-l: 23%;
+    --b-success-on-scheme: hsla(var(--b-success-h), var(--b-success-s), var(--b-success-on-scheme-l), 1);
+    --b-warning: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-l), 1);
+    --b-warning-base: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-l), 1);
+    --b-warning-rgb: 255, 183.09, 15.3;
+    --b-warning-h: 42deg;
+    --b-warning-s: 100%;
+    --b-warning-l: 53%;
+    --b-warning-00-l: 0%;
+    --b-warning-05-l: 3%;
+    --b-warning-10-l: 8%;
+    --b-warning-15-l: 13%;
+    --b-warning-20-l: 18%;
+    --b-warning-25-l: 23%;
+    --b-warning-30-l: 28%;
+    --b-warning-35-l: 33%;
+    --b-warning-40-l: 38%;
+    --b-warning-45-l: 43%;
+    --b-warning-50-l: 48%;
+    --b-warning-55-l: 53%;
+    --b-warning-60-l: 58%;
+    --b-warning-65-l: 63%;
+    --b-warning-70-l: 68%;
+    --b-warning-75-l: 73%;
+    --b-warning-80-l: 78%;
+    --b-warning-85-l: 83%;
+    --b-warning-90-l: 88%;
+    --b-warning-95-l: 93%;
+    --b-warning-100-l: 98%;
+    --b-warning-00: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-00-l), 1);
+    --b-warning-00-invert-l: var(--b-warning-40-l);
+    --b-warning-00-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-00-invert-l), 1);
+    --b-warning-05: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-05-l), 1);
+    --b-warning-05-invert-l: var(--b-warning-45-l);
+    --b-warning-05-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-05-invert-l), 1);
+    --b-warning-10: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-10-l), 1);
+    --b-warning-10-invert-l: var(--b-warning-50-l);
+    --b-warning-10-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-10-invert-l), 1);
+    --b-warning-15: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-15-l), 1);
+    --b-warning-15-invert-l: var(--b-warning-70-l);
+    --b-warning-15-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-15-invert-l), 1);
+    --b-warning-20: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-20-l), 1);
+    --b-warning-20-invert-l: var(--b-warning-100-l);
+    --b-warning-20-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-20-invert-l), 1);
+    --b-warning-25: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-25-l), 1);
+    --b-warning-25-invert-l: var(--b-warning-100-l);
+    --b-warning-25-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-25-invert-l), 1);
+    --b-warning-30: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-30-l), 1);
+    --b-warning-30-invert-l: var(--b-warning-100-l);
+    --b-warning-30-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-30-invert-l), 1);
+    --b-warning-35: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-35-l), 1);
+    --b-warning-35-invert-l: var(--b-warning-100-l);
+    --b-warning-35-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-35-invert-l), 1);
+    --b-warning-40: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-40-l), 1);
+    --b-warning-40-invert-l: var(--b-warning-00-l);
+    --b-warning-40-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-40-invert-l), 1);
+    --b-warning-45: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-45-l), 1);
+    --b-warning-45-invert-l: var(--b-warning-05-l);
+    --b-warning-45-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-45-invert-l), 1);
+    --b-warning-50: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-50-l), 1);
+    --b-warning-50-invert-l: var(--b-warning-10-l);
+    --b-warning-50-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-50-invert-l), 1);
+    --b-warning-55: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-55-l), 1);
+    --b-warning-55-invert-l: var(--b-warning-10-l);
+    --b-warning-55-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-55-invert-l), 1);
+    --b-warning-60: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-60-l), 1);
+    --b-warning-60-invert-l: var(--b-warning-10-l);
+    --b-warning-60-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-60-invert-l), 1);
+    --b-warning-65: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-65-l), 1);
+    --b-warning-65-invert-l: var(--b-warning-10-l);
+    --b-warning-65-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-65-invert-l), 1);
+    --b-warning-70: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-70-l), 1);
+    --b-warning-70-invert-l: var(--b-warning-15-l);
+    --b-warning-70-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-70-invert-l), 1);
+    --b-warning-75: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-75-l), 1);
+    --b-warning-75-invert-l: var(--b-warning-15-l);
+    --b-warning-75-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-75-invert-l), 1);
+    --b-warning-80: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-80-l), 1);
+    --b-warning-80-invert-l: var(--b-warning-15-l);
+    --b-warning-80-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-80-invert-l), 1);
+    --b-warning-85: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-85-l), 1);
+    --b-warning-85-invert-l: var(--b-warning-15-l);
+    --b-warning-85-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-85-invert-l), 1);
+    --b-warning-90: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-90-l), 1);
+    --b-warning-90-invert-l: var(--b-warning-15-l);
+    --b-warning-90-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-90-invert-l), 1);
+    --b-warning-95: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-95-l), 1);
+    --b-warning-95-invert-l: var(--b-warning-15-l);
+    --b-warning-95-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-95-invert-l), 1);
+    --b-warning-100: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-100-l), 1);
+    --b-warning-100-invert-l: var(--b-warning-20-l);
+    --b-warning-100-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-100-invert-l), 1);
+    --b-warning-invert-l: var(--b-warning-10-l);
+    --b-warning-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-invert-l), 1);
+    --b-warning-light-l: var(--b-warning-90-l);
+    --b-warning-light: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-light-l), 1);
+    --b-warning-light-invert-l: var(--b-warning-15-l);
+    --b-warning-light-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-light-invert-l), 1);
+    --b-warning-dark-l: var(--b-warning-10-l);
+    --b-warning-dark: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-dark-l), 1);
+    --b-warning-dark-invert-l: var(--b-warning-50-l);
+    --b-warning-dark-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-dark-invert-l), 1);
+    --b-warning-soft: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-soft-l), 1);
+    --b-warning-bold: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-bold-l), 1);
+    --b-warning-soft-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-soft-invert-l), 1);
+    --b-warning-bold-invert: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-bold-invert-l), 1);
+    --b-warning-on-scheme-l: 23%;
+    --b-warning-on-scheme: hsla(var(--b-warning-h), var(--b-warning-s), var(--b-warning-on-scheme-l), 1);
+    --b-danger: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-l), 1);
+    --b-danger-base: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-l), 1);
+    --b-danger-rgb: 255, 102, 132.6;
+    --b-danger-h: 348deg;
+    --b-danger-s: 100%;
+    --b-danger-l: 70%;
+    --b-danger-00-l: 0%;
+    --b-danger-05-l: 5%;
+    --b-danger-10-l: 10%;
+    --b-danger-15-l: 15%;
+    --b-danger-20-l: 20%;
+    --b-danger-25-l: 25%;
+    --b-danger-30-l: 30%;
+    --b-danger-35-l: 35%;
+    --b-danger-40-l: 40%;
+    --b-danger-45-l: 45%;
+    --b-danger-50-l: 50%;
+    --b-danger-55-l: 55%;
+    --b-danger-60-l: 60%;
+    --b-danger-65-l: 65%;
+    --b-danger-70-l: 70%;
+    --b-danger-75-l: 75%;
+    --b-danger-80-l: 80%;
+    --b-danger-85-l: 85%;
+    --b-danger-90-l: 90%;
+    --b-danger-95-l: 95%;
+    --b-danger-100-l: 100%;
+    --b-danger-00: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-00-l), 1);
+    --b-danger-00-invert-l: var(--b-danger-65-l);
+    --b-danger-00-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-00-invert-l), 1);
+    --b-danger-05: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-05-l), 1);
+    --b-danger-05-invert-l: var(--b-danger-70-l);
+    --b-danger-05-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-05-invert-l), 1);
+    --b-danger-10: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-10-l), 1);
+    --b-danger-10-invert-l: var(--b-danger-75-l);
+    --b-danger-10-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-10-invert-l), 1);
+    --b-danger-15: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-15-l), 1);
+    --b-danger-15-invert-l: var(--b-danger-80-l);
+    --b-danger-15-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-15-invert-l), 1);
+    --b-danger-20: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-20-l), 1);
+    --b-danger-20-invert-l: var(--b-danger-85-l);
+    --b-danger-20-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-20-invert-l), 1);
+    --b-danger-25: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-25-l), 1);
+    --b-danger-25-invert-l: var(--b-danger-90-l);
+    --b-danger-25-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-25-invert-l), 1);
+    --b-danger-30: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-30-l), 1);
+    --b-danger-30-invert-l: var(--b-danger-100-l);
+    --b-danger-30-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-30-invert-l), 1);
+    --b-danger-35: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-35-l), 1);
+    --b-danger-35-invert-l: var(--b-danger-100-l);
+    --b-danger-35-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-35-invert-l), 1);
+    --b-danger-40: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-40-l), 1);
+    --b-danger-40-invert-l: var(--b-danger-100-l);
+    --b-danger-40-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-40-invert-l), 1);
+    --b-danger-45: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-45-l), 1);
+    --b-danger-45-invert-l: var(--b-danger-100-l);
+    --b-danger-45-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-45-invert-l), 1);
+    --b-danger-50: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-50-l), 1);
+    --b-danger-50-invert-l: var(--b-danger-100-l);
+    --b-danger-50-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-50-invert-l), 1);
+    --b-danger-55: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-55-l), 1);
+    --b-danger-55-invert-l: var(--b-danger-100-l);
+    --b-danger-55-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-55-invert-l), 1);
+    --b-danger-60: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-60-l), 1);
+    --b-danger-60-invert-l: var(--b-danger-100-l);
+    --b-danger-60-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-60-invert-l), 1);
+    --b-danger-65: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-65-l), 1);
+    --b-danger-65-invert-l: var(--b-danger-00-l);
+    --b-danger-65-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-65-invert-l), 1);
+    --b-danger-70: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-70-l), 1);
+    --b-danger-70-invert-l: var(--b-danger-05-l);
+    --b-danger-70-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-70-invert-l), 1);
+    --b-danger-75: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-75-l), 1);
+    --b-danger-75-invert-l: var(--b-danger-10-l);
+    --b-danger-75-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-75-invert-l), 1);
+    --b-danger-80: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-80-l), 1);
+    --b-danger-80-invert-l: var(--b-danger-15-l);
+    --b-danger-80-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-80-invert-l), 1);
+    --b-danger-85: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-85-l), 1);
+    --b-danger-85-invert-l: var(--b-danger-20-l);
+    --b-danger-85-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-85-invert-l), 1);
+    --b-danger-90: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-90-l), 1);
+    --b-danger-90-invert-l: var(--b-danger-25-l);
+    --b-danger-90-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-90-invert-l), 1);
+    --b-danger-95: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-95-l), 1);
+    --b-danger-95-invert-l: var(--b-danger-25-l);
+    --b-danger-95-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-95-invert-l), 1);
+    --b-danger-100: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-100-l), 1);
+    --b-danger-100-invert-l: var(--b-danger-30-l);
+    --b-danger-100-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-100-invert-l), 1);
+    --b-danger-invert-l: var(--b-danger-05-l);
+    --b-danger-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-invert-l), 1);
+    --b-danger-light-l: var(--b-danger-90-l);
+    --b-danger-light: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-light-l), 1);
+    --b-danger-light-invert-l: var(--b-danger-25-l);
+    --b-danger-light-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-light-invert-l), 1);
+    --b-danger-dark-l: var(--b-danger-10-l);
+    --b-danger-dark: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-dark-l), 1);
+    --b-danger-dark-invert-l: var(--b-danger-75-l);
+    --b-danger-dark-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-dark-invert-l), 1);
+    --b-danger-soft: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-soft-l), 1);
+    --b-danger-bold: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-bold-l), 1);
+    --b-danger-soft-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-soft-invert-l), 1);
+    --b-danger-bold-invert: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-bold-invert-l), 1);
+    --b-danger-on-scheme-l: 40%;
+    --b-danger-on-scheme: hsla(var(--b-danger-h), var(--b-danger-s), var(--b-danger-on-scheme-l), 1);
+    --b-black-bis: hsl(221, 14%, 9%);
+    --b-black-ter: hsl(221, 14%, 14%);
+    --b-grey-darker: hsl(221, 14%, 21%);
     --b-grey-dark: hsl(108, 6%, 34%);
     --b-grey: hsl(0, 0%, 71%);
     --b-grey-light: hsl(0, 0%, 96%);
+    --b-grey-lighter: hsl(221, 14%, 86%);
+    --b-white-ter: hsl(221, 14%, 96%);
+    --b-white-bis: hsl(221, 14%, 98%);
     --b-shadow-h: 221deg;
     --b-shadow-s: 14%;
     --b-shadow-l: 4%;
@@ -2445,50 +4990,7 @@ button.b-has-text-info:active {
     --b-size-4: 1.5rem;
     --b-size-5: 1.25rem;
     --b-size-6: 1rem;
-  }
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --b-white-on-scheme-l: 100%;
-    --b-white-on-scheme: hsla(var(--b-white-h), var(--b-white-s), var(--b-white-on-scheme-l), 1);
-    --b-black-on-scheme-l: -51%;
-    --b-black-on-scheme: hsla(var(--b-black-h), var(--b-black-s), var(--b-black-on-scheme-l), 1);
-    --b-light-on-scheme-l: 96%;
-    --b-light-on-scheme: hsla(var(--b-light-h), var(--b-light-s), var(--b-light-on-scheme-l), 1);
-    --b-dark-on-scheme-l: 54%;
-    --b-dark-on-scheme: hsla(var(--b-dark-h), var(--b-dark-s), var(--b-dark-on-scheme-l), 1);
-    --b-text-on-scheme-l: 54%;
-    --b-text-on-scheme: hsla(var(--b-text-h), var(--b-text-s), var(--b-text-on-scheme-l), 1);
-    --b-primary-on-scheme-l: 63%;
-    --b-primary-on-scheme: hsla(var(--b-primary-h), var(--b-primary-s), var(--b-primary-on-scheme-l), 1);
-    --b-link-on-scheme-l: 73%;
-    --b-link-on-scheme: hsla(var(--b-link-h), var(--b-link-s), var(--b-link-on-scheme-l), 1);
-    --b-info-on-scheme-l: 39%;
-    --b-info-on-scheme: hsla(var(--b-info-h), var(--b-info-s), var(--b-info-on-scheme-l), 1);
-    --b-scheme-brightness: dark;
-    --b-scheme-main-l: 9%;
-    --b-scheme-main-bis-l: 11%;
-    --b-scheme-main-ter-l: 13%;
-    --b-soft-l: 20%;
-    --b-bold-l: 90%;
-    --b-soft-invert-l: 90%;
-    --b-bold-invert-l: 20%;
-    --b-background-l: 14%;
-    --b-border-weak-l: 21%;
-    --b-border-l: 24%;
-    --b-text-weak-l: 53%;
-    --b-text-l: 71%;
-    --b-text-strong-l: 93%;
-    --b-text-title-l: 100%;
-    --b-hover-background-l-delta: 5%;
-    --b-active-background-l-delta: 10%;
-    --b-hover-border-l-delta: 10%;
-    --b-active-border-l-delta: 20%;
-    --b-hover-color-l-delta: 5%;
-    --b-active-color-l-delta: 10%;
-    --b-shadow-h: 0deg;
-    --b-shadow-s: 0%;
-    --b-shadow-l: 100%;
+    --b-size-7: 0.75rem;
   }
 }
 
