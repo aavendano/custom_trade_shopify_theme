@@ -298,11 +298,7 @@ table th {
     opacity: 0.5;
   }
 }
-<<<<<<< HEAD
 .b-navbar-link:not(.b-is-arrowless)::after, .b-select:not(.b-is-multiple):not(.b-is-loading)::after {
-=======
-.b-select:not(.b-is-multiple):not(.b-is-loading)::after {
->>>>>>> master
   border: 0.125em solid var(--b-arrow-color);
   border-right: 0;
   border-top: 0;
@@ -320,23 +316,15 @@ table th {
   width: 0.625em;
 }
 
-<<<<<<< HEAD
 .b-media:not(:last-child), .b-level:not(:last-child), .b-fixed-grid:not(:last-child), .b-grid:not(:last-child), .b-tabs:not(:last-child), .b-pagination:not(:last-child), .b-message:not(:last-child), .b-card:not(:last-child), .b-breadcrumb:not(:last-child), .b-field:not(:last-child), .b-file:not(:last-child), .b-title:not(:last-child),
-=======
-.b-media:not(:last-child), .b-level:not(:last-child), .b-fixed-grid:not(:last-child), .b-grid:not(:last-child), .b-card:not(:last-child), .b-field:not(:last-child), .b-file:not(:last-child), .b-title:not(:last-child),
->>>>>>> master
 .b-subtitle:not(:last-child), .b-tags:not(:last-child), .b-table:not(:last-child), .b-table-container:not(:last-child), .b-progress:not(:last-child), .b-notification:not(:last-child), .b-content:not(:last-child), .b-buttons:not(:last-child), .b-box:not(:last-child), .b-block:not(:last-child), .b-skeleton-block:not(:last-child) {
   margin-bottom: var(--b-block-spacing);
 }
 
-<<<<<<< HEAD
 .b-pagination-previous,
 .b-pagination-next,
 .b-pagination-link,
 .b-pagination-ellipsis, .b-file-cta,
-=======
-.b-file-cta,
->>>>>>> master
 .b-file-name, .b-select select, .b-input, .b-textarea, .b-button {
   align-items: center;
   appearance: none;
@@ -359,7 +347,6 @@ table th {
   transition-property: background-color, border-color, box-shadow, color;
   vertical-align: top;
 }
-<<<<<<< HEAD
 .b-pagination-previous:focus,
 .b-pagination-next:focus,
 .b-pagination-link:focus,
@@ -395,24 +382,10 @@ table th {
 fieldset[disabled] .b-pagination-next,
 fieldset[disabled] .b-pagination-link,
 fieldset[disabled] .b-pagination-ellipsis, fieldset[disabled] .b-file-cta,
-=======
-.b-file-cta:focus,
-.b-file-name:focus, .b-select select:focus, .b-input:focus, .b-textarea:focus, .b-button:focus, .b-file-cta:focus-visible,
-.b-file-name:focus-visible, .b-select select:focus-visible, .b-input:focus-visible, .b-textarea:focus-visible, .b-button:focus-visible, .b-file-cta:focus-within,
-.b-file-name:focus-within, .b-select select:focus-within, .b-input:focus-within, .b-textarea:focus-within, .b-button:focus-within, .b-is-focused.b-file-cta,
-.b-is-focused.b-file-name, .b-select select.b-is-focused, .b-is-focused.b-input, .b-is-focused.b-textarea, .b-is-focused.b-button, .b-file-cta:active,
-.b-file-name:active, .b-select select:active, .b-input:active, .b-textarea:active, .b-button:active, .b-is-active.b-file-cta,
-.b-is-active.b-file-name, .b-select select.b-is-active, .b-is-active.b-input, .b-is-active.b-textarea, .b-is-active.b-button {
-  outline: none;
-}
-[disabled].b-file-cta,
-[disabled].b-file-name, .b-select select[disabled], [disabled].b-input, [disabled].b-textarea, [disabled].b-button, fieldset[disabled] .b-file-cta,
->>>>>>> master
 fieldset[disabled] .b-file-name, fieldset[disabled] .b-select select, .b-select fieldset[disabled] select, fieldset[disabled] .b-input, fieldset[disabled] .b-textarea, fieldset[disabled] .b-button {
   cursor: not-allowed;
 }
 
-<<<<<<< HEAD
 .b-modal-close {
   --b-delete-dimensions: 1.25rem;
   --b-delete-background-l: 0%;
@@ -472,8 +445,6 @@ fieldset[disabled] .b-file-name, fieldset[disabled] .b-select select, .b-select 
   --b-delete-dimensions: 2rem;
 }
 
-=======
->>>>>>> master
 .b-control.b-is-loading::after, .b-select.b-is-loading::after, .b-button.b-is-loading::after {
   animation: spinAround 500ms infinite linear;
   border: 2px solid var(--b-loading-color);
@@ -495,7 +466,6 @@ fieldset[disabled] .b-file-name, fieldset[disabled] .b-select select, .b-select 
   top: 0;
 }
 
-<<<<<<< HEAD
 .b-navbar-burger, .b-menu-list a,
 .b-menu-list button,
 .b-menu-list .b-menu-item {
@@ -513,9 +483,6 @@ fieldset[disabled] .b-file-name, fieldset[disabled] .b-select select, .b-select 
 .b-pagination-next,
 .b-pagination-link,
 .b-pagination-ellipsis, .b-breadcrumb, .b-file, .b-button {
-=======
-.b-is-unselectable, .b-file, .b-button {
->>>>>>> master
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -16773,11 +16740,11 @@ b-has-background-danger.is-hoverable:active {
 }
 
 .b-has-text-grey {
-  color: hsl(0, 0%, 71%) !important;
+  color: hsl(0, 0%, 93%) !important;
 }
 
 .b-has-background-grey {
-  background-color: hsl(0, 0%, 71%) !important;
+  background-color: hsl(0, 0%, 93%) !important;
 }
 
 .b-has-text-grey-light {
@@ -19431,6 +19398,71 @@ b-has-background-danger.is-hoverable:active {
   transition-duration: 500ms;
 }
 
+.b-carousel-wrapper {
+  position: relative;
+}
+
+.b-carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 1rem;
+  padding-bottom: 0.25rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  align-items: stretch;
+}
+.b-carousel::-webkit-scrollbar {
+  display: none;
+}
+.b-carousel > .b-carousel-item {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  display: flex;
+  width: 100%;
+  max-width: 75vw;
+}
+.b-carousel > .b-carousel-item .b-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+.b-carousel > .b-carousel-item .b-card .b-card-content {
+  flex-grow: 1;
+}
+
+@media screen and (min-width: 1024px) {
+  .b-carousel {
+    flex-wrap: wrap;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+  .b-carousel > .b-carousel-item {
+    flex: 0 0 calc(25% - 0.75rem);
+    max-width: none;
+    width: auto;
+  }
+}
+.b-carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  cursor: pointer;
+}
+@media screen and (min-width: 1024px) {
+  .b-carousel-nav {
+    display: none;
+  }
+}
+.b-carousel-nav.b-is-left {
+  left: 0.25rem;
+}
+.b-carousel-nav.b-is-right {
+  right: 0.25rem;
+}
+
 /* Bulma Themes */
 :root {
   --b-scheme-h: 221;
@@ -20280,7 +20312,7 @@ b-has-background-danger.is-hoverable:active {
   --b-black-ter: hsl(221, 14%, 14%);
   --b-grey-darker: hsl(221, 14%, 21%);
   --b-grey-dark: hsl(108, 6%, 34%);
-  --b-grey: hsl(0, 0%, 71%);
+  --b-grey: hsl(0, 0%, 93%);
   --b-grey-light: hsl(0, 0%, 96%);
   --b-grey-lighter: hsl(221, 14%, 86%);
   --b-white-ter: hsl(221, 14%, 96%);
@@ -21179,7 +21211,7 @@ b-has-background-danger.is-hoverable:active {
     --b-black-ter: hsl(221, 14%, 14%);
     --b-grey-darker: hsl(221, 14%, 21%);
     --b-grey-dark: hsl(108, 6%, 34%);
-    --b-grey: hsl(0, 0%, 71%);
+    --b-grey: hsl(0, 0%, 93%);
     --b-grey-light: hsl(0, 0%, 96%);
     --b-grey-lighter: hsl(221, 14%, 86%);
     --b-white-ter: hsl(221, 14%, 96%);
@@ -22045,7 +22077,7 @@ b-has-background-danger.is-hoverable:active {
   --b-black-ter: hsl(221, 14%, 14%);
   --b-grey-darker: hsl(221, 14%, 21%);
   --b-grey-dark: hsl(108, 6%, 34%);
-  --b-grey: hsl(0, 0%, 71%);
+  --b-grey: hsl(0, 0%, 93%);
   --b-grey-light: hsl(0, 0%, 96%);
   --b-grey-lighter: hsl(221, 14%, 86%);
   --b-white-ter: hsl(221, 14%, 96%);
