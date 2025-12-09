@@ -3955,10 +3955,65 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
   };
   var module_default4 = src_default4;
 
+  // src/bulma/scripts/custom/carousel.js
+  function carousel_default(Alpine2) {
+    Alpine2.data("bCarousel", (options = {}) => ({
+      // Estado
+      current: 0,
+      total: 0,
+      // Opciones (con defaults)
+      loop: options.loop ?? true,
+      init() {
+        this.total = this.$refs.track ? this.$refs.track.querySelectorAll(".b-carousel-item").length : 0;
+        this.$nextTick(() => {
+          this.total = this.$refs.track ? this.$refs.track.querySelectorAll(".b-carousel-item").length : 0;
+        });
+      },
+      next() {
+        if (this.total === 0) return;
+        if (this.current < this.total - 1) {
+          this.current++;
+        } else if (this.loop) {
+          this.current = 0;
+        }
+        this.scrollToCurrent();
+      },
+      prev() {
+        if (this.total === 0) return;
+        if (this.current > 0) {
+          this.current--;
+        } else if (this.loop) {
+          this.current = this.total - 1;
+        }
+        this.scrollToCurrent();
+      },
+      goTo(index) {
+        if (index < 0 || index >= this.total) return;
+        this.current = index;
+        this.scrollToCurrent();
+      },
+      scrollToCurrent() {
+        const items = this.$refs.track.querySelectorAll(".b-carousel-item");
+        const el = items[this.current];
+        if (el) {
+          el.scrollIntoView({
+            behavior: "smooth",
+            inline: "start",
+            block: "nearest"
+          });
+        }
+      },
+      isActive(index) {
+        return this.current === index;
+      }
+    }));
+  }
+
   // src/alpine-bundle.js
   module_default.plugin(module_default2);
   module_default.plugin(module_default3);
   module_default.plugin(module_default4);
+  module_default.plugin(carousel_default);
   module_default.data("priceRange", () => ({
     min: 0,
     max: 0,
