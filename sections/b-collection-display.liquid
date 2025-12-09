@@ -41,7 +41,7 @@
                   </header>
                   {% if block.settings.article.image %}
                     <div class="b-card-image">
-                      <figure class="b-image">
+                      <figure class="b-image b-is-square">
                         {{
                           block.settings.article.image
                           | image_url: height: 800, pad_color: 'ffffff'
@@ -86,7 +86,7 @@
                   </header>
                   {% if block.settings.collection.featured_image %}
                     <div class="b-card-image">
-                      <figure class="b-image">
+                      <figure class="b-image b-is-square">
                         {{
                           block.settings.collection.featured_image
                           | image_url: height: 800, pad_color: 'ffffff'
@@ -156,7 +156,7 @@
                             {% for product in block.settings.product_list %}
                               <div class="b-cell b-has-background-white b-has-radius-small">
                                 <a href="{{ product.url }}">
-                                  <figure class="b-image b-is-3by4">
+                                  <figure class="b-image b-is-square">
                                     {{
                                       product.featured_image
                                       | image_url: height: 300, pad_color: 'ffffff'
@@ -227,14 +227,14 @@
                                   <figure class="b-image b-is-3by4">
                                     {{
                                       collection.image
-                                      | image_url: height: 300, pad_color: 'ffffff'
+                                      | image_url: height: 140, pad_color: 'ffffff'
                                       | image_tag:
-                                        widths: '50, 100,150, 200, 250, 300, 350, 400, 450, 500, 550, 600',
+                                        widths: '50, 80, 100, 120, 140, 160, 180, 200, 250, 300, 350, 400, 450, 500, 550, 600',
                                         preload: block.settings.priority
                                     }}
                                   </figure>
                                   <p class="b-is-6 b-px-1 b-has-text-left b-is-ghost">
-                                    {{ collection.title | replace: 'Sex Toys', '' }}
+                                    {{ collection.title | replace: 'Sex Toys', '' | truncatewords: 2, '' }}
                                   </p>
                                 </a>
                               </div>

@@ -9,6 +9,80 @@
  */
 {
   "sections": {
+    "b_collection_display_xMHagV": {
+      "type": "b-collection-display",
+      "blocks": {
+        "collections_VdTWji": {
+          "type": "collections",
+          "settings": {
+            "collections_card_title": "Best Sex Toys",
+            "main_collection": "best-sex-toys",
+            "collection_list": [
+              "sex-toys-for-women",
+              "sex-toys-for-men",
+              "sex-toys-for-couples",
+              "sexy-lingerie"
+            ],
+            "priority": true,
+            "cta_text": "Shop Collections",
+            "cta_url": ""
+          }
+        },
+        "collections_TptBMU": {
+          "type": "collections",
+          "settings": {
+            "collections_card_title": "For Her",
+            "main_collection": "sex-toys-for-women",
+            "collection_list": [
+              "clitoral-stimulators",
+              "magic-wand-vibrators",
+              "g-spot-stimulation",
+              "dildos-dongs"
+            ],
+            "priority": true,
+            "cta_text": "For Her",
+            "cta_url": ""
+          }
+        },
+        "collections_a3gRPB": {
+          "type": "collections",
+          "settings": {
+            "collections_card_title": "For Him",
+            "main_collection": "sex-toys-for-men",
+            "collection_list": [
+              "male-masturbators-strokers",
+              "prostate-massage",
+              "penis-ring-cock-ring-sex-toys-for-men",
+              "pump"
+            ],
+            "priority": true,
+            "cta_text": "For Him",
+            "cta_url": ""
+          }
+        },
+        "collection_DW4VTR": {
+          "type": "collection",
+          "settings": {
+            "collection": "sex-toys-for-couples",
+            "priority": true,
+            "show_description": true,
+            "truncatewords": 19,
+            "cta_text": "Couple's Collection",
+            "cta_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "collections_VdTWji",
+        "collections_TptBMU",
+        "collections_a3gRPB",
+        "collection_DW4VTR"
+      ],
+      "name": "Bulma Collection Display",
+      "settings": {
+        "collection_id": ""
+      }
+    },
     "multicolumn_2x2_rMUj4F": {
       "type": "multicolumn-2x2",
       "blocks": {
@@ -908,6 +982,7 @@
     }
   },
   "order": [
+    "b_collection_display_xMHagV",
     "multicolumn_2x2_rMUj4F",
     "aa_banner_html_copy_NQ8MV9",
     "multicolumn_2x2_KapmK6",
