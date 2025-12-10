@@ -8,7 +8,7 @@
     "prepurgecss": "node src/purge/extract-b-safelist.js",
     "purgecss": "npx postcss assets/a-bulma-full.css -o assets/a-bulma-purged.css --config src --no-map",
     "build:alpine": "esbuild src/alpine-bundle.js --bundle --outfile=assets/alpine-bundle.js",
-    "start": "npm run build-bulma -- --watch",
+    "start": "npm run build:bulma -- --watch",
     "build": "npm run build:bulma && npm run prepurgecss && npm run purgecss && npm run build:alpine"
   },
   "repository": {

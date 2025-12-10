@@ -19,6 +19,10 @@ export default function (Alpine) {
                     ? this.$refs.track.querySelectorAll('.b-carousel-item').length
                     : 0;
             });
+
+            if (this.total < 2) {
+                this.loop = false;
+            }
         },
 
         next() {
