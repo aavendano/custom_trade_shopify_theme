@@ -1,0 +1,91 @@
+.b-navbar {
+    position: relative;
+    width: 100%;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+
+    &__inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+    }
+
+    &__logo a {
+        font-size: 1.25rem;
+        font-weight: 700;
+    }
+
+    &__links {
+        display: flex;
+        gap: 1.5rem;
+        list-style: none;
+    }
+
+    &__link {
+        cursor: pointer;
+        padding: 0.5rem 0;
+        font-weight: 500;
+    }
+}
+
+/* MEGA MENU */
+
+.b-mega {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 2rem 1.5rem;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+
+    &__content {
+        display: flex;
+        gap: 3rem;
+    }
+
+    &__title {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* MOBILE RESPONSIVE */
+
+.b-hide-mobile {
+    display: flex;
+
+    @media (max-width: 768px) {
+        display: none;
+    }
+}
+
+.b-hide-desktop {
+    display: none;
+
+    @media (max-width: 768px) {
+        display: block;
+    }
+}
+
+/* DRAWER */
+
+.b-drawer__overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.b-drawer__panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 100vh;
+    background: #fff;
+    padding: 1rem;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.1);
+}

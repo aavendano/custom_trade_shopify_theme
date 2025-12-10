@@ -1,0 +1,24 @@
+.b-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem 1rem;
+    border-radius: 0.4rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+
+    // colors
+    background: #4c3aff; // placeholder, luego lo movemos a tokens
+    color: white;
+
+    // hover
+    &:hover {
+        filter: brightness(1.1);
+    }
+
+    // active
+    &:active {
+        transform: scale(0.97);
+    }
+}

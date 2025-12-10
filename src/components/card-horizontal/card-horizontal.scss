@@ -1,0 +1,21 @@
+.b-card.b-is-horizontal {
+  display: flex;
+  flex-direction: column;
+  
+  @media (min-width: 768px) {
+    flex-direction: row;
+    
+    .b-card-image {
+      width: 300px;
+      height: auto;
+      
+      .b-image {
+        height: 100%;
+        img {
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+}
