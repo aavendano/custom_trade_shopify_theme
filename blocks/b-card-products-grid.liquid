@@ -1,0 +1,114 @@
+{% liquid
+  assign card_title = ''
+  assign cta_url = ''
+  assign cta_text = ''
+
+  if block.settings.collection != blank
+    assign card_title = block.settings.collection.title
+    assign cta_url = block.settings.collection.url
+  endif
+  if block.settings.cta_url
+    assign cta_url = block.settings.cta_url
+  endif
+  if block.settings.cta_text != blank
+    assign cta_text = block.settings.cta_text
+  endif
+  if block.settings.products_card_title != blank
+    assign card_title = block.settings.products_card_title
+  endif
+%}
+
+<div class="b-card b-has-background-primary-25" {{ block.shopify_attributes }}>
+  <header class="b-card-header">
+    <p class="b-card-header-title b-is-capitalized b-title b-is-5 b-has-text-white">
+      {{ card_title }}
+    </p>
+  </header>
+  <div class="b-card-content b-p-2">
+    <div class="b-content">
+      {% if block.settings.product_list %}
+        <div class="b-fixed-grid">
+          <div class="b-grid">
+            {% for product in block.settings.product_list %}
+              <div class="b-cell b-has-background-white b-has-radius-small">
+                <a href="{{ product.url }}">
+                  <figure class="b-image b-is-square">
+                    {{
+                      product.featured_image
+                      | image_url: width: 300
+                      | image_tag:
+                        widths: '50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600',
+                        loading: 'lazy',
+                        preload: block.settings.priority
+                    }}
+                  </figure>
+                  <p class="b-subtitle b-is-6 b-px-2 b-has-text-link-40 b-has-text-weight-bold b-has-text-right">
+                    {{ product.price | money }}
+                  </p>
+                </a>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  <footer class="b-card-footer">
+    <a
+      href="{{ cta_url }}"
+      class="b-card-footer-item b-button b-is-primary b-is-size-5 b-is-capitalized"
+    >
+      {{ cta_text }}
+    </a>
+  </footer>
+</div>
+
+{% schema %}
+{
+  "name": "b-card-products-grid",
+  "settings": [
+    {
+      "type": "product_list",
+      "id": "product_list",
+      "label": "Products",
+      "info": "Select products to display in the grid"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection",
+      "info": "Used for default CTA URL and title if not overridden"
+    },
+    {
+      "type": "text",
+      "id": "products_card_title",
+      "label": "Card Title",
+      "info": "Override the collection title"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Text",
+      "default": "View All"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA URL",
+      "info": "Override the collection URL"
+    },
+    {
+      "type": "checkbox",
+      "id": "priority",
+      "label": "Preload image",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "b-card-products-grid",
+      "category": "b-Blocks"
+    }
+  ]
+}
+{% endschema %}

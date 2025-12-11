@@ -1,0 +1,96 @@
+{% liquid
+  assign card_title = ''
+  assign cta_url = ''
+  assign cta_text = ''
+
+  if block.settings.main_collection != blank
+    assign card_title = block.settings.main_collection.title
+    assign cta_url = block.settings.main_collection.url
+  endif
+  if block.settings.cta_url
+    assign cta_url = block.settings.cta_url
+  endif
+  if block.settings.cta_text != blank
+    assign cta_text = block.settings.cta_text
+  endif
+  if block.settings.collections_card_title != blank
+    assign card_title = block.settings.collections_card_title
+  endif
+%}
+<div class="b-card b-has-background-primary-25" {{ block.shopify_attributes }}>
+  <header class="b-card-header">
+    <p class="b-card-header-title b-is-capitalized b-title b-is-5 b-has-text-white">
+      {{ card_title }}
+    </p>
+  </header>
+  <div class="b-card-content b-p-2">
+    <div class="b-content">
+      {% if block.blocks.size > 0 %}
+        <div class="b-fixed-grid">
+          <div class="b-grid">
+            {% for child_block in block.blocks %}
+              {{ child_block.render }}
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  <footer class="b-card-footer">
+    <a
+      href="{{ cta_url }}"
+      class="b-card-footer-item b-button b-is-primary b-is-size-5 b-is-capitalized"
+    >
+      {{ cta_text }}
+    </a>
+  </footer>
+</div>
+
+{% schema %}
+{
+  "name": "b-card-collections-grid",
+  "blocks": [
+    {
+      "type": "b-collection-mini"
+    }
+  ],
+  "settings": [
+    {
+      "type": "collection",
+      "id": "main_collection",
+      "label": "Main Collection",
+      "info": "Used for default CTA URL and title if not overridden"
+    },
+    {
+      "type": "text",
+      "id": "collections_card_title",
+      "label": "Card Title",
+      "info": "Override the main collection title"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Text",
+      "default": "View All"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA URL",
+      "info": "Override the main collection URL"
+    },
+    {
+      "type": "checkbox",
+      "id": "priority",
+      "label": "Preload image",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "b-card-collections-grid",
+      "category": "b-Blocks"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,54 @@
+<div class="b-card-display-item">
+  {% comment %}
+    This block is rendered by the b-carousel wrapper or the parent section.
+  {% endcomment %}
+</div>
+
+{% schema %}
+{
+  "name": "Products Card",
+  "settings": [
+    {
+      "type": "text",
+      "id": "products_card_title",
+      "label": "Card title",
+      "info": "Leave empty to use collection title"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection (for title/URL)",
+      "info": "Optional - used for title and default URL"
+    },
+    {
+      "type": "product_list",
+      "id": "product_list",
+      "label": "Products",
+      "limit": 12
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA URL",
+      "info": "Leave empty to use collection URL"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA button text",
+      "default": "View All"
+    },
+    {
+      "type": "checkbox",
+      "id": "priority",
+      "label": "Preload images",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Products Card"
+    }
+  ]
+}
+{% endschema %}
