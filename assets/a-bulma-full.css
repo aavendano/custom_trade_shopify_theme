@@ -19463,6 +19463,37 @@ b-has-background-danger.is-hoverable:active {
   right: 0.25rem;
 }
 
+.b-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+@media screen and (min-width: 1024px) {
+  .b-carousel-dots {
+    display: none;
+  }
+}
+
+.b-carousel-dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  border: 2px solid hsl(0, 0%, 60%);
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+.b-carousel-dot:hover {
+  border-color: hsl(0, 0%, 40%);
+  transform: scale(1.2);
+}
+.b-carousel-dot.is-active {
+  background-color: hsl(346, 89%, 61%);
+  border-color: hsl(346, 89%, 61%);
+}
+
 /* Bulma Themes */
 :root {
   --b-scheme-h: 221;

@@ -3968,6 +3968,9 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
         this.$nextTick(() => {
           this.total = this.$refs.track ? this.$refs.track.querySelectorAll(".b-carousel-item").length : 0;
         });
+        if (this.total < 2) {
+          this.loop = false;
+        }
       },
       next() {
         if (this.total === 0) return;

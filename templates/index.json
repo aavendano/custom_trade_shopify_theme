@@ -9,79 +9,62 @@
  */
 {
   "sections": {
-    "b_collection_display_xMHagV": {
+    "b_card_display_yMqRec": {
       "type": "b-card-display",
       "blocks": {
-        "collections_VdTWji": {
-          "type": "collections",
+        "b_carousel_G3JjNB": {
+          "type": "b-carousel",
+          "name": "b-carousel",
           "settings": {
-            "collections_card_title": "Best Sex Toys",
-            "main_collection": "best-sex-toys",
-            "collection_list": [
-              "sex-toys-for-women",
-              "sex-toys-for-men",
-              "sex-toys-for-couples",
-              "sexy-lingerie"
-            ],
-            "priority": true,
-            "cta_text": "Shop Collections",
-            "cta_url": ""
-          }
+            "autoplay_speed": 5,
+            "show_arrows": true,
+            "show_dots": true
+          },
+          "blocks": {
+            "b_card_article_BMrhfk": {
+              "type": "b-card-article",
+              "name": "b-Card Article",
+              "settings": {
+                "article": "sexual-wellness/holiday-sex-toys-warming-lubes",
+                "priority": false
+              },
+              "blocks": {}
+            },
+            "b_card_article_K7ginR": {
+              "type": "b-card-article",
+              "name": "b-Card Article",
+              "settings": {
+                "article": "playful-connect/new-year-solo-sex-toys-resolutions",
+                "priority": false
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "b_card_article_BMrhfk",
+            "b_card_article_K7ginR"
+          ]
         },
-        "collections_TptBMU": {
-          "type": "collections",
+        "b_card_collection_CrCygh": {
+          "type": "b-card-collection",
+          "name": "b-Card Collection",
           "settings": {
-            "collections_card_title": "For Her",
-            "main_collection": "sex-toys-for-women",
-            "collection_list": [
-              "clitoral-stimulators",
-              "magic-wand-vibrators",
-              "g-spot-stimulation",
-              "dildos-dongs"
-            ],
-            "priority": true,
-            "cta_text": "For Her",
+            "collection": "",
+            "priority": false,
+            "show_description": false,
+            "truncatewords": 20,
+            "cta_text": "View Collection",
             "cta_url": ""
-          }
-        },
-        "collections_a3gRPB": {
-          "type": "collections",
-          "settings": {
-            "collections_card_title": "For Him",
-            "main_collection": "sex-toys-for-men",
-            "collection_list": [
-              "male-masturbators-strokers",
-              "prostate-massage",
-              "penis-ring-cock-ring-sex-toys-for-men",
-              "pump"
-            ],
-            "priority": true,
-            "cta_text": "For Him",
-            "cta_url": ""
-          }
-        },
-        "collection_DW4VTR": {
-          "type": "collection",
-          "settings": {
-            "collection": "sex-toys-for-couples",
-            "priority": true,
-            "show_description": true,
-            "truncatewords": 19,
-            "cta_text": "Couple's Collection",
-            "cta_url": ""
-          }
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "collections_VdTWji",
-        "collections_TptBMU",
-        "collections_a3gRPB",
-        "collection_DW4VTR"
+        "b_carousel_G3JjNB",
+        "b_card_collection_CrCygh"
       ],
-      "name": "Bulma Collection Display",
-      "settings": {
-        "collection_id": ""
-      }
+      "name": "b-card Display",
+      "settings": {}
     },
     "multicolumn_2x2_rMUj4F": {
       "type": "multicolumn-2x2",
@@ -90,18 +73,9 @@
           "type": "column",
           "name": "Col Sex Toys For Women",
           "settings": {
-            "article": "",
-            "cloudinary_id": "",
-            "cloudinary_id_2": "",
-            "cloudinary_id_3": "",
-            "cloudinary_id_4": "",
+            "image_source": "shopify",
             "image": "shopify://shop_images/satisfyer-pro-2-classic-blossom-playlovetoys-197615_cwunx6_miafqn.png",
-            "image_2": "shopify://shop_images/lelo-lelo-gigi-2-playlovetoys-782550_xs2sd6_e_background_removal_e_dropshadow_azimuth_220_elevation_60_spread_20_b_rgb_FFFFFF_f_png_lxcbbh.png",
-            "image_3": "shopify://shop_images/JE205PR_k8n86v_s85eds.png",
-            "image_4": "shopify://shop_images/JE601FS_vmijzy_vgamcs.png",
-            "image_gap": 16,
-            "image_margin": 0,
-            "image_padding": 16,
+            "cloudinary_src": "",
             "title": "Adult Toys for Women",
             "text": "",
             "link_label": "",
@@ -111,15 +85,9 @@
         "column_YWGbkU": {
           "type": "column",
           "settings": {
-            "article": "",
-            "cloudinary_id": "",
-            "cloudinary_id_2": "",
-            "cloudinary_id_3": "",
-            "cloudinary_id_4": "",
+            "image_source": "shopify",
             "image": "shopify://shop_images/18608_w5s0wl_c_crop_ar_1_1_ftjr9e.jpg",
-            "image_gap": 16,
-            "image_margin": 0,
-            "image_padding": 16,
+            "cloudinary_src": "",
             "title": "Adult Toys For Couples",
             "text": "",
             "link_label": "",
@@ -130,48 +98,20 @@
           "type": "column",
           "name": "Col Sex Toys for men",
           "settings": {
-            "article": "",
-            "cloudinary_id": "",
-            "cloudinary_id_2": "",
-            "cloudinary_id_3": "",
-            "cloudinary_id_4": "",
+            "image_source": "shopify",
             "image": "shopify://shop_images/Tenga_Flip_Hole_Male_Mastubator_vs2keg.png",
-            "image_2": "shopify://shop_images/Dorcel_Hydro_Pump_Penis_Pump_apoa9t.png",
-            "image_3": "shopify://shop_images/Power_Cock_Ring_-_Satisfyer_igtqai.png",
-            "image_4": "shopify://shop_images/kiiroo-feel-britney-stroker-keon-combo-set-playlovetoys-596758_1_jsnfku_pwk0yn.png",
-            "image_gap": 16,
-            "image_margin": 0,
-            "image_padding": 16,
+            "cloudinary_src": "",
             "title": "Adult Toys For Men",
             "text": "",
             "link_label": "",
             "link": "shopify://collections/sex-toys-for-men"
-          }
-        },
-        "column_P8WrLm": {
-          "type": "column",
-          "settings": {
-            "article": "",
-            "cloudinary_id": "",
-            "cloudinary_id_2": "",
-            "cloudinary_id_3": "",
-            "cloudinary_id_4": "",
-            "image": "shopify://shop_images/why-play-love-with-sex-toys-656370.png",
-            "image_gap": 16,
-            "image_margin": 0,
-            "image_padding": 16,
-            "title": "Why Play Love With Adult Toys",
-            "text": "{{ block.settings.article.excerpt }}",
-            "link_label": "Continue Reading",
-            "link": "shopify://blogs/sexual-wellness/intimate-toys-and-sex-toys"
           }
         }
       },
       "block_order": [
         "column_Ni4CNE",
         "column_YWGbkU",
-        "column_HdJyF6",
-        "column_P8WrLm"
+        "column_HdJyF6"
       ],
       "custom_css": [],
       "name": "Multicolumn-2x2",
@@ -715,7 +655,7 @@
           "type": "blog_post_display",
           "name": "Blog Post Display",
           "settings": {
-            "article": "sex-toys-artisans/adult-toys-explore-pleasure",
+            "article": "",
             "article_handle": "",
             "show_image": true,
             "show_meta": true,
@@ -786,6 +726,8 @@
     }
   },
   "order": [
+    "b_card_display_yMqRec",
+    "multicolumn_2x2_rMUj4F",
     "aa_banner_html_copy_NQ8MV9",
     "collection_list",
     "featured_collection1",
