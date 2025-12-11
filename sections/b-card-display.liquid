@@ -1,10 +1,16 @@
-<section class="b-section" id="b-card-display-section-{{ section.id }}">
-  <div id="b-card-display-container-{{ section.id }}" class="b-container">
-    {% for child_block in section.blocks %}
-      <div id="b-card-display-block-{{ child_block.id }}" class="b-card-display-block">
-        {% render child_block %}
-      </div>
-    {% endfor %}
+<section class="b-section" id="b-card-display-section-{{ section.id }}" {{ section.shopify_attributes }}>
+  <div
+    id="b-card-display-container-{{ section.id }}"
+    class="b-fixed-grid b-has-4-cols-desktop b-has-2-cols-tablet b-has-1-cols-mobile"
+  >
+    <div id="b-card-display-block-{{ section.id }}" class="b-card-display-block b-grid">
+      {% for child_block in section.blocks %}
+        {% assign grandchildren_count = child_block.blocks.size %}
+        <div class="b-cell {% if grandchildren_count > 0 %} b-is-col-span-{{- grandchildren_count -}}{% endif %} {{ child_block.shopify_attributes }}">
+          {% render child_block %}
+        </div>
+      {% endfor %}
+    </div>
   </div>
 </section>
 
