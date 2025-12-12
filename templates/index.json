@@ -9,101 +9,6 @@
  */
 {
   "sections": {
-    "b_card_display_yMqRec": {
-      "type": "b-card-display",
-      "blocks": {
-        "b_carousel_X4LmXi": {
-          "type": "b-carousel",
-          "name": "b-carousel",
-          "settings": {
-            "autoplay_speed": 5,
-            "show_arrows": true,
-            "show_dots": true
-          },
-          "blocks": {
-            "b_card_collection_ziDFaU": {
-              "type": "b-card-collection",
-              "name": "b-Card Collection",
-              "settings": {
-                "collection": "best-sex-toys",
-                "priority": false,
-                "show_description": false,
-                "truncatewords": 20,
-                "cta_text": "View Collection",
-                "cta_url": ""
-              },
-              "blocks": {}
-            },
-            "b_card_collection_pkFYUH": {
-              "type": "b-card-collection",
-              "name": "b-Card Collection",
-              "settings": {
-                "collection": "accessories",
-                "priority": false,
-                "show_description": true,
-                "truncatewords": 10,
-                "cta_text": "View Collection",
-                "cta_url": ""
-              },
-              "blocks": {}
-            },
-            "b_card_article_Jx3TfL": {
-              "type": "b-card-article",
-              "name": "b-Card Article",
-              "settings": {
-                "article": "sexual-wellness/holiday-sex-toys-warming-lubes",
-                "priority": false
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "b_card_collection_ziDFaU",
-            "b_card_collection_pkFYUH",
-            "b_card_article_Jx3TfL"
-          ]
-        },
-        "b_card_article_mT8i9d": {
-          "type": "b-card-article",
-          "name": "b-Card Article",
-          "settings": {
-            "article": "pleasure-lab/best-sexual-positions",
-            "priority": false
-          },
-          "blocks": {}
-        },
-        "b_card_article_GzBnTH": {
-          "type": "b-card-article",
-          "name": "b-Card Article",
-          "settings": {
-            "article": "pleasure-lab/hotwife-intimate-lifestyle",
-            "priority": false
-          },
-          "blocks": {}
-        },
-        "b_card_collection_CrCygh": {
-          "type": "b-card-collection",
-          "name": "b-Card Collection",
-          "settings": {
-            "collection": "accessories",
-            "priority": false,
-            "show_description": true,
-            "truncatewords": 20,
-            "cta_text": "View Collection",
-            "cta_url": ""
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "b_carousel_X4LmXi",
-        "b_card_article_mT8i9d",
-        "b_card_article_GzBnTH",
-        "b_card_collection_CrCygh"
-      ],
-      "name": "b-card Display",
-      "settings": {}
-    },
     "multicolumn_2x2_rMUj4F": {
       "type": "multicolumn-2x2",
       "blocks": {
@@ -765,7 +670,6 @@
     }
   },
   "order": [
-    "b_card_display_yMqRec",
     "multicolumn_2x2_rMUj4F",
     "aa_banner_html_copy_NQ8MV9",
     "collection_list",

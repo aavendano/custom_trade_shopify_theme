@@ -1,8 +1,7 @@
-  <!--
+<!--  -->
+<div
   class="b-carousel-wrapper"
   x-data="bCarousel({ loop: true, autoplaySpeed: {{ block.settings.autoplay_speed }} })"
--->
-<div
 >
   {% if block.settings.show_arrows %}
     <!-- LEFT -->
@@ -66,9 +65,8 @@
       <div
         class="b-carousel-item"
         x-show="isActive({{ forloop.index0 }})"
-
       >
-          {% render child_block %}
+        {% render child_block %}
       </div>
     {% endfor %}
   </div>

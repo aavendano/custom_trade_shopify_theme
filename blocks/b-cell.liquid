@@ -1,7 +1,7 @@
-    b-is-col-span-3
+{% assign col_span = block.settings.col_span %}
 
-<div class="b-cell">
-   {% content_for 'blocks' %}
+<div class="b-cell {{ col_span }}">
+  {% content_for 'blocks' %}
 </div>
 
 {% schema %}
@@ -12,22 +12,51 @@
       "type": "select",
       "id": "col-span",
       "label": "Column Span",
-      "default": "0",
+      "default": "",
       "options": [
-        { "value": "0", "label": "Auto" },
-        { "value": "1", "label": "1" },
-        { "value": "2", "label": "2" },
-        { "value": "3", "label": "3" },
-        { "value": "4", "label": "4" },
-        { "value": "5", "label": "5" },
-        { "value": "6", "label": "6" },
-        { "value": "7", "label": "7" },
-        { "value": "8", "label": "8" },
-        { "value": "9", "label": "9" },
-        { "value": "10", "label": "10" },
-        { "value": "11", "label": "11" },
-        { "value": "12", "label": "12" }
+        { "value": "", "label": "Auto" },
+        { "value": "b-is-col-span-1", "label": "1" },
+        { "value": "b-is-col-span-2", "label": "2" },
+        { "value": "b-is-col-span-3", "label": "3" },
+        { "value": "b-is-col-span-4", "label": "4" },
+        { "value": "b-is-col-span-5", "label": "5" },
+        { "value": "b-is-col-span-6", "label": "6" },
+        { "value": "b-is-col-span-7", "label": "7" },
+        { "value": "b-is-col-span-8", "label": "8" },
+        { "value": "b-is-col-span-9", "label": "9" },
+        { "value": "b-is-col-span-10", "label": "10" },
+        { "value": "b-is-col-span-11", "label": "11" },
+        { "value": "b-is-col-span-12", "label": "12" }
       ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "@app"
+    },
+    {
+      "type": "b-carousel"
+    },
+    {
+      "type": "b-card-collection"
+    },
+    {
+      "type": "b-card-article"
+    },
+    {
+      "type": "b-card-products-grid"
+    },
+    {
+      "type": "b-card-collections-grid"
+    }
+  ],
+  "presets": [
+    {
+      "name": "b-cell",
+      "category": "b-Layout"
     }
   ]
 }
