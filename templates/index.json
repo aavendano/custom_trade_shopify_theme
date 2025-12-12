@@ -12,7 +12,7 @@
     "b_card_display_yMqRec": {
       "type": "b-card-display",
       "blocks": {
-        "b_carousel_G3JjNB": {
+        "b_carousel_X4LmXi": {
           "type": "b-carousel",
           "name": "b-carousel",
           "settings": {
@@ -21,7 +21,33 @@
             "show_dots": true
           },
           "blocks": {
-            "b_card_article_BMrhfk": {
+            "b_card_collection_ziDFaU": {
+              "type": "b-card-collection",
+              "name": "b-Card Collection",
+              "settings": {
+                "collection": "best-sex-toys",
+                "priority": false,
+                "show_description": false,
+                "truncatewords": 20,
+                "cta_text": "View Collection",
+                "cta_url": ""
+              },
+              "blocks": {}
+            },
+            "b_card_collection_pkFYUH": {
+              "type": "b-card-collection",
+              "name": "b-Card Collection",
+              "settings": {
+                "collection": "accessories",
+                "priority": false,
+                "show_description": true,
+                "truncatewords": 10,
+                "cta_text": "View Collection",
+                "cta_url": ""
+              },
+              "blocks": {}
+            },
+            "b_card_article_Jx3TfL": {
               "type": "b-card-article",
               "name": "b-Card Article",
               "settings": {
@@ -29,29 +55,39 @@
                 "priority": false
               },
               "blocks": {}
-            },
-            "b_card_article_K7ginR": {
-              "type": "b-card-article",
-              "name": "b-Card Article",
-              "settings": {
-                "article": "playful-connect/new-year-solo-sex-toys-resolutions",
-                "priority": false
-              },
-              "blocks": {}
             }
           },
           "block_order": [
-            "b_card_article_BMrhfk",
-            "b_card_article_K7ginR"
+            "b_card_collection_ziDFaU",
+            "b_card_collection_pkFYUH",
+            "b_card_article_Jx3TfL"
           ]
+        },
+        "b_card_article_mT8i9d": {
+          "type": "b-card-article",
+          "name": "b-Card Article",
+          "settings": {
+            "article": "pleasure-lab/best-sexual-positions",
+            "priority": false
+          },
+          "blocks": {}
+        },
+        "b_card_article_GzBnTH": {
+          "type": "b-card-article",
+          "name": "b-Card Article",
+          "settings": {
+            "article": "pleasure-lab/hotwife-intimate-lifestyle",
+            "priority": false
+          },
+          "blocks": {}
         },
         "b_card_collection_CrCygh": {
           "type": "b-card-collection",
           "name": "b-Card Collection",
           "settings": {
-            "collection": "",
+            "collection": "accessories",
             "priority": false,
-            "show_description": false,
+            "show_description": true,
             "truncatewords": 20,
             "cta_text": "View Collection",
             "cta_url": ""
@@ -60,7 +96,9 @@
         }
       },
       "block_order": [
-        "b_carousel_G3JjNB",
+        "b_carousel_X4LmXi",
+        "b_card_article_mT8i9d",
+        "b_card_article_GzBnTH",
         "b_card_collection_CrCygh"
       ],
       "name": "b-card Display",
@@ -117,6 +155,7 @@
       "name": "Multicolumn-2x2",
       "settings": {
         "title": "",
+        "heading_tag": "h2",
         "heading_size": "h1",
         "image_width": "full",
         "image_ratio": "square",

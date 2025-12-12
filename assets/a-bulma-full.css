@@ -19404,6 +19404,7 @@ b-has-background-danger.is-hoverable:active {
 
 .b-carousel {
   display: flex;
+  flex-direction: row;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   gap: 1rem;
@@ -19416,11 +19417,12 @@ b-has-background-danger.is-hoverable:active {
   display: none;
 }
 .b-carousel > .b-carousel-item {
-  flex: 0 0 auto;
+  display: flex;
+  flex: 1 0 auto;
   scroll-snap-align: start;
   display: flex;
   width: 100%;
-  max-width: 75vw;
+  max-width: 85vw;
 }
 .b-carousel > .b-carousel-item .b-card {
   display: flex;
@@ -19439,7 +19441,7 @@ b-has-background-danger.is-hoverable:active {
     scroll-snap-type: none;
   }
   .b-carousel > .b-carousel-item {
-    flex: 0 0 calc(25% - 0.75rem);
+    flex: 1 0 calc(25% - 0.75rem);
     max-width: none;
     width: auto;
   }
@@ -19463,37 +19465,53 @@ b-has-background-danger.is-hoverable:active {
   right: 0.25rem;
 }
 
-.b-carousel-dots {
+/* Horizontal card */
+.b-card-horizontal {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+/* Pestaña vertical */
+.b-header-vertical {
+  writing-mode: vertical-rl;
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
-  margin-top: 1rem;
+  align-items: center;
+  width: auto;
+  padding: 1.5rem 0.5rem;
+  border-bottom: none;
+  border-right: 1px solid #ededed;
+  flex-shrink: 0;
 }
-@media screen and (min-width: 1024px) {
-  .b-carousel-dots {
-    display: none;
+
+/* Rotación del texto */
+.b-header-content-rotate {
+  transform: rotate(180deg);
+}
+
+/* Que el contenido ocupe todo */
+.b-card-horizontal .b-card-content {
+  flex-grow: 1;
+}
+
+/* Responsive recomendado */
+@media screen and (max-width: 768px) {
+  .b-card-horizontal {
+    flex-direction: column;
+  }
+  .b-header-vertical {
+    writing-mode: horizontal-tb;
+    width: 100%;
+    transform: none;
+    padding: 0.75rem 1rem;
+    border-right: none;
+    border-bottom: 1px solid #ededed;
+  }
+  .b-header-content-rotate {
+    transform: none;
   }
 }
-
-.b-carousel-dot {
-  width: 0.75rem;
-  height: 0.75rem;
-  border-radius: 50%;
-  border: 2px solid hsl(0, 0%, 60%);
-  background-color: transparent;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  padding: 0;
-}
-.b-carousel-dot:hover {
-  border-color: hsl(0, 0%, 40%);
-  transform: scale(1.2);
-}
-.b-carousel-dot.is-active {
-  background-color: hsl(346, 89%, 61%);
-  border-color: hsl(346, 89%, 61%);
-}
-
 /* Bulma Themes */
 :root {
   --b-scheme-h: 221;

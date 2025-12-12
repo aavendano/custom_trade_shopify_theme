@@ -1,0 +1,39 @@
+<section class="b-section" id="b-card-display-section-{{ section.id }}" {{ section.shopify_attributes }}>
+  <div id="b-card-display-container-{{ section.id }}" class="b-fixed-grid b-has-4-cols-desktop b-has-2-cols-tablet b-has-1-cols-mobile">
+    <div class="b-grid b-card-display-block" id="b-card-display-block-{{ section.id }}">
+
+
+            {% content_for 'blocks' %}
+
+  </div></div>
+</section>
+{% schema %}
+{
+  "name": "b-grid",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "b-carousel"
+    },
+    {
+      "type": "b-card-collection"
+    },
+    {
+      "type": "b-card-article"
+    },
+    {
+      "type": "b-card-products-grid"
+    },
+    {
+      "type": "b-card-collections-grid"
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "b-grid",
+      "category": "b-Blocks"
+    }
+  ]
+}
+{% endschema %}
