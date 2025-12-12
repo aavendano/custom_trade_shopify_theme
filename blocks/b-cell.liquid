@@ -1,8 +1,10 @@
-{% assign col_span = block.settings.col_span %}
-
-<div class="b-cell {{ col_span }}">
-  {% content_for 'blocks' %}
-</div>
+{% for block in block.blocks -%}
+  {% assign col_span = block.settings.col_span %}
+  <div class="b-cell b-is-col-span-2">
+    {% render block %}
+    {{ col_span }}
+  </div>
+{% endfor %}
 
 {% schema %}
 {
@@ -10,23 +12,14 @@
   "settings": [
     {
       "type": "select",
-      "id": "col-span",
+      "id": "col_span",
       "label": "Column Span",
       "default": "",
       "options": [
         { "value": "", "label": "Auto" },
-        { "value": "b-is-col-span-1", "label": "1" },
         { "value": "b-is-col-span-2", "label": "2" },
         { "value": "b-is-col-span-3", "label": "3" },
-        { "value": "b-is-col-span-4", "label": "4" },
-        { "value": "b-is-col-span-5", "label": "5" },
-        { "value": "b-is-col-span-6", "label": "6" },
-        { "value": "b-is-col-span-7", "label": "7" },
-        { "value": "b-is-col-span-8", "label": "8" },
-        { "value": "b-is-col-span-9", "label": "9" },
-        { "value": "b-is-col-span-10", "label": "10" },
-        { "value": "b-is-col-span-11", "label": "11" },
-        { "value": "b-is-col-span-12", "label": "12" }
+        { "value": "b-is-col-span-4", "label": "4" }
       ]
     }
   ],

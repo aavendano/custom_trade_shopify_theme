@@ -1,49 +1,16 @@
-{%- assign section_size = section.settings.section_size -%}
-
-<section class="b-section {{ section_size }}">
-  {% content_for 'block', type: 'b-header', id: 'header' %}
-  <div
-    class="b-fixed-grid b-has-4-cols-desktop b-has-2-cols-tablet b-has-1-cols-mobile"
-  >
-    <div class="b-grid">
-      {% for block in section.blocks -%}
-        {% if block.type == 'b-cell' %}
-          {% content_for 'block', id: 'id-b-cell', type: 'b-cell' %}
-        {% endif %}
-      {% endfor %}
-    </div>
+<div
+  class="b-fixed-grid b-has-4-cols-desktop b-has-2-cols-tablet b-has-1-cols-mobile"
+>
+  <div class="b-grid">
+    {% content_for 'blocks' %}
   </div>
-</section>
+</div>
 
 {% schema %}
 {
   "name": "Section Grid",
-  "settings": [
-    {
-      "type": "select",
-      "id": "section_size",
-      "label": "Section Size",
-      "options": [
-        {
-          "value": "",
-          "label": "Small"
-        },
-        {
-          "value": "b-is-medium",
-          "label": "Medium"
-        },
-        {
-          "value": "b-is-large",
-          "label": "Large"
-        }
-      ],
-      "default": ""
-    }
-  ],
+  "settings": [],
   "blocks": [
-    {
-      "type": "b-header"
-    },
     {
       "type": "b-cell"
     }
