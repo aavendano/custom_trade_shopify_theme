@@ -1,0 +1,10 @@
+<div class="b-cell b-has-background-white b-has-radius-small" {{ block.shopify_attributes }}>
+  <a href="{{ collection.url }}">
+    <figure class="b-image b-is-1by1">
+      {{ collection.image | image_url: width: 140 | image_tag: widths: '50, 80, 100, 120, 140, 160, 180, 200' }}
+    </figure>
+    <p class="b-is-6 b-px-1 b-has-text-left b-is-ghost b-is-capitalized">
+      {{ title }}
+    </p>
+  </a>
+</div>

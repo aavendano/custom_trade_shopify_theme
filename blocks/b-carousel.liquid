@@ -1,94 +1,77 @@
-<!--  -->
 <div
-  class="b-carousel-wrapper"
-  x-data="bCarousel({ loop: true, autoplaySpeed: {{ block.settings.autoplay_speed }} })"
+  {{ block.shopify_attributes }}
+  class="b-column b-is-3-desktop b-is-6-tablet b-carousel-wrapper"
+  x-data="
+    carousel({
+    intervalTime: 3500,
+    slides: [
+        {title: 'Card Title 1.1',
+        image: 'https://placehold.co/300x225/orange/white'},
+        {title: 'Card Title 2.1', image: 'https://placehold.co/300x225/green/white'},
+        {title: 'Card Title 3.1', image: 'https://placehold.co/300x225/blue/white'}
+    ]})
+  "
+  x-init="$nextTick(() => console.log('Autoplay interval time:' + autoplayIntervalTime)); autoplay();"
+  @touchstart="handleTouchStart($event)"
+  @touchmove="handleTouchMove($event)"
+  @touchend.debounce.3000ms="handleTouchEnd($event)"
 >
-  {% if block.settings.show_arrows %}
-    <!-- LEFT -->
-    <button
-      class="b-carousel-nav b-is-left"
-      type="button"
-      @click="prev()"
-    >
-      <span class="b-icon">
-        <i>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="lucide lucide-step-back"
-          >
-            <path d="M13.971 4.285A2 2 0 0 1 17 6v12a2 2 0 0 1-3.029 1.715l-9.997-5.998a2 2 0 0 1-.003-3.432z"/><path d="M21 20V4"/>
-          </svg>
-        </i>
-      </span>
-    </button>
+  {% for child_block in block.blocks %}
+    {{ child_block.type }}
+  {% endfor %}
 
-    <!-- RIGHT -->
-    <button
-      class="b-carousel-nav b-is-right"
-      type="button"
-      @click="next()"
-    >
-      <span class="b-icon">
-        <i>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="lucide lucide-step-forward"
-          >
-            <path d="M10.029 4.285A2 2 0 0 0 7 6v12a2 2 0 0 0 3.029 1.715l9.997-5.998a2 2 0 0 0 .003-3.432z"/><path d="M3 4v16"/>
-          </svg>
-        </i>
-      </span>
-    </button>
-  {% endif %}
+  {% render 'c-carousel-buttons' %}
 
-  <div
-    class="b-carousel"
-    x-ref="track"
-  >
-    {% for child_block in block.blocks %}
-      <div
-        class="b-carousel-item"
-        x-show="isActive({{ forloop.index0 }})"
-      >
-        {% render child_block %}
+  {% case block.blocks.first.type %}
+    {% when 'b-card-collection' %}
+      <div class="b-column b-is-3-desktop b-is-6-tablet">
+        {% render 'c-card-collection', block: block.blocks.first, main_carousel_slide: true %}
       </div>
-    {% endfor %}
-  </div>
 
-  {% if block.settings.show_dots %}
-    <div class="b-carousel-dots">
-      {% for dot_block in block.blocks %}
-        <button
-          type="button"
-          class="b-carousel-dot"
-          :class="{ 'is-active': isActive({{ forloop.index0 }}) }"
-          @click="goTo({{ forloop.index0 }})"
-        ></button>
-      {% endfor %}
-    </div>
-  {% endif %}
+    {% when 'b-card-article' %}
+      <div class="b-column b-is-3-desktop b-is-6-tablet">
+        {% render 'c-card-article', block: block.blocks.first, main_carousel_slide: true %}
+      </div>
+
+    {% when 'b-card-products-grid' %}
+      <div class="b-column b-is-3-desktop b-is-6-tablet">
+        {% render 'c-card-products-grid', block: block.blocks.first, main_carousel_slide: true %}
+      </div>
+
+    {% when 'b-card-collections-grid' %}
+      <div class="b-column b-is-3-desktop b-is-6-tablet">
+        {% render 'c-card-collections-grid', block: block.blocks.first, main_carousel_slide: true %}
+      </div>
+  {% endcase %}
 </div>
+
+{% for child_block in block.blocks offset: 1 %}
+  {% case child_block.type %}
+    {% when 'b-card-collection' %}
+      <div class="b-column b-is-3-desktop b-is-6-tablet">
+        {% render 'c-card-collection', block: child_block, carousel_slide: true %}
+      </div>
+
+    {% when 'b-card-article' %}
+      <div class="b-column b-is-3-desktop b-is-6-tablet">
+        {% render 'c-card-article', block: child_block, carousel_slide: true %}
+      </div>
+
+    {% when 'b-card-products-grid' %}
+      <div class="b-column b-is-3-desktop b-is-6-tablet">
+        {% render 'c-card-products-grid', block: child_block, carousel_slide: true %}
+      </div>
+
+    {% when 'b-card-collections-grid' %}
+      <div class="b-column b-is-3-desktop b-is-6-tablet">
+        {% render 'c-card-collections-grid', block: child_block, carousel_slide: true %}
+      </div>
+  {% endcase %}
+{% endfor %}
+
 {% schema %}
 {
-  "name": "b-carousel",
-  "tag": "section",
-  "class": "b-carousel-section",
+  "name": "b-Carousel",
   "blocks": [
     {
       "type": "b-card-collection"
@@ -103,35 +86,10 @@
       "type": "b-card-collections-grid"
     }
   ],
-  "settings": [
-    {
-      "type": "range",
-      "id": "autoplay_speed",
-      "min": 0,
-      "max": 10,
-      "step": 1,
-      "unit": "s",
-      "label": "Autoplay speed",
-      "default": 5,
-      "info": "Set to 0 to disable autoplay"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_arrows",
-      "label": "Show navigation arrows",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "show_dots",
-      "label": "Show navigation dots",
-      "default": true
-    }
-  ],
   "presets": [
     {
-      "name": "b-carousel",
-      "category": "b-Blocks"
+      "name": "b-Carousel",
+      "category": "b-blocks"
     }
   ]
 }

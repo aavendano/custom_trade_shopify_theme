@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Carousel</title>
+    <link rel="stylesheet" href="assets/a-bulma-full.css">
+    <link rel="stylesheet" href="assets/a-main-collection-plt.css">
+    <style>
+        /* Mobile-only carousel mode */
+        /* Hide carousel container when disabled */
+        .b-carousel-wrapper.is-carousel-disabled .b-carousel-slide-container {
+            display: none !important;
+        }
+
+        .b-carousel-wrapper.is-carousel-disabled .b-carousel-nav {
+            display: none !important;
+        }
+
+        /* Show original slides when carousel is disabled (desktop) */
+        .b-carousel-wrapper.is-carousel-disabled~.b-carousel-slide {
+            display: block !important;
+        }
+
+        /* Hide original slides when carousel is active (mobile) */
+        .b-carousel-wrapper:not(.is-carousel-disabled)~.b-carousel-slide {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="b-section">
+        <div class="b-container">
+
+            <div class="b-columns b-is-multiline b-is-4">
+                <!-- Card 1 -->
+                <div class="b-column b-is-3-desktop b-is-12-tablet b-carousel-wrapper" x-data="carousel({ 
+                        intervalTime: 3500,
+                        direction: 'right',
+                        mobileOnly: true
+                    })" x-init="initCarousel()" :class="{ 'is-carousel-disabled': !isCarouselActive }"
+                    @mouseenter="pauseWithDelayedResume()" @mouseleave="scheduleResume()"
+                    @touchstart="handleTouchStart($event)" @touchmove="handleTouchMove($event)"
+                    @touchend="handleTouchEnd($event)">
+                    <button class="b-carousel-nav b-is-left b-pl-5" type="button" @click="previous()">
+                        <span class="b-icon">
+                            <i>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="lucide lucide-step-back">
+                                    <path
+                                        d="M13.971 4.285A2 2 0 0 1 17 6v12a2 2 0 0 1-3.029 1.715l-9.997-5.998a2 2 0 0 1-.003-3.432z" />
+                                    <path d="M21 20V4" />
+                                </svg>
+                            </i>
+                        </span>
+                    </button>
+
+                    <!-- RIGHT -->
+                    <button class="b-carousel-nav b-is-right b-pr-5" type="button" @click="next()">
+                        <span class="b-icon">
+                            <i>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="lucide lucide-step-forward">
+                                    <path
+                                        d="M10.029 4.285A2 2 0 0 0 7 6v12a2 2 0 0 0 3.029 1.715l9.997-5.998a2 2 0 0 0 .003-3.432z" />
+                                    <path d="M3 4v16" />
+                                </svg>
+                            </i>
+                        </span>
+                    </button>
+                    <!-- Slide container - content will be swapped here -->
+                    <div class="b-carousel-slide-container" style="overflow: hidden; position: relative;">
+                        <div x-show="showSlide" x-transition:enter="transition ease-out duration-300"
+                            x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                            x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
+                            x-transition:leave-end="opacity-0"
+                            :style="'transform: translateX(' + slideOffset + '%); transition: transform 0.3s ease-out;'"
+                            x-html="currentSlideHtml">
+                            <!-- First slide rendered server-side for better LCP -->
+                            <div class="b-card b-has-background-link-light">
+                                <div class="b-card-image">
+                                    <figure class="b-image b-is-4by3">
+                                        <img src="https://placehold.co/300x225" alt="Placeholder image">
+                                    </figure>
+                                </div>
+                                <div class="b-card-content">
+                                    <p class="b-title b-is-5">Card Title 6</p>
+                                </div>
+                                <footer class="b-card-footer">
+                                    <a href="#" class="b-button b-is-primary">Learn More</a>
+                                </footer>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="b-column b-is-3-desktop b-is-12-tablet   b-is-12-mobile">
+                    <div class="b-card b-has-background-info-light">
+                        <div class="b-card-image">
+                            <figure class="b-image b-is-4by3">
+                                <img src="https://placehold.co/300x225" alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="b-card-content">
+                            <p class="b-title b-is-5">Card Title 2</p>
+                        </div>
+                        <footer class="b-card-footer">
+                            <a href="#" class="b-button b-is-primary">Learn More</a>
+                        </footer>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="b-column b-is-3-desktop b-is-12-tablet   b-is-12-mobile">
+                    <div class="b-card b-has-background-success-light">
+                        <div class="b-card-image">
+                            <figure class="b-image b-is-4by3">
+                                <img src="https://placehold.co/300x225" alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="b-card-content">
+                            <p class="b-title b-is-5">Card Title 3</p>
+                        </div>
+                        <footer class="b-card-footer">
+                            <a href="#" class="b-button b-is-primary">Learn More</a>
+                        </footer>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="b-column b-is-3-desktop b-is-12-tablet   b-is-12-mobile">
+                    <div class="b-card b-has-background-warning-light">
+                        <div class="b-card-image">
+                            <figure class="b-image b-is-4by3">
+                                <img src="https://placehold.co/300x225" alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="b-card-content">
+                            <p class="b-title b-is-5">Card Title 4</p>
+                        </div>
+                        <footer class="b-card-footer">
+                            <a href="#" class="b-button b-is-primary">Learn More</a>
+                        </footer>
+                    </div>
+                </div>
+                <!-- Card 5 -->
+                <div class="b-column b-is-3-desktop b-is-12-tablet   b-is-12-mobile">
+                    <div class="b-card b-has-background-danger-light">
+                        <div class="b-card-image">
+                            <figure class="b-image b-is-4by3">
+                                <img src="https://placehold.co/300x225" alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="b-card-content">
+                            <p class="b-title b-is-5">Card Title 5</p>
+                        </div>
+                        <footer class="b-card-footer">
+                            <a href="#" class="b-button b-is-primary">Learn More</a>
+                        </footer>
+                    </div>
+                </div>
+                <!-- Card 6 -->
+                <div class="b-column b-is-3-desktop b-is-12-tablet b-is-12-mobile b-carousel-slide">
+                    <div class="b-card b-has-background-link-light">
+                        <div class="b-card-image">
+                            <figure class="b-image b-is-4by3">
+                                <img src="https://placehold.co/300x225" alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="b-card-content">
+                            <p class="b-title b-is-5">Card Title 6</p>
+                        </div>
+                        <footer class="b-card-footer">
+                            <a href="#" class="b-button b-is-primary">Learn More</a>
+                        </footer>
+                    </div>
+                </div>
+                <!-- Card 7 -->
+                <div class="b-column b-is-3-desktop b-is-12-tablet b-is-12-mobile b-carousel-slide">
+                    <div class="b-card b-has-background-dark">
+                        <div class="b-card-image">
+                            <figure class="b-image b-is-4by3">
+                                <img src="https://placehold.co/300x225" alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="b-card-content">
+                            <p class="b-title b-is-5">Card Title 7</p>
+                        </div>
+                        <footer class="b-card-footer">
+                            <a href="#" class="b-button b-is-primary">Learn More</a>
+                        </footer>
+                    </div>
+                </div>
+                <!-- Card 8 -->
+                <div class="b-column b-is-3-desktop b-is-12-tablet b-is-12-mobile b-carousel-slide">
+                    <div class="b-card b-has-background-light">
+                        <div class="b-card-image">
+                            <figure class="b-image b-is-4by3">
+                                <img src="https://placehold.co/300x225" alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="b-card-content">
+                            <p class="b-title b-is-5">Card Title 8</p>
+                        </div>
+                        <footer class="b-card-footer">
+                            <a href="#" class="b-button b-is-primary">Learn More</a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('carousel', (carouselData = {
+                intervalTime: 3500,
+                direction: 'right',   // 'left' or 'right'
+                mobileOnly: false,    // If true, carousel only works on mobile
+            }) => ({
+                // Configuration
+                autoplayIntervalTime: carouselData.intervalTime,
+                autoplayDirection: carouselData.direction,
+                mobileOnly: carouselData.mobileOnly,
+                mobileBreakpoint: 1024, // Desktop starts at 1024px
+
+                // State
+                slides: [],
+                slideContainer: null,
+                isCarouselActive: true,
+                resumeDelay: 4000,
+                resumeTimeout: null,
+                isPaused: false,
+                autoplayInterval: null,
+                currentSlideIndex: 0,
+                showSlide: true,
+                slideOffset: 0,
+                slideDirection: 'right',
+                currentSlideHtml: '',
+                touchStartX: null,
+                touchEndX: null,
+                swipeThreshold: 50,
+
+                get currentSlide() {
+                    return this.slides[this.currentSlideIndex] || null;
+                },
+
+                get isMobile() {
+                    return window.innerWidth < this.mobileBreakpoint;
+                },
+
+                initCarousel() {
+                    console.log('Alpine carousel init');
+                    console.log('Config:', {
+                        intervalTime: this.autoplayIntervalTime,
+                        direction: this.autoplayDirection,
+                        mobileOnly: this.mobileOnly
+                    });
+
+                    // Check if carousel should be active
+                    this.checkCarouselActive();
+
+                    // Listen for window resize to toggle carousel on breakpoint change
+                    window.addEventListener('resize', () => this.checkCarouselActive());
+
+                    // Only initialize if carousel is active
+                    if (this.isCarouselActive) {
+                        this.slides = this.getSlides();
+                        console.log('Found', this.slides.length, 'slides');
+
+                        if (this.currentSlide && !this.currentSlideHtml) {
+                            this.currentSlideHtml = this.currentSlide;
+                        }
+
+                        this.autoplay();
+                    }
+                },
+
+                checkCarouselActive() {
+                    const wasActive = this.isCarouselActive;
+
+                    if (this.mobileOnly) {
+                        this.isCarouselActive = this.isMobile;
+                    } else {
+                        this.isCarouselActive = true;
+                    }
+
+                    // Handle state change
+                    if (wasActive !== this.isCarouselActive) {
+                        if (this.isCarouselActive) {
+                            // Carousel just became active
+                            this.slides = this.getSlides();
+                            if (this.currentSlide) {
+                                this.currentSlideHtml = this.currentSlide;
+                            }
+                            this.autoplay();
+                            console.log('Carousel activated (mobile)');
+                        } else {
+                            // Carousel just became inactive
+                            this.pause();
+                            console.log('Carousel deactivated (desktop)');
+                        }
+                    }
+                },
+
+                init() {
+                    // Deprecated - use initCarousel()
+                },
+
+                getSlides() {
+                    // Collect all DOM elements with class b-carousel-slide.
+                    // The first slide is handled separately as it's rendered server-side within the wrapper.
+                    // We only want to collect the additional slides that will be dynamically loaded.
+                    const allSlides = document.querySelectorAll('.b-carousel-slide');
+                    console.log('getSlides() found:', allSlides.length, 'elements');
+                    // Return array of innerHTML from each slide parent
+                    return Array.from(allSlides).map(slide => slide.innerHTML);
+                },
+
+                showCurrentSlide(direction = 'right') {
+                    if (this.currentSlide) {
+                        this.slideDirection = direction;
+                        // Animate out
+                        this.showSlide = false;
+                        this.slideOffset = direction === 'right' ? -100 : 100;
+
+                        // After animation, update content and animate in
+                        setTimeout(() => {
+                            this.currentSlideHtml = this.currentSlide;
+                            this.slideOffset = direction === 'right' ? 100 : -100;
+
+                            // Small delay to allow position reset
+                            setTimeout(() => {
+                                this.showSlide = true;
+                                this.slideOffset = 0;
+                            }, 50);
+                        }, 200);
+
+                        console.log('Showing slide:', this.currentSlideIndex, 'direction:', direction);
+                    }
+                },
+
+                previous() {
+                    if (this.currentSlideIndex > 0) {
+                        this.currentSlideIndex = this.currentSlideIndex - 1
+                    } else {
+                        // If it's the first slide, go to the last slide           
+                        this.currentSlideIndex = this.slides.length - 1
+                    }
+                    this.showCurrentSlide('left');
+                },
+                next() {
+                    if (this.currentSlideIndex < this.slides.length - 1) {
+                        this.currentSlideIndex = this.currentSlideIndex + 1
+                    } else {
+                        // If it's the last slide, go to the first slide    
+                        this.currentSlideIndex = 0
+                    }
+                    this.showCurrentSlide('right');
+                },
+                handleTouchStart(event) {
+                    this.pause();
+                    this.touchStartX = event.touches[0].clientX
+                },
+                handleTouchMove(event) {
+                    this.touchEndX = event.touches[0].clientX
+                },
+                handleTouchEnd() {
+                    if (this.touchEndX) {
+                        if (this.touchStartX - this.touchEndX > this.swipeThreshold) {
+                            this.next()
+                        }
+                        if (this.touchStartX - this.touchEndX < -this.swipeThreshold) {
+                            this.previous()
+                        }
+                        this.touchStartX = null
+                        this.touchEndX = null
+                    }
+                    // Schedule resume after touch ends
+                    this.scheduleResume();
+                },
+
+                autoplay() {
+                    if (!this.isCarouselActive) return;
+
+                    this.autoplayInterval = setInterval(() => {
+                        if (!this.isPaused && this.isCarouselActive) {
+                            // Use configured direction
+                            if (this.autoplayDirection === 'left') {
+                                this.previous();
+                            } else {
+                                this.next();
+                            }
+                        }
+                    }, this.autoplayIntervalTime);
+                    console.log('Autoplay started:', this.autoplayIntervalTime + 'ms, direction:', this.autoplayDirection);
+                },
+                // Updates interval time   
+                setAutoplayIntervalTime(newIntervalTime) {
+                    clearInterval(this.autoplayInterval)
+                    this.autoplayIntervalTime = newIntervalTime
+                    this.autoplay()
+                },
+                pause() {
+                    this.isPaused = true
+                    clearInterval(this.autoplayInterval)
+                    // Clear any pending resume
+                    if (this.resumeTimeout) {
+                        clearTimeout(this.resumeTimeout)
+                        this.resumeTimeout = null
+                    }
+                    console.log('Autoplay paused');
+                },
+                resume() {
+                    this.isPaused = false
+                    this.autoplay()
+                    console.log('Autoplay resumed');
+                },
+                // Pause and schedule resume after delay
+                pauseWithDelayedResume() {
+                    this.pause();
+                    console.log('Paused - will resume in', this.resumeDelay, 'ms');
+                },
+                // Schedule resume after delay (called on mouseleave or touchend)
+                scheduleResume() {
+                    // Clear any existing timeout
+                    if (this.resumeTimeout) {
+                        clearTimeout(this.resumeTimeout)
+                    }
+                    // Schedule resume after delay
+                    this.resumeTimeout = setTimeout(() => {
+                        this.resume();
+                    }, this.resumeDelay);
+                    console.log('Resume scheduled in', this.resumeDelay, 'ms');
+                },
+            }))
+        })
+    </script>
+    <script defer src="assets/alpine-bundle.js"></script>
+</body>
+
+</html>

@@ -25,7 +25,7 @@
     display: none;
   }
 
-  > .#{iv.$class-prefix}carousel-item {
+  >.#{iv.$class-prefix}carousel-item {
     display: flex;
     flex: 1 0 auto;
     scroll-snap-align: start;
@@ -55,7 +55,7 @@
     overflow: visible;
     scroll-snap-type: none;
 
-    > .#{iv.$class-prefix}carousel-item {
+    >.#{iv.$class-prefix}carousel-item {
       // 4 columns: 25% minus gap adjustment
       // gap is 1rem. With 4 items, we have 3 gaps => 3rem total gap.
       // Each item = (100% - 3rem) / 4
@@ -86,4 +86,39 @@
   &.#{iv.$class-prefix}is-right {
     right: 0.25rem;
   }
+}
+
+// ==========================================================
+// Hide duplicate slides (Core Web Vitals - CLS fix)
+// Slides with b-carousel-slide class outside the wrapper should be hidden
+// They are only used as data sources for the carousel
+// ==========================================================
+.#{iv.$class-prefix}carousel-slide:not(.#{iv.$class-prefix}carousel-wrapper .#{iv.$class-prefix}carousel-slide) {
+  display: none !important;
+}
+
+// ==========================================================
+// Mobile-only carousel mode
+// When carousel is disabled (desktop), show slides normally
+// ==========================================================
+.#{iv.$class-prefix}carousel-wrapper.is-carousel-disabled {
+  // Reset carousel wrapper styles
+  position: static;
+
+  // Hide carousel controls
+  .#{iv.$class-prefix}carousel-nav {
+    display: none !important;
+  }
+
+  // Hide the carousel slide container
+  .#{iv.$class-prefix}carousel-slide-container {
+    display: none !important;
+  }
+}
+
+// When carousel is disabled, show original slides
+// This works because when .is-carousel-disabled is present,
+// we need to show the .b-carousel-slide elements that would otherwise be hidden
+.#{iv.$class-prefix}carousel-wrapper.is-carousel-disabled~.#{iv.$class-prefix}carousel-slide {
+  display: block !important;
 }

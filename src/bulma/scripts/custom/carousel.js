@@ -1,77 +1,87 @@
 export default function (Alpine) {
-    Alpine.data('bCarousel', (options = {}) => ({
-        // Estado
-        current: 0,
-        total: 0,
+    Alpine.data('carousel', (data = {
+        slides: [],
+        intervalTime: 0,
+    },) => ({
+        slides: data.slides,
+        autoplayIntervalTime: data.intervalTime,
+        isPaused: false,
+        autoplayInterval: null,
+        currentSlideIndex: 0,
+        touchStartX: null,
+        touchEndX: null,
+        swipeThreshold: 50,
 
-        // Opciones (con defaults)
-        loop: options.loop ?? true,
+        get currentSlide() {
+            return this.slides[this.currentSlideIndex] || {};
+        },
 
         init() {
-            // Contar items al inicio
-            this.total = this.$refs.track
-                ? this.$refs.track.querySelectorAll('.b-carousel-item').length
-                : 0;
-
-            // Recalcular por si se inyectan bloques dinámicos
-            this.$nextTick(() => {
-                this.total = this.$refs.track
-                    ? this.$refs.track.querySelectorAll('.b-carousel-item').length
-                    : 0;
-            });
-
-            if (this.total < 2) {
-                this.loop = false;
-            }
+            console.log('Alpine init');
+            console.log('Current index:', this.currentSlideIndex);
+            console.log('Current slide:', this.currentSlide);
         },
 
+        previous() {
+            if (this.currentSlideIndex > 0) {
+                this.currentSlideIndex = this.currentSlideIndex - 1
+            } else {
+                // If it's the first slide, go to the last slide           
+                this.currentSlideIndex = this.slides.length - 1
+            }
+        },
         next() {
-            if (this.total === 0) return;
-
-            if (this.current < this.total - 1) {
-                this.current++;
-            } else if (this.loop) {
-                this.current = 0;
-            }
-
-            this.scrollToCurrent();
-        },
-
-        prev() {
-            if (this.total === 0) return;
-
-            if (this.current > 0) {
-                this.current--;
-            } else if (this.loop) {
-                this.current = this.total - 1;
-            }
-
-            this.scrollToCurrent();
-        },
-
-        goTo(index) {
-            if (index < 0 || index >= this.total) return;
-            this.current = index;
-            this.scrollToCurrent();
-        },
-
-        scrollToCurrent() {
-            // Todos los items del carrusel
-            const items = this.$refs.track.querySelectorAll('.b-carousel-item');
-            const el = items[this.current];
-
-            if (el) {
-                // Respeta el scroll-snap, no calculamos ancho a mano
-                el.scrollIntoView({
-                    behavior: 'smooth',
-                    inline: 'start',
-                    block: 'nearest'
-                });
+            if (this.currentSlideIndex < this.slides.length - 1) {
+                this.currentSlideIndex = this.currentSlideIndex + 1
+            } else {
+                // If it's the last slide, go to the first slide    
+                this.currentSlideIndex = 0
             }
         },
+        handleTouchStart(event) {
+            this.pause();
+            this.touchStartX = event.touches[0].clientX
+        },
+        handleTouchMove(event) {
+            this.touchEndX = event.touches[0].clientX
+        },
+        handleTouchEnd() {
+            if (this.touchEndX) {
+                if (this.touchStartX - this.touchEndX > this.swipeThreshold) {
+                    this.next()
+                }
+                if (this.touchStartX - this.touchEndX < -this.swipeThreshold) {
+                    this.previous()
+                }
+                this.touchStartX = null
+                this.touchEndX = null
+            }
+            this.resume();
+            console.log('Autoplay resumed');
+        },
 
-        isActive(index) {
-            return this.current === index;
-        }
-    }));
+        autoplay() {
+            this.autoplayInterval = setInterval(() => {
+                if (!this.isPaused) {
+                    this.next()
+                }
+            }, this.autoplayIntervalTime);
+            console.log('Autoplay started with interval time:', this.autoplayIntervalTime)
+        },
+        // Updates interval time   
+        setAutoplayIntervalTime(newIntervalTime) {
+            clearInterval(this.autoplayInterval)
+            this.autoplayIntervalTime = newIntervalTime
+            this.autoplay()
+        },
+        pause() {
+            this.isPaused = true
+            clearInterval(this.autoplayInterval)
+        },
+        resume() {
+            this.isPaused = false
+            this.autoplay()
+        },
+    }))
 }
+

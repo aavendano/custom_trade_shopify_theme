@@ -19465,6 +19465,24 @@ b-has-background-danger.is-hoverable:active {
   right: 0.25rem;
 }
 
+.b-carousel-slide:not(.b-carousel-wrapper .b-carousel-slide) {
+  display: none !important;
+}
+
+.b-carousel-wrapper.is-carousel-disabled {
+  position: static;
+}
+.b-carousel-wrapper.is-carousel-disabled .b-carousel-nav {
+  display: none !important;
+}
+.b-carousel-wrapper.is-carousel-disabled .b-carousel-slide-container {
+  display: none !important;
+}
+
+.b-carousel-wrapper.is-carousel-disabled ~ .b-carousel-slide {
+  display: block !important;
+}
+
 /* Horizontal card */
 .b-card-horizontal {
   display: flex;

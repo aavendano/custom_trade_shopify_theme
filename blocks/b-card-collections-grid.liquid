@@ -1,60 +1,15 @@
-{% liquid
-  assign card_title = ''
-  assign cta_url = ''
-  assign cta_text = ''
-
-  if block.settings.main_collection != blank
-    assign card_title = block.settings.main_collection.title
-    assign cta_url = block.settings.main_collection.url
-  endif
-  if block.settings.cta_url
-    assign cta_url = block.settings.cta_url
-  endif
-  if block.settings.cta_text != blank
-    assign cta_text = block.settings.cta_text
-  endif
-  if block.settings.collections_card_title != blank
-    assign card_title = block.settings.collections_card_title
-  endif
-%}
-<div class="b-card b-has-background-primary-25" {{ block.shopify_attributes }}>
-  <header class="b-card-header">
-    <p class="b-card-header-title b-is-capitalized b-title b-is-5 b-has-text-white">
-      {{ card_title }}
-    </p>
-  </header>
-  <div class="b-card-content b-p-2">
-    <div class="b-content">
-      {% if block.blocks.size > 0 %}
-        <div class="b-fixed-grid">
-          <div class="b-grid">
-            {% for child_block in block.blocks %}
-              {{ child_block.render }}
-            {% endfor %}
-          </div>
-        </div>
-      {% endif %}
-    </div>
-  </div>
-  <footer class="b-card-footer">
-    <a
-      href="{{ cta_url }}"
-      class="b-card-footer-item b-button b-is-primary b-is-size-5 b-is-capitalized"
-    >
-      {{ cta_text }}
-    </a>
-  </footer>
+<div class="b-column b-is-3-desktop b-is-6-tablet" {{ block.shopify_attributes }}>
+  {% render 'c-card-collections-grid', block: block %}
 </div>
-
 {% schema %}
 {
   "name": "b-card-collections-grid",
-  "blocks": [
-    {
-      "type": "b-collection-mini"
-    }
-  ],
+
   "settings": [
+    {
+      "type": "header",
+      "content": "Main Collection"
+    },
     {
       "type": "collection",
       "id": "main_collection",
@@ -68,6 +23,97 @@
       "info": "Override the main collection title"
     },
     {
+      "type": "header",
+      "content": "Image Preload"
+    },
+    {
+      "type": "checkbox",
+      "id": "priority",
+      "label": "Preload image",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Collection for the grid"
+    },
+    {
+      "type": "collection",
+      "id": "collection_1",
+      "label": "Collection 1",
+      "info": "Collection to be displayed in the grid"
+    },
+    {
+      "type": "text",
+      "id": "collection_1_title",
+      "label": "Collection 1 Title",
+      "info": "Title of the collection 1 if not default to collection name"
+    },
+
+    {
+      "type": "collection",
+      "id": "collection_2",
+      "label": "Collection 2",
+      "info": "Collection 2 to be displayed in the grid"
+    },
+    {
+      "type": "text",
+      "id": "collection_2_title",
+      "label": "Collection 2 Title",
+      "info": "Title of the collection 2 if not default to collection name"
+    },
+    {
+      "type": "collection",
+      "id": "collection_3",
+      "label": "Collection 3",
+      "info": "Collection 3 to be displayed in the grid"
+    },
+    {
+      "type": "text",
+      "id": "collection_3_title",
+      "label": "Collection 3 Title",
+      "info": "Title of the collection 3 if not default to collection name"
+    },
+    {
+      "type": "collection",
+      "id": "collection_4",
+      "label": "Collection 4",
+      "info": "Collection 4 to be displayed in the grid"
+    },
+    {
+      "type": "text",
+      "id": "collection_4_title",
+      "label": "Collection 4 Title",
+      "info": "Title of the collection 4 if not default to collection name"
+    },
+    {
+      "type": "collection",
+      "id": "collection_5",
+      "label": "Collection 5",
+      "info": "Collection 5 to be displayed in the grid"
+    },
+    {
+      "type": "text",
+      "id": "collection_5_title",
+      "label": "Collection 5 Title",
+      "info": "Title of the collection 5 if not default to collection name"
+    },
+    {
+      "type": "collection",
+      "id": "collection_6",
+      "label": "Collection 6",
+      "info": "Collection 6 to be displayed in the grid"
+    },
+    {
+      "type": "text",
+      "id": "collection_6_title",
+      "label": "Collection 6 Title",
+      "info": "Title of the collection 6 if not default to collection name"
+    },
+    {
+      "type": "header",
+      "content": "Card Footer"
+    },
+    {
       "type": "text",
       "id": "cta_text",
       "label": "CTA Text",
@@ -78,12 +124,6 @@
       "id": "cta_url",
       "label": "CTA URL",
       "info": "Override the main collection URL"
-    },
-    {
-      "type": "checkbox",
-      "id": "priority",
-      "label": "Preload image",
-      "default": false
     }
   ],
   "presets": [
