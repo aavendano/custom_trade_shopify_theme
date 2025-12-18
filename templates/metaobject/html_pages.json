@@ -113,14 +113,6 @@
         "column_bebXaC": {
           "type": "column",
           "settings": {
-            "article": "",
-            "cloudinary_id": "",
-            "cloudinary_id_2": "",
-            "cloudinary_id_3": "",
-            "cloudinary_id_4": "",
-            "image_gap": 16,
-            "image_margin": 0,
-            "image_padding": 0,
             "title": "Column",
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "link_label": "",
@@ -130,14 +122,6 @@
         "column_bbatYc": {
           "type": "column",
           "settings": {
-            "article": "",
-            "cloudinary_id": "",
-            "cloudinary_id_2": "",
-            "cloudinary_id_3": "",
-            "cloudinary_id_4": "",
-            "image_gap": 16,
-            "image_margin": 0,
-            "image_padding": 0,
             "title": "Column",
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "link_label": "",
@@ -147,14 +131,6 @@
         "column_8JWqic": {
           "type": "column",
           "settings": {
-            "article": "",
-            "cloudinary_id": "",
-            "cloudinary_id_2": "",
-            "cloudinary_id_3": "",
-            "cloudinary_id_4": "",
-            "image_gap": 16,
-            "image_margin": 0,
-            "image_padding": 0,
             "title": "Column",
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "link_label": "",

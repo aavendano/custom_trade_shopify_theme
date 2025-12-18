@@ -3955,8 +3955,8 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
   };
   var module_default4 = src_default4;
 
-  // src/bulma/scripts/custom/carousel_copy.js
-  function carousel_copy_default(Alpine2) {
+  // src/bulma/scripts/custom/carousel.js
+  function carousel_default(Alpine2) {
     Alpine2.data("carousel", (data2 = {
       slides: [],
       intervalTime: 0
@@ -4041,7 +4041,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
   module_default.plugin(module_default2);
   module_default.plugin(module_default3);
   module_default.plugin(module_default4);
-  module_default.plugin(carousel_copy_default);
+  module_default.plugin(carousel_default);
   module_default.data("priceRange", () => ({
     min: 0,
     max: 0,

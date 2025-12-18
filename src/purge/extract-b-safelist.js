@@ -2,10 +2,10 @@
 
 const fs = require("fs");
 const path = require("path");
-const { glob } = require("glob");
+const glob = require("glob");
 
 const OUTPUT_PATH = path.join("src", "purge", "b-safelist.json");
-const LIQUID_GLOBS = ["blocks/**/*.liquid", "sections/**/*.liquid", "snippets/**/*.liquid"];
+const LIQUID_GLOBS = "{blocks,sections,snippets}/**/*.liquid";
 const SCHEMA_REGEX = /{%\s*schema\s*%}\s*([\s\S]*?)\s*{%\s*endschema\s*%}/gi;
 const OPTION_TYPES = new Set(["select", "radio", "button_group", "segmented", "checkbox"]);
 
@@ -62,8 +62,8 @@ function extractFromSettings(setting, collector) {
   collectValue(setting.default, collector);
 }
 
-async function main() {
-  const files = await glob(LIQUID_GLOBS, { nodir: true });
+function main() {
+  const files = glob.sync(LIQUID_GLOBS, { nodir: true });
   const safelist = new Set();
 
   files.forEach((file) => {
@@ -89,7 +89,9 @@ async function main() {
   console.log(`[purge] Extracted ${orderedList.length} safelist classes with prefix 'b-' into ${OUTPUT_PATH}`);
 }
 
-main().catch((error) => {
+try {
+  main();
+} catch (error) {
   console.error(error);
   process.exit(1);
-});
+}
