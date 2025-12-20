@@ -647,6 +647,42 @@
         "padding_bottom": 48
       }
     },
+    "b_section_Yz9JwQ": {
+      "type": "b-section",
+      "blocks": {
+        "breadcrumb_KkxCBM": {
+          "type": "breadcrumb",
+          "name": "Breadcrumb Navigation",
+          "settings": {
+            "home_text": "Home",
+            "show_home_icon": true,
+            "separator_style": "chevron",
+            "font_size": 14,
+            "font_weight": "400",
+            "background_color": "#f4f4f4",
+            "link_color": "#533278",
+            "link_hover_color": "#f4436c",
+            "link_hover_background": "#f4f4f4",
+            "current_color": "#0c7489",
+            "current_background": "#f4f4f4",
+            "separator_color": "#533278",
+            "focus_color": "#f4436c",
+            "padding_top": 16,
+            "padding_bottom": 16,
+            "item_spacing": 8,
+            "border_radius": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "breadcrumb_KkxCBM"
+      ],
+      "name": "B-Section",
+      "settings": {
+        "section_size": ""
+      }
+    },
     "featured_collection_AHDTiU": {
       "type": "featured-collection",
       "name": "Best Adult Toys",
@@ -681,30 +717,6 @@
     "custom_section_KxjEwk": {
       "type": "custom_section",
       "blocks": {
-        "breadcrumb_Cm7wNY": {
-          "type": "breadcrumb",
-          "name": "Breadcrumb Navigation",
-          "settings": {
-            "home_text": "Home",
-            "show_home_icon": true,
-            "separator_style": "chevron",
-            "font_size": 14,
-            "font_weight": "400",
-            "background_color": "#f4f4f4",
-            "link_color": "#533278",
-            "link_hover_color": "#f4436c",
-            "link_hover_background": "#f4f4f4",
-            "current_color": "#0c7489",
-            "current_background": "#f4f4f4",
-            "separator_color": "#533278",
-            "focus_color": "#f4436c",
-            "padding_top": 16,
-            "padding_bottom": 16,
-            "item_spacing": 8,
-            "border_radius": 0
-          },
-          "blocks": {}
-        },
         "blog_post_display_aGBYPj": {
           "type": "blog_post_display",
           "name": "Blog Post Display",
@@ -742,7 +754,6 @@
         }
       },
       "block_order": [
-        "breadcrumb_Cm7wNY",
         "blog_post_display_aGBYPj"
       ],
       "name": "AfterPageContent",
@@ -788,6 +799,7 @@
     "multicolumn",
     "1754498032a8a7e87c",
     "multicolumn2",
+    "b_section_Yz9JwQ",
     "featured_collection_AHDTiU",
     "custom_section_KxjEwk"
   ]

@@ -1,6 +1,23 @@
 <div class="b-column b-is-3-desktop b-is-6-tablet" {{ block.shopify_attributes }}>
   {% render 'c-card-collections-grid', block: block %}
 </div>
+
+<script>
+  if (window.matchMedia('(min-width: 769px)').matches) {
+    const images = document.getElementsByClassName('image-priority-desktop-{{- block.id -}}');
+    Array.from(images).forEach((img) => {
+      img.loading = 'eager';
+      img.fetchPriority = 'high';
+    });
+  } else {
+    const images = document.getElementsByClassName('image-priority-mobile-{{- block.id -}}');
+    Array.from(images).forEach((img) => {
+      img.loading = 'eager';
+      img.fetchPriority = 'high';
+    });
+  }
+</script>
+
 {% schema %}
 {
   "name": "b-card-collections-grid",
@@ -24,14 +41,21 @@
     },
     {
       "type": "header",
-      "content": "Image Preload"
+      "content": "Loading priority"
     },
     {
       "type": "checkbox",
-      "id": "priority",
-      "label": "Preload image",
+      "id": "priority_desktop",
+      "label": "Priority loading desktop",
       "default": false
     },
+    {
+      "type": "checkbox",
+      "id": "priority_mobile",
+      "label": "priority loading mobile",
+      "default": false
+    },
+
     {
       "type": "header",
       "content": "Collection for the grid"

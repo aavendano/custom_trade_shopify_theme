@@ -27,10 +27,10 @@
   <div class="">
     {%- unless section.settings.title == blank -%}
       <div class="b-block">
-        {% assign heading_tag = section.settings.heading_tag %}
+          {% assign heading_tag = section.settings.heading_tag %}
         <{{ heading_tag }} class="b-title {{ section.settings.heading_size }}">
           {{ section.settings.title }}
-        </{{ heading_tag }}>
+        </{{  heading_tag }}>
         {%- if section.settings.button_label != blank and show_mobile_slider -%}
           <a href="{{ section.settings.button_link }}" class="link underlined-link large-up-hide">
             {{- section.settings.button_label | escape -}}
@@ -227,7 +227,7 @@
       "default": "h2",
       "info": "Selecciona el nivel de encabezado"
     },
-    {
+{
       "type": "select",
       "id": "heading_size",
       "options": [
@@ -258,7 +258,8 @@
         {
           "value": "b-is-7",
           "label": "t:sections.all.heading_size.options__7.label"
-        }
+        },
+
       ],
       "default": "b-is-4",
       "label": "t:sections.all.heading_size.label"
