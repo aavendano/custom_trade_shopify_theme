@@ -2434,6 +2434,10 @@ button.b-tag:active {
   flex: none;
   width: 58.3333333333%;
 }
+.b-columns.b-is-mobile > .b-column.b-is-8 {
+  flex: none;
+  width: 66.6666666667%;
+}
 @media screen and (max-width: 768px) {
   .b-column.b-is-half-mobile {
     flex: none;
@@ -2446,6 +2450,10 @@ button.b-tag:active {
   .b-column.b-is-4-mobile {
     flex: none;
     width: 33.3333333333%;
+  }
+  .b-column.b-is-6-mobile {
+    flex: none;
+    width: 50%;
   }
 }
 @media screen and (min-width: 769px), print {
@@ -2485,11 +2493,19 @@ button.b-tag:active {
     flex: none;
     width: 58.3333333333%;
   }
+  .b-column.b-is-8 {
+    flex: none;
+    width: 66.6666666667%;
+  }
 }
 @media screen and (min-width: 1024px) {
   .b-column.b-is-one-quarter-desktop {
     flex: none;
     width: 25%;
+  }
+  .b-column.b-is-1-desktop {
+    flex: none;
+    width: 8.3333333333%;
   }
   .b-column.b-is-3-desktop {
     flex: none;
@@ -2540,6 +2556,11 @@ button.b-tag:active {
 .b-columns.b-is-1 {
   --b-column-gap: 0.25rem;
 }
+@media screen and (min-width: 1024px) {
+  .b-columns.b-is-1-desktop {
+    --b-column-gap: 0.25rem;
+  }
+}
 .b-columns.b-is-2 {
   --b-column-gap: 0.5rem;
 }
@@ -2575,6 +2596,11 @@ button.b-tag:active {
 .b-columns.b-is-6 {
   --b-column-gap: 1.5rem;
 }
+@media screen and (max-width: 768px) {
+  .b-columns.b-is-6-mobile {
+    --b-column-gap: 1.5rem;
+  }
+}
 @media screen and (min-width: 769px), print {
   .b-columns.b-is-6-tablet {
     --b-column-gap: 1.5rem;
@@ -2582,6 +2608,9 @@ button.b-tag:active {
 }
 .b-columns.b-is-7 {
   --b-column-gap: 1.75rem;
+}
+.b-columns.b-is-8 {
+  --b-column-gap: 2rem;
 }
 
 .b-fixed-grid {
