@@ -18,20 +18,15 @@
         <!-- Left column - Image -->
         {% if section.settings.banner_image != blank %}
           <div class="b-column b-is-3">
-            <figure class="b-image b-is-fullwidth b-is-1by1">
-              {{ section.settings.banner_image }}
-
-              {{
-                collection.image
-                | image_url: width: 140
-                | image_tag:
-                  widths: '50, 80, 100, 120, 140, 160, 180, 200',
-                  loading: 'lazy',
-                  fetchpriority: 'low',
-                  preload: false,
-                  class: image_class
-              }}
-            </figure>
+            <div class="b-image b-is-fullwidth">
+              {% render 'twic-picture',
+                image: section.settings.banner_image,
+                ratio: '1',
+                eager: true,
+                focus: 'center',
+                mode: 'contain'
+              %}
+            </div>
           </div>
         {% endif %}
         <!-- Right column - Content -->
@@ -107,8 +102,8 @@
       assign _subtitle_is_gradient = true
     endif
 
-    assign title_solid = section.settings.title_color_solid | default: ''
-    assign subtitle_solid = section.settings.subtitle_color_solid | default: ''
+    assign _title_solid = section.settings.title_color_solid | default: ''
+    assign _subtitle_solid = section.settings.subtitle_color_solid | default: ''
   %}
 
   #banner-title-{{- section.id -}} {
@@ -124,8 +119,8 @@
       color: transparent;
     {% else %}
       /* Optional solid color for title */
-      {% if title_solid != '' %}
-        color: {{ title_solid }};
+      {% if _title_solid != '' %}
+        color: {{ _title_solid }};
       {% else %}
         color: {{ section.settings.text_color }};
       {% endif %}
@@ -144,8 +139,8 @@
       color: transparent;
     {% else %}
       /* Optional solid color for subtitle */
-      {% if subtitle_solid != '' %}
-        color: {{ subtitle_solid }};
+      {% if _subtitle_solid != '' %}
+        color: {{ _subtitle_solid }};
       {% else %}
         color: {{ section.settings.subtitle_color }};
       {% endif %}
