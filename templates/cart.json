@@ -121,7 +121,6 @@
         "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": true,
-        "serve_from_twicpics": true,
         "show_vendor": true,
         "show_rating": false,
         "quick_add": "standard",

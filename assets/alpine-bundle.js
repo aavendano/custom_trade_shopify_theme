@@ -3961,7 +3961,8 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
       slides: [],
       intervalTime: 0
     }) => ({
-      slides: data2.slides,
+      slidesSelector: data2.slides,
+      slides: [],
       autoplayIntervalTime: data2.intervalTime,
       isPaused: false,
       autoplayInterval: null,
@@ -3973,9 +3974,30 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
         return this.slides[this.currentSlideIndex] || {};
       },
       init() {
-        console.log("Alpine init");
-        console.log("Current index:", this.currentSlideIndex);
-        console.log("Current slide:", this.currentSlide);
+        if (typeof this.slidesSelector === "string") {
+          this.slides = Array.from(document.querySelectorAll(this.slidesSelector));
+        } else if (Array.isArray(this.slidesSelector)) {
+          this.slides = this.slidesSelector;
+        }
+        console.log("Carousel init - slides:", this.slides.length);
+        if (this.autoplayIntervalTime > 0) {
+          const observer2 = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              console.log("Carousel visibility:", entry.isIntersecting, "ratio:", entry.intersectionRatio);
+              if (entry.isIntersecting) {
+                if (!this.autoplayInterval) {
+                  console.log("Starting autoplay - carousel visible");
+                  this.isPaused = false;
+                  this.autoplay();
+                }
+              } else {
+                console.log("Pausing autoplay - carousel not visible");
+                this.pause();
+              }
+            });
+          }, { threshold: 0.1 });
+          observer2.observe(this.$el);
+        }
       },
       previous() {
         if (this.currentSlideIndex > 0) {
@@ -3983,12 +4005,20 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
         } else {
           this.currentSlideIndex = this.slides.length - 1;
         }
+        this.scrollToSlide();
       },
       next() {
         if (this.currentSlideIndex < this.slides.length - 1) {
           this.currentSlideIndex = this.currentSlideIndex + 1;
         } else {
           this.currentSlideIndex = 0;
+        }
+        this.scrollToSlide();
+      },
+      scrollToSlide() {
+        const slide = this.slides[this.currentSlideIndex];
+        if (slide) {
+          slide.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
         }
       },
       handleTouchStart(event) {
@@ -4029,6 +4059,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
       pause() {
         this.isPaused = true;
         clearInterval(this.autoplayInterval);
+        this.autoplayInterval = null;
       },
       resume() {
         this.isPaused = false;

@@ -60,7 +60,7 @@
       // gap is 1rem. With 4 items, we have 3 gaps => 3rem total gap.
       // Each item = (100% - 3rem) / 4
       flex: 1 0 calc(25% - 0.75rem);
-      max-width: none;
+      max-width: calc(25% - 0.75rem);
       width: auto;
     }
   }

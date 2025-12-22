@@ -3,7 +3,8 @@ export default function (Alpine) {
         slides: [],
         intervalTime: 0,
     },) => ({
-        slides: data.slides,
+        slidesSelector: data.slides,
+        slides: [],
         autoplayIntervalTime: data.intervalTime,
         isPaused: false,
         autoplayInterval: null,
@@ -17,9 +18,38 @@ export default function (Alpine) {
         },
 
         init() {
-            console.log('Alpine init');
-            console.log('Current index:', this.currentSlideIndex);
-            console.log('Current slide:', this.currentSlide);
+            // Si slidesSelector es un string (selector CSS), hacer querySelectorAll
+            if (typeof this.slidesSelector === 'string') {
+                this.slides = Array.from(document.querySelectorAll(this.slidesSelector));
+            } else if (Array.isArray(this.slidesSelector)) {
+                this.slides = this.slidesSelector;
+            }
+
+            console.log('Carousel init - slides:', this.slides.length);
+
+            // Configurar IntersectionObserver para pausar/reanudar autoplay según visibilidad
+            if (this.autoplayIntervalTime > 0) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        console.log('Carousel visibility:', entry.isIntersecting, 'ratio:', entry.intersectionRatio);
+                        if (entry.isIntersecting) {
+                            // El carousel es visible - iniciar/reanudar autoplay
+                            if (!this.autoplayInterval) {
+                                console.log('Starting autoplay - carousel visible');
+                                this.isPaused = false;
+                                this.autoplay();
+                            }
+                        } else {
+                            // El carousel no es visible - pausar autoplay
+                            console.log('Pausing autoplay - carousel not visible');
+                            this.pause();
+                        }
+                    });
+                }, { threshold: 0.1 }); // 10% visible para activar
+
+                // Observar el elemento del carousel (this.$el es el elemento con x-data)
+                observer.observe(this.$el);
+            }
         },
 
         previous() {
@@ -29,6 +59,7 @@ export default function (Alpine) {
                 // If it's the first slide, go to the last slide           
                 this.currentSlideIndex = this.slides.length - 1
             }
+            this.scrollToSlide();
         },
         next() {
             if (this.currentSlideIndex < this.slides.length - 1) {
@@ -36,6 +67,13 @@ export default function (Alpine) {
             } else {
                 // If it's the last slide, go to the first slide    
                 this.currentSlideIndex = 0
+            }
+            this.scrollToSlide();
+        },
+        scrollToSlide() {
+            const slide = this.slides[this.currentSlideIndex];
+            if (slide) {
+                slide.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
             }
         },
         handleTouchStart(event) {
@@ -77,6 +115,7 @@ export default function (Alpine) {
         pause() {
             this.isPaused = true
             clearInterval(this.autoplayInterval)
+            this.autoplayInterval = null
         },
         resume() {
             this.isPaused = false

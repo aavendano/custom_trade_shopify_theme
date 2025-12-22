@@ -8,147 +8,49 @@
   - extend_height: {Boolean} Card height extends to available container space. Default: false (optional)
   - wrapper_class: {String} Wrapper class for card (optional)
   - placeholder_image: {String} Placeholder image when collection is empty (optional)
-
-  Usage:
-  {% render 'card-collection' %}
 {% endcomment %}
 
-{%- liquid
-  assign ratio = 1
-  if card_collection.featured_image and media_aspect_ratio == 'portrait'
-    assign ratio = 0.8
-  elsif card_collection.featured_image and media_aspect_ratio == 'adapt'
-    assign ratio = card_collection.featured_image.aspect_ratio
-  endif
-  if ratio == 0 or ratio == null
-    assign ratio = 1
-  endif
-  assign card_color_scheme = settings.card_color_scheme
-  assign card_style = settings.card_style
-  assign serve_from_twicpics = serve_from_twicpics | default: false
-  if wrapper_class == null or wrapper_class == 'none'
-    assign card_color_scheme = settings.collection_card_color_scheme
-    assign card_style = settings.collection_card_style
-  endif
--%}
-
-<div class="card-wrapper animate-arrow {% if wrapper_class and wrapper_class != 'none' %}{{ wrapper_class }}{% else %}collection-card-wrapper{% endif %}">
-  <div
-    class="
-      card
-      card--{{ card_style }}
-      {% if card_collection.featured_image %} card--media{% else %} card--text{% endif %}
-      {% if card_style == 'card' %} color-{{ card_color_scheme }} gradient{% endif %}
-      {% if extend_height %} card--extend-height{% endif %}
-      {% if card_collection.featured_image == nil and card_style == 'card' %} ratio{% endif %}
-    "
-    style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
-  >
-    <div
-      class="card__inner {% if card_style == 'standard' %}color-{{ card_color_scheme }} gradient{% endif %}{% if card_collection.featured_image or card_style == 'standard' %} ratio{% endif %}"
-      style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
-    >
-      {%- if card_collection.featured_image -%}
-        <div class="card__media">
-          <div class="media media--transparent media--hover-effect">
-            {% render 'twicpics-image',
-              eager: false,
-              focus: 'auto',
-              image: card_collection.featured_image,
-              class: 'motion-reduce',
-              transform: 'background=remove+white-smoke/refit-cover=1:1(15p)/output=webp'
-            %}
-          </div>
-        </div>
-      {%- endif -%}
-      {%- if card_collection == blank -%}
-        <div class="card__media">
-          {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
-        </div>
+<div class="b-card b-has-background-link" style="height: 100%;">
+  <div class="b-card-header b-has-background-link-dark">
+    <div class="b-card-header-title">
+      {%- if card_collection.title != blank -%}
+        <a href="{{ card_collection.url }}" class="b-is-ghost">
+          <span class="b-title b-is-5 b-has-text-white b-is-capitalized">{{- card_collection.title | escape -}}</span>
+        </a>
       {%- else -%}
-        <div class="card__content">
-          <div class="card__information">
-            <h3 class="card__heading font-oswald">
-              <a
-                {% if card_collection == blank %}
-                  role="link" aria-disabled="true"
-                {% else %}
-                  href="{{ card_collection.url }}"
-                {% endif %}
-                class="full-unstyled-link"
-              >
-                {%- if card_collection.title != blank -%}
-                  {{- card_collection.title | escape -}}
-                {%- else -%}
-                  {{ 'onboarding.collection_title' | t }}
-                {%- endif -%}
-                {%- if card_collection.description == blank -%}
-                  <span class="icon-wrap">
-                    {{- 'icon-arrow.svg' | inline_asset_content -}}
-                  </span>
-                {%- endif %}
-              </a>
-            </h3>
-            {%- if card_collection.description != blank -%}
-              <p class="card__caption">
-                {{- card_collection.description | strip_html | truncatewords: 12 -}}
-                <span class="icon-wrap">
-                  {{- 'icon-arrow.svg' | inline_asset_content -}}
-                </span>
-              </p>
-            {%- endif -%}
-          </div>
-        </div>
+        <span class="b-title b-is-5 b-has-text-white b-is-capitalized">{{ 'onboarding.collection_title' | t }}</span>
       {%- endif -%}
     </div>
-    {%- if card_collection != blank and card_style == 'card' or card_collection.featured_image -%}
-      <div class="card__content">
-        <div class="card__information">
-          <h3 class="card__heading">
-            <a
-              {% if card_collection == blank %}
-                role="link" aria-disabled="true"
-              {% else %}
-                href="{{ card_collection.url }}"
-              {% endif %}
-              class="full-unstyled-link"
-            >
-              {%- if card_collection.title != blank -%}
-                {{- card_collection.title | escape -}}
-              {%- else -%}
-                {{ 'onboarding.collection_title' | t }}
-              {%- endif -%}
-              {%- if card_collection.featured_image or card_collection.description == blank -%}
-                <span class="icon-wrap">
-                  {{- 'icon-arrow.svg' | inline_asset_content -}}
-                </span>
-              {%- endif %}
-            </a>
-          </h3>
-          {%- if card_collection.featured_image == null and card_collection.description != blank -%}
-            <p class="card__caption">
-              {{- card_collection.description | strip_html | truncatewords: 12 -}}
-              <span class="icon-wrap">
-                {{- 'icon-arrow.svg' | inline_asset_content -}}
-              </span>
-            </p>
-          {%- endif -%}
-        </div>
-      </div>
-    {%- endif -%}
-    {%- if card_collection == blank -%}
-      <div class="card__content">
-        <div class="card__information">
-          <h3 class="card__heading card__heading--placeholder">
-            <a role="link" aria-disabled="true" class="full-unstyled-link">
-              {{ 'onboarding.collection_title' | t }}
-              <span class="icon-wrap">
-                {{- 'icon-arrow.svg' | inline_asset_content -}}
-              </span>
-            </a>
-          </h3>
-        </div>
-      </div>
-    {%- endif -%}
   </div>
+  {%- if card_collection.featured_image -%}
+    <div class="b-card-image b-is-1by1">
+      <a href="{{ card_collection.url }}">
+        <figure class="b-image">
+          {{
+            card_collection.featured_image
+            | image_url: width: 350
+            | image_tag:
+              widths: '50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600',
+              loading: 'lazy',
+              preload: false
+          }}
+        </figure>
+      </a>
+    </div>
+  {%- endif -%}
+  <div class="b-card-content">
+    <div class="b-content b-has-text-light">
+      {%- if card_collection.description != blank -%}
+        {{- card_collection.description | strip_html | truncatewords: 18 -}}
+      {%- endif -%}
+    </div>
+  </div>
+  <footer class="b-card-footer">
+    <a
+      href="{{ card_collection.url }}"
+      class="b-card-footer-item b-is-button b-is-link b-is-size-5 b-is-capitalized b-has-text-link-dark"
+    >
+      Visit Collection
+    </a>
+  </footer>
 </div>

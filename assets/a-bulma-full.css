@@ -19442,7 +19442,7 @@ b-has-background-danger.is-hoverable:active {
   }
   .b-carousel > .b-carousel-item {
     flex: 1 0 calc(25% - 0.75rem);
-    max-width: none;
+    max-width: calc(25% - 0.75rem);
     width: auto;
   }
 }
