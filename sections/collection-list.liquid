@@ -1,11 +1,3 @@
-{%- liquid
-  assign columns_mobile_int = section.settings.columns_mobile | plus: 0
-  assign show_mobile_slider = false
-  if section.settings.swipe_on_mobile and section.blocks.size > columns_mobile_int
-    assign show_mobile_slider = true
-  endif
--%}
-
 <section class="b-section" {{ section.shopify_attributes }}>
   {%- unless section.settings.title == blank -%}
     <div class="b-block">
@@ -35,27 +27,14 @@
       {%- endfor -%}
     </div>
   </div>
-  {%- if show_mobile_slider -%}
-    {% render 'c-carousel-buttons' %}
-  {%- endif -%}
 
-  {%- if section.settings.show_view_all and section.blocks.size < collections.size -%}
-    <div
-      class="center collection-list-view-all{% if show_mobile_slider %} small-hide medium-hide{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-      {% if settings.animations_reveal_on_scroll %}
-        data-cascade
-      {% endif %}
-    >
-      <a
-        href="{{ routes.collections_url }}"
-        class="button"
-        id="ViewAllButton-{{ section.id }}"
-        aria-labelledby="ViewAllButton-{{ section.id }} SectionHeading-{{ section.id }}"
-      >
-        {{- 'sections.collection_list.view_all' | t -}}
-      </a>
-    </div>
-  {%- endif -%}
+  {% render 'c-carousel-buttons' %}
+
+  <div class="b-section">
+    <a href="{{ routes.collections_url }}" class="b-button b-is-link b-is-dark b-is-fullwidth b-is-large">
+      Check all collections
+    </a>
+  </div>
 </section>
 {% schema %}
 {
