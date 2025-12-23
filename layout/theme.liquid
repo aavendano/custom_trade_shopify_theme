@@ -13,7 +13,10 @@
     {% render '_global-scripts-defer' %}
 
     {{ content_for_header }}
-    {% render 'storefront-web-components-loader' %}
+    {%- comment -%}
+      Load storefront web components loader
+      {% render 'storefront-web-components-loader' %}
+    {%- endcomment -%}
 
     {%- unless settings.type_header_font.system? and settings.type_body_font.system? -%}
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
@@ -345,13 +348,15 @@
       {{ 'a-bulma-purged.css' | asset_url | stylesheet_tag }}
     {% endif %}
 
-    {{ 'custom-style.css' | asset_url | stylesheet_tag }}
-    {{ 'a-main-collection-plt.css' | asset_url | stylesheet_tag }}
+    {{ 'a-plt-custom-style.css' | asset_url | stylesheet_tag }}
 
     <script src="{{ 'cart-api.js' | asset_url }}" defer></script>
     <script src="{{ 'cart-store.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'cart-fragment.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'alpine-product-card.js' | asset_url }}" defer></script>
+    {% comment %}
+      theme-check-disable AssetPreload
+      <script src="{{ 'alpine-product-card.js' | asset_url }}" defer></script>
+    {% endcomment %}
     <script defer src="{{ 'alpine-bundle.js' | asset_url }}"></script>
 
     {% liquid

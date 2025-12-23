@@ -18,8 +18,8 @@
           "settings": {
             "main_collection": "best-sex-toys",
             "collections_card_title": "",
-            "priority_desktop": false,
-            "priority_mobile": false,
+            "priority_desktop": true,
+            "priority_mobile": true,
             "collection_1": "sex-toys-for-women",
             "collection_1_title": "For Her",
             "collection_2": "sex-toys-for-men",
@@ -43,8 +43,8 @@
           "settings": {
             "main_collection": "sex-toys-for-women",
             "collections_card_title": "",
-            "priority_desktop": false,
-            "priority_mobile": false,
+            "priority_desktop": true,
+            "priority_mobile": true,
             "collection_1": "g-spot-stimulation",
             "collection_1_title": "G-Spot",
             "collection_2": "clitoral-stimulators",
@@ -68,7 +68,7 @@
           "settings": {
             "main_collection": "sex-toys-for-men",
             "collections_card_title": "",
-            "priority_desktop": false,
+            "priority_desktop": true,
             "priority_mobile": false,
             "collection_1": "male-masturbators-strokers",
             "collection_1_title": "Masturbators",
@@ -93,7 +93,7 @@
           "settings": {
             "main_collection": "sex-toys-for-couples",
             "collections_card_title": "",
-            "priority_desktop": false,
+            "priority_desktop": true,
             "priority_mobile": false,
             "collection_1": "erotic-games",
             "collection_1_title": "",
@@ -202,6 +202,18 @@
     "collection_list": {
       "type": "collection-list",
       "blocks": {
+        "featured_collection_8VNLyj": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "oxballs"
+          }
+        },
+        "featured_collection_qmPnCk": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "penis-ring-cock-ring-sex-toys-for-men"
+          }
+        },
         "featured_collection_Eqgtmc": {
           "type": "featured_collection",
           "settings": {
@@ -240,6 +252,8 @@
         }
       },
       "block_order": [
+        "featured_collection_8VNLyj",
+        "featured_collection_qmPnCk",
         "featured_collection_Eqgtmc",
         "featured_collection5",
         "featured_collection1",

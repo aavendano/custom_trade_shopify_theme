@@ -47,7 +47,7 @@
             </a>
           </p>
 
-          <p class="b-is-size-6 b-has-text-grey-dark b-mb-2 b-subtitle">{{ card_product.vendor }}</p>
+          <p class="b-is-size-6 b-has-text-grey-dark-dark b-mb-2 b-subtitle">{{ card_product.vendor }}</p>
 
           {%- if show_rating and card_product.metafields.reviews.rating.value != blank -%}
             {% liquid
@@ -82,7 +82,7 @@
           {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
 
           {%- if card_product.quantity_price_breaks_configured? -%}
-            <div class="b-is-size-6 b-has-text-grey-dark b-mt-2">
+            <div class="b-is-size-6 b-has-text-grey-dark-dark b-mt-2">
               <span>{{ 'products.product.volume_pricing.note' | t }}</span>
             </div>
           {%- endif -%}
@@ -115,7 +115,7 @@
             </a>
           </p>
           {%- if show_vendor -%}
-            <p class="b-is-size-7 b-has-text-grey b-mb-2">{{ 'products.product.vendor' | t }}</p>
+            <p class="b-is-size-7 b-has-text-grey-dark b-mb-2">{{ 'products.product.vendor' | t }}</p>
           {%- endif -%}
           {% render 'price', placeholder: true, show_compare_at_price: true %}
         </div>

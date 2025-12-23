@@ -81,6 +81,8 @@
           "settings": {
             "main_collection": "sex-toys-for-men",
             "collections_card_title": "Male Sex Toys",
+            "priority_desktop": true,
+            "priority_mobile": true,
             "collection_1": "male-masturbators-strokers",
             "collection_1_title": "Masturbators",
             "collection_2": "penis-ring-cock-ring-sex-toys-for-men",
@@ -104,6 +106,8 @@
           "settings": {
             "main_collection": "sex-toys-for-men",
             "collections_card_title": "Collections For Him",
+            "priority_desktop": true,
+            "priority_mobile": true,
             "collection_1": "lubricant",
             "collection_1_title": "",
             "collection_2": "strap-ons",
@@ -160,79 +164,14 @@
       "name": "a-matrix",
       "settings": {}
     },
-    "aa_banner_html_copy_RDz6XU": {
-      "type": "aa-banner-html-copy",
-      "blocks": {
-        "aa_banner_slice_DgAJxE": {
-          "type": "_aa-banner-slice",
-          "name": "aa-banner-slice",
-          "settings": {
-            "slice_image": "shopify://shop_images/Logo-PlayLoveToys-3by2-800x534.png",
-            "slice_background_type": "solid",
-            "slice_bg_solid_color": "#f4f4f4",
-            "slice_gradient_color_1": "#f4f4f4",
-            "slice_gradient_color_2": "#b3b3b3",
-            "slice_gradient_direction": "135deg"
-          },
-          "blocks": {
-            "aa_styled_text_block_mHwKRc": {
-              "type": "_aa-styled-text-block",
-              "name": "aa-styled-text-block",
-              "settings": {
-                "text_content": "Embrace Your Sexual Wellness",
-                "text_htag": "h3",
-                "text_font": "caprasimo_n4",
-                "text_alignment_mobile": "b-has-text-centered-mobile",
-                "text_alignment_tablet": "b-has-text-centered-tablet",
-                "text_alignment_desktop": "",
-                "text_alignment_widescreen": "",
-                "text_alignment_fullhd": "",
-                "text_size_mobile": "b-is-size-2-mobile",
-                "text_size_tablet": "b-is-size-2-tablet",
-                "text_size_desktop": "b-is-size-1-desktop",
-                "text_size_widescreen": "",
-                "text_size_fullhd": "",
-                "text_color_mode": "gradient",
-                "text_color_gradient": "linear-gradient(90deg, rgba(244, 67, 108, 1), rgba(83, 50, 120, 0.73) 82%)",
-                "text_color_solid": "#ffffff"
-              },
-              "blocks": {}
-            },
-            "aa_styled_text_block_bQVmeY": {
-              "type": "_aa-styled-text-block",
-              "name": "aa-styled-text-block",
-              "settings": {
-                "text_content": "We aim to promote a philosophy centred on encouraging the public to prioritize their overall sexual health and happiness. Our dedication is to establish a safe, inclusive, and empowering environment for everyone.",
-                "text_htag": "p",
-                "text_font": "roboto_condensed_n3",
-                "text_alignment_mobile": "b-has-text-centered-mobile",
-                "text_alignment_tablet": "b-has-text-centered-tablet",
-                "text_alignment_desktop": "",
-                "text_alignment_widescreen": "",
-                "text_alignment_fullhd": "",
-                "text_size_mobile": "b-is-size-3-mobile",
-                "text_size_tablet": "b-is-size-3-tablet",
-                "text_size_desktop": "",
-                "text_size_widescreen": "",
-                "text_size_fullhd": "",
-                "text_color_mode": "solid",
-                "text_color_gradient": "linear-gradient(90deg, rgba(12, 116, 137, 1), rgba(78, 205, 196, 1) 100%)",
-                "text_color_solid": "#323841"
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "aa_styled_text_block_mHwKRc",
-            "aa_styled_text_block_bQVmeY"
-          ]
-        }
-      },
-      "block_order": [
-        "aa_banner_slice_DgAJxE"
-      ],
-      "name": "AA-Slideshow-New",
-      "settings": {}
+    "a_logo_motto_tQQ4FN": {
+      "type": "a-logo-motto",
+      "name": "AA Logo Motto",
+      "settings": {
+        "logo": "shopify://shop_images/Logo-PlayLoveToys-3by2-800x534.png",
+        "motto_title": "Embrace Your Sexual Wellness",
+        "motto": "We aim to promote a philosophy centred on encouraging the public to prioritize their overall sexual health and happiness. Our dedication is to establish a safe, inclusive, and empowering environment for everyone."
+      }
     },
     "featured_collection1": {
       "type": "featured-collection",
@@ -408,7 +347,7 @@
   "order": [
     "custom_section_zXm7cT",
     "a_matrix_GryRBr",
-    "aa_banner_html_copy_RDz6XU",
+    "a_logo_motto_tQQ4FN",
     "featured_collection1",
     "custom_section_HmcFRj",
     "featured_collection2",

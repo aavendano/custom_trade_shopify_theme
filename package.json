@@ -7,9 +7,12 @@
     "build:bulma": "sass src/bulma/bulma.scss assets/a-bulma-full.css",
     "prepurgecss": "node src/purge/extract-b-safelist.js",
     "purgecss": "npx postcss assets/a-bulma-full.css -o assets/a-bulma-purged.css --config src --no-map",
+    "prepurgecss:base": "node src/purge/extract-base-safelist.js",
+    "purgecss:base": "npx postcss assets/base.css -o assets/base-purged.css --config src/postcss.config.base.cjs --no-map",
+    "build:base": "npm run prepurgecss:base && npm run purgecss:base",
     "build:alpine": "esbuild src/alpine-bundle.js --bundle --outfile=assets/alpine-bundle.js",
     "start": "npm run build:bulma -- --watch",
-    "build": "npm run build:bulma && npm run prepurgecss && npm run purgecss && npm run build:alpine",
+    "build": "npm run build:bulma && npm run prepurgecss && npm run purgecss && npm run build:alpine && npm run build:base",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
