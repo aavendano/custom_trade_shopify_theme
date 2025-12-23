@@ -11,17 +11,21 @@
   endif
 %}
 
-<div class="b-columns slice-{{ block.id }}" {% if style_attr != '' %}style="{{ style_attr }}"{% endif %} {{ block.shopify_attributes }}>
+<div
+  class="b-columns slice-{{ block.id }}"
+  {% if style_attr != '' %}
+    style="{{ style_attr }}"
+  {% endif %}
+  {{ block.shopify_attributes }}
+>
   {% if block.settings.slice_image != blank %}
     <div class="b-column b-is-3">
       <div class="b-image b-is-fullwidth">
-        {% render 'twic-picture',
-          image: block.settings.slice_image,
-          ratio: '1',
-          eager: true,
-          focus: 'center',
-          mode: 'contain'
-        %}
+        {{
+          block.settings.slice_image
+          | image_url: width: 350, crop: 'center', pad_color: 'white'
+          | image_tag: widths: '200, 300, 400, 500, 600, 700, 800, 1000, 1200, 1400, 1600, 1800, 2000'
+        }}
       </div>
     </div>
   {% endif %}
@@ -55,7 +59,9 @@
         {% if block.settings.slice_cta_type == 'button' %}
           <a
             href="{{ block.settings.slice_cta_url }}"
-            {% if block.settings.slice_cta_new_tab %}target="_blank" rel="noopener"{% endif %}
+            {% if block.settings.slice_cta_new_tab %}
+              target="_blank" rel="noopener"
+            {% endif %}
             class="b-button b-is-large {% if block.settings.slice_cta_style == 'link' %}b-is-link{% else %}b-is-primary{% endif %}"
           >
             <strong>{{ block.settings.slice_cta_text }}</strong>
@@ -63,7 +69,9 @@
         {% else %}
           <a
             href="{{ block.settings.slice_cta_url }}"
-            {% if block.settings.slice_cta_new_tab %}target="_blank" rel="noopener"{% endif %}
+            {% if block.settings.slice_cta_new_tab %}
+              target="_blank" rel="noopener"
+            {% endif %}
             class="b-is-underlined"
           >
             {{ block.settings.slice_cta_text }}

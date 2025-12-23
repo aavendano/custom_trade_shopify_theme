@@ -57,7 +57,6 @@ customer.css
 customer.js
 custom.js
 custom-style.css
-custom-twicpics-images.css
 details-disclosure.js
 details-modal.js
 email-signup-banner-background-mobile.svg
@@ -202,7 +201,5 @@ template-collection.css
 template-giftcard.css
 theme-editor.js
 trineo.svg
-twicpics-bundle.css
-twicpics-bundle.js
 video-section.css
 x_global-script-analytics.js

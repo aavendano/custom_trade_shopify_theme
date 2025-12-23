@@ -86,7 +86,6 @@
           "settings": {
             "main_collection": "best-sex-toys",
             "collections_card_title": "",
-            "priority": true,
             "collection_1": "sex-toys-for-women",
             "collection_1_title": "For Her",
             "collection_2": "sex-toys-for-men",
@@ -110,7 +109,6 @@
           "settings": {
             "main_collection": "sex-toys-for-women",
             "collections_card_title": "",
-            "priority": true,
             "collection_1": "g-spot-stimulation",
             "collection_1_title": "G-Spot",
             "collection_2": "clitoral-stimulators",
@@ -134,7 +132,6 @@
           "settings": {
             "main_collection": "sex-toys-for-men",
             "collections_card_title": "",
-            "priority": true,
             "collection_1": "male-masturbators-strokers",
             "collection_1_title": "Masturbators",
             "collection_2": "prostate-massage",
@@ -158,7 +155,6 @@
           "settings": {
             "main_collection": "sex-toys-for-couples",
             "collections_card_title": "",
-            "priority": true,
             "collection_1": "erotic-games",
             "collection_1_title": "",
             "collection_2": "sexy-handcuffs",
