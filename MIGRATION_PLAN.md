@@ -40,9 +40,11 @@ La migración no será un "Big Bang". Será incremental para mantener la tienda 
 *   **Objetivo:** Establecer el entorno `b-Bulma` como la autoridad de estilos.
 *   **Archivos Afectados:** `layout/theme.liquid`, `src/bulma/bulma.scss`.
 *   **Acciones:**
+    *   Inventario de carga actual: listar exactamente qué CSS/JS se cargan en layout/theme.liquid (y desde apps).
     *   Mover variables críticas de Shopify (colores, fuentes) a variables CSS que Bulma pueda consumir.
     *   Asegurar que `a-bulma-purged.css` incluya reset y helpers básicos.
     *   Eliminar scripts deferidos innecesarios de `theme.liquid`.
+    *   Modo convivencia: durante fases 1–6, todo HTML migrado debe vivir dentro de un wrapper b-scope (o equivalente) para minimizar colisiones con estilos legacy hasta la Fase 7. Evitar depender de tokens de Dawn.
 *   **Criterio de Aceptación:** El theme carga, la tipografía es correcta, no hay errores de consola por falta de variables.
 
 ### 🧭 Fase 2: Navegación Global (Header & Footer)
@@ -63,6 +65,9 @@ La migración no será un "Big Bang". Será incremental para mantener la tienda 
     *   Uso estricto de `image_tag` con `loading: 'lazy'`.
     *   Título, Precio y Botón "Add" (o Quick View) usando clases `b-`.
     *   Reemplazar su uso en `featured-collection.liquid`.
+    *   Definir 2 variantes oficiales de product card:
+        *   c-product-card--vertical (default)
+        *   c-product-card--horizontal-mobile (preferida para mobile; imagen izquierda, texto derecha)
 *   **Prohibido:** Usar Grid CSS complejo; usar columnas de Bulma.
 
 ### 🏠 Fase 4: Homepage & Hero
@@ -77,7 +82,8 @@ La migración no será un "Big Bang". Será incremental para mantener la tienda 
 *   **Objetivo:** La página de conversión.
 *   **Archivos:** `sections/main-product.liquid` → `sections/aa-main-product.liquid`.
 *   **Acciones:**
-    *   Galería de imágenes: **Scroll Snap nativo** (CSS), no sliders JS.
+    *   Cart API contract: usar Shopify Cart AJAX API como fuente de verdad. Alpine Store solo cachea y re-renderiza UI. Todas las mutaciones pasan por endpoints Shopify y luego refrescan estado desde /cart.js.
+    *   Product Gallery: **Scroll Snap nativo** (CSS), no sliders JS.
     *   Selector de variantes: Alpine.js para manejar estado (`x-data="{ selectedVariant: ... }"`).
     *   Add to Cart: AJAX submit con Alpine.
 *   **Riesgo:** Romper la lógica de variantes (cambio de precio/imagen).
@@ -86,6 +92,7 @@ La migración no será un "Big Bang". Será incremental para mantener la tienda 
 *   **Objetivo:** Checkout flow.
 *   **Archivos:** `snippets/cart-drawer.liquid`, `sections/main-cart.liquid`.
 *   **Acciones:**
+    *   Cart API contract: usar Shopify Cart AJAX API como fuente de verdad. Alpine Store solo cachea y re-renderiza UI. Todas las mutaciones pasan por endpoints Shopify y luego refrescan estado desde /cart.js.
     *   Cart Drawer controlado 100% por Alpine Store (`Alpine.store('cart')`).
     *   Actualización en tiempo real sin recarga.
     *   Visualización de "Free Shipping Bar" con `<progress class="b-progress">`.
