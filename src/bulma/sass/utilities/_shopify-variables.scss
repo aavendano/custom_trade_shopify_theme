@@ -1,0 +1,313 @@
+// ============================================================================
+// Shopify Theme Settings Bridge
+// ============================================================================
+// This file bridges Shopify theme customizer settings with Bulma CSS framework.
+// It maps Dawn-style CSS variables to Bulma-compatible custom properties.
+//
+// Purpose:
+// - Preserve merchant theme customizations during migration
+// - Allow runtime theme settings to work with Bulma
+// - Provide fallback values for all critical design tokens
+//
+// Usage:
+// Import this file in bulma.scss BEFORE the Bulma framework imports
+// ============================================================================
+
+@use "sass:map";
+@use "sass:string";
+@use "initial-variables" as iv;
+
+// ============================================================================
+// TYPOGRAPHY VARIABLES
+// ============================================================================
+// These variables bridge Shopify font settings with Bulma typography system.
+// They are set dynamically in theme.liquid via Liquid font filters.
+// ============================================================================
+
+// Font Family Variables
+// These will be populated from Shopify theme settings in theme.liquid
+$shopify-font-body-family: var(--font-body-family, #{iv.$family-sans-serif}) !default;
+$shopify-font-heading-family: var(--font-heading-family, #{iv.$family-sans-serif}) !default;
+
+// Font Weight Variables
+$shopify-font-body-weight: var(--font-body-weight, #{iv.$weight-normal}) !default;
+$shopify-font-body-weight-bold: var(--font-body-weight-bold, #{iv.$weight-bold}) !default;
+$shopify-font-heading-weight: var(--font-heading-weight, #{iv.$weight-bold}) !default;
+
+// Font Scale Variables (Responsive)
+// These control font sizing across different breakpoints
+$shopify-font-scale-mobile: var(--font-scale-mobile, 1) !default;
+$shopify-font-scale-tablet: var(--font-scale-tablet, 1) !default;
+$shopify-font-scale-desktop: var(--font-scale-desktop, 1) !default;
+$shopify-font-scale-widescreen: var(--font-scale-widescreen, 1) !default;
+$shopify-font-scale-fullhd: var(--font-scale-fullhd, 1) !default;
+
+// ============================================================================
+// COLOR SCHEME VARIABLES
+// ============================================================================
+// Shopify allows merchants to define custom color schemes.
+// These variables map to Bulma's color system.
+// ============================================================================
+
+// Background Colors (RGB format for alpha channel support)
+$shopify-color-background: var(--color-background, 255, 255, 255) !default;
+$shopify-color-foreground: var(--color-foreground, 0, 0, 0) !default;
+$shopify-gradient-background: var(--gradient-background, transparent) !default;
+
+// Button Colors
+$shopify-color-button: var(--color-button, 0, 0, 0) !default;
+$shopify-color-button-text: var(--color-button-text, 255, 255, 255) !default;
+$shopify-color-secondary-button: var(--color-secondary-button, 255, 255, 255) !default;
+$shopify-color-secondary-button-text: var(--color-secondary-button-text, 0, 0, 0) !default;
+
+// Link and Badge Colors
+$shopify-color-link: var(--color-link, 0, 0, 255) !default;
+$shopify-color-badge-foreground: var(--color-badge-foreground, 0, 0, 0) !default;
+$shopify-color-badge-background: var(--color-badge-background, 255, 255, 255) !default;
+$shopify-color-badge-border: var(--color-badge-border, 0, 0, 0) !default;
+
+// ============================================================================
+// LAYOUT VARIABLES
+// ============================================================================
+// Control page width, spacing, and grid layout
+// ============================================================================
+
+$shopify-page-width: var(--page-width, 120rem) !default;
+$shopify-page-width-margin: var(--page-width-margin, 0rem) !default;
+
+// Section Spacing
+$shopify-spacing-sections-desktop: var(--spacing-sections-desktop, 48px) !default;
+$shopify-spacing-sections-mobile: var(--spacing-sections-mobile, 24px) !default;
+
+// Grid Spacing
+$shopify-grid-desktop-vertical-spacing: var(--grid-desktop-vertical-spacing, 32px) !default;
+$shopify-grid-desktop-horizontal-spacing: var(--grid-desktop-horizontal-spacing, 32px) !default;
+$shopify-grid-mobile-vertical-spacing: var(--grid-mobile-vertical-spacing, 16px) !default;
+$shopify-grid-mobile-horizontal-spacing: var(--grid-mobile-horizontal-spacing, 16px) !default;
+
+// ============================================================================
+// MEDIA VARIABLES
+// ============================================================================
+// Control image borders, shadows, and aspect ratios
+// ============================================================================
+
+$shopify-media-padding: var(--media-padding, 0px) !default;
+$shopify-media-border-width: var(--media-border-width, 0px) !default;
+$shopify-media-border-opacity: var(--media-border-opacity, 0) !default;
+$shopify-media-radius: var(--media-radius, 0px) !default;
+$shopify-media-shadow-opacity: var(--media-shadow-opacity, 0) !default;
+$shopify-media-shadow-horizontal-offset: var(--media-shadow-horizontal-offset, 0px) !default;
+$shopify-media-shadow-vertical-offset: var(--media-shadow-vertical-offset, 0px) !default;
+$shopify-media-shadow-blur-radius: var(--media-shadow-blur, 0px) !default;
+
+// ============================================================================
+// BUTTON VARIABLES
+// ============================================================================
+// Control button styling: radius, borders, shadows
+// ============================================================================
+
+$shopify-buttons-radius: var(--buttons-radius, 4px) !default;
+$shopify-buttons-border-width: var(--buttons-border-width, 0px) !default;
+$shopify-buttons-border-opacity: var(--buttons-border-opacity, 0) !default;
+$shopify-buttons-shadow-opacity: var(--buttons-shadow-opacity, 0) !default;
+$shopify-buttons-shadow-horizontal-offset: var(--buttons-shadow-horizontal-offset, 0px) !default;
+$shopify-buttons-shadow-vertical-offset: var(--buttons-shadow-vertical-offset, 0px) !default;
+$shopify-buttons-shadow-blur-radius: var(--buttons-shadow-blur-radius, 0px) !default;
+
+// ============================================================================
+// INPUT VARIABLES
+// ============================================================================
+// Control form input styling
+// ============================================================================
+
+$shopify-inputs-radius: var(--inputs-radius, 4px) !default;
+$shopify-inputs-border-width: var(--inputs-border-width, 1px) !default;
+$shopify-inputs-border-opacity: var(--inputs-border-opacity, 1) !default;
+$shopify-inputs-shadow-opacity: var(--inputs-shadow-opacity, 0) !default;
+$shopify-inputs-shadow-horizontal-offset: var(--inputs-shadow-horizontal-offset, 0px) !default;
+$shopify-inputs-shadow-vertical-offset: var(--inputs-shadow-vertical-offset, 0px) !default;
+$shopify-inputs-shadow-blur-radius: var(--inputs-shadow-blur-radius, 0px) !default;
+
+// ============================================================================
+// CARD VARIABLES (Product, Collection, Blog)
+// ============================================================================
+// These are Dawn-specific and will be deprecated in Phase 7
+// For now, we preserve them for backward compatibility
+// ============================================================================
+
+// Product Card
+$shopify-product-card-image-padding: var(--product-card-image-padding, 0rem) !default;
+$shopify-product-card-corner-radius: var(--product-card-corner-radius, 0rem) !default;
+$shopify-product-card-text-alignment: var(--product-card-text-alignment, left) !default;
+$shopify-product-card-border-width: var(--product-card-border-width, 0rem) !default;
+$shopify-product-card-border-opacity: var(--product-card-border-opacity, 0) !default;
+$shopify-product-card-shadow-opacity: var(--product-card-shadow-opacity, 0) !default;
+
+// Collection Card
+$shopify-collection-card-image-padding: var(--collection-card-image-padding, 0rem) !default;
+$shopify-collection-card-corner-radius: var(--collection-card-corner-radius, 0rem) !default;
+$shopify-collection-card-text-alignment: var(--collection-card-text-alignment, left) !default;
+$shopify-collection-card-border-width: var(--collection-card-border-width, 0rem) !default;
+$shopify-collection-card-border-opacity: var(--collection-card-border-opacity, 0) !default;
+$shopify-collection-card-shadow-opacity: var(--collection-card-shadow-opacity, 0) !default;
+
+// Blog Card
+$shopify-blog-card-image-padding: var(--blog-card-image-padding, 0rem) !default;
+$shopify-blog-card-corner-radius: var(--blog-card-corner-radius, 0rem) !default;
+$shopify-blog-card-text-alignment: var(--blog-card-text-alignment, left) !default;
+$shopify-blog-card-border-width: var(--blog-card-border-width, 0rem) !default;
+$shopify-blog-card-border-opacity: var(--blog-card-border-opacity, 0) !default;
+$shopify-blog-card-shadow-opacity: var(--blog-card-shadow-opacity, 0) !default;
+
+// ============================================================================
+// VARIANT PILLS VARIABLES
+// ============================================================================
+$shopify-variant-pills-radius: var(--variant-pills-radius, 4px) !default;
+$shopify-variant-pills-border-width: var(--variant-pills-border-width, 1px) !default;
+$shopify-variant-pills-border-opacity: var(--variant-pills-border-opacity, 1) !default;
+$shopify-variant-pills-shadow-opacity: var(--variant-pills-shadow-opacity, 0) !default;
+
+// ============================================================================
+// POPUP AND DRAWER VARIABLES
+// ============================================================================
+$shopify-popup-border-width: var(--popup-border-width, 1px) !default;
+$shopify-popup-border-opacity: var(--popup-border-opacity, 0.1) !default;
+$shopify-popup-corner-radius: var(--popup-corner-radius, 0px) !default;
+$shopify-popup-shadow-opacity: var(--popup-shadow-opacity, 0) !default;
+
+$shopify-drawer-border-width: var(--drawer-border-width, 1px) !default;
+$shopify-drawer-border-opacity: var(--drawer-border-opacity, 0.1) !default;
+$shopify-drawer-shadow-opacity: var(--drawer-shadow-opacity, 0) !default;
+
+// ============================================================================
+// TEXT BOXES VARIABLES
+// ============================================================================
+$shopify-text-boxes-border-opacity: var(--text-boxes-border-opacity, 0.1) !default;
+$shopify-text-boxes-border-width: var(--text-boxes-border-width, 0px) !default;
+$shopify-text-boxes-radius: var(--text-boxes-radius, 0px) !default;
+$shopify-text-boxes-shadow-opacity: var(--text-boxes-shadow-opacity, 0) !default;
+
+// ============================================================================
+// BADGE VARIABLES
+// ============================================================================
+$shopify-badge-corner-radius: var(--badge-corner-radius, 4px) !default;
+
+// ============================================================================
+// BULMA INTEGRATION MAPPING
+// ============================================================================
+// Map Shopify variables to Bulma's expected variable names
+// This allows Bulma to consume Shopify theme settings
+// ============================================================================
+
+// Override Bulma's radius variables with Shopify settings
+$bulma-radius: $shopify-buttons-radius !default;
+$bulma-radius-small: calc(#{$shopify-buttons-radius} * 0.75) !default;
+$bulma-radius-large: calc(#{$shopify-buttons-radius} * 1.5) !default;
+$bulma-radius-rounded: 9999px !default;
+
+// Map page width to Bulma container
+$bulma-container-max-width: $shopify-page-width !default;
+
+// ============================================================================
+// HELPER MIXINS
+// ============================================================================
+// Utility mixins for working with Shopify variables in Bulma context
+// ============================================================================
+
+/// Apply Shopify button radius to an element
+/// @example scss
+///   .my-button {
+///     @include shopify-button-radius;
+///   }
+@mixin shopify-button-radius {
+  border-radius: $shopify-buttons-radius;
+}
+
+/// Apply Shopify input radius to an element
+@mixin shopify-input-radius {
+  border-radius: $shopify-inputs-radius;
+}
+
+/// Apply Shopify media radius to an element
+@mixin shopify-media-radius {
+  border-radius: $shopify-media-radius;
+}
+
+/// Apply Shopify button shadow
+@mixin shopify-button-shadow {
+  @if ($shopify-buttons-shadow-opacity > 0) {
+    box-shadow: 
+      $shopify-buttons-shadow-horizontal-offset 
+      $shopify-buttons-shadow-vertical-offset 
+      $shopify-buttons-shadow-blur-radius 
+      rgba(0, 0, 0, $shopify-buttons-shadow-opacity);
+  }
+}
+
+/// Apply Shopify media shadow
+@mixin shopify-media-shadow {
+  @if ($shopify-media-shadow-opacity > 0) {
+    box-shadow: 
+      $shopify-media-shadow-horizontal-offset 
+      $shopify-media-shadow-vertical-offset 
+      $shopify-media-shadow-blur-radius 
+      rgba(0, 0, 0, $shopify-media-shadow-opacity);
+  }
+}
+
+/// Convert RGB CSS variable to rgba() with alpha
+/// @param {String} $rgb-var - The RGB variable name (e.g., --color-button)
+/// @param {Number} $alpha - Alpha value (0-1)
+/// @return {String} - rgba() color value
+@function shopify-rgba($rgb-var, $alpha: 1) {
+  @return rgba(var($rgb-var), $alpha);
+}
+
+// ============================================================================
+// RUNTIME CSS VARIABLES OUTPUT
+// ============================================================================
+// This mixin outputs CSS custom properties that can be used in Liquid templates
+// and consumed by both Bulma and custom components
+// ============================================================================
+
+@mixin shopify-css-variables {
+  // Typography
+  --shopify-font-body-family: #{$shopify-font-body-family};
+  --shopify-font-heading-family: #{$shopify-font-heading-family};
+  --shopify-font-body-weight: #{$shopify-font-body-weight};
+  --shopify-font-heading-weight: #{$shopify-font-heading-weight};
+  
+  // Layout
+  --shopify-page-width: #{$shopify-page-width};
+  --shopify-spacing-sections: #{$shopify-spacing-sections-desktop};
+  
+  // Buttons
+  --shopify-button-radius: #{$shopify-buttons-radius};
+  --shopify-button-border-width: #{$shopify-buttons-border-width};
+  
+  // Inputs
+  --shopify-input-radius: #{$shopify-inputs-radius};
+  --shopify-input-border-width: #{$shopify-inputs-border-width};
+  
+  // Media
+  --shopify-media-radius: #{$shopify-media-radius};
+  --shopify-media-padding: #{$shopify-media-padding};
+  
+  // Responsive spacing (mobile)
+  @media screen and (max-width: #{iv.$tablet - 1}) {
+    --shopify-spacing-sections: #{$shopify-spacing-sections-mobile};
+  }
+}
+
+// ============================================================================
+// DEPRECATION NOTICES
+// ============================================================================
+// The following variables are Dawn-specific and will be removed in Phase 7:
+// - All product-card-* variables (replaced by Bulma card classes)
+// - All collection-card-* variables (replaced by Bulma card classes)
+// - All blog-card-* variables (replaced by Bulma card classes)
+//
+// Migration path:
+// - Use Bulma's b-card, b-card-image, b-card-content classes instead
+// - Apply custom styling via src/bulma/sass/custom/ directory
+// ============================================================================

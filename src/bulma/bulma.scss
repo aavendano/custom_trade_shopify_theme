@@ -28,6 +28,10 @@ $plt-image-dimensions: 75 100 150 320 400 460 520;
     $grey: $plt-gray,
     $grey-dark: $plt-gray-dark );
 
+// Import Shopify theme settings bridge
+// This must come after initial-variables but before other Bulma modules
+@use "sass/utilities/shopify-variables";
+
 @forward "sass/utilities/functions";
 @forward "sass/utilities/derived-variables";
 @forward "sass/utilities/controls";

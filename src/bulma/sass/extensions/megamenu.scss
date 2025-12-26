@@ -1,12 +1,104 @@
 @use "../utilities/initial-variables" as iv;
 @use "../utilities/extends";
+@use "../utilities/derived-variables" as dv;
 
+// Megamenu extension for Bulma navbar
+// Provides full-width dropdown menus for desktop navigation
 
-.#{iv.$class-prefix}navbar-item.#{iv.$class-prefix}is-mega {
+// Megamenu container - must be position static to allow dropdown to span full width
+.#{iv.$class-prefix}navbar-item.#{iv.$class-prefix}has-dropdown.#{iv.$class-prefix}is-mega {
   position: static;
 
+  // Megamenu dropdown styling
+  .#{iv.$class-prefix}navbar-dropdown {
+    // Full width dropdown
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+
+    // Background and border
+    background-color: white;
+    border-top: 2px solid dv.$border;
+    box-shadow: 0 8px 16px rgba(10, 10, 10, 0.1);
+
+    // Spacing
+    padding: 1.5rem;
+
+    // Override Bulma's default dropdown positioning
+    top: 100%;
+    position: absolute;
+
+    // Grid layout for megamenu content
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+
+  // Megamenu column
+  .#{iv.$class-prefix}navbar-dropdown-column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  // Megamenu section title
   .#{iv.$class-prefix}is-mega-menu-title {
-    margin-bottom: 0;
-    padding: .375rem 1rem;
+    margin-bottom: 0.75rem;
+    padding: 0.375rem 0;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: dv.$text-strong;
+    border-bottom: 1px solid dv.$border;
+  }
+
+  // Megamenu items
+  .#{iv.$class-prefix}navbar-item {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+
+    &:hover {
+      background-color: hsl(0, 0%, 96%);
+      color: dv.$link;
+    }
+  }
+}
+
+// Ensure dropdown is hidden by default on desktop
+@media screen and (min-width: iv.$desktop) {
+  .#{iv.$class-prefix}navbar-item.#{iv.$class-prefix}has-dropdown:not(.#{iv.$class-prefix}is-hoverable) {
+    .#{iv.$class-prefix}navbar-dropdown {
+      display: none;
+    }
+  }
+
+  // Show dropdown on hover for hoverable items
+  .#{iv.$class-prefix}navbar-item.#{iv.$class-prefix}has-dropdown.#{iv.$class-prefix}is-hoverable:hover {
+    .#{iv.$class-prefix}navbar-dropdown {
+      display: grid;
+    }
+  }
+}
+
+// Mobile megamenu - stack vertically
+@media screen and (max-width: calc(#{iv.$desktop} - 1px)) {
+  .#{iv.$class-prefix}navbar-item.#{iv.$class-prefix}has-dropdown.#{iv.$class-prefix}is-mega {
+    position: relative;
+
+    .#{iv.$class-prefix}navbar-dropdown {
+      position: relative;
+      left: auto;
+      right: auto;
+      width: 100%;
+      display: block;
+      box-shadow: none;
+      border-top: 1px solid dv.$border;
+      padding: 0.5rem 0;
+    }
+
+    .#{iv.$class-prefix}navbar-dropdown-column {
+      margin-bottom: 1rem;
+    }
   }
 }

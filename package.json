@@ -13,6 +13,10 @@
     "build:alpine": "esbuild src/alpine-bundle.js --bundle --outfile=assets/alpine-bundle.js",
     "start": "npm run build:bulma -- --watch",
     "build": "npm run build:bulma && npm run prepurgecss && npm run purgecss && npm run build:alpine && npm run build:base",
+    "test": "node src/tests/validate-foundation.js",
+    "test:validate": "node src/tests/validate-foundation.js",
+    "test:purge": "node src/purge/validate-purged-css.js",
+    "validate": "npm run test:validate && npm run test:purge",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },

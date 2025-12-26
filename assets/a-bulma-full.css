@@ -18745,6 +18745,523 @@ b-has-background-danger.is-hoverable:active {
   pointer-events: all !important;
 }
 
+/**
+ * B-SCOPE WRAPPER UTILITY
+ * 
+ * Purpose: Isolate Bulma styles from legacy Dawn styles during migration phases 1-6
+ * 
+ * Usage Pattern:
+ * 
+ *   {% comment %}
+ *     Wrap migrated Bulma components in .b-scope during phases 1-6
+ *     Remove wrapper in Phase 7 when legacy CSS is deleted
+ *   {% endcomment %}
+ *   <div class="b-scope">
+ *     <div class="b-card">
+ *       <div class="b-card-content">
+ *         <!-- Bulma component content -->
+ *       </div>
+ *     </div>
+ *   </div>
+ * 
+ * Requirements Satisfied:
+ * - Requirement 1.5: b-scope wrapper for migration coexistence
+ * - Requirement 8.8: CSS specificity overrides without !important
+ * 
+ * Migration Timeline:
+ * - Phases 1-6: Use .b-scope wrapper on all new Bulma components
+ * - Phase 7: Remove all .b-scope wrappers (Task 36)
+ * 
+ * Technical Notes:
+ * - Increases specificity of Bulma classes within scope
+ * - Prevents Dawn CSS from overriding Bulma styles
+ * - Uses CSS specificity (not !important) for clean overrides
+ * - Minimal performance impact (single class selector)
+ */
+.b-scope {
+  box-sizing: border-box;
+  position: relative;
+  z-index: auto;
+  transform: none;
+  transition: none;
+}
+.b-scope *,
+.b-scope *::before,
+.b-scope *::after {
+  box-sizing: border-box;
+}
+
+.b-scope .b-title,
+.b-scope .b-subtitle {
+  font-family: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  margin: inherit;
+  padding: inherit;
+}
+.b-scope .b-content {
+  font-size: inherit;
+  line-height: inherit;
+}
+.b-scope .b-content p,
+.b-scope .b-content ul,
+.b-scope .b-content ol,
+.b-scope .b-content dl,
+.b-scope .b-content blockquote,
+.b-scope .b-content pre,
+.b-scope .b-content table {
+  margin: inherit;
+}
+
+.b-scope .b-columns {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: inherit;
+  margin-right: inherit;
+  margin-top: inherit;
+}
+.b-scope .b-column {
+  display: block;
+  flex-basis: auto;
+  flex-grow: 1;
+  flex-shrink: 1;
+  padding: inherit;
+}
+.b-scope .b-container {
+  width: 100%;
+  margin: 0 auto;
+  padding-left: inherit;
+  padding-right: inherit;
+}
+.b-scope .b-section {
+  padding: inherit;
+  margin: inherit;
+}
+
+.b-scope .b-button {
+  appearance: none;
+  background-color: inherit;
+  border: inherit;
+  border-radius: inherit;
+  color: inherit;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  padding: inherit;
+  text-align: center;
+  text-decoration: none;
+  transition: inherit;
+}
+.b-scope .b-button:hover, .b-scope .b-button:focus {
+  background-color: inherit;
+  border-color: inherit;
+  color: inherit;
+  text-decoration: none;
+}
+.b-scope .b-card {
+  background-color: inherit;
+  border: inherit;
+  border-radius: inherit;
+  box-shadow: inherit;
+  overflow: inherit;
+}
+.b-scope .b-card .b-card-image,
+.b-scope .b-card .b-card-content,
+.b-scope .b-card .b-card-footer {
+  padding: inherit;
+  border: inherit;
+}
+.b-scope .b-input,
+.b-scope .b-textarea,
+.b-scope .b-select select {
+  appearance: none;
+  background-color: inherit;
+  border: inherit;
+  border-radius: inherit;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  padding: inherit;
+}
+.b-scope .b-input:focus,
+.b-scope .b-textarea:focus,
+.b-scope .b-select select:focus {
+  border-color: inherit;
+  box-shadow: inherit;
+  outline: inherit;
+}
+.b-scope .b-navbar {
+  background-color: inherit;
+  min-height: inherit;
+  position: inherit;
+  z-index: inherit;
+}
+.b-scope .b-navbar .b-navbar-brand,
+.b-scope .b-navbar .b-navbar-menu,
+.b-scope .b-navbar .b-navbar-start,
+.b-scope .b-navbar .b-navbar-end {
+  display: inherit;
+  align-items: inherit;
+}
+.b-scope .b-navbar .b-navbar-item {
+  color: inherit;
+  display: inherit;
+  padding: inherit;
+  text-decoration: none;
+}
+.b-scope .b-navbar .b-navbar-item:hover, .b-scope .b-navbar .b-navbar-item:focus {
+  background-color: inherit;
+  color: inherit;
+}
+.b-scope .b-hero {
+  background-color: inherit;
+  padding: inherit;
+}
+.b-scope .b-hero .b-hero-body {
+  padding: inherit;
+}
+.b-scope .b-image {
+  display: block;
+  position: relative;
+}
+.b-scope .b-image img {
+  display: block;
+  height: auto;
+  width: 100%;
+  max-width: 100%;
+  object-fit: inherit;
+}
+
+.b-scope .b-m-0 {
+  margin: 0 !important;
+}
+.b-scope .b-mt-0 {
+  margin-top: 0 !important;
+}
+.b-scope .b-mr-0 {
+  margin-right: 0 !important;
+}
+.b-scope .b-mb-0 {
+  margin-bottom: 0 !important;
+}
+.b-scope .b-ml-0 {
+  margin-left: 0 !important;
+}
+.b-scope .b-p-0 {
+  padding: 0 !important;
+}
+.b-scope .b-pt-0 {
+  padding-top: 0 !important;
+}
+.b-scope .b-pr-0 {
+  padding-right: 0 !important;
+}
+.b-scope .b-pb-0 {
+  padding-bottom: 0 !important;
+}
+.b-scope .b-pl-0 {
+  padding-left: 0 !important;
+}
+.b-scope .b-is-hidden {
+  display: none !important;
+}
+.b-scope .b-is-invisible {
+  visibility: hidden !important;
+}
+.b-scope .b-has-text-centered {
+  text-align: center !important;
+}
+.b-scope .b-has-text-left {
+  text-align: left !important;
+}
+.b-scope .b-has-text-right {
+  text-align: right !important;
+}
+.b-scope .b-has-text-white {
+  color: hsl(0, 0%, 100%) !important;
+}
+.b-scope .b-has-text-black {
+  color: hsl(0, 0%, 4%) !important;
+}
+.b-scope .b-has-text-primary {
+  color: var(--bulma-primary, hsl(268, 41%, 33%)) !important;
+}
+.b-scope .b-has-text-link {
+  color: var(--bulma-link, hsl(346, 89%, 61%)) !important;
+}
+.b-scope .b-has-text-info {
+  color: var(--bulma-info, hsl(190, 84%, 29%)) !important;
+}
+.b-scope .b-has-background-white {
+  background-color: hsl(0, 0%, 100%) !important;
+}
+.b-scope .b-has-background-black {
+  background-color: hsl(0, 0%, 4%) !important;
+}
+.b-scope .b-has-background-primary {
+  background-color: var(--bulma-primary, hsl(268, 41%, 33%)) !important;
+}
+.b-scope .b-has-background-link {
+  background-color: var(--bulma-link, hsl(346, 89%, 61%)) !important;
+}
+.b-scope .b-has-background-info {
+  background-color: var(--bulma-info, hsl(190, 84%, 29%)) !important;
+}
+.b-scope .b-is-flex {
+  display: flex !important;
+}
+.b-scope .b-is-inline-flex {
+  display: inline-flex !important;
+}
+.b-scope .b-is-justify-content-center {
+  justify-content: center !important;
+}
+.b-scope .b-is-align-items-center {
+  align-items: center !important;
+}
+
+/**
+ * WHEN TO USE .b-scope:
+ * 
+ * ✅ DO use .b-scope when:
+ * - Creating new sections/snippets in Phases 1-6
+ * - Migrating existing sections to Bulma
+ * - Legacy Dawn CSS is still loaded on the page
+ * - You need Bulma styles to override Dawn styles
+ * 
+ * ❌ DO NOT use .b-scope when:
+ * - In Phase 7 (all legacy CSS removed)
+ * - Creating standalone test pages with only Bulma
+ * - Working on components that will never coexist with Dawn
+ * 
+ * EXAMPLE USAGE IN LIQUID:
+ * 
+ * Phase 1-6 (with .b-scope):
+ * ```liquid
+ * <div class="b-scope">
+ *   <section class="b-section">
+ *     <div class="b-container">
+ *       <h1 class="b-title b-is-1">{{ section.settings.title }}</h1>
+ *       <div class="b-columns">
+ *         <div class="b-column b-is-6">
+ *           <!-- Bulma content -->
+ *         </div>
+ *       </div>
+ *     </div>
+ *   </section>
+ * </div>
+ * ```
+ * 
+ * Phase 7 (without .b-scope):
+ * ```liquid
+ * <section class="b-section">
+ *   <div class="b-container">
+ *     <h1 class="b-title b-is-1">{{ section.settings.title }}</h1>
+ *     <div class="b-columns">
+ *       <div class="b-column b-is-6">
+ *         <!-- Bulma content -->
+ *       </div>
+ *     </div>
+ *   </div>
+ * </section>
+ * ```
+ * 
+ * REMOVAL CHECKLIST (Phase 7, Task 36):
+ * - [ ] Search all sections/*.liquid for "b-scope"
+ * - [ ] Search all snippets/*.liquid for "b-scope"
+ * - [ ] Search all blocks/*.liquid for "b-scope"
+ * - [ ] Remove <div class="b-scope"> wrapper
+ * - [ ] Remove corresponding </div> closing tag
+ * - [ ] Test component still renders correctly
+ * - [ ] Verify no visual regressions
+ */
+.b-carousel-wrapper {
+  position: relative;
+}
+
+.b-carousel {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 1rem;
+  padding-bottom: 0.25rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  align-items: stretch;
+}
+.b-carousel::-webkit-scrollbar {
+  display: none;
+}
+.b-carousel > .b-carousel-item {
+  display: flex;
+  flex: 1 0 auto;
+  scroll-snap-align: start;
+  display: flex;
+  width: 100%;
+  max-width: 85vw;
+}
+.b-carousel > .b-carousel-item .b-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+.b-carousel > .b-carousel-item .b-card .b-card-content {
+  flex-grow: 1;
+}
+
+@media screen and (min-width: 1024px) {
+  .b-carousel {
+    flex-wrap: wrap;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+  .b-carousel > .b-carousel-item {
+    flex: 1 0 calc(25% - 0.75rem);
+    max-width: calc(25% - 0.75rem);
+    width: auto;
+  }
+}
+.b-carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  cursor: pointer;
+}
+@media screen and (min-width: 1024px) {
+  .b-carousel-nav {
+    display: none;
+  }
+}
+.b-carousel-nav.b-is-left {
+  left: 0.25rem;
+}
+.b-carousel-nav.b-is-right {
+  right: 0.25rem;
+}
+
+.b-carousel-slide:not(.b-carousel-wrapper .b-carousel-slide) {
+  display: none !important;
+}
+
+.b-carousel-wrapper.is-carousel-disabled {
+  position: static;
+}
+.b-carousel-wrapper.is-carousel-disabled .b-carousel-nav {
+  display: none !important;
+}
+.b-carousel-wrapper.is-carousel-disabled .b-carousel-slide-container {
+  display: none !important;
+}
+
+.b-carousel-wrapper.is-carousel-disabled ~ .b-carousel-slide {
+  display: block !important;
+}
+
+/* ==========================================================================
+   PlayLoveToys — Drawer Component (Independent)
+   Componente totalmente autónomo y con prefijo genérico.
+   ========================================================================== */
+/* ============================================================
+   Root
+   ============================================================ */
+.b-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  /* por encima del navbar & filtros */
+  display: none;
+  pointer-events: none;
+}
+
+.b-drawer.b-is-active {
+  display: block;
+  pointer-events: auto;
+}
+
+/* ============================================================
+   Background overlay
+   ============================================================ */
+.b-drawer-background {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(10, 10, 10, 0.45);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.b-drawer.b-is-active .b-drawer-background {
+  opacity: 1;
+}
+
+/* ============================================================
+   Drawer panel (Left)
+   ============================================================ */
+.b-drawer-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--b-drawer-width, 420px);
+  max-width: 85vw;
+  height: 100vh;
+  background-color: var(--bulma-scheme-main, #fff);
+  overflow-y: auto;
+  box-shadow: 5px 0 15px rgba(0, 0, 0, 0.12);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.b-drawer.b-is-active .b-drawer-panel {
+  transform: translateX(0);
+}
+
+/* ============================================================
+   Right-side drawer
+   ============================================================ */
+.b-drawer-right .b-drawer-panel {
+  left: auto;
+  right: 0;
+  transform: translateX(100%);
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.12);
+}
+
+.b-drawer-right.b-is-active .b-drawer-panel {
+  transform: translateX(0);
+}
+
+/* ============================================================
+   Responsive width
+   ============================================================ */
+@media screen and (min-width: 1024px) {
+  .b-drawer-panel {
+    width: var(--b-drawer-width-desktop, 25vw);
+    max-width: none;
+  }
+}
+@media (max-width: 769px) {
+  .b-drawer-panel {
+    width: var(--b-drawer-width, 100vw);
+    max-width: var(--b-drawer-width, 100vw);
+  }
+}
+/* ============================================================
+   Optional speed utilities
+   ============================================================ */
+.b-drawer-fast .b-drawer-panel {
+  transition-duration: 150ms;
+}
+
+.b-drawer-slow .b-drawer-panel {
+  transition-duration: 500ms;
+}
+
 /* ==========================================================
    PlayLoveToys — Overlay Toolkit (Dynamic Bulma Colors)
    Genera helpers según $these-colors (sin asumir nombres).
@@ -19300,188 +19817,6 @@ b-has-background-danger.is-hoverable:active {
   z-index: 1;
 }
 
-/* ==========================================================================
-   PlayLoveToys — Drawer Component (Independent)
-   Componente totalmente autónomo y con prefijo genérico.
-   ========================================================================== */
-/* ============================================================
-   Root
-   ============================================================ */
-.b-drawer {
-  position: fixed;
-  inset: 0;
-  z-index: 40;
-  /* por encima del navbar & filtros */
-  display: none;
-  pointer-events: none;
-}
-
-.b-drawer.b-is-active {
-  display: block;
-  pointer-events: auto;
-}
-
-/* ============================================================
-   Background overlay
-   ============================================================ */
-.b-drawer-background {
-  position: absolute;
-  inset: 0;
-  background-color: rgba(10, 10, 10, 0.45);
-  opacity: 0;
-  transition: opacity 0.25s ease;
-}
-
-.b-drawer.b-is-active .b-drawer-background {
-  opacity: 1;
-}
-
-/* ============================================================
-   Drawer panel (Left)
-   ============================================================ */
-.b-drawer-panel {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: var(--b-drawer-width, 420px);
-  max-width: 85vw;
-  height: 100vh;
-  background-color: var(--bulma-scheme-main, #fff);
-  overflow-y: auto;
-  box-shadow: 5px 0 15px rgba(0, 0, 0, 0.12);
-  transform: translateX(-100%);
-  transition: transform 0.3s ease;
-}
-
-.b-drawer.b-is-active .b-drawer-panel {
-  transform: translateX(0);
-}
-
-/* ============================================================
-   Right-side drawer
-   ============================================================ */
-.b-drawer-right .b-drawer-panel {
-  left: auto;
-  right: 0;
-  transform: translateX(100%);
-  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.12);
-}
-
-.b-drawer-right.b-is-active .b-drawer-panel {
-  transform: translateX(0);
-}
-
-/* ============================================================
-   Responsive width
-   ============================================================ */
-@media screen and (min-width: 1024px) {
-  .b-drawer-panel {
-    width: var(--b-drawer-width-desktop, 25vw);
-    max-width: none;
-  }
-}
-@media (max-width: 769px) {
-  .b-drawer-panel {
-    width: var(--b-drawer-width, 100vw);
-    max-width: var(--b-drawer-width, 100vw);
-  }
-}
-/* ============================================================
-   Optional speed utilities
-   ============================================================ */
-.b-drawer-fast .b-drawer-panel {
-  transition-duration: 150ms;
-}
-
-.b-drawer-slow .b-drawer-panel {
-  transition-duration: 500ms;
-}
-
-.b-carousel-wrapper {
-  position: relative;
-}
-
-.b-carousel {
-  display: flex;
-  flex-direction: row;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  gap: 1rem;
-  padding-bottom: 0.25rem;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  align-items: stretch;
-}
-.b-carousel::-webkit-scrollbar {
-  display: none;
-}
-.b-carousel > .b-carousel-item {
-  display: flex;
-  flex: 1 0 auto;
-  scroll-snap-align: start;
-  display: flex;
-  width: 100%;
-  max-width: 85vw;
-}
-.b-carousel > .b-carousel-item .b-card {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-}
-.b-carousel > .b-carousel-item .b-card .b-card-content {
-  flex-grow: 1;
-}
-
-@media screen and (min-width: 1024px) {
-  .b-carousel {
-    flex-wrap: wrap;
-    overflow: visible;
-    scroll-snap-type: none;
-  }
-  .b-carousel > .b-carousel-item {
-    flex: 1 0 calc(25% - 0.75rem);
-    max-width: calc(25% - 0.75rem);
-    width: auto;
-  }
-}
-.b-carousel-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 20;
-  cursor: pointer;
-}
-@media screen and (min-width: 1024px) {
-  .b-carousel-nav {
-    display: none;
-  }
-}
-.b-carousel-nav.b-is-left {
-  left: 0.25rem;
-}
-.b-carousel-nav.b-is-right {
-  right: 0.25rem;
-}
-
-.b-carousel-slide:not(.b-carousel-wrapper .b-carousel-slide) {
-  display: none !important;
-}
-
-.b-carousel-wrapper.is-carousel-disabled {
-  position: static;
-}
-.b-carousel-wrapper.is-carousel-disabled .b-carousel-nav {
-  display: none !important;
-}
-.b-carousel-wrapper.is-carousel-disabled .b-carousel-slide-container {
-  display: none !important;
-}
-
-.b-carousel-wrapper.is-carousel-disabled ~ .b-carousel-slide {
-  display: block !important;
-}
-
 /* Horizontal card */
 .b-card-horizontal {
   display: flex;
@@ -19527,6 +19862,208 @@ b-has-background-danger.is-hoverable:active {
   }
   .b-header-content-rotate {
     transform: none;
+  }
+}
+:root {
+  --shopify-font-body-family: var(--font-body-family, Inter, SF Pro, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, Helvetica, Arial, sans-serif);
+  --shopify-font-heading-family: var(--font-heading-family, Inter, SF Pro, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, Helvetica, Arial, sans-serif);
+  --shopify-font-body-weight: var(--font-body-weight, 400);
+  --shopify-font-heading-weight: var(--font-heading-weight, 700);
+  --shopify-page-width: var(--page-width, 120rem);
+  --shopify-spacing-sections: var(--spacing-sections-desktop, 48px);
+  --shopify-button-radius: var(--buttons-radius, 4px);
+  --shopify-button-border-width: var(--buttons-border-width, 0px);
+  --shopify-input-radius: var(--inputs-radius, 4px);
+  --shopify-input-border-width: var(--inputs-border-width, 1px);
+  --shopify-media-radius: var(--media-radius, 0px);
+  --shopify-media-padding: var(--media-padding, 0px);
+}
+@media screen and (max-width: 768px) {
+  :root {
+    --shopify-spacing-sections: var(--spacing-sections-mobile, 24px);
+  }
+}
+:root {
+  --bulma-radius: var(--buttons-radius, 4px);
+  --bulma-radius-small: calc(var(--buttons-radius, 4px) * 0.75);
+  --bulma-radius-large: calc(var(--buttons-radius, 4px) * 1.5);
+  --bulma-container-max-width: var(--page-width, 120rem);
+  --bulma-column-gap: var(--grid-desktop-horizontal-spacing, 32px);
+}
+@media screen and (max-width: 768px) {
+  :root {
+    --bulma-column-gap: var(--grid-mobile-horizontal-spacing, 16px);
+  }
+}
+
+.b-button {
+  border-radius: var(--buttons-radius, 4px);
+  box-shadow: var(--buttons-shadow-horizontal-offset, 0px) var(--buttons-shadow-vertical-offset, 0px) var(--buttons-shadow-blur-radius, 0px) rgba(0, 0, 0, var(--buttons-shadow-opacity, 0));
+}
+
+.b-input,
+.b-textarea,
+.b-select select {
+  border-radius: var(--inputs-radius, 4px);
+}
+
+.b-card .b-card-image img {
+  border-radius: var(--media-radius, 0px);
+}
+
+.b-image img {
+  box-shadow: var(--media-shadow-horizontal-offset, 0px) var(--media-shadow-vertical-offset, 0px) var(--media-shadow-blur, 0px) rgba(0, 0, 0, var(--media-shadow-opacity, 0));
+}
+
+.b-container {
+  max-width: var(--page-width, 120rem);
+}
+@media screen and (min-width: 1024px) {
+  .b-container {
+    margin-left: var(--page-width-margin, 0rem);
+    margin-right: var(--page-width-margin, 0rem);
+  }
+}
+
+.shopify-section {
+  padding-top: var(--spacing-sections-mobile, 24px);
+  padding-bottom: var(--spacing-sections-mobile, 24px);
+}
+@media screen and (min-width: 769px) {
+  .shopify-section {
+    padding-top: var(--spacing-sections-desktop, 48px);
+    padding-bottom: var(--spacing-sections-desktop, 48px);
+  }
+}
+
+body,
+.b-content {
+  font-family: var(--font-body-family, Inter, SF Pro, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, Helvetica, Arial, sans-serif);
+  font-weight: var(--font-body-weight, 400);
+}
+
+.b-title,
+.b-subtitle,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading-family, Inter, SF Pro, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, Helvetica, Arial, sans-serif);
+  font-weight: var(--font-heading-weight, 700);
+}
+
+.b-tag {
+  border-radius: var(--badge-corner-radius, 4px);
+}
+
+.variant-pills .b-button {
+  border-radius: var(--variant-pills-radius, 4px);
+  border-width: var(--variant-pills-border-width, 1px);
+  border-style: solid;
+  opacity: var(--variant-pills-border-opacity, 1);
+}
+
+.b-modal-content,
+.b-modal-card {
+  border-radius: var(--popup-corner-radius, 0px);
+  border: var(--popup-border-width, 1px) solid rgba(0, 0, 0, var(--popup-border-opacity, 0.1));
+}
+
+.c-cart-drawer__panel {
+  border-left: var(--drawer-border-width, 1px) solid rgba(0, 0, 0, var(--drawer-border-opacity, 0.1));
+}
+
+html {
+  font-size: calc(62.5% * var(--font-scale-mobile, 1));
+}
+@media screen and (min-width: 769px) {
+  html {
+    font-size: calc(62.5% * var(--font-scale-tablet, 1));
+  }
+}
+@media screen and (min-width: 1024px) {
+  html {
+    font-size: calc(62.5% * var(--font-scale-desktop, 1));
+  }
+}
+@media screen and (min-width: 1216px) {
+  html {
+    font-size: calc(62.5% * var(--font-scale-widescreen, 1));
+  }
+}
+@media screen and (min-width: 1408px) {
+  html {
+    font-size: calc(62.5% * var(--font-scale-fullhd, 1));
+  }
+}
+
+.b-navbar-item.b-has-dropdown.b-is-mega {
+  position: static;
+}
+.b-navbar-item.b-has-dropdown.b-is-mega .b-navbar-dropdown {
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: 100%;
+  background-color: white;
+  border-top: 2px solid hsl(108, 6%, 34%);
+  box-shadow: 0 8px 16px rgba(10, 10, 10, 0.1);
+  padding: 1.5rem;
+  top: 100%;
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+.b-navbar-item.b-has-dropdown.b-is-mega .b-navbar-dropdown-column {
+  display: flex;
+  flex-direction: column;
+}
+.b-navbar-item.b-has-dropdown.b-is-mega .b-is-mega-menu-title {
+  margin-bottom: 0.75rem;
+  padding: 0.375rem 0;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: hsl(108, 6%, 34%);
+  border-bottom: 1px solid hsl(108, 6%, 34%);
+}
+.b-navbar-item.b-has-dropdown.b-is-mega .b-navbar-item {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+}
+.b-navbar-item.b-has-dropdown.b-is-mega .b-navbar-item:hover {
+  background-color: hsl(0, 0%, 96%);
+  color: hsl(346, 89%, 61%);
+}
+
+@media screen and (min-width: 1024px) {
+  .b-navbar-item.b-has-dropdown:not(.b-is-hoverable) .b-navbar-dropdown {
+    display: none;
+  }
+  .b-navbar-item.b-has-dropdown.b-is-hoverable:hover .b-navbar-dropdown {
+    display: grid;
+  }
+}
+@media screen and (max-width: calc(1024px - 1px)) {
+  .b-navbar-item.b-has-dropdown.b-is-mega {
+    position: relative;
+  }
+  .b-navbar-item.b-has-dropdown.b-is-mega .b-navbar-dropdown {
+    position: relative;
+    left: auto;
+    right: auto;
+    width: 100%;
+    display: block;
+    box-shadow: none;
+    border-top: 1px solid hsl(108, 6%, 34%);
+    padding: 0.5rem 0;
+  }
+  .b-navbar-item.b-has-dropdown.b-is-mega .b-navbar-dropdown-column {
+    margin-bottom: 1rem;
   }
 }
 /* Bulma Themes */

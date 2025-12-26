@@ -8,7 +8,7 @@
   - Add runtime CSS variable support for dynamic theme settings (button radius, spacing, etc.)
   - _Requirements: 1.3, 1.5, 11.1, 11.2, 11.5_
 
-- [ ] 2. Update `layout/theme.liquid` to remove Dawn CSS dependencies
+- [x] 2. Update `layout/theme.liquid` to remove Dawn CSS dependencies
   - Remove inline CSS variable definitions (lines 31-212) that control Dawn-specific design
   - Remove `{{ 'base.css' | asset_url | stylesheet_tag }}` reference (line 288)
   - Add critical inline CSS for `[x-cloak] { display: none !important; }` to prevent FOUC
@@ -16,21 +16,21 @@
   - Verify font preloading, Alpine bundle loading, and cart scripts remain intact
   - _Requirements: 1.1, 1.4, 1.6, 9.4, 11.3_
 
-- [ ] 3. Create b-scope wrapper utility for migration coexistence
+- [x] 3. Create b-scope wrapper utility for migration coexistence
   - Create `src/bulma/sass/custom/_b-scope.scss` with scoping rules for migrated components
   - Add `.b-scope` class that isolates Bulma styles from legacy Dawn styles during phases 1-6
   - Include CSS specificity overrides to ensure Bulma styles win within scope
   - Document usage pattern in comments for future component migration
   - _Requirements: 1.5, 8.8_
 
-- [ ] 4. Enhance PurgeCSS safelist extraction for dynamic Liquid classes
+- [x] 4. Enhance PurgeCSS safelist extraction for dynamic Liquid classes
   - Update `src/purge/extract-b-safelist.js` to detect and safelist Liquid variable patterns
   - Add regex patterns to safelist common dynamic classes (e.g., `/^b-is-\d/`, `/^b-column-\d/`)
   - Test safelist generation against all existing Liquid files
   - Verify no critical classes are purged in production build
   - _Requirements: 9.11, 10.10_
 
-- [ ] 5. Write unit tests for foundation changes
+- [x] 5. Write unit tests for foundation changes
   - Create test suite to verify CSS variable availability in compiled CSS
   - Test that `[x-cloak]` rule exists in critical CSS
   - Verify PurgeCSS safelist includes all expected patterns
@@ -41,7 +41,7 @@
 
 ## Phase 2: Global Navigation Migration
 
-- [ ] 6. Create new header section with Bulma navbar
+- [x] 6. Create new header section with Bulma navbar
   - Create `sections/aa-header.liquid` using Bulma navbar components (`b-navbar`, `b-navbar-brand`, `b-navbar-menu`)
   - Implement Alpine.js state management with `x-data="{ mobileMenuOpen: false }"`
   - Add mobile menu toggle using `@click` directive and `:class` binding for `b-is-active`
@@ -51,7 +51,7 @@
   - Preserve logo rendering with proper image optimization (eager loading, high priority)
   - _Requirements: 2.1, 2.2, 2.3, 2.6, 8.1, 8.2_
 
-- [ ] 7. Migrate header to use Alpine.js exclusively
+- [x] 7. Migrate header to use Alpine.js exclusively
   - Remove all references to `component-list-menu.css` from header
   - Replace legacy JavaScript menu logic with Alpine.js directives
   - Ensure smooth mobile menu animations using Alpine.js transitions or CSS
