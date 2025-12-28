@@ -1,14 +1,107 @@
+/**
+ * Product Card Alpine.js Component - Enhanced for Task 13
+ * Provides quick-add functionality for product cards
+ * 
+ * Features:
+ * - Quick add to cart without page navigation
+ * - Loading states and error handling
+ * - Integration with Alpine cart store
+ * - Success/error notifications
+ * - Modal quick view support
+ * - Accessibility compliant
+ */
+
 export default function (Alpine) {
-    Alpine.data('productCard', ({ productUrl, sectionId, productId }) => ({
+    Alpine.data('productCard', ({ productUrl, sectionId, productId, variantId, quantity = 1 }) => ({
+        // Configuration
+        productId: productId || null,
+        variantId: variantId || null,
+        quantity: quantity,
+
+        // State
         loading: false,
         modalOpen: false,
         errorMessage: '',
+        successMessage: '',
         quickAddInfo: '',
 
+        /**
+         * Initialize component
+         */
         init() {
-            // Initialize logic if needed
+            // Validate required configuration
+            if (!this.productId) {
+                console.warn('Product Card: productId is recommended for analytics');
+            }
+
+            // Listen for cart updates
+            this.$watch('$store.cart.item_count', () => {
+                // Clear success message when cart updates
+                if (this.successMessage) {
+                    setTimeout(() => {
+                        this.successMessage = '';
+                    }, 3000);
+                }
+            });
         },
 
+        /**
+         * Quick add product to cart using Alpine cart store
+         * @returns {Promise<void>}
+         */
+        async quickAdd() {
+            // Validate variant
+            if (!this.variantId) {
+                this.errorMessage = 'Please select a variant';
+                this.clearErrorAfterDelay();
+                return;
+            }
+
+            // Reset messages
+            this.errorMessage = '';
+            this.successMessage = '';
+            this.loading = true;
+
+            try {
+                // Check if cart store is available
+                if (!this.$store.cart || typeof this.$store.cart.addItem !== 'function') {
+                    throw new Error('Cart store not available');
+                }
+
+                // Add to cart via Alpine cart store
+                await this.$store.cart.addItem(this.variantId, this.quantity);
+
+                // Show success message
+                this.successMessage = 'Added to cart!';
+
+                // Dispatch event for analytics and other components
+                window.dispatchEvent(new CustomEvent('product-added-to-cart', {
+                    detail: {
+                        productId: this.productId,
+                        variantId: this.variantId,
+                        quantity: this.quantity
+                    }
+                }));
+
+                // Open cart drawer (if available)
+                window.dispatchEvent(new CustomEvent('cart-drawer-open'));
+
+            } catch (error) {
+                console.error('Quick add failed:', error);
+
+                // Set user-friendly error message
+                this.errorMessage = this.getErrorMessage(error);
+                this.clearErrorAfterDelay();
+
+            } finally {
+                this.loading = false;
+            }
+        },
+
+        /**
+         * Legacy add to cart using form submission (fallback)
+         * @param {HTMLFormElement} formElement - The form element
+         */
         addToCart(formElement) {
             this.loading = true;
             this.errorMessage = '';
@@ -75,6 +168,9 @@ export default function (Alpine) {
                 });
         },
 
+        /**
+         * Open quick add modal
+         */
         openQuickAdd() {
             if (this.quickAddInfo) {
                 this.modalOpen = true;
@@ -104,14 +200,22 @@ export default function (Alpine) {
                         });
                     } else {
                         console.error('Product info not found in response');
+                        this.errorMessage = 'Failed to load product details';
                     }
                 })
-                .catch(e => console.error(e))
+                .catch(e => {
+                    console.error(e);
+                    this.errorMessage = 'Failed to load product details';
+                })
                 .finally(() => {
                     this.loading = false;
                 });
         },
 
+        /**
+         * Preprocess HTML for modal
+         * @param {HTMLElement} productElement - The product element
+         */
         preprocessHTML(productElement) {
             const oldId = sectionId;
             const newId = `quickadd-${sectionId}`;
@@ -134,8 +238,81 @@ export default function (Alpine) {
             productElement.setAttribute('data-update-url', 'false');
         },
 
+        /**
+         * Close modal
+         */
         closeModal() {
             this.modalOpen = false;
+        },
+
+        /**
+         * Get user-friendly error message
+         * @param {Error} error - The error object
+         * @returns {string} User-friendly error message
+         */
+        getErrorMessage(error) {
+            const message = error.message || error.toString();
+
+            if (message.includes('sold out') || message.includes('unavailable')) {
+                return 'This product is currently sold out';
+            }
+
+            if (message.includes('network') || message.includes('fetch') || message.includes('Failed to fetch')) {
+                return 'Network error. Please check your connection';
+            }
+
+            if (message.includes('limit') || message.includes('maximum')) {
+                return 'Cart limit reached';
+            }
+
+            if (message.includes('not available')) {
+                return 'Cart store not available';
+            }
+
+            return 'Failed to add to cart. Please try again';
+        },
+
+        /**
+         * Clear error message after delay
+         */
+        clearErrorAfterDelay() {
+            setTimeout(() => {
+                this.errorMessage = '';
+            }, 5000);
+        },
+
+        /**
+         * Update quantity
+         * @param {number} newQuantity - New quantity value
+         */
+        setQuantity(newQuantity) {
+            const qty = parseInt(newQuantity, 10);
+
+            if (isNaN(qty) || qty < 1) {
+                this.quantity = 1;
+            } else if (qty > 99) {
+                this.quantity = 99;
+            } else {
+                this.quantity = qty;
+            }
+        },
+
+        /**
+         * Increment quantity
+         */
+        incrementQuantity() {
+            if (this.quantity < 99) {
+                this.quantity++;
+            }
+        },
+
+        /**
+         * Decrement quantity
+         */
+        decrementQuantity() {
+            if (this.quantity > 1) {
+                this.quantity--;
+            }
         }
 
     }));

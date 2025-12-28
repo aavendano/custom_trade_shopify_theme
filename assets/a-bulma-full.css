@@ -19864,6 +19864,201 @@ b-has-background-danger.is-hoverable:active {
     transform: none;
   }
 }
+/**
+ * Product Gallery Styles
+ * Native CSS scroll snap implementation
+ * 
+ * Task 21: Create product gallery with native scroll snap
+ * Requirements: 5.4, 8.7, 9.2
+ */
+.c-product-gallery {
+  position: relative;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+.c-product-gallery__track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 1rem;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.c-product-gallery__track::-webkit-scrollbar {
+  display: none;
+}
+.c-product-gallery__slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+@media (min-width: 768px) {
+  .c-product-gallery__slide {
+    flex: 0 0 50%;
+  }
+}
+.c-product-gallery__slide figure,
+.c-product-gallery__slide .b-image {
+  width: 100%;
+  height: 100%;
+}
+.c-product-gallery__indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.5rem 0;
+}
+.c-product-gallery__indicator {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: #ddd;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+.c-product-gallery__indicator:hover {
+  background-color: #bbb;
+  transform: scale(1.2);
+}
+.c-product-gallery__indicator.is-active {
+  background-color: hsl(268, 41%, 33%);
+  transform: scale(1.3);
+}
+.c-product-gallery__indicator:focus {
+  outline: 2px solid hsl(268, 41%, 33%);
+  outline-offset: 2px;
+}
+
+.c-product-info {
+  padding: 1rem;
+}
+@media (min-width: 768px) {
+  .c-product-info {
+    padding: 2rem;
+  }
+}
+
+.c-variant-selector__option {
+  min-width: 3rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s ease;
+}
+.c-variant-selector__option.is-selected {
+  background-color: hsl(268, 41%, 33%);
+  color: white;
+  border-color: hsl(268, 41%, 33%);
+}
+.c-variant-selector__option:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+.c-variant-selector__option:disabled:hover {
+  background-color: transparent;
+}
+.c-variant-selector__option:not(:disabled):hover {
+  border-color: hsl(268, 41%, 33%);
+  color: hsl(268, 41%, 33%);
+}
+
+.c-product-price {
+  font-size: 2rem;
+  font-weight: 600;
+  color: hsl(268, 41%, 33%);
+}
+.c-product-price--compare {
+  font-size: 1.5rem;
+  color: #999;
+  text-decoration: line-through;
+  margin-left: 0.5rem;
+}
+
+.c-add-to-cart {
+  width: 100%;
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+.c-add-to-cart:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.c-add-to-cart:not(:disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.c-quantity-selector {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.c-quantity-selector__button {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+.c-quantity-selector__input {
+  width: 80px;
+  text-align: center;
+}
+.c-quantity-selector__input::-webkit-outer-spin-button, .c-quantity-selector__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.c-quantity-selector__input[type=number] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+@media (max-width: 767px) {
+  .c-product-gallery {
+    margin-bottom: 1rem;
+  }
+  .c-product-gallery__track {
+    gap: 0.5rem;
+  }
+  .c-product-price {
+    font-size: 1.5rem;
+  }
+  .c-product-price--compare {
+    font-size: 1.125rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .c-product-gallery__track {
+    scroll-behavior: auto;
+  }
+  .c-product-gallery__indicator,
+  .c-variant-selector__option,
+  .c-add-to-cart {
+    transition: none;
+  }
+}
+@media print {
+  .c-product-gallery__indicators,
+  .c-add-to-cart,
+  .c-quantity-selector {
+    display: none;
+  }
+  .c-product-gallery__track {
+    overflow: visible;
+    flex-wrap: wrap;
+  }
+  .c-product-gallery__slide {
+    flex: 0 0 50%;
+    page-break-inside: avoid;
+  }
+}
 :root {
   --shopify-font-body-family: var(--font-body-family, Inter, SF Pro, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, Helvetica, Arial, sans-serif);
   --shopify-font-heading-family: var(--font-heading-family, Inter, SF Pro, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, Helvetica, Arial, sans-serif);
@@ -20066,6 +20261,159 @@ html {
     margin-bottom: 1rem;
   }
 }
+.aa-megamenu-overlay {
+  position: fixed;
+  top: 7rem;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  width: 100%;
+  max-height: calc(100vh - 7rem);
+  overflow-y: auto;
+  background-image: linear-gradient(115deg, rgba(35, 31, 32, 0.98) 0%, rgba(83, 50, 120, 0.98) 50%, rgba(244, 67, 108, 0.98) 100%);
+  background-color: rgba(35, 31, 32, 0.98);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.aa-megamenu-overlay .aa-megamenu-panel {
+  padding: 2rem 0;
+}
+.aa-megamenu-overlay .b-menu-label {
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.aa-megamenu-overlay .b-menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.aa-megamenu-overlay .b-menu-list li {
+  margin-bottom: 0.5rem;
+}
+.aa-megamenu-overlay .b-menu-list a {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+  text-decoration: none;
+  padding: 0.25rem 0;
+  display: block;
+  transition: color 0.15s ease, padding-left 0.15s ease;
+}
+.aa-megamenu-overlay .b-menu-list a:hover {
+  color: white;
+  padding-left: 0.5rem;
+}
+.aa-megamenu-overlay .b-button.b-is-text {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: underline;
+  padding: 0;
+  height: auto;
+  font-size: 14px;
+}
+.aa-megamenu-overlay .b-button.b-is-text:hover {
+  color: white;
+  background: transparent;
+}
+.aa-megamenu-overlay .aa-megamenu-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  transition: background-color 0.15s ease;
+}
+.aa-megamenu-overlay .aa-megamenu-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+.aa-megamenu-overlay .b-column {
+  padding: 1rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .aa-megamenu-overlay {
+    top: 7rem;
+  }
+  .aa-megamenu-overlay .b-columns {
+    flex-wrap: nowrap;
+  }
+  .aa-megamenu-overlay .b-column.b-is-3 {
+    flex: none;
+    width: 25%;
+  }
+  .aa-megamenu-trigger {
+    position: relative;
+    cursor: pointer;
+  }
+  .aa-megamenu-trigger.is-active {
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+  .aa-megamenu-arrow {
+    margin-left: 0.25rem;
+    transition: transform 0.2s ease;
+  }
+  .aa-megamenu-trigger.is-active .aa-megamenu-arrow {
+    transform: rotate(180deg);
+  }
+}
+@media screen and (max-width: calc(1024px - 1px)) {
+  .aa-megamenu-overlay {
+    top: 7rem;
+    padding: 1rem;
+  }
+  .aa-megamenu-overlay .b-columns {
+    display: block;
+  }
+  .aa-megamenu-overlay .b-column {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+  }
+  .aa-megamenu-overlay .b-column:last-child {
+    border-bottom: none;
+  }
+  .aa-megamenu-overlay .aa-megamenu-close {
+    width: 48px;
+    height: 48px;
+  }
+}
+.aa-megamenu-overlay[x-transition\:enter] {
+  transition-property: opacity, transform;
+  transition-timing-function: ease-out;
+  transition-duration: 200ms;
+}
+.aa-megamenu-overlay[x-transition\:enter-start] {
+  opacity: 0;
+  transform: translateY(-0.5rem);
+}
+.aa-megamenu-overlay[x-transition\:enter-end] {
+  opacity: 1;
+  transform: translateY(0);
+}
+.aa-megamenu-overlay[x-transition\:leave] {
+  transition-property: opacity;
+  transition-timing-function: ease-in;
+  transition-duration: 150ms;
+}
+.aa-megamenu-overlay[x-transition\:leave-start] {
+  opacity: 1;
+}
+.aa-megamenu-overlay[x-transition\:leave-end] {
+  opacity: 0;
+}
+
 /* Bulma Themes */
 :root {
   --b-scheme-h: 221;

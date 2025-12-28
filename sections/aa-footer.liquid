@@ -1,0 +1,551 @@
+{% comment %}
+  aa-footer.liquid - Bulma Footer with Grid Layout
+
+  Task 8: Create new footer section with Bulma grid
+  Phase 2: Global Navigation Migration
+
+  Features:
+  - Bulma columns layout (b-columns, b-column)
+  - Responsive grid: mobile (1 col) → tablet (2-4 cols) → desktop (3-4 cols)
+  - Dynamic blocks support (link_list, text, brand_information, image)
+  - Newsletter signup form with Bulma styling
+  - Social media icons integration
+  - Payment icons display
+  - Localization selectors (country/language)
+  - Copyright and policy links
+  - Gradient background support
+  - Mobile-first responsive design
+{% endcomment %}
+
+{%- liquid
+  assign has_social_icons = true
+  if settings.social_bluesky_link == blank and settings.social_facebook_link == blank and settings.social_instagram_link == blank and settings.social_youtube_link == blank and settings.social_tiktok_link == blank and settings.social_twitter_link == blank and settings.social_pinterest_link == blank and settings.social_snapchat_link == blank and settings.social_tumblr_link == blank and settings.social_vimeo_link == blank
+    assign has_social_icons = false
+  endif
+
+  if settings.brand_image == blank and settings.brand_headline == blank and settings.brand_description == blank
+    assign brand_empty = true
+  endif
+
+  if section.blocks.size == 1 and section.blocks[0].type == 'brand_information' and brand_empty and has_social_icons == false and section.settings.newsletter_enable == false and section.settings.enable_follow_on_shop == false
+    assign only_empty_brand = true
+  endif
+-%}
+
+<style>
+  /* PLT brand gradient background */
+  .aa-footer {
+    background: linear-gradient(135deg, #231f20 0%, #533278 50%, #f4436c 100%);
+  }
+
+  /* Mobile menu collapse animation */
+  @media screen and (max-width: 768px) {
+    .aa-footer__menu {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .aa-footer__menu.is-expanded {
+      max-height: 500px;
+    }
+  }
+</style>
+
+<footer
+  class="aa-footer b-footer b-has-text-white b-py-6 color-{{ section.settings.color_scheme }}"
+  role="contentinfo"
+>
+  {%- if section.blocks.size > 0
+    or section.settings.newsletter_enable
+    or section.settings.show_social
+    and has_social_icons == true
+    or section.settings.enable_follow_on_shop
+  -%}
+    {%- unless only_empty_brand -%}
+      <div class="b-container">
+        {%- comment -%} Footer Blocks Grid {%- endcomment -%}
+        {%- if section.blocks.size > 0 -%}
+          {%- liquid
+            if section.blocks.size == 9
+              assign desktop_columns = 3
+            elsif section.blocks.size > 6
+              assign desktop_columns = 4
+            elsif section.blocks.size > 4
+              assign desktop_columns = 3
+            elsif section.blocks.size > 2
+              assign desktop_columns = 3
+            else
+              assign desktop_columns = 2
+            endif
+          -%}
+
+          <div class="b-columns b-is-multiline">
+            {%- for block in section.blocks -%}
+              <div
+                class="b-column b-is-12-mobile b-is-6-tablet b-is-{{ 12 | divided_by: desktop_columns }}-desktop"
+                {{ block.shopify_attributes }}
+              >
+                {%- if block.settings.heading != blank -%}
+                  <h2 class="b-title b-is-5 b-mb-4 b-has-text-weight-semibold">
+                    {{- block.settings.heading -}}
+                    {%- if block.type == 'link_list' -%}
+                      <button
+                        class="b-button b-is-text b-is-hidden-tablet b-ml-2"
+                        aria-expanded="false"
+                        aria-controls="footer-menu-{{ block.id }}"
+                        onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'false' ? 'true' : 'false'); document.getElementById('footer-menu-{{ block.id }}').classList.toggle('is-expanded');"
+                      >
+                        <span class="aa-footer__toggle-icon">+</span>
+                      </button>
+                    {%- endif -%}
+                  </h2>
+                {%- endif -%}
+
+                {%- case block.type -%}
+                  {%- when '@app' -%}
+                    {% render block %}
+
+                  {%- when 'text' -%}
+                    <div class="b-content">
+                      {{ block.settings.subtext }}
+                    </div>
+
+                  {%- when 'link_list' -%}
+                    {%- if block.settings.menu != blank -%}
+                      <ul
+                        class="b-menu-list"
+                        id="footer-menu-{{ block.id }}"
+                      >
+                        {%- for link in block.settings.menu.links -%}
+                          <li>
+                            <a href="{{ link.url }}" class="b-is-ghost">
+                              {{ link.title | escape }}
+                            </a>
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+                    {%- endif -%}
+
+                  {%- when 'brand_information' -%}
+                    <div class="aa-footer__brand">
+                      {%- if settings.brand_image != blank -%}
+                        {%- assign brand_image_height = settings.brand_image_width
+                          | divided_by: settings.brand_image.aspect_ratio
+                        -%}
+                        <div
+                          class="aa-footer__brand-image"
+                          style="max-width: min(100%, {{ settings.brand_image_width }}px);"
+                        >
+                          {{
+                            settings.brand_image
+                            | image_url: width: 1100
+                            | image_tag:
+                              loading: 'lazy',
+                              widths: '50, 100, 150, 200, 300, 400, 550, 800, 1100',
+                              height: brand_image_height,
+                              width: settings.brand_image_width
+                          }}
+                        </div>
+                      {%- endif -%}
+                      {%- if settings.brand_headline != blank -%}
+                        <h2 class="b-title b-is-5">{{ settings.brand_headline }}</h2>
+                      {%- endif -%}
+                      {%- if settings.brand_description != blank -%}
+                        <div class="b-content">{{ settings.brand_description }}</div>
+                      {%- endif -%}
+                      {%- if block.settings.show_social and has_social_icons -%}
+                        {%- render 'social-icons', class: 'aa-footer__social' -%}
+                      {%- endif -%}
+                    </div>
+
+                  {%- when 'image' -%}
+                    <div class="aa-footer__image-block has-text-{{ block.settings.alignment }}">
+                      {%- if block.settings.image != blank -%}
+                        {%- assign image_size_2x = block.settings.image_width | times: 2 | at_most: 5760 -%}
+                        <div
+                          class="aa-footer__brand-image"
+                          style="max-width: min(100%, {{ block.settings.image_width }}px);"
+                        >
+                          <img
+                            srcset="{{ block.settings.image | image_url: width: block.settings.image_width }}, {{ block.settings.image | image_url: width: image_size_2x }} 2x"
+                            src="{{ block.settings.image | image_url: width: 760 }}"
+                            alt="{{ block.settings.image.alt | escape }}"
+                            loading="lazy"
+                            width="{{ block.settings.image.width }}"
+                            height="{{ block.settings.image.height }}"
+                          >
+                        </div>
+                      {%- else -%}
+                        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                      {%- endif -%}
+                    </div>
+                {%- endcase -%}
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        {%- comment -%} Newsletter Section {%- endcomment -%}
+        {%- if section.settings.newsletter_enable
+          or section.settings.enable_follow_on_shop
+          or section.settings.show_social
+          and has_social_icons
+        -%}
+          <div class="b-mt-6 b-pt-6" style="border-top: 1px solid rgba(255, 255, 255, 0.2);">
+            <div class="b-columns">
+              <div class="b-column b-is-12-mobile b-is-8-tablet b-is-6-desktop">
+                {%- if section.settings.newsletter_enable -%}
+                  <div class="aa-footer__newsletter-form">
+                    {%- if section.settings.newsletter_heading != blank -%}
+                      <h2 class="b-title b-is-4">{{ section.settings.newsletter_heading }}</h2>
+                    {%- endif -%}
+                    {%- form 'customer', id: 'ContactFooter', class: 'aa-newsletter-form' -%}
+                      <input type="hidden" name="contact[tags]" value="newsletter">
+                      <div class="b-field b-has-addons">
+                        <div class="b-control b-is-expanded">
+                          <input
+                            id="NewsletterForm--{{ section.id }}"
+                            type="email"
+                            name="contact[email]"
+                            class="b-input"
+                            value="{{ form.email }}"
+                            aria-required="true"
+                            autocorrect="off"
+                            autocapitalize="off"
+                            autocomplete="email"
+                            {% if form.errors %}
+                              autofocus
+                              aria-invalid="true"
+                              aria-describedby="ContactFooter-error"
+                            {% elsif form.posted_successfully? %}
+                              aria-describedby="ContactFooter-success"
+                            {% endif %}
+                            placeholder="{{ 'newsletter.label' | t }}"
+                            required
+                          >
+                        </div>
+                        <div class="b-control">
+                          <button
+                            type="submit"
+                            class="b-button b-is-primary"
+                            name="commit"
+                            id="Subscribe"
+                            aria-label="{{ 'newsletter.button_label' | t }}"
+                          >
+                            {{ 'newsletter.button_label' | t }}
+                          </button>
+                        </div>
+                      </div>
+                      {%- if form.errors -%}
+                        <div class="b-notification b-is-danger b-is-light" id="ContactFooter-error">
+                          {{ form.errors.translated_fields.email | capitalize }}
+                          {{ form.errors.messages.email }}
+                        </div>
+                      {%- endif -%}
+                      {%- if form.posted_successfully? -%}
+                        <div
+                          class="b-notification b-is-success b-is-light"
+                          id="ContactFooter-success"
+                          tabindex="-1"
+                          autofocus
+                        >
+                          {{ 'newsletter.success' | t }}
+                        </div>
+                      {%- endif -%}
+                    {%- endform -%}
+                  </div>
+                {%- endif -%}
+
+                {%- if shop.features.follow_on_shop? and section.settings.enable_follow_on_shop -%}
+                  <div class="aa-footer__follow-shop" style="margin-top: 1rem;">
+                    {{ shop | login_button: action: 'follow' }}
+                  </div>
+                {%- endif -%}
+
+                {%- if section.settings.show_social and has_social_icons -%}
+                  <div style="margin-top: 1rem;">
+                    {%- render 'social-icons', class: 'aa-footer__social' -%}
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endunless -%}
+  {%- endif -%}
+
+  {%- comment -%} Footer Bottom: Localization, Payment, Copyright {%- endcomment -%}
+  <div class="b-mt-6 b-pt-6" style="border-top: 1px solid rgba(255, 255, 255, 0.2);">
+    <div class="b-container">
+      <div class="b-columns b-is-vcentered">
+        {%- comment -%} Localization Selectors {%- endcomment -%}
+        <div class="b-column b-is-12-mobile b-is-6-tablet">
+          <div class="b-field b-is-grouped">
+            {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
+              <div class="b-control">
+                <localization-form>
+                  {%- form 'localization', id: 'FooterCountryForm', class: 'localization-form' -%}
+                    <div>
+                      <h2 class="b-is-sr-only" id="FooterCountryLabel">{{ 'localization.country_label' | t }}</h2>
+                      {%- render 'country-localization', localPosition: 'FooterCountry' -%}
+                    </div>
+                  {%- endform -%}
+                </localization-form>
+              </div>
+            {%- endif -%}
+
+            {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
+              <div class="b-control">
+                <localization-form>
+                  {%- form 'localization', id: 'FooterLanguageForm', class: 'localization-form' -%}
+                    <div>
+                      <h2 class="b-is-sr-only" id="FooterLanguageLabel">
+                        {{ 'localization.language_label' | t }}
+                      </h2>
+                      {%- render 'language-localization', localPosition: 'FooterLanguage' -%}
+                    </div>
+                  {%- endform -%}
+                </localization-form>
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+
+        {%- comment -%} Payment Icons {%- endcomment -%}
+        <div class="b-column b-is-12-mobile b-is-6-tablet has-text-right-tablet">
+          {%- if section.settings.payment_enable -%}
+            <div class="aa-footer__payment">
+              <span class="b-is-sr-only">{{ 'sections.footer.payment' | t }}</span>
+              <ul
+                class="b-is-flex b-is-flex-wrap-wrap"
+                style="gap: 0.5rem; list-style: none; padding: 0; margin: 0;"
+                role="list"
+              >
+                {%- for type in shop.enabled_payment_types -%}
+                  <li class="aa-footer__payment-item">
+                    {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+
+      {%- comment -%} Copyright and Policies {%- endcomment -%}
+      <div class="b-has-text-centered b-mt-6 b-is-size-7" style="opacity: 0.8;">
+        <small> &copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url }} </small>
+        <br>
+        <small>{{ powered_by_link }}</small>
+        {%- if section.settings.show_policy -%}
+          <ul
+            class="b-is-flex b-is-flex-wrap-wrap"
+            style="list-style: none; padding: 0; margin: 0.5rem 0 0 0; gap: 1rem;"
+          >
+            {%- for policy in shop.policies -%}
+              {%- if policy != blank -%}
+                <li>
+                  <small
+                    ><a href="{{ policy.url }}">{{ policy.title | escape }}</a></small
+                  >
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "AA Footer (Bulma)",
+  "tag": "section",
+  "class": "section-footer",
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "link_list",
+      "name": "Menu",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "Quick links",
+          "label": "Heading"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "default": "footer",
+          "label": "Menu"
+        }
+      ]
+    },
+    {
+      "type": "brand_information",
+      "name": "Brand Information",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "This block displays your brand logo, headline, and description. Configure these in Theme Settings > Brand Information."
+        },
+        {
+          "type": "checkbox",
+          "id": "show_social",
+          "default": true,
+          "label": "Show Social Icons",
+          "info": "Configure social media links in Theme Settings > Social Media."
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "Heading",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "subtext",
+          "default": "<p>Share contact information, store details, and brand content with your customers.</p>",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "min": 50,
+          "max": 550,
+          "step": 5,
+          "unit": "px",
+          "label": "Width",
+          "default": 100
+        },
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "centered",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "centered"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Newsletter"
+    },
+    {
+      "type": "checkbox",
+      "id": "newsletter_enable",
+      "default": true,
+      "label": "Enable Newsletter Signup"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "newsletter_heading",
+      "default": "Subscribe to our emails",
+      "label": "Newsletter Heading"
+    },
+    {
+      "type": "header",
+      "content": "Follow on Shop"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_follow_on_shop",
+      "default": true,
+      "label": "Enable Follow on Shop",
+      "info": "Display follow button for your storefront on the Shop app"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "default": true,
+      "label": "Show Social Icons",
+      "info": "Configure social media links in Theme Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_country_selector",
+      "default": true,
+      "label": "Enable Country Selector",
+      "info": "To add a country, go to your store settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_language_selector",
+      "default": true,
+      "label": "Enable Language Selector",
+      "info": "To add a language, go to your language settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "payment_enable",
+      "default": true,
+      "label": "Show Payment Icons"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_policy",
+      "default": true,
+      "label": "Show Policy Links",
+      "info": "To add store policies, go to your store settings"
+    }
+  ],
+  "presets": [
+    {
+      "name": "AA Footer (Bulma)",
+      "category": "AA Sections",
+      "blocks": [
+        {
+          "type": "link_list"
+        },
+        {
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

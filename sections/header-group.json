@@ -22,9 +22,17 @@
         "show_line_separator": false,
         "color_scheme": "scheme-4"
       }
+    },
+    "aa-megamenu": {
+      "type": "aa-megamenu",
+      "settings": {
+        "menu": "theme-trade-main-menu-copy",
+        "color_scheme": "scheme-4"
+      }
     }
   },
   "order": [
-    "aa-header"
+    "aa-header",
+    "aa-megamenu"
   ]
 }

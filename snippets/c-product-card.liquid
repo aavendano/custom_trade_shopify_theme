@@ -1,0 +1,341 @@
+{% comment %}
+  c-product-card.liquid - Vertical Product Card Component
+
+  Task 11: Create vertical product card variant
+  Phase 3: Product Card Component Migration
+
+  Features:
+  - Vertical layout (image top, content bottom)
+  - Bulma card components (b-card, b-card-image, b-card-content)
+  - 1:1 aspect ratio image container
+  - Lazy loading with responsive srcsets
+  - Product title, vendor, and price
+  - Sold out / on sale badges
+  - Accessibility compliant
+  - Mobile-first responsive design
+
+  Usage:
+  {% render 'c-product-card', product: product, lazy_load: true %}
+
+  Parameters:
+  - product: Product object (required)
+  - lazy_load: Boolean to enable lazy loading (default: true)
+  - show_vendor: Boolean to show vendor (default: true)
+  - image_ratio: Image aspect ratio (default: '1by1')
+  - card_class: Additional CSS classes for the card
+{% endcomment %}
+
+{% liquid
+  assign lazy_load = lazy_load | default: true
+  assign show_vendor = show_vendor | default: true
+  assign image_ratio = image_ratio | default: '1by1'
+  assign card_class = card_class | default: ''
+  assign enable_quick_add = enable_quick_add | default: true
+
+  assign current_variant = product.selected_or_first_available_variant
+  assign featured_media = product.featured_media
+  assign product_url = product.url
+
+  # Determine badge type
+  assign show_badge = false
+  assign badge_text = ''
+  assign badge_class = 'b-is-info'
+
+  if product.available == false
+    assign show_badge = true
+    assign badge_text = 'products.product.sold_out' | t
+    assign badge_class = 'b-is-dark'
+  elsif current_variant.compare_at_price > current_variant.price
+    assign show_badge = true
+    assign badge_text = 'products.product.on_sale' | t
+    assign badge_class = 'b-is-danger'
+  endif
+%}
+
+{%- comment -%} Wrap with Alpine.js productCard component if quick-add is enabled {%- endcomment -%}
+{%- if enable_quick_add and product.available and product.has_only_default_variant -%}
+  <div
+    x-data="
+      productCard({
+        productId: {{ product.id }},
+        variantId: {{ current_variant.id }},
+        quantity: 1
+      })
+    "
+  >
+{%- endif -%}
+
+<div class="b-card c-product-card c-product-card--vertical {{ card_class }}" data-product-id="{{ product.id }}">
+  {%- comment -%} Product Image {%- endcomment -%}
+  <div class="b-card-image">
+    <a href="{{ product_url }}" class="c-product-card__link" aria-label="{{ product.title | escape }}">
+      <figure class="b-image b-is-{{ image_ratio }}">
+        {%- if featured_media -%}
+          {%- if lazy_load -%}
+            {{
+              featured_media
+              | image_url: width: 600
+              | image_tag:
+                loading: 'lazy',
+                widths: '200, 300, 400, 500, 600',
+                sizes: '(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw',
+                alt: featured_media.alt
+              | default: product.title, class: 'c-product-card__image'
+            }}
+          {%- else -%}
+            {{
+              featured_media
+              | image_url: width: 600
+              | image_tag:
+                loading: 'eager',
+                fetchpriority: 'high',
+                widths: '200, 300, 400, 500, 600',
+                sizes: '(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw',
+                alt: featured_media.alt
+              | default: product.title, class: 'c-product-card__image'
+            }}
+          {%- endif -%}
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag: 'c-product-card__image b-is-fullwidth' }}
+        {%- endif -%}
+      </figure>
+
+      {%- comment -%} Product Badge {%- endcomment -%}
+      {%- if show_badge -%}
+        <span class="b-tag {{ badge_class }} c-product-card__badge" aria-label="{{ badge_text }}">
+          {{ badge_text }}
+        </span>
+      {%- endif -%}
+    </a>
+  </div>
+
+  {%- comment -%} Product Content {%- endcomment -%}
+  <div class="b-card-content">
+    {%- comment -%} Product Title {%- endcomment -%}
+    <p class="b-title b-is-6 b-mb-2">
+      <a href="{{ product_url }}" class="b-has-text-dark c-product-card__title">
+        {{ product.title | escape }}
+      </a>
+    </p>
+
+    {%- comment -%} Product Vendor {%- endcomment -%}
+    {%- if show_vendor and product.vendor != blank -%}
+      <p class="b-subtitle b-is-7 b-mb-2 b-has-text-grey">
+        {{ product.vendor }}
+      </p>
+    {%- endif -%}
+
+    {%- comment -%} Product Price {%- endcomment -%}
+    <div class="c-product-card__price">
+      {%- if current_variant.compare_at_price > current_variant.price -%}
+        <span class="c-product-card__price--sale b-has-text-danger">
+          {{ current_variant.price | money }}
+        </span>
+        <span class="c-product-card__price--compare b-has-text-grey">
+          <s>{{ current_variant.compare_at_price | money }}</s>
+        </span>
+      {%- else -%}
+        <span class="c-product-card__price--regular b-has-text-dark">
+          {{ current_variant.price | money }}
+        </span>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Quick Add Button with Alpine.js {%- endcomment -%}
+    {%- if enable_quick_add and product.available and product.has_only_default_variant -%}
+      <button
+        type="button"
+        class="b-button b-is-primary b-is-small b-is-fullwidth b-mt-3 c-product-card__quick-add"
+        @click="quickAdd()"
+        :disabled="loading"
+        aria-label="{{ 'products.product.add_to_cart' | t }}"
+      >
+        <span class="b-icon b-is-small" x-show="!loading">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+        </span>
+        <span x-show="loading" class="b-icon b-is-small">
+          <svg class="c-spinner" width="16" height="16" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none" opacity="0.25"></circle>
+            <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round"></path>
+          </svg>
+        </span>
+        <span x-text="loading ? 'Adding...' : '{{ 'products.product.add_to_cart' | t }}'"></span>
+      </button>
+
+      {%- comment -%} Success Message {%- endcomment -%}
+      <div
+        x-show="successMessage"
+        x-cloak
+        class="b-notification b-is-success b-is-light b-mt-2 b-p-3"
+        role="alert"
+      >
+        <span x-text="successMessage"></span>
+      </div>
+
+      {%- comment -%} Error Message {%- endcomment -%}
+      <div
+        x-show="errorMessage"
+        x-cloak
+        class="b-notification b-is-danger b-is-light b-mt-2 b-p-3"
+        role="alert"
+      >
+        <span x-text="errorMessage"></span>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{%- comment -%} Close Alpine.js wrapper {%- endcomment -%}
+{%- if enable_quick_add and product.available and product.has_only_default_variant -%}
+  </div>
+{%- endif -%}
+
+<style>
+  /* Product Card Styles */
+  .c-product-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .c-product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  .c-product-card__link {
+    position: relative;
+    display: block;
+    text-decoration: none;
+  }
+
+  .c-product-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.2s ease;
+  }
+
+  .c-product-card__link:hover .c-product-card__image {
+    opacity: 0.9;
+  }
+
+  .c-product-card__badge {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    z-index: 1;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+  }
+
+  .c-product-card__title {
+    text-decoration: none;
+    transition: color 0.2s ease;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.4;
+  }
+
+  .c-product-card__title:hover {
+    color: hsl(268, 41%, 33%) !important;
+  }
+
+  .c-product-card__price {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+  }
+
+  .c-product-card__price--sale {
+    font-size: 1.125rem;
+  }
+
+  .c-product-card__price--compare {
+    font-size: 0.875rem;
+  }
+
+  .c-product-card__price--regular {
+    font-size: 1.125rem;
+  }
+
+  .c-product-card__quick-add {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .c-product-card:hover .c-product-card__quick-add {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Ensure card content fills remaining space */
+  .c-product-card .b-card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .c-product-card .c-product-card__price {
+    margin-top: auto;
+  }
+
+  /* Spinner animation */
+  .c-spinner {
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Accessibility improvements */
+  @media (prefers-reduced-motion: reduce) {
+    .c-product-card,
+    .c-product-card__image,
+    .c-product-card__title,
+    .c-product-card__quick-add {
+      transition: none;
+    }
+
+    .c-product-card:hover {
+      transform: none;
+    }
+  }
+
+  /* Print styles */
+  @media print {
+    .c-product-card__quick-add,
+    .c-product-card__badge {
+      display: none;
+    }
+
+    .c-product-card {
+      box-shadow: none;
+      border: 1px solid #ddd;
+    }
+  }
+</style>

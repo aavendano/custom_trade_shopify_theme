@@ -1,0 +1,327 @@
+{% comment %}
+  aa-megamenu.liquid - Independent Megamenu Overlay
+
+  Task 3: Create megamenu overlay section
+  Phase: Megamenu Decoupling
+
+  Features:
+  - Decoupled from header, controlled by Alpine.store('megaMenu')
+  - Fixed positioning outside header DOM
+  - Desktop: Full-width overlay with grid layout
+  - Mobile: Accordion-style expandable sections
+  - Smooth transitions with Alpine x-transition
+  - Accessibility: ARIA labels, escape key handler, click-outside close
+
+  Requirements: 3.1, 3.2, 3.3, 3.4, 4.1
+{% endcomment %}
+
+{% liquid
+  assign menu = section.settings.menu
+%}
+
+<style>
+  /* Megamenu Overlay - Independent positioning outside header */
+  .aa-megamenu-overlay {
+    position: fixed;
+    top: 7rem; /* Below header height */
+    left: 0;
+    right: 0;
+    z-index: 100;
+    width: 100%;
+    max-height: calc(100vh - 7rem);
+    overflow-y: auto;
+
+    /* Background matching header gradient */
+    background-image: linear-gradient(
+      115deg,
+      rgba(35, 31, 32, 0.98) 0%,
+      rgba(83, 50, 120, 0.98) 50%,
+      rgba(244, 67, 108, 0.98) 100%
+    );
+    background-color: rgba(35, 31, 32, 0.98);
+
+    /* Visual effects */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Panel container */
+  .aa-megamenu-panel {
+    padding: 2rem 0;
+  }
+
+  /* Category titles */
+  .aa-megamenu-overlay .b-menu-label {
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  /* Menu list styling */
+  .aa-megamenu-overlay .b-menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .aa-megamenu-overlay .b-menu-list li {
+    margin-bottom: 0.5rem;
+  }
+
+  .aa-megamenu-overlay .b-menu-list a {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 14px;
+    text-decoration: none;
+    padding: 0.25rem 0;
+    display: block;
+    transition: color 0.15s ease, padding-left 0.15s ease;
+  }
+
+  .aa-megamenu-overlay .b-menu-list a:hover {
+    color: white;
+    padding-left: 0.5rem;
+  }
+
+  /* View All button */
+  .aa-megamenu-overlay .b-button.b-is-text {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: underline;
+    padding: 0;
+    height: auto;
+    font-size: 14px;
+  }
+
+  .aa-megamenu-overlay .b-button.b-is-text:hover {
+    color: white;
+    background: transparent;
+  }
+
+  /* Close button */
+  .aa-megamenu-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+    transition: background-color 0.15s ease;
+  }
+
+  .aa-megamenu-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  /* Column adjustments */
+  .aa-megamenu-overlay .b-column {
+    padding: 1rem;
+  }
+
+  /* Desktop-specific styles */
+  @media screen and (min-width: 1024px) {
+    .aa-megamenu-overlay {
+      top: 7rem;
+    }
+
+    .aa-megamenu-overlay .b-columns {
+      flex-wrap: nowrap;
+    }
+
+    .aa-megamenu-overlay .b-column.b-is-3 {
+      flex: none;
+      width: 25%;
+    }
+  }
+
+  /* Mobile-specific styles */
+  @media screen and (max-width: 1023px) {
+    .aa-megamenu-overlay {
+      top: 7rem;
+      padding: 1rem;
+    }
+
+    .aa-megamenu-overlay .b-column {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .aa-megamenu-overlay .b-column:last-child {
+      border-bottom: none;
+    }
+  }
+
+  /* Transition utilities for Alpine */
+  .aa-megamenu-overlay.transition {
+    transition-property: opacity, transform;
+    transition-timing-function: ease-out;
+  }
+
+  .aa-megamenu-overlay.ease-out {
+    transition-timing-function: ease-out;
+  }
+
+  .aa-megamenu-overlay.ease-in {
+    transition-timing-function: ease-in;
+  }
+
+  .aa-megamenu-overlay.duration-200 {
+    transition-duration: 200ms;
+  }
+
+  .aa-megamenu-overlay.duration-150 {
+    transition-duration: 150ms;
+  }
+
+  .aa-megamenu-overlay.opacity-0 {
+    opacity: 0;
+  }
+
+  .aa-megamenu-overlay.transform {
+    /* placeholder for transform */
+  }
+
+  .aa-megamenu-overlay.-translate-y-2 {
+    transform: translateY(-0.5rem);
+  }
+
+  .aa-megamenu-overlay.translate-y-0 {
+    transform: translateY(0);
+  }
+</style>
+
+{%- if menu != blank -%}
+  <div
+    x-data="
+      {
+        get isReady() {
+          return typeof Alpine !== 'undefined' && $store.megaMenu !== undefined
+        }
+      }
+    "
+    x-show="isReady && $store.megaMenu.isOpen"
+    x-cloak
+    x-transition:enter="transition ease-out duration-200"
+    x-transition:enter-start="opacity-0 -translate-y-2"
+    x-transition:enter-end="opacity-100 translate-y-0"
+    x-transition:leave="transition ease-in duration-150"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0"
+    @mouseenter="$store.megaMenu.cancelClose()"
+    @mouseleave="$store.megaMenu.scheduleClose()"
+    @keydown.escape.window="$store.megaMenu.close()"
+    @click.outside="$store.megaMenu.close()"
+    class="aa-megamenu-overlay"
+    role="navigation"
+    aria-label="{{ 'accessibility.megamenu' | t | default: 'Mega menu navigation' }}"
+    id="aa-megamenu-overlay"
+  >
+    {%- comment -%} Close button for mobile and accessibility {%- endcomment -%}
+    <button
+      type="button"
+      class="aa-megamenu-close"
+      @click="$store.megaMenu.close()"
+      aria-label="{{ 'accessibility.close' | t | default: 'Close menu' }}"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+      </svg>
+    </button>
+
+    <div class="b-container">
+      {%- for link in menu.links -%}
+        {%- if link.links != blank -%}
+          <div
+            class="aa-megamenu-panel"
+            x-show="$store.megaMenu.activeContext === '{{ link.handle }}'"
+            x-transition:enter="transition ease-out duration-150"
+            x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100"
+          >
+            {%- comment -%} Panel header with back link for mobile {%- endcomment -%}
+            <h2 class="b-is-sr-only">{{ link.title }}</h2>
+
+            <div class="b-columns b-is-multiline">
+              {%- for child in link.links -%}
+                <div class="b-column b-is-3">
+                  {%- if child.links != blank -%}
+                    {%- comment -%} Category with subcategories {%- endcomment -%}
+                    <p class="b-menu-label">{{ child.title }}</p>
+                    <ul class="b-menu-list">
+                      {%- for grandchild in child.links -%}
+                        <li>
+                          <a
+                            href="{{ grandchild.url }}"
+                            {% if grandchild.current %}
+                              aria-current="page"
+                            {% endif %}
+                          >
+                            {{ grandchild.title }}
+                          </a>
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  {%- else -%}
+                    {%- comment -%} Direct link category {%- endcomment -%}
+                    <p class="b-menu-label">{{ child.title }}</p>
+                    <a href="{{ child.url }}" class="b-button b-is-text">
+                      {{ 'general.view_all' | t | default: 'View All' }}
+                    </a>
+                  {%- endif -%}
+                </div>
+              {%- endfor -%}
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "AA Megamenu (Overlay)",
+  "tag": "section",
+  "class": "section-megamenu",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Menu Settings"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "default": "main-menu",
+      "label": "Menu",
+      "info": "Select the same menu used in the header for consistent navigation"
+    },
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "AA Megamenu (Overlay)",
+      "category": "AA Sections"
+    }
+  ]
+}
+{% endschema %}

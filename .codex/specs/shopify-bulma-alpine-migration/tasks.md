@@ -59,7 +59,7 @@
   - Test keyboard navigation and accessibility (ARIA labels on burger menu)
   - _Requirements: 2.4, 2.5, 8.3, 9.4, 9.9_
 
-- [ ] 8. Create new footer section with Bulma grid
+- [x] 8. Create new footer section with Bulma grid
   - Create `sections/aa-footer.liquid` using Bulma columns layout
   - Structure footer with `b-columns` and responsive column classes (`b-is-12-mobile`, `b-is-4-tablet`)
   - Add newsletter signup form if applicable
@@ -67,14 +67,14 @@
   - Ensure mobile-first responsive design
   - _Requirements: 2.1, 8.5, 9.5_
 
-- [ ] 9. Update template JSON files to use new header/footer
+- [x] 9. Update template JSON files to use new header/footer
   - Update `templates/*.json` section group references to point to `aa-header` and `aa-footer`
   - Test in Shopify theme editor to ensure sections load correctly
   - Verify backward compatibility with merchant customizations
   - Document migration path for any custom header/footer blocks
   - _Requirements: 11.4_
 
-- [ ] 10. Write integration tests for navigation
+- [x] 10. Write integration tests for navigation
   - Test mobile menu open/close functionality with Alpine.js
   - Verify cart count updates reactively when cart store changes
   - Test desktop navigation rendering with different menu configurations
@@ -86,7 +86,7 @@
 
 ## Phase 3: Product Card Component Migration
 
-- [ ] 11. Create vertical product card variant
+- [x] 11. Create vertical product card variant
   - Create `snippets/c-product-card.liquid` with vertical layout (image top, content bottom)
   - Use `b-card`, `b-card-image`, `b-card-content` Bulma components
   - Implement 1:1 aspect ratio container using `b-image b-is-1by1`
@@ -96,7 +96,7 @@
   - Ensure all classes use `b-` prefix
   - _Requirements: 3.1, 3.2, 3.3, 3.6, 8.1, 9.2_
 
-- [ ] 12. Create horizontal-mobile product card variant
+- [x] 12. Create horizontal-mobile product card variant
   - Create `snippets/c-product-card--horizontal.liquid` with horizontal layout
   - Use Bulma columns with `b-columns b-is-mobile b-is-gapless`
   - Place image in left column (`b-column b-is-4`) with 1:1 aspect ratio
@@ -104,7 +104,7 @@
   - Optimize for mobile readability and touch targets
   - _Requirements: 3.7, 8.5_
 
-- [ ] 13. Add optional Alpine.js quick-add functionality to product card
+- [x] 13. Add optional Alpine.js quick-add functionality to product card
   - Integrate `x-data="productCard({ productId: {{ product.id }} })"` if quick-add is enabled
   - Reference existing `src/bulma/scripts/custom/product-card.js` Alpine component
   - Add quick-add button with `@click="quickAdd()"` event handler
@@ -112,7 +112,7 @@
   - Style error notification using `b-notification b-is-danger`
   - _Requirements: 3.5, 8.2, 9.4_
 
-- [ ] 14. Update featured collection section to use new product card
+- [x] 14. Update featured collection section to use new product card
   - Modify `sections/featured-collection.liquid` to render `c-product-card.liquid`
   - Remove references to old `card-product.liquid` snippet
   - Use Bulma columns for product grid layout (`b-columns`, `b-column b-is-12-mobile b-is-6-tablet b-is-4-desktop`)
@@ -120,7 +120,7 @@
   - Test product card rendering with various product states (sold out, on sale, available)
   - _Requirements: 3.4, 8.5_
 
-- [ ] 15. Write unit tests for product card components
+- [x] 15. Write unit tests for product card components
   - Test vertical and horizontal card rendering with mock product data
   - Verify lazy loading attributes on images
   - Test badge display logic (sold out, on sale)
@@ -175,7 +175,7 @@
 
 ## Phase 5: Product Detail Page Migration
 
-- [ ] 21. Create product gallery with native scroll snap
+- [x] 21. Create product gallery with native scroll snap
   - Create `sections/aa-main-product.liquid` for PDP layout
   - Implement product gallery using flexbox with `scroll-snap-type: x mandatory`
   - Create `src/bulma/sass/custom/_product-gallery.scss` for scroll snap styles
@@ -184,7 +184,7 @@
   - Hide scrollbar with CSS (`-webkit-scrollbar { display: none }`)
   - _Requirements: 5.4, 8.7, 9.2_
 
-- [ ] 22. Implement variant selector with Alpine.js
+- [x] 22. Implement variant selector with Alpine.js
   - Create Alpine.js component with `x-data` containing variants array and selected variant state
   - Render option selectors using Bulma buttons (`b-buttons b-has-addons`)
   - Bind variant selection with `@click` directive and state update method
@@ -193,7 +193,7 @@
   - Show/hide availability status based on selected variant
   - _Requirements: 5.5, 5.6, 8.1, 8.2_
 
-- [ ] 23. Integrate add-to-cart with Alpine cart store
+- [x] 23. Integrate add-to-cart with Alpine cart store
   - Add "Add to Cart" button with `@click="$store.cart.addItem(selectedVariant.id, 1)"`
   - Bind button disabled state to variant availability using `:disabled="!selectedVariant.available"`
   - Display conditional text: "Add to Cart" when available, "Sold Out" when unavailable
@@ -201,7 +201,7 @@
   - Handle and display add-to-cart errors using Alpine reactive error state
   - _Requirements: 5.2, 5.3, 5.7, 8.2_
 
-- [ ] 24. Add product metadata and structured data
+- [x] 24. Add product metadata and structured data
   - Include product description with Bulma content class (`b-content`)
   - Render product vendor, SKU, and other metadata with Bulma typography
   - Add explicit `width` and `height` attributes to all product images
@@ -209,7 +209,7 @@
   - Include JSON-LD structured data for product schema
   - _Requirements: 9.5, 9.7, 9.8_
 
-- [ ] 25. Write tests for PDP functionality
+- [x] 25. Write tests for PDP functionality
   - Test variant selection updates price and image reactively
   - Verify add-to-cart adds correct variant to cart store
   - Test sold-out variant shows disabled button with correct text

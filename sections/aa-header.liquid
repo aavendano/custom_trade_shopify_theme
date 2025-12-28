@@ -88,28 +88,28 @@
     background-color: rgba(255, 255, 255, 0.1);
   }
 
-  .aa-header .b-navbar-dropdown {
-    background-image: linear-gradient(
-      115deg,
-      rgba(35, 31, 32, 0.98) 0%,
-      rgba(83, 50, 120, 0.98) 50%,
-      rgba(244, 67, 108, 0.98) 100%
-    );
-    background-color: rgba(35, 31, 32, 0.98);
-    border-radius: 0 0 8px 8px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    padding: 1rem;
-    min-width: 200px;
+  /* Megamenu trigger styles */
+  .aa-header .aa-megamenu-trigger {
+    position: relative;
+    cursor: pointer;
   }
 
-  /* Dropdown items - force transparent background */
-  .aa-header .b-navbar-dropdown .b-navbar-item {
-    color: white !important;
-    background-color: transparent !important;
+  .aa-header .aa-megamenu-trigger.is-active {
+    background-color: rgba(255, 255, 255, 0.15);
   }
 
-  .aa-header .b-navbar-dropdown .b-navbar-item:hover {
-    background-color: rgba(255, 255, 255, 0.1) !important;
+  .aa-header .aa-megamenu-arrow {
+    margin-left: 0.25rem;
+    transition: transform 0.2s ease;
+  }
+
+  .aa-header .aa-megamenu-trigger.is-active .aa-megamenu-arrow {
+    transform: rotate(180deg);
+  }
+
+  /* Remove Bulma navbar-link default arrow */
+  .aa-header .b-navbar-link::after {
+    display: none;
   }
 
   /* Logo sizing - maintain aspect ratio with higher specificity */
@@ -178,38 +178,7 @@
     display: inline-block;
   }
 
-  /* Desktop dropdown visibility - ensure Bulma hover works */
-  @media screen and (min-width: 1024px) {
-    /* Hide dropdown by default - explicit display: block but invisible */
-    .aa-header .b-navbar-item.b-has-dropdown .b-navbar-dropdown {
-      display: block !important;
-      opacity: 0 !important;
-      visibility: hidden !important;
-      pointer-events: none !important;
-      position: absolute !important;
-      top: 100% !important;
-      left: 0 !important;
-      z-index: 100 !important;
-      transition: opacity 0.2s ease, visibility 0.2s ease;
-    }
-
-    /* Show dropdown on hover with smooth transition */
-    .aa-header .b-navbar-item.b-has-dropdown.b-is-hoverable:hover .b-navbar-dropdown,
-    .aa-header .b-navbar-item.b-has-dropdown.b-is-hoverable:focus-within .b-navbar-dropdown {
-      display: block !important;
-      opacity: 1 !important;
-      visibility: visible !important;
-      pointer-events: auto !important;
-    }
-
-    /* Megamenu uses grid layout */
-    .aa-header .b-navbar-item.b-has-dropdown.b-is-mega:hover .b-navbar-dropdown {
-      display: grid !important;
-      opacity: 1 !important;
-      visibility: visible !important;
-      pointer-events: auto !important;
-    }
-  }
+  /* Megamenu trigger is handled via Alpine store - no dropdown DOM in header */
 
   /* Mobile menu styling with smooth transitions */
   @media screen and (max-width: 1023px) {
@@ -302,26 +271,39 @@
       :class="{ 'b-is-active': mobileMenuOpen }"
       x-cloak
     >
-      {%- comment -%} Navigation Links {%- endcomment -%}
+      {%- comment -%} Navigation Links - TRIGGERS ONLY, no dropdown DOM {%- endcomment -%}
       <div class="b-navbar-start">
         {%- if menu != blank -%}
           {%- for link in menu.links -%}
             {%- if link.links != blank -%}
-              {%- comment -%} Dropdown Menu {%- endcomment -%}
-              <div class="b-navbar-item b-has-dropdown b-is-hoverable">
-                <a href="{{ link.url }}" class="b-navbar-link b-is-size-6">
-                  {{ link.title }}
-                </a>
-                <div class="b-navbar-dropdown">
-                  {%- for child_link in link.links -%}
-                    <a href="{{ child_link.url }}" class="b-navbar-item b-is-size-7">
-                      {{ child_link.title }}
-                    </a>
-                  {%- endfor -%}
-                </div>
-              </div>
+              {%- comment -%} Megamenu Trigger - emits events to $store.megaMenu {%- endcomment -%}
+              <a
+                href="{{ link.url }}"
+                class="b-navbar-item b-navbar-link b-is-size-6 aa-megamenu-trigger"
+                @mouseenter="$store.megaMenu.open('{{ link.handle }}')"
+                @mouseleave="$store.megaMenu.scheduleClose()"
+                @click.prevent="$store.megaMenu.toggle('{{ link.handle }}')"
+                @focus="$store.megaMenu.open('{{ link.handle }}')"
+                :class="{ 'is-active': $store.megaMenu.activeContext === '{{ link.handle }}' }"
+                :aria-expanded="($store.megaMenu.isOpen && $store.megaMenu.activeContext === '{{ link.handle }}').toString()"
+                aria-haspopup="true"
+                aria-controls="aa-megamenu-overlay"
+              >
+                {{ link.title }}
+                <span class="b-icon b-is-small aa-megamenu-arrow" aria-hidden="true">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="12"
+                    height="12"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                  </svg>
+                </span>
+              </a>
             {%- else -%}
-              {%- comment -%} Simple Link {%- endcomment -%}
+              {%- comment -%} Simple Link - no megamenu {%- endcomment -%}
               <a href="{{ link.url }}" class="b-navbar-item b-is-size-6">
                 {{ link.title }}
               </a>

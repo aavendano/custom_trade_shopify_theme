@@ -1,44 +1,224 @@
-{% assign collection = section.settings.collection %}
+{% comment %}
+  featured-collection.liquid - Featured Collection Section
 
-<div>
-  <div id="collection-{{ section.id }}" data-id="{{ section.id }}">
-    <div>
-      {%- if section.settings.title != blank -%}
-        <h2 class="b-title">{{ section.settings.title }}</h2>
-      {%- endif -%}
-      {%- if section.settings.description != blank
+  Task 14: Update featured collection section to use new product card
+  Phase 3: Product Card Component Migration
+
+  Features:
+  - Uses new c-product-card.liquid component
+  - Bulma columns for responsive grid layout
+  - Mobile, tablet, and desktop column configurations
+  - Quick-add functionality support
+  - Lazy loading for images
+  - View all button
+
+  Updated: 2025-12-28
+{% endcomment %}
+
+{% liquid
+  assign collection = section.settings.collection
+  assign columns_desktop = section.settings.columns_desktop | default: 4
+  assign columns_tablet = section.settings.columns_tablet | default: 2
+  assign columns_mobile = section.settings.columns_mobile | default: 1
+  assign show_vendor = section.settings.show_vendor | default: false
+
+  # Enable quick add if setting is not 'none'
+  if section.settings.quick_add == 'none'
+    assign enable_quick_add = false
+  else
+    assign enable_quick_add = true
+  endif
+
+  assign image_ratio = section.settings.image_ratio | default: 'square'
+
+  # Map image ratio to Bulma aspect ratio classes
+  case image_ratio
+    when 'square'
+      assign bulma_ratio = '1by1'
+    when 'portrait'
+      assign bulma_ratio = '3by4'
+    else
+      assign bulma_ratio = '1by1'
+  endcase
+
+  # Calculate Bulma column classes based on desktop columns
+  case columns_desktop
+    when 1
+      assign desktop_column_class = 'b-is-12-desktop'
+    when 2
+      assign desktop_column_class = 'b-is-6-desktop'
+    when 3
+      assign desktop_column_class = 'b-is-4-desktop'
+    when 4
+      assign desktop_column_class = 'b-is-3-desktop'
+    when 5
+      assign desktop_column_class = 'b-is-one-fifth-desktop'
+    when 6
+      assign desktop_column_class = 'b-is-2-desktop'
+    else
+      assign desktop_column_class = 'b-is-3-desktop'
+  endcase
+
+  # Calculate tablet column classes
+  case columns_tablet
+    when '1'
+      assign tablet_column_class = 'b-is-12-tablet'
+    when '2'
+      assign tablet_column_class = 'b-is-6-tablet'
+    when '3'
+      assign tablet_column_class = 'b-is-4-tablet'
+    when '4'
+      assign tablet_column_class = 'b-is-3-tablet'
+    else
+      assign tablet_column_class = 'b-is-6-tablet'
+  endcase
+
+  # Calculate mobile column classes
+  case columns_mobile
+    when '1'
+      assign mobile_column_class = 'b-is-12-mobile'
+    when '2'
+      assign mobile_column_class = 'b-is-6-mobile'
+    else
+      assign mobile_column_class = 'b-is-12-mobile'
+  endcase
+
+  assign column_classes = mobile_column_class | append: ' ' | append: tablet_column_class | append: ' ' | append: desktop_column_class
+%}
+
+<div
+  class="c-featured-collection b-section"
+  style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;"
+>
+  <div class="{% if section.settings.full_width %}b-container b-is-fluid{% else %}b-container{% endif %}">
+    <div id="collection-{{ section.id }}" data-id="{{ section.id }}">
+      {%- comment -%} Section Header {%- endcomment -%}
+      {%- if section.settings.title != blank
+        or section.settings.description != blank
         or section.settings.show_description
-        and section.settings.collection.description != empty
       -%}
-        <div class="b-content">
-          {%- if section.settings.show_description -%}
-            {{ section.settings.collection.description }}
+        <div class="c-featured-collection__header b-has-text-centered b-mb-5">
+          {%- if section.settings.title != blank -%}
+            <h2 class="b-title b-is-2 b-mb-3">
+              {{ section.settings.title }}
+            </h2>
+          {%- endif -%}
+
+          {%- if section.settings.description != blank
+            or section.settings.show_description
+            and section.settings.collection.description != empty
+          -%}
+            <div class="b-content">
+              {%- if section.settings.show_description -%}
+                {{ section.settings.collection.description }}
+              {%- else -%}
+                {{ section.settings.description }}
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- comment -%} Product Grid {%- endcomment -%}
+      {%- if collection and collection.products.size > 0 -%}
+        {%- paginate collection.products by section.settings.products_to_show -%}
+          <div class="b-columns b-is-multiline b-is-mobile">
+            {%- for product in collection.products -%}
+              <div class="b-column {{ column_classes }}">
+                {%
+                  render 'c-product-card',
+                  product: product,
+                  lazy_load: forloop.index > 4,
+                  show_vendor: show_vendor,
+                  image_ratio: bulma_ratio,
+                  enable_quick_add: enable_quick_add
+                %}
+              </div>
+            {%- endfor -%}
+          </div>
+
+          {%- comment -%} Pagination {%- endcomment -%}
+          {%- if paginate.pages > 1 -%}
+            <div class="b-mt-5">
+              {% render 'pagination', paginate: paginate %}
+            </div>
+          {%- endif -%}
+        {%- endpaginate -%}
+
+        {%- comment -%} View All Button {%- endcomment -%}
+        {%- if section.settings.show_view_all -%}
+          {%- if collection.products_count > section.settings.products_to_show -%}
+            {%- assign more_in_collection = true -%}
           {%- else -%}
-            {{ section.settings.description -}}
-          {%- endif %}
+            {%- assign more_in_collection = false -%}
+          {%- endif -%}
+          {%- if more_in_collection -%}
+            <div class="b-has-text-centered b-mt-5">
+              <a
+                href="{{ collection.url }}"
+                class="b-button {% if section.settings.view_all_style == 'solid' %}b-is-primary{% elsif section.settings.view_all_style == 'outline' %}b-is-outlined b-is-primary{% else %}b-is-text{% endif %}"
+                aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: collection.title | escape }}"
+              >
+                {{ 'sections.featured_collection.view_all' | t }}
+              </a>
+            </div>
+          {%- endif -%}
+        {%- endif -%}
+      {%- else -%}
+        {%- comment -%} Empty State {%- endcomment -%}
+        <div class="b-notification b-is-info b-is-light">
+          <p class="b-has-text-centered">
+            {{ 'sections.featured_collection.no_products' | t }}
+          </p>
         </div>
       {%- endif -%}
     </div>
-
-    {%- if section.settings.collection.products.size > 0 -%}
-      {%- paginate collection.products by section.settings.products_to_show -%}
-        {% render 'c-base-grid', products: collection.products %}
-      {% endpaginate %}
-
-      {%- if section.settings.show_view_all and more_in_collection -%}
-        <div class="center collection__view-all{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-          <a
-            href="{{ section.settings.collection.url }}"
-            class="{% if section.settings.view_all_style == 'link' %}link underlined-link{% elsif section.settings.view_all_style == 'solid' %}button{% else %}button button--secondary{% endif %}"
-            aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: section.settings.collection.title | escape }}"
-          >
-            {{ 'sections.featured_collection.view_all' | t }}
-          </a>
-        </div>
-      {%- endif -%}
-    {%- endif -%}
   </div>
 </div>
+
+<style>
+  .c-featured-collection {
+    position: relative;
+  }
+
+  .c-featured-collection__header {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Ensure equal height cards */
+  .c-featured-collection .b-columns {
+    align-items: stretch;
+  }
+
+  .c-featured-collection .b-column {
+    display: flex;
+  }
+
+  /* Responsive spacing */
+  @media (max-width: 768px) {
+    .c-featured-collection .b-columns {
+      margin-left: -0.5rem;
+      margin-right: -0.5rem;
+    }
+
+    .c-featured-collection .b-column {
+      padding: 0.5rem;
+    }
+  }
+
+  @media (min-width: 769px) {
+    .c-featured-collection .b-columns {
+      margin-left: -0.75rem;
+      margin-right: -0.75rem;
+    }
+
+    .c-featured-collection .b-column {
+      padding: 0.75rem;
+    }
+  }
+</style>
 
 {% schema %}
 {
@@ -74,34 +254,6 @@
       "label": "t:sections.featured-collection.settings.title.label"
     },
     {
-      "type": "select",
-      "id": "heading_size",
-      "options": [
-        {
-          "value": "h2",
-          "label": "t:sections.all.heading_size.options__1.label"
-        },
-        {
-          "value": "h1",
-          "label": "t:sections.all.heading_size.options__2.label"
-        },
-        {
-          "value": "h0",
-          "label": "t:sections.all.heading_size.options__3.label"
-        },
-        {
-          "value": "hxl",
-          "label": "t:sections.all.heading_size.options__4.label"
-        },
-        {
-          "value": "hxxl",
-          "label": "t:sections.all.heading_size.options__5.label"
-        }
-      ],
-      "default": "h1",
-      "label": "t:sections.all.heading_size.label"
-    },
-    {
       "type": "richtext",
       "id": "description",
       "label": "t:sections.featured-collection.settings.description.label"
@@ -111,26 +263,6 @@
       "id": "show_description",
       "label": "t:sections.featured-collection.settings.show_description.label",
       "default": false
-    },
-    {
-      "type": "select",
-      "id": "description_style",
-      "label": "t:sections.featured-collection.settings.description_style.label",
-      "options": [
-        {
-          "value": "body",
-          "label": "t:sections.featured-collection.settings.description_style.options__1.label"
-        },
-        {
-          "value": "subtitle",
-          "label": "t:sections.featured-collection.settings.description_style.options__2.label"
-        },
-        {
-          "value": "uppercase",
-          "label": "t:sections.featured-collection.settings.description_style.options__3.label"
-        }
-      ],
-      "default": "body"
     },
     {
       "type": "header",
@@ -144,12 +276,6 @@
       "step": 1,
       "default": 4,
       "label": "t:sections.featured-collection.settings.columns_desktop.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_desktop_slider",
-      "label": "t:sections.featured-collection.settings.enable_desktop_slider.label",
-      "default": false
     },
     {
       "type": "checkbox",
@@ -185,13 +311,6 @@
       "default": "solid"
     },
     {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "t:sections.all.colors.label",
-      "info": "t:sections.all.colors.has_cards_info",
-      "default": "scheme-1"
-    },
-    {
       "type": "header",
       "content": "t:sections.featured-collection.settings.header.content"
     },
@@ -212,54 +331,8 @@
           "label": "t:sections.featured-collection.settings.image_ratio.options__3.label"
         }
       ],
-      "default": "adapt",
+      "default": "square",
       "label": "t:sections.featured-collection.settings.image_ratio.label"
-    },
-    {
-      "type": "select",
-      "id": "image_shape",
-      "options": [
-        {
-          "value": "default",
-          "label": "t:sections.all.image_shape.options__1.label"
-        },
-        {
-          "value": "arch",
-          "label": "t:sections.all.image_shape.options__2.label"
-        },
-        {
-          "value": "blob",
-          "label": "t:sections.all.image_shape.options__3.label"
-        },
-        {
-          "value": "chevronleft",
-          "label": "t:sections.all.image_shape.options__4.label"
-        },
-        {
-          "value": "chevronright",
-          "label": "t:sections.all.image_shape.options__5.label"
-        },
-        {
-          "value": "diamond",
-          "label": "t:sections.all.image_shape.options__6.label"
-        },
-        {
-          "value": "parallelogram",
-          "label": "t:sections.all.image_shape.options__7.label"
-        },
-        {
-          "value": "round",
-          "label": "t:sections.all.image_shape.options__8.label"
-        }
-      ],
-      "default": "default",
-      "label": "t:sections.all.image_shape.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_secondary_image",
-      "default": false,
-      "label": "t:sections.featured-collection.settings.show_secondary_image.label"
     },
     {
       "type": "checkbox",
@@ -268,16 +341,9 @@
       "label": "t:sections.featured-collection.settings.show_vendor.label"
     },
     {
-      "type": "checkbox",
-      "id": "show_rating",
-      "default": false,
-      "label": "t:sections.featured-collection.settings.show_rating.label",
-      "info": "t:sections.featured-collection.settings.show_rating.info"
-    },
-    {
       "type": "select",
       "id": "quick_add",
-      "default": "none",
+      "default": "standard",
       "label": "t:sections.main-collection-product-grid.settings.quick_add.label",
       "options": [
         {
@@ -287,10 +353,6 @@
         {
           "value": "standard",
           "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_2"
-        },
-        {
-          "value": "bulk",
-          "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_3"
         }
       ]
     },
@@ -301,7 +363,7 @@
     {
       "type": "select",
       "id": "columns_tablet",
-      "default": "4",
+      "default": "2",
       "label": "Columns in Tablet",
       "options": [
         {
@@ -329,7 +391,7 @@
     {
       "type": "select",
       "id": "columns_mobile",
-      "default": "2",
+      "default": "1",
       "label": "t:sections.featured-collection.settings.columns_mobile.label",
       "options": [
         {
@@ -341,12 +403,6 @@
           "label": "t:sections.featured-collection.settings.columns_mobile.options__2.label"
         }
       ]
-    },
-    {
-      "type": "checkbox",
-      "id": "swipe_on_mobile",
-      "default": false,
-      "label": "t:sections.featured-collection.settings.swipe_on_mobile.label"
     },
     {
       "type": "header",
