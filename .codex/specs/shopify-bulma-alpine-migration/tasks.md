@@ -132,7 +132,7 @@
 
 ## Phase 4: Homepage Hero Section Migration
 
-- [ ] 16. Create hero banner section with LCP optimization
+- [x] 16. Create hero banner section with LCP optimization
   - Create `sections/aa-hero.liquid` using Bulma hero component (`b-hero`, `b-hero-body`)
   - Implement responsive images: 1:1 for mobile, 2:1 for desktop using custom CSS classes
   - Use `image_tag` with `loading: 'eager'`, `fetchpriority: 'high'` for LCP optimization
@@ -140,7 +140,7 @@
   - Include text overlay container with Bulma overlay classes
   - _Requirements: 4.1, 4.2, 4.3, 4.5, 9.1, 9.3_
 
-- [ ] 17. Implement hero text overlay with Bulma typography
+- [x] 17. Implement hero text overlay with Bulma typography
   - Create overlay div with positioning and semi-transparent background
   - Add hero title using `b-title b-is-1` with white text
   - Add hero subtitle using `b-subtitle b-is-4` with white text
@@ -148,7 +148,7 @@
   - Ensure text is readable on all image backgrounds (contrast overlay)
   - _Requirements: 4.4, 8.1_
 
-- [ ] 18. Create custom SCSS for hero component
+- [x] 18. Create custom SCSS for hero component
   - Create `src/bulma/sass/custom/_hero.scss`
   - Implement responsive aspect ratio logic (1:1 mobile, 2:1 desktop)
   - Add background image positioning and object-fit rules
@@ -156,14 +156,14 @@
   - Import in main Bulma SASS entry point
   - _Requirements: 4.2, 4.3, 8.7_
 
-- [ ] 19. Update homepage template to use new hero
+- [x] 19. Update homepage template to use new hero
   - Modify `templates/index.json` to reference `aa-hero` section
   - Remove reference to old `image-banner.liquid` section
   - Configure section settings in theme editor
   - Test hero rendering with different image aspect ratios
   - _Requirements: 4.1, 11.4_
 
-- [ ] 20. Write tests for hero performance and rendering
+- [x] 20. Write tests for hero performance and rendering
   - Verify LCP image has `loading="eager"` and `fetchpriority="high"`
   - Test responsive image selection at different viewport widths
   - Validate text overlay readability and positioning

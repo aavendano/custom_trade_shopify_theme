@@ -19262,6 +19262,245 @@ b-has-background-danger.is-hoverable:active {
   transition-duration: 500ms;
 }
 
+/**
+ * Featured Blog Component Styles
+ * Bulma/Alpine Migration
+ * 
+ * Only custom styles that cannot be achieved with Bulma utilities.
+ * Most styling is done via Bulma classes in the Liquid template.
+ * 
+ * Created: 2025-12-28
+ */
+.aa-article-card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+.aa-article-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
+}
+
+.aa-article-card__link {
+  color: inherit;
+  text-decoration: none;
+}
+.aa-article-card__link:hover {
+  color: var(--bulma-link, #485fc7);
+}
+
+.aa-article-card__arrow {
+  transition: transform 0.2s ease;
+}
+
+.aa-article-card__read-more:hover .aa-article-card__arrow {
+  transform: translateX(4px);
+}
+
+.aa-article-card--placeholder {
+  opacity: 0.7;
+}
+.aa-article-card--placeholder:hover {
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aa-article-card {
+    transition: none;
+  }
+  .aa-article-card:hover {
+    transform: none;
+  }
+  .aa-article-card__arrow {
+    transition: none;
+  }
+  .aa-article-card__read-more:hover .aa-article-card__arrow {
+    transform: none;
+  }
+}
+@media print {
+  .aa-article-card {
+    box-shadow: none;
+    border: 1px solid #ddd;
+    page-break-inside: avoid;
+  }
+}
+/**
+ * Hero Component Styles
+ * 
+ * Task 18: Create custom SCSS for hero component
+ * Phase 4: Homepage Hero Section Migration
+ * 
+ * Features:
+ * - Responsive aspect ratios (1:1 mobile, 2:1 desktop)
+ * - Background image positioning with object-fit
+ * - Overlay with flexbox centering and gradient
+ * - Animations with reduced motion support
+ * - Print styles
+ * 
+ * Requirements: 4.2, 4.3, 8.7
+ */
+.c-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.c-hero__body {
+  position: relative;
+  padding: 0;
+}
+
+.c-hero__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+@media (max-width: 768px) {
+  .c-hero__image {
+    aspect-ratio: 1 / 1;
+  }
+}
+@media (min-width: 769px) {
+  .c-hero__image {
+    aspect-ratio: 2 / 1;
+  }
+}
+
+.c-hero__image-element {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.c-hero__placeholder {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.c-hero__placeholder-svg {
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+}
+
+.c-hero__overlay {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  background: linear-gradient(rgba(0, 0, 0, var(--overlay-opacity, 0.3)), rgba(0, 0, 0, var(--overlay-opacity, 0.3)));
+}
+
+.b-hero.b-is-small .c-hero__overlay {
+  min-height: 300px;
+}
+.b-hero.b-is-medium .c-hero__overlay {
+  min-height: 400px;
+}
+.b-hero.b-is-large .c-hero__overlay {
+  min-height: 600px;
+}
+.b-hero.b-is-fullheight .c-hero__overlay {
+  min-height: 100vh;
+}
+
+.c-hero__content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+@media (max-width: 768px) {
+  .c-hero__content {
+    padding: 1.5rem 1rem;
+  }
+}
+
+.c-hero__title {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  animation: fadeInUp 0.6s ease-out;
+}
+@media (max-width: 768px) {
+  .c-hero__title {
+    font-size: 2rem;
+  }
+}
+
+.c-hero__subtitle {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  animation: fadeInUp 0.8s ease-out;
+}
+@media (max-width: 768px) {
+  .c-hero__subtitle {
+    font-size: 1.25rem;
+  }
+}
+
+.c-hero__cta {
+  animation: fadeInUp 1s ease-out;
+}
+
+.c-hero__button {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.c-hero__button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+@media (max-width: 768px) {
+  .c-hero__button {
+    width: 100%;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.c-hero[data-parallax=true] .c-hero__image-element {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .c-hero__title,
+  .c-hero__subtitle,
+  .c-hero__cta {
+    animation: none;
+  }
+  .c-hero__button {
+    transition: none;
+  }
+  .c-hero[data-parallax=true] .c-hero__image-element {
+    transform: none;
+    transition: none;
+  }
+}
+@media print {
+  .c-hero {
+    page-break-inside: avoid;
+  }
+  .c-hero__overlay {
+    background: rgba(0, 0, 0, 0.1);
+  }
+  .c-hero__button {
+    display: none;
+  }
+}
 /* ==========================================================
    PlayLoveToys — Overlay Toolkit (Dynamic Bulma Colors)
    Genera helpers según $these-colors (sin asumir nombres).

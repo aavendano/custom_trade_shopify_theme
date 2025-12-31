@@ -9,6 +9,20 @@
  */
 {
   "sections": {
+    "aa_hero": {
+      "type": "aa-hero",
+      "settings": {
+        "hero_image": "",
+        "overlay_opacity": 30,
+        "hero_title": "Welcome to PlayLoveToys",
+        "hero_subtitle": "Discover premium adult toys and enhance your intimate experiences",
+        "hero_cta_text": "Shop Now",
+        "hero_cta_link": "/collections/all",
+        "hero_height": "medium",
+        "text_alignment": "center",
+        "enable_parallax": false
+      }
+    },
     "a_matrix_KPxFQ3": {
       "type": "a-matrix",
       "blocks": {
@@ -742,6 +756,7 @@
     }
   },
   "order": [
+    "aa_hero",
     "a_matrix_KPxFQ3",
     "a_matrix_nYMPFj",
     "a_logo_motto_47YBzW",
