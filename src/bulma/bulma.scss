@@ -24,7 +24,9 @@ $plt-image-dimensions: 75 100 150 320 400 460 520;
     // However, we still pass fonts.
     $family-sans-serif-primary: $plt-family-primary,
     $family-sans-serif-secondary: $plt-family-secondary,
-    $dimensions: $plt-image-dimensions
+    $dimensions: $plt-image-dimensions,
+    $section-padding: 3rem .25rem,
+
 );
 
 @forward "sass/utilities/functions";

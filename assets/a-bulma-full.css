@@ -11116,7 +11116,7 @@ label.b-panel-block:hover {
   }
 }
 .b-section {
-  --b-section-padding: 3rem 1.5rem;
+  --b-section-padding: 3rem 0.25rem;
   --b-section-padding-desktop: 3rem 3rem;
   --b-section-padding-medium: 9rem 4.5rem;
   --b-section-padding-large: 18rem 6rem;
@@ -18747,7 +18747,7 @@ b-has-background-danger.is-hoverable:active {
 
 /* ==========================================================
    PlayLoveToys — Overlay Toolkit (Dynamic Bulma Colors)
-   Genera helpers según $these-colors (sin asumir nombres).
+   Genera helpers según $overlays-colors (sin asumir nombres).
    ========================================================== */
 /* Espaciado base para overlays */
 /* ============================================
@@ -18841,8 +18841,8 @@ b-has-background-danger.is-hoverable:active {
 }
 
 /* ============================================
-   Funciones helper para leer $these-colors
-   $these-colors: ("primary": ($primary, $primary-invert), ...)
+   Funciones helper para leer $overlays-colors
+   $overlays-colors: ("primary": ($primary, $primary-invert), ...)
    ============================================ */
 /* ============================================
    Loop dinámico por todos los colores de Bulma
@@ -18851,31 +18851,45 @@ b-has-background-danger.is-hoverable:active {
    - .b-badge-circle-[color]
    - .b-badge-pill-[color]
    ============================================ */
-/* Badge rectangular */
+.b-badge-white,
+.b-badge-pill-white,
+.b-badge-circle-white {
+  --b-badge-h: var(--b-white-h);
+  --b-badge-s: var(--b-white-s);
+  --b-badge-l: var(--b-white-l);
+  --b-badge-color-h: 0deg;
+  --b-badge-color-s: 0%;
+  --b-badge-color-l: 0%;
+  --b-badge-color-l-adjust: -15%;
+  background-color: hsl(var(--b-badge-h), var(--b-badge-s), var(--b-badge-l));
+  color: hsl(var(--b-badge-color-h), var(--b-badge-color-s), clamp(0%, var(--b-badge-color-l, 50%) + var(--b-badge-color-l-adjust, 0%), 100%));
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+/* ======================================================
+ * Badge rectangular
+ * ====================================================== */
 .b-badge-white {
   display: inline-block;
   padding: 0.25rem 0.6rem;
   border-radius: 0.4rem;
-  background-color: hsl(221, 14%, 100%);
-  color: rgba(0, 0, 0, 0.7);
   font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1.1;
 }
 
-/* Badge tipo pill */
+/* ======================================================
+ * Badge pill
+ * ====================================================== */
 .b-badge-pill-white {
   display: inline-block;
   padding: 0.25rem 0.8rem;
   border-radius: 999px;
-  background-color: hsl(221, 14%, 100%);
-  color: rgba(0, 0, 0, 0.7);
   font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1.1;
 }
 
-/* Badge circular */
+/* ======================================================
+ * Badge circular
+ * ====================================================== */
 .b-badge-circle-white {
   display: inline-flex;
   align-items: center;
@@ -18883,38 +18897,49 @@ b-has-background-danger.is-hoverable:active {
   width: 2.2rem;
   height: 2.2rem;
   border-radius: 50%;
-  background-color: hsl(221, 14%, 100%);
-  color: rgba(0, 0, 0, 0.7);
-  font-weight: 700;
   font-size: 0.9rem;
   line-height: 1;
 }
 
-/* Badge rectangular */
+.b-badge-black,
+.b-badge-pill-black,
+.b-badge-circle-black {
+  --b-badge-h: var(--b-black-h);
+  --b-badge-s: var(--b-black-s);
+  --b-badge-l: var(--b-black-l);
+  --b-badge-color-h: 0deg;
+  --b-badge-color-s: 0%;
+  --b-badge-color-l: 100%;
+  --b-badge-color-l-adjust: -15%;
+  background-color: hsl(var(--b-badge-h), var(--b-badge-s), var(--b-badge-l));
+  color: hsl(var(--b-badge-color-h), var(--b-badge-color-s), clamp(0%, var(--b-badge-color-l, 50%) + var(--b-badge-color-l-adjust, 0%), 100%));
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+/* ======================================================
+ * Badge rectangular
+ * ====================================================== */
 .b-badge-black {
   display: inline-block;
   padding: 0.25rem 0.6rem;
   border-radius: 0.4rem;
-  background-color: hsl(221, 14%, 4%);
-  color: #fff;
   font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1.1;
 }
 
-/* Badge tipo pill */
+/* ======================================================
+ * Badge pill
+ * ====================================================== */
 .b-badge-pill-black {
   display: inline-block;
   padding: 0.25rem 0.8rem;
   border-radius: 999px;
-  background-color: hsl(221, 14%, 4%);
-  color: #fff;
   font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1.1;
 }
 
-/* Badge circular */
+/* ======================================================
+ * Badge circular
+ * ====================================================== */
 .b-badge-circle-black {
   display: inline-flex;
   align-items: center;
@@ -18922,38 +18947,49 @@ b-has-background-danger.is-hoverable:active {
   width: 2.2rem;
   height: 2.2rem;
   border-radius: 50%;
-  background-color: hsl(221, 14%, 4%);
-  color: #fff;
-  font-weight: 700;
   font-size: 0.9rem;
   line-height: 1;
 }
 
-/* Badge rectangular */
+.b-badge-light,
+.b-badge-pill-light,
+.b-badge-circle-light {
+  --b-badge-h: var(--b-light-h);
+  --b-badge-s: var(--b-light-s);
+  --b-badge-l: var(--b-light-l);
+  --b-badge-color-h: 0deg;
+  --b-badge-color-s: 0%;
+  --b-badge-color-l: 0%;
+  --b-badge-color-l-adjust: -15%;
+  background-color: hsl(var(--b-badge-h), var(--b-badge-s), var(--b-badge-l));
+  color: hsl(var(--b-badge-color-h), var(--b-badge-color-s), clamp(0%, var(--b-badge-color-l, 50%) + var(--b-badge-color-l-adjust, 0%), 100%));
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+/* ======================================================
+ * Badge rectangular
+ * ====================================================== */
 .b-badge-light {
   display: inline-block;
   padding: 0.25rem 0.6rem;
   border-radius: 0.4rem;
-  background-color: hsl(221, 14%, 96%);
-  color: rgba(0, 0, 0, 0.7);
   font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1.1;
 }
 
-/* Badge tipo pill */
+/* ======================================================
+ * Badge pill
+ * ====================================================== */
 .b-badge-pill-light {
   display: inline-block;
   padding: 0.25rem 0.8rem;
   border-radius: 999px;
-  background-color: hsl(221, 14%, 96%);
-  color: rgba(0, 0, 0, 0.7);
   font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1.1;
 }
 
-/* Badge circular */
+/* ======================================================
+ * Badge circular
+ * ====================================================== */
 .b-badge-circle-light {
   display: inline-flex;
   align-items: center;
@@ -18961,38 +18997,49 @@ b-has-background-danger.is-hoverable:active {
   width: 2.2rem;
   height: 2.2rem;
   border-radius: 50%;
-  background-color: hsl(221, 14%, 96%);
-  color: rgba(0, 0, 0, 0.7);
-  font-weight: 700;
   font-size: 0.9rem;
   line-height: 1;
 }
 
-/* Badge rectangular */
+.b-badge-dark,
+.b-badge-pill-dark,
+.b-badge-circle-dark {
+  --b-badge-h: var(--b-dark-h);
+  --b-badge-s: var(--b-dark-s);
+  --b-badge-l: var(--b-dark-l);
+  --b-badge-color-h: 0deg;
+  --b-badge-color-s: 0%;
+  --b-badge-color-l: 100%;
+  --b-badge-color-l-adjust: -15%;
+  background-color: hsl(var(--b-badge-h), var(--b-badge-s), var(--b-badge-l));
+  color: hsl(var(--b-badge-color-h), var(--b-badge-color-s), clamp(0%, var(--b-badge-color-l, 50%) + var(--b-badge-color-l-adjust, 0%), 100%));
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+/* ======================================================
+ * Badge rectangular
+ * ====================================================== */
 .b-badge-dark {
   display: inline-block;
   padding: 0.25rem 0.6rem;
   border-radius: 0.4rem;
-  background-color: hsl(221, 14%, 21%);
-  color: #fff;
   font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1.1;
 }
 
-/* Badge tipo pill */
+/* ======================================================
+ * Badge pill
+ * ====================================================== */
 .b-badge-pill-dark {
   display: inline-block;
   padding: 0.25rem 0.8rem;
   border-radius: 999px;
-  background-color: hsl(221, 14%, 21%);
-  color: #fff;
   font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1.1;
 }
 
-/* Badge circular */
+/* ======================================================
+ * Badge circular
+ * ====================================================== */
 .b-badge-circle-dark {
   display: inline-flex;
   align-items: center;
@@ -19000,38 +19047,49 @@ b-has-background-danger.is-hoverable:active {
   width: 2.2rem;
   height: 2.2rem;
   border-radius: 50%;
-  background-color: hsl(221, 14%, 21%);
-  color: #fff;
-  font-weight: 700;
   font-size: 0.9rem;
   line-height: 1;
 }
 
-/* Badge rectangular */
+.b-badge-text,
+.b-badge-pill-text,
+.b-badge-circle-text {
+  --b-badge-h: var(--b-text-h);
+  --b-badge-s: var(--b-text-s);
+  --b-badge-l: var(--b-text-l);
+  --b-badge-color-h: 0deg;
+  --b-badge-color-s: 0%;
+  --b-badge-color-l: 100%;
+  --b-badge-color-l-adjust: -15%;
+  background-color: hsl(var(--b-badge-h), var(--b-badge-s), var(--b-badge-l));
+  color: hsl(var(--b-badge-color-h), var(--b-badge-color-s), clamp(0%, var(--b-badge-color-l, 50%) + var(--b-badge-color-l-adjust, 0%), 100%));
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+/* ======================================================
+ * Badge rectangular
+ * ====================================================== */
 .b-badge-text {
   display: inline-block;
   padding: 0.25rem 0.6rem;
   border-radius: 0.4rem;
-  background-color: hsl(108, 6%, 34%);
-  color: #fff;
   font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1.1;
 }
 
-/* Badge tipo pill */
+/* ======================================================
+ * Badge pill
+ * ====================================================== */
 .b-badge-pill-text {
   display: inline-block;
   padding: 0.25rem 0.8rem;
   border-radius: 999px;
-  background-color: hsl(108, 6%, 34%);
-  color: #fff;
   font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1.1;
 }
 
-/* Badge circular */
+/* ======================================================
+ * Badge circular
+ * ====================================================== */
 .b-badge-circle-text {
   display: inline-flex;
   align-items: center;
@@ -19039,38 +19097,49 @@ b-has-background-danger.is-hoverable:active {
   width: 2.2rem;
   height: 2.2rem;
   border-radius: 50%;
-  background-color: hsl(108, 6%, 34%);
-  color: #fff;
-  font-weight: 700;
   font-size: 0.9rem;
   line-height: 1;
 }
 
-/* Badge rectangular */
+.b-badge-primary,
+.b-badge-pill-primary,
+.b-badge-circle-primary {
+  --b-badge-h: var(--b-primary-h);
+  --b-badge-s: var(--b-primary-s);
+  --b-badge-l: var(--b-primary-l);
+  --b-badge-color-h: 0deg;
+  --b-badge-color-s: 0%;
+  --b-badge-color-l: 100%;
+  --b-badge-color-l-adjust: -15%;
+  background-color: hsl(var(--b-badge-h), var(--b-badge-s), var(--b-badge-l));
+  color: hsl(var(--b-badge-color-h), var(--b-badge-color-s), clamp(0%, var(--b-badge-color-l, 50%) + var(--b-badge-color-l-adjust, 0%), 100%));
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+/* ======================================================
+ * Badge rectangular
+ * ====================================================== */
 .b-badge-primary {
   display: inline-block;
   padding: 0.25rem 0.6rem;
   border-radius: 0.4rem;
-  background-color: hsl(171, 100%, 41%);
-  color: #fff;
   font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1.1;
 }
 
-/* Badge tipo pill */
+/* ======================================================
+ * Badge pill
+ * ====================================================== */
 .b-badge-pill-primary {
   display: inline-block;
   padding: 0.25rem 0.8rem;
   border-radius: 999px;
-  background-color: hsl(171, 100%, 41%);
-  color: #fff;
   font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1.1;
 }
 
-/* Badge circular */
+/* ======================================================
+ * Badge circular
+ * ====================================================== */
 .b-badge-circle-primary {
   display: inline-flex;
   align-items: center;
@@ -19078,38 +19147,49 @@ b-has-background-danger.is-hoverable:active {
   width: 2.2rem;
   height: 2.2rem;
   border-radius: 50%;
-  background-color: hsl(171, 100%, 41%);
-  color: #fff;
-  font-weight: 700;
   font-size: 0.9rem;
   line-height: 1;
 }
 
-/* Badge rectangular */
+.b-badge-link,
+.b-badge-pill-link,
+.b-badge-circle-link {
+  --b-badge-h: var(--b-link-h);
+  --b-badge-s: var(--b-link-s);
+  --b-badge-l: var(--b-link-l);
+  --b-badge-color-h: 0deg;
+  --b-badge-color-s: 0%;
+  --b-badge-color-l: 100%;
+  --b-badge-color-l-adjust: -15%;
+  background-color: hsl(var(--b-badge-h), var(--b-badge-s), var(--b-badge-l));
+  color: hsl(var(--b-badge-color-h), var(--b-badge-color-s), clamp(0%, var(--b-badge-color-l, 50%) + var(--b-badge-color-l-adjust, 0%), 100%));
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+/* ======================================================
+ * Badge rectangular
+ * ====================================================== */
 .b-badge-link {
   display: inline-block;
   padding: 0.25rem 0.6rem;
   border-radius: 0.4rem;
-  background-color: hsl(233, 100%, 63%);
-  color: #fff;
   font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1.1;
 }
 
-/* Badge tipo pill */
+/* ======================================================
+ * Badge pill
+ * ====================================================== */
 .b-badge-pill-link {
   display: inline-block;
   padding: 0.25rem 0.8rem;
   border-radius: 999px;
-  background-color: hsl(233, 100%, 63%);
-  color: #fff;
   font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1.1;
 }
 
-/* Badge circular */
+/* ======================================================
+ * Badge circular
+ * ====================================================== */
 .b-badge-circle-link {
   display: inline-flex;
   align-items: center;
@@ -19117,38 +19197,49 @@ b-has-background-danger.is-hoverable:active {
   width: 2.2rem;
   height: 2.2rem;
   border-radius: 50%;
-  background-color: hsl(233, 100%, 63%);
-  color: #fff;
-  font-weight: 700;
   font-size: 0.9rem;
   line-height: 1;
 }
 
-/* Badge rectangular */
+.b-badge-info,
+.b-badge-pill-info,
+.b-badge-circle-info {
+  --b-badge-h: var(--b-info-h);
+  --b-badge-s: var(--b-info-s);
+  --b-badge-l: var(--b-info-l);
+  --b-badge-color-h: 0deg;
+  --b-badge-color-s: 0%;
+  --b-badge-color-l: 0%;
+  --b-badge-color-l-adjust: -15%;
+  background-color: hsl(var(--b-badge-h), var(--b-badge-s), var(--b-badge-l));
+  color: hsl(var(--b-badge-color-h), var(--b-badge-color-s), clamp(0%, var(--b-badge-color-l, 50%) + var(--b-badge-color-l-adjust, 0%), 100%));
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+/* ======================================================
+ * Badge rectangular
+ * ====================================================== */
 .b-badge-info {
   display: inline-block;
   padding: 0.25rem 0.6rem;
   border-radius: 0.4rem;
-  background-color: hsl(198, 100%, 70%);
-  color: rgba(0, 0, 0, 0.7);
   font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1.1;
 }
 
-/* Badge tipo pill */
+/* ======================================================
+ * Badge pill
+ * ====================================================== */
 .b-badge-pill-info {
   display: inline-block;
   padding: 0.25rem 0.8rem;
   border-radius: 999px;
-  background-color: hsl(198, 100%, 70%);
-  color: rgba(0, 0, 0, 0.7);
   font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1.1;
 }
 
-/* Badge circular */
+/* ======================================================
+ * Badge circular
+ * ====================================================== */
 .b-badge-circle-info {
   display: inline-flex;
   align-items: center;
@@ -19156,38 +19247,49 @@ b-has-background-danger.is-hoverable:active {
   width: 2.2rem;
   height: 2.2rem;
   border-radius: 50%;
-  background-color: hsl(198, 100%, 70%);
-  color: rgba(0, 0, 0, 0.7);
-  font-weight: 700;
   font-size: 0.9rem;
   line-height: 1;
 }
 
-/* Badge rectangular */
+.b-badge-success,
+.b-badge-pill-success,
+.b-badge-circle-success {
+  --b-badge-h: var(--b-success-h);
+  --b-badge-s: var(--b-success-s);
+  --b-badge-l: var(--b-success-l);
+  --b-badge-color-h: 0deg;
+  --b-badge-color-s: 0%;
+  --b-badge-color-l: 100%;
+  --b-badge-color-l-adjust: -15%;
+  background-color: hsl(var(--b-badge-h), var(--b-badge-s), var(--b-badge-l));
+  color: hsl(var(--b-badge-color-h), var(--b-badge-color-s), clamp(0%, var(--b-badge-color-l, 50%) + var(--b-badge-color-l-adjust, 0%), 100%));
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+/* ======================================================
+ * Badge rectangular
+ * ====================================================== */
 .b-badge-success {
   display: inline-block;
   padding: 0.25rem 0.6rem;
   border-radius: 0.4rem;
-  background-color: hsl(153, 53%, 53%);
-  color: #fff;
   font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1.1;
 }
 
-/* Badge tipo pill */
+/* ======================================================
+ * Badge pill
+ * ====================================================== */
 .b-badge-pill-success {
   display: inline-block;
   padding: 0.25rem 0.8rem;
   border-radius: 999px;
-  background-color: hsl(153, 53%, 53%);
-  color: #fff;
   font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1.1;
 }
 
-/* Badge circular */
+/* ======================================================
+ * Badge circular
+ * ====================================================== */
 .b-badge-circle-success {
   display: inline-flex;
   align-items: center;
@@ -19195,38 +19297,49 @@ b-has-background-danger.is-hoverable:active {
   width: 2.2rem;
   height: 2.2rem;
   border-radius: 50%;
-  background-color: hsl(153, 53%, 53%);
-  color: #fff;
-  font-weight: 700;
   font-size: 0.9rem;
   line-height: 1;
 }
 
-/* Badge rectangular */
+.b-badge-warning,
+.b-badge-pill-warning,
+.b-badge-circle-warning {
+  --b-badge-h: var(--b-warning-h);
+  --b-badge-s: var(--b-warning-s);
+  --b-badge-l: var(--b-warning-l);
+  --b-badge-color-h: 0deg;
+  --b-badge-color-s: 0%;
+  --b-badge-color-l: 0%;
+  --b-badge-color-l-adjust: -15%;
+  background-color: hsl(var(--b-badge-h), var(--b-badge-s), var(--b-badge-l));
+  color: hsl(var(--b-badge-color-h), var(--b-badge-color-s), clamp(0%, var(--b-badge-color-l, 50%) + var(--b-badge-color-l-adjust, 0%), 100%));
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+/* ======================================================
+ * Badge rectangular
+ * ====================================================== */
 .b-badge-warning {
   display: inline-block;
   padding: 0.25rem 0.6rem;
   border-radius: 0.4rem;
-  background-color: hsl(42, 100%, 53%);
-  color: rgba(0, 0, 0, 0.7);
   font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1.1;
 }
 
-/* Badge tipo pill */
+/* ======================================================
+ * Badge pill
+ * ====================================================== */
 .b-badge-pill-warning {
   display: inline-block;
   padding: 0.25rem 0.8rem;
   border-radius: 999px;
-  background-color: hsl(42, 100%, 53%);
-  color: rgba(0, 0, 0, 0.7);
   font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1.1;
 }
 
-/* Badge circular */
+/* ======================================================
+ * Badge circular
+ * ====================================================== */
 .b-badge-circle-warning {
   display: inline-flex;
   align-items: center;
@@ -19234,38 +19347,49 @@ b-has-background-danger.is-hoverable:active {
   width: 2.2rem;
   height: 2.2rem;
   border-radius: 50%;
-  background-color: hsl(42, 100%, 53%);
-  color: rgba(0, 0, 0, 0.7);
-  font-weight: 700;
   font-size: 0.9rem;
   line-height: 1;
 }
 
-/* Badge rectangular */
+.b-badge-danger,
+.b-badge-pill-danger,
+.b-badge-circle-danger {
+  --b-badge-h: var(--b-danger-h);
+  --b-badge-s: var(--b-danger-s);
+  --b-badge-l: var(--b-danger-l);
+  --b-badge-color-h: 0deg;
+  --b-badge-color-s: 0%;
+  --b-badge-color-l: 100%;
+  --b-badge-color-l-adjust: -15%;
+  background-color: hsl(var(--b-badge-h), var(--b-badge-s), var(--b-badge-l));
+  color: hsl(var(--b-badge-color-h), var(--b-badge-color-s), clamp(0%, var(--b-badge-color-l, 50%) + var(--b-badge-color-l-adjust, 0%), 100%));
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+/* ======================================================
+ * Badge rectangular
+ * ====================================================== */
 .b-badge-danger {
   display: inline-block;
   padding: 0.25rem 0.6rem;
   border-radius: 0.4rem;
-  background-color: hsl(348, 100%, 70%);
-  color: #fff;
   font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1.1;
 }
 
-/* Badge tipo pill */
+/* ======================================================
+ * Badge pill
+ * ====================================================== */
 .b-badge-pill-danger {
   display: inline-block;
   padding: 0.25rem 0.8rem;
   border-radius: 999px;
-  background-color: hsl(348, 100%, 70%);
-  color: #fff;
   font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1.1;
 }
 
-/* Badge circular */
+/* ======================================================
+ * Badge circular
+ * ====================================================== */
 .b-badge-circle-danger {
   display: inline-flex;
   align-items: center;
@@ -19273,9 +19397,6 @@ b-has-background-danger.is-hoverable:active {
   width: 2.2rem;
   height: 2.2rem;
   border-radius: 50%;
-  background-color: hsl(348, 100%, 70%);
-  color: #fff;
-  font-weight: 700;
   font-size: 0.9rem;
   line-height: 1;
 }

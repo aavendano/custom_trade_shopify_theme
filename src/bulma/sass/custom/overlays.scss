@@ -1,10 +1,12 @@
 /* ==========================================================
    PlayLoveToys — Overlay Toolkit (Dynamic Bulma Colors)
-   Genera helpers según $these-colors (sin asumir nombres).
+   Genera helpers según $overlays-colors (sin asumir nombres).
    ========================================================== */
 
 @use "sass:map";
 @use "sass:list";
+@use "sass:color";
+
 
 @use "../utilities/initial-variables" as iv;
 @use "../utilities/css-variables" as cv;
@@ -19,7 +21,7 @@
 $overlay-offset-vertical: iv.$overlay-offset-vertical;
 $overlay-offset-horizontal: iv.$overlay-offset-horizontal;
 $tablet: iv.$tablet;
-$these-colors: dv.$colors;
+$overlays-colors: dv.$colors;
 
 
 
@@ -104,16 +106,16 @@ $these-colors: dv.$colors;
 
 
 /* ============================================
-   Funciones helper para leer $these-colors
-   $these-colors: ("primary": ($primary, $primary-invert), ...)
+   Funciones helper para leer $overlays-colors
+   $overlays-colors: ("primary": ($primary, $primary-invert), ...)
    ============================================ */
 
 @function bulma-color($name) {
-  @return map-get(map-get($these-colors, $name), 0);
+  @return map-get(map-get($overlays-colors, $name), 0);
 }
 
 @function bulma-invert($name) {
-  @return map-get(map-get($these-colors, $name), 1);
+  @return map-get(map-get($overlays-colors, $name), 1);
 }
 
 
@@ -125,37 +127,79 @@ $these-colors: dv.$colors;
    - .#{iv.$class-prefix}badge-pill-[color]
    ============================================ */
 
+@each $name, $pair in $overlays-colors {
+  $base-color: list.nth($pair, 1);
+  $invert-color: fn.bulmaFindColorInvert($base-color);
 
-@each $name, $pair in $these-colors {
-  $color: list.nth($pair, 1);
-  $invert: fn.bulmaFindColorInvert($color);
+  .#{iv.$class-prefix}badge-#{$name},
+  .#{iv.$class-prefix}badge-pill-#{$name},
+  .#{iv.$class-prefix}badge-circle-#{$name} {
+    @include cv.register-vars(
+(
+        "badge-h": #{cv.getVar($name, "", "-h")},
+        "badge-s": #{cv.getVar($name, "", "-s")},
+        "badge-l": #{cv.getVar($name, "", "-l")},
+
+        // invert REAL (desde Sass)
+"badge-color-h": #{color.channel($invert-color, "hue", $space: hsl)},
+"badge-color-s": #{color.channel($invert-color, "saturation", $space: hsl)},
+"badge-color-l": #{color.channel($invert-color, "lightness", $space: hsl)},
 
 
-  /* Badge rectangular */
+        // ajuste perceptual
+        "badge-color-l-adjust": -15%,
+      )
+    );
+
+    background-color: hsl(
+      var(--#{iv.$class-prefix}badge-h),
+      var(--#{iv.$class-prefix}badge-s),
+      var(--#{iv.$class-prefix}badge-l)
+    );
+
+color: hsl(
+  var(--#{iv.$class-prefix}badge-color-h),
+  var(--#{iv.$class-prefix}badge-color-s),
+  clamp(
+    0%,
+    calc(
+      var(--#{iv.$class-prefix}badge-color-l, 50%) +
+      var(--#{iv.$class-prefix}badge-color-l-adjust, 0%)
+    ),
+    100%
+  )
+);
+
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  /* ======================================================
+   * Badge rectangular
+   * ====================================================== */
+
   .#{iv.$class-prefix}badge-#{$name} {
     display: inline-block;
     padding: 0.25rem 0.6rem;
     border-radius: 0.4rem;
-    background-color: $color;
-    color: $invert;
     font-size: 0.75rem;
-    font-weight: 700;
-    line-height: 1.1;
   }
 
-  /* Badge tipo pill */
+  /* ======================================================
+   * Badge pill
+   * ====================================================== */
+
   .#{iv.$class-prefix}badge-pill-#{$name} {
     display: inline-block;
     padding: 0.25rem 0.8rem;
     border-radius: 999px;
-    background-color: $color;
-    color: $invert;
     font-size: 0.75rem;
-    font-weight: 700;
-    line-height: 1.1;
   }
 
-  /* Badge circular */
+  /* ======================================================
+   * Badge circular
+   * ====================================================== */
+
   .#{iv.$class-prefix}badge-circle-#{$name} {
     display: inline-flex;
     align-items: center;
@@ -165,10 +209,6 @@ $these-colors: dv.$colors;
     height: 2.2rem;
     border-radius: 50%;
 
-    background-color: $color;
-    color: $invert;
-
-    font-weight: 700;
     font-size: 0.9rem;
     line-height: 1;
   }

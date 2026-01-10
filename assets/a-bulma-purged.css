@@ -2790,7 +2790,7 @@ button.b-tag:active {
   }
 }
 .b-section {
-  --b-section-padding: 3rem 1.5rem;
+  --b-section-padding: 3rem 0.25rem;
   --b-section-padding-desktop: 3rem 3rem;
   --b-section-padding-medium: 9rem 4.5rem;
   --b-section-padding-large: 18rem 6rem;
@@ -3060,6 +3060,11 @@ button.b-has-background-danger:active {
 }
 
 .b-mb-1 {
+  margin-bottom: 0.25rem !important;
+}
+
+.b-my-1 {
+  margin-top: 0.25rem !important;
   margin-bottom: 0.25rem !important;
 }
 
@@ -3500,7 +3505,7 @@ button.b-has-background-danger:active {
 
 /* ==========================================================
    PlayLoveToys — Overlay Toolkit (Dynamic Bulma Colors)
-   Genera helpers según $these-colors (sin asumir nombres).
+   Genera helpers según $overlays-colors (sin asumir nombres).
    ========================================================== */
 /* Espaciado base para overlays */
 /* ============================================
@@ -3543,8 +3548,8 @@ button.b-has-background-danger:active {
 */
 
 /* ============================================
-   Funciones helper para leer $these-colors
-   $these-colors: ("primary": ($primary, $primary-invert), ...)
+   Funciones helper para leer $overlays-colors
+   $overlays-colors: ("primary": ($primary, $primary-invert), ...)
    ============================================ */
 /* ============================================
    Loop dinámico por todos los colores de Bulma
@@ -3553,111 +3558,205 @@ button.b-has-background-danger:active {
    - .b-badge-circle-[color]
    - .b-badge-pill-[color]
    ============================================ */
-/* Badge rectangular */
 
-/* Badge tipo pill */
+/* ======================================================
+ * Badge rectangular
+ * ====================================================== */
 
-/* Badge circular */
+/* ======================================================
+ * Badge pill
+ * ====================================================== */
 
-/* Badge rectangular */
+/* ======================================================
+ * Badge circular
+ * ====================================================== */
 
-/* Badge tipo pill */
+/* ======================================================
+ * Badge rectangular
+ * ====================================================== */
 
-/* Badge circular */
+/* ======================================================
+ * Badge pill
+ * ====================================================== */
 
-/* Badge rectangular */
+/* ======================================================
+ * Badge circular
+ * ====================================================== */
 
-/* Badge tipo pill */
+/* ======================================================
+ * Badge rectangular
+ * ====================================================== */
 
-/* Badge circular */
+/* ======================================================
+ * Badge pill
+ * ====================================================== */
 
-/* Badge rectangular */
+/* ======================================================
+ * Badge circular
+ * ====================================================== */
 
-/* Badge tipo pill */
+/* ======================================================
+ * Badge rectangular
+ * ====================================================== */
 
-/* Badge circular */
+/* ======================================================
+ * Badge pill
+ * ====================================================== */
 
-/* Badge rectangular */
+/* ======================================================
+ * Badge circular
+ * ====================================================== */
 
-/* Badge tipo pill */
+/* ======================================================
+ * Badge rectangular
+ * ====================================================== */
 
-/* Badge circular */
+/* ======================================================
+ * Badge pill
+ * ====================================================== */
 
-/* Badge rectangular */
+/* ======================================================
+ * Badge circular
+ * ====================================================== */
+
+.b-badge-primary,
+.b-badge-pill-primary {
+  --b-badge-h: var(--b-primary-h);
+  --b-badge-s: var(--b-primary-s);
+  --b-badge-l: var(--b-primary-l);
+  --b-badge-color-h: 0deg;
+  --b-badge-color-s: 0%;
+  --b-badge-color-l: 100%;
+  --b-badge-color-l-adjust: -15%;
+  background-color: hsl(var(--b-badge-h), var(--b-badge-s), var(--b-badge-l));
+  color: hsl(var(--b-badge-color-h), var(--b-badge-color-s), clamp(0%, var(--b-badge-color-l, 50%) + var(--b-badge-color-l-adjust, 0%), 100%));
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+/* ======================================================
+ * Badge rectangular
+ * ====================================================== */
 .b-badge-primary {
   display: inline-block;
   padding: 0.25rem 0.6rem;
   border-radius: 0.4rem;
-  background-color: hsl(171, 100%, 41%);
-  color: #fff;
   font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1.1;
 }
 
-/* Badge tipo pill */
+/* ======================================================
+ * Badge pill
+ * ====================================================== */
 .b-badge-pill-primary {
   display: inline-block;
   padding: 0.25rem 0.8rem;
   border-radius: 999px;
-  background-color: hsl(171, 100%, 41%);
-  color: #fff;
   font-size: 0.75rem;
+}
+
+/* ======================================================
+ * Badge circular
+ * ====================================================== */
+
+.b-badge-link {
+  --b-badge-h: var(--b-link-h);
+  --b-badge-s: var(--b-link-s);
+  --b-badge-l: var(--b-link-l);
+  --b-badge-color-h: 0deg;
+  --b-badge-color-s: 0%;
+  --b-badge-color-l: 100%;
+  --b-badge-color-l-adjust: -15%;
+  background-color: hsl(var(--b-badge-h), var(--b-badge-s), var(--b-badge-l));
+  color: hsl(var(--b-badge-color-h), var(--b-badge-color-s), clamp(0%, var(--b-badge-color-l, 50%) + var(--b-badge-color-l-adjust, 0%), 100%));
   font-weight: 700;
   line-height: 1.1;
 }
 
-/* Badge circular */
-
-/* Badge rectangular */
+/* ======================================================
+ * Badge rectangular
+ * ====================================================== */
 .b-badge-link {
   display: inline-block;
   padding: 0.25rem 0.6rem;
   border-radius: 0.4rem;
-  background-color: hsl(233, 100%, 63%);
-  color: #fff;
   font-size: 0.75rem;
+}
+
+/* ======================================================
+ * Badge pill
+ * ====================================================== */
+
+/* ======================================================
+ * Badge circular
+ * ====================================================== */
+
+.b-badge-info {
+  --b-badge-h: var(--b-info-h);
+  --b-badge-s: var(--b-info-s);
+  --b-badge-l: var(--b-info-l);
+  --b-badge-color-h: 0deg;
+  --b-badge-color-s: 0%;
+  --b-badge-color-l: 0%;
+  --b-badge-color-l-adjust: -15%;
+  background-color: hsl(var(--b-badge-h), var(--b-badge-s), var(--b-badge-l));
+  color: hsl(var(--b-badge-color-h), var(--b-badge-color-s), clamp(0%, var(--b-badge-color-l, 50%) + var(--b-badge-color-l-adjust, 0%), 100%));
   font-weight: 700;
   line-height: 1.1;
 }
 
-/* Badge tipo pill */
-
-/* Badge circular */
-
-/* Badge rectangular */
+/* ======================================================
+ * Badge rectangular
+ * ====================================================== */
 .b-badge-info {
   display: inline-block;
   padding: 0.25rem 0.6rem;
   border-radius: 0.4rem;
-  background-color: hsl(198, 100%, 70%);
-  color: rgba(0, 0, 0, 0.7);
   font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1.1;
 }
 
-/* Badge tipo pill */
+/* ======================================================
+ * Badge pill
+ * ====================================================== */
 
-/* Badge circular */
+/* ======================================================
+ * Badge circular
+ * ====================================================== */
 
-/* Badge rectangular */
+/* ======================================================
+ * Badge rectangular
+ * ====================================================== */
 
-/* Badge tipo pill */
+/* ======================================================
+ * Badge pill
+ * ====================================================== */
 
-/* Badge circular */
+/* ======================================================
+ * Badge circular
+ * ====================================================== */
 
-/* Badge rectangular */
+/* ======================================================
+ * Badge rectangular
+ * ====================================================== */
 
-/* Badge tipo pill */
+/* ======================================================
+ * Badge pill
+ * ====================================================== */
 
-/* Badge circular */
+/* ======================================================
+ * Badge circular
+ * ====================================================== */
 
-/* Badge rectangular */
+/* ======================================================
+ * Badge rectangular
+ * ====================================================== */
 
-/* Badge tipo pill */
+/* ======================================================
+ * Badge pill
+ * ====================================================== */
 
-/* Badge circular */
+/* ======================================================
+ * Badge circular
+ * ====================================================== */
 
 /* ============================================
    Gradients neutrales (no dependen del mapa)
