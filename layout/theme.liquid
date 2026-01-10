@@ -73,6 +73,37 @@
         --color-badge-background: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
         --color-badge-border: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
         --payment-terms-background-color: rgb({{ scheme.settings.background.rgb }});
+
+        /* Bulma Integration Variables */
+        --b-primary-h: {{ scheme.settings.button.hue }};
+        --b-primary-s: {{ scheme.settings.button.saturation }}%;
+        --b-primary-l: {{ scheme.settings.button.lightness }}%;
+        --b-primary: hsl(var(--b-primary-h), var(--b-primary-s), var(--b-primary-l));
+
+        --b-link-h: {{ scheme.settings.secondary_button_label.hue }};
+        --b-link-s: {{ scheme.settings.secondary_button_label.saturation }}%;
+        --b-link-l: {{ scheme.settings.secondary_button_label.lightness }}%;
+        --b-link: hsl(var(--b-link-h), var(--b-link-s), var(--b-link-l));
+
+        --b-info-h: {{ scheme.settings.secondary_button_label.hue }};
+        --b-info-s: {{ scheme.settings.secondary_button_label.saturation }}%;
+        --b-info-l: {{ scheme.settings.secondary_button_label.lightness }}%;
+        --b-info: hsl(var(--b-info-h), var(--b-info-s), var(--b-info-l));
+
+        --b-text-h: {{ scheme.settings.text.hue }};
+        --b-text-s: {{ scheme.settings.text.saturation }}%;
+        --b-text-l: {{ scheme.settings.text.lightness }}%;
+        --b-text: hsl(var(--b-text-h), var(--b-text-s), var(--b-text-l));
+
+        --b-body-color-h: {{ scheme.settings.text.hue }};
+        --b-body-color-s: {{ scheme.settings.text.saturation }}%;
+        --b-body-color-l: {{ scheme.settings.text.lightness }}%;
+        --b-body-color: hsl(var(--b-body-color-h), var(--b-body-color-s), var(--b-body-color-l));
+
+        --b-body-background-color-h: {{ scheme.settings.background.hue }};
+        --b-body-background-color-s: {{ scheme.settings.background.saturation }}%;
+        --b-body-background-color-l: {{ scheme.settings.background.lightness }}%;
+        --b-body-background-color: hsl(var(--b-body-background-color-h), var(--b-body-background-color-s), var(--b-body-background-color-l));
       }
       {% endfor %}
 
@@ -90,6 +121,10 @@
         --font-heading-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
         --font-heading-style: {{ settings.type_header_font.style }};
         --font-heading-weight: {{ settings.type_header_font.weight }};
+
+        /* Bulma Fonts */
+        --b-family-primary: var(--font-body-family);
+        --b-family-secondary: var(--font-heading-family);
 
         --font-body-scale: {{ settings.body_scale | divided_by: 100.0 }};
         --font-heading-scale: {{ settings.heading_scale | times: 1.0 | divided_by: settings.body_scale }};
