@@ -49,44 +49,64 @@
           {
             "type": "color",
             "id": "background",
-            "label": "t:settings_schema.colors.settings.background.label",
-            "default": "#FFFFFF"
+            "label": "Background",
+            "default": "#FFFFFF",
+            "info": "Main background color for the theme"
           },
           {
             "type": "color_background",
             "id": "background_gradient",
-            "label": "t:settings_schema.colors.settings.background_gradient.label",
-            "info": "t:settings_schema.colors.settings.background_gradient.info"
+            "label": "Background gradient",
+            "info": "Optional gradient overlay for background"
           },
           {
             "type": "color",
             "id": "text",
-            "label": "t:settings_schema.colors.settings.text.label",
-            "default": "#121212"
+            "label": "Text",
+            "default": "#121212",
+            "info": "Main text color"
           },
           {
             "type": "color",
-            "id": "button",
-            "label": "t:settings_schema.colors.settings.button_background.label",
-            "default": "#121212"
+            "id": "primary",
+            "label": "Primary",
+            "default": "#00d1b2",
+            "info": "Primary brand color - used for main buttons, highlights, and primary actions"
           },
           {
             "type": "color",
-            "id": "button_label",
-            "label": "t:settings_schema.colors.settings.button_label.label",
-            "default": "#FFFFFF"
+            "id": "link",
+            "label": "Link",
+            "default": "#485fc7",
+            "info": "Link color - used for all hyperlinks and link-style buttons"
           },
           {
             "type": "color",
-            "id": "secondary_button_label",
-            "label": "t:settings_schema.colors.settings.secondary_button_label.label",
-            "default": "#121212"
+            "id": "info",
+            "label": "Info",
+            "default": "#3e8ed0",
+            "info": "Info color - used for informational messages, notifications, and buttons"
           },
           {
             "type": "color",
-            "id": "shadow",
-            "label": "t:settings_schema.colors.settings.shadow.label",
-            "default": "#121212"
+            "id": "success",
+            "label": "Success",
+            "default": "#48c78e",
+            "info": "Success color - used for success messages, notifications, and buttons"
+          },
+          {
+            "type": "color",
+            "id": "warning",
+            "label": "Warning",
+            "default": "#ffe08a",
+            "info": "Warning color - used for warning messages, notifications, and buttons"
+          },
+          {
+            "type": "color",
+            "id": "danger",
+            "label": "Danger",
+            "default": "#f14668",
+            "info": "Danger color - used for error messages, notifications, and buttons"
           }
         ],
         "role": {
@@ -95,14 +115,14 @@
             "solid": "background",
             "gradient": "background_gradient"
           },
-          "links": "secondary_button_label",
+          "links": "link",
           "icons": "text",
-          "primary_button": "button",
-          "on_primary_button": "button_label",
-          "primary_button_border": "button",
+          "primary_button": "primary",
+          "on_primary_button": "text",
+          "primary_button_border": "primary",
           "secondary_button": "background",
-          "on_secondary_button": "secondary_button_label",
-          "secondary_button_border": "secondary_button_label"
+          "on_secondary_button": "link",
+          "secondary_button_border": "link"
         }
       }
     ]
