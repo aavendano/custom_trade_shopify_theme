@@ -1,89 +1,79 @@
-{% comment %} TODO: Fix missing 'tailwind-output.css' asset and hardcoded routes {% endcomment %}
-<ul class="tw-flex tw-items-center tw-whitespace-nowrap">
-  <li class="tw-inline-flex tw-items-center">
-    <a
-      class="tw-flex tw-items-center tw-text-sm tw-text-gray-500 hover:tw-text-blue-600 focus:tw-outline-hidden focus:tw-text-blue-600"
-      href="{{ routes.root_url }}"
-    >
-      Home
-    </a>
-    <svg
-      class="tw-shrink-0 tw-mx-2 tw-size-4 tw-text-gray-400"
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    >
-      <path d="m9 18 6-6-6-6"></path>
-    </svg>
-  </li>
-  {% for block in section.blocks %}
-    <li class="tw-inline-flex tw-items-center">
-      <a
-        class="tw-flex tw-items-center tw-text-sm tw-text-gray-500 hover:tw-text-blue-600 focus:tw-outline-hidden focus:tw-text-blue-600"
-        href="{{- block.settings.link-url -}}"
-      >
-        {{- block.settings['link-text'] -}}
-      </a>
-      {% unless forloop.last %}
-        <svg
-          class="tw-shrink-0 tw-mx-2 tw-size-4 tw-text-gray-400"
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <path d="m9 18 6-6-6-6"></path>
-        </svg>
-      {% endunless %}
+<nav class="b-breadcrumb" aria-label="breadcrumbs">
+  <ul>
+    <li>
+      <a href="{{ routes.root_url }}">Home</a>
     </li>
-  {% endfor %}
-  <li class="tw-inline-flex tw-items-center tw-text-sm tw-text-gray-800 font-semibold" aria-current="page">
-    {{ page_title }}
-  </li>
-</ul>
+
+    {%- case template.name -%}
+      {%- when 'page' -%}
+        <li class="b-is-active">
+          <a href="{{ page.url }}" aria-current="page">{{ page.title }}</a>
+        </li>
+
+      {%- when 'product' -%}
+        {%- if collection.url -%}
+          <li>
+            {{ collection.title | link_to: collection.url }}
+          </li>
+        {%- endif -%}
+        <li class="b-is-active">
+          <a href="{{ product.url }}" aria-current="page">{{ product.title }}</a>
+        </li>
+
+      {%- when 'collection' and collection.handle -%}
+        {%- if current_tags -%}
+          <li>
+            {{ collection.title | link_to: collection.url }}
+          </li>
+          <li class="b-is-active">
+            {%- capture tag_url -%}{{ collection.url }}/{{ current_tags | join: "+"}}{%- endcapture -%}
+            <a href="{{ tag_url }}" aria-current="page">{{ current_tags | join: " + " }}</a>
+          </li>
+        {%- else -%}
+          <li class="b-is-active">
+            <a href="{{ collection.url }}" aria-current="page">{{ collection.title }}</a>
+          </li>
+        {%- endif -%}
+
+      {%- when 'blog' -%}
+        {%- if current_tags -%}
+          <li>
+            {{ blog.title | link_to: blog.url }}
+          </li>
+          <li class="b-is-active">
+            {%- capture tag_url -%}{{ blog.url }}/tagged/{{ current_tags | join: "+" }}{%- endcapture -%}
+            <a href="{{ tag_url }}" aria-current="page">{{ current_tags | join: " + " }}</a>
+          </li>
+        {%- else -%}
+          <li class="b-is-active">
+            <a href="{{ blog.url }}" aria-current="page">{{ blog.title }}</a>
+          </li>
+        {%- endif -%}
+
+      {%- when 'article' -%}
+        <li>
+          {{ blog.title | link_to: blog.url }}
+        </li>
+        <li class="b-is-active">
+          <a href="{{ article.url }}" aria-current="page">{{ article.title }}</a>
+        </li>
+
+      {%- else -%}
+        {%- if page_title != 'Home' -%}
+          <li class="b-is-active">
+            <a href="{{ request.path }}" aria-current="page">{{ page_title }}</a>
+          </li>
+        {%- endif -%}
+    {%- endcase -%}
+  </ul>
+</nav>
 
 {% schema %}
 {
   "name": "PLT-Breadcrumbs",
   "tag": "section",
-  "class": "section",
-  "settings": [
-    {
-      "type": "header",
-      "content": "Breadcrumbs Settings"
-    }
-  ],
-  "blocks": [
-    {
-      "type": "Level",
-      "name": "Level",
-      "limit": 5,
-      "settings": [
-        {
-          "type": "text",
-          "id": "link-text",
-          "label": "Link Text",
-          "default": "Link"
-        },
-        {
-          "type": "url",
-          "id": "link-url",
-          "label": "Link URL"
-        }
-      ]
-    }
-  ],
+  "class": "b-section b-container",
+  "settings": [],
   "presets": [
     {
       "name": "PLT-Breadcrumbs",
