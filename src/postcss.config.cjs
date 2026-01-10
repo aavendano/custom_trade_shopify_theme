@@ -4,7 +4,31 @@ const purgecss =
 const extractedSafelist = require("./purge/b-safelist.json");
 
 const manualSafelist = [
-  // Add string classes that should always be preserved here.
+  // Basic HTML elements that might be purged if not explicitly found in liquid templates
+  "html",
+  "body",
+  "p",
+  "h1",
+  "h2",
+  "h3",
+  "h4",
+  "h5",
+  "h6",
+  "a",
+  "img",
+  "ul",
+  "ol",
+  "li",
+  "blockquote",
+  "table",
+  "tr",
+  "td",
+  "th",
+  "button",
+  "input",
+  "label",
+  "select",
+  "textarea",
 ];
 
 const combinedSafelist = [
