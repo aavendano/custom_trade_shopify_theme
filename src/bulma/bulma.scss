@@ -4,29 +4,28 @@
 
 
 // Set your brand colors
-$plt-purple: hsl(268, 41%, 33%);
-$plt-pink: hsl(346, 89%, 61%);
-$plt-teal: hsl(190, 84%, 29%);
-$plt-gray-light: hsl(0, 0%, 96%);
-$plt-gray: hsl(0, 0%, 93%);
-$plt-gray-dark: hsl(108, 6%, 34%);
+// We now rely on CSS variables defined in theme.liquid for dynamic updates
+// $plt-purple: hsl(268, 41%, 33%);
+// $plt-pink: hsl(346, 89%, 61%);
+// $plt-teal: hsl(190, 84%, 29%);
+// $plt-gray-light: hsl(0, 0%, 96%);
+// $plt-gray: hsl(0, 0%, 93%);
+// $plt-gray-dark: hsl(108, 6%, 34%);
 $plt-family-primary: '"Roboto Condensed", "Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif';
 $plt-family-secondary: '"Inter", "SF Pro", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif';
 $plt-image-dimensions: 75 100 150 320 400 460 520;
 
 // Override global Sass variables from the /utilities folder
-@use "sass/utilities/initial-variables" with ($primary: $plt-purple,
-    $info: $plt-teal,
-    $light: $plt-gray-light,
-    $dark: $plt-gray-dark,
-    $link: $plt-pink,
+@use "sass/utilities/initial-variables" with (
+    // We let Bulma use its CSS variables which are now driven by theme.liquid
+    // But we might need to set SASS variables to strings "var(--...)" if we want SASS usage to respect it,
+    // though this might break color functions.
+    // For now, we trust Bulma 1.0 CSS variable system.
+    // However, we still pass fonts.
     $family-sans-serif-primary: $plt-family-primary,
     $family-sans-serif-secondary: $plt-family-secondary,
-    $dimensions: $plt-image-dimensions,
-    $background: $plt-gray-light,
-    $grey-light: $plt-gray-light,
-    $grey: $plt-gray,
-    $grey-dark: $plt-gray-dark );
+    $dimensions: $plt-image-dimensions
+);
 
 @forward "sass/utilities/functions";
 @forward "sass/utilities/derived-variables";
