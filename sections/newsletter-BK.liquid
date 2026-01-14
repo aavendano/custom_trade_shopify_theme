@@ -15,40 +15,51 @@
   }
 {%- endstyle -%}
 
-<section class="b-section">
-  <div class="b-container">
-    <div class="b-box">
+<div class="newsletter center {% if section.settings.full_width == false %}newsletter--narrow page-width{% endif %}">
+  <div class="newsletter__wrapper color-{{ section.settings.color_scheme }} gradient content-container isolate{% if section.settings.full_width %} content-container--full-width{% endif %} section-{{ section.id }}-padding">
     {%- for block in section.blocks -%}
       {%- case block.type -%}
         {%- when '@app' -%}
           {% render block %}
         {%- when 'heading' -%}
           <h2
-            class="b-title"
+            class="inline-richtext {{ block.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
             {{ block.shopify_attributes }}
-            >
+            {% if settings.animations_reveal_on_scroll %}
+              data-cascade
+              style="--animation-order: {{ forloop.index }};"
+            {% endif %}
+          >
             {{ block.settings.heading }}
           </h2>
         {%- when 'paragraph' -%}
           <div
-            class="b-subtitle"
+            class="newsletter__subheading rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
             {{ block.shopify_attributes }}
+            {% if settings.animations_reveal_on_scroll %}
+              data-cascade
+              style="--animation-order: {{ forloop.index }};"
+            {% endif %}
           >
             {{ block.settings.text }}
           </div>
         {%- when 'email_form' -%}
           <div {{ block.shopify_attributes }}>
-            {% form 'customer' %}
+            {% form 'customer', class: 'newsletter-form' %}
               <input type="hidden" name="contact[tags]" value="newsletter">
-              <div class="b-field b-has-addons">
-                <label class="visually-hidden" for="NewsletterForm--{{ section.id }}">
-                  {{ 'newsletter.label' | t }}
-                </label>
-                <div class="b-control b-has-icons-left">
-                  <input id="NewsletterForm--{{ section.id }}"
+              <div
+                class="newsletter-form__field-wrapper{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                {% if settings.animations_reveal_on_scroll %}
+                  data-cascade
+                  style="--animation-order: {{ forloop.index }};"
+                {% endif %}
+              >
+                <div class="field">
+                  <input
+                    id="NewsletterForm--{{ section.id }}"
                     type="email"
                     name="contact[email]"
-                    class="b-input b-is-primary b-is-large b-is-rounded"
+                    class="field__input"
                     value="{{ form.email }}"
                     aria-required="true"
                     autocorrect="off"
@@ -64,15 +75,17 @@
                     placeholder="{{ 'newsletter.label' | t }}"
                     required
                   >
-                    <span class="b-icon b-is-left b-is-medium">
-                      <i>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
-                      </i>
-                  </span>
-                </div>
-                <div class="b-control">
-                  <button class="b-button b-is-large b-is-link" type="submit" name="commit" id="Subscribe" aria-label="{{ 'newsletter.button_label' | t }}">
-                    <span class="b-icon">
+                  <label class="field__label" for="NewsletterForm--{{ section.id }}">
+                    {{ 'newsletter.label' | t }}
+                  </label>
+                  <button
+                    type="submit"
+                    class="newsletter-form__button field__button"
+                    name="commit"
+                    id="Subscribe"
+                    aria-label="{{ 'newsletter.button_label' | t }}"
+                  >
+                    <span class="svg-wrapper">
                       {{- 'icon-arrow.svg' | inline_asset_content -}}
                     </span>
                   </button>
@@ -104,8 +117,8 @@
           </div>
       {%- endcase -%}
     {%- endfor -%}
-  </div></div>
-</section>
+  </div>
+</div>
 
 {% schema %}
 {
