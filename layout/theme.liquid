@@ -63,16 +63,110 @@
 
         --color-foreground: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
         --color-background-contrast: {{ background_color_contrast.red }},{{ background_color_contrast.green }},{{ background_color_contrast.blue }};
-        --color-shadow: {{ scheme.settings.shadow.red }},{{ scheme.settings.shadow.green }},{{ scheme.settings.shadow.blue }};
-        --color-button: {{ scheme.settings.button.red }},{{ scheme.settings.button.green }},{{ scheme.settings.button.blue }};
-        --color-button-text: {{ scheme.settings.button_label.red }},{{ scheme.settings.button_label.green }},{{ scheme.settings.button_label.blue }};
+        --color-shadow: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
+        --color-button: {{ scheme.settings.primary.red }},{{ scheme.settings.primary.green }},{{ scheme.settings.primary.blue }};
+        --color-button-text: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
         --color-secondary-button: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
-        --color-secondary-button-text: {{ scheme.settings.secondary_button_label.red }},{{ scheme.settings.secondary_button_label.green }},{{ scheme.settings.secondary_button_label.blue }};
-        --color-link: {{ scheme.settings.secondary_button_label.red }},{{ scheme.settings.secondary_button_label.green }},{{ scheme.settings.secondary_button_label.blue }};
+        --color-secondary-button-text: {{ scheme.settings.link.red }},{{ scheme.settings.link.green }},{{ scheme.settings.link.blue }};
+        --color-link: {{ scheme.settings.link.red }},{{ scheme.settings.link.green }},{{ scheme.settings.link.blue }};
         --color-badge-foreground: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
         --color-badge-background: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
         --color-badge-border: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
         --payment-terms-background-color: rgb({{ scheme.settings.background.rgb }});
+
+        /* Bulma Integration Variables - Complete Set */
+        
+        /* Scheme/Background Colors */
+        --b-scheme-h: {{ scheme.settings.background.hue }};
+        --b-scheme-s: {{ scheme.settings.background.saturation }}%;
+        --b-scheme-main-l: {{ scheme.settings.background.lightness }}%;
+        --b-scheme-main: hsl(var(--b-scheme-h), var(--b-scheme-s), var(--b-scheme-main-l));
+        --b-scheme-invert-l: {% if scheme.settings.background.lightness > 50 %}20%{% else %}90%{% endif %};
+        --b-background: hsl(var(--b-scheme-h), var(--b-scheme-s), calc(var(--b-scheme-main-l) + 5%));
+        --b-border-l: calc(var(--b-scheme-main-l) {% if scheme.settings.background.lightness > 50 %}- 10%{% else %}+ 10%{% endif %});
+        --b-border: hsl(var(--b-scheme-h), var(--b-scheme-s), var(--b-border-l));
+
+        /* Body Background & Color */
+        --b-body-background-color-h: {{ scheme.settings.background.hue }};
+        --b-body-background-color-s: {{ scheme.settings.background.saturation }}%;
+        --b-body-background-color-l: {{ scheme.settings.background.lightness }}%;
+        --b-body-background-color: hsl(var(--b-body-background-color-h), var(--b-body-background-color-s), var(--b-body-background-color-l));
+        --b-body-color-h: {{ scheme.settings.text.hue }};
+        --b-body-color-s: {{ scheme.settings.text.saturation }}%;
+        --b-body-color-l: {{ scheme.settings.text.lightness }}%;
+        --b-body-color: hsl(var(--b-body-color-h), var(--b-body-color-s), var(--b-body-color-l));
+
+        /* Text Colors */
+        --b-text-h: {{ scheme.settings.text.hue }};
+        --b-text-s: {{ scheme.settings.text.saturation }}%;
+        --b-text-l: {{ scheme.settings.text.lightness }}%;
+        --b-text: hsl(var(--b-text-h), var(--b-text-s), var(--b-text-l));
+        --b-text-strong-l: {% if scheme.settings.background.lightness > 50 %}15%{% else %}95%{% endif %};
+        --b-text-strong: hsl(var(--b-text-h), var(--b-text-s), var(--b-text-strong-l));
+        --b-text-weak-l: {% if scheme.settings.background.lightness > 50 %}45%{% else %}65%{% endif %};
+        --b-text-weak: hsl(var(--b-text-h), var(--b-text-s), var(--b-text-weak-l));
+
+        /* Primary Color - Complete Set */
+        --b-primary-h: {{ scheme.settings.primary.hue }};
+        --b-primary-s: {{ scheme.settings.primary.saturation }}%;
+        --b-primary-l: {{ scheme.settings.primary.lightness }}%;
+        --b-primary: hsl(var(--b-primary-h), var(--b-primary-s), var(--b-primary-l));
+        --b-primary-invert-l: {% if scheme.settings.primary.lightness > 50 %}20%{% else %}90%{% endif %};
+        --b-primary-on-scheme-l: {% if scheme.settings.background.lightness > 50 %}{% assign delta = scheme.settings.primary.lightness | minus: 10 %}{% if delta < 20 %}20{% else %}{{ delta }}{% endif %}%{% else %}{% assign delta = scheme.settings.primary.lightness | plus: 10 %}{% if delta > 80 %}80{% else %}{{ delta }}{% endif %}%{% endif %};
+        --b-primary-light-invert-l: {% if scheme.settings.primary.lightness > 50 %}20%{% else %}90%{% endif %};
+        --b-primary-dark-invert-l: {% if scheme.settings.primary.lightness > 50 %}20%{% else %}90%{% endif %};
+        --b-primary-25-l: {{ scheme.settings.primary.lightness | times: 0.25 }}%;
+
+        /* Link Color - Complete Set */
+        --b-link-h: {{ scheme.settings.link.hue }};
+        --b-link-s: {{ scheme.settings.link.saturation }}%;
+        --b-link-l: {{ scheme.settings.link.lightness }}%;
+        --b-link: hsl(var(--b-link-h), var(--b-link-s), var(--b-link-l));
+        --b-link-text: var(--b-link);
+        --b-link-invert-l: {% if scheme.settings.link.lightness > 50 %}20%{% else %}90%{% endif %};
+        --b-link-on-scheme-l: {% if scheme.settings.background.lightness > 50 %}{% assign delta = scheme.settings.link.lightness | minus: 10 %}{% if delta < 20 %}20{% else %}{{ delta }}{% endif %}%{% else %}{% assign delta = scheme.settings.link.lightness | plus: 10 %}{% if delta > 80 %}80{% else %}{{ delta }}{% endif %}%{% endif %};
+        --b-link-focus-border: var(--b-link);
+        --b-link-active: var(--b-link);
+        --b-link-active-border: var(--b-link);
+
+        /* Info Color - Complete Set */
+        --b-info-h: {{ scheme.settings.info.hue }};
+        --b-info-s: {{ scheme.settings.info.saturation }}%;
+        --b-info-l: {{ scheme.settings.info.lightness }}%;
+        --b-info: hsl(var(--b-info-h), var(--b-info-s), var(--b-info-l));
+        --b-info-invert-l: {% if scheme.settings.info.lightness > 50 %}20%{% else %}90%{% endif %};
+        --b-info-on-scheme-l: {% if scheme.settings.background.lightness > 50 %}{% assign delta = scheme.settings.info.lightness | minus: 10 %}{% if delta < 20 %}20{% else %}{{ delta }}{% endif %}%{% else %}{% assign delta = scheme.settings.info.lightness | plus: 10 %}{% if delta > 80 %}80{% else %}{{ delta }}{% endif %}%{% endif %};
+
+        /* Success Color - Complete Set */
+        --b-success-h: {{ scheme.settings.success.hue }};
+        --b-success-s: {{ scheme.settings.success.saturation }}%;
+        --b-success-l: {{ scheme.settings.success.lightness }}%;
+        --b-success: hsl(var(--b-success-h), var(--b-success-s), var(--b-success-l));
+        --b-success-invert-l: {% if scheme.settings.success.lightness > 50 %}20%{% else %}90%{% endif %};
+        --b-success-on-scheme-l: {% if scheme.settings.background.lightness > 50 %}{% assign delta = scheme.settings.success.lightness | minus: 10 %}{% if delta < 20 %}20{% else %}{{ delta }}{% endif %}%{% else %}{% assign delta = scheme.settings.success.lightness | plus: 10 %}{% if delta > 80 %}80{% else %}{{ delta }}{% endif %}%{% endif %};
+
+        /* Warning Color - Complete Set */
+        --b-warning-h: {{ scheme.settings.warning.hue }};
+        --b-warning-s: {{ scheme.settings.warning.saturation }}%;
+        --b-warning-l: {{ scheme.settings.warning.lightness }}%;
+        --b-warning: hsl(var(--b-warning-h), var(--b-warning-s), var(--b-warning-l));
+        --b-warning-invert-l: {% if scheme.settings.warning.lightness > 50 %}20%{% else %}90%{% endif %};
+        --b-warning-on-scheme-l: {% if scheme.settings.background.lightness > 50 %}{% assign delta = scheme.settings.warning.lightness | minus: 10 %}{% if delta < 20 %}20{% else %}{{ delta }}{% endif %}%{% else %}{% assign delta = scheme.settings.warning.lightness | plus: 10 %}{% if delta > 80 %}80{% else %}{{ delta }}{% endif %}%{% endif %};
+
+        /* Danger Color - Complete Set */
+        --b-danger-h: {{ scheme.settings.danger.hue }};
+        --b-danger-s: {{ scheme.settings.danger.saturation }}%;
+        --b-danger-l: {{ scheme.settings.danger.lightness }}%;
+        --b-danger: hsl(var(--b-danger-h), var(--b-danger-s), var(--b-danger-l));
+        --b-danger-invert-l: {% if scheme.settings.danger.lightness > 50 %}20%{% else %}90%{% endif %};
+        --b-danger-on-scheme-l: {% if scheme.settings.background.lightness > 50 %}{% assign delta = scheme.settings.danger.lightness | minus: 10 %}{% if delta < 20 %}20{% else %}{{ delta }}{% endif %}%{% else %}{% assign delta = scheme.settings.danger.lightness | plus: 10 %}{% if delta > 80 %}80{% else %}{{ delta }}{% endif %}%{% endif %};
+
+        /* Additional Helper Variables */
+        --b-code-background: hsl(var(--b-scheme-h), var(--b-scheme-s), calc(var(--b-scheme-main-l) {% if scheme.settings.background.lightness > 50 %}- 3%{% else %}+ 3%{% endif %}));
+        --b-code: var(--b-text);
+        --b-pre-background: var(--b-code-background);
+        --b-pre: var(--b-text);
+        --b-arrow-color: var(--b-link);
       }
       {% endfor %}
 
@@ -90,6 +184,10 @@
         --font-heading-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
         --font-heading-style: {{ settings.type_header_font.style }};
         --font-heading-weight: {{ settings.type_header_font.weight }};
+
+        /* Bulma Fonts */
+        --b-family-primary: var(--font-body-family);
+        --b-family-secondary: var(--font-heading-family);
 
         --font-body-scale: {{ settings.body_scale | divided_by: 100.0 }};
         --font-heading-scale: {{ settings.heading_scale | times: 1.0 | divided_by: settings.body_scale }};
@@ -349,6 +447,44 @@
     {% endif %}
 
     {{ 'a-plt-custom-style.css' | asset_url | stylesheet_tag }}
+
+    {%- comment -%}
+      Re-inject Bulma color variables AFTER Bulma CSS loads
+      to override Bulma's hardcoded default values
+    {%- endcomment -%}
+    <style>
+      {% for scheme in settings.color_schemes -%}
+        {% if forloop.index == 1 -%}
+          :root,
+        {%- endif %}
+        .color-{{ scheme.id }} {
+          /* Override Bulma defaults with theme colors */
+          --b-primary-h: {{ scheme.settings.primary.hue }};
+          --b-primary-s: {{ scheme.settings.primary.saturation }}%;
+          --b-primary-l: {{ scheme.settings.primary.lightness }}%;
+          
+          --b-link-h: {{ scheme.settings.link.hue }};
+          --b-link-s: {{ scheme.settings.link.saturation }}%;
+          --b-link-l: {{ scheme.settings.link.lightness }}%;
+          
+          --b-info-h: {{ scheme.settings.info.hue }};
+          --b-info-s: {{ scheme.settings.info.saturation }}%;
+          --b-info-l: {{ scheme.settings.info.lightness }}%;
+          
+          --b-success-h: {{ scheme.settings.success.hue }};
+          --b-success-s: {{ scheme.settings.success.saturation }}%;
+          --b-success-l: {{ scheme.settings.success.lightness }}%;
+          
+          --b-warning-h: {{ scheme.settings.warning.hue }};
+          --b-warning-s: {{ scheme.settings.warning.saturation }}%;
+          --b-warning-l: {{ scheme.settings.warning.lightness }}%;
+          
+          --b-danger-h: {{ scheme.settings.danger.hue }};
+          --b-danger-s: {{ scheme.settings.danger.saturation }}%;
+          --b-danger-l: {{ scheme.settings.danger.lightness }}%;
+        }
+      {% endfor %}
+    </style>
 
     <script src="{{ 'cart-api.js' | asset_url }}" defer></script>
     <script src="{{ 'cart-store.js' | asset_url }}" defer="defer"></script>
