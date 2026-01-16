@@ -23,14 +23,14 @@
     {%- endunless -%}
     <slider-component class="slider-mobile-gutter">
       <ul
-        class="b-grid {% if show_mobile_slider %} slider slider--tablet grid--peek{% endif %}"
+        class="b-columns {% if show_mobile_slider %} slider slider--tablet grid--peek{% endif %}"
         id="Slider-{{ section.id }}"
         role="list"
       >
         {%- for block in section.blocks -%}
           <li
             id="Slide-{{ section.id }}-{{ forloop.index }}"
-            class="b-cell {% if section.settings.swipe_on_mobile %} slider__slide{% endif %}"
+            class="b-column {% if section.settings.swipe_on_mobile %} slider__slide{% endif %}"
             {{ block.shopify_attributes }}
           >
             <div class="b-box gallery-item">
