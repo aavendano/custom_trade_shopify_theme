@@ -11,8 +11,8 @@
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
-    "aa-header": {
-      "type": "aa-header",
+    "header": {
+      "type": "header",
       "settings": {
         "logo_width": 150,
         "logo_position": "left",
@@ -32,7 +32,7 @@
     }
   },
   "order": [
-    "aa-header",
+    "header",
     "aa-megamenu"
   ]
 }

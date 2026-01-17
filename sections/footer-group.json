@@ -12,7 +12,7 @@
   "type": "footer",
   "sections": {
     "footer": {
-      "type": "aa-footer",
+      "type": "footer",
       "blocks": {
         "brand_information_BAnPQg": {
           "type": "brand_information",
