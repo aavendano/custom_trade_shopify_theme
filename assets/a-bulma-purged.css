@@ -3864,7 +3864,6 @@ button.b-has-background-danger:active {
   display: flex;
   flex: 1 0 auto;
   scroll-snap-align: start;
-  display: flex;
   width: 100%;
   max-width: 85vw;
 }

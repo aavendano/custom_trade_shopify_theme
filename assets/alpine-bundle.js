@@ -3970,6 +3970,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
       touchStartX: null,
       touchEndX: null,
       swipeThreshold: 50,
+      desktopBreakpoint: 1024,
       get currentSlide() {
         return this.slides[this.currentSlideIndex] || {};
       },
@@ -3985,8 +3986,8 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
             entries.forEach((entry) => {
               console.log("Carousel visibility:", entry.isIntersecting, "ratio:", entry.intersectionRatio);
               if (entry.isIntersecting) {
-                if (!this.autoplayInterval) {
-                  console.log("Starting autoplay - carousel visible");
+                if (!this.autoplayInterval && !this.isDesktop()) {
+                  console.log("Starting autoplay - carousel visible (mobile/tablet)");
                   this.isPaused = false;
                   this.autoplay();
                 }
@@ -3997,7 +3998,23 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
             });
           }, { threshold: 0.1 });
           observer2.observe(this.$el);
+          window.addEventListener("resize", () => {
+            if (this.isDesktop()) {
+              if (this.autoplayInterval) {
+                console.log("Desktop detected - pausing autoplay");
+                this.pause();
+              }
+            } else {
+              if (!this.autoplayInterval && !this.isPaused) {
+                console.log("Mobile/tablet detected - resuming autoplay");
+                this.autoplay();
+              }
+            }
+          });
         }
+      },
+      isDesktop() {
+        return window.innerWidth >= this.desktopBreakpoint;
       },
       previous() {
         if (this.currentSlideIndex > 0) {
@@ -4043,6 +4060,10 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
         console.log("Autoplay resumed");
       },
       autoplay() {
+        if (this.isDesktop()) {
+          console.log("Autoplay disabled - desktop mode (grid view)");
+          return;
+        }
         this.autoplayInterval = setInterval(() => {
           if (!this.isPaused) {
             this.next();

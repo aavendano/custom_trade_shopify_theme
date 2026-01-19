@@ -12,6 +12,7 @@ export default function (Alpine) {
         touchStartX: null,
         touchEndX: null,
         swipeThreshold: 50,
+        desktopBreakpoint: 1024,
 
         get currentSlide() {
             return this.slides[this.currentSlideIndex] || {};
@@ -33,9 +34,9 @@ export default function (Alpine) {
                     entries.forEach(entry => {
                         console.log('Carousel visibility:', entry.isIntersecting, 'ratio:', entry.intersectionRatio);
                         if (entry.isIntersecting) {
-                            // El carousel es visible - iniciar/reanudar autoplay
-                            if (!this.autoplayInterval) {
-                                console.log('Starting autoplay - carousel visible');
+                            // El carousel es visible - iniciar/reanudar autoplay solo si no es desktop
+                            if (!this.autoplayInterval && !this.isDesktop()) {
+                                console.log('Starting autoplay - carousel visible (mobile/tablet)');
                                 this.isPaused = false;
                                 this.autoplay();
                             }
@@ -49,7 +50,28 @@ export default function (Alpine) {
 
                 // Observar el elemento del carousel (this.$el es el elemento con x-data)
                 observer.observe(this.$el);
+
+                // Listener para cambios de tamaño de ventana
+                window.addEventListener('resize', () => {
+                    if (this.isDesktop()) {
+                        // En desktop, pausar autoplay
+                        if (this.autoplayInterval) {
+                            console.log('Desktop detected - pausing autoplay');
+                            this.pause();
+                        }
+                    } else {
+                        // En mobile/tablet, reanudar autoplay si el carousel es visible
+                        if (!this.autoplayInterval && !this.isPaused) {
+                            console.log('Mobile/tablet detected - resuming autoplay');
+                            this.autoplay();
+                        }
+                    }
+                });
             }
+        },
+
+        isDesktop() {
+            return window.innerWidth >= this.desktopBreakpoint;
         },
 
         previous() {
@@ -99,6 +121,12 @@ export default function (Alpine) {
         },
 
         autoplay() {
+            // No iniciar autoplay en desktop
+            if (this.isDesktop()) {
+                console.log('Autoplay disabled - desktop mode (grid view)');
+                return;
+            }
+            
             this.autoplayInterval = setInterval(() => {
                 if (!this.isPaused) {
                     this.next()

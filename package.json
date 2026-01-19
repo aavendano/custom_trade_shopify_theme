@@ -35,7 +35,8 @@
     "alpinejs": "^3.15.1",
     "bulma": "^1.0.4",
     "playwright": "^1.56.1",
-    "sass": "^1.93.3"
+    "sass": "^1.93.3",
+    "swiffy-slider": "^1.6.0"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^4.1.3",
