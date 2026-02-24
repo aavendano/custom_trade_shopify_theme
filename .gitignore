@@ -19,3 +19,5 @@ galery-components/
 shopify_serve.log
 playwright-report/
 test-results/
+storybook-static/
+*.map
