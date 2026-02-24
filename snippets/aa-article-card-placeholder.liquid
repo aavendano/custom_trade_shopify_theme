@@ -1,0 +1,62 @@
+{% comment %}
+  aa-article-card-placeholder.liquid - Article Card Placeholder
+  Placeholder for theme editor when no blog is selected
+
+  Parameters:
+  - index: Integer (for placeholder image variation)
+
+  Created: 2025-12-28
+{% endcomment %}
+
+{%- liquid
+  assign placeholder_index = index | default: 1 | modulo: 3 | plus: 1
+  assign placeholder_image = 'blog-apparel-' | append: placeholder_index
+-%}
+
+<article class="b-card aa-article-card aa-article-card--placeholder">
+  <div class="b-card-image">
+    <figure class="b-image b-is-16by9">
+      {{ placeholder_image | placeholder_svg_tag: 'aa-article-card__placeholder' }}
+    </figure>
+  </div>
+
+  <div class="b-card-content">
+    <div class="aa-article-card__meta b-mb-3">
+      <time class="aa-article-card__date">
+        <svg
+          class="aa-article-card__icon"
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M12.667 2.667h-1.334V2a.667.667 0 00-1.333 0v.667H6V2a.667.667 0 00-1.333 0v.667H3.333A1.333 1.333 0 002 4v9.333A1.333 1.333 0 003.333 14.667h9.334A1.333 1.333 0 0014 13.333V4a1.333 1.333 0 00-1.333-1.333zM12.667 13.333H3.333V6.667h9.334v6.666z" fill="currentColor"/>
+        </svg>
+        {{ 'now' | date: format: 'month_day_year' }}
+      </time>
+    </div>
+
+    <h3 class="b-title b-is-4 aa-article-card__title">
+      {{ 'sections.featured_blog.onboarding_title' | t }}
+    </h3>
+
+    <div class="b-content aa-article-card__excerpt">
+      {{ 'sections.featured_blog.onboarding_content' | t }}
+    </div>
+
+    <span class="b-button b-is-text b-is-small aa-article-card__read-more">
+      {{ 'blogs.article.read_more' | t }}
+      <svg
+        class="aa-article-card__arrow"
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M6 12l4-4-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+  </div>
+</article>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Megamenu</title>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <style>
+        .mega-menu-overlay {
+            background: white;
+            border-top: 1px solid #eee;
+        }
+
+        .mega-menu-overlay .box {
+            border-radius: 0;
+            box-shadow: none;
+        }
+    </style>
+</head>
+
+<body x-data="megaMenuStore()" class="has-navbar-fixed-top">
+
+    <!-- HEADER -->
+    <header class="navbar is-fixed-top has-shadow">
+        <div class="navbar-brand">
+            <a class="navbar-item">
+                <strong>PlayLoveToys</strong>
+            </a>
+        </div>
+
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" @mouseenter="open('collections')" @mouseleave="closeDelayed()">
+                    Collections
+                </a>
+
+                <a class="navbar-item" @mouseenter="open('brands')" @mouseleave="closeDelayed()">
+                    Brands
+                </a>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- MEGAMENU OVERLAY -->
+    <div x-show="isOpen" x-transition.opacity @mouseenter="cancelClose()" @mouseleave="close()"
+        class="mega-menu-overlay" style="position: fixed; top: 3.25rem; left: 0; right: 0; z-index: 40;">
+
+        <div class="container">
+            <div class="box">
+
+                <!-- CONTENIDO DINÁMICO -->
+                <template x-if="context === 'collections'">
+                    <div class="columns">
+                        <div class="column">
+                            <p class="menu-label">By Category</p>
+                            <ul class="menu-list">
+                                <li><a>Vibrators</a></li>
+                                <li><a>Dildos</a></li>
+                                <li><a>Couples</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="column">
+                            <p class="menu-label">Featured</p>
+                            <ul class="menu-list">
+                                <li><a>New Arrivals</a></li>
+                                <li><a>Bestsellers</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </template>
+
+                <template x-if="context === 'brands'">
+                    <div class="columns is-multiline">
+                        <div class="column is-one-quarter" x-for="brand in brands" :key="brand">
+                            <a class="box has-text-centered">
+                                <strong x-text="brand"></strong>
+                            </a>
+                        </div>
+                    </div>
+                </template>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function megaMenuStore() {
+            return {
+                isOpen: false,
+                context: null,
+                closeTimeout: null,
+
+                brands: [
+                    'We-Vibe',
+                    'Lelo',
+                    'Satisfyer',
+                    'Fun Factory'
+                ],
+
+                open(type) {
+                    clearTimeout(this.closeTimeout)
+                    this.context = type
+                    this.isOpen = true
+                },
+
+                close() {
+                    this.isOpen = false
+                    this.context = null
+                },
+
+                closeDelayed() {
+                    this.closeTimeout = setTimeout(() => {
+                        this.close()
+                    }, 200)
+                },
+
+                cancelClose() {
+                    clearTimeout(this.closeTimeout)
+                }
+            }
+        }
+    </script>

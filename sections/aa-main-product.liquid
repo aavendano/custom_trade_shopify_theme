@@ -1,0 +1,566 @@
+{% comment %}
+  aa-main-product.liquid - Product Detail Page with Bulma + Alpine.js
+
+  Task 21: Create product gallery with native scroll snap
+  Phase 5: Product Detail Page Migration
+
+  Features:
+  - Native CSS scroll snap for product gallery
+  - Bulma grid layout for product info
+  - Alpine.js for variant selection
+  - Lazy loading for gallery images (except first)
+  - Mobile-first responsive design
+  - No JavaScript dependencies for gallery scrolling
+{% endcomment %}
+
+{% liquid
+  assign current_variant = product.selected_or_first_available_variant
+%}
+
+<style>
+  /* Product gallery with native scroll snap */
+  .c-product-gallery {
+    position: relative;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .c-product-gallery__track {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+
+    /* Hide scrollbar */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+
+  .c-product-gallery__track::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+
+  .c-product-gallery__slide {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  @media (min-width: 768px) {
+    .c-product-gallery__slide {
+      flex: 0 0 50%;
+    }
+  }
+
+  /* Product info sticky behavior */
+  .c-product-info {
+    {% if section.settings.enable_sticky_info %}
+      position: sticky;
+      top: 2rem;
+      align-self: start;
+    {% endif %}
+  }
+
+  /* Variant selector buttons */
+  .c-variant-selector__option {
+    min-width: 3rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .c-variant-selector__option.is-selected {
+    background-color: hsl(268, 41%, 33%);
+    color: white;
+    border-color: hsl(268, 41%, 33%);
+  }
+
+  .c-variant-selector__option:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    text-decoration: line-through;
+  }
+
+  /* Price display */
+  .c-product-price {
+    font-size: 2rem;
+    font-weight: 600;
+    color: hsl(268, 41%, 33%);
+  }
+
+  .c-product-price--compare {
+    font-size: 1.5rem;
+    color: #999;
+    text-decoration: line-through;
+    margin-left: 0.5rem;
+  }
+
+  /* Add to cart button */
+  .c-add-to-cart {
+    width: 100%;
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
+
+  /* Gallery indicators (dots) */
+  .c-product-gallery__indicators {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .c-product-gallery__indicator {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background-color: #ddd;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  .c-product-gallery__indicator.is-active {
+    background-color: hsl(268, 41%, 33%);
+  }
+</style>
+
+<div class="b-section b-py-6">
+  <div class="b-container">
+    <div class="b-columns">
+      {%- comment -%} Product Gallery - Left Side {%- endcomment -%}
+      <div class="b-column b-is-12-mobile b-is-6-tablet">
+        <div class="c-product-gallery">
+          <div class="c-product-gallery__track" id="gallery-{{ section.id }}">
+            {%- if product.media.size > 0 -%}
+              {%- for media in product.media -%}
+                <div class="c-product-gallery__slide">
+                  {%- case media.media_type -%}
+                    {%- when 'image' -%}
+                      <figure class="b-image b-is-1by1">
+                        {%- if forloop.first -%}
+                          {{
+                            media
+                            | image_url: width: 1000
+                            | image_tag:
+                              loading: 'eager',
+                              fetchpriority: 'high',
+                              widths: '400, 600, 800, 1000',
+                              sizes: '(min-width: 768px) 50vw, 100vw',
+                              alt: media.alt,
+                              class: 'b-is-fullwidth'
+                          }}
+                        {%- else -%}
+                          {{
+                            media
+                            | image_url: width: 1000
+                            | image_tag:
+                              loading: 'lazy',
+                              widths: '400, 600, 800, 1000',
+                              sizes: '(min-width: 768px) 50vw, 100vw',
+                              alt: media.alt,
+                              class: 'b-is-fullwidth'
+                          }}
+                        {%- endif -%}
+                      </figure>
+                    {%- when 'video', 'external_video' -%}
+                      <div class="b-image b-is-1by1">
+                        {{ media | media_tag: image_size: '1000x', autoplay: true, loop: true, controls: true }}
+                      </div>
+                    {%- when 'model' -%}
+                      <div class="b-image b-is-1by1">
+                        {{ media | model_viewer_tag: image_size: '1000x' }}
+                      </div>
+                  {%- endcase -%}
+                </div>
+              {%- endfor -%}
+            {%- else -%}
+              <div class="c-product-gallery__slide">
+                <figure class="b-image b-is-1by1">
+                  {{ 'product-1' | placeholder_svg_tag: 'b-is-fullwidth' }}
+                </figure>
+              </div>
+            {%- endif -%}
+          </div>
+
+          {%- if product.media.size > 1 -%}
+            <div class="c-product-gallery__indicators">
+              {%- for media in product.media -%}
+                <button
+                  type="button"
+                  class="c-product-gallery__indicator"
+                  data-index="{{ forloop.index0 }}"
+                  aria-label="View image {{ forloop.index }}"
+                  onclick="document.getElementById('gallery-{{ section.id }}').children[{{ forloop.index0 }}].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' })"
+                ></button>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+
+      {%- comment -%} Product Info - Right Side {%- endcomment -%}
+      <div class="b-column b-is-12-mobile b-is-6-tablet">
+        <div class="c-product-info">
+          {%- comment -%} Product Title {%- endcomment -%}
+          <h1 class="b-title b-is-2 b-mb-3">{{ product.title | escape }}</h1>
+
+          {%- comment -%} Vendor {%- endcomment -%}
+          {%- if product.vendor != blank -%}
+            <p class="b-subtitle b-is-6 b-mb-3">
+              <a href="{{ product.vendor | url_for_vendor }}" class="b-has-text-grey">
+                {{ product.vendor }}
+              </a>
+            </p>
+          {%- endif -%}
+
+          {%- comment -%} Product Rating {%- endcomment -%}
+          {%- if product.metafields.reviews.rating.value != blank -%}
+            <div class="b-mb-3">
+              <div class="b-is-flex b-is-align-items-center">
+                {%- liquid
+                  assign rating_value = product.metafields.reviews.rating.value.rating
+                  assign rating_max = product.metafields.reviews.rating.value.scale_max
+                  assign rating_count = product.metafields.reviews.rating_count
+                  assign rating_floor = rating_value | floor
+                -%}
+                <div
+                  class="c-product-rating"
+                  role="img"
+                  aria-label="{{ rating_value }} out of {{ rating_max }} stars"
+                  style="display: inline-flex; gap: 0.25rem; color: #f4436c;"
+                >
+                  {%- for i in (1..rating_max) -%}
+                    {%- if i <= rating_floor -%}
+                      <span aria-hidden="true">★</span>
+                    {%- else -%}
+                      <span aria-hidden="true" style="color: #ddd;">★</span>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </div>
+                <span class="b-ml-2 b-is-size-7 b-has-text-grey">
+                  {{ rating_value }} ({{ rating_count }}
+                  {% if rating_count == 1 %}review{% else %}reviews{% endif %})
+                </span>
+              </div>
+            </div>
+          {%- endif -%}
+
+          {%- comment -%} Price {%- endcomment -%}
+          <div class="b-mb-4">
+            <div
+              x-data
+              x-init="
+                $watch('$store.productVariant.selectedVariant', (variant) => {
+                  if (variant) {
+                    $el.querySelector('.c-product-price').textContent = '$' + (variant.price / 100).toFixed(2);
+                    const comparePrice = $el.querySelector('.c-product-price--compare');
+                    if (variant.compare_at_price && variant.compare_at_price > variant.price) {
+                      comparePrice.textContent = '$' + (variant.compare_at_price / 100).toFixed(2);
+                      comparePrice.style.display = 'inline';
+                    } else {
+                      comparePrice.style.display = 'none';
+                    }
+                  }
+                })
+              "
+            >
+              <span class="c-product-price">
+                {{ current_variant.price | money_without_currency }}
+              </span>
+              {%- if current_variant.compare_at_price > current_variant.price -%}
+                <span class="c-product-price--compare">
+                  {{ current_variant.compare_at_price | money_without_currency }}
+                </span>
+              {%- else -%}
+                <span class="c-product-price--compare" style="display: none;"></span>
+              {%- endif -%}
+            </div>
+          </div>
+
+          {%- comment -%} Variant Selector with Alpine.js {%- endcomment -%}
+          {%- unless product.has_only_default_variant -%}
+            <div
+              x-data="
+                {
+                  selectedOptions: {{ current_variant.options | json }},
+                  variants: {{ product.variants | json }},
+
+                  selectOption(optionIndex, value) {
+                    this.selectedOptions[optionIndex] = value;
+                    this.updateVariant();
+                  },
+
+                  updateVariant() {
+                    const variant = this.variants.find(v => {
+                      return v.options.every((opt, idx) => opt === this.selectedOptions[idx]);
+                    });
+
+                    if (variant) {
+                      $store.productVariant.setVariant(variant);
+
+                      // Update URL without reload
+                      const url = new URL(window.location);
+                      url.searchParams.set('variant', variant.id);
+                      window.history.replaceState({}, '', url);
+                    }
+                  },
+
+                  isOptionAvailable(optionIndex, value) {
+                    const testOptions = [...this.selectedOptions];
+                    testOptions[optionIndex] = value;
+
+                    return this.variants.some(v => {
+                      return v.options.every((opt, idx) => opt === testOptions[idx]) && v.available;
+                    });
+                  }
+                }
+              "
+              x-init="
+                Alpine.store('productVariant', {
+                  selectedVariant: {{ current_variant | json }},
+                  setVariant(variant) {
+                    this.selectedVariant = variant;
+                  }
+                });
+              "
+            >
+              {%- for option in product.options_with_values -%}
+                <div class="b-field b-mb-4">
+                  <label class="b-label">{{ option.name }}</label>
+                  <div class="b-buttons b-has-addons">
+                    {%- for value in option.values -%}
+                      <button
+                        type="button"
+                        class="b-button c-variant-selector__option"
+                        :class="{ 'is-selected': selectedOptions[{{ option.position | minus: 1 }}] === '{{ value | escape }}' }"
+                        :disabled="!isOptionAvailable({{ option.position | minus: 1 }}, '{{ value | escape }}')"
+                        @click="selectOption({{ option.position | minus: 1 }}, '{{ value | escape }}')"
+                      >
+                        {{ value }}
+                      </button>
+                    {%- endfor -%}
+                  </div>
+                </div>
+              {%- endfor -%}
+            </div>
+          {%- endunless -%}
+
+          {%- comment -%} Add to Cart Form {%- endcomment -%}
+          <div
+            x-data="
+              {
+                quantity: 1,
+                async addToCart() {
+                  const variant = $store.productVariant?.selectedVariant || {{ current_variant | json }};
+
+                  if (!variant.available) {
+                    alert('This product is sold out');
+                    return;
+                  }
+
+                  try {
+                    await $store.cart.addItem(variant.id, this.quantity);
+
+                    // Dispatch event to open cart drawer
+                    window.dispatchEvent(new CustomEvent('cart-drawer-open'));
+                  } catch (error) {
+                    console.error('Add to cart failed:', error);
+                    alert('Failed to add item to cart. Please try again.');
+                  }
+                }
+              }
+            "
+          >
+            {%- comment -%} Quantity Selector {%- endcomment -%}
+            <div class="b-field b-mb-4">
+              <label class="b-label">Quantity</label>
+              <div class="b-control">
+                <div class="b-field b-has-addons">
+                  <p class="b-control">
+                    <button
+                      type="button"
+                      class="b-button"
+                      @click="quantity = Math.max(1, quantity - 1)"
+                      aria-label="Decrease quantity"
+                    >
+                      <span class="b-icon">−</span>
+                    </button>
+                  </p>
+                  <p class="b-control">
+                    <input
+                      type="number"
+                      class="b-input"
+                      x-model.number="quantity"
+                      min="1"
+                      style="width: 80px; text-align: center;"
+                      aria-label="Quantity"
+                    >
+                  </p>
+                  <p class="b-control">
+                    <button
+                      type="button"
+                      class="b-button"
+                      @click="quantity++"
+                      aria-label="Increase quantity"
+                    >
+                      <span class="b-icon">+</span>
+                    </button>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {%- comment -%} Add to Cart Button {%- endcomment -%}
+            <button
+              type="button"
+              class="b-button b-is-primary b-is-large c-add-to-cart"
+              @click="addToCart()"
+              :disabled="!($store.productVariant?.selectedVariant?.available ?? {{ current_variant.available | json }})"
+            >
+              <span x-show="$store.productVariant?.selectedVariant?.available ?? {{ current_variant.available | json }}">
+                Add to Cart
+              </span>
+              <span x-show="!($store.productVariant?.selectedVariant?.available ?? {{ current_variant.available | json }})">
+                Sold Out
+              </span>
+            </button>
+          </div>
+
+          {%- comment -%} Product Description {%- endcomment -%}
+          {%- if product.description != blank -%}
+            <div class="b-content b-mt-5">
+              <h3 class="b-title b-is-5">Description</h3>
+              <div class="b-has-text-grey-dark">
+                {{ product.description }}
+              </div>
+            </div>
+          {%- endif -%}
+
+          {%- comment -%} Product Metadata {%- endcomment -%}
+          <div class="b-content b-mt-4">
+            {%- if current_variant.sku != blank -%}
+              <p class="b-is-size-7 b-has-text-grey">
+                <strong>SKU:</strong> <span id="variant-sku">{{ current_variant.sku }}</span>
+              </p>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{%- comment -%} Product Structured Data {%- endcomment -%}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": {{ product.title | json }},
+    "description": {{ product.description | strip_html | truncate: 350 | json }},
+    "url": {{ request.origin | append: product.url | json }},
+    "image": [
+      {%- for media in product.media limit: 5 -%}
+        {%- if media.media_type == 'image' -%}
+          {{ media | image_url: width: 1200 | prepend: 'https:' | json }}{% unless forloop.last %},{% endunless %}
+        {%- endif -%}
+      {%- endfor -%}
+    ],
+    {%- if current_variant.sku != blank -%}
+      "sku": {{ current_variant.sku | json }},
+    {%- endif -%}
+    {%- if product.vendor != blank -%}
+      "brand": {
+        "@type": "Brand",
+        "name": {{ product.vendor | json }}
+      },
+    {%- endif -%}
+    {%- comment -%} Aggregate Rating from Shopify Product Reviews {%- endcomment -%}
+    {%- if product.metafields.reviews.rating.value != blank -%}
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": {{ product.metafields.reviews.rating.value.rating | json }},
+        "ratingCount": {{ product.metafields.reviews.rating_count | json }},
+        "reviewCount": {{ product.metafields.reviews.rating_count | json }},
+        "bestRating": {{ product.metafields.reviews.rating.value.scale_max | default: 5 | json }},
+        "worstRating": 1
+      },
+    {%- endif -%}
+    "offers": {
+      "@type": "Offer",
+      "url": {{ request.origin | append: product.url | json }},
+      "priceCurrency": {{ cart.currency.iso_code | json }},
+      "price": {{ current_variant.price | divided_by: 100.0 | json }},
+      "availability": "https://schema.org/{% if current_variant.available %}InStock{% else %}OutOfStock{% endif %}",
+      "seller": {
+        "@type": "Organization",
+        "name": {{ shop.name | json }}
+      }
+    }
+  }
+</script>
+
+{%- comment -%} Gallery scroll indicator script {%- endcomment -%}
+{%- if product.media.size > 1 -%}
+  <script>
+    (function () {
+      const gallery = document.getElementById('gallery-{{ section.id }}');
+      const indicators = document.querySelectorAll('.c-product-gallery__indicator');
+
+      if (!gallery || indicators.length === 0) return;
+
+      // Update active indicator on scroll
+      gallery.addEventListener('scroll', () => {
+        const scrollLeft = gallery.scrollLeft;
+        const slideWidth = gallery.children[0].offsetWidth;
+        const activeIndex = Math.round(scrollLeft / slideWidth);
+
+        indicators.forEach((indicator, index) => {
+          if (index === activeIndex) {
+            indicator.classList.add('is-active');
+          } else {
+            indicator.classList.remove('is-active');
+          }
+        });
+      });
+
+      // Set initial active indicator
+      indicators[0]?.classList.add('is-active');
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "AA Product (Bulma)",
+  "tag": "section",
+  "class": "section-product",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Product Info Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sticky_info",
+      "default": true,
+      "label": "Enable Sticky Product Info"
+    },
+    {
+      "type": "header",
+      "content": "Gallery Settings"
+    },
+    {
+      "type": "paragraph",
+      "content": "Gallery uses native CSS scroll snap for smooth scrolling without JavaScript dependencies."
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "AA Product (Bulma)",
+      "category": "AA Sections"
+    }
+  ]
+}
+{% endschema %}

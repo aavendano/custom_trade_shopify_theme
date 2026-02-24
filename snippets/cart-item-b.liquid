@@ -53,14 +53,14 @@
       </a>
 
       <!-- Vendor -->
-      <p class="b-is-size-7 b-has-text-grey b-mb-2">
+      <p class="b-is-size-7 b-has-text-grey-dark b-mb-2">
         {{ item.product.vendor }}
       </p>
 
       <!-- Variantes -->
       {% unless item.product.has_only_default_variant %}
         {% for opt in item.options_with_values %}
-          <p class="b-is-size-7 b-has-text-grey">
+          <p class="b-is-size-7 b-has-text-grey-dark">
             <strong>{{ opt.name }}:</strong> {{ opt.value }}
           </p>
         {% endfor %}
@@ -68,11 +68,11 @@
 
       <!-- OPERACIÓN: costo unitario x qty = subtotal (todo en una línea) -->
       <!-- Unit price + label -->
-      <p class="b-is-size-7 b-has-text-grey"><strong> Price: </strong>{{ item.final_price | money }}</p>
+      <p class="b-is-size-7 b-has-text-grey-dark"><strong> Price: </strong>{{ item.final_price | money }}</p>
 
       <div class="b-block b-mt-5">
         <!-- Qty label + selector -->
-        <p class="b-is-size-7 b-has-text-grey b-mr-1">
+        <p class="b-is-size-7 b-has-text-grey-dark b-mr-1">
           <strong>Qty:</strong>
 
           <div class="b-field b-has-addons b-is-inline-flex b-mr-3">
@@ -134,7 +134,7 @@
       <!-- Igual -->
       <div class="b-mr-5 b-is-flex b-is-justify-content-flex-end">
         <!-- Subtotal + label -->
-        <span class="b-is-size-7 b-has-text-grey">
+        <span class="b-is-size-7 b-has-text-grey-dark">
           Subtotal:
           <strong class="b-is-size-5">
             {{ item.final_line_price | money_with_currency }}

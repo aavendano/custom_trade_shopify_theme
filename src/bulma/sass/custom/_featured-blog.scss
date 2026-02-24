@@ -1,0 +1,82 @@
+@charset "utf-8";
+
+/**
+ * Featured Blog Component Styles
+ * Bulma/Alpine Migration
+ *
+ * Only custom styles that cannot be achieved with Bulma utilities.
+ * Most styling is done via Bulma classes in the Liquid template.
+ *
+ * Created: 2025-12-28
+ */
+
+// Variables
+$article-card-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+$article-card-hover-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+// Article Card - Custom hover effect only
+.aa-article-card {
+    box-shadow: $article-card-shadow;
+    transition: all 0.3s ease;
+
+    &:hover {
+        box-shadow: $article-card-hover-shadow;
+        transform: translateY(-4px);
+    }
+}
+
+// Article card link - inherit color, no underline
+.aa-article-card__link {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+        color: var(--bulma-link, #485fc7);
+    }
+}
+
+// Read more arrow animation
+.aa-article-card__arrow {
+    transition: transform 0.2s ease;
+}
+
+.aa-article-card__read-more:hover .aa-article-card__arrow {
+    transform: translateX(4px);
+}
+
+// Placeholder - reduced opacity
+.aa-article-card--placeholder {
+    opacity: 0.7;
+
+    &:hover {
+        transform: none;
+    }
+}
+
+// Accessibility - Reduced motion
+@media (prefers-reduced-motion: reduce) {
+    .aa-article-card {
+        transition: none;
+
+        &:hover {
+            transform: none;
+        }
+    }
+
+    .aa-article-card__arrow {
+        transition: none;
+    }
+
+    .aa-article-card__read-more:hover .aa-article-card__arrow {
+        transform: none;
+    }
+}
+
+// Print styles
+@media print {
+    .aa-article-card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+        page-break-inside: avoid;
+    }
+}

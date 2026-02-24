@@ -1,22 +1,23 @@
 {% if collection.metafields.custom.collection_description %}
-<div class="page-width" style="margin: 0 auto; padding: {{ section.settings.content_padding }}px;">
-  <style>
-    .responsive-figure {
-      max-width: 100%;
-    }
-    .responsive-figure img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-  </style>
+  <section class="b-section">
+    <style>
+      .responsive-figure {
+        max-width: 100%;
+      }
+      .responsive-figure img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+    </style>
 
-  {{ 'faq.css' | asset_url | stylesheet_tag }}
-  <script src="{{ 'faq.js' | asset_url }}" defer></script>
-
-    {{ collection.metafields.custom.collection_description.value }}
-  {% endif %}
-</div>
+    {{ 'faq.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'faq.js' | asset_url }}" defer></script>
+    <div class="b-content">
+      {{ collection.metafields.custom.collection_description.value }}
+    </div>
+  </section>
+{% endif %}
 
 {% schema %}
 {

@@ -1,0 +1,472 @@
+@charset "utf-8";
+
+/**
+ * B-SCOPE WRAPPER UTILITY
+ *
+ * Purpose: Isolate Bulma styles from legacy Dawn styles during migration phases 1-6
+ *
+ * Usage Pattern:
+ *
+ *   {% comment %}
+ *     Wrap migrated Bulma components in .b-scope during phases 1-6
+ *     Remove wrapper in Phase 7 when legacy CSS is deleted
+ *   {% endcomment %}
+ *   <div class="b-scope">
+ *     <div class="b-card">
+ *       <div class="b-card-content">
+ *         <!-- Bulma component content -->
+ *       </div>
+ *     </div>
+ *   </div>
+ *
+ * Requirements Satisfied:
+ * - Requirement 1.5: b-scope wrapper for migration coexistence
+ * - Requirement 8.8: CSS specificity overrides without !important
+ *
+ * Migration Timeline:
+ * - Phases 1-6: Use .b-scope wrapper on all new Bulma components
+ * - Phase 7: Remove all .b-scope wrappers (Task 36)
+ *
+ * Technical Notes:
+ * - Increases specificity of Bulma classes within scope
+ * - Prevents Dawn CSS from overriding Bulma styles
+ * - Uses CSS specificity (not !important) for clean overrides
+ * - Minimal performance impact (single class selector)
+ */
+
+// =============================================================================
+// B-SCOPE CONTAINER
+// =============================================================================
+
+.b-scope {
+    // Reset any Dawn-specific styles that might leak into Bulma components
+    // This ensures a clean slate for Bulma styling
+
+    // Box model reset
+    box-sizing: border-box;
+
+    // Clear any inherited Dawn positioning
+    position: relative;
+
+    // Ensure proper stacking context
+    z-index: auto;
+
+    // Reset any Dawn-specific transforms or transitions
+    transform: none;
+    transition: none;
+
+    // All child elements should use border-box
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+}
+
+// =============================================================================
+// SPECIFICITY OVERRIDES
+// =============================================================================
+// These rules ensure Bulma styles win over Dawn styles within .b-scope
+// Uses CSS specificity (not !important) for maintainable overrides
+
+// Typography Overrides
+// Prevent Dawn typography from affecting Bulma text elements
+.b-scope {
+
+    // Bulma title elements
+    .b-title,
+    .b-subtitle {
+        // Reset Dawn font inheritance
+        font-family: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+        letter-spacing: inherit;
+        text-transform: inherit;
+
+        // Ensure Bulma spacing is respected
+        margin: inherit;
+        padding: inherit;
+    }
+
+    // Bulma content wrapper
+    .b-content {
+        // Reset Dawn content styles
+        font-size: inherit;
+        line-height: inherit;
+
+        // Ensure proper spacing for content elements
+        p,
+        ul,
+        ol,
+        dl,
+        blockquote,
+        pre,
+        table {
+            margin: inherit;
+        }
+    }
+}
+
+// Layout Overrides
+// Ensure Bulma grid and layout systems work correctly
+.b-scope {
+
+    // Bulma columns system
+    .b-columns {
+        // Reset any Dawn flex/grid interference
+        display: flex;
+        flex-wrap: wrap;
+
+        // Ensure proper gap handling
+        margin-left: inherit;
+        margin-right: inherit;
+        margin-top: inherit;
+    }
+
+    .b-column {
+        // Reset Dawn column styles
+        display: block;
+        flex-basis: auto;
+        flex-grow: 1;
+        flex-shrink: 1;
+        padding: inherit;
+    }
+
+    // Bulma container
+    .b-container {
+        // Reset Dawn container styles
+        width: 100%;
+        margin: 0 auto;
+        padding-left: inherit;
+        padding-right: inherit;
+    }
+
+    // Bulma section
+    .b-section {
+        // Reset Dawn section styles
+        padding: inherit;
+        margin: inherit;
+    }
+}
+
+// Component Overrides
+// Ensure Bulma components render correctly
+.b-scope {
+
+    // Bulma buttons
+    .b-button {
+        // Reset Dawn button styles
+        appearance: none;
+        background-color: inherit;
+        border: inherit;
+        border-radius: inherit;
+        color: inherit;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+        padding: inherit;
+        text-align: center;
+        text-decoration: none;
+        transition: inherit;
+
+        // Prevent Dawn hover/focus interference
+        &:hover,
+        &:focus {
+            background-color: inherit;
+            border-color: inherit;
+            color: inherit;
+            text-decoration: none;
+        }
+    }
+
+    // Bulma cards
+    .b-card {
+        // Reset Dawn card styles
+        background-color: inherit;
+        border: inherit;
+        border-radius: inherit;
+        box-shadow: inherit;
+        overflow: inherit;
+
+        .b-card-image,
+        .b-card-content,
+        .b-card-footer {
+            // Reset Dawn card component styles
+            padding: inherit;
+            border: inherit;
+        }
+    }
+
+    // Bulma forms
+    .b-input,
+    .b-textarea,
+    .b-select select {
+        // Reset Dawn form styles
+        appearance: none;
+        background-color: inherit;
+        border: inherit;
+        border-radius: inherit;
+        color: inherit;
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+        padding: inherit;
+
+        &:focus {
+            border-color: inherit;
+            box-shadow: inherit;
+            outline: inherit;
+        }
+    }
+
+    // Bulma navbar
+    .b-navbar {
+        // Reset Dawn navbar styles
+        background-color: inherit;
+        min-height: inherit;
+        position: inherit;
+        z-index: inherit;
+
+        .b-navbar-brand,
+        .b-navbar-menu,
+        .b-navbar-start,
+        .b-navbar-end {
+            // Reset Dawn navbar component styles
+            display: inherit;
+            align-items: inherit;
+        }
+
+        .b-navbar-item {
+            // Reset Dawn navbar item styles
+            color: inherit;
+            display: inherit;
+            padding: inherit;
+            text-decoration: none;
+
+            &:hover,
+            &:focus {
+                background-color: inherit;
+                color: inherit;
+            }
+        }
+    }
+
+    // Bulma hero
+    .b-hero {
+        // Reset Dawn hero styles
+        background-color: inherit;
+        padding: inherit;
+
+        .b-hero-body {
+            padding: inherit;
+        }
+    }
+
+    // Bulma image containers
+    .b-image {
+        // Reset Dawn image wrapper styles
+        display: block;
+        position: relative;
+
+        img {
+            // Reset Dawn image styles
+            display: block;
+            height: auto;
+            width: 100%;
+            max-width: 100%;
+            object-fit: inherit;
+        }
+    }
+}
+
+// =============================================================================
+// HELPER CLASS OVERRIDES
+// =============================================================================
+// Ensure Bulma helper classes work within .b-scope
+
+.b-scope {
+
+    // Spacing helpers
+    .b-m-0 {
+        margin: 0 !important;
+    }
+
+    .b-mt-0 {
+        margin-top: 0 !important;
+    }
+
+    .b-mr-0 {
+        margin-right: 0 !important;
+    }
+
+    .b-mb-0 {
+        margin-bottom: 0 !important;
+    }
+
+    .b-ml-0 {
+        margin-left: 0 !important;
+    }
+
+    .b-p-0 {
+        padding: 0 !important;
+    }
+
+    .b-pt-0 {
+        padding-top: 0 !important;
+    }
+
+    .b-pr-0 {
+        padding-right: 0 !important;
+    }
+
+    .b-pb-0 {
+        padding-bottom: 0 !important;
+    }
+
+    .b-pl-0 {
+        padding-left: 0 !important;
+    }
+
+    // Display helpers
+    .b-is-hidden {
+        display: none !important;
+    }
+
+    .b-is-invisible {
+        visibility: hidden !important;
+    }
+
+    // Text alignment helpers
+    .b-has-text-centered {
+        text-align: center !important;
+    }
+
+    .b-has-text-left {
+        text-align: left !important;
+    }
+
+    .b-has-text-right {
+        text-align: right !important;
+    }
+
+    // Text color helpers
+    .b-has-text-white {
+        color: hsl(0, 0%, 100%) !important;
+    }
+
+    .b-has-text-black {
+        color: hsl(0, 0%, 4%) !important;
+    }
+
+    .b-has-text-primary {
+        color: var(--bulma-primary, hsl(268, 41%, 33%)) !important;
+    }
+
+    .b-has-text-link {
+        color: var(--bulma-link, hsl(346, 89%, 61%)) !important;
+    }
+
+    .b-has-text-info {
+        color: var(--bulma-info, hsl(190, 84%, 29%)) !important;
+    }
+
+    // Background color helpers
+    .b-has-background-white {
+        background-color: hsl(0, 0%, 100%) !important;
+    }
+
+    .b-has-background-black {
+        background-color: hsl(0, 0%, 4%) !important;
+    }
+
+    .b-has-background-primary {
+        background-color: var(--bulma-primary, hsl(268, 41%, 33%)) !important;
+    }
+
+    .b-has-background-link {
+        background-color: var(--bulma-link, hsl(346, 89%, 61%)) !important;
+    }
+
+    .b-has-background-info {
+        background-color: var(--bulma-info, hsl(190, 84%, 29%)) !important;
+    }
+
+    // Flexbox helpers
+    .b-is-flex {
+        display: flex !important;
+    }
+
+    .b-is-inline-flex {
+        display: inline-flex !important;
+    }
+
+    .b-is-justify-content-center {
+        justify-content: center !important;
+    }
+
+    .b-is-align-items-center {
+        align-items: center !important;
+    }
+}
+
+// =============================================================================
+// MIGRATION NOTES
+// =============================================================================
+
+/**
+ * WHEN TO USE .b-scope:
+ *
+ * ✅ DO use .b-scope when:
+ * - Creating new sections/snippets in Phases 1-6
+ * - Migrating existing sections to Bulma
+ * - Legacy Dawn CSS is still loaded on the page
+ * - You need Bulma styles to override Dawn styles
+ *
+ * ❌ DO NOT use .b-scope when:
+ * - In Phase 7 (all legacy CSS removed)
+ * - Creating standalone test pages with only Bulma
+ * - Working on components that will never coexist with Dawn
+ *
+ * EXAMPLE USAGE IN LIQUID:
+ *
+ * Phase 1-6 (with .b-scope):
+ * ```liquid
+ * <div class="b-scope">
+ *   <section class="b-section">
+ *     <div class="b-container">
+ *       <h1 class="b-title b-is-1">{{ section.settings.title }}</h1>
+ *       <div class="b-columns">
+ *         <div class="b-column b-is-6">
+ *           <!-- Bulma content -->
+ *         </div>
+ *       </div>
+ *     </div>
+ *   </section>
+ * </div>
+ * ```
+ *
+ * Phase 7 (without .b-scope):
+ * ```liquid
+ * <section class="b-section">
+ *   <div class="b-container">
+ *     <h1 class="b-title b-is-1">{{ section.settings.title }}</h1>
+ *     <div class="b-columns">
+ *       <div class="b-column b-is-6">
+ *         <!-- Bulma content -->
+ *       </div>
+ *     </div>
+ *   </div>
+ * </section>
+ * ```
+ *
+ * REMOVAL CHECKLIST (Phase 7, Task 36):
+ * - [ ] Search all sections/*.liquid for "b-scope"
+ * - [ ] Search all snippets/*.liquid for "b-scope"
+ * - [ ] Search all blocks/*.liquid for "b-scope"
+ * - [ ] Remove <div class="b-scope"> wrapper
+ * - [ ] Remove corresponding </div> closing tag
+ * - [ ] Test component still renders correctly
+ * - [ ] Verify no visual regressions
+ */

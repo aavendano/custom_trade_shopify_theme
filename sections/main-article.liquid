@@ -18,7 +18,11 @@
       <h1 class="b-title b-is-size-1-tablet b-is-size-4-mobile">{{ article.title | escape }}</h1>
     </div>
     {%- if section.settings.show_date -%}
-      <div class="b-has-text-right-tablet b-has-text-left-mobile"></div>
+      <div class="b-block">
+        <div class="b-content b-has-text-right-tablet b-has-text-left-mobile">
+          {{ article.published_at | date: '%B %d, %Y' }}
+        </div>
+      </div>
     {%- endif -%}
     <!-- TODO: add share button -->
     <div class="b-content">

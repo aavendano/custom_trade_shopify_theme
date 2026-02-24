@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 7: Header Alpine.js Migration Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: #555;
+            margin-top: 30px;
+        }
+
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f9f9f9;
+            border-left: 4px solid #2196F3;
+            border-radius: 4px;
+        }
+
+        .test-result {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .test-result.pass {
+            background: #e8f5e9;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .test-result.fail {
+            background: #ffebee;
+            border-left: 4px solid #f44336;
+        }
+
+        .test-result.warning {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+        }
+
+        .status-icon {
+            font-size: 20px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .pass .status-icon {
+            color: #4CAF50;
+        }
+
+        .fail .status-icon {
+            color: #f44336;
+        }
+
+        .warning .status-icon {
+            color: #ff9800;
+        }
+
+        button {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 5px;
+        }
+
+        button:hover {
+            background: #1976D2;
+        }
+
+        .code-block {
+            background: #263238;
+            color: #aed581;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            margin: 10px 0;
+        }
+
+        .summary {
+            margin-top: 30px;
+            padding: 20px;
+            background: #e3f2fd;
+            border-radius: 8px;
+            border: 2px solid #2196F3;
+        }
+
+        .summary h3 {
+            margin-top: 0;
+            color: #1565C0;
+        }
+
+        .metric {
+            display: inline-block;
+            margin: 10px 15px;
+            padding: 10px 15px;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .metric-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        .metric-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2196F3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="test-container">
+        <h1>🧪 Task 7: Header Alpine.js Migration Test Suite</h1>
+        <p><strong>Date:</strong> December 25, 2025</p>
+        <p><strong>Purpose:</strong> Verify that the header has been successfully migrated to use Alpine.js exclusively
+            with smooth animations and keyboard navigation.</p>
+
+        <div class="test-section">
+            <h2>📋 Test Instructions</h2>
+            <ol>
+                <li>Start the Shopify dev server: <code>shopify theme dev</code></li>
+                <li>Navigate to <code>http://127.0.0.1:9292/</code></li>
+                <li>Open browser DevTools (F12)</li>
+                <li>Run the automated tests below</li>
+                <li>Perform manual tests as indicated</li>
+            </ol>
+        </div>
+
+        <h2>🤖 Automated Tests</h2>
+
+        <div class="test-section">
+            <h3>Test 1: Legacy CSS Files Not Loaded</h3>
+            <p>Verify that no legacy Dawn CSS files are loaded.</p>
+            <button onclick="testLegacyCSS()">Run Test</button>
+            <div id="test-legacy-css"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>Test 2: Legacy JavaScript Not Loaded</h3>
+            <p>Verify that no legacy JavaScript files are loaded.</p>
+            <button onclick="testLegacyJS()">Run Test</button>
+            <div id="test-legacy-js"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>Test 3: Alpine.js Loaded and Initialized</h3>
+            <p>Verify that Alpine.js is loaded and working.</p>
+            <button onclick="testAlpineJS()">Run Test</button>
+            <div id="test-alpine"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>Test 4: FOUC Prevention (x-cloak)</h3>
+            <p>Verify that [x-cloak] CSS rule exists to prevent flash of unstyled content.</p>
+            <button onclick="testXCloak()">Run Test</button>
+            <div id="test-xcloak"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>Test 5: Cart Store Initialized</h3>
+            <p>Verify that Alpine.js cart store is available.</p>
+            <button onclick="testCartStore()">Run Test</button>
+            <div id="test-cart-store"></div>
+        </div>
+
+        <h2>👆 Manual Tests</h2>
+
+        <div class="test-section">
+            <h3>Test 6: Mobile Menu Animation</h3>
+            <p><strong>Steps:</strong></p>
+            <ol>
+                <li>Resize browser to mobile width (375px)</li>
+                <li>Click the burger menu icon</li>
+                <li>Observe the menu animation (should slide down smoothly)</li>
+                <li>Click the burger menu again</li>
+                <li>Observe the menu closing animation (should fade out smoothly)</li>
+            </ol>
+            <p><strong>Expected:</strong> Smooth max-height and opacity transitions (0.3s and 0.2s)</p>
+            <div class="code-block">
+                // Check animation in DevTools > Elements > Styles
+                .aa-header .b-navbar-menu {
+                transition: max-height 0.3s ease-in-out, opacity 0.2s ease-in-out;
+                max-height: 0;
+                opacity: 0;
+                }
+
+                .aa-header .b-navbar-menu.b-is-active {
+                max-height: 100vh;
+                opacity: 1;
+                }
+            </div>
+            <label>
+                <input type="checkbox" id="manual-test-6"> ✅ Animations are smooth
+            </label>
+        </div>
+
+        <div class="test-section">
+            <h3>Test 7: Keyboard Navigation (Escape Key)</h3>
+            <p><strong>Steps:</strong></p>
+            <ol>
+                <li>Resize browser to mobile width (375px)</li>
+                <li>Click the burger menu to open it</li>
+                <li>Press the <kbd>Escape</kbd> key</li>
+                <li>Verify the menu closes</li>
+            </ol>
+            <p><strong>Expected:</strong> Menu closes when Escape is pressed</p>
+            <div class="code-block">
+                // Check in aa-header.liquid
+                &lt;header
+                x-data="{ mobileMenuOpen: false }"
+                @keydown.escape.window="mobileMenuOpen = false"
+                &gt;
+            </div>
+            <label>
+                <input type="checkbox" id="manual-test-7"> ✅ Escape key closes menu
+            </label>
+        </div>
+
+        <div class="test-section">
+            <h3>Test 8: Tab Navigation</h3>
+            <p><strong>Steps:</strong></p>
+            <ol>
+                <li>Click in the address bar and press Tab repeatedly</li>
+                <li>Verify focus moves through header elements in logical order</li>
+                <li>Verify focus indicators are visible</li>
+            </ol>
+            <p><strong>Expected:</strong> Logo → Menu items → Search → Account → Cart</p>
+            <label>
+                <input type="checkbox" id="manual-test-8"> ✅ Tab navigation works correctly
+            </label>
+        </div>
+
+        <div class="test-section">
+            <h3>Test 9: ARIA Labels</h3>
+            <p><strong>Steps:</strong></p>
+            <ol>
+                <li>Open DevTools > Elements</li>
+                <li>Find the burger menu button</li>
+                <li>Verify it has <code>aria-label="menu"</code></li>
+                <li>Verify it has <code>:aria-expanded</code> binding</li>
+            </ol>
+            <p><strong>Expected:</strong> Proper ARIA attributes for accessibility</p>
+            <label>
+                <input type="checkbox" id="manual-test-9"> ✅ ARIA labels present
+            </label>
+        </div>
+
+        <div class="test-section">
+            <h3>Test 10: No Console Errors</h3>
+            <p><strong>Steps:</strong></p>
+            <ol>
+                <li>Open DevTools > Console</li>
+                <li>Reload the page</li>
+                <li>Interact with the header (open/close menu, etc.)</li>
+                <li>Verify no errors appear</li>
+            </ol>
+            <p><strong>Expected:</strong> Clean console with no errors</p>
+            <label>
+                <input type="checkbox" id="manual-test-10"> ✅ No console errors
+            </label>
+        </div>
+
+        <div class="summary" id="summary" style="display:none;">
+            <h3>📊 Test Summary</h3>
+            <div id="summary-content"></div>
+        </div>
+
+        <div
+            style="margin-top: 30px; padding: 20px; background: #fff3cd; border-radius: 8px; border: 2px solid #ffc107;">
+            <h3>🚀 Next Steps</h3>
+            <ol>
+                <li>Run all automated tests above</li>
+                <li>Complete all manual tests</li>
+                <li>Run Lighthouse audit (Performance, Accessibility, Best Practices)</li>
+                <li>Test on actual mobile device if available</li>
+                <li>Document results in walkthrough.md</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Test results storage
+        const results = {
+            automated: {},
+            manual: {}
+        };
+
+        function displayResult(containerId, testName, passed, message, details = '') {
+            const container = document.getElementById(containerId);
+            const resultClass = passed ? 'pass' : 'fail';
+            const icon = passed ? '✅' : '❌';
+
+            container.innerHTML = `
+        <div class="test-result ${resultClass}">
+          <span class="status-icon">${icon}</span>
+          <div>
+            <strong>${testName}:</strong> ${message}
+            ${details ? `<div class="code-block">${details}</div>` : ''}
+          </div>
+        </div>
+      `;
+
+            results.automated[testName] = passed;
+            updateSummary();
+        }
+
+        function testLegacyCSS() {
+            const legacyFiles = [
+                'component-list-menu.css',
+                'component-search.css',
+                'component-menu-drawer.css',
+                'component-mega-menu.css',
+                'base.css'
+            ];
+
+            const stylesheets = Array.from(document.styleSheets);
+            const loadedLegacy = legacyFiles.filter(file =>
+                stylesheets.some(sheet => sheet.href && sheet.href.includes(file))
+            );
+
+            const passed = loadedLegacy.length === 0;
+            const message = passed
+                ? 'No legacy CSS files detected'
+                : `Found legacy CSS: ${loadedLegacy.join(', ')}`;
+
+            displayResult('test-legacy-css', 'Legacy CSS Check', passed, message);
+        }
+
+        function testLegacyJS() {
+            const legacyFiles = [
+                'details-disclosure.js',
+                'global.js',
+                'cart.js' // legacy version
+            ];
+
+            const scripts = Array.from(document.scripts);
+            const loadedLegacy = legacyFiles.filter(file =>
+                scripts.some(script => script.src && script.src.includes(file))
+            );
+
+            const passed = loadedLegacy.length === 0;
+            const message = passed
+                ? 'No legacy JavaScript files detected'
+                : `Found legacy JS: ${loadedLegacy.join(', ')}`;
+
+            displayResult('test-legacy-js', 'Legacy JS Check', passed, message);
+        }
+
+        function testAlpineJS() {
+            const alpineLoaded = typeof Alpine !== 'undefined';
+            const message = alpineLoaded
+                ? 'Alpine.js is loaded and available'
+                : 'Alpine.js is NOT loaded';
+
+            let details = '';
+            if (alpineLoaded) {
+                details = `Alpine version: ${Alpine.version || 'Unknown'}`;
+            }
+
+            displayResult('test-alpine', 'Alpine.js Check', alpineLoaded, message, details);
+        }
+
+        function testXCloak() {
+            let xCloakRuleFound = false;
+
+            // Check all stylesheets for [x-cloak] rule
+            Array.from(document.styleSheets).forEach(sheet => {
+                try {
+                    const rules = sheet.cssRules || sheet.rules;
+                    if (rules) {
+                        Array.from(rules).forEach(rule => {
+                            if (rule.selectorText && rule.selectorText.includes('[x-cloak]')) {
+                                xCloakRuleFound = true;
+                            }
+                        });
+                    }
+                } catch (e) {
+                    // CORS may prevent access to some stylesheets
+                }
+            });
+
+            // Also check inline styles
+            const styleElements = document.querySelectorAll('style');
+            styleElements.forEach(style => {
+                if (style.textContent.includes('[x-cloak]')) {
+                    xCloakRuleFound = true;
+                }
+            });
+
+            const message = xCloakRuleFound
+                ? '[x-cloak] CSS rule found - FOUC prevention active'
+                : '[x-cloak] CSS rule NOT found';
+
+            displayResult('test-xcloak', 'FOUC Prevention Check', xCloakRuleFound, message);
+        }
+
+        function testCartStore() {
+            const alpineLoaded = typeof Alpine !== 'undefined';
+
+            if (!alpineLoaded) {
+                displayResult('test-cart-store', 'Cart Store Check', false, 'Alpine.js not loaded');
+                return;
+            }
+
+            const cartStoreExists = Alpine.store('cart') !== undefined;
+            const message = cartStoreExists
+                ? 'Cart store is initialized and available'
+                : 'Cart store is NOT initialized';
+
+            let details = '';
+            if (cartStoreExists) {
+                const cart = Alpine.store('cart');
+                details = `Cart item count: ${cart.item_count || 0}`;
+            }
+
+            displayResult('test-cart-store', 'Cart Store Check', cartStoreExists, message, details);
+        }
+
+        function updateSummary() {
+            const automatedTests = Object.keys(results.automated).length;
+            const automatedPassed = Object.values(results.automated).filter(r => r).length;
+
+            if (automatedTests > 0) {
+                document.getElementById('summary').style.display = 'block';
+                document.getElementById('summary-content').innerHTML = `
+          <div class="metric">
+            <div class="metric-label">Automated Tests</div>
+            <div class="metric-value">${automatedPassed}/${automatedTests}</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Pass Rate</div>
+            <div class="metric-value">${Math.round(automatedPassed / automatedTests * 100)}%</div>
+          </div>
+        `;
+            }
+        }
+
+        // Auto-run all automated tests on page load
+        window.addEventListener('load', () => {
+            console.log('🧪 Task 7 Test Suite Loaded');
+            console.log('Run automated tests by clicking the buttons above');
+            console.log('Or run all tests with: runAllTests()');
+        });
+
+        function runAllTests() {
+            testLegacyCSS();
+            setTimeout(() => testLegacyJS(), 100);
+            setTimeout(() => testAlpineJS(), 200);
+            setTimeout(() => testXCloak(), 300);
+            setTimeout(() => testCartStore(), 400);
+        }
+
+        // Make function available globally
+        window.runAllTests = runAllTests;
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<nav class="b-navbar" x-data="bNavbar()">
+    <!-- TOP BAR -->
+    <div class="b-navbar__inner">
+
+        <!-- LOGO -->
+        <div class="b-navbar__logo">
+            <a href="/">PlayLoveToys</a>
+        </div>
+
+        <!-- DESKTOP LINKS -->
+        <ul class="b-navbar__links b-hide-mobile">
+            <li class="b-navbar__item" @mouseenter="openMega('products')" @mouseleave="closeMega()">
+                <button class="b-navbar__link">Products</button>
+
+                <!-- MEGA MENU -->
+                <div class="b-mega" x-show="mega === 'products'" x-transition.opacity>
+                    <div class="b-mega__content">
+                        <div>
+                            <h4 class="b-mega__title">Vibrators</h4>
+                            <ul>
+                                <li><a href="#">Rabbit</a></li>
+                                <li><a href="#">Wand</a></li>
+                                <li><a href="#">Bullet</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="b-mega__title">Men</h4>
+                            <ul>
+                                <li><a href="#">Masturbators</a></li>
+                                <li><a href="#">Cock Rings</a></li>
+                                <li><a href="#">Sleeves</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="b-mega__title">Couples</h4>
+                            <ul>
+                                <li><a href="#">Games</a></li>
+                                <li><a href="#">Bondage</a></li>
+                                <li><a href="#">Kits</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="b-navbar__item"><a class="b-navbar__link" href="#">New</a></li>
+            <li class="b-navbar__item"><a class="b-navbar__link" href="#">Best Sellers</a></li>
+        </ul>
+
+        <!-- MOBILE MENU BUTTON -->
+        <button class="b-navbar__burger b-hide-desktop" @click="drawer = true">
+            ☰
+        </button>
+
+    </div>
+
+    <!-- MOBILE DRAWER -->
+    <div class="b-drawer" x-show="drawer" x-transition>
+        <div class="b-drawer__overlay" @click="drawer = false"></div>
+
+        <div class="b-drawer__panel">
+            <button class="b-drawer__close" @click="drawer = false">✕</button>
+
+            <ul class="b-drawer__links">
+                <li><a href="#">Products</a></li>
+                <li><a href="#">New</a></li>
+                <li><a href="#">Best Sellers</a></li>
+            </ul>
+        </div>
+    </div>
+
+</nav>

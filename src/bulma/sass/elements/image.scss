@@ -18,7 +18,13 @@ $dimensions: iv.$dimensions;
     &.#{iv.$class-prefix}is-rounded {
       border-radius: cv.getVar("radius-rounded");
     }
+
+
   }
+
+
+
+
 
   &.#{iv.$class-prefix}is-fullwidth {
     width: 100%;
@@ -26,6 +32,7 @@ $dimensions: iv.$dimensions;
 
   // Ratio
   &.#{iv.$class-prefix}is-square {
+
     img,
     .#{iv.$class-prefix}has-ratio {
       @include mx.overlay;

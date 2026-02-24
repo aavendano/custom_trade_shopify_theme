@@ -1,0 +1,207 @@
+// ============================================================================
+// Shopify Theme Runtime Variables
+// ============================================================================
+// This file outputs CSS custom properties that bridge Shopify theme settings
+// with Bulma CSS framework. These variables are set in theme.liquid and can
+// be consumed by both Bulma components and custom styles.
+//
+// Purpose:
+// - Output runtime CSS variables for dynamic theme customization
+// - Provide fallback values for all critical design tokens
+// - Enable merchant theme customizer to work with Bulma
+// ============================================================================
+
+@use "../utilities/shopify-variables" as shopify;
+@use "../utilities/initial-variables" as iv;
+
+// ============================================================================
+// ROOT VARIABLES OUTPUT
+// ============================================================================
+// Output all Shopify variables as CSS custom properties on :root
+// These will be available globally and can be overridden by Liquid in theme.liquid
+// ============================================================================
+
+:root {
+    // Include all Shopify CSS variables
+    @include shopify.shopify-css-variables;
+
+    // Additional runtime variables for Bulma integration
+    --bulma-radius: #{shopify.$shopify-buttons-radius};
+    --bulma-radius-small: calc(#{shopify.$shopify-buttons-radius} * 0.75);
+    --bulma-radius-large: calc(#{shopify.$shopify-buttons-radius} * 1.5);
+
+    // Container width
+    --bulma-container-max-width: #{shopify.$shopify-page-width};
+
+    // Grid gaps (using Shopify spacing)
+    --bulma-column-gap: #{shopify.$shopify-grid-desktop-horizontal-spacing};
+
+    @media screen and (max-width: #{iv.$tablet - 1}) {
+        --bulma-column-gap: #{shopify.$shopify-grid-mobile-horizontal-spacing};
+    }
+}
+
+// ============================================================================
+// BULMA COMPONENT OVERRIDES
+// ============================================================================
+// Apply Shopify theme settings to Bulma components
+// Note: We cannot use @if with CSS variables as they are runtime values
+// Instead, we apply styles directly and let CSS handle the runtime logic
+// ============================================================================
+
+// Buttons: Apply Shopify button radius
+.#{iv.$class-prefix}button {
+    border-radius: shopify.$shopify-buttons-radius;
+    // Shadow is applied via CSS variable, browser will handle if opacity is 0
+    box-shadow:
+        shopify.$shopify-buttons-shadow-horizontal-offset shopify.$shopify-buttons-shadow-vertical-offset shopify.$shopify-buttons-shadow-blur-radius rgba(0, 0, 0, shopify.$shopify-buttons-shadow-opacity);
+}
+
+// Inputs: Apply Shopify input radius
+.#{iv.$class-prefix}input,
+.#{iv.$class-prefix}textarea,
+.#{iv.$class-prefix}select select {
+    border-radius: shopify.$shopify-inputs-radius;
+}
+
+// Cards: Apply Shopify media radius to card images
+.#{iv.$class-prefix}card {
+    .#{iv.$class-prefix}card-image {
+        img {
+            border-radius: shopify.$shopify-media-radius;
+        }
+    }
+}
+
+// Images: Apply Shopify media settings
+.#{iv.$class-prefix}image {
+    img {
+        // Shadow is applied via CSS variable, browser will handle if opacity is 0
+        box-shadow:
+            shopify.$shopify-media-shadow-horizontal-offset shopify.$shopify-media-shadow-vertical-offset shopify.$shopify-media-shadow-blur-radius rgba(0, 0, 0, shopify.$shopify-media-shadow-opacity);
+    }
+}
+
+// Container: Use Shopify page width
+.#{iv.$class-prefix}container {
+    max-width: shopify.$shopify-page-width;
+
+    @media screen and (min-width: #{iv.$desktop}) {
+        margin-left: shopify.$shopify-page-width-margin;
+        margin-right: shopify.$shopify-page-width-margin;
+    }
+}
+
+// ============================================================================
+// SECTION SPACING
+// ============================================================================
+// Apply Shopify section spacing to main content areas
+// ============================================================================
+
+.shopify-section {
+    padding-top: shopify.$shopify-spacing-sections-mobile;
+    padding-bottom: shopify.$shopify-spacing-sections-mobile;
+
+    @media screen and (min-width: #{iv.$tablet}) {
+        padding-top: shopify.$shopify-spacing-sections-desktop;
+        padding-bottom: shopify.$shopify-spacing-sections-desktop;
+    }
+}
+
+// ============================================================================
+// TYPOGRAPHY INTEGRATION
+// ============================================================================
+// Apply Shopify font families to Bulma typography
+// ============================================================================
+
+body,
+.#{iv.$class-prefix}content {
+    font-family: shopify.$shopify-font-body-family;
+    font-weight: shopify.$shopify-font-body-weight;
+}
+
+.#{iv.$class-prefix}title,
+.#{iv.$class-prefix}subtitle,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: shopify.$shopify-font-heading-family;
+    font-weight: shopify.$shopify-font-heading-weight;
+}
+
+// ============================================================================
+// BADGE STYLING
+// ============================================================================
+// Apply Shopify badge radius to tags
+// ============================================================================
+
+.#{iv.$class-prefix}tag {
+    border-radius: shopify.$shopify-badge-corner-radius;
+}
+
+// ============================================================================
+// VARIANT PILLS
+// ============================================================================
+// Style variant selectors with Shopify settings
+// ============================================================================
+
+.variant-pills {
+    .#{iv.$class-prefix}button {
+        border-radius: shopify.$shopify-variant-pills-radius;
+        border-width: shopify.$shopify-variant-pills-border-width;
+        border-style: solid;
+        opacity: shopify.$shopify-variant-pills-border-opacity;
+    }
+}
+
+// ============================================================================
+// MODAL AND DRAWER STYLING
+// ============================================================================
+// Apply Shopify popup/drawer settings
+// ============================================================================
+
+.#{iv.$class-prefix}modal-content,
+.#{iv.$class-prefix}modal-card {
+    border-radius: shopify.$shopify-popup-corner-radius;
+    border: shopify.$shopify-popup-border-width solid rgba(0, 0, 0, shopify.$shopify-popup-border-opacity);
+}
+
+// Custom drawer component (will be created in Phase 6)
+.c-cart-drawer__panel {
+    border-left: shopify.$shopify-drawer-border-width solid rgba(0, 0, 0, shopify.$shopify-drawer-border-opacity);
+}
+
+// ============================================================================
+// RESPONSIVE FONT SCALING
+// ============================================================================
+// Apply Shopify responsive font scales
+// Note: This is handled in theme.liquid but we provide fallbacks here
+// ============================================================================
+
+html {
+    // Mobile (default)
+    font-size: calc(62.5% * #{shopify.$shopify-font-scale-mobile});
+
+    // Tablet
+    @media screen and (min-width: #{iv.$tablet}) {
+        font-size: calc(62.5% * #{shopify.$shopify-font-scale-tablet});
+    }
+
+    // Desktop
+    @media screen and (min-width: #{iv.$desktop}) {
+        font-size: calc(62.5% * #{shopify.$shopify-font-scale-desktop});
+    }
+
+    // Widescreen
+    @media screen and (min-width: #{iv.$widescreen}) {
+        font-size: calc(62.5% * #{shopify.$shopify-font-scale-widescreen});
+    }
+
+    // Full HD
+    @media screen and (min-width: #{iv.$fullhd}) {
+        font-size: calc(62.5% * #{shopify.$shopify-font-scale-fullhd});
+    }
+}

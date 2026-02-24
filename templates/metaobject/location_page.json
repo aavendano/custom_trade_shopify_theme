@@ -9,291 +9,211 @@
  */
 {
   "sections": {
-    "multicolumn_2x2_kUF97A": {
-      "type": "multicolumn-2x2",
+    "a_matrix_Vbi9rg": {
+      "type": "a-matrix",
       "blocks": {
-        "column_bqPJfx": {
-          "type": "column",
-          "name": "Col Sex Toys For Women",
+        "b_card_collections_grid_rC34fh": {
+          "type": "b-card-collections-grid",
+          "name": "b-card-collections-grid",
           "settings": {
-            "article": "",
-            "cloudinary_id": "",
-            "cloudinary_id_2": "",
-            "cloudinary_id_3": "",
-            "cloudinary_id_4": "",
-            "image": "shopify://shop_images/satisfyer-pro-2-classic-blossom-playlovetoys-197615_cwunx6_miafqn.png",
-            "image_2": "shopify://shop_images/lelo-lelo-gigi-2-playlovetoys-782550_xs2sd6_e_background_removal_e_dropshadow_azimuth_220_elevation_60_spread_20_b_rgb_FFFFFF_f_png_lxcbbh.png",
-            "image_3": "shopify://shop_images/JE205PR_k8n86v_s85eds.png",
-            "image_4": "shopify://shop_images/JE601FS_vmijzy_vgamcs.png",
-            "image_gap": 16,
-            "image_margin": 0,
-            "image_padding": 16,
-            "title": "Adult Toys for Women",
-            "text": "",
-            "link_label": "",
-            "link": "shopify://collections/sex-toys-for-women"
-          }
+            "main_collection": "best-sex-toys",
+            "collections_card_title": "",
+            "priority_desktop": true,
+            "priority_mobile": true,
+            "collection_1": "sex-toys-for-women",
+            "collection_1_title": "For Her",
+            "collection_2": "sex-toys-for-men",
+            "collection_2_title": "For Him",
+            "collection_3": "sex-toys-for-couples",
+            "collection_3_title": "For Couples",
+            "collection_4": "sexy-lingerie",
+            "collection_4_title": "",
+            "collection_5": "",
+            "collection_5_title": "",
+            "collection_6": "",
+            "collection_6_title": "",
+            "cta_text": "View All",
+            "cta_url": ""
+          },
+          "blocks": {}
         },
-        "column_nMiaHD": {
-          "type": "column",
+        "b_card_collections_grid_dycHJ7": {
+          "type": "b-card-collections-grid",
+          "name": "b-card-collections-grid",
           "settings": {
-            "article": "",
-            "cloudinary_id": "",
-            "cloudinary_id_2": "",
-            "cloudinary_id_3": "",
-            "cloudinary_id_4": "",
-            "image": "shopify://shop_images/18608_w5s0wl_c_crop_ar_1_1_ftjr9e.jpg",
-            "image_gap": 16,
-            "image_margin": 0,
-            "image_padding": 16,
-            "title": "Adult Toys For Couples",
-            "text": "",
-            "link_label": "",
-            "link": "shopify://collections/sex-toys-for-couples"
-          }
+            "main_collection": "sex-toys-for-women",
+            "collections_card_title": "",
+            "priority_desktop": true,
+            "priority_mobile": true,
+            "collection_1": "g-spot-stimulation",
+            "collection_1_title": "G-Spot",
+            "collection_2": "clitoral-stimulators",
+            "collection_2_title": "Clitoral Play",
+            "collection_3": "dildos-dongs",
+            "collection_3_title": "",
+            "collection_4": "magic-wand-vibrators",
+            "collection_4_title": "Vibrators",
+            "collection_5": "",
+            "collection_5_title": "",
+            "collection_6": "",
+            "collection_6_title": "",
+            "cta_text": "Shop For Her",
+            "cta_url": ""
+          },
+          "blocks": {}
         },
-        "column_feBAyn": {
-          "type": "column",
-          "name": "Col Sex Toys for men",
+        "b_card_collections_grid_gWeiKt": {
+          "type": "b-card-collections-grid",
+          "name": "b-card-collections-grid",
           "settings": {
-            "article": "",
-            "cloudinary_id": "",
-            "cloudinary_id_2": "",
-            "cloudinary_id_3": "",
-            "cloudinary_id_4": "",
-            "image": "shopify://shop_images/Tenga_Flip_Hole_Male_Mastubator_vs2keg.png",
-            "image_2": "shopify://shop_images/Dorcel_Hydro_Pump_Penis_Pump_apoa9t.png",
-            "image_3": "shopify://shop_images/Power_Cock_Ring_-_Satisfyer_igtqai.png",
-            "image_4": "shopify://shop_images/kiiroo-feel-britney-stroker-keon-combo-set-playlovetoys-596758_1_jsnfku_pwk0yn.png",
-            "image_gap": 16,
-            "image_margin": 0,
-            "image_padding": 16,
-            "title": "Adult Toys For Men",
-            "text": "",
-            "link_label": "",
-            "link": "shopify://collections/sex-toys-for-men"
-          }
+            "main_collection": "sex-toys-for-men",
+            "collections_card_title": "",
+            "priority_desktop": true,
+            "priority_mobile": false,
+            "collection_1": "male-masturbators-strokers",
+            "collection_1_title": "Masturbators",
+            "collection_2": "prostate-massage",
+            "collection_2_title": "Prostate",
+            "collection_3": "penis-ring-cock-ring-sex-toys-for-men",
+            "collection_3_title": "Cock Rings",
+            "collection_4": "pump",
+            "collection_4_title": "Penis Pumps",
+            "collection_5": "",
+            "collection_5_title": "",
+            "collection_6": "",
+            "collection_6_title": "",
+            "cta_text": "Shop For Her",
+            "cta_url": ""
+          },
+          "blocks": {}
         },
-        "column_ygMzXR": {
-          "type": "column",
+        "b_card_collections_grid_iHzcgj": {
+          "type": "b-card-collections-grid",
+          "name": "b-card-collections-grid",
           "settings": {
-            "article": "",
-            "cloudinary_id": "",
-            "cloudinary_id_2": "",
-            "cloudinary_id_3": "",
-            "cloudinary_id_4": "",
-            "image": "shopify://shop_images/why-play-love-with-sex-toys-656370.png",
-            "image_gap": 16,
-            "image_margin": 0,
-            "image_padding": 16,
-            "title": "Why Play Love With Adult Toys",
-            "text": "{{ block.settings.article.excerpt }}",
-            "link_label": "Continue Reading",
-            "link": "shopify://blogs/sexual-wellness/intimate-toys-and-sex-toys"
-          }
+            "main_collection": "sex-toys-for-couples",
+            "collections_card_title": "",
+            "priority_desktop": true,
+            "priority_mobile": false,
+            "collection_1": "erotic-games",
+            "collection_1_title": "",
+            "collection_2": "sexy-handcuffs",
+            "collection_2_title": "",
+            "collection_3": "strap-ons",
+            "collection_3_title": "",
+            "collection_4": "playful-kinky-sex-toys",
+            "collection_4_title": "",
+            "collection_5": "",
+            "collection_5_title": "",
+            "collection_6": "",
+            "collection_6_title": "",
+            "cta_text": "View All",
+            "cta_url": ""
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "column_bqPJfx",
-        "column_nMiaHD",
-        "column_feBAyn",
-        "column_ygMzXR"
+        "b_card_collections_grid_rC34fh",
+        "b_card_collections_grid_dycHJ7",
+        "b_card_collections_grid_gWeiKt",
+        "b_card_collections_grid_iHzcgj"
       ],
-      "name": "Multicolumn-2x2",
-      "settings": {
-        "title": "",
-        "heading_size": "h1",
-        "image_width": "full",
-        "image_ratio": "square",
-        "button_label": "",
-        "button_link": "",
-        "columns_desktop": 4,
-        "column_alignment": "center",
-        "background_style": "primary",
-        "color_scheme": "scheme-3",
-        "columns_mobile": "1",
-        "swipe_on_mobile": true,
-        "padding_top": 40,
-        "padding_bottom": 0
-      }
-    },
-    "aa_banner_html_copy_wGrGMt": {
-      "type": "AA-Banner-HTML-copy",
-      "blocks": {
-        "aa_banner_slice_zDcKAz": {
-          "type": "_aa-banner-slice",
-          "name": "aa-banner-slice",
-          "settings": {
-            "slice_image": "shopify://shop_images/Logo-PlayLoveToys-3by2-800x534.png",
-            "slice_background_type": "solid",
-            "slice_bg_solid_color": "#f4f4f4",
-            "slice_gradient_color_1": "#f4f4f4",
-            "slice_gradient_color_2": "#b3b3b3",
-            "slice_gradient_direction": "135deg"
-          },
-          "blocks": {
-            "aa_styled_text_block_XHgXHc": {
-              "type": "_aa-styled-text-block",
-              "name": "aa-styled-text-block",
-              "settings": {
-                "text_content": "Embrace Your Sexual Wellness",
-                "text_htag": "h3",
-                "text_font": "caprasimo_n4",
-                "text_alignment_mobile": "b-has-text-centered-mobile",
-                "text_alignment_tablet": "b-has-text-centered-tablet",
-                "text_alignment_desktop": "",
-                "text_alignment_widescreen": "",
-                "text_alignment_fullhd": "",
-                "text_size_mobile": "b-is-size-2-mobile",
-                "text_size_tablet": "b-is-size-2-tablet",
-                "text_size_desktop": "b-is-size-1-desktop",
-                "text_size_widescreen": "",
-                "text_size_fullhd": "",
-                "text_color_mode": "gradient",
-                "text_color_gradient": "linear-gradient(90deg, rgba(244, 67, 108, 1), rgba(83, 50, 120, 0.73) 82%)",
-                "text_color_solid": "#ffffff"
-              },
-              "blocks": {}
-            },
-            "aa_styled_text_block_TgYFYW": {
-              "type": "_aa-styled-text-block",
-              "name": "aa-styled-text-block",
-              "settings": {
-                "text_content": "We aim to promote a philosophy centred on encouraging the public to prioritize their overall sexual health and happiness. Our dedication is to establish a safe, inclusive, and empowering environment for everyone.",
-                "text_htag": "p",
-                "text_font": "caveat_n5",
-                "text_alignment_mobile": "b-has-text-centered-mobile",
-                "text_alignment_tablet": "b-has-text-centered-tablet",
-                "text_alignment_desktop": "",
-                "text_alignment_widescreen": "",
-                "text_alignment_fullhd": "",
-                "text_size_mobile": "b-is-size-3-mobile",
-                "text_size_tablet": "b-is-size-3-tablet",
-                "text_size_desktop": "",
-                "text_size_widescreen": "",
-                "text_size_fullhd": "",
-                "text_color_mode": "solid",
-                "text_color_gradient": "linear-gradient(90deg, rgba(12, 116, 137, 1), rgba(78, 205, 196, 1) 100%)",
-                "text_color_solid": "#323841"
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "aa_styled_text_block_XHgXHc",
-            "aa_styled_text_block_TgYFYW"
-          ]
-        }
-      },
-      "block_order": [
-        "aa_banner_slice_zDcKAz"
-      ],
-      "name": "AA-Slideshow-New",
+      "name": "a-matrix",
       "settings": {}
     },
-    "multicolumn_2x2_YEagwp": {
-      "type": "multicolumn-2x2",
+    "a_matrix_xkqBcC": {
+      "type": "a-matrix",
       "blocks": {
-        "column_dw97d9": {
-          "type": "column",
+        "b_card_collection_Frxcq8": {
+          "type": "b-card-collection",
+          "name": "b-Card Collection",
           "settings": {
-            "article": "",
-            "cloudinary_id": "",
-            "cloudinary_id_2": "",
-            "cloudinary_id_3": "",
-            "cloudinary_id_4": "",
-            "image": "shopify://shop_images/banner_ligerie-Photoroom-Photoroom_1.webp",
-            "image_gap": 16,
-            "image_margin": 0,
-            "image_padding": 16,
-            "title": "Sexy Lingerie",
-            "text": "",
-            "link_label": "",
-            "link": "shopify://collections/sexy-lingerie"
-          }
+            "collection": "lubricant",
+            "priority": false,
+            "show_description": true,
+            "truncatewords": 20,
+            "cta_text": "View Collection",
+            "cta_url": ""
+          },
+          "blocks": {}
         },
-        "column_n8MGN8": {
-          "type": "column",
+        "b_card_article_NFAQCV": {
+          "type": "b-card-article",
+          "name": "b-Card Article",
           "settings": {
-            "article": "",
-            "cloudinary_id": "",
-            "cloudinary_id_2": "",
-            "cloudinary_id_3": "",
-            "cloudinary_id_4": "",
-            "image": "shopify://shop_images/black_friday-Photoroom.webp",
-            "image_gap": 0,
-            "image_margin": 0,
-            "image_padding": 16,
-            "title": "",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
+            "article": "pleasure-lab/best-sexual-positions",
+            "priority": false,
+            "show_excerpt": true,
+            "truncatewords": 20
+          },
+          "blocks": {}
         },
-        "column_KwceXV": {
-          "type": "column",
+        "b_card_products_grid_mXf4y9": {
+          "type": "b-card-products-grid",
+          "name": "b-card-products-grid",
           "settings": {
-            "article": "",
-            "cloudinary_id": "",
-            "cloudinary_id_2": "",
-            "cloudinary_id_3": "",
-            "cloudinary_id_4": "",
-            "image": "shopify://shop_images/deals_under_50-Photoroom.webp",
-            "image_gap": 16,
-            "image_margin": 0,
-            "image_padding": 16,
-            "title": "",
-            "text": "",
-            "link_label": "",
-            "link": "/collections/all?filter.v.availability=1&filter.v.price.gte=&filter.v.price.lte=50&sort_by=price-descending"
-          }
+            "product_list": [
+              "lelo-f2s",
+              "soraya-beads-black",
+              "feelbritney-stroker-keon-combo-set",
+              "date-night-set-green-velvet",
+              "multi-orgasm-bendable-strap-on-m-fuchsia",
+              "womanizer-next-3d-pleasure-air"
+            ],
+            "collection": "best-sex-toys",
+            "products_card_title": "Best Sellers",
+            "cta_text": "View All",
+            "cta_url": "",
+            "priority": false
+          },
+          "blocks": {}
         },
-        "column_wFeKX7": {
-          "type": "column",
+        "b_card_article_Vkrz4c": {
+          "type": "b-card-article",
+          "name": "b-Card Article",
           "settings": {
-            "article": "",
-            "cloudinary_id": "",
-            "cloudinary_id_2": "",
-            "cloudinary_id_3": "",
-            "cloudinary_id_4": "",
-            "image": "shopify://shop_images/deals_under_100-Photoroom.webp",
-            "image_gap": 16,
-            "image_margin": 0,
-            "image_padding": 16,
-            "title": "",
-            "text": "",
-            "link_label": "",
-            "link": "/collections/all?filter.v.availability=1&filter.v.price.gte=&filter.v.price.lte=100.00&sort_by=price-descending"
-          }
+            "article": "playful-connect/adult-lifestyle-apps-for-swingers",
+            "priority": false,
+            "show_excerpt": true,
+            "truncatewords": 20
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "column_dw97d9",
-        "column_n8MGN8",
-        "column_KwceXV",
-        "column_wFeKX7"
+        "b_card_collection_Frxcq8",
+        "b_card_article_NFAQCV",
+        "b_card_products_grid_mXf4y9",
+        "b_card_article_Vkrz4c"
       ],
-      "name": "Multicolumn-2x2",
+      "name": "a-matrix",
+      "settings": {}
+    },
+    "a_logo_motto_U6abnF": {
+      "type": "a-logo-motto",
+      "name": "AA Logo Motto",
       "settings": {
-        "title": "",
-        "heading_size": "h1",
-        "image_width": "full",
-        "image_ratio": "square",
-        "button_label": "",
-        "button_link": "",
-        "columns_desktop": 4,
-        "column_alignment": "center",
-        "background_style": "primary",
-        "color_scheme": "scheme-3",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 0,
-        "padding_bottom": 0
+        "logo": "shopify://shop_images/Logo-PlayLoveToys-3by2-800x534.png",
+        "motto_title": "Embrace Your Sexual Wellness",
+        "motto": "We aim to promote a philosophy centred on encouraging the public to prioritize their overall sexual health and happiness. Our dedication is to establish a safe, inclusive, and empowering environment for everyone."
       }
     },
     "collection_list": {
       "type": "collection-list",
       "blocks": {
+        "featured_collection_dzeXCa": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "best-sex-toys"
+          }
+        },
+        "featured_collection_cg8TKD": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "penis-ring-cock-ring-sex-toys-for-men"
+          }
+        },
         "featured_collection_Eqgtmc": {
           "type": "featured_collection",
           "settings": {
@@ -339,6 +259,8 @@
         }
       },
       "block_order": [
+        "featured_collection_dzeXCa",
+        "featured_collection_cg8TKD",
         "featured_collection_Eqgtmc",
         "featured_collection5",
         "featured_collection1",
@@ -442,7 +364,6 @@
         "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": false,
-        "serve_from_twicpics": true,
         "show_vendor": true,
         "show_rating": false,
         "quick_add": "none",
@@ -626,7 +547,7 @@
         "image_ratio": "adapt",
         "button_label": "",
         "button_link": "",
-        "columns_desktop": 4,
+        "columns_desktop": 3,
         "column_alignment": "center",
         "background_style": "none",
         "color_scheme": "scheme-3",
@@ -699,102 +620,6 @@
         "padding_bottom": 48
       }
     },
-    "multicolumn_2x2_hiMQaN": {
-      "type": "multicolumn-2x2",
-      "blocks": {
-        "column_gDzTDU": {
-          "type": "column",
-          "settings": {
-            "article": "pleasure-lab/beginner-guide-adult-toys",
-            "cloudinary_id": "",
-            "cloudinary_id_2": "",
-            "cloudinary_id_3": "",
-            "cloudinary_id_4": "",
-            "image_gap": 16,
-            "image_margin": 0,
-            "image_padding": 0,
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_N3hdPn": {
-          "type": "column",
-          "settings": {
-            "article": "pleasure-lab/10-female-sexual-fantasies-womens-secret-desires",
-            "cloudinary_id": "",
-            "cloudinary_id_2": "",
-            "cloudinary_id_3": "",
-            "cloudinary_id_4": "",
-            "image_gap": 16,
-            "image_margin": 0,
-            "image_padding": 0,
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_Q7Mt3y": {
-          "type": "column",
-          "settings": {
-            "article": "after-page-content/wevibe",
-            "cloudinary_id": "",
-            "cloudinary_id_2": "",
-            "cloudinary_id_3": "",
-            "cloudinary_id_4": "",
-            "image_gap": 16,
-            "image_margin": 0,
-            "image_padding": 0,
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_xN9bCC": {
-          "type": "column",
-          "settings": {
-            "article": "pleasure-lab/sexual-playing-adult-sex-games",
-            "cloudinary_id": "",
-            "cloudinary_id_2": "",
-            "cloudinary_id_3": "",
-            "cloudinary_id_4": "",
-            "image_gap": 16,
-            "image_margin": 0,
-            "image_padding": 0,
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "column_gDzTDU",
-        "column_N3hdPn",
-        "column_Q7Mt3y",
-        "column_xN9bCC"
-      ],
-      "name": "Blog Articles",
-      "settings": {
-        "title": "<strong>Sex-Ed</strong>",
-        "heading_size": "h1",
-        "image_width": "full",
-        "image_ratio": "adapt",
-        "button_label": "",
-        "button_link": "",
-        "columns_desktop": 4,
-        "column_alignment": "center",
-        "background_style": "primary",
-        "color_scheme": "scheme-1",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
     "featured_collection2": {
       "type": "featured-collection",
       "name": "New Arrivals",
@@ -815,7 +640,6 @@
         "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": false,
-        "serve_from_twicpics": true,
         "show_vendor": true,
         "show_rating": false,
         "quick_add": "none",
@@ -1057,15 +881,14 @@
     }
   },
   "order": [
-    "multicolumn_2x2_kUF97A",
-    "aa_banner_html_copy_wGrGMt",
-    "multicolumn_2x2_YEagwp",
+    "a_matrix_Vbi9rg",
+    "a_matrix_xkqBcC",
+    "a_logo_motto_U6abnF",
     "collection_list",
     "custom_section_k34G9m",
     "featured_collection1",
     "multicolumn",
     "multicolumn2",
-    "multicolumn_2x2_hiMQaN",
     "featured_collection2",
     "custom_section_yjkyqn",
     "custom_section_KmFRFa"

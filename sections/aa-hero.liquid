@@ -1,0 +1,222 @@
+{% comment %}
+  aa-hero.liquid - Hero Banner Section with LCP Optimization
+
+  Task 16: Create hero banner section with LCP optimization
+  Phase 4: Homepage Hero Section Migration
+
+  Features:
+  - Bulma hero component (b-hero, b-hero-body)
+  - Responsive images (1:1 mobile, 2:1 desktop)
+  - LCP optimization (eager loading, fetchpriority: high)
+  - Responsive srcsets with widths parameter
+  - Text overlay with Bulma typography
+  - Customizable CTA button
+  - Accessibility compliant
+
+  Performance:
+  - loading: 'eager' for above-the-fold content
+  - fetchpriority: 'high' for LCP optimization
+  - Responsive srcsets for optimal image delivery
+  - sizes attribute for viewport-based selection
+
+  Created: 2025-12-28
+{% endcomment %}
+
+{% liquid
+  assign hero_image = section.settings.hero_image
+  assign hero_title = section.settings.hero_title
+  assign hero_subtitle = section.settings.hero_subtitle
+  assign hero_cta_text = section.settings.hero_cta_text
+  assign hero_cta_link = section.settings.hero_cta_link
+  assign hero_height = section.settings.hero_height | default: 'medium'
+  assign text_alignment = section.settings.text_alignment | default: 'center'
+  assign overlay_opacity = section.settings.overlay_opacity | default: 30
+  assign enable_parallax = section.settings.enable_parallax | default: false
+
+  # Calculate overlay opacity as decimal
+  assign overlay_decimal = overlay_opacity | divided_by: 100.0
+%}
+
+<section
+  class="b-hero b-is-{{ hero_height }} c-hero"
+  data-section-id="{{ section.id }}"
+  {% if enable_parallax %}
+    data-parallax="true"
+  {% endif %}
+>
+  <div class="b-hero-body c-hero__body">
+    {%- comment -%} Hero Background Image {%- endcomment -%}
+    {%- if hero_image -%}
+      <figure class="b-image c-hero__image">
+        {{
+          hero_image
+          | image_url: width: 1600
+          | image_tag:
+            loading: 'eager',
+            fetchpriority: 'high',
+            widths: '400, 800, 1200, 1600, 2000',
+            sizes: '100vw',
+            alt: hero_image.alt
+          | default: hero_title, class: 'c-hero__image-element'
+        }}
+      </figure>
+    {%- else -%}
+      {%- comment -%} Placeholder for theme editor {%- endcomment -%}
+      <div class="c-hero__placeholder">
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'c-hero__placeholder-svg' }}
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} Hero Content Overlay {%- endcomment -%}
+    <div
+      class="c-hero__overlay"
+      style="--overlay-opacity: {{ overlay_decimal }};"
+    >
+      <div class="b-container">
+        <div class="c-hero__content b-has-text-{{ text_alignment }}">
+          {%- if hero_title != blank -%}
+            <h1 class="b-title b-is-1 b-has-text-white b-mb-4 c-hero__title">
+              {{ hero_title }}
+            </h1>
+          {%- endif -%}
+
+          {%- if hero_subtitle != blank -%}
+            <p class="b-subtitle b-is-4 b-has-text-white b-mb-5 c-hero__subtitle">
+              {{ hero_subtitle }}
+            </p>
+          {%- endif -%}
+
+          {%- if hero_cta_text != blank and hero_cta_link != blank -%}
+            <div class="c-hero__cta">
+              <a
+                href="{{ hero_cta_link }}"
+                class="b-button b-is-primary b-is-large c-hero__button"
+                aria-label="{{ hero_cta_text | escape }}"
+              >
+                {{ hero_cta_text }}
+              </a>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Image",
+      "info": "Recommended: 1600x800px for desktop, will adapt to 1:1 on mobile"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "label": "Overlay Opacity",
+      "default": 30,
+      "info": "Darkens the image to improve text readability"
+    },
+    {
+      "type": "header",
+      "content": "Hero Content"
+    },
+    {
+      "type": "text",
+      "id": "hero_title",
+      "label": "Hero Title",
+      "default": "Welcome to Our Store"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_subtitle",
+      "label": "Hero Subtitle",
+      "default": "Discover amazing products at great prices"
+    },
+    {
+      "type": "text",
+      "id": "hero_cta_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "hero_cta_link",
+      "label": "Button Link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "select",
+      "id": "hero_height",
+      "label": "Hero Height",
+      "options": [
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        },
+        {
+          "value": "fullheight",
+          "label": "Full Height"
+        }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_parallax",
+      "label": "Enable Parallax Effect",
+      "default": false,
+      "info": "Subtle zoom effect on scroll (respects reduced motion preferences)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}

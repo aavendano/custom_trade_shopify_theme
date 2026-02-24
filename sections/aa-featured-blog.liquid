@@ -1,0 +1,167 @@
+{% comment %}
+  aa-featured-blog.liquid - Featured Blog Section
+  Bulma/Alpine Migration - Native Stack
+
+  Features:
+  - Bulma grid layout (b-columns)
+  - Responsive article cards
+  - No Dawn CSS dependencies
+  - Theme editor compatible
+
+  Created: 2025-12-28
+{% endcomment %}
+
+{%- liquid
+  assign blog = section.settings.blog
+  assign post_limit = section.settings.post_limit
+  assign show_image = section.settings.show_image
+  assign show_date = section.settings.show_date
+  assign show_author = section.settings.show_author
+  assign columns = section.settings.columns_desktop
+-%}
+
+<section class="b-section b-py-6" data-section-id="{{ section.id }}">
+  <div class="b-container">
+    {%- if section.settings.heading != blank -%}
+      <div class="b-is-flex b-is-justify-content-space-between b-is-align-items-center b-mb-6 b-is-flex-direction-column-mobile">
+        <h2 class="b-title b-is-{{ section.settings.heading_size }} b-mb-4-mobile">
+          {{ section.settings.heading }}
+        </h2>
+        {%- if section.settings.show_view_all and blog != blank and blog.articles_count > post_limit -%}
+          <a href="{{ blog.url }}" class="b-button b-is-text b-is-hidden-mobile">
+            {{ 'sections.featured_blog.view_all' | t }}
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="b-columns b-is-multiline b-mb-6">
+      {%- if blog != blank and blog.articles_count > 0 -%}
+        {%- for article in blog.articles limit: post_limit -%}
+          <div class="b-column b-is-{{ 12 | divided_by: columns }}-desktop b-is-6-tablet b-is-12-mobile">
+            {% render 'aa-article-card',
+              article: article,
+              blog: blog,
+              show_image: show_image,
+              show_date: show_date,
+              show_author: show_author,
+              show_excerpt: true
+            %}
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        {%- comment -%} Placeholder content for theme editor {%- endcomment -%}
+        {%- for i in (1..post_limit) -%}
+          <div class="b-column b-is-{{ 12 | divided_by: columns }}-desktop b-is-6-tablet b-is-12-mobile">
+            {% render 'aa-article-card-placeholder', index: forloop.index %}
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.show_view_all and blog != blank and blog.articles_count > post_limit -%}
+      <div class="b-has-text-centered b-mt-6 b-is-hidden-print">
+        <a href="{{ blog.url }}" class="b-button b-is-primary b-is-medium">
+          {{ 'sections.featured_blog.view_all' | t }}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "AA Featured Blog",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Blog"
+    },
+    {
+      "type": "range",
+      "id": "post_limit",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 3,
+      "label": "Posts to show"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Blog",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "3",
+          "label": "Small"
+        },
+        {
+          "value": "2",
+          "label": "Medium"
+        },
+        {
+          "value": "1",
+          "label": "Large"
+        }
+      ],
+      "default": "2",
+      "label": "Heading size"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 3,
+      "label": "Columns (desktop)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "default": true,
+      "label": "Show 'View all' button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "default": true,
+      "label": "Show featured image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "default": true,
+      "label": "Show date"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "default": false,
+      "label": "Show author"
+    }
+  ],
+  "presets": [
+    {
+      "name": "AA Featured Blog",
+      "category": "Blog"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,7 @@
+<div class="b-columns b-is-multiline b-is-0-mobile">
+  {%- for product in products -%}
+    {% if product.available %}
+      {% render 'c-basic-product-card', product: product %}
+    {% endif %}
+  {%- endfor -%}
+</div>

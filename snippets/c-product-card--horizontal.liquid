@@ -1,0 +1,291 @@
+{% comment %}
+  c-product-card--horizontal.liquid - Horizontal Product Card for Mobile
+
+  Task 12: Create horizontal-mobile product card variant
+  Phase 3: Product Card Component Migration
+
+  Features:
+  - Horizontal layout (image left, content right)
+  - Optimized for mobile devices
+  - Bulma columns with b-is-mobile b-is-gapless
+  - 1:1 aspect ratio image (left column, 33% width)
+  - Content in right column (67% width)
+  - Touch-optimized targets (minimum 44x44px)
+  - Compact design for list views
+  - Accessibility compliant
+
+  Usage:
+  {% render 'c-product-card--horizontal', product: product, lazy_load: true %}
+
+  Parameters:
+  - product: Product object (required)
+  - lazy_load: Boolean to enable lazy loading (default: true)
+  - show_vendor: Boolean to show vendor (default: false for mobile)
+  - show_badge: Boolean to show badges (default: true)
+  - card_class: Additional CSS classes for the card
+{% endcomment %}
+
+{% liquid
+  assign lazy_load = lazy_load | default: true
+  assign show_vendor = show_vendor | default: false
+  assign show_badge = show_badge | default: true
+  assign card_class = card_class | default: ''
+
+  assign current_variant = product.selected_or_first_available_variant
+  assign featured_media = product.featured_media
+  assign product_url = product.url
+
+  # Determine badge type
+  assign has_badge = false
+  assign badge_text = ''
+  assign badge_class = 'b-is-info'
+
+  if show_badge
+    if product.available == false
+      assign has_badge = true
+      assign badge_text = 'products.product.sold_out' | t
+      assign badge_class = 'b-is-dark'
+    elsif current_variant.compare_at_price > current_variant.price
+      assign has_badge = true
+      assign badge_text = 'products.product.on_sale' | t
+      assign badge_class = 'b-is-danger'
+    endif
+  endif
+%}
+
+<div class="b-card c-product-card c-product-card--horizontal {{ card_class }}" data-product-id="{{ product.id }}">
+  <div class="b-columns b-is-mobile b-is-gapless">
+    {%- comment -%} Product Image - Left Column (33%) {%- endcomment -%}
+    <div class="b-column b-is-4">
+      <a href="{{ product_url }}" class="c-product-card__link" aria-label="{{ product.title | escape }}">
+        <figure class="b-image b-is-1by1">
+          {%- if featured_media -%}
+            {%- if lazy_load -%}
+              {{
+                featured_media
+                | image_url: width: 300
+                | image_tag: loading: 'lazy', widths: '100, 150, 200, 250, 300', sizes: '33vw', alt: featured_media.alt
+                | default: product.title, class: 'c-product-card__image'
+              }}
+            {%- else -%}
+              {{
+                featured_media
+                | image_url: width: 300
+                | image_tag:
+                  loading: 'eager',
+                  fetchpriority: 'high',
+                  widths: '100, 150, 200, 250, 300',
+                  sizes: '33vw',
+                  alt: featured_media.alt
+                | default: product.title, class: 'c-product-card__image'
+              }}
+            {%- endif -%}
+          {%- else -%}
+            {{ 'product-1' | placeholder_svg_tag: 'c-product-card__image' }}
+          {%- endif -%}
+        </figure>
+
+        {%- comment -%} Product Badge {%- endcomment -%}
+        {%- if has_badge -%}
+          <span class="b-tag {{ badge_class }} b-is-small c-product-card__badge" aria-label="{{ badge_text }}">
+            {{ badge_text }}
+          </span>
+        {%- endif -%}
+      </a>
+    </div>
+
+    {%- comment -%} Product Content - Right Column (67%) {%- endcomment -%}
+    <div class="b-column b-is-8">
+      <div class="b-card-content c-product-card__content">
+        {%- comment -%} Product Title {%- endcomment -%}
+        <p class="b-title b-is-7 b-mb-2">
+          <a href="{{ product_url }}" class="b-has-text-dark c-product-card__title">
+            {{ product.title | escape | truncate: 60 }}
+          </a>
+        </p>
+
+        {%- comment -%} Product Vendor (Optional) {%- endcomment -%}
+        {%- if show_vendor and product.vendor != blank -%}
+          <p class="b-is-size-7 b-mb-2 b-has-text-grey">
+            {{ product.vendor }}
+          </p>
+        {%- endif -%}
+
+        {%- comment -%} Product Price {%- endcomment -%}
+        <div class="c-product-card__price">
+          {%- if current_variant.compare_at_price > current_variant.price -%}
+            <span class="c-product-card__price--sale b-has-text-danger b-has-text-weight-semibold">
+              {{ current_variant.price | money }}
+            </span>
+            <span class="c-product-card__price--compare b-has-text-grey b-is-size-7">
+              <s>{{ current_variant.compare_at_price | money }}</s>
+            </span>
+          {%- else -%}
+            <span class="c-product-card__price--regular b-has-text-dark b-has-text-weight-semibold">
+              {{ current_variant.price | money }}
+            </span>
+          {%- endif -%}
+        </div>
+
+        {%- comment -%} Availability Status {%- endcomment -%}
+        {%- unless product.available -%}
+          <p class="b-is-size-7 b-has-text-grey b-mt-2">
+            {{ 'products.product.sold_out' | t }}
+          </p>
+        {%- endunless -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Horizontal Product Card Styles */
+  .c-product-card--horizontal {
+    transition: box-shadow 0.2s ease;
+  }
+
+  .c-product-card--horizontal:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .c-product-card--horizontal .b-columns {
+    margin: 0;
+  }
+
+  .c-product-card--horizontal .b-column {
+    padding: 0;
+  }
+
+  .c-product-card--horizontal .c-product-card__link {
+    position: relative;
+    display: block;
+    text-decoration: none;
+  }
+
+  .c-product-card--horizontal .c-product-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.2s ease;
+  }
+
+  .c-product-card--horizontal .c-product-card__link:hover .c-product-card__image {
+    opacity: 0.9;
+  }
+
+  .c-product-card--horizontal .c-product-card__badge {
+    position: absolute;
+    top: 0.25rem;
+    left: 0.25rem;
+    z-index: 1;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.625rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .c-product-card--horizontal .c-product-card__content {
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .c-product-card--horizontal .c-product-card__title {
+    text-decoration: none;
+    transition: color 0.2s ease;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.3;
+    font-size: 0.875rem;
+  }
+
+  .c-product-card--horizontal .c-product-card__title:hover {
+    color: hsl(268, 41%, 33%) !important;
+  }
+
+  .c-product-card--horizontal .c-product-card__price {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: auto;
+  }
+
+  .c-product-card--horizontal .c-product-card__price--sale,
+  .c-product-card--horizontal .c-product-card__price--regular {
+    font-size: 1rem;
+  }
+
+  .c-product-card--horizontal .c-product-card__price--compare {
+    font-size: 0.75rem;
+  }
+
+  /* Touch target optimization - minimum 44x44px */
+  .c-product-card--horizontal .c-product-card__link {
+    min-height: 44px;
+  }
+
+  .c-product-card--horizontal .c-product-card__title {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Responsive adjustments */
+  @media (min-width: 768px) {
+    .c-product-card--horizontal .c-product-card__title {
+      font-size: 1rem;
+    }
+
+    .c-product-card--horizontal .c-product-card__content {
+      padding: 1rem;
+    }
+
+    .c-product-card--horizontal .c-product-card__badge {
+      top: 0.5rem;
+      left: 0.5rem;
+      font-size: 0.75rem;
+      padding: 0.375rem 0.75rem;
+    }
+  }
+
+  /* Accessibility improvements */
+  @media (prefers-reduced-motion: reduce) {
+    .c-product-card--horizontal,
+    .c-product-card--horizontal .c-product-card__image,
+    .c-product-card--horizontal .c-product-card__title {
+      transition: none;
+    }
+
+    .c-product-card--horizontal:hover {
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  /* Print styles */
+  @media print {
+    .c-product-card--horizontal .c-product-card__badge {
+      display: none;
+    }
+
+    .c-product-card--horizontal {
+      box-shadow: none;
+      border: 1px solid #ddd;
+      page-break-inside: avoid;
+    }
+  }
+
+  /* High contrast mode */
+  @media (prefers-contrast: high) {
+    .c-product-card--horizontal {
+      border: 2px solid currentColor;
+    }
+
+    .c-product-card--horizontal .c-product-card__title:hover {
+      text-decoration: underline;
+    }
+  }
+</style>

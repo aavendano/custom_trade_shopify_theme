@@ -1,0 +1,124 @@
+// ==========================================================
+// Carousel
+// ==========================================================
+
+@use "../utilities/initial-variables" as iv;
+
+.#{iv.$class-prefix}carousel-wrapper {
+  position: relative;
+}
+
+.#{iv.$class-prefix}carousel {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 1rem;
+  padding-bottom: 0.25rem; // espacio para evitar corte del shadow
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; // Firefox
+
+  // clave: que todos los hijos tengan la misma altura
+  align-items: stretch;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  >.#{iv.$class-prefix}carousel-item {
+    display: flex;
+    flex: 1 0 auto;
+    scroll-snap-align: start;
+
+    // para que el contenido pueda estirarse a la misma altura
+    display: flex;
+    width: 100%;
+    max-width: 85vw;
+
+    // la card ocupa todo el alto del item
+    .#{iv.$class-prefix}card {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+
+      .#{iv.$class-prefix}card-content {
+        flex-grow: 1;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: iv.$desktop) {
+  .#{iv.$class-prefix}carousel {
+    flex-wrap: wrap;
+    overflow: visible;
+    scroll-snap-type: none;
+
+    >.#{iv.$class-prefix}carousel-item {
+      // 4 columns: 25% minus gap adjustment
+      // gap is 1rem. With 4 items, we have 3 gaps => 3rem total gap.
+      // Each item = (100% - 3rem) / 4
+      flex: 1 0 calc(25% - 0.75rem);
+      max-width: calc(25% - 0.75rem);
+      width: auto;
+    }
+  }
+}
+
+// Flechas
+.#{iv.$class-prefix}carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  cursor: pointer;
+
+  // Hide arrows on desktop (grid view)
+  @media screen and (min-width: 1024px) {
+    display: none;
+  }
+
+  &.#{iv.$class-prefix}is-left {
+    left: 0.25rem;
+  }
+
+  &.#{iv.$class-prefix}is-right {
+    right: 0.25rem;
+  }
+}
+
+// ==========================================================
+// Hide duplicate slides (Core Web Vitals - CLS fix)
+// Slides with b-carousel-slide class outside the wrapper should be hidden
+// They are only used as data sources for the carousel
+// ==========================================================
+.#{iv.$class-prefix}carousel-slide:not(.#{iv.$class-prefix}carousel-wrapper .#{iv.$class-prefix}carousel-slide) {
+  display: none !important;
+}
+
+// ==========================================================
+// Mobile-only carousel mode
+// When carousel is disabled (desktop), show slides normally
+// ==========================================================
+.#{iv.$class-prefix}carousel-wrapper.is-carousel-disabled {
+  // Reset carousel wrapper styles
+  position: static;
+
+  // Hide carousel controls
+  .#{iv.$class-prefix}carousel-nav {
+    display: none !important;
+  }
+
+  // Hide the carousel slide container
+  .#{iv.$class-prefix}carousel-slide-container {
+    display: none !important;
+  }
+}
+
+// When carousel is disabled, show original slides
+// This works because when .is-carousel-disabled is present,
+// we need to show the .b-carousel-slide elements that would otherwise be hidden
+.#{iv.$class-prefix}carousel-wrapper.is-carousel-disabled~.#{iv.$class-prefix}carousel-slide {
+  display: block !important;
+}

@@ -143,6 +143,10 @@
         "settings": {
           "color_scheme": "scheme-1"
         }
+      },
+      "main-collection-plt": {
+        "type": "main-collection-plt",
+        "settings": {}
       }
     },
     "content_for_index": [],

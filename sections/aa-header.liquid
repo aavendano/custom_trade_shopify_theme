@@ -1,0 +1,513 @@
+{% comment %}
+  aa-header.liquid - Bulma Navbar Header with Alpine.js
+
+  Task 6: Create new header section with Bulma navbar
+  Phase 2: Global Navigation Migration
+
+  Features:
+  - Bulma navbar components (b-navbar, b-navbar-brand, b-navbar-menu)
+  - Alpine.js state management for mobile menu
+  - Reactive cart count display
+  - Customer account link (if enabled)
+  - Logo rendering with optimization
+  - Desktop navigation menu
+  - Mobile-responsive design
+{% endcomment %}
+
+{% liquid
+  assign menu = section.settings.menu
+  assign logo_position = section.settings.logo_position
+  assign sticky_header_type = section.settings.sticky_header_type
+  assign show_line_separator = section.settings.show_line_separator
+  assign enable_search = section.settings.enable_search
+%}
+
+<style>
+  .section-header {
+   padding-top: 0 !important;
+   padding-bottom: 0 !important;
+  }
+
+  /* Header gradient and height */
+  .aa-header {
+    background-image: linear-gradient(
+      115deg,
+      rgba(35, 31, 32, 1) 0%,
+      rgba(83, 50, 120, 1) 50%,
+      rgba(244, 67, 108, 1) 100%
+    );
+    min-height: 7rem; /* 70px with Dawn's 62.5% base */
+    width: 100%;
+    overflow-x: hidden;
+
+    {% if show_line_separator %}
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    {% endif %}
+  }
+
+  /* Transparent navbar to show gradient */
+  .aa-header .b-navbar {
+    background-color: transparent !important;
+    min-height: 7rem;
+  }
+
+  /* Container responsive behavior */
+  .aa-header .b-navbar.b-container {
+    max-width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media screen and (min-width: 1024px) {
+    .aa-header .b-navbar.b-container {
+      max-width: 1344px;
+      margin: 0 auto;
+    }
+  }
+
+  /* Ensure text is visible on gradient background */
+  .aa-header .b-navbar-item,
+  .aa-header .b-navbar-link,
+  .aa-header .b-navbar-burger span {
+    color: white !important;
+  }
+
+  /* Override Bulma font sizes with px to compensate for 62.5% base */
+  .aa-header .b-navbar-item.b-is-size-6,
+  .aa-header .b-navbar-link.b-is-size-6 {
+    font-size: 16px !important;
+  }
+
+  .aa-header .b-navbar-item.b-is-size-7 {
+    font-size: 14px !important;
+  }
+
+  .aa-header .b-navbar-item:hover,
+  .aa-header .b-navbar-link:hover {
+    color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Megamenu trigger styles */
+  .aa-header .aa-megamenu-trigger {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .aa-header .aa-megamenu-trigger.is-active {
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .aa-header .aa-megamenu-arrow {
+    margin-left: 0.25rem;
+    transition: transform 0.2s ease;
+  }
+
+  .aa-header .aa-megamenu-trigger.is-active .aa-megamenu-arrow {
+    transform: rotate(180deg);
+  }
+
+  /* Remove Bulma navbar-link default arrow */
+  .aa-header .b-navbar-link::after {
+    display: none;
+  }
+
+  /* Logo sizing - maintain aspect ratio with higher specificity */
+  .b-navbar-item img.aa-header__logo,
+  .aa-header .b-navbar-item img.aa-header__logo {
+    max-width: {{ section.settings.logo_width }}px !important;
+    max-height: 60px !important; /* Override Bulma's 1.75rem constraint */
+    height: auto !important;
+    width: auto !important;
+  }
+
+  /* Burger menu sizing for 70px header - larger for better UX */
+  .aa-header .b-navbar-burger {
+    width: 60px !important;
+    height: 60px !important;
+    padding: 0.5rem;
+  }
+
+  .aa-header .b-navbar-burger span {
+    height: 3px !important;
+    width: 30px !important;
+    left: calc(50% - 15px) !important;
+  }
+
+  .aa-header .b-navbar-burger span:nth-child(1) {
+    top: calc(50% - 9px);
+  }
+
+  .aa-header .b-navbar-burger span:nth-child(2) {
+    top: calc(50% - 1.5px);
+  }
+
+  .aa-header .b-navbar-burger span:nth-child(3) {
+    top: calc(50% + 6px);
+  }
+
+  {% if sticky_header_type == 'always' or sticky_header_type == 'on-scroll-up' %}
+    .aa-header--sticky {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.3);
+    }
+  {% endif %}
+
+  /* Cart count badge with rem units */
+  .aa-header__cart-count {
+    position: absolute;
+    top: -0.8rem;
+    right: -0.8rem;
+    min-width: 2rem;
+    height: 2rem;
+    padding: 0 0.6rem;
+    border-radius: 1rem;
+    background: #f4436c;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .aa-header__icon-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  /* Megamenu trigger is handled via Alpine store - no dropdown DOM in header */
+
+  /* Mobile menu styling with smooth transitions */
+  @media screen and (max-width: 1023px) {
+    .aa-header .b-navbar-menu {
+      transition: max-height 0.3s ease-in-out, opacity 0.2s ease-in-out;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+    }
+
+    .aa-header .b-navbar-menu.b-is-active {
+      background-image: linear-gradient(
+        115deg,
+        rgba(35, 31, 32, 1) 0%,
+        rgba(83, 50, 120, 1) 50%,
+        rgba(244, 67, 108, 1) 100%
+      );
+      max-height: 100vh;
+      opacity: 1;
+    }
+  }
+</style>
+
+{% liquid
+  assign header_tag = 'header'
+  if sticky_header_type == 'always' or sticky_header_type == 'on-scroll-up'
+    assign sticky_class = 'aa-header--sticky'
+  else
+    assign sticky_class = ''
+  endif
+%}
+
+<{{ header_tag }}
+  class="aa-header {{ sticky_class }}"
+  x-data="{ mobileMenuOpen: false }"
+  @keydown.escape.window="mobileMenuOpen = false"
+  role="banner"
+>
+  <nav class="b-navbar b-container b-has-text-white" role="navigation" aria-label="main navigation">
+    {%- comment -%} Navbar Brand (Logo + Mobile Menu Toggle) {%- endcomment -%}
+    <div class="b-navbar-brand">
+      {%- comment -%} Logo {%- endcomment -%}
+      <a href="{{ routes.root_url }}" class="b-navbar-item" aria-label="{{ shop.name }}">
+        {%- if settings.logo != blank -%}
+          {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+          {%- assign logo_height = section.settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
+          {%- capture sizes -%}
+            (max-width: {{ section.settings.logo_width | times: 2 }}px) 50vw, {{ section.settings.logo_width }}px
+          {%- endcapture -%}
+          {%- capture widths -%}
+            {{ section.settings.logo_width }}, {{ section.settings.logo_width | times: 1.5 | round }}, {{ section.settings.logo_width | times: 2 }}
+          {%- endcapture -%}
+          {{
+            settings.logo
+            | image_url: width: 600
+            | image_tag:
+              class: 'aa-header__logo',
+              widths: widths,
+              height: logo_height,
+              width: section.settings.logo_width,
+              alt: logo_alt,
+              sizes: sizes,
+              loading: 'eager',
+              fetchpriority: 'high'
+          }}
+        {%- else -%}
+          <span class="b-title b-is-4">{{ shop.name }}</span>
+        {%- endif -%}
+      </a>
+
+      {%- comment -%} Mobile Menu Toggle (Burger) {%- endcomment -%}
+      <a
+        role="button"
+        class="b-navbar-burger"
+        aria-label="menu"
+        aria-expanded="false"
+        @click="mobileMenuOpen = !mobileMenuOpen"
+        :class="{ 'b-is-active': mobileMenuOpen }"
+        :aria-expanded="mobileMenuOpen.toString()"
+      >
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    {%- comment -%} Navbar Menu (Desktop + Mobile) {%- endcomment -%}
+    <div
+      class="b-navbar-menu"
+      :class="{ 'b-is-active': mobileMenuOpen }"
+      x-cloak
+    >
+      {%- comment -%} Navigation Links - TRIGGERS ONLY, no dropdown DOM {%- endcomment -%}
+      <div class="b-navbar-start">
+        {%- if menu != blank -%}
+          {%- for link in menu.links -%}
+            {%- if link.links != blank -%}
+              {%- comment -%} Megamenu Trigger - emits events to $store.megaMenu {%- endcomment -%}
+              <a
+                href="{{ link.url }}"
+                class="b-navbar-item b-navbar-link b-is-size-6 aa-megamenu-trigger"
+                @mouseenter="$store.megaMenu.open('{{ link.handle }}')"
+                @mouseleave="$store.megaMenu.scheduleClose()"
+                @click.prevent="$store.megaMenu.toggle('{{ link.handle }}')"
+                @focus="$store.megaMenu.open('{{ link.handle }}')"
+                :class="{ 'is-active': $store.megaMenu.activeContext === '{{ link.handle }}' }"
+                :aria-expanded="($store.megaMenu.isOpen && $store.megaMenu.activeContext === '{{ link.handle }}').toString()"
+                aria-haspopup="true"
+                aria-controls="aa-megamenu-overlay"
+              >
+                {{ link.title }}
+                <span class="b-icon b-is-small aa-megamenu-arrow" aria-hidden="true">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="12"
+                    height="12"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                  </svg>
+                </span>
+              </a>
+            {%- else -%}
+              {%- comment -%} Simple Link - no megamenu {%- endcomment -%}
+              <a href="{{ link.url }}" class="b-navbar-item b-is-size-6">
+                {{ link.title }}
+              </a>
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} Right Side Icons (Search, Account, Cart) {%- endcomment -%}
+      <div class="b-navbar-end">
+        {%- comment -%} Search Icon {%- endcomment -%}
+        {%- if enable_search -%}
+          <div class="b-navbar-item">
+            <a href="{{ routes.search_url }}" class="b-button b-is-text b-has-text-white" aria-label="Search">
+              <span class="b-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+              </span>
+            </a>
+          </div>
+        {%- endif -%}
+
+        {%- comment -%} Account Icon {%- endcomment -%}
+        {%- if shop.customer_accounts_enabled -%}
+          <div class="b-navbar-item">
+            <a
+              href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
+              class="b-button b-is-text b-has-text-white"
+              aria-label="{%- if customer -%}Account{%- else -%}Log in{%- endif -%}"
+              rel="nofollow"
+            >
+              <span class="b-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                </svg>
+              </span>
+            </a>
+          </div>
+        {%- endif -%}
+
+        {%- comment -%} Cart Icon with Count {%- endcomment -%}
+        <div class="b-navbar-item">
+          <a
+            href="{{ routes.cart_url }}"
+            class="b-button b-is-text b-has-text-white aa-header__icon-wrapper"
+            id="cart-icon-bubble"
+            aria-label="Shopping cart"
+          >
+            <span class="b-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
+              </svg>
+            </span>
+            {%- if cart != empty -%}
+              <span
+                class="aa-header__cart-count"
+                x-data
+                x-cloak
+                x-show="$store.cart.item_count > 0"
+                x-text="$store.cart.item_count"
+              >
+                {{ cart.item_count }}
+              </span>
+            {%- endif -%}
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</{{ header_tag }}>
+
+{%- comment -%} Structured Data for Organization {%- endcomment -%}
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": {{ shop.name | json }},
+    {% if settings.logo %}
+      "logo": {{ settings.logo | image_url: width: 500 | prepend: "https:" | json }},
+    {% endif %}
+    "url": {{ request.origin | append: page.url | json }}
+  }
+</script>
+
+{%- if request.page_type == 'index' -%}
+  {%- assign potential_action_target = request.origin
+    | append: routes.search_url
+    | append: '?q={search_term_string}'
+  -%}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": {{ shop.name | json }},
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {{ potential_action_target | json }},
+        "query-input": "required name=search_term_string"
+      },
+      "url": {{ request.origin | append: page.url | json }}
+    }
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "AA Header (Bulma)",
+  "tag": "section",
+  "class": "section-header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Logo Settings"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 50,
+      "max": 300,
+      "step": 10,
+      "default": 150,
+      "unit": "px",
+      "label": "Logo Width"
+    },
+    {
+      "type": "select",
+      "id": "logo_position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ],
+      "default": "left",
+      "label": "Logo Position"
+    },
+    {
+      "type": "header",
+      "content": "Navigation Settings"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "default": "main-menu",
+      "label": "Menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_search",
+      "default": true,
+      "label": "Enable Search Icon"
+    },
+    {
+      "type": "header",
+      "content": "Header Behavior"
+    },
+    {
+      "type": "select",
+      "id": "sticky_header_type",
+      "options": [
+        {
+          "value": "none",
+          "label": "Not Sticky"
+        },
+        {
+          "value": "on-scroll-up",
+          "label": "Sticky on Scroll Up"
+        },
+        {
+          "value": "always",
+          "label": "Always Sticky"
+        }
+      ],
+      "default": "on-scroll-up",
+      "label": "Sticky Header Type"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_line_separator",
+      "default": true,
+      "label": "Show Bottom Border"
+    },
+    {
+      "type": "header",
+      "content": "Color Scheme"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "AA Header (Bulma)",
+      "category": "AA Sections"
+    }
+  ]
+}
+{% endschema %}
