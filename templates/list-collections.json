@@ -332,9 +332,7 @@
         "column_bhwMGp": {
           "type": "column",
           "settings": {
-            "image_source": "shopify",
             "image": "shopify://shop_images/kiiroo.webp",
-            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -344,9 +342,7 @@
         "column_JNNwyR": {
           "type": "column",
           "settings": {
-            "image_source": "shopify",
             "image": "shopify://shop_images/Womanizer_logo.png",
-            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -356,9 +352,7 @@
         "column_GRLCpN": {
           "type": "column",
           "settings": {
-            "image_source": "shopify",
             "image": "shopify://shop_images/dorcel.webp",
-            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -368,9 +362,7 @@
         "column_d7hnk9": {
           "type": "column",
           "settings": {
-            "image_source": "shopify",
             "image": "shopify://shop_images/satisfyer_b3a89b80-25b3-4ec5-8a57-a3b1ca9b27e1.webp",
-            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -380,9 +372,7 @@
         "column_KTCQqf": {
           "type": "column",
           "settings": {
-            "image_source": "shopify",
             "image": "shopify://shop_images/b-vibe-Photoroom_1.webp",
-            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -392,9 +382,7 @@
         "column_EwQ6yz": {
           "type": "column",
           "settings": {
-            "image_source": "shopify",
             "image": "shopify://shop_images/love-to-love.webp",
-            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -404,9 +392,7 @@
         "column_BEkqN3": {
           "type": "column",
           "settings": {
-            "image_source": "shopify",
             "image": "shopify://shop_images/tenga_logo_9b39df2f-48d0-4861-9228-aa7b025da25b.png",
-            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -416,9 +402,7 @@
         "column_rUVpNT": {
           "type": "column",
           "settings": {
-            "image_source": "shopify",
             "image": "shopify://shop_images/jo-lubricants.avif",
-            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -428,9 +412,7 @@
         "column_63ebTM": {
           "type": "column",
           "settings": {
-            "image_source": "shopify",
             "image": "shopify://shop_images/je-joue_d4c59e83-0441-490c-8cc3-e4cdf3fb1d4b.webp",
-            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -440,9 +422,7 @@
         "column_gEVK6M": {
           "type": "column",
           "settings": {
-            "image_source": "shopify",
             "image": "shopify://shop_images/emojibator.avif",
-            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -452,9 +432,7 @@
         "column_67tTN3": {
           "type": "column",
           "settings": {
-            "image_source": "shopify",
             "image": "shopify://shop_images/LELO_Logo.png",
-            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -464,9 +442,7 @@
         "column_f4kPhC": {
           "type": "column",
           "settings": {
-            "image_source": "shopify",
             "image": "shopify://shop_images/We-Vibe_logo_2018.png",
-            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -491,19 +467,11 @@
       "name": "Brands",
       "settings": {
         "title": "",
-        "heading_size": "hxxl",
-        "image_width": "full",
-        "image_ratio": "adapt",
         "button_label": "",
         "button_link": "",
         "columns_desktop": 5,
-        "column_alignment": "center",
-        "background_style": "none",
-        "color_scheme": "scheme-3",
         "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 24,
-        "padding_bottom": 56
+        "swipe_on_mobile": false
       }
     },
     "collection_list_pjPpBm": {
@@ -576,25 +544,17 @@
         "collection": "sex-toys-new-arrival",
         "products_to_show": 10,
         "title": "New Arrivals",
-        "heading_size": "h1",
         "description": "",
         "show_description": false,
-        "description_style": "body",
         "columns_desktop": 5,
-        "enable_desktop_slider": false,
         "full_width": false,
         "show_view_all": true,
         "view_all_style": "solid",
-        "color_scheme": "",
         "image_ratio": "square",
-        "image_shape": "default",
-        "show_secondary_image": false,
         "show_vendor": true,
-        "show_rating": false,
         "quick_add": "none",
         "columns_tablet": "4",
         "columns_mobile": "1",
-        "swipe_on_mobile": false,
         "padding_top": 36,
         "padding_bottom": 36
       }
