@@ -300,25 +300,17 @@
         "collection": "best-sex-toys",
         "products_to_show": 8,
         "title": "Best Adult Toys",
-        "heading_size": "h2",
         "description": "<p>Welcome to your premier Canadian destination for discovering the <a href=\"/collections/best-sex-toys\" title=\"Best Sex Toys\"><em>best sex toys</em></a><strong> </strong>designed to enhance intimacy and pleasure. Explore our curated collection with the comfort and privacy that only a dedicated online <em>sex toy store</em><strong> </strong>can provide, offering a superior alternative to a conventional <em>sex store</em>.</p>",
         "show_description": false,
-        "description_style": "body",
         "columns_desktop": 4,
-        "enable_desktop_slider": false,
         "full_width": false,
         "show_view_all": true,
         "view_all_style": "solid",
-        "color_scheme": "scheme-3",
         "image_ratio": "square",
-        "image_shape": "default",
-        "show_secondary_image": false,
         "show_vendor": true,
-        "show_rating": false,
         "quick_add": "none",
         "columns_tablet": "3",
         "columns_mobile": "1",
-        "swipe_on_mobile": true,
         "padding_top": 36,
         "padding_bottom": 52
       }
@@ -329,9 +321,7 @@
         "column1": {
           "type": "column",
           "settings": {
-            "image_source": "shopify",
             "image": "shopify://shop_images/kiiroo.webp",
-            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -341,9 +331,7 @@
         "column2": {
           "type": "column",
           "settings": {
-            "image_source": "shopify",
             "image": "shopify://shop_images/Womanizer_logo.png",
-            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -353,9 +341,7 @@
         "column_ERdMBw": {
           "type": "column",
           "settings": {
-            "image_source": "shopify",
             "image": "shopify://shop_images/dorcel.webp",
-            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -365,9 +351,7 @@
         "column4": {
           "type": "column",
           "settings": {
-            "image_source": "shopify",
             "image": "shopify://shop_images/satisfyer_b3a89b80-25b3-4ec5-8a57-a3b1ca9b27e1.webp",
-            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -377,9 +361,7 @@
         "column5": {
           "type": "column",
           "settings": {
-            "image_source": "shopify",
             "image": "shopify://shop_images/b-vibe-Photoroom_1.webp",
-            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -389,9 +371,7 @@
         "column6": {
           "type": "column",
           "settings": {
-            "image_source": "shopify",
             "image": "shopify://shop_images/love-to-love.webp",
-            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -401,9 +381,7 @@
         "column_eWRKL9": {
           "type": "column",
           "settings": {
-            "image_source": "shopify",
             "image": "shopify://shop_images/tenga_logo_9b39df2f-48d0-4861-9228-aa7b025da25b.png",
-            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -413,9 +391,7 @@
         "column_EhwgVD": {
           "type": "column",
           "settings": {
-            "image_source": "shopify",
             "image": "shopify://shop_images/jo-lubricants.avif",
-            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -425,9 +401,7 @@
         "column_FGqXiG": {
           "type": "column",
           "settings": {
-            "image_source": "shopify",
             "image": "shopify://shop_images/je-joue_d4c59e83-0441-490c-8cc3-e4cdf3fb1d4b.webp",
-            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -437,9 +411,7 @@
         "column_j3HkVJ": {
           "type": "column",
           "settings": {
-            "image_source": "shopify",
             "image": "shopify://shop_images/emojibator.avif",
-            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -449,9 +421,7 @@
         "column_XL4QcY": {
           "type": "column",
           "settings": {
-            "image_source": "shopify",
             "image": "shopify://shop_images/LELO_Logo.png",
-            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -462,9 +432,7 @@
           "type": "column",
           "name": "wevibe",
           "settings": {
-            "image_source": "shopify",
             "image": "shopify://shop_images/We-Vibe_logo_2018.png",
-            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -475,9 +443,7 @@
           "type": "column",
           "name": "lovense",
           "settings": {
-            "image_source": "shopify",
             "image": "shopify://shop_images/lovense-logo.webp",
-            "cloudinary_src": "",
             "title": "",
             "text": "",
             "link_label": "",
@@ -506,19 +472,11 @@
       "name": "Brands",
       "settings": {
         "title": "Adult Toys Luxury  Brands",
-        "heading_size": "h1",
-        "image_width": "full",
-        "image_ratio": "adapt",
         "button_label": "",
         "button_link": "",
         "columns_desktop": 5,
-        "column_alignment": "center",
-        "background_style": "none",
-        "color_scheme": "scheme-3",
         "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 100,
-        "padding_bottom": 100
+        "swipe_on_mobile": false
       }
     },
     "1754498032a8a7e87c": {
@@ -556,9 +514,7 @@
         "column_Rhy9JY": {
           "type": "column",
           "settings": {
-            "image_source": "shopify",
             "image": "shopify://shop_images/editor_choice_50dp_533278_FILL0_wght400_GRAD0_opsz48.svg",
-            "cloudinary_src": "",
             "title": "<strong>Quality and Safe Products</strong>",
             "text": "<p>We carefully select products that are safe, high-quality, and ethically sourced.</p>",
             "link_label": "",
@@ -568,9 +524,7 @@
         "column_EicGVg": {
           "type": "column",
           "settings": {
-            "image_source": "shopify",
             "image": "shopify://shop_images/diversity_1_50dp_533278_FILL0_wght400_GRAD0_opsz48_1.svg",
-            "cloudinary_src": "",
             "title": "<strong>Inclusivity & Respect</strong>",
             "text": "<p>We believe in pleasure for all, regardless of gender, orientation, or relationship status.</p>",
             "link_label": "",
@@ -580,9 +534,7 @@
         "column_mfb8rc": {
           "type": "column",
           "settings": {
-            "image_source": "shopify",
             "image": "shopify://shop_images/verified_user_50dp_533278_FILL0_wght400_GRAD0_opsz48.svg",
-            "cloudinary_src": "",
             "title": "Privacy & Discretion",
             "text": "<p>Your privacy is our priority. We ensure discreet packaging and secure transactions.</p>",
             "link_label": "",
@@ -598,19 +550,11 @@
       "name": "Our Values",
       "settings": {
         "title": "<strong>Our Values</strong>",
-        "heading_size": "h1",
-        "image_width": "third",
-        "image_ratio": "adapt",
         "button_label": "",
         "button_link": "",
         "columns_desktop": 3,
-        "column_alignment": "center",
-        "background_style": "primary",
-        "color_scheme": "scheme-3",
         "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 44,
-        "padding_bottom": 48
+        "swipe_on_mobile": false
       }
     },
     "b_section_Yz9JwQ": {
@@ -656,25 +600,17 @@
         "collection": "sex-toys-new-arrival",
         "products_to_show": 8,
         "title": "{{ section.settings.collection.title }}",
-        "heading_size": "h1",
         "description": "",
         "show_description": true,
-        "description_style": "body",
         "columns_desktop": 4,
-        "enable_desktop_slider": false,
         "full_width": false,
         "show_view_all": true,
         "view_all_style": "solid",
-        "color_scheme": "scheme-3",
         "image_ratio": "square",
-        "image_shape": "default",
-        "show_secondary_image": false,
         "show_vendor": true,
-        "show_rating": false,
         "quick_add": "none",
         "columns_tablet": "3",
         "columns_mobile": "1",
-        "swipe_on_mobile": true,
         "padding_top": 36,
         "padding_bottom": 52
       }
