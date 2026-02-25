@@ -20,7 +20,11 @@
     {%- if section.settings.show_date -%}
       <div class="b-has-text-right-tablet b-has-text-left-mobile"></div>
     {%- endif -%}
-    <!-- TODO: add share button -->
+        <div class="b-block b-my-4">
+      {%- assign share_url = request.origin | append: article.url -%}
+      {%- assign share_block = section.blocks | where: "type", "share" | first -%}
+      {% render "share-button", block: share_block, share_link: share_url %}
+    </div>
     <div class="b-content">
       {{ article.content }}
     </div>
