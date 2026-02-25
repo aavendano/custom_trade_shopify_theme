@@ -199,6 +199,7 @@
                 {%- if product.description != blank -%}
                   <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
                     {{ product.description }}
+                    <br />
 
                     {% if product.collections.size > 0 %}
                       <div class="product-collections">
