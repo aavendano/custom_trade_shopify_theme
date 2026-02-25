@@ -41736,8 +41736,8 @@ function diff(a2, b2, options) {
       return s3.length <= MAX_LENGTH ? s3 : `${s3.slice(0, MAX_LENGTH)}...`;
     }, { aAnnotation, aColor, aIndicator, bAnnotation, bColor, bIndicator } = normalizeDiffOptions(options), formatOptions = getFormatOptions(FALLBACK_FORMAT_OPTIONS, options), aDisplay = format(a2, formatOptions), bDisplay = format(b2, formatOptions), MAX_LENGTH = 1e5;
     aDisplay = truncate3(aDisplay), bDisplay = truncate3(bDisplay);
-    let aDiff = `${aColor(`${aIndicator} ${aAnnotation}:`)} 
-${aDisplay}`, bDiff = `${bColor(`${bIndicator} ${bAnnotation}:`)} 
+    let aDiff = `${aColor(`${aIndicator} ${aAnnotation}:`)}
+${aDisplay}`, bDiff = `${bColor(`${bIndicator} ${bAnnotation}:`)}
 ${bDisplay}`;
     return `${aDiff}
 
@@ -49331,7 +49331,7 @@ function ordinalOf(i2) {
 function formatCalls(spy, msg, showActualCall) {
   return spy.mock.calls.length && (msg += s.gray(`
 
-Received: 
+Received:
 
 ${spy.mock.calls.map((callArg, i2) => {
     let methodCall = s.bold(`  ${ordinalOf(i2 + 1)} ${spy.getMockName()} call:
@@ -49350,7 +49350,7 @@ Number of calls: ${s.bold(spy.mock.calls.length)}
 function formatReturns(spy, results, msg, showActualReturn) {
   return results.length && (msg += s.gray(`
 
-Received: 
+Received:
 
 ${results.map((callReturn, i2) => {
     let methodCall = s.bold(`  ${ordinalOf(i2 + 1)} ${spy.getMockName()} call return:

@@ -204,4 +204,3 @@ The solution requires extracting the megamenu into an independent section/snippe
 3. IF the user resizes the browser across the 1024px breakpoint, THEN the megamenu behavior SHALL switch appropriately.
 
 4. WHEN implementing responsive detection, THEN the system MAY use CSS media queries OR Alpine logic (`window.innerWidth`).
-

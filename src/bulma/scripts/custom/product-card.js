@@ -1,7 +1,7 @@
 /**
  * Product Card Alpine.js Component - Enhanced for Task 13
  * Provides quick-add functionality for product cards
- * 
+ *
  * Features:
  * - Quick add to cart without page navigation
  * - Loading states and error handling

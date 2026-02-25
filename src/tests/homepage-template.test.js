@@ -1,13 +1,13 @@
 /**
  * Unit Tests for Homepage Template - Task 19
  * Tests for templates/index.json
- * 
+ *
  * Requirements:
  * - Verify aa-hero section is referenced
  * - Test section configuration
  * - Validate section order
  * - Ensure proper JSON structure
- * 
+ *
  * Coverage:
  * - Hero section presence
  * - Hero settings

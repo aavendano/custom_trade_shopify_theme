@@ -1,14 +1,14 @@
 /**
  * Unit Tests for Featured Collection Section - Task 14
  * Tests for sections/featured-collection.liquid
- * 
+ *
  * Requirements:
  * - Verify c-product-card.liquid is rendered
  * - Test Bulma columns for product grid layout
  * - Verify mobile, tablet, and desktop responsiveness
  * - Test various product states (sold out, on sale, available)
  * - Verify quick-add functionality integration
- * 
+ *
  * Coverage:
  * - Product card rendering
  * - Bulma column classes

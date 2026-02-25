@@ -236,10 +236,10 @@ $bulma-container-max-width: $shopify-page-width !default;
 /// Apply Shopify button shadow
 @mixin shopify-button-shadow {
   @if ($shopify-buttons-shadow-opacity > 0) {
-    box-shadow: 
-      $shopify-buttons-shadow-horizontal-offset 
-      $shopify-buttons-shadow-vertical-offset 
-      $shopify-buttons-shadow-blur-radius 
+    box-shadow:
+      $shopify-buttons-shadow-horizontal-offset
+      $shopify-buttons-shadow-vertical-offset
+      $shopify-buttons-shadow-blur-radius
       rgba(0, 0, 0, $shopify-buttons-shadow-opacity);
   }
 }
@@ -247,10 +247,10 @@ $bulma-container-max-width: $shopify-page-width !default;
 /// Apply Shopify media shadow
 @mixin shopify-media-shadow {
   @if ($shopify-media-shadow-opacity > 0) {
-    box-shadow: 
-      $shopify-media-shadow-horizontal-offset 
-      $shopify-media-shadow-vertical-offset 
-      $shopify-media-shadow-blur-radius 
+    box-shadow:
+      $shopify-media-shadow-horizontal-offset
+      $shopify-media-shadow-vertical-offset
+      $shopify-media-shadow-blur-radius
       rgba(0, 0, 0, $shopify-media-shadow-opacity);
   }
 }
@@ -276,23 +276,23 @@ $bulma-container-max-width: $shopify-page-width !default;
   --shopify-font-heading-family: #{$shopify-font-heading-family};
   --shopify-font-body-weight: #{$shopify-font-body-weight};
   --shopify-font-heading-weight: #{$shopify-font-heading-weight};
-  
+
   // Layout
   --shopify-page-width: #{$shopify-page-width};
   --shopify-spacing-sections: #{$shopify-spacing-sections-desktop};
-  
+
   // Buttons
   --shopify-button-radius: #{$shopify-buttons-radius};
   --shopify-button-border-width: #{$shopify-buttons-border-width};
-  
+
   // Inputs
   --shopify-input-radius: #{$shopify-inputs-radius};
   --shopify-input-border-width: #{$shopify-inputs-border-width};
-  
+
   // Media
   --shopify-media-radius: #{$shopify-media-radius};
   --shopify-media-padding: #{$shopify-media-padding};
-  
+
   // Responsive spacing (mobile)
   @media screen and (max-width: #{iv.$tablet - 1}) {
     --shopify-spacing-sections: #{$shopify-spacing-sections-mobile};

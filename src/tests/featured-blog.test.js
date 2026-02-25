@@ -1,7 +1,7 @@
 /**
  * Unit Tests for Featured Blog Section
  * Tests for sections/aa-featured-blog.liquid
- * 
+ *
  * Coverage:
  * - Template structure
  * - Bulma components
@@ -344,4 +344,3 @@ describe('Featured Blog Section Tests', () => {
         });
     });
 });
-

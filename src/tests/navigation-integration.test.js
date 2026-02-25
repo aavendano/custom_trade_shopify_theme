@@ -1,14 +1,14 @@
 /**
  * Integration Tests for Navigation (Task 10)
  * Tests aa-header.liquid and aa-footer.liquid components
- * 
+ *
  * Requirements:
  * - Test mobile menu open/close functionality with Alpine.js
  * - Verify cart count updates reactively when cart store changes
  * - Test desktop navigation rendering with different menu configurations
  * - Validate accessibility with keyboard navigation and screen readers
  * - Test on mobile viewports (375px) and desktop (1024px+)
- * 
+ *
  * Requirements: 10.1, 10.3, 10.4, 10.8
  */
 
@@ -38,7 +38,7 @@ describe('Navigation Integration Tests', () => {
                 <a href="/" class="b-navbar-item" aria-label="Test Shop">
                   <span class="b-title b-is-4">Test Shop</span>
                 </a>
-                
+
                 <!-- Mobile Menu Toggle -->
                 <a
                   role="button"
@@ -54,7 +54,7 @@ describe('Navigation Integration Tests', () => {
                   <span aria-hidden="true"></span>
                 </a>
               </div>
-              
+
               <!-- Navbar Menu -->
               <div class="b-navbar-menu" :class="{ 'b-is-active': mobileMenuOpen }" x-cloak>
                 <div class="b-navbar-start">
@@ -62,7 +62,7 @@ describe('Navigation Integration Tests', () => {
                   <a href="/pages/about" class="b-navbar-item b-is-size-6">About</a>
                   <a href="/pages/contact" class="b-navbar-item b-is-size-6">Contact</a>
                 </div>
-                
+
                 <div class="b-navbar-end">
                   <!-- Search -->
                   <div class="b-navbar-item">
@@ -70,14 +70,14 @@ describe('Navigation Integration Tests', () => {
                       <span class="b-icon">🔍</span>
                     </a>
                   </div>
-                  
+
                   <!-- Account -->
                   <div class="b-navbar-item">
                     <a href="/account" class="b-button b-is-text b-has-text-white" aria-label="Account">
                       <span class="b-icon">👤</span>
                     </a>
                   </div>
-                  
+
                   <!-- Cart -->
                   <div class="b-navbar-item">
                     <a href="/cart" class="b-button b-is-text b-has-text-white aa-header__icon-wrapper" id="cart-icon-bubble" aria-label="Shopping cart">
@@ -95,7 +95,7 @@ describe('Navigation Integration Tests', () => {
               </div>
             </nav>
           </header>
-          
+
           <!-- AA Footer -->
           <footer class="aa-footer b-footer b-has-text-white b-py-6">
             <div class="b-container">

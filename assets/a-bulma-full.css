@@ -18747,11 +18747,11 @@ b-has-background-danger.is-hoverable:active {
 
 /**
  * B-SCOPE WRAPPER UTILITY
- * 
+ *
  * Purpose: Isolate Bulma styles from legacy Dawn styles during migration phases 1-6
- * 
+ *
  * Usage Pattern:
- * 
+ *
  *   {% comment %}
  *     Wrap migrated Bulma components in .b-scope during phases 1-6
  *     Remove wrapper in Phase 7 when legacy CSS is deleted
@@ -18763,15 +18763,15 @@ b-has-background-danger.is-hoverable:active {
  *       </div>
  *     </div>
  *   </div>
- * 
+ *
  * Requirements Satisfied:
  * - Requirement 1.5: b-scope wrapper for migration coexistence
  * - Requirement 8.8: CSS specificity overrides without !important
- * 
+ *
  * Migration Timeline:
  * - Phases 1-6: Use .b-scope wrapper on all new Bulma components
  * - Phase 7: Remove all .b-scope wrappers (Task 36)
- * 
+ *
  * Technical Notes:
  * - Increases specificity of Bulma classes within scope
  * - Prevents Dawn CSS from overriding Bulma styles
@@ -19027,20 +19027,20 @@ b-has-background-danger.is-hoverable:active {
 
 /**
  * WHEN TO USE .b-scope:
- * 
+ *
  * ✅ DO use .b-scope when:
  * - Creating new sections/snippets in Phases 1-6
  * - Migrating existing sections to Bulma
  * - Legacy Dawn CSS is still loaded on the page
  * - You need Bulma styles to override Dawn styles
- * 
+ *
  * ❌ DO NOT use .b-scope when:
  * - In Phase 7 (all legacy CSS removed)
  * - Creating standalone test pages with only Bulma
  * - Working on components that will never coexist with Dawn
- * 
+ *
  * EXAMPLE USAGE IN LIQUID:
- * 
+ *
  * Phase 1-6 (with .b-scope):
  * ```liquid
  * <div class="b-scope">
@@ -19056,7 +19056,7 @@ b-has-background-danger.is-hoverable:active {
  *   </section>
  * </div>
  * ```
- * 
+ *
  * Phase 7 (without .b-scope):
  * ```liquid
  * <section class="b-section">
@@ -19070,7 +19070,7 @@ b-has-background-danger.is-hoverable:active {
  *   </div>
  * </section>
  * ```
- * 
+ *
  * REMOVAL CHECKLIST (Phase 7, Task 36):
  * - [ ] Search all sections/*.liquid for "b-scope"
  * - [ ] Search all snippets/*.liquid for "b-scope"
@@ -19265,10 +19265,10 @@ b-has-background-danger.is-hoverable:active {
 /**
  * Featured Blog Component Styles
  * Bulma/Alpine Migration
- * 
+ *
  * Only custom styles that cannot be achieved with Bulma utilities.
  * Most styling is done via Bulma classes in the Liquid template.
- * 
+ *
  * Created: 2025-12-28
  */
 .aa-article-card {
@@ -19326,17 +19326,17 @@ b-has-background-danger.is-hoverable:active {
 }
 /**
  * Hero Component Styles
- * 
+ *
  * Task 18: Create custom SCSS for hero component
  * Phase 4: Homepage Hero Section Migration
- * 
+ *
  * Features:
  * - Responsive aspect ratios (1:1 mobile, 2:1 desktop)
  * - Background image positioning with object-fit
  * - Overlay with flexbox centering and gradient
  * - Animations with reduced motion support
  * - Print styles
- * 
+ *
  * Requirements: 4.2, 4.3, 8.7
  */
 .c-hero {
@@ -20106,7 +20106,7 @@ b-has-background-danger.is-hoverable:active {
 /**
  * Product Gallery Styles
  * Native CSS scroll snap implementation
- * 
+ *
  * Task 21: Create product gallery with native scroll snap
  * Requirements: 5.4, 8.7, 9.2
  */

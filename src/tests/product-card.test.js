@@ -1,7 +1,7 @@
 /**
  * Unit Tests for Product Card Component - Task 11
  * Tests for c-product-card.liquid vertical product card
- * 
+ *
  * Requirements:
  * - Test vertical layout structure (image top, content bottom)
  * - Verify Bulma component usage (b-card, b-card-image, b-card-content)
@@ -10,7 +10,7 @@
  * - Test product title, vendor, and price rendering
  * - Verify sold out / on sale badge positioning
  * - Ensure all classes use b- prefix
- * 
+ *
  * Coverage:
  * - Component structure and layout
  * - Image loading strategies
@@ -66,8 +66,8 @@ describe('Product Card Component Tests', () => {
             <div class="b-card-image">
               <a href="/products/test-product" class="c-product-card__link" aria-label="Test Product">
                 <figure class="b-image b-is-1by1">
-                  <img 
-                    src="/test-image.jpg" 
+                  <img
+                    src="/test-image.jpg"
                     alt="Test Product Image"
                     loading="lazy"
                     srcset="/test-image-200.jpg 200w, /test-image-300.jpg 300w, /test-image-400.jpg 400w"
@@ -75,7 +75,7 @@ describe('Product Card Component Tests', () => {
                     class="c-product-card__image"
                   >
                 </figure>
-                
+
                 <!-- Sale Badge -->
                 <span class="b-tag b-is-danger c-product-card__badge" aria-label="On Sale">
                   On Sale
@@ -133,7 +133,7 @@ describe('Product Card Component Tests', () => {
                 <figure class="b-image b-is-1by1">
                   <img src="/sold-out.jpg" alt="Sold Out Product" loading="lazy" class="c-product-card__image">
                 </figure>
-                
+
                 <!-- Sold Out Badge -->
                 <span class="b-tag b-is-dark c-product-card__badge" aria-label="Sold out">
                   Sold out

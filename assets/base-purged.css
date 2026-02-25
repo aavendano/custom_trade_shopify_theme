@@ -912,7 +912,7 @@ summary::-webkit-details-marker {
     width: calc(50% - var(--grid-desktop-horizontal-spacing) / 2);
   }
 
-  
+
   .grid--1-col-tablet-down.grid--peek .grid__item {
     width: calc(100% - var(--grid-desktop-horizontal-spacing) - 3rem);
   }

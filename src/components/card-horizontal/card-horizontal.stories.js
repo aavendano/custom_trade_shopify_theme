@@ -1,6 +1,6 @@
 /**
  * HOW TO ADD NEW COMPONENTS:
- * 
+ *
  * 1. Duplicate the `card-horizontal` folder and rename it to your new component name (e.g., `hero-banner`).
  * 2. Rename the files inside:
  *    - `hero-banner.html`

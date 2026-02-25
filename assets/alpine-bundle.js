@@ -4050,7 +4050,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
         }, this.autoplayIntervalTime);
         console.log("Autoplay started with interval time:", this.autoplayIntervalTime);
       },
-      // Updates interval time   
+      // Updates interval time
       setAutoplayIntervalTime(newIntervalTime) {
         clearInterval(this.autoplayInterval);
         this.autoplayIntervalTime = newIntervalTime;

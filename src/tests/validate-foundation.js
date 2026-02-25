@@ -2,7 +2,7 @@
 
 /**
  * Foundation Tests Validation Script
- * 
+ *
  * This script validates that all foundation changes are properly implemented
  * by checking the actual files and build outputs.
  */

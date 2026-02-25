@@ -4,7 +4,7 @@
 
 This guide will help you test the Task 2 implementation in the browser to verify:
 1. Development mode - Full CSS loads correctly
-2. Production mode - Purged CSS loads correctly  
+2. Production mode - Purged CSS loads correctly
 3. Theme editor - Design mode works with full CSS
 4. Font loading - No font flash (FOUT/FOIT)
 5. Alpine.js - No FOUC on components
@@ -56,7 +56,7 @@ This test page will verify:
    cd /home/alejandro/shopify/custom_trade_shopify_theme
    shopify theme dev
    ```
-   
+
    This will:
    - Upload theme as a development theme
    - Start local server at `http://127.0.0.1:9292`

@@ -13,15 +13,15 @@ flowchart LR
     subgraph Header["Header Section (aa-header.liquid)"]
         T["Menu Triggers"]
     end
-    
+
     subgraph Store["Alpine.store('megaMenu')"]
         S["isOpen, activeContext"]
     end
-    
+
     subgraph Mega["Megamenu Section (aa-megamenu.liquid)"]
         M["Overlay Content"]
     end
-    
+
     T -->|"@mouseenter / @click"| S
     S -->|"x-show / x-bind"| M
 ```
@@ -46,12 +46,12 @@ sequenceDiagram
     participant Header
     participant Store as Alpine.store('megaMenu')
     participant Megamenu
-    
+
     User->>Header: Hover/Click trigger
     Header->>Store: Set isOpen=true, activeContext='shop'
     Store->>Megamenu: State change detected
     Megamenu->>User: Display overlay with 'shop' content
-    
+
     User->>Megamenu: Click outside / Escape
     Megamenu->>Store: Set isOpen=false
     Store->>Megamenu: Hide overlay
@@ -220,10 +220,10 @@ menu.links[] → Parent items (Shop, Collections, etc.)
 
 ```javascript
 // Defensive check in megamenu overlay
-x-data="{ 
-  get isReady() { 
-    return typeof Alpine !== 'undefined' && $store.megaMenu !== undefined 
-  } 
+x-data="{
+  get isReady() {
+    return typeof Alpine !== 'undefined' && $store.megaMenu !== undefined
+  }
 }"
 x-show="isReady && $store.megaMenu.isOpen"
 ```

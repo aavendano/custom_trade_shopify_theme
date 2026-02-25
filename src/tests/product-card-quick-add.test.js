@@ -1,14 +1,14 @@
 /**
  * Unit Tests for Alpine.js Quick-Add Functionality - Task 13
  * Tests for product-card.js Alpine component
- * 
+ *
  * Requirements:
  * - Test Alpine.js integration with x-data
  * - Verify quick-add button with @click handler
  * - Test error message display with x-show and x-cloak
  * - Verify Bulma notification styling
  * - Test integration with cart store
- * 
+ *
  * Coverage:
  * - Quick-add functionality
  * - Error handling

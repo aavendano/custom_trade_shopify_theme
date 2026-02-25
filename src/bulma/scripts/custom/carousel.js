@@ -56,7 +56,7 @@ export default function (Alpine) {
             if (this.currentSlideIndex > 0) {
                 this.currentSlideIndex = this.currentSlideIndex - 1
             } else {
-                // If it's the first slide, go to the last slide           
+                // If it's the first slide, go to the last slide
                 this.currentSlideIndex = this.slides.length - 1
             }
             this.scrollToSlide();
@@ -65,7 +65,7 @@ export default function (Alpine) {
             if (this.currentSlideIndex < this.slides.length - 1) {
                 this.currentSlideIndex = this.currentSlideIndex + 1
             } else {
-                // If it's the last slide, go to the first slide    
+                // If it's the last slide, go to the first slide
                 this.currentSlideIndex = 0
             }
             this.scrollToSlide();
@@ -106,7 +106,7 @@ export default function (Alpine) {
             }, this.autoplayIntervalTime);
             console.log('Autoplay started with interval time:', this.autoplayIntervalTime)
         },
-        // Updates interval time   
+        // Updates interval time
         setAutoplayIntervalTime(newIntervalTime) {
             clearInterval(this.autoplayInterval)
             this.autoplayIntervalTime = newIntervalTime
@@ -123,4 +123,3 @@ export default function (Alpine) {
         },
     }))
 }
-

@@ -1,20 +1,20 @@
 /**
  * Performance and Rendering Tests for Hero Component - Task 20
  * Tests for sections/aa-hero.liquid
- * 
+ *
  * Requirements:
  * - Verify LCP image has loading="eager" and fetchpriority="high"
  * - Test responsive image selection at different viewport widths
  * - Validate text overlay readability and positioning
  * - Test mobile (375px) and desktop (1024px+) rendering
- * 
+ *
  * Coverage:
  * - LCP optimization attributes
  * - Responsive image srcsets
  * - Text overlay contrast and positioning
  * - Viewport-specific rendering
  * - Performance best practices
- * 
+ *
  * Requirements: 10.1, 10.2, 10.7
  */
 

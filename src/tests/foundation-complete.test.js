@@ -1,14 +1,14 @@
 /**
  * Foundation Changes Test Suite
- * 
+ *
  * Task 5: Write unit tests for foundation changes
- * 
+ *
  * This test suite verifies all foundation changes from Phase 1:
  * - Task 1: CSS variable migration
  * - Task 2: Dawn CSS removal from theme.liquid
  * - Task 3: B-scope wrapper utility
  * - Task 4: PurgeCSS safelist extraction
- * 
+ *
  * Requirements: 10.1-10.10
  */
 

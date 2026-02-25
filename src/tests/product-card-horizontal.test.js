@@ -1,14 +1,14 @@
 /**
  * Unit Tests for Horizontal Product Card Component - Task 12
  * Tests for c-product-card--horizontal.liquid mobile-optimized card
- * 
+ *
  * Requirements:
  * - Test horizontal layout (image left, content right)
  * - Verify Bulma columns with b-is-mobile b-is-gapless
  * - Test image in left column (b-column b-is-4) with 1:1 aspect ratio
  * - Test content in right column (b-column b-is-8)
  * - Verify mobile readability and touch targets (44x44px minimum)
- * 
+ *
  * Coverage:
  * - Component structure and layout
  * - Bulma column usage
@@ -43,8 +43,8 @@ describe('Horizontal Product Card Component Tests', () => {
               <div class="b-column b-is-4">
                 <a href="/products/test-product" class="c-product-card__link" aria-label="Test Product">
                   <figure class="b-image b-is-1by1">
-                    <img 
-                      src="/test-image.jpg" 
+                    <img
+                      src="/test-image.jpg"
                       alt="Test Product Image"
                       loading="lazy"
                       srcset="/test-image-100.jpg 100w, /test-image-150.jpg 150w, /test-image-200.jpg 200w"
@@ -52,7 +52,7 @@ describe('Horizontal Product Card Component Tests', () => {
                       class="c-product-card__image"
                     >
                   </figure>
-                  
+
                   <!-- Sale Badge -->
                   <span class="b-tag b-is-danger b-is-small c-product-card__badge" aria-label="On Sale">
                     On Sale
@@ -92,7 +92,7 @@ describe('Horizontal Product Card Component Tests', () => {
                   <figure class="b-image b-is-1by1">
                     <img src="/sold-out.jpg" alt="Sold Out Product" loading="lazy" class="c-product-card__image">
                   </figure>
-                  
+
                   <span class="b-tag b-is-dark b-is-small c-product-card__badge" aria-label="Sold out">
                     Sold out
                   </span>

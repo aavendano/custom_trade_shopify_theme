@@ -5702,7 +5702,7 @@ button.b-has-background-danger:active {
   width: 0.01em !important;
 }
 @media screen and (min-width: 769px), print {
-  
+
   .b-is-hidden-tablet {
     display: none !important;
   }
@@ -5713,11 +5713,11 @@ button.b-has-background-danger:active {
 
 /**
  * B-SCOPE WRAPPER UTILITY
- * 
+ *
  * Purpose: Isolate Bulma styles from legacy Dawn styles during migration phases 1-6
- * 
+ *
  * Usage Pattern:
- * 
+ *
  *   {% comment %}
  *     Wrap migrated Bulma components in .b-scope during phases 1-6
  *     Remove wrapper in Phase 7 when legacy CSS is deleted
@@ -5729,15 +5729,15 @@ button.b-has-background-danger:active {
  *       </div>
  *     </div>
  *   </div>
- * 
+ *
  * Requirements Satisfied:
  * - Requirement 1.5: b-scope wrapper for migration coexistence
  * - Requirement 8.8: CSS specificity overrides without !important
- * 
+ *
  * Migration Timeline:
  * - Phases 1-6: Use .b-scope wrapper on all new Bulma components
  * - Phase 7: Remove all .b-scope wrappers (Task 36)
- * 
+ *
  * Technical Notes:
  * - Increases specificity of Bulma classes within scope
  * - Prevents Dawn CSS from overriding Bulma styles
@@ -5747,20 +5747,20 @@ button.b-has-background-danger:active {
 
 /**
  * WHEN TO USE .b-scope:
- * 
+ *
  * ✅ DO use .b-scope when:
  * - Creating new sections/snippets in Phases 1-6
  * - Migrating existing sections to Bulma
  * - Legacy Dawn CSS is still loaded on the page
  * - You need Bulma styles to override Dawn styles
- * 
+ *
  * ❌ DO NOT use .b-scope when:
  * - In Phase 7 (all legacy CSS removed)
  * - Creating standalone test pages with only Bulma
  * - Working on components that will never coexist with Dawn
- * 
+ *
  * EXAMPLE USAGE IN LIQUID:
- * 
+ *
  * Phase 1-6 (with .b-scope):
  * ```liquid
  * <div class="b-scope">
@@ -5776,7 +5776,7 @@ button.b-has-background-danger:active {
  *   </section>
  * </div>
  * ```
- * 
+ *
  * Phase 7 (without .b-scope):
  * ```liquid
  * <section class="b-section">
@@ -5790,7 +5790,7 @@ button.b-has-background-danger:active {
  *   </div>
  * </section>
  * ```
- * 
+ *
  * REMOVAL CHECKLIST (Phase 7, Task 36):
  * - [ ] Search all sections/*.liquid for "b-scope"
  * - [ ] Search all snippets/*.liquid for "b-scope"

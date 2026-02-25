@@ -57,24 +57,24 @@ graph TD
     C --> D[a-bulma-full.css]
     D --> E[PurgeCSS Pipeline]
     E --> F[a-bulma-purged.css]
-    
+
     B --> G[esbuild]
     A --> H[src/alpine-bundle.js]
     H --> G
     G --> I[assets/alpine-bundle.js]
-    
+
     A --> J[Liquid Templates]
     J --> K[sections/*.liquid]
     J --> L[snippets/*.liquid]
     J --> M[blocks/*.liquid]
-    
+
     K --> N[layout/theme.liquid]
     L --> N
     M --> N
-    
+
     F --> N
     I --> N
-    
+
     N --> O[Rendered HTML]
     O --> P[Browser]
 ```
@@ -97,14 +97,14 @@ sequenceDiagram
     participant Store as Alpine.store('cart')
     participant API as Shopify Cart AJAX API
     participant DB as Shopify Cart Database
-    
+
     UI->>Store: User action (add/update/remove)
     Store->>API: POST /cart/add.js or /cart/change.js
     API->>DB: Persist mutation
     API-->>Store: Cart data response
     Store->>Store: Update local state
     Store->>UI: Reactive re-render
-    
+
     Note over Store,API: Source of truth: Shopify API<br/>Store only caches and re-renders
 ```
 
@@ -114,13 +114,13 @@ sequenceDiagram
     participant User
     participant Alpine as Alpine.js x-data
     participant DOM as DOM Elements
-    
+
     User->>Alpine: Select variant option
     Alpine->>Alpine: Update selectedVariant state
     Alpine->>DOM: Update price display (reactive)
     Alpine->>DOM: Update gallery image (reactive)
     Alpine->>DOM: Update availability status
-    
+
     Note over Alpine: No page reload<br/>All state in Alpine.js component
 ```
 
@@ -157,7 +157,7 @@ sequenceDiagram
 {% style %}
   {{ settings.type_body_font | font_face }}
   {{ settings.type_header_font | font_face }}
-  
+
   [x-cloak] { display: none !important; }
 {% endstyle %}
 
@@ -175,7 +175,7 @@ sequenceDiagram
 
 ##### 1.2 CSS Variables Migration
 
-**From:** Dawn inline CSS variables (theme.liquid)  
+**From:** Dawn inline CSS variables (theme.liquid)
 **To:** Bulma SASS variables (src/bulma/bulma.scss)
 
 **Mapping Strategy:**
@@ -214,17 +214,17 @@ $plt-teal: hsl(190, 84%, 29%);
   <div class="b-navbar-brand">
     <a href="{{ routes.root_url }}" class="b-navbar-item">
       {% if settings.logo %}
-        {{ settings.logo | image_url: width: 200 | image_tag: 
-           loading: 'eager', 
+        {{ settings.logo | image_url: width: 200 | image_tag:
+           loading: 'eager',
            fetchpriority: 'high',
-           class: 'b-image' 
+           class: 'b-image'
         }}
       {% else %}
         <span class="b-title b-is-4">{{ shop.name }}</span>
       {% endif %}
     </a>
-    
-    <a class="b-navbar-burger" 
+
+    <a class="b-navbar-burger"
        @click="mobileMenuOpen = !mobileMenuOpen"
        :class="{ 'b-is-active': mobileMenuOpen }">
       <span></span>
@@ -232,7 +232,7 @@ $plt-teal: hsl(190, 84%, 29%);
       <span></span>
     </a>
   </div>
-  
+
   <div class="b-navbar-menu" :class="{ 'b-is-active': mobileMenuOpen }">
     <div class="b-navbar-start">
       {% for link in section.settings.menu.links %}
@@ -241,14 +241,14 @@ $plt-teal: hsl(190, 84%, 29%);
         </a>
       {% endfor %}
     </div>
-    
+
     <div class="b-navbar-end">
       {% if shop.customer_accounts_enabled %}
         <a href="{{ routes.account_url }}" class="b-navbar-item">
           Account
         </a>
       {% endif %}
-      
+
       <a href="{{ routes.cart_url }}" class="b-navbar-item">
         Cart (<span x-text="$store.cart.item_count">0</span>)
       </a>
@@ -291,7 +291,7 @@ $plt-teal: hsl(190, 84%, 29%);
 
 ##### 3.1 Product Card (`snippets/c-product-card.liquid`)
 
-**Current Implementation:** Already exists in `snippets/card-product.liquid` with Bulma classes  
+**Current Implementation:** Already exists in `snippets/card-product.liquid` with Bulma classes
 **Status:** Needs refinement and variant creation
 
 **Design Variants:**
@@ -303,12 +303,12 @@ $plt-teal: hsl(190, 84%, 29%);
   <a href="{{ product.url }}" class="c-product-card__link">
     <div class="b-card-image">
       <figure class="b-image b-is-1by1">
-        {{ product.featured_media | image_url: width: 400 | image_tag: 
+        {{ product.featured_media | image_url: width: 400 | image_tag:
            loading: 'lazy',
            widths: '300, 400, 500, 600'
         }}
       </figure>
-      
+
       {% if product.available == false %}
         <span class="b-tag b-is-info c-product-card__badge">
           {{ 'products.product.sold_out' | t }}
@@ -316,7 +316,7 @@ $plt-teal: hsl(190, 84%, 29%);
       {% endif %}
     </div>
   </a>
-  
+
   <div class="b-card-content">
     <p class="b-title b-is-6">
       <a href="{{ product.url }}">{{ product.title }}</a>
@@ -336,7 +336,7 @@ $plt-teal: hsl(190, 84%, 29%);
         {{ product.featured_media | image_url: width: 200 | image_tag: loading: 'lazy' }}
       </figure>
     </div>
-    
+
     <div class="b-column b-is-8">
       <div class="b-card-content">
         <p class="b-title b-is-7">{{ product.title }}</p>
@@ -354,7 +354,7 @@ $plt-teal: hsl(190, 84%, 29%);
   <button @click="quickAdd()" class="b-button b-is-primary b-is-fullwidth">
     Quick Add
   </button>
-  
+
   <div x-show="errorMessage" x-cloak class="b-notification b-is-danger">
     <span x-text="errorMessage"></span>
   </div>
@@ -370,7 +370,7 @@ $plt-teal: hsl(190, 84%, 29%);
     {% for media in product.media %}
       <div class="c-product-gallery__slide">
         <figure class="b-image b-is-1by1">
-          {{ media | image_url: width: 800 | image_tag: 
+          {{ media | image_url: width: 800 | image_tag:
              loading: 'lazy',
              widths: '400, 600, 800, 1000'
           }}
@@ -388,7 +388,7 @@ $plt-teal: hsl(190, 84%, 29%);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   gap: 1rem;
-  
+
   &::-webkit-scrollbar {
     display: none;
   }
@@ -397,7 +397,7 @@ $plt-teal: hsl(190, 84%, 29%);
 .c-product-gallery__slide {
   flex: 0 0 100%;
   scroll-snap-align: start;
-  
+
   @media (min-width: 768px) {
     flex: 0 0 50%;
   }
@@ -411,18 +411,18 @@ $plt-teal: hsl(190, 84%, 29%);
 <div x-data="{
   selectedVariant: {{ product.selected_or_first_available_variant | json }},
   variants: {{ product.variants | json }},
-  
+
   selectVariant(variantId) {
     this.selectedVariant = this.variants.find(v => v.id === variantId);
   }
 }">
-  
+
   {% for option in product.options_with_values %}
     <div class="b-field">
       <label class="b-label">{{ option.name }}</label>
       <div class="b-buttons b-has-addons">
         {% for value in option.values %}
-          <button 
+          <button
             type="button"
             class="b-button"
             :class="{ 'b-is-primary': selectedVariant.options[{{ forloop.index0 }}] === '{{ value }}' }"
@@ -433,12 +433,12 @@ $plt-teal: hsl(190, 84%, 29%);
       </div>
     </div>
   {% endfor %}
-  
+
   <div class="b-content">
     <p class="b-title b-is-4" x-text="`$${(selectedVariant.price / 100).toFixed(2)}`"></p>
   </div>
-  
-  <button 
+
+  <button
     @click="$store.cart.addItem(selectedVariant.id, 1)"
     :disabled="!selectedVariant.available"
     class="b-button b-is-primary b-is-large b-is-fullwidth">
@@ -462,14 +462,14 @@ Alpine.store('cart', {
   items: [],
   item_count: 0,
   total_price: 0,
-  
+
   // Initialize from /cart.js
   async init() {
     const response = await fetch('/cart.js');
     const cart = await response.json();
     this.updateState(cart);
   },
-  
+
   // Add item (mutate via API, then sync)
   async addItem(variantId, quantity) {
     const response = await fetch('/cart/add.js', {
@@ -477,13 +477,13 @@ Alpine.store('cart', {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id: variantId, quantity })
     });
-    
+
     if (!response.ok) throw new Error('Add failed');
-    
+
     // Refresh full cart state
     await this.init();
   },
-  
+
   // Update line item
   async updateItem(lineItemKey, quantity) {
     await fetch('/cart/change.js', {
@@ -491,15 +491,15 @@ Alpine.store('cart', {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id: lineItemKey, quantity })
     });
-    
+
     await this.init();
   },
-  
+
   // Remove item
   async removeItem(lineItemKey) {
     await this.updateItem(lineItemKey, 0);
   },
-  
+
   // Update internal state
   updateState(cartData) {
     this.items = cartData.items;
@@ -513,21 +513,21 @@ Alpine.store('cart', {
 
 **Design:**
 ```liquid
-<div 
+<div
   x-data="{ open: false }"
   @cart-drawer-open.window="open = true"
   x-show="open"
   x-cloak
   class="c-cart-drawer">
-  
+
   <div class="c-cart-drawer__overlay" @click="open = false"></div>
-  
+
   <div class="c-cart-drawer__panel b-box">
     <header class="c-cart-drawer__header">
       <h2 class="b-title b-is-4">Cart (<span x-text="$store.cart.item_count"></span>)</h2>
       <button @click="open = false" class="b-delete"></button>
     </header>
-    
+
     <div class="c-cart-drawer__items">
       <template x-for="item in $store.cart.items" :key="item.key">
         <div class="b-box c-cart-item">
@@ -537,11 +537,11 @@ Alpine.store('cart', {
                 <img :src="item.featured_image.url" :alt="item.title" loading="lazy">
               </figure>
             </div>
-            
+
             <div class="b-column">
               <p class="b-title b-is-6" x-text="item.product_title"></p>
               <p class="b-subtitle b-is-7" x-text="item.variant_title"></p>
-              
+
               <div class="b-field b-has-addons">
                 <p class="b-control">
                   <button class="b-button" @click="$store.cart.updateItem(item.key, item.quantity - 1)">
@@ -557,31 +557,31 @@ Alpine.store('cart', {
                   </button>
                 </p>
               </div>
-              
+
               <p class="b-has-text-weight-bold" x-text="`$${(item.final_line_price / 100).toFixed(2)}`"></p>
             </div>
           </div>
-          
+
           <button @click="$store.cart.removeItem(item.key)" class="b-button b-is-text b-is-small">
             Remove
           </button>
         </div>
       </template>
     </div>
-    
+
     <!-- Free Shipping Progress -->
     <div class="c-cart-drawer__progress b-box" x-show="$store.cart.total_price < 50000">
       <p class="b-is-size-7 b-mb-2">
-        <span x-text="`$${((50000 - $store.cart.total_price) / 100).toFixed(2)}`"></span> 
+        <span x-text="`$${((50000 - $store.cart.total_price) / 100).toFixed(2)}`"></span>
         away from free shipping
       </p>
-      <progress 
-        class="b-progress b-is-primary" 
-        :value="$store.cart.total_price" 
+      <progress
+        class="b-progress b-is-primary"
+        :value="$store.cart.total_price"
         max="50000">
       </progress>
     </div>
-    
+
     <footer class="c-cart-drawer__footer">
       <div class="b-level b-mb-4">
         <div class="b-level-left">
@@ -591,7 +591,7 @@ Alpine.store('cart', {
           <p class="b-title b-is-4" x-text="`$${($store.cart.total_price / 100).toFixed(2)}`"></p>
         </div>
       </div>
-      
+
       <a href="{{ routes.cart_url }}" class="b-button b-is-light b-is-fullwidth b-mb-2">
         View Cart
       </a>
@@ -612,13 +612,13 @@ Alpine.store('cart', {
   bottom: 0;
   left: 0;
   z-index: 100;
-  
+
   &__overlay {
     position: absolute;
     inset: 0;
     background: rgba(0, 0, 0, 0.5);
   }
-  
+
   &__panel {
     position: absolute;
     top: 0;
@@ -631,12 +631,12 @@ Alpine.store('cart', {
     flex-direction: column;
     overflow: hidden;
   }
-  
+
   &__items {
     flex: 1;
     overflow-y: auto;
   }
-  
+
   &__footer {
     border-top: 1px solid #ddd;
     padding: 1.5rem;
@@ -660,7 +660,7 @@ Alpine.store('cart', {
          sizes: '100vw'
       }}
     </figure>
-    
+
     <div class="c-hero__overlay">
       <div class="b-container">
         <h1 class="b-title b-is-1 b-has-text-white">
@@ -683,7 +683,7 @@ Alpine.store('cart', {
 .c-hero__image {
   position: absolute;
   inset: 0;
-  
+
   img {
     object-fit: cover;
     width: 100%;
@@ -728,7 +728,7 @@ interface CartStore {
   item_count: number;
   total_price: number;
   currency: string;
-  
+
   // Methods
   init(): Promise<void>;
   addItem(variantId: number, quantity: number): Promise<void>;
@@ -760,7 +760,7 @@ interface ProductCardData {
   productId: number;
   sectionId: string;
   errorMessage: string;
-  
+
   // Methods
   quickAdd(): Promise<void>;
 }
@@ -853,15 +853,15 @@ async addItem(variantId, quantity) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id: variantId, quantity })
     });
-    
+
     if (!response.ok) {
       const error = await response.json();
       throw new Error(error.description || 'Failed to add item');
     }
-    
+
     await this.init(); // Refresh cart state
     this.dispatchEvent('cart-updated');
-    
+
   } catch (error) {
     console.error('Cart error:', error);
     this.dispatchEvent('cart-error', { message: error.message });
@@ -902,22 +902,22 @@ async addItem(variantId, quantity) {
    - Navigation menu opens/closes smoothly
    - Images maintain aspect ratio
    - Text is readable, no overflow
-   
+
 2. **Desktop View (1024px+):**
    - Desktop navigation displays correctly
    - Multi-column layouts work
    - Hover states function
-   
+
 3. **Performance:**
    - LCP < 2.5s (test hero image)
    - No FOUC on Alpine components
    - No console errors
-   
+
 4. **Accessibility:**
    - Run Lighthouse audit
    - Score >= 90 for Accessibility
    - Proper heading hierarchy (single h1)
-   
+
 5. **SEO:**
    - Meta title and description present
    - Semantic HTML elements used

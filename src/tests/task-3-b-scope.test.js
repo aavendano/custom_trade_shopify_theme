@@ -1,13 +1,13 @@
 /**
  * TASK 3 TEST SUITE: B-SCOPE WRAPPER UTILITY
- * 
+ *
  * Tests for the .b-scope wrapper utility that isolates Bulma styles
  * from legacy Dawn styles during migration phases 1-6.
- * 
+ *
  * Requirements Tested:
  * - Requirement 1.5: b-scope wrapper for migration coexistence
  * - Requirement 8.8: CSS specificity overrides without !important
- * 
+ *
  * Test Categories:
  * 1. Build Integration Tests
  * 2. CSS Output Tests
@@ -467,38 +467,38 @@ describe('Code Quality', () => {
 
 /**
  * MANUAL VERIFICATION CHECKLIST
- * 
+ *
  * These items should be manually verified by developers:
- * 
+ *
  * Build Verification:
  * - [ ] Run `npm run build` - should complete without errors
  * - [ ] Check `assets/a-bulma-full.css` contains .b-scope rules
  * - [ ] Check `assets/a-bulma-purged.css` preserves .b-scope if used
  * - [ ] No SASS compilation warnings related to b-scope
- * 
+ *
  * Visual Testing:
  * - [ ] Create test page with .b-scope wrapper
  * - [ ] Verify Bulma components render correctly within .b-scope
  * - [ ] Verify Bulma styles override Dawn styles within .b-scope
  * - [ ] Verify components outside .b-scope still use Dawn styles
- * 
+ *
  * Specificity Testing:
  * - [ ] Test .b-button within .b-scope vs outside
  * - [ ] Test .b-card within .b-scope vs outside
  * - [ ] Test .b-columns within .b-scope vs outside
  * - [ ] Verify no !important needed for overrides (except helpers)
- * 
+ *
  * Migration Pattern Testing:
  * - [ ] Create new section with .b-scope wrapper
  * - [ ] Verify section renders correctly
  * - [ ] Verify no CSS conflicts with legacy sections
  * - [ ] Test removing .b-scope wrapper (Phase 7 simulation)
- * 
+ *
  * Performance Testing:
  * - [ ] Measure CSS file size increase (should be minimal)
  * - [ ] Check rendering performance (should be no impact)
  * - [ ] Verify PurgeCSS still works correctly
- * 
+ *
  * Documentation Testing:
  * - [ ] Review inline documentation for clarity
  * - [ ] Verify usage examples are correct

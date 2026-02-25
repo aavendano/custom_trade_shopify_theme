@@ -1,14 +1,14 @@
 /**
  * Comprehensive PDP (Product Detail Page) Tests - Task 25
  * Tests for aa-main-product.liquid functionality
- * 
+ *
  * Requirements:
  * - Test variant selection updates price and image reactively
  * - Verify add-to-cart adds correct variant to cart store
  * - Test sold-out variant shows disabled button with correct text
  * - Validate scroll snap gallery behavior on touch devices
  * - Test error handling for failed add-to-cart operations
- * 
+ *
  * Coverage:
  * - Variant selection and state management
  * - Price updates and reactive display
@@ -116,7 +116,7 @@ describe('PDP Functionality Tests', () => {
                 <!-- Product Info -->
                 <div class="b-column">
                   <h1 class="b-title">Test Product</h1>
-                  
+
                   <!-- Price -->
                   <div class="c-product-price-wrapper">
                     <span class="c-product-price">$29.99</span>

@@ -14,8 +14,8 @@ Task 17 requirements were fully integrated into the `sections/aa-hero.liquid` fi
 
 **Implementation:**
 ```liquid
-<div 
-  class="c-hero__overlay" 
+<div
+  class="c-hero__overlay"
   style="--overlay-opacity: {{ overlay_decimal }};"
 >
   <!-- Content -->
@@ -96,8 +96,8 @@ Task 17 requirements were fully integrated into the `sections/aa-hero.liquid` fi
 
 **Implementation:**
 ```liquid
-<a 
-  href="{{ hero_cta_link }}" 
+<a
+  href="{{ hero_cta_link }}"
   class="b-button b-is-primary b-is-large c-hero__button"
   aria-label="{{ hero_cta_text | escape }}"
 >
@@ -415,10 +415,10 @@ All Task 17 requirements have been implemented and tested as part of the Task 16
 
 ---
 
-**Date Completed:** 2025-12-28 (as part of Task 16)  
-**Implementation File:** `sections/aa-hero.liquid`  
-**Test File:** `src/tests/hero-banner.test.js`  
-**Test Coverage:** 83 tests (all passing)  
+**Date Completed:** 2025-12-28 (as part of Task 16)
+**Implementation File:** `sections/aa-hero.liquid`
+**Test File:** `src/tests/hero-banner.test.js`
+**Test Coverage:** 83 tests (all passing)
 **Requirements:** 4.4, 8.1
 
 ## Summary

@@ -1,14 +1,14 @@
 /**
  * Unit Tests for Hero SCSS - Task 18
  * Tests for src/bulma/sass/custom/_hero.scss
- * 
+ *
  * Requirements:
  * - Verify responsive aspect ratio logic (1:1 mobile, 2:1 desktop)
  * - Test background image positioning and object-fit rules
  * - Validate overlay with flexbox centering and gradient
  * - Test SCSS variables and structure
  * - Verify animations and reduced motion support
- * 
+ *
  * Coverage:
  * - SCSS structure and variables
  * - Responsive aspect ratios

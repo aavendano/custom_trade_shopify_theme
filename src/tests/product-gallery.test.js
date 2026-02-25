@@ -1,7 +1,7 @@
 /**
  * Unit Tests for Product Gallery (Task 21)
  * Tests aa-main-product.liquid product gallery with native scroll snap
- * 
+ *
  * Requirements:
  * - Test native scroll snap functionality
  * - Verify lazy loading for gallery images (except first)
@@ -9,7 +9,7 @@
  * - Validate accessibility features
  * - Test variant selection with Alpine.js
  * - Verify add to cart functionality
- * 
+ *
  * Requirements: 5.4, 8.7, 9.2
  */
 
@@ -66,7 +66,7 @@ describe('Product Gallery Integration Tests', () => {
                 </figure>
               </div>
             </div>
-            
+
             <div class="c-product-gallery__indicators">
               <button type="button" class="c-product-gallery__indicator is-active" data-index="0" aria-label="View image 1"></button>
               <button type="button" class="c-product-gallery__indicator" data-index="1" aria-label="View image 2"></button>
@@ -84,9 +84,9 @@ describe('Product Gallery Integration Tests', () => {
                 <button type="button" class="b-button c-variant-selector__option" data-value="Large">Large</button>
               </div>
             </div>
-            
+
             <div class="c-product-price">$29.99</div>
-            
+
             <button type="button" class="b-button b-is-primary c-add-to-cart">Add to Cart</button>
           </div>
         </body>

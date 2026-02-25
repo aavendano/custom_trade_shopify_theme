@@ -1,8 +1,8 @@
 /**
  * CSS Variable Migration Tests
- * 
+ *
  * Tests for Task 1: Configure CSS variable migration from Dawn to Bulma
- * 
+ *
  * These tests verify that:
  * 1. Shopify theme settings are correctly mapped to Bulma variables
  * 2. CSS custom properties are output in compiled CSS

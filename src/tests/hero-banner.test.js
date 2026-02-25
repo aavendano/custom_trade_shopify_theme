@@ -1,7 +1,7 @@
 /**
  * Unit Tests for Hero Banner Section - Task 16
  * Tests for sections/aa-hero.liquid
- * 
+ *
  * Requirements:
  * - Verify Bulma hero component usage (b-hero, b-hero-body)
  * - Test responsive images (1:1 mobile, 2:1 desktop)
@@ -9,7 +9,7 @@
  * - Test responsive srcsets and sizes attributes
  * - Verify text overlay with Bulma typography
  * - Test accessibility compliance
- * 
+ *
  * Coverage:
  * - Hero structure and Bulma classes
  * - Image optimization for LCP
@@ -463,4 +463,3 @@ describe('Hero Banner Section Tests', () => {
         });
     });
 });
-

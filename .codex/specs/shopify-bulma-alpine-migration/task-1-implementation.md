@@ -53,9 +53,9 @@ $bulma-radius: $shopify-buttons-radius !default;
 
 .b-button {
   border-radius: var(--buttons-radius, 4px);
-  box-shadow: var(--buttons-shadow-horizontal-offset) 
-              var(--buttons-shadow-vertical-offset) 
-              var(--buttons-shadow-blur-radius) 
+  box-shadow: var(--buttons-shadow-horizontal-offset)
+              var(--buttons-shadow-vertical-offset)
+              var(--buttons-shadow-blur-radius)
               rgba(0, 0, 0, var(--buttons-shadow-opacity));
 }
 ```
@@ -146,9 +146,9 @@ $shopify-buttons-radius: var(--buttons-radius, 4px) !default;
 }
 
 // Use:
-box-shadow: var(--buttons-shadow-horizontal-offset) 
-            var(--buttons-shadow-vertical-offset) 
-            var(--buttons-shadow-blur-radius) 
+box-shadow: var(--buttons-shadow-horizontal-offset)
+            var(--buttons-shadow-vertical-offset)
+            var(--buttons-shadow-blur-radius)
             rgba(0, 0, 0, var(--buttons-shadow-opacity));
 // Browser will render no shadow if opacity is 0
 ```

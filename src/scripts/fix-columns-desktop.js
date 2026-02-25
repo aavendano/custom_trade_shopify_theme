@@ -2,11 +2,11 @@
 
 /**
  * Fix columns_desktop validation errors in template JSON files
- * 
+ *
  * The multicolumn section has:
  * - min: 1, max: 7, step: 2
  * - Valid values: 1, 3, 5, 7
- * 
+ *
  * This script fixes any columns_desktop: 6 to columns_desktop: 5
  * in multicolumn sections only.
  */

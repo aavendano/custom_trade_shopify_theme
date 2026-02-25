@@ -4,7 +4,7 @@
 const registerComponent = () => {
     if (window.Alpine) {
         // Check if already registered to avoid errors during HMR
-        // Alpine doesn't have a public API to check registered components easily, 
+        // Alpine doesn't have a public API to check registered components easily,
         // but re-registering usually warns or overwrites.
 
         window.Alpine.data('cardHorizontal', () => ({
