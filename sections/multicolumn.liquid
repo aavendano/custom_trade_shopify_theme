@@ -25,6 +25,7 @@
       <ul
         class="b-grid {% if show_mobile_slider %} slider slider--tablet grid--peek{% endif %}"
         id="Slider-{{ section.id }}"
+        style="--bulma-grid-columns: {{ section.settings.columns_desktop }};"
         role="list"
       >
         {%- for block in section.blocks -%}

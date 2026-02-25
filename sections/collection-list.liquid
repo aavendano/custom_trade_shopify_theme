@@ -15,7 +15,7 @@
     class="b-carousel-wrapper"
     x-data="carousel({slides: '.slide-{{ section.id }}', intervalTime: 3000})"
   >
-    <div class="b-carousel">
+    <div class="b-carousel" style="--desktop-columns: {{ section.settings.columns_desktop | default: 4 }};">
       {%- for block in section.blocks -%}
         <div
           id="Slide-{{ section.id }}-{{ forloop.index }}"

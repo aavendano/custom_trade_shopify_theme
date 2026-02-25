@@ -26,7 +26,9 @@ test.describe('Visual Regression Tests', () => {
 
     test.beforeEach(async ({ page }) => {
         console.log(`Navigating to: ${TARGET_URL}`);
-        await page.goto(TARGET_URL, { waitUntil: 'networkidle' });
+        await page.setExtraHTTPHeaders({ 'ngrok-skip-browser-warning': '1' });
+        await page.goto(TARGET_URL, { waitUntil: 'load' });
+        await page.waitForTimeout(5000); // Wait for scripts/images to settle
 
         // Hide dynamic elements before any screenshot
         await page.addStyleTag({ content: `${maskSelectors.join(', ')} { opacity: 0 !important; visibility: hidden !important; }` });
@@ -43,18 +45,17 @@ test.describe('Visual Regression Tests', () => {
 
     test('Header Component', async ({ page }) => {
         // Target the header element explicitly
-        // Supports both legacy (.site-header) and new (.aa-header) classes
-        const header = page.locator('header.site-header, header.aa-header, #shopify-section-header').first();
+        const header = page.locator('header.header').first();
 
-        await expect(header).toHaveVisible();
+        await expect(header).toBeVisible();
         await expect(header).toHaveScreenshot('header.png', { maxDiffPixels: 1000 });
     });
 
     test('Footer Component', async ({ page }) => {
         // Target the footer element
-        const footer = page.locator('footer.site-footer, footer.aa-footer, #shopify-section-footer').first();
+        const footer = page.locator('footer.footer').last();
 
-        await expect(footer).toHaveVisible();
+        await expect(footer).toBeVisible();
         await expect(footer).toHaveScreenshot('footer.png', { maxDiffPixels: 1000 });
     });
 });

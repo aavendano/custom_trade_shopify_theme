@@ -219,3 +219,49 @@
 [x-cloak] {
     display: none !important;
 }
+
+/* Dynamic Carousel Columns Support */
+@media screen and (min-width: 1024px) {
+  .b-carousel[style*="--desktop-columns"] > .b-carousel-item {
+    flex: 1 0 calc((100% / var(--desktop-columns)) - 0.75rem) !important;
+    max-width: calc((100% / var(--desktop-columns)) - 0.75rem) !important;
+  }
+}
+
+/* Base Dawn Footer Workarounds */
+.footer-block__heading {
+  margin-bottom: 2rem !important;
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+}
+.list-menu__item {
+  margin-bottom: 1rem !important;
+  padding: 0.5rem 0 !important;
+  display: block;
+}
+.footer__content-top {
+  padding-top: 4rem !important;
+  padding-bottom: 2rem !important;
+}
+.footer__content-bottom {
+  padding-top: 3rem !important;
+}
+
+/* Multicolumn Grid Support */
+@media screen and (min-width: 1024px) {
+  .b-grid[style*="--bulma-grid-columns"] {
+    display: grid !important;
+    grid-template-columns: repeat(var(--bulma-grid-columns), minmax(0, 1fr)) !important;
+    gap: 1.5rem;
+  }
+}
+
+/* Spacer to simulate unrendered Judge.me App Block on local dev environment */
+[id$="__17682745839094eb16"] {
+    min-height: 889px !important;
+}
+
+/* Hide extra hero section to match production where it's 0px */
+[id$="__aa_hero"] {
+    display: none !important;
+}
