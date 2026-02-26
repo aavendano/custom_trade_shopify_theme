@@ -1,7 +1,7 @@
-<nav class="b-breadcrumb" aria-label="breadcrumbs">
+<nav class="b-breadcrumb" aria-label="{{ 'general.breadcrumbs.label' | t }}">
   <ul>
     <li>
-      <a href="{{ routes.root_url }}">Home</a>
+      <a href="{{ routes.root_url }}">{{ 'general.breadcrumbs.home' | t }}</a>
     </li>
 
     {%- case template.name -%}
@@ -27,7 +27,7 @@
           </li>
           <li class="b-is-active">
             {%- capture tag_url -%}{{ collection.url }}/{{ current_tags | join: "+"}}{%- endcapture -%}
-            <a href="{{ tag_url }}" aria-current="page">{{ current_tags | join: " + " }}</a>
+            <a href="{{ request.path }}" aria-current="page">{{ current_tags | join: " + " }}</a>
           </li>
         {%- else -%}
           <li class="b-is-active">
@@ -42,7 +42,7 @@
           </li>
           <li class="b-is-active">
             {%- capture tag_url -%}{{ blog.url }}/tagged/{{ current_tags | join: "+" }}{%- endcapture -%}
-            <a href="{{ tag_url }}" aria-current="page">{{ current_tags | join: " + " }}</a>
+            <a href="{{ request.path }}" aria-current="page">{{ current_tags | join: " + " }}</a>
           </li>
         {%- else -%}
           <li class="b-is-active">
@@ -56,6 +56,21 @@
         </li>
         <li class="b-is-active">
           <a href="{{ article.url }}" aria-current="page">{{ article.title }}</a>
+        </li>
+
+      {%- when 'cart' -%}
+        <li class="b-is-active">
+          <a href="{{ routes.cart_url }}" aria-current="page">{{ 'general.breadcrumbs.cart' | t }}</a>
+        </li>
+
+      {%- when 'search' -%}
+        <li class="b-is-active">
+          <a href="{{ routes.search_url }}" aria-current="page">{{ 'general.breadcrumbs.search' | t }}</a>
+        </li>
+
+      {%- when '404' -%}
+        <li class="b-is-active">
+          <a href="{{ request.path }}" aria-current="page">{{ 'general.breadcrumbs.page_not_found' | t }}</a>
         </li>
 
       {%- else -%}
