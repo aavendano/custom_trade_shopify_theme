@@ -39,6 +39,13 @@
       }
     },
     "continue_shopping": "Continue shopping",
+    "breadcrumbs": {
+    "label": "Breadcrumbs",
+    "home": "Home",
+    "search": "Search",
+    "cart": "Cart",
+    "page_not_found": "Page not found"
+    },
     "pagination": {
       "label": "Pagination",
       "page": "Page {{ number }}",
