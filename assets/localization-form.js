@@ -105,8 +105,21 @@ if (!customElements.get('localization-form')) {
       onItemClick(event) {
         event.preventDefault();
         const form = this.querySelector('form');
-        this.elements.input.value = event.currentTarget.dataset.value;
-        if (form) form.submit();
+        const nextValue = event.currentTarget.dataset.value;
+
+        // Avoid unnecessary post when user selects the already active locale/country.
+        if (!nextValue || this.elements.input.value === nextValue) {
+          this.hidePanel();
+          return;
+        }
+
+        this.elements.input.value = nextValue;
+
+        if (form?.requestSubmit) {
+          form.requestSubmit();
+        } else if (form) {
+          form.submit();
+        }
       }
 
       openSelector() {
