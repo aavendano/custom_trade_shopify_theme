@@ -17,5 +17,3 @@ galery-components/
 *.bak
 *664232*
 shopify_serve.log
-playwright-report/
-test-results/

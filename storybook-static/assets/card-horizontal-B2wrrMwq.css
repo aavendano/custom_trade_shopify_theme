@@ -1,1 +1,0 @@
-.b-card.b-is-horizontal{display:flex;flex-direction:column}@media(min-width:768px){.b-card.b-is-horizontal{flex-direction:row}.b-card.b-is-horizontal .b-card-image{width:300px;height:auto}.b-card.b-is-horizontal .b-card-image .b-image{height:100%}.b-card.b-is-horizontal .b-card-image .b-image img{height:100%;object-fit:cover}}

@@ -26,5 +26,8 @@
     "statusBar.foreground": "#FFFFFF",
     "statusBar.background": "#333333"
   },
+  "workbench.trustedDomains": [
+    "https://accounts.google.com"
+  ],
   "kiroAgent.configureMCP": "Disabled"
 }
