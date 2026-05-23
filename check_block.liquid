@@ -1,0 +1,42 @@
+                  <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
+                    {{ product.description }}
+                    <br>
+
+                    {% if product.collections.size > 0 %}
+                      <div class="product-collections">
+                        <p>
+                          {% if product.collections.size == 1 %}
+                            This product belongs to our
+                            <a
+                              href="{{ product.collections.first.url }}"
+                              title="View all products in {{ product.collections.first.title }}"
+                            >
+                              {{- product.collections.first.title -}}
+                            </a>
+                            collection.
+                          {% elsif product.collections.size == 2 %}
+                            This product is available in our
+                            <a href="{{ product.collections[0].url }}" title="View {{ product.collections[0].title }}">
+                              {{- product.collections[0].title -}}
+                            </a>
+                            and
+                            <a href="{{ product.collections[1].url }}" title="View {{ product.collections[1].title }}">
+                              {{- product.collections[1].title -}}
+                            </a>
+                            collections.
+                          {% else %}
+                            {% assign last_index = forloop.length | minus: 1 %}
+                            This product is available in our
+                            {% for collection in product.collections %}
+                              <a href="{{ collection.url }}" title="View all products in {{ collection.title }}">
+                                {{- collection.title -}}
+                              </a>
+                              {%- unless forloop.last -%}
+                                {%- if forloop.index == last_index %} and {% else %}, {% endif -%}
+                              {%- endunless %}
+                            {% endfor %}
+                            collections.
+                          {% endif %}
+                        </p>
+                      </div>
+                    {% endif %}
