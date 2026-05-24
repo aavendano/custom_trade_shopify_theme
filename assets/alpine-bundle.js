@@ -3955,10 +3955,231 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
   };
   var module_default4 = src_default4;
 
+  // src/bulma/scripts/custom/carousel.js
+  function carousel_default(Alpine2) {
+    Alpine2.data("carousel", (data2 = {
+      slides: [],
+      intervalTime: 0
+    }) => ({
+      slidesSelector: data2.slides,
+      slides: [],
+      autoplayIntervalTime: data2.intervalTime,
+      isPaused: false,
+      autoplayInterval: null,
+      currentSlideIndex: 0,
+      touchStartX: null,
+      touchEndX: null,
+      swipeThreshold: 50,
+      get currentSlide() {
+        return this.slides[this.currentSlideIndex] || {};
+      },
+      init() {
+        if (typeof this.slidesSelector === "string") {
+          this.slides = Array.from(document.querySelectorAll(this.slidesSelector));
+        } else if (Array.isArray(this.slidesSelector)) {
+          this.slides = this.slidesSelector;
+        }
+        console.log("Carousel init - slides:", this.slides.length);
+        if (this.autoplayIntervalTime > 0) {
+          const observer2 = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              console.log("Carousel visibility:", entry.isIntersecting, "ratio:", entry.intersectionRatio);
+              if (entry.isIntersecting) {
+                if (!this.autoplayInterval) {
+                  console.log("Starting autoplay - carousel visible");
+                  this.isPaused = false;
+                  this.autoplay();
+                }
+              } else {
+                console.log("Pausing autoplay - carousel not visible");
+                this.pause();
+              }
+            });
+          }, { threshold: 0.1 });
+          observer2.observe(this.$el);
+        }
+      },
+      previous() {
+        if (this.currentSlideIndex > 0) {
+          this.currentSlideIndex = this.currentSlideIndex - 1;
+        } else {
+          this.currentSlideIndex = this.slides.length - 1;
+        }
+        this.scrollToSlide();
+      },
+      next() {
+        if (this.currentSlideIndex < this.slides.length - 1) {
+          this.currentSlideIndex = this.currentSlideIndex + 1;
+        } else {
+          this.currentSlideIndex = 0;
+        }
+        this.scrollToSlide();
+      },
+      scrollToSlide() {
+        const slide = this.slides[this.currentSlideIndex];
+        if (slide) {
+          slide.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
+        }
+      },
+      handleTouchStart(event) {
+        this.pause();
+        this.touchStartX = event.touches[0].clientX;
+      },
+      handleTouchMove(event) {
+        this.touchEndX = event.touches[0].clientX;
+      },
+      handleTouchEnd() {
+        if (this.touchEndX) {
+          if (this.touchStartX - this.touchEndX > this.swipeThreshold) {
+            this.next();
+          }
+          if (this.touchStartX - this.touchEndX < -this.swipeThreshold) {
+            this.previous();
+          }
+          this.touchStartX = null;
+          this.touchEndX = null;
+        }
+        this.resume();
+        console.log("Autoplay resumed");
+      },
+      autoplay() {
+        this.autoplayInterval = setInterval(() => {
+          if (!this.isPaused) {
+            this.next();
+          }
+        }, this.autoplayIntervalTime);
+        console.log("Autoplay started with interval time:", this.autoplayIntervalTime);
+      },
+      // Updates interval time   
+      setAutoplayIntervalTime(newIntervalTime) {
+        clearInterval(this.autoplayInterval);
+        this.autoplayIntervalTime = newIntervalTime;
+        this.autoplay();
+      },
+      pause() {
+        this.isPaused = true;
+        clearInterval(this.autoplayInterval);
+        this.autoplayInterval = null;
+      },
+      resume() {
+        this.isPaused = false;
+        this.autoplay();
+      }
+    }));
+  }
+
+  // src/bulma/scripts/custom/product-card.js
+  function product_card_default(Alpine2) {
+    Alpine2.data("productCard", ({ productUrl, sectionId, productId }) => ({
+      loading: false,
+      modalOpen: false,
+      errorMessage: "",
+      quickAddInfo: "",
+      init() {
+      },
+      addToCart(formElement) {
+        this.loading = true;
+        this.errorMessage = "";
+        const formData = new FormData(formElement);
+        const cartNotification = document.querySelector("cart-notification");
+        if (cartNotification) {
+          formData.append(
+            "sections",
+            cartNotification.getSectionsToRender().map((section) => section.id)
+          );
+          formData.append("sections_url", window.location.pathname);
+        }
+        const config = {
+          method: "POST",
+          headers: {
+            "X-Requested-With": "XMLHttpRequest",
+            "Accept": "application/javascript"
+          },
+          body: formData
+        };
+        fetch(window.routes.cart_add_url, config).then((response) => response.json()).then((response) => {
+          if (response.status) {
+            this.errorMessage = response.errors || response.description || response.message;
+            if (window.publish && window.PUB_SUB_EVENTS) {
+              window.publish(window.PUB_SUB_EVENTS.cartError, {
+                source: "product-form",
+                productVariantId: formData.get("id"),
+                errors: response.errors || response.description,
+                message: response.message
+              });
+            }
+            return;
+          }
+          if (window.publish && window.PUB_SUB_EVENTS) {
+            window.publish(window.PUB_SUB_EVENTS.cartUpdate, {
+              source: "product-form",
+              productVariantId: formData.get("id"),
+              cartData: response
+            });
+          } else if (cartNotification) {
+            cartNotification.renderContents(response);
+          } else {
+            window.location = window.routes.cart_url;
+          }
+        }).catch((e) => {
+          console.error(e);
+          this.errorMessage = e.message;
+        }).finally(() => {
+          this.loading = false;
+        });
+      },
+      openQuickAdd() {
+        if (this.quickAddInfo) {
+          this.modalOpen = true;
+          return;
+        }
+        this.loading = true;
+        fetch(productUrl).then((response) => response.text()).then((responseText) => {
+          const parser = new DOMParser();
+          const responseHTML = parser.parseFromString(responseText, "text/html");
+          const productElement = responseHTML.querySelector("product-info");
+          if (productElement) {
+            this.preprocessHTML(productElement);
+            this.quickAddInfo = productElement.outerHTML;
+            this.modalOpen = true;
+            this.$nextTick(() => {
+              if (window.Shopify && Shopify.PaymentButton) {
+                Shopify.PaymentButton.init();
+              }
+              if (window.ProductModel) window.ProductModel.loadShopifyXR();
+            });
+          } else {
+            console.error("Product info not found in response");
+          }
+        }).catch((e) => console.error(e)).finally(() => {
+          this.loading = false;
+        });
+      },
+      preprocessHTML(productElement) {
+        const oldId = sectionId;
+        const newId = `quickadd-${sectionId}`;
+        productElement.innerHTML = productElement.innerHTML.replaceAll(oldId, newId);
+        Array.from(productElement.attributes).forEach((attribute) => {
+          if (attribute.value.includes(oldId)) {
+            productElement.setAttribute(attribute.name, attribute.value.replace(oldId, newId));
+          }
+        });
+        productElement.dataset.originalSection = sectionId;
+        productElement.querySelectorAll("pickup-availability, product-modal, modal-dialog").forEach((el) => el.remove());
+        productElement.setAttribute("data-update-url", "false");
+      },
+      closeModal() {
+        this.modalOpen = false;
+      }
+    }));
+  }
+
   // src/alpine-bundle.js
   module_default.plugin(module_default2);
   module_default.plugin(module_default3);
   module_default.plugin(module_default4);
+  module_default.plugin(carousel_default);
+  module_default.plugin(product_card_default);
   module_default.data("priceRange", () => ({
     min: 0,
     max: 0,

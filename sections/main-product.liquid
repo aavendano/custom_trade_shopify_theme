@@ -193,8 +193,10 @@
                 </p>
               {%- when 'description' -%}
                 {%- if product.description != blank -%}
+                  {% comment %} TODO: Fix unclosed HTML element - ensure proper opening/closing tags {% endcomment %}
                   <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
                     {{ product.description }}
+                    <br>
 
                     {% if product.collections.size > 0 %}
                       <div class="product-collections">
@@ -219,7 +221,7 @@
                             </a>
                             collections.
                           {% else %}
-                            {% assign last_index = product.collections.size | minus: 1 %}
+                            {% assign last_index = forloop.length | minus: 1 %}
                             This product is available in our
                             {% for collection in product.collections %}
                               <a href="{{ collection.url }}" title="View all products in {{ collection.title }}">

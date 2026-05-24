@@ -156,11 +156,6 @@
         "disabled": false,
         "settings": {}
       },
-      "9664103760669878543": {
-        "type": "shopify://apps/seoon-blog/blocks/avada-seoon-setting/a45c3e67-be9f-4255-a194-b255a24f37c9",
-        "disabled": false,
-        "settings": {}
-      },
       "6603664506335945664": {
         "type": "shopify://apps/transtore/blocks/switcher_embed_block/afeffe82-e563-4f78-90f4-f1e3d96286c3",
         "disabled": true,
@@ -178,14 +173,6 @@
           "ref": true
         }
       },
-      "14717942367183170102": {
-        "type": "shopify://apps/chizy-ai-chatbot/blocks/chat-bubble/fd61935c-4053-4b60-9385-bcbc00e2b2be",
-        "disabled": false,
-        "settings": {
-          "api_base_url": "https://ai-agent.chizy.io",
-          "app_url": "https://chatbot.chizy.io"
-        }
-      },
       "2200952712151285029": {
         "type": "shopify://apps/microsoft-clarity/blocks/brandAgents_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
         "disabled": false,
@@ -200,6 +187,78 @@
         "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
         "disabled": false,
         "settings": {}
+      },
+      "15683396631634586217": {
+        "type": "shopify://apps/inbox/blocks/chat/841fc607-4181-4ad1-842d-e24d7f8bad6b",
+        "disabled": false,
+        "settings": {
+          "button_color": "#f4f4f4",
+          "secondary_color": "#000000",
+          "ternary_color": "#f4436c",
+          "button_icon": "chat_bubble",
+          "button_text": "chat_with_us",
+          "button_horizontal_position": "bottom_left",
+          "button_vertical_position": "higher",
+          "greeting_message": ""
+        }
+      },
+      "7800736727063894098": {
+        "type": "shopify://apps/rez-notify-me/blocks/rez/0da60196-81b6-4270-afac-c9294e1641ba",
+        "disabled": false,
+        "settings": {}
+      },
+      "8765772171712610185": {
+        "type": "shopify://apps/t-lab-ai-language-translate/blocks/language_switcher/b5b83690-efd4-434d-8c6a-a5cef4019faf",
+        "disabled": true,
+        "settings": {
+          "enable_language_switcher": true,
+          "enable_country_region_switcher": true,
+          "use_currency_for_region": true,
+          "switcher_position": "header",
+          "show_flags": true,
+          "switcher_appearance": "icon",
+          "invert_switcher_icon_colors": true,
+          "dropdown_appearance": "language-name",
+          "use_modal_dialog": true,
+          "language_country_mapping": "en:us, en:ca,",
+          "countries_filter": "US, CA",
+          "custom_css": "",
+          "header_switcher_reference_element": "",
+          "header_switcher_relative_position": "in-element",
+          "mobile_menu_switcher_reference_element": "",
+          "mobile_switcher_relative_position": "before",
+          "header_switcher_border_width": 0,
+          "switcher_viewport_position": "top-right",
+          "custom_position_spacing": "55,20,20,20",
+          "custom_switcher_font_size": "16px",
+          "custom_switcher_border_width": 1,
+          "custom_switcher_text_color": "#f4f4f4",
+          "custom_switcher_background_color": "rgba(0,0,0,0)",
+          "custom_switcher_border_color": "rgba(0,0,0,0)"
+        }
+      },
+      "12793297677437526120": {
+        "type": "shopify://apps/t-lab-ai-language-translate/blocks/custom_translations/b5b83690-efd4-434d-8c6a-a5cef4019faf",
+        "disabled": true,
+        "settings": {}
+      },
+      "9664103760669878543": {
+        "type": "shopify://apps/seo-on-blog/blocks/avada-seoon-setting/a45c3e67-be9f-4255-a194-b255a24f37c9",
+        "disabled": false,
+        "settings": {}
+      },
+      "9674181886073616913": {
+        "type": "shopify://apps/mida-fraud-ip-blocker/blocks/blocker-script/09aab972-8c77-47b1-a9a0-4712e9f2405d",
+        "disabled": false,
+        "settings": {}
+      },
+      "14717942367183170102": {
+        "type": "shopify://apps/chizy-ai-chatbot/blocks/chat-bubble/fd61935c-4053-4b60-9385-bcbc00e2b2be",
+        "disabled": true,
+        "settings": {
+          "api_base_url": "https://ai-agent.chizy.io",
+          "app_url": "https://chatbot.chizy.io"
+        }
       }
     },
     "color_schemes": {
@@ -541,5 +600,10 @@
       },
       "content_for_index": []
     }
+  },
+  "platform_customizations": {
+    "custom_css": [
+      "#shopify-chat {z-index: -999999 !important;}"
+    ]
   }
 }

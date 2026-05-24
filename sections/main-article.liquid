@@ -24,11 +24,7 @@
         </div>
       </div>
     {%- endif -%}
-        <div class="b-block b-my-4">
-      {%- assign share_url = request.origin | append: article.url -%}
-      {%- assign share_block = section.blocks | where: "type", "share" | first -%}
-      {% render "share-button", block: share_block, share_link: share_url %}
-    </div>
+    <!-- TODO: add share button -->
     <div class="b-content">
       {{ article.content }}
     </div>

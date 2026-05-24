@@ -45,7 +45,7 @@
     class="
       b-is-family-secondary b-is-size-6 b-has-text-weight-normal
       {%- if price_class %} {{ price_class }}{% endif -%}
-      {%- if available == false %} b-has-text-grey{% endif -%}
+      {%- if available == false %} b-has-text-grey-dark{% endif -%}
       {%- if show_badges %} b-is-flex{% endif -%}
     "
   >
@@ -110,7 +110,7 @@
         {%- endif -%}
       </div>
 
-      <small class="{% if product.selected_or_first_available_variant.unit_price_measurement == nil %}b-is-hidden {% endif %}b-is-size-6 b-has-text-grey">
+      <small class="{% if product.selected_or_first_available_variant.unit_price_measurement == nil %}b-is-hidden {% endif %}b-is-size-6 b-has-text-grey-dark">
         <span class="b-is-sr-only">{{ 'products.product.price.unit_price' | t }}</span>
         <span class="b-has-text-weight-bold">
           <span>{{- product.selected_or_first_available_variant.unit_price | money -}}</span>

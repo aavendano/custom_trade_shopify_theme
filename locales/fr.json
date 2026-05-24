@@ -65,7 +65,8 @@
       "next_slide": "Faire glisser vers la droite",
       "previous_slide": "Faire glisser vers la gauche",
       "name": "Carrousel"
-    }
+    },
+    "read_more": "En savoir plus"
   },
   "newsletter": {
     "label": "E-mail",

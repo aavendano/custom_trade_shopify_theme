@@ -55,7 +55,7 @@
         "section_height_custom": 50,
         "color_scheme": "",
         "background_media": "none",
-        "background_color": "#FFFFFF",
+        "background_color": "#ffffff",
         "video_position": "cover",
         "background_image_position": "cover",
         "border": "none",
@@ -146,6 +146,31 @@
         "padding_bottom": 36
       }
     },
+    "1767991989cdbe4877": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_medals_4hyqKp": {
+          "type": "shopify://apps/judge-me-reviews/blocks/medals/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "judge_me_reviews_review_widget_BpR9cB": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": true,
+            "empty_state": "hide_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_medals_4hyqKp",
+        "judge_me_reviews_review_widget_BpR9cB"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
     "related-products": {
       "type": "related-products",
       "settings": {
@@ -168,6 +193,7 @@
   "order": [
     "custom_section_3hjYKK",
     "main",
+    "1767991989cdbe4877",
     "related-products"
   ]
 }
