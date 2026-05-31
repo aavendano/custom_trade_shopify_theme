@@ -218,7 +218,7 @@
         "@type": "ListItem",
         "position": {{ position }},
         "item": {
-          "@id": "{{ shop.url | append: routes.root_url }}",
+          "@id": "{{ request.origin | append: routes.root_url }}",
           "name": "{{ block.settings.home_text | default: 'Home' | escape }}"
         }
       }
@@ -232,7 +232,7 @@
               "@type": "ListItem",
               "position": {{ position }},
               "item": {
-                "@id": "{{ shop.url | append: product.collections.first.url }}",
+                "@id": "{{ request.origin | append: product.collections.first.url }}",
                 "name": "{{ product.collections.first.title | default: 'Collection' | escape }}"
               }
             }
@@ -244,7 +244,7 @@
             "@type": "ListItem",
             "position": {{ position }},
             "item": {
-              "@id": "{{ shop.url | append: product.url }}",
+              "@id": "{{ request.origin | append: product.url }}",
               "name": "{{ product.title | default: 'Product' | escape }}"
             }
           }
@@ -253,7 +253,7 @@
             "@type": "ListItem",
             "position": {{ position }},
             "item": {
-              "@id": "{{ shop.url | append: collection.url }}",
+              "@id": "{{ request.origin | append: collection.url }}",
               "name": "{{ collection.title | default: 'Collection' | escape }}"
             }
           }
@@ -262,7 +262,7 @@
             "@type": "ListItem",
             "position": {{ position }},
             "item": {
-              "@id": "{{ shop.url | append: blog.url }}",
+              "@id": "{{ request.origin | append: blog.url }}",
               "name": "{{ blog.title | default: 'Blog' | escape }}"
             }
           }
@@ -271,7 +271,7 @@
             "@type": "ListItem",
             "position": {{ position }},
             "item": {
-              "@id": "{{ shop.url | append: blog.url }}",
+              "@id": "{{ request.origin | append: blog.url }}",
               "name": "{{ blog.title | default: 'Blog' | escape }}"
             }
           }
@@ -282,7 +282,7 @@
             "@type": "ListItem",
             "position": {{ position }},
             "item": {
-              "@id": "{{ shop.url | append: article.url }}",
+              "@id": "{{ request.origin | append: article.url }}",
               "name": "{{ article.title | default: 'Article' | escape }}"
             }
           }
@@ -291,7 +291,7 @@
             "@type": "ListItem",
             "position": {{ position }},
             "item": {
-              "@id": "{{ shop.url | append: page.url }}",
+              "@id": "{{ request.origin | append: page.url }}",
               "name": "{{ page.title | default: 'Page' | escape }}"
             }
           }

@@ -65,7 +65,8 @@
       "next_slide": "Diapositiva a la derecha",
       "previous_slide": "Diapositiva a la izquierda",
       "name": "Carrusel"
-    }
+    },
+    "read_more": "Leer más"
   },
   "newsletter": {
     "label": "Correo electrónico",

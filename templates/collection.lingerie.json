@@ -98,23 +98,7 @@
     },
     "product-grid": {
       "type": "main-collection-product-grid",
-      "settings": {
-        "products_per_page": 32,
-        "columns_desktop": 4,
-        "columns_mobile": "1",
-        "color_scheme": "scheme-3",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": false,
-        "show_vendor": true,
-        "show_rating": false,
-        "quick_add": "none",
-        "enable_filtering": true,
-        "filter_type": "horizontal",
-        "enable_sorting": true,
-        "padding_top": 32,
-        "padding_bottom": 32
-      }
+      "settings": {}
     },
     "collection_list_PPHRYd": {
       "type": "collection-list",

@@ -501,7 +501,6 @@ class MenuDrawer extends HTMLElement {
     this.mainDetailsToggle.querySelectorAll('.submenu-open').forEach((submenu) => {
       submenu.classList.remove('submenu-open');
     });
-    document.body.classList.remove(`overflow-hidden-${this.dataset.breakpoint}`);
     removeTrapFocus(elementToFocus);
     this.closeAnimation(this.mainDetailsToggle);
 
@@ -577,7 +576,12 @@ class HeaderDrawer extends MenuDrawer {
     summaryElement.setAttribute('aria-expanded', true);
     window.addEventListener('resize', this.onResize);
     trapFocus(this.mainDetailsToggle, summaryElement);
-    document.body.classList.add(`overflow-hidden-${this.dataset.breakpoint}`);
+
+    this.scrollPosition = window.scrollY;
+    const body = document.body;
+    body.style.position = 'fixed';
+    body.style.top = `-${this.scrollPosition}px`;
+    body.style.width = '100%';
   }
 
   closeMenuDrawer(event, elementToFocus) {
@@ -585,6 +589,12 @@ class HeaderDrawer extends MenuDrawer {
     super.closeMenuDrawer(event, elementToFocus);
     this.header.classList.remove('menu-open');
     window.removeEventListener('resize', this.onResize);
+
+    const body = document.body;
+    body.style.position = '';
+    body.style.top = '';
+    body.style.width = '';
+    window.scrollTo(0, this.scrollPosition);
   }
 
   onResize = () => {
@@ -1057,7 +1067,7 @@ class SlideshowComponent extends SliderComponent {
     const slideScrollPosition =
       this.slider.scrollLeft +
       this.sliderFirstItemNode.clientWidth *
-        (this.sliderControlLinksArray.indexOf(event.currentTarget) + 1 - this.currentPage);
+      (this.sliderControlLinksArray.indexOf(event.currentTarget) + 1 - this.currentPage);
     this.slider.scrollTo({
       left: slideScrollPosition,
     });

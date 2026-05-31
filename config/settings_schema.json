@@ -1482,10 +1482,6 @@
         "id": "cart_type",
         "options": [
           {
-            "value": "drawer",
-            "label": "t:settings_schema.cart.settings.cart_type.drawer.label"
-          },
-          {
             "value": "page",
             "label": "t:settings_schema.cart.settings.cart_type.page.label"
           },
@@ -1524,6 +1520,17 @@
         "id": "cart_color_scheme",
         "label": "t:sections.all.colors.label",
         "default": "scheme-1"
+      }
+    ]
+  },
+  {
+    "name": "Storefront Web Components",
+    "settings": [
+      {
+        "type": "text",
+        "id": "storefront_public_access_token",
+        "label": "Storefront public access token",
+        "info": "Required by Shopify Storefront Web Components. Create in Admin > Apps and sales channels > Develop apps > API credentials > Public access token."
       }
     ]
   }

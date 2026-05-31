@@ -39,6 +39,7 @@
       }
     },
     "continue_shopping": "Continue shopping",
+    "read_more": "Read more",
     "pagination": {
       "label": "Pagination",
       "page": "Page {{ number }}",

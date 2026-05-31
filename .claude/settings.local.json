@@ -1,0 +1,36 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(shopify theme:*)",
+      "Bash(git push:*)",
+      "Bash(git pull:*)",
+      "Bash(find:*)",
+      "Bash(python3:*)",
+      "Bash(grep:*)",
+      "Bash(for file in /home/alejandro/shopify/custom_trade_shopify_theme/sections/image-with-text.liquid )",
+      "Bash(/home/alejandro/shopify/custom_trade_shopify_theme/sections/slideshow.liquid )",
+      "Bash(/home/alejandro/shopify/custom_trade_shopify_theme/sections/multicolumn-articles.liquid )",
+      "Bash(/home/alejandro/shopify/custom_trade_shopify_theme/sections/footer.liquid )",
+      "Bash(/home/alejandro/shopify/custom_trade_shopify_theme/snippets/product-media-gallery.liquid)",
+      "Bash(do)",
+      "Bash(sed:*)",
+      "Bash(done)",
+      "Bash(for file in /home/alejandro/shopify/custom_trade_shopify_theme/blocks/Modern blog layout.liquid )",
+      "Bash(/home/alejandro/shopify/custom_trade_shopify_theme/blocks/ai_gen_block_d32dbf1.liquid )",
+      "Bash(/home/alejandro/shopify/custom_trade_shopify_theme/blocks/ai_gen_block_842a85c.liquid )",
+      "Bash(/home/alejandro/shopify/custom_trade_shopify_theme/blocks/ai_gen_block_e525eac.liquid )",
+      "Bash(/home/alejandro/shopify/custom_trade_shopify_theme/blocks/ai_gen_block_680bda1.liquid)",
+      "Bash(for file in multirow carrusel-blog announcement-bar collapsible-content)",
+      "Bash(echo:*)",
+      "Bash(if [ -f \"/home/alejandro/shopify/custom_trade_shopify_theme/sections/$file.liquid\" ])",
+      "Bash(then)",
+      "Bash(tail:*)",
+      "Bash(else)",
+      "Bash(fi)",
+      "Bash(npm uninstall:*)",
+      "Bash(rm:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

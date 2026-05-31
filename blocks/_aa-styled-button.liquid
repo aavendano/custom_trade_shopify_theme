@@ -1,6 +1,6 @@
 {% if block.settings.button_text != blank and block.settings.button_url != blank %}
   {% liquid
-    assign button_classes = "b-button"
+    assign button_classes = 'b-button'
     assign alignment_classes = ''
 
     # Size classes
@@ -37,8 +37,6 @@
 
     # Color style classes (select/radio)
     assign button_classes = button_classes | append: ' b-is-' | append: block.settings.button_color_style
-
- 
 
     assign alignment_settings = 'button_alignment_mobile,button_alignment_tablet,button_alignment_desktop,button_alignment_widescreen,button_alignment_fullhd' | split: ','
 
@@ -88,12 +86,11 @@
       "default": "normal"
     },
 
-    
     {
       "type": "header",
       "content": "Responsive Button Alignment"
     },
-    
+
     {
       "type": "paragraph",
       "content": "Control button alignment for different screen sizes using Bulma's responsive alignment classes."
@@ -137,14 +134,14 @@
         { "value": "b-has-text-justified-desktop", "label": "Justified" },
         { "value": "b-has-text-left-desktop", "label": "Left" },
         { "value": "b-has-text-right-desktop", "label": "Right" }
-        ],
-        "default": ""
-      },
-      
-      {
-        "type": "select",
-        "id": "button_alignment_widescreen",
-        "label": "Widescreen (1216px+)",
+      ],
+      "default": ""
+    },
+
+    {
+      "type": "select",
+      "id": "button_alignment_widescreen",
+      "label": "Widescreen (1216px+)",
       "options": [
         { "value": "", "label": "Default" },
         { "value": "b-has-text-centered-widescreen", "label": "Centered" },
@@ -165,22 +162,22 @@
         { "value": "b-has-text-justified-fullhd", "label": "Justified" },
         { "value": "b-has-text-left-fullhd", "label": "Left" },
         { "value": "b-has-text-right-fullhd", "label": "Right" }
-        ],
-        "default": ""
-      },
-      
-      { "type": "header", "content": "Button Style Classes" },
-      
-      { "type": "checkbox", "id": "b_is_outlined", "label": "Outlined", "default": false },
-      { "type": "checkbox", "id": "b_is_text", "label": "Text Style", "default": false },
+      ],
+      "default": ""
+    },
+
+    { "type": "header", "content": "Button Style Classes" },
+
+    { "type": "checkbox", "id": "b_is_outlined", "label": "Outlined", "default": false },
+    { "type": "checkbox", "id": "b_is_text", "label": "Text Style", "default": false },
     { "type": "checkbox", "id": "b_is_ghost", "label": "Ghost", "default": false },
     { "type": "checkbox", "id": "b_is_light", "label": "Light", "default": false },
     { "type": "checkbox", "id": "b_is_responsive", "label": "Responsive", "default": false },
     { "type": "checkbox", "id": "b_is_rounded", "label": "Rounded", "default": false },
-    { "type": "checkbox", "id": "b_is_fullwidth", "label": "Full Width", "default":false },
+    { "type": "checkbox", "id": "b_is_fullwidth", "label": "Full Width", "default": false },
     { "type": "checkbox", "id": "button_new_tab", "label": "Open in new tab", "default": false },
 
-    { "type": "header", "content": "Color Style"},
+    { "type": "header", "content": "Color Style" },
 
     {
       "type": "select",

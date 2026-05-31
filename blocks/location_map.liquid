@@ -212,7 +212,7 @@
       "provider": {
         "@type": "Organization",
         "name": "PlayLoveToys",
-        "url": "{{ shop.url }}",
+        "url": "{{ request.origin }}",
         "logo": "https://cdn.shopify.com/s/files/1/0603/8198/6891/files/logo_transparent_background_square_768x768_65346903-4d6a-4994-b915-c43edcc06000.png"
       },
       "areaServed": {
@@ -243,7 +243,7 @@
       "serviceType": "E-commerce for Adult Wellness Products",
       "availableChannel": {
         "@type": "ServiceChannel",
-        "serviceUrl": "{{ shop.url }}{{ request.path }}",
+        "serviceUrl": "{{ request.origin }}{{ request.path }}",
         "description": "Online store accessible 24/7 with discreet shipping to all of {{ area_name_full }}."
       },
       "audience": {
@@ -259,7 +259,7 @@
         "businessFunction": "http://purl.org/goodrelations/v1#Sell",
         "priceCurrency": "CAD"
       },
-      "termsOfService": "{{ shop.url }}/policies/terms-of-service"
+      "termsOfService": "{{ request.origin }}/policies/terms-of-service"
     }
   </script>
 {% endif %}
