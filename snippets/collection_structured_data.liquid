@@ -1,51 +1,57 @@
+{%- liquid
+  assign schema_origin = request.origin
+  assign collection_canonical = canonical_url
+  assign schema_limit = 20
+-%}
 <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": {{ collection.title | json }},
     "description": {{ collection.description | strip_html | json }},
-    "url": {{ collection.url | prepend: shop.url | json }}
-
-    {% if collection.image and collection.image.src %}
+    "url": {{ collection_canonical | json }}
+    {%- if collection.image and collection.image.src -%}
     , "image": {
         "@type": "ImageObject",
         "url": {{ collection.image.src | image_url: width: 1200 | prepend: 'https:' | json }},
         "width": 1200,
         "height": 1200
       }
-    {% endif %}
-
+    {%- endif -%}
     , "mainEntity": {
         "@type": "ItemList",
+        "name": {{ collection.title | json }},
         "numberOfItems": {{ collection.products_count }},
         "itemListElement": [
-          {%- for product in collection.products limit: 20 -%}
+          {%- assign position = 0 -%}
+          {%- assign first_item = true -%}
+          {%- for product in collection.products limit: schema_limit -%}
+            {%- assign position = position | plus: 1 -%}
+            {%- unless first_item -%},{%- endunless -%}
             {
               "@type": "ListItem",
-              "position": {{ forloop.index }},
-              "url": {{ product.url | prepend: shop.url | json }},
-              "name": {{ product.title | json }},
-              "image": {{ product.featured_image | image_url: width: 600 | prepend: 'https:' | json }}
-            }{% unless forloop.last %},{% endunless %}
+              "position": {{ position }},
+              "item": {
+                "@type": "Product",
+                "@id": {{ product.url | prepend: schema_origin | json }},
+                "name": {{ product.title | json }},
+                "url": {{ product.url | prepend: schema_origin | json }},
+                {%- if product.featured_image -%}
+                "image": {
+                  "@type": "ImageObject",
+                  "url": {{ product.featured_image | image_url: width: 600 | prepend: 'https:' | json }}
+                },
+                {%- endif -%}
+                "offers": {
+                  "@type": "Offer",
+                  "priceCurrency": {{ cart.currency.iso_code | json }},
+                  "price": {{ product.price | divided_by: 100.0 }},
+                  "availability": "https://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}"
+                }
+              }
+            }
+            {%- assign first_item = false -%}
           {%- endfor -%}
-        ]
-      }
-
-    , "breadcrumb": {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": {{ shop.url | json }}
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": {{ collection.title | json }},
-            "item": {{ collection.url | prepend: shop.url | json }}
-          }
         ]
       }
   }

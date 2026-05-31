@@ -13,13 +13,3 @@
 {%- if settings.animations_reveal_on_scroll -%}
   <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
-
-<!-- FONT LOADING OPTIMIZATION -->
-<script>
-  // Font loading optimization
-  if ('fonts' in document) {
-    document.fonts.ready.then(function () {
-      document.documentElement.classList.add('fonts-loaded');
-    });
-  }
-</script>

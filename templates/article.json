@@ -13,7 +13,7 @@
       "type": "apps",
       "blocks": {
         "seo_on_blog_post_information_MVcC7X": {
-          "type": "shopify://apps/seo-on-blog/blocks/post-information/a45c3e67-be9f-4255-a194-b255a24f37c9",
+          "type": "shopify://apps/avada-seo-ai-blog/blocks/post-information/a45c3e67-be9f-4255-a194-b255a24f37c9",
           "settings": {}
         }
       },

@@ -1,5 +1,12 @@
 <!doctype html>
-<html class="js" lang="{{ request.locale.iso_code }}">
+{%- liquid
+  assign html_lang = request.locale.iso_code
+  if localization.country.iso_code != blank
+    assign html_lang = request.locale.iso_code | append: '-' | append: localization.country.iso_code
+  endif
+-%}
+
+<html class="js" lang="{{ html_lang }}">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -286,7 +293,6 @@
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
-    {{ 'font-loading.css' | asset_url | stylesheet_tag }}
 
     {% comment %}
       <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
@@ -305,8 +311,7 @@
     {%- endunless -%}
 
     {%- if localization.available_countries.size > 1 or localization.available_languages.size > 1 -%}
-      {{ 'component-localization-form.css' | asset_url | stylesheet_tag: preload: true }}
-      <script src="{{ 'localization-form.js' | asset_url }}" defer="defer"></script>
+      {% render 'defer-stylesheet', asset: 'component-localization-form.css' %}
     {%- endif -%}
 
     {%- if settings.predictive_search_enabled -%}
@@ -338,6 +343,7 @@
     %}
     <!-- CUSTOM  CSS -->
     <!-- BULMA -->
+    <!-- BULMA -->
 
     {% if use_full_css %}
       {{ 'a-bulma-full.css' | asset_url | stylesheet_tag }}
@@ -348,7 +354,17 @@
       {{ 'a-bulma-purged.css' | asset_url | stylesheet_tag }}
     {% endif %}
 
-    {{ 'a-plt-custom-style.css' | asset_url | stylesheet_tag }}
+    {% style %}
+      :root {
+        --b-family-primary: var(--font-body-family);
+        --b-family-secondary: var(--font-heading-family);
+      }
+      .b-is-family-secondary {
+        font-family: var(--font-heading-family) !important;
+      }
+    {% endstyle %}
+
+    {% render 'defer-stylesheet', asset: 'a-plt-custom-style.css' %}
 
     <script src="{{ 'cart-api.js' | asset_url }}" defer></script>
     <script src="{{ 'cart-store.js' | asset_url }}" defer="defer"></script>
@@ -359,16 +375,23 @@
     {% endcomment %}
     <script defer src="{{ 'alpine-bundle.js' | asset_url }}"></script>
 
-    {% liquid
-      assign storefront_public_token = settings.storefront_public_access_token | default: '3e26b62b29d0391ee6599156c04e33fb'
-    %}
+    {% comment %}
+      TRANSFERIR A NUEVO THEME
+    {% endcomment %}
 
     <shopify-store
       store-domain="https://{{ shop.permanent_domain }}"
       country="{{ localization.country.iso_code }}"
       language="{{ localization.language.iso_code }}"
-      public-access-token="{{ storefront_public_token }}"
+      public-access-token="{{settings.storefront_public_access_token }}"
     ></shopify-store>
+
+    {% render '_theme-plausible-script' %}
+    {% comment %}
+      TRANSFERIR A NUEVO THEME ---  END
+    {% endcomment %}
+
+    {% render 'global_seo_snippets' %}
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
@@ -403,6 +426,5 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
-    {% render 'global_seo_snippets' %}
   </body>
 </html>

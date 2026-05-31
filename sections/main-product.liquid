@@ -781,7 +781,7 @@
               "@type": "Product",
               "name": {{ product.title | json }},
               "description": {{ seo_description | json }},
-              "url": {{ shop.url | append: product.url | json }},
+              "url": {{ request.origin | append: product.url | json }},
               {% if selected_variant.sku != blank %}
               "sku": {{ selected_variant.sku | json }},
               {% endif %}
